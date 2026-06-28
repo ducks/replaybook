@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-# Change the upstream port in the running nginx config to the wrong port
-docker compose -f "$(dirname "$0")/docker-compose.yml" exec -T nginx \
-  sed -i 's/app:3000/app:3001/g' /etc/nginx/nginx.conf
+SCENARIO_DIR="$(cd "$(dirname "$0")" && pwd)"
+CONTAINER=$(docker compose -f "$SCENARIO_DIR/docker-compose.yml" ps -q nginx)
 
-docker compose -f "$(dirname "$0")/docker-compose.yml" exec -T nginx \
-  nginx -s reload
+docker cp "$SCENARIO_DIR/nginx-broken.conf" "$CONTAINER:/etc/nginx/nginx.conf"
+docker compose -f "$SCENARIO_DIR/docker-compose.yml" exec -T nginx nginx -s reload
