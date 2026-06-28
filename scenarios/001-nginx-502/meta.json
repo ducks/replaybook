@@ -9,5 +9,6 @@
     "Is the upstream running on the port nginx expects?"
   ],
   "success_condition": "http_200",
-  "success_target": "http://localhost:8080/health"
+  "success_target": "http://localhost:8080/health",
+  "shell_service": "nginx"
 }
