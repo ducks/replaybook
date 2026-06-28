@@ -4,7 +4,7 @@ A terminal game where you get paged and have to fix real broken infrastructure
 to win. You are the on-call engineer. The systems are real Docker containers.
 The breakage is real. The tools are real.
 
-Inspired by BOFH. Built as a training tool.
+Built as a training tool.
 
 ## The premise
 
@@ -150,6 +150,5 @@ side effect of being fun.
 
 ## Name
 
-Repo: `on-call`. Tone: BOFH. The page texts should be written like a real
-panicking Slack message. The hints should be slightly passive-aggressive. The
-success message should be dry.
+Repo: `on-call`. The page texts should read like a real panicking Slack
+message. The success message should be dry.
