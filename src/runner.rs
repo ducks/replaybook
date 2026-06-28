@@ -64,10 +64,12 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
 
     let solved = Arc::new(AtomicBool::new(false));
     let timed_out = Arc::new(AtomicBool::new(false));
+    let cancelled = Arc::new(AtomicBool::new(false));
     let hints_used = Arc::new(AtomicUsize::new(0));
 
     let solved_bg = solved.clone();
     let timed_out_bg = timed_out.clone();
+    let cancelled_bg = cancelled.clone();
     let hints_used_bg = hints_used.clone();
     let scenario_dir = scenario.dir.clone();
     let check_script = scenario.check_script();
@@ -83,6 +85,10 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
         let started = Instant::now();
         loop {
             std::thread::sleep(Duration::from_secs(2));
+
+            if cancelled_bg.load(Ordering::SeqCst) {
+                return;
+            }
 
             let elapsed = started.elapsed();
 
@@ -177,7 +183,9 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
         .status()
         .ok();
 
+    cancelled.store(true, Ordering::SeqCst);
     poller.abort();
+    std::thread::sleep(Duration::from_millis(500));
 
     let elapsed = started.elapsed();
     let used = hints_used.load(Ordering::SeqCst);
