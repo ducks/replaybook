@@ -52,11 +52,14 @@ release: version-bump
 	@echo "Pushing to origin..."
 	@git push origin main
 	@git push origin v$(VERSION)
+	@echo "Publishing to crates.io..."
+	@cargo publish
 	@echo ""
 	@echo "Released v$(VERSION)"
 	@echo "  - Merged release/v$(VERSION) into main"
 	@echo "  - Tagged v$(VERSION)"
 	@echo "  - Pushed to GitHub"
+	@echo "  - Published to crates.io"
 
 build:
 	cargo build --release
