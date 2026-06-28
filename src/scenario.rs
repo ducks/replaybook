@@ -20,6 +20,9 @@ pub struct ScenarioMeta {
     pub hints: Vec<String>,
     pub success_condition: SuccessCondition,
     pub success_target: String,
+    /// Which compose service to exec into. Defaults to the first container.
+    #[serde(default)]
+    pub shell_service: Option<String>,
 }
 
 #[derive(Debug, Clone)]

@@ -76,10 +76,11 @@ async fn main() -> Result<()> {
                 }
                 RunResult::Timeout => {
                     println!("\n✗ SLA breached.");
-                    println!(
-                        "The fault was: check the scenario's break.sh to see what broke."
-                    );
                     recorder::record(&scenario.meta.id, recorder::Outcome::Timeout, None, 0)?;
+                }
+                RunResult::Abandoned => {
+                    println!("\nShell exited before resolution. Run again to retry.");
+                    recorder::record(&scenario.meta.id, recorder::Outcome::Abandoned, None, 0)?;
                 }
             }
         }
