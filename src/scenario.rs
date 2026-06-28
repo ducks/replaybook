@@ -3,9 +3,10 @@ use serde::{Deserialize, Serialize};
 use std::path::{Path, PathBuf};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "snake_case")]
 pub enum SuccessCondition {
+    #[serde(rename = "http_200")]
     Http200,
+    #[serde(rename = "exit_zero")]
     ExitZero,
 }
 
