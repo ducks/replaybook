@@ -49,11 +49,18 @@ async fn main() -> Result<()> {
             println!("{:<30} {:<5} {}", "ID", "DIFF", "TITLE");
             println!("{}", "─".repeat(60));
             for s in scenarios {
-                println!("{:<30} {:<5} {}", s.meta.id, s.meta.difficulty, s.meta.title);
+                println!(
+                    "{:<30} {:<5} {}",
+                    s.meta.id, s.meta.difficulty, s.meta.title
+                );
             }
         }
 
-        Commands::Run { id, scenarios_dir, sla } => {
+        Commands::Run {
+            id,
+            scenarios_dir,
+            sla,
+        } => {
             let scenarios = scenario::discover(&scenarios_dir)?;
             let scenario = scenarios
                 .iter()
@@ -65,8 +72,15 @@ async fn main() -> Result<()> {
             let result = runner::run_scenario(scenario, sla * 60).await?;
 
             match result {
-                RunResult::Success { elapsed, hints_used } => {
-                    println!("\n✓ resolved in {}s ({} hints used)", elapsed.as_secs(), hints_used);
+                RunResult::Success {
+                    elapsed,
+                    hints_used,
+                } => {
+                    println!(
+                        "\n✓ resolved in {}s ({} hints used)",
+                        elapsed.as_secs(),
+                        hints_used
+                    );
                     recorder::record(
                         &scenario.meta.id,
                         recorder::Outcome::Success,
@@ -76,7 +90,12 @@ async fn main() -> Result<()> {
                 }
                 RunResult::Timeout { hints_used } => {
                     println!("\n✗ SLA breached ({} hints used).", hints_used);
-                    recorder::record(&scenario.meta.id, recorder::Outcome::Timeout, None, hints_used as u8)?;
+                    recorder::record(
+                        &scenario.meta.id,
+                        recorder::Outcome::Timeout,
+                        None,
+                        hints_used as u8,
+                    )?;
                 }
                 RunResult::Abandoned => {
                     println!("\nShell exited before resolution. Run again to retry.");
