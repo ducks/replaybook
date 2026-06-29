@@ -46,7 +46,7 @@ async fn main() -> Result<()> {
                 println!("No scenarios found in {}", scenarios_dir.display());
                 return Ok(());
             }
-            println!("{:<30} {:<5} {}", "ID", "DIFF", "TITLE");
+            println!("{:<30} {:<5} TITLE", "ID", "DIFF");
             println!("{}", "─".repeat(60));
             for s in scenarios {
                 println!(
