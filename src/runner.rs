@@ -325,13 +325,6 @@ fn cp_bytes(container: &str, contents: &[u8], dest: &str) -> Result<()> {
     Ok(())
 }
 
-fn exec_sh(container: &str, cmd: &str) -> Result<()> {
-    Command::new("docker")
-        .args(["exec", container, "sh", "-c", cmd])
-        .status()
-        .ok();
-    Ok(())
-}
 
 fn compose_up(scenario: &Scenario, state: &StateFile) -> Result<()> {
     // Write a compose override that bind-mounts the state file into the container
