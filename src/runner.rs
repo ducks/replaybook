@@ -325,7 +325,6 @@ fn cp_bytes(container: &str, contents: &[u8], dest: &str) -> Result<()> {
     Ok(())
 }
 
-
 fn compose_up(scenario: &Scenario, state: &StateFile) -> Result<()> {
     // Write a compose override that bind-mounts the state file into the container
     let override_path = scenario.dir.join("docker-compose.override.yml");
