@@ -13,23 +13,31 @@ Built as a training tool - turn post-mortems into playable scenarios. New engine
 5. Diagnose and fix using real tools (`nginx -t`, `psql`, `tc qdisc`, whatever applies)
 6. The engine polls a health check in the background - when it goes green, you win
 
-## Install
-
-```bash
-curl -fsSL https://github.com/ducks/on-call/releases/latest/download/on-call-linux-x86_64 -o on-call
-chmod +x on-call
-sudo mv on-call /usr/local/bin/
-```
-
-Binaries available for linux-x86_64, linux-arm64, macos-x86_64, macos-arm64.
-
-Or from source:
+## Getting started
 
 ```bash
 cargo install on-call
 ```
 
-Requires Docker.
+Requires Docker. Then:
+
+```bash
+# see what's available
+on-call list
+
+# run your first scenario
+on-call run 001-nginx-502
+```
+
+The terminal splits - shell inside the broken container on the left, HUD on the right. Fix the problem before the SLA runs out.
+
+## Install
+
+```bash
+cargo install on-call
+```
+
+Prebuilt binaries for linux-x86_64, linux-arm64, macos-x86_64, macos-arm64 are available on the [releases page](https://github.com/ducks/on-call/releases).
 
 ## Usage
 
