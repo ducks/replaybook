@@ -36,9 +36,12 @@ impl Scenario {
         let meta_path = dir.join("meta.json");
         let raw = std::fs::read_to_string(&meta_path)
             .with_context(|| format!("reading {}", meta_path.display()))?;
-        let meta: ScenarioMeta =
-            serde_json::from_str(&raw).with_context(|| format!("parsing {}", meta_path.display()))?;
-        Ok(Self { meta, dir: dir.to_path_buf() })
+        let meta: ScenarioMeta = serde_json::from_str(&raw)
+            .with_context(|| format!("parsing {}", meta_path.display()))?;
+        Ok(Self {
+            meta,
+            dir: dir.to_path_buf(),
+        })
     }
 
     pub fn compose_file(&self) -> PathBuf {

@@ -1,10 +1,10 @@
 use crate::scenario::{Scenario, SuccessCondition};
-use anyhow::{bail, Result};
+use anyhow::{Result, bail};
 use std::fs;
 use std::process::Command;
 use std::sync::{
-    atomic::{AtomicBool, AtomicUsize, Ordering},
     Arc,
+    atomic::{AtomicBool, AtomicUsize, Ordering},
 };
 use std::time::{Duration, Instant};
 
@@ -26,7 +26,14 @@ impl StateFile {
         "/tmp/on-call-state"
     }
 
-    fn write(&self, status: &str, remaining: u64, hints_used: usize, hint_total: usize, revealed: &[String]) {
+    fn write(
+        &self,
+        status: &str,
+        remaining: u64,
+        hints_used: usize,
+        hint_total: usize,
+        revealed: &[String],
+    ) {
         let mut content = format!("{status}\n{remaining}\n{hints_used}\n{hint_total}\n");
         for h in revealed {
             content.push_str(h);
@@ -96,14 +103,19 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
                 timed_out_bg.store(true, Ordering::SeqCst);
                 let used = hints_used_bg.load(Ordering::SeqCst);
                 let revealed: Vec<String> = hints[..used].to_vec();
-                fs::write(&state_path, format!("TIMEOUT\n0\n{used}\n{hint_count}\n{}", revealed.join("\n"))).ok();
+                fs::write(
+                    &state_path,
+                    format!("TIMEOUT\n0\n{used}\n{hint_count}\n{}", revealed.join("\n")),
+                )
+                .ok();
                 return;
             }
 
             let remaining = deadline.saturating_sub(elapsed).as_secs();
 
             // Check for hint request (flag file inside container, visible on host via mount)
-            let hint_flag_path = std::env::temp_dir().join(format!("on-call-hint-{}", container_bg.trim()));
+            let hint_flag_path =
+                std::env::temp_dir().join(format!("on-call-hint-{}", container_bg.trim()));
             // Hint flag is written inside container at /tmp/on-call-hint
             // We detect it via docker exec (cheap test -f)
             let hint_flag_exists = Command::new("docker")
@@ -167,19 +179,53 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
 
     // Create session detached, split HUD pane, then attach
     Command::new("docker")
-        .args(["exec", &container, "tmux", "new-session", "-d", "-s", TMUX_SESSION])
+        .args([
+            "exec",
+            &container,
+            "tmux",
+            "new-session",
+            "-d",
+            "-s",
+            TMUX_SESSION,
+        ])
         .status()
         .ok();
     Command::new("docker")
-        .args(["exec", &container, "tmux", "split-window", "-h", "-l", "44", "-t", TMUX_SESSION, "/usr/local/bin/on-call-hud"])
+        .args([
+            "exec",
+            &container,
+            "tmux",
+            "split-window",
+            "-h",
+            "-l",
+            "44",
+            "-t",
+            TMUX_SESSION,
+            "/usr/local/bin/on-call-hud",
+        ])
         .status()
         .ok();
     Command::new("docker")
-        .args(["exec", &container, "tmux", "select-pane", "-t", &format!("{}:0.0", TMUX_SESSION)])
+        .args([
+            "exec",
+            &container,
+            "tmux",
+            "select-pane",
+            "-t",
+            &format!("{}:0.0", TMUX_SESSION),
+        ])
         .status()
         .ok();
     Command::new("docker")
-        .args(["exec", "-it", &container, "tmux", "attach-session", "-t", TMUX_SESSION])
+        .args([
+            "exec",
+            "-it",
+            &container,
+            "tmux",
+            "attach-session",
+            "-t",
+            TMUX_SESSION,
+        ])
         .status()
         .ok();
 
@@ -194,7 +240,10 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
     // state file cleaned up by StateFile::drop
 
     if solved.load(Ordering::SeqCst) {
-        return Ok(RunResult::Success { elapsed, hints_used: used });
+        return Ok(RunResult::Success {
+            elapsed,
+            hints_used: used,
+        });
     }
     if timed_out.load(Ordering::SeqCst) {
         return Ok(RunResult::Timeout { hints_used: used });
@@ -217,7 +266,8 @@ fn inject_tools(container: &str, scenario: &Scenario) -> Result<()> {
     let get_hint = b"#!/bin/sh\ntouch /tmp/on-call-hint\necho 'Hint requested...'\n";
     cp_bytes(container, get_hint, "/usr/local/bin/get-hint")?;
 
-    let hud = format!(r#"#!/bin/sh
+    let hud = format!(
+        r#"#!/bin/sh
 PAGE='{page}'
 STATE={container_state}
 while true; do
@@ -245,7 +295,8 @@ while true; do
   fi
   sleep 2
 done
-"#);
+"#
+    );
     cp_bytes(container, hud.as_bytes(), "/usr/local/bin/on-call-hud")?;
 
     let tmux_conf = b"set -g status off\n";
@@ -259,7 +310,11 @@ fn cp_bytes(container: &str, contents: &[u8], dest: &str) -> Result<()> {
     let tmp = std::env::temp_dir().join(format!("on-call-inject-{}", dest.replace('/', "_")));
     fs::write(&tmp, contents)?;
     Command::new("docker")
-        .args(["cp", tmp.to_str().unwrap(), &format!("{}:{}", container, dest)])
+        .args([
+            "cp",
+            tmp.to_str().unwrap(),
+            &format!("{}:{}", container, dest),
+        ])
         .status()
         .ok();
     Command::new("docker")
@@ -285,9 +340,8 @@ fn compose_up(scenario: &Scenario, state: &StateFile) -> Result<()> {
     let container_path = StateFile::container_path();
 
     let service = scenario.meta.shell_service.as_deref().unwrap_or("app");
-    let override_content = format!(
-        "services:\n  {service}:\n    volumes:\n      - {host_path}:{container_path}\n"
-    );
+    let override_content =
+        format!("services:\n  {service}:\n    volumes:\n      - {host_path}:{container_path}\n");
     fs::write(&override_path, override_content)?;
 
     let status = Command::new("docker")
@@ -356,7 +410,12 @@ fn run_script(path: std::path::PathBuf) -> Result<()> {
 }
 
 pub enum RunResult {
-    Success { elapsed: Duration, hints_used: usize },
-    Timeout { hints_used: usize },
+    Success {
+        elapsed: Duration,
+        hints_used: usize,
+    },
+    Timeout {
+        hints_used: usize,
+    },
     Abandoned,
 }
