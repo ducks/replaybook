@@ -47,7 +47,7 @@ pub fn record(
 }
 
 fn sessions_dir() -> PathBuf {
-    dirs_next().join("on-call").join("sessions")
+    dirs_next().join("replaybook").join("sessions")
 }
 
 fn dirs_next() -> PathBuf {

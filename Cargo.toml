@@ -1,9 +1,17 @@
 [package]
-name = "on-call"
+name = "replaybook"
 version = "20260629.0.3"
 edition = "2024"
-description = "Fix broken infrastructure to win - a terminal game with real Docker environments"
+description = "Incident replay trainer - fix broken infrastructure in real Docker environments"
 license = "MIT"
+
+[[bin]]
+name = "replaybook"
+path = "src/main.rs"
+
+[[bin]]
+name = "replay"
+path = "src/main.rs"
 
 [dependencies]
 anyhow = "1"

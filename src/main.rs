@@ -8,7 +8,10 @@ use runner::RunResult;
 use std::path::PathBuf;
 
 #[derive(Parser)]
-#[command(name = "on-call", about = "Fix broken infrastructure to win.")]
+#[command(
+    name = "replaybook",
+    about = "Incident replay trainer. Fix broken infrastructure to win."
+)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -43,7 +46,7 @@ enum Commands {
 fn default_scenarios_dir() -> PathBuf {
     dirs_next::data_local_dir()
         .unwrap_or_else(|| PathBuf::from("/tmp"))
-        .join("on-call/scenarios")
+        .join("replaybook/scenarios")
 }
 
 fn resolve_scenarios_dir(arg: Option<PathBuf>) -> PathBuf {
@@ -61,7 +64,7 @@ async fn main() -> Result<()> {
             let dest = default_scenarios_dir().join(pack_name);
 
             if dest.exists() {
-                println!("[on-call] updating {}...", repo);
+                println!("[replaybook] updating {}...", repo);
                 let status = std::process::Command::new("git")
                     .args(["pull", "--ff-only"])
                     .current_dir(&dest)
@@ -70,7 +73,7 @@ async fn main() -> Result<()> {
                     anyhow::bail!("git pull failed");
                 }
             } else {
-                println!("[on-call] adding {}...", repo);
+                println!("[replaybook] adding {}...", repo);
                 std::fs::create_dir_all(dest.parent().unwrap())?;
                 let status = std::process::Command::new("git")
                     .args(["clone", "--depth=1", &url, dest.to_str().unwrap()])
@@ -80,7 +83,7 @@ async fn main() -> Result<()> {
                 }
             }
 
-            println!("[on-call] done. run 'on-call list' to see available scenarios.");
+            println!("[replaybook] done. run 'replaybook list' to see available scenarios.");
         }
 
         Commands::List { scenarios_dir } => {
@@ -88,7 +91,7 @@ async fn main() -> Result<()> {
             let scenarios = scenario::discover(&dir)?;
             if scenarios.is_empty() {
                 println!("No scenarios found.");
-                println!("Add a scenario pack with: on-call add ducks/on-call-scenarios");
+                println!("Add a scenario pack with: replaybook add ducks/on-call-scenarios");
                 return Ok(());
             }
             println!("{:<30} {:<5} TITLE", "ID", "DIFF");
@@ -113,7 +116,7 @@ async fn main() -> Result<()> {
                 .find(|s| s.meta.id == id)
                 .ok_or_else(|| anyhow::anyhow!("scenario '{}' not found", id))?;
 
-            println!("[on-call] scenario: {}", scenario.meta.title);
+            println!("[replaybook] scenario: {}", scenario.meta.title);
 
             let result = runner::run_scenario(scenario, sla * 60).await?;
 
@@ -154,7 +157,7 @@ async fn main() -> Result<()> {
             let path = std::env::var("HOME")
                 .map(std::path::PathBuf::from)
                 .unwrap_or_else(|_| std::path::PathBuf::from("/tmp"))
-                .join(".local/share/on-call/sessions/sessions.jsonl");
+                .join(".local/share/replaybook/sessions/sessions.jsonl");
 
             if !path.exists() {
                 println!("No sessions recorded yet.");
