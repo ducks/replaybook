@@ -1,67 +1,76 @@
-# on-call
+# replaybook
 
-A terminal game where you get paged and have to fix real broken infrastructure to win. Each round is an incident. The environment is a real Docker container. The tools are yours.
+Incident replay trainer. Get paged, fix real broken infrastructure, win.
 
-Built as a training tool - turn post-mortems into playable scenarios. New engineers build muscle memory on the actual failure modes your team has hit, not simulations.
+Each scenario is a Docker environment with a fault injected. You're dropped
+into a shell inside the broken container. The terminal splits - shell on the
+left, HUD on the right showing the incident page, SLA countdown, and hints.
+Diagnose and fix using real tools. The engine polls a health check in the
+background - when it goes green, you're done.
 
-## How it works
-
-1. Run a scenario
-2. A broken environment spins up in Docker
-3. You're dropped into a shell inside the broken container
-4. The terminal splits - shell on the left, HUD on the right (incident page, SLA countdown, hints)
-5. Diagnose and fix using real tools (`nginx -t`, `psql`, `tc qdisc`, whatever applies)
-6. The engine polls a health check in the background - when it goes green, you win
-
-## Getting started
-
-```bash
-cargo install on-call
-```
-
-Requires Docker. Then:
-
-```bash
-# see what's available
-on-call list
-
-# run your first scenario
-on-call run 001-nginx-502
-```
-
-The terminal splits - shell inside the broken container on the left, HUD on the right. Fix the problem before the SLA runs out.
+Built to turn post-mortems into playable scenarios. New engineers build muscle
+memory on the actual failure modes your team has hit, not simulations.
 
 ## Install
 
 ```bash
-cargo install on-call
+cargo install replaybook
 ```
 
-Prebuilt binaries for linux-x86_64, linux-arm64, macos-x86_64, macos-arm64 are available on the [releases page](https://github.com/ducks/on-call/releases).
+Requires Docker. Prebuilt binaries for linux-x86_64, linux-arm64,
+macos-x86_64, and macos-arm64 are on the
+[releases page](https://github.com/ducks/replaybook/releases).
+
+## Getting started
+
+```bash
+# add the official scenario pack
+replaybook add ducks/on-call-scenarios
+
+# see what's available
+replaybook list
+
+# run your first scenario
+replaybook run 001-nginx-502
+```
+
+Both `replaybook` and `replay` are installed - use whichever you prefer.
 
 ## Usage
 
 ```bash
+# add a scenario pack from GitHub
+replaybook add ducks/on-call-scenarios
+replaybook add mycompany/incidents
+
 # list available scenarios
-on-call list
+replaybook list
 
 # run a scenario (15 minute SLA by default)
-on-call run 001-nginx-502
+replaybook run 001-nginx-502
 
 # run with a custom SLA
-on-call run 001-nginx-502 --sla 5
+replaybook run 001-nginx-502 --sla 5
 
 # export session history as JSONL
-on-call export
+replaybook export
 ```
 
 ## The HUD
 
-When a scenario starts, the terminal splits via tmux (installed automatically inside the container - no host dependency). The right pane shows the incident page, SLA countdown, and hint status.
+When a scenario starts, the terminal splits via tmux (installed automatically
+inside the container - no host dependency). The right pane shows the incident
+page, SLA countdown, and hint status.
 
-Run `get-hint` inside the shell to reveal the next hint. Hints used are recorded with your session outcome.
+Run `get-hint` inside the shell to reveal the next hint. Hints used are
+recorded with your session outcome.
 
-## Scenarios
+## Scenario packs
+
+Scenarios live in separate repos and are cloned into
+`~/.local/share/replaybook/scenarios/` via `replaybook add`.
+
+Official pack: [ducks/on-call-scenarios](https://github.com/ducks/on-call-scenarios)
 
 | ID | Title | Difficulty |
 |----|-------|------------|
@@ -73,12 +82,12 @@ Run `get-hint` inside the shell to reveal the next hint. Hints used are recorded
 | 006-sidekiq-cant-connect | Jobs Not Processing | 2 |
 | 007-packet-loss | Intermittent Request Failures | 3 |
 
-## Adding scenarios
+## Writing scenarios
 
-Each scenario is a directory under `scenarios/` with:
+Each scenario is a directory with:
 
 ```
-scenarios/my-scenario/
+my-scenario/
   meta.json            # id, title, page text, difficulty, hints, success condition
   docker-compose.yml   # the environment
   break.sh             # runs after compose up to inject the fault
@@ -93,7 +102,6 @@ scenarios/my-scenario/
   "title": "Something Is Broken",
   "page": "alert text shown to the player",
   "difficulty": 2,
-  "tags": ["nginx", "networking"],
   "hints": [
     "First hint revealed on first get-hint",
     "Second hint revealed on second get-hint"
@@ -104,9 +112,21 @@ scenarios/my-scenario/
 }
 ```
 
-`shell_service` is the compose service the player is dropped into. Defaults to `app`.
+`shell_service` is the compose service the player is dropped into. Defaults
+to `app`. See any scenario in
+[ducks/on-call-scenarios](https://github.com/ducks/on-call-scenarios) for a
+working example.
 
-See `scenarios/001-nginx-502/` for a working example.
+## Session data
+
+Sessions are recorded to `~/.local/share/replaybook/sessions/sessions.jsonl`:
+
+```bash
+replaybook export > sessions.jsonl
+```
+
+Each record contains scenario ID, outcome (success/timeout/abandoned),
+elapsed time, and hints used.
 
 ## Releasing
 
@@ -114,14 +134,5 @@ See `scenarios/001-nginx-502/` for a working example.
 make release
 ```
 
-Bumps version with today's date, tags, pushes, publishes to crates.io. GitHub Actions builds binaries for all platforms on the tag push.
-
-## Session data
-
-Sessions are recorded to `~/.local/share/on-call/sessions/sessions.jsonl`:
-
-```bash
-on-call export > sessions.jsonl
-```
-
-Each record contains scenario ID, outcome (success/timeout/abandoned), elapsed time, and hints used.
+Bumps version with today's date, tags, pushes, publishes to crates.io.
+GitHub Actions builds binaries for all platforms on the tag push.
