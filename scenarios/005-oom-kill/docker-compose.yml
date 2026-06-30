@@ -1,9 +1,0 @@
-services:
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-      CACHE_MB: "90"
-    mem_limit: "64m"
-    restart: on-failure
