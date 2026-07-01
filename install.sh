@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="ducks/on-call"
-BIN="on-call"
+REPO="ducks/replaybook"
+BIN="replaybook"
 INSTALL_DIR="${INSTALL_DIR:-/usr/local/bin}"
 
 detect_target() {
@@ -46,4 +46,4 @@ else
 fi
 
 echo "Installed to ${INSTALL_DIR}/${BIN}"
-echo "Run: on-call list"
+echo "Run: replaybook list"

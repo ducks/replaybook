@@ -14,17 +14,17 @@ jobs:
         include:
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
-            artifact: on-call-linux-x86_64
+            artifact: replaybook-linux-x86_64
           - target: aarch64-unknown-linux-gnu
             os: ubuntu-latest
-            artifact: on-call-linux-arm64
+            artifact: replaybook-linux-arm64
             cross: true
           - target: x86_64-apple-darwin
             os: macos-latest
-            artifact: on-call-macos-x86_64
+            artifact: replaybook-macos-x86_64
           - target: aarch64-apple-darwin
             os: macos-latest
-            artifact: on-call-macos-arm64
+            artifact: replaybook-macos-arm64
 
     steps:
       - uses: actions/checkout@v4
@@ -47,10 +47,10 @@ jobs:
 
       - name: Strip binary
         if: "!matrix.cross"
-        run: strip target/${{ matrix.target }}/release/on-call
+        run: strip target/${{ matrix.target }}/release/replaybook
 
       - name: Rename binary
-        run: cp target/${{ matrix.target }}/release/on-call ${{ matrix.artifact }}
+        run: cp target/${{ matrix.target }}/release/replaybook ${{ matrix.artifact }}
 
       - uses: actions/upload-artifact@v4
         with:
@@ -71,5 +71,5 @@ jobs:
 
       - uses: softprops/action-gh-release@v2
         with:
-          files: on-call-*
+          files: replaybook-*
           generate_release_notes: true
