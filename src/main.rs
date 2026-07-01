@@ -53,6 +53,11 @@ fn resolve_scenarios_dir(arg: Option<PathBuf>) -> PathBuf {
     arg.unwrap_or_else(default_scenarios_dir)
 }
 
+fn no_scenarios_found() {
+    println!("No scenarios found.");
+    println!("Add a scenario pack with: replaybook add ducks/on-call-scenarios");
+}
+
 #[tokio::main]
 async fn main() -> Result<()> {
     let cli = Cli::parse();
@@ -88,10 +93,13 @@ async fn main() -> Result<()> {
 
         Commands::List { scenarios_dir } => {
             let dir = resolve_scenarios_dir(scenarios_dir);
+            if !dir.exists() {
+                no_scenarios_found();
+                return Ok(());
+            }
             let scenarios = scenario::discover(&dir)?;
             if scenarios.is_empty() {
-                println!("No scenarios found.");
-                println!("Add a scenario pack with: replaybook add ducks/on-call-scenarios");
+                no_scenarios_found();
                 return Ok(());
             }
             println!("{:<30} {:<5} TITLE", "ID", "DIFF");
@@ -110,6 +118,10 @@ async fn main() -> Result<()> {
             sla,
         } => {
             let dir = resolve_scenarios_dir(scenarios_dir);
+            if !dir.exists() {
+                no_scenarios_found();
+                return Ok(());
+            }
             let scenarios = scenario::discover(&dir)?;
             let scenario = scenarios
                 .iter()
