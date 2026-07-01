@@ -11,6 +11,16 @@ use std::time::{Duration, Instant};
 const HINT_FLAG: &str = "/tmp/on-call-hint";
 const TMUX_SESSION: &str = "on-call";
 
+fn docker_exec(container: &str, args: &[&str]) -> bool {
+    let mut cmd_args = vec!["exec", container];
+    cmd_args.extend_from_slice(args);
+    Command::new("docker")
+        .args(cmd_args)
+        .status()
+        .map(|s| s.success())
+        .unwrap_or(false)
+}
+
 pub struct StateFile {
     pub host_path: std::path::PathBuf,
 }
@@ -113,28 +123,22 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
 
             let remaining = deadline.saturating_sub(elapsed).as_secs();
 
-            // Check for hint request (flag file inside container, visible on host via mount)
-            let hint_flag_path =
-                std::env::temp_dir().join(format!("on-call-hint-{}", container_bg.trim()));
-            // Hint flag is written inside container at /tmp/on-call-hint
-            // We detect it via docker exec (cheap test -f)
-            let hint_flag_exists = Command::new("docker")
-                .args(["exec", &container_bg, "test", "-f", HINT_FLAG])
-                .status()
-                .map(|s| s.success())
-                .unwrap_or(false);
-            drop(hint_flag_path);
+            // Hint flag is written inside container at /tmp/on-call-hint.
+            // We detect it via docker exec (cheap test -f).
+            let hint_flag_exists = docker_exec(&container_bg, &["test", "-f", HINT_FLAG]);
 
             if hint_flag_exists {
-                Command::new("docker")
-                    .args(["exec", &container_bg, "rm", "-f", HINT_FLAG])
-                    .status()
-                    .ok();
+                docker_exec(&container_bg, &["rm", "-f", HINT_FLAG]);
 
-                let idx = hints_used_bg.fetch_add(1, Ordering::SeqCst);
-                if idx >= hints.len() {
-                    hints_used_bg.fetch_sub(1, Ordering::SeqCst);
-                }
+                hints_used_bg
+                    .fetch_update(Ordering::SeqCst, Ordering::SeqCst, |used| {
+                        if used < hints.len() {
+                            Some(used + 1)
+                        } else {
+                            None
+                        }
+                    })
+                    .ok();
             }
 
             let used = hints_used_bg.load(Ordering::SeqCst);
@@ -178,22 +182,13 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
     let started = Instant::now();
 
     // Create session detached, split HUD pane, then attach
-    Command::new("docker")
-        .args([
-            "exec",
-            &container,
-            "tmux",
-            "new-session",
-            "-d",
-            "-s",
-            TMUX_SESSION,
-        ])
-        .status()
-        .ok();
-    Command::new("docker")
-        .args([
-            "exec",
-            &container,
+    docker_exec(
+        &container,
+        &["tmux", "new-session", "-d", "-s", TMUX_SESSION],
+    );
+    docker_exec(
+        &container,
+        &[
             "tmux",
             "split-window",
             "-h",
@@ -202,20 +197,17 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
             "-t",
             TMUX_SESSION,
             "/usr/local/bin/on-call-hud",
-        ])
-        .status()
-        .ok();
-    Command::new("docker")
-        .args([
-            "exec",
-            &container,
+        ],
+    );
+    docker_exec(
+        &container,
+        &[
             "tmux",
             "select-pane",
             "-t",
             &format!("{}:0.0", TMUX_SESSION),
-        ])
-        .status()
-        .ok();
+        ],
+    );
     Command::new("docker")
         .args([
             "exec",
@@ -252,10 +244,7 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
 }
 
 fn install_tmux(container: &str) -> Result<()> {
-    Command::new("docker")
-        .args(["exec", container, "apk", "add", "--no-cache", "-q", "tmux"])
-        .status()
-        .ok();
+    docker_exec(container, &["apk", "add", "--no-cache", "-q", "tmux"]);
     Ok(())
 }
 
@@ -317,10 +306,7 @@ fn cp_bytes(container: &str, contents: &[u8], dest: &str) -> Result<()> {
         ])
         .status()
         .ok();
-    Command::new("docker")
-        .args(["exec", container, "chmod", "+x", dest])
-        .status()
-        .ok();
+    docker_exec(container, &["chmod", "+x", dest]);
     fs::remove_file(&tmp).ok();
     Ok(())
 }
