@@ -325,13 +325,32 @@ fn cp_bytes(container: &str, contents: &[u8], dest: &str) -> Result<()> {
     Ok(())
 }
 
+fn first_compose_service(scenario: &Scenario) -> Result<String> {
+    let output = Command::new("docker")
+        .args(["compose", "-f"])
+        .arg(scenario.compose_file())
+        .args(["config", "--services"])
+        .output()?;
+
+    std::str::from_utf8(&output.stdout)?
+        .lines()
+        .find(|l| !l.is_empty())
+        .map(|s| s.trim().to_string())
+        .ok_or_else(|| {
+            anyhow::anyhow!("no services found in {}", scenario.compose_file().display())
+        })
+}
+
 fn compose_up(scenario: &Scenario, state: &StateFile) -> Result<()> {
     // Write a compose override that bind-mounts the state file into the container
     let override_path = scenario.dir.join("docker-compose.override.yml");
     let host_path = state.host_path.display();
     let container_path = StateFile::container_path();
 
-    let service = scenario.meta.shell_service.as_deref().unwrap_or("app");
+    let service = match scenario.meta.shell_service.as_deref() {
+        Some(service) => service.to_string(),
+        None => first_compose_service(scenario)?,
+    };
     let override_content =
         format!("services:\n  {service}:\n    volumes:\n      - {host_path}:{container_path}\n");
     fs::write(&override_path, override_content)?;
