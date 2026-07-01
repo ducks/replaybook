@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scenarios &middot; replaybook</title>
+  <meta name="description" content="Scenario packs, writing your own scenarios, and declarative fault injection.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html" class="active">Scenarios</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <h1>Scenarios</h1>
+
+    <h2>Scenario packs</h2>
+
+    <p>
+      Scenarios live in separate repos and are cloned into
+      <code>~/.local/share/replaybook/scenarios/</code> via
+      <code>replaybook add</code>.
+    </p>
+
+    <p>
+      Official pack:
+      <a href="https://github.com/ducks/replaybook-scenarios">ducks/replaybook-scenarios</a>
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Title</th><th>Difficulty</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>001-nginx-502</code></td><td>502 Bad Gateway</td><td>1</td></tr>
+        <tr><td><code>002-postgres-wont-start</code></td><td>Postgres Won't Start</td><td>1</td></tr>
+        <tr><td><code>003-missing-env-var</code></td><td>App Crashing on Boot</td><td>1</td></tr>
+        <tr><td><code>004-disk-full</code></td><td>Health Checks Failing</td><td>2</td></tr>
+        <tr><td><code>005-oom-kill</code></td><td>Container Keeps Restarting</td><td>2</td></tr>
+        <tr><td><code>006-sidekiq-cant-connect</code></td><td>Jobs Not Processing</td><td>2</td></tr>
+        <tr><td><code>007-packet-loss</code></td><td>Intermittent Request Failures</td><td>3</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Writing scenarios</h2>
+
+    <p>Each scenario is a directory with:</p>
+
+    <pre><code>my-scenario/
+  meta.json            # id, title, page text, difficulty, hints, success condition
+  docker-compose.yml   # the environment
+  break.sh             # runs after compose up to inject the fault (or use break: [...] below)
+  check.sh             # polled every 2s to detect resolution (or use http_200)</code></pre>
+
+    <p><code>meta.json</code> format:</p>
+
+    <pre><code>{
+  "id": "my-scenario",
+  "title": "Something Is Broken",
+  "page": "alert text shown to the player",
+  "difficulty": 2,
+  "hints": [
+    "First hint revealed on first get-hint",
+    "Second hint revealed on second get-hint"
+  ],
+  "success_condition": "http_200",
+  "success_target": "http://localhost:8080/health",
+  "shell_service": "app"
+}</code></pre>
+
+    <p>
+      <code>shell_service</code> is the compose service the player is
+      dropped into. If unset, defaults to the first service defined in
+      <code>docker-compose.yml</code>. See any scenario in
+      <a href="https://github.com/ducks/replaybook-scenarios">ducks/replaybook-scenarios</a>
+      for a working example.
+    </p>
+
+    <h3>Fault injection: break.sh vs break steps</h3>
+
+    <p>
+      Most faults are just "copy a file in" and/or "run a command in a
+      container." Instead of writing <code>break.sh</code>, add a
+      <code>break</code> array to <code>meta.json</code>:
+    </p>
+
+    <pre><code>"break": [
+  { "cp": { "service": "nginx", "src": "nginx-broken.conf", "dest": "/etc/nginx/nginx.conf" } },
+  { "exec": { "service": "nginx", "cmd": ["nginx", "-s", "reload"] } }
+]</code></pre>
+
+    <p>Steps run in order. Three kinds:</p>
+
+    <ul>
+      <li><code>cp</code> &mdash; copy <code>src</code> (a file in the scenario directory) to <code>dest</code> inside <code>service</code>'s container</li>
+      <li><code>exec</code> &mdash; run <code>cmd</code> inside <code>service</code>'s container</li>
+      <li><code>restart</code> &mdash; restart <code>service</code>'s container</li>
+    </ul>
+
+    <pre><code>"break": [
+  { "exec": { "service": "db", "cmd": ["chown", "-R", "root:root", "/var/lib/postgresql/data"] } },
+  { "restart": { "service": "db" } }
+]</code></pre>
+
+    <p>
+      If <code>break</code> is present, it's used instead of
+      <code>break.sh</code>. If a fault needs real script logic (loops,
+      conditionals, piping between commands), write <code>break.sh</code>
+      instead &mdash; it still works exactly as before.
+    </p>
+
+    <h3 id="validation">Validation</h3>
+
+    <p>
+      <code>replaybook add</code> and <code>replaybook run</code> validate
+      each scenario before anything runs:
+    </p>
+
+    <ul>
+      <li>the compose file parses and defines at least one service</li>
+      <li><code>shell_service</code> and any <code>break</code> step's <code>service</code> match a real compose service</li>
+      <li><code>break.sh</code> or a <code>break</code> array is present</li>
+      <li><code>check.sh</code> is present when <code>success_condition</code> is <code>exit_zero</code></li>
+      <li><code>success_target</code> is a valid <code>http(s)</code> URL when <code>success_condition</code> is <code>http_200</code></li>
+    </ul>
+
+    <p>
+      <code>replaybook add</code> reports problems for every scenario in a
+      pack without blocking the rest of it. <code>replaybook run</code>
+      re-checks the single scenario it's about to launch and refuses to
+      start if it fails.
+    </p>
+
+    <footer class="site">
+      <a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a>
+      &middot; <a href="https://crates.io/crates/replaybook">crates.io</a>
+    </footer>
+  </div>
+</body>
+</html>

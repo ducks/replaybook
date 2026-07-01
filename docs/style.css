@@ -1,0 +1,170 @@
+:root {
+  --bg: #0d1117;
+  --bg-alt: #161b22;
+  --fg: #c9d1d9;
+  --fg-dim: #8b949e;
+  --accent: #3fb950;
+  --border: #30363d;
+  --code-bg: #161b22;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+header.site {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+header.site .brand {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+header.site .brand .prompt {
+  color: var(--accent);
+}
+
+nav.site a {
+  color: var(--fg-dim);
+  text-decoration: none;
+  margin-left: 1.25rem;
+  font-size: 0.92rem;
+}
+
+nav.site a:hover,
+nav.site a.active {
+  color: var(--accent);
+}
+
+h1 {
+  font-size: 1.9rem;
+  margin: 0 0 0.75rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2.5rem 0 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 1.75rem 0 0.5rem;
+  color: var(--fg);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: #58a6ff;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.87em;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  margin: 0 0 1.25rem;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85em;
+}
+
+.tagline {
+  color: var(--fg-dim);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--bg-alt);
+  padding: 0.9rem 1.1rem;
+  border-radius: 0 6px 6px 0;
+  margin: 0 0 1.25rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.5rem;
+  font-size: 0.92rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  color: var(--fg-dim);
+  font-weight: 600;
+}
+
+ul, ol {
+  padding-left: 1.4rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+footer.site {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--fg-dim);
+  font-size: 0.85rem;
+}
+
+footer.site a {
+  color: var(--fg-dim);
+}

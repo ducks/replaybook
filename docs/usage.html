@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usage &middot; replaybook</title>
+  <meta name="description" content="replaybook CLI commands, the HUD, and session data.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html" class="active">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <h1>Usage</h1>
+
+    <h2>Commands</h2>
+
+    <pre><code># add a scenario pack from GitHub
+replaybook add ducks/replaybook-scenarios
+replaybook add mycompany/incidents
+
+# list available scenarios
+replaybook list
+
+# run a scenario (15 minute SLA by default)
+replaybook run 001-nginx-502
+
+# run with a custom SLA
+replaybook run 001-nginx-502 --sla 5
+
+# export session history as JSONL
+replaybook export</code></pre>
+
+    <p>
+      <code>replaybook add</code> and <code>replaybook run</code> validate
+      scenarios automatically before anything runs &mdash; see
+      <a href="scenarios.html#validation">validation</a> for what's checked.
+    </p>
+
+    <h2>The HUD</h2>
+
+    <p>
+      When a scenario starts, the terminal splits via tmux (installed
+      automatically inside the container &mdash; no host dependency). The
+      right pane shows the incident page, SLA countdown, and hint status.
+    </p>
+
+    <p>
+      Run <code>get-hint</code> inside the shell to reveal the next hint.
+      Hints used are recorded with your session outcome.
+    </p>
+
+    <h2>Session data</h2>
+
+    <p>Sessions are recorded to <code>~/.local/share/replaybook/sessions/sessions.jsonl</code>:</p>
+
+    <pre><code>replaybook export > sessions.jsonl</code></pre>
+
+    <p>Each record contains scenario ID, outcome (success/timeout/abandoned), elapsed time, and hints used.</p>
+
+    <footer class="site">
+      <a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a>
+      &middot; <a href="https://crates.io/crates/replaybook">crates.io</a>
+    </footer>
+  </div>
+</body>
+</html>

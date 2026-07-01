@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>replaybook</title>
+  <meta name="description" content="Incident replay trainer. Get paged, fix real broken infrastructure, win.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html" class="active">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <h1>replaybook</h1>
+    <p class="tagline">Incident replay trainer. Get paged, fix real broken infrastructure, win.</p>
+
+    <p>
+      Each scenario is a Docker environment with a fault injected. You're dropped
+      into a shell inside the broken container. The terminal splits &mdash; shell on
+      the left, HUD on the right showing the incident page, SLA countdown, and hints.
+      Diagnose and fix using real tools. The engine polls a health check in the
+      background &mdash; when it goes green, you're done.
+    </p>
+
+    <p>
+      Built to turn post-mortems into playable scenarios. New engineers build
+      muscle memory on the actual failure modes your team has hit, not simulations.
+    </p>
+
+    <h2>Install</h2>
+
+    <pre><code>cargo install replaybook</code></pre>
+
+    <p>
+      Requires Docker. Prebuilt binaries for linux-x86_64, linux-arm64,
+      macos-x86_64, and macos-arm64 are on the
+      <a href="https://github.com/ducks/replaybook/releases">releases page</a>.
+    </p>
+
+    <h2>Getting started</h2>
+
+    <pre><code># add the official scenario pack
+replaybook add ducks/replaybook-scenarios
+
+# see what's available
+replaybook list
+
+# run your first scenario
+replaybook run 001-nginx-502</code></pre>
+
+    <p>Both <code>replaybook</code> and <code>replay</code> are installed &mdash; use whichever you prefer.</p>
+
+    <div class="callout">
+      Next: <a href="usage.html">CLI usage</a> and the HUD, or jump to
+      <a href="scenarios.html">writing your own scenarios</a>.
+    </div>
+
+    <footer class="site">
+      <a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a>
+      &middot; <a href="https://crates.io/crates/replaybook">crates.io</a>
+    </footer>
+  </div>
+</body>
+</html>
