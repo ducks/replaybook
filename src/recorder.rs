@@ -47,13 +47,8 @@ pub fn record(
 }
 
 fn sessions_dir() -> PathBuf {
-    dirs_next().join("replaybook").join("sessions")
-}
-
-fn dirs_next() -> PathBuf {
-    std::env::var("HOME")
-        .map(PathBuf::from)
-        .unwrap_or_else(|_| PathBuf::from("/tmp"))
-        .join(".local")
-        .join("share")
+    dirs_next::data_local_dir()
+        .unwrap_or_else(|| PathBuf::from("/tmp"))
+        .join("replaybook")
+        .join("sessions")
 }
