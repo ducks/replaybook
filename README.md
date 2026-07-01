@@ -90,7 +90,7 @@ Each scenario is a directory with:
 my-scenario/
   meta.json            # id, title, page text, difficulty, hints, success condition
   docker-compose.yml   # the environment
-  break.sh             # runs after compose up to inject the fault
+  break.sh             # runs after compose up to inject the fault (or use break: [...] below)
   check.sh             # polled every 2s to detect resolution (or use http_200)
 ```
 
@@ -117,10 +117,40 @@ defaults to the first service defined in `docker-compose.yml`. See any
 scenario in [ducks/on-call-scenarios](https://github.com/ducks/on-call-scenarios)
 for a working example.
 
+### Fault injection: break.sh vs break steps
+
+Most faults are just "copy a file in" and/or "run a command in a container."
+Instead of writing `break.sh`, add a `break` array to `meta.json`:
+
+```json
+"break": [
+  { "cp": { "service": "nginx", "src": "nginx-broken.conf", "dest": "/etc/nginx/nginx.conf" } },
+  { "exec": { "service": "nginx", "cmd": ["nginx", "-s", "reload"] } }
+]
+```
+
+Steps run in order. Three kinds:
+
+- `cp` - copy `src` (a file in the scenario directory) to `dest` inside `service`'s container
+- `exec` - run `cmd` inside `service`'s container
+- `restart` - restart `service`'s container
+
+```json
+"break": [
+  { "exec": { "service": "db", "cmd": ["chown", "-R", "root:root", "/var/lib/postgresql/data"] } },
+  { "restart": { "service": "db" } }
+]
+```
+
+If `break` is present, it's used instead of `break.sh`. If a fault needs
+real script logic (loops, conditionals, piping between commands), write
+`break.sh` instead - it still works exactly as before.
+
 `replaybook add` and `replaybook run` validate each scenario (compose file
-parses, `shell_service` matches a real service, `break.sh` exists, and
-`check.sh` exists if `success_condition` is `exit_zero`) and report problems
-before anything runs.
+parses, `shell_service` and any `break` step's `service` match a real
+service, `break.sh` or `break` exists, and `check.sh` exists if
+`success_condition` is `exit_zero`) and report problems before anything
+runs.
 
 ## Session data
 

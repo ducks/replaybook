@@ -1,4 +1,4 @@
-use crate::scenario::{Scenario, SuccessCondition};
+use crate::scenario::{BreakStep, Scenario, SuccessCondition};
 use anyhow::Result;
 use std::process::Command;
 
@@ -56,10 +56,39 @@ pub fn validate(scenario: &Scenario) -> Result<Vec<Issue>> {
         }
     }
 
-    if !scenario.break_script().exists() {
-        issues.push(Issue {
-            message: "missing break.sh".to_string(),
-        });
+    match &scenario.meta.break_steps {
+        Some(steps) => {
+            for (i, step) in steps.iter().enumerate() {
+                let service = match step {
+                    BreakStep::Cp { service, src, .. } => {
+                        if !scenario.dir.join(src).exists() {
+                            issues.push(Issue {
+                                message: format!("break[{i}]: cp source \"{src}\" does not exist"),
+                            });
+                        }
+                        service
+                    }
+                    BreakStep::Exec { service, .. } => service,
+                    BreakStep::Restart { service } => service,
+                };
+                if !services.contains(&service.as_str()) {
+                    issues.push(Issue {
+                        message: format!(
+                            "break[{i}]: service \"{service}\" is not a service in docker-compose.yml (found: {})",
+                            services.join(", ")
+                        ),
+                    });
+                }
+            }
+        }
+        None => {
+            if !scenario.break_script().exists() {
+                issues.push(Issue {
+                    message: "missing break.sh (or a break: [...] step list in meta.json)"
+                        .to_string(),
+                });
+            }
+        }
     }
 
     match scenario.meta.success_condition {

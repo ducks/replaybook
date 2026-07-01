@@ -11,6 +11,21 @@ pub enum SuccessCondition {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum BreakStep {
+    /// Copy a file from the scenario directory into a container.
+    Cp {
+        service: String,
+        src: String,
+        dest: String,
+    },
+    /// Run a command inside a service's container.
+    Exec { service: String, cmd: Vec<String> },
+    /// Restart a service's container.
+    Restart { service: String },
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ScenarioMeta {
     pub id: String,
     pub title: String,
@@ -23,6 +38,9 @@ pub struct ScenarioMeta {
     /// Which compose service to exec into. Defaults to the first container.
     #[serde(default)]
     pub shell_service: Option<String>,
+    /// Declarative fault injection steps, run instead of break.sh if present.
+    #[serde(rename = "break", default)]
+    pub break_steps: Option<Vec<BreakStep>>,
 }
 
 #[derive(Debug, Clone)]

@@ -1,4 +1,4 @@
-use crate::scenario::{Scenario, SuccessCondition};
+use crate::scenario::{BreakStep, Scenario, SuccessCondition};
 use anyhow::{Result, bail};
 use std::fs;
 use std::process::Command;
@@ -82,7 +82,10 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
     std::thread::sleep(Duration::from_secs(2));
 
     println!("[on-call] injecting fault...");
-    run_script(scenario.break_script())?;
+    match &scenario.meta.break_steps {
+        Some(steps) => run_break_steps(scenario, steps)?,
+        None => run_script(scenario.break_script())?,
+    }
 
     let container = primary_container(scenario)?;
 
@@ -414,6 +417,47 @@ fn run_script(path: std::path::PathBuf) -> Result<()> {
     let status = Command::new("bash").arg(&path).status()?;
     if !status.success() {
         bail!("script {} failed", path.display());
+    }
+    Ok(())
+}
+
+fn run_break_steps(scenario: &Scenario, steps: &[BreakStep]) -> Result<()> {
+    for step in steps {
+        match step {
+            BreakStep::Cp { service, src, dest } => {
+                let host_path = scenario.dir.join(src);
+                let status = Command::new("docker")
+                    .args(["compose", "-f"])
+                    .arg(scenario.compose_file())
+                    .args(["cp", host_path.to_str().unwrap()])
+                    .arg(format!("{service}:{dest}"))
+                    .status()?;
+                if !status.success() {
+                    bail!("break step failed: cp {src} to {service}:{dest}");
+                }
+            }
+            BreakStep::Exec { service, cmd } => {
+                let status = Command::new("docker")
+                    .args(["compose", "-f"])
+                    .arg(scenario.compose_file())
+                    .args(["exec", "-T", service])
+                    .args(cmd)
+                    .status()?;
+                if !status.success() {
+                    bail!("break step failed: exec in {service}: {}", cmd.join(" "));
+                }
+            }
+            BreakStep::Restart { service } => {
+                let status = Command::new("docker")
+                    .args(["compose", "-f"])
+                    .arg(scenario.compose_file())
+                    .args(["restart", service])
+                    .status()?;
+                if !status.success() {
+                    bail!("break step failed: restart {service}");
+                }
+            }
+        }
     }
     Ok(())
 }
