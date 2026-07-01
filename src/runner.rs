@@ -59,6 +59,16 @@ impl Drop for StateFile {
     }
 }
 
+struct ComposeGuard<'a> {
+    scenario: &'a Scenario,
+}
+
+impl Drop for ComposeGuard<'_> {
+    fn drop(&mut self) {
+        compose_down(self.scenario);
+    }
+}
+
 pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunResult> {
     // Touch state file before compose up so bind mount sees a file not a dir
     let state = StateFile::new(&scenario.meta.id)?;
@@ -66,6 +76,9 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
     println!("\n[on-call] starting environment...");
     compose_down(scenario);
     compose_up(scenario, &state)?;
+    // From here on, the compose stack is up: tear it down on any exit path,
+    // including early returns from setup steps that fail below.
+    let _compose_guard = ComposeGuard { scenario };
     std::thread::sleep(Duration::from_secs(2));
 
     println!("[on-call] injecting fault...");
@@ -228,8 +241,7 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
     let elapsed = started.elapsed();
     let used = hints_used.load(Ordering::SeqCst);
 
-    compose_down(scenario);
-    // state file cleaned up by StateFile::drop
+    // compose stack torn down by ComposeGuard::drop, state file by StateFile::drop
 
     if solved.load(Ordering::SeqCst) {
         return Ok(RunResult::Success {
