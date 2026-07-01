@@ -112,10 +112,15 @@ my-scenario/
 }
 ```
 
-`shell_service` is the compose service the player is dropped into. Defaults
-to `app`. See any scenario in
-[ducks/on-call-scenarios](https://github.com/ducks/on-call-scenarios) for a
-working example.
+`shell_service` is the compose service the player is dropped into. If unset,
+defaults to the first service defined in `docker-compose.yml`. See any
+scenario in [ducks/on-call-scenarios](https://github.com/ducks/on-call-scenarios)
+for a working example.
+
+`replaybook add` and `replaybook run` validate each scenario (compose file
+parses, `shell_service` matches a real service, `break.sh` exists, and
+`check.sh` exists if `success_condition` is `exit_zero`) and report problems
+before anything runs.
 
 ## Session data
 

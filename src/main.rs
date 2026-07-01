@@ -1,6 +1,7 @@
 mod recorder;
 mod runner;
 mod scenario;
+mod validate;
 
 use anyhow::Result;
 use clap::{Parser, Subcommand};
@@ -88,7 +89,26 @@ async fn main() -> Result<()> {
                 }
             }
 
-            println!("[replaybook] done. run 'replaybook list' to see available scenarios.");
+            let scenarios = scenario::discover(&dest)?;
+            let mut broken = 0;
+            for s in &scenarios {
+                let issues = validate::validate(s)?;
+                if !issues.is_empty() {
+                    broken += 1;
+                    eprintln!("[replaybook] {} failed validation:", s.meta.id);
+                    for issue in issues {
+                        eprintln!("  - {}", issue.message);
+                    }
+                }
+            }
+
+            if broken > 0 {
+                println!(
+                    "[replaybook] done. {broken} scenario(s) failed validation - see above. replaybook run will re-check before launching."
+                );
+            } else {
+                println!("[replaybook] done. run 'replaybook list' to see available scenarios.");
+            }
         }
 
         Commands::List { scenarios_dir } => {
@@ -127,6 +147,15 @@ async fn main() -> Result<()> {
                 .iter()
                 .find(|s| s.meta.id == id)
                 .ok_or_else(|| anyhow::anyhow!("scenario '{}' not found", id))?;
+
+            let issues = validate::validate(scenario)?;
+            if !issues.is_empty() {
+                eprintln!("[replaybook] scenario '{}' failed validation:", id);
+                for issue in &issues {
+                    eprintln!("  - {}", issue.message);
+                }
+                anyhow::bail!("cannot run an invalid scenario");
+            }
 
             println!("[replaybook] scenario: {}", scenario.meta.title);
 
