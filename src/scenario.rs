@@ -57,19 +57,51 @@ impl Scenario {
     }
 }
 
+fn is_dotdir(path: &Path) -> bool {
+    path.file_name()
+        .and_then(|n| n.to_str())
+        .is_some_and(|n| n.starts_with('.'))
+}
+
 pub fn discover(scenarios_dir: &Path) -> Result<Vec<Scenario>> {
     let mut scenarios = Vec::new();
     let mut entries: Vec<_> = std::fs::read_dir(scenarios_dir)
         .with_context(|| format!("reading {}", scenarios_dir.display()))?
         .filter_map(|e| e.ok())
         .filter(|e| e.path().is_dir())
+        .filter(|e| !is_dotdir(&e.path()))
         .collect();
     entries.sort_by_key(|e| e.path());
 
     for entry in entries {
-        match Scenario::load(&entry.path()) {
-            Ok(s) => scenarios.push(s),
-            Err(e) => eprintln!("skipping {}: {e}", entry.path().display()),
+        let dir = entry.path();
+        if dir.join("meta.json").exists() {
+            // A scenario placed directly under scenarios_dir.
+            match Scenario::load(&dir) {
+                Ok(s) => scenarios.push(s),
+                Err(e) => eprintln!("skipping {}: {e}", dir.display()),
+            }
+            continue;
+        }
+
+        // Otherwise treat this as a scenario pack: scan its immediate
+        // children (add clones packs into scenarios_dir/<pack-name>/).
+        let mut pack_entries: Vec<_> = match std::fs::read_dir(&dir) {
+            Ok(entries) => entries
+                .filter_map(|e| e.ok())
+                .filter(|e| e.path().is_dir())
+                .filter(|e| !is_dotdir(&e.path()))
+                .collect(),
+            Err(_) => continue,
+        };
+        pack_entries.sort_by_key(|e| e.path());
+
+        for pack_entry in pack_entries {
+            let scenario_dir = pack_entry.path();
+            match Scenario::load(&scenario_dir) {
+                Ok(s) => scenarios.push(s),
+                Err(e) => eprintln!("skipping {}: {e}", scenario_dir.display()),
+            }
         }
     }
     Ok(scenarios)
