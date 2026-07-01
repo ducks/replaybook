@@ -25,7 +25,7 @@ macos-x86_64, and macos-arm64 are on the
 
 ```bash
 # add the official scenario pack
-replaybook add ducks/on-call-scenarios
+replaybook add ducks/replaybook-scenarios
 
 # see what's available
 replaybook list
@@ -40,7 +40,7 @@ Both `replaybook` and `replay` are installed - use whichever you prefer.
 
 ```bash
 # add a scenario pack from GitHub
-replaybook add ducks/on-call-scenarios
+replaybook add ducks/replaybook-scenarios
 replaybook add mycompany/incidents
 
 # list available scenarios
@@ -70,7 +70,7 @@ recorded with your session outcome.
 Scenarios live in separate repos and are cloned into
 `~/.local/share/replaybook/scenarios/` via `replaybook add`.
 
-Official pack: [ducks/on-call-scenarios](https://github.com/ducks/on-call-scenarios)
+Official pack: [ducks/replaybook-scenarios](https://github.com/ducks/replaybook-scenarios)
 
 | ID | Title | Difficulty |
 |----|-------|------------|
@@ -114,7 +114,7 @@ my-scenario/
 
 `shell_service` is the compose service the player is dropped into. If unset,
 defaults to the first service defined in `docker-compose.yml`. See any
-scenario in [ducks/on-call-scenarios](https://github.com/ducks/on-call-scenarios)
+scenario in [ducks/replaybook-scenarios](https://github.com/ducks/replaybook-scenarios)
 for a working example.
 
 ### Fault injection: break.sh vs break steps

@@ -20,7 +20,7 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Add a scenario pack from a GitHub repo (e.g. ducks/on-call-scenarios)
+    /// Add a scenario pack from a GitHub repo (e.g. ducks/replaybook-scenarios)
     Add {
         /// GitHub repo in owner/repo format
         repo: String,
@@ -56,7 +56,7 @@ fn resolve_scenarios_dir(arg: Option<PathBuf>) -> PathBuf {
 
 fn no_scenarios_found() {
     println!("No scenarios found.");
-    println!("Add a scenario pack with: replaybook add ducks/on-call-scenarios");
+    println!("Add a scenario pack with: replaybook add ducks/replaybook-scenarios");
 }
 
 #[tokio::main]
