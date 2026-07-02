@@ -40,6 +40,13 @@ enum Commands {
         #[arg(long, default_value_t = 15)]
         sla: u64,
     },
+    /// Test a scenario end-to-end: break, assert broken, solve.sh, assert solved
+    Test {
+        /// Scenario ID (e.g. 001-nginx-502)
+        id: String,
+        #[arg(long)]
+        scenarios_dir: Option<PathBuf>,
+    },
     /// Export session records as JSONL
     Export,
 }
@@ -192,6 +199,32 @@ async fn main() -> Result<()> {
                     recorder::record(&scenario.meta.id, recorder::Outcome::Abandoned, None, 0)?;
                 }
             }
+        }
+
+        Commands::Test { id, scenarios_dir } => {
+            let dir = resolve_scenarios_dir(scenarios_dir);
+            if !dir.exists() {
+                no_scenarios_found();
+                return Ok(());
+            }
+            let scenarios = scenario::discover(&dir)?;
+            let scenario = scenarios
+                .iter()
+                .find(|s| s.meta.id == id)
+                .ok_or_else(|| anyhow::anyhow!("scenario '{}' not found", id))?;
+
+            let issues = validate::validate(scenario)?;
+            if !issues.is_empty() {
+                eprintln!("[replaybook] scenario '{}' failed validation:", id);
+                for issue in &issues {
+                    eprintln!("  - {}", issue.message);
+                }
+                anyhow::bail!("cannot test an invalid scenario");
+            }
+
+            println!("[replaybook] testing: {}", scenario.meta.title);
+            runner::test_scenario(scenario)?;
+            println!("\n✓ {} passed", scenario.meta.id);
         }
 
         Commands::Export => {

@@ -45,17 +45,6 @@ pub fn validate(scenario: &Scenario) -> Result<Vec<Issue>> {
         });
     }
 
-    if let Some(shell_service) = scenario.meta.shell_service.as_deref()
-        && !services.contains(&shell_service)
-    {
-        issues.push(Issue {
-            message: format!(
-                "shell_service \"{shell_service}\" is not a service in docker-compose.yml (found: {})",
-                services.join(", ")
-            ),
-        });
-    }
-
     match &scenario.meta.break_steps {
         Some(steps) => {
             for (i, step) in steps.iter().enumerate() {

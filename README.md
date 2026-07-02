@@ -3,10 +3,12 @@
 Incident replay trainer. Get paged, fix real broken infrastructure, win.
 
 Each scenario is a Docker environment with a fault injected. You're dropped
-into a shell inside the broken container. The terminal splits - shell on the
-left, HUD on the right showing the incident page, SLA countdown, and hints.
-Diagnose and fix using real tools. The engine polls a health check in the
-background - when it goes green, you're done.
+into a workstation container on the incident's network - a jumphost with the
+docker CLI, where `docker exec` is your ssh into the broken services. The
+terminal splits - shell on the left, HUD on the right showing the incident
+page, SLA countdown, and hints. Diagnose and fix with real tools, inside the
+real services. The engine polls a health check in the background - when it
+goes green, you're done.
 
 Built to turn post-mortems into playable scenarios. New engineers build muscle
 memory on the actual failure modes your team has hit, not simulations.
@@ -52,6 +54,10 @@ replaybook run 001-nginx-502
 # run with a custom SLA
 replaybook run 001-nginx-502 --sla 5
 
+# test a scenario end-to-end without playing it:
+# break -> assert broken -> solve.sh -> assert solved
+replaybook test 001-nginx-502
+
 # export session history as JSONL
 replaybook export
 ```
@@ -59,8 +65,8 @@ replaybook export
 ## The HUD
 
 When a scenario starts, the terminal splits via tmux (installed automatically
-inside the container - no host dependency). The right pane shows the incident
-page, SLA countdown, and hint status.
+inside the workstation container - no host dependency). The right pane shows
+the incident page, SLA countdown, and hint status.
 
 Run `get-hint` inside the shell to reveal the next hint. Hints used are
 recorded with your session outcome.
@@ -75,10 +81,10 @@ Official pack: [ducks/replaybook-scenarios](https://github.com/ducks/replaybook-
 | ID | Title | Difficulty |
 |----|-------|------------|
 | 001-nginx-502 | 502 Bad Gateway | 1 |
-| 002-postgres-wont-start | Postgres Won't Start | 1 |
+| 002-postgres-rejecting-connections | Postgres Rejecting Connections | 2 |
 | 003-missing-env-var | App Crashing on Boot | 1 |
 | 004-disk-full | Health Checks Failing | 2 |
-| 005-oom-kill | Container Keeps Restarting | 2 |
+| 005-oom-kill | App Keeps Dying | 2 |
 | 006-sidekiq-cant-connect | Jobs Not Processing | 2 |
 | 007-packet-loss | Intermittent Request Failures | 3 |
 
@@ -92,6 +98,7 @@ my-scenario/
   docker-compose.yml   # the environment
   break.sh             # runs after compose up to inject the fault (or use break: [...] below)
   check.sh             # polled every 2s to detect resolution (or use http_200)
+  solve.sh             # scripted fix used by `replaybook test` - never shown to players
 ```
 
 `meta.json` format:
@@ -107,14 +114,17 @@ my-scenario/
     "Second hint revealed on second get-hint"
   ],
   "success_condition": "http_200",
-  "success_target": "http://localhost:8080/health",
-  "shell_service": "app"
+  "success_target": "http://localhost:8080/health"
 }
 ```
 
-`shell_service` is the compose service the player is dropped into. If unset,
-defaults to the first service defined in `docker-compose.yml`. See any
-scenario in [ducks/replaybook-scenarios](https://github.com/ducks/replaybook-scenarios)
+The player always works from the workstation container, which replaybook
+attaches to every network the compose file defines. Design faults so the fix
+happens inside the apps and services (configs, logs, credentials), not at the
+Docker level - and keep faulty containers alive: if the broken process dies
+on boot, wrap it in a small supervisor loop so the process crash-loops while
+the container stays reachable. See any scenario in
+[ducks/replaybook-scenarios](https://github.com/ducks/replaybook-scenarios)
 for a working example.
 
 ### Fault injection: break.sh vs break steps
@@ -137,8 +147,8 @@ Steps run in order. Three kinds:
 
 ```json
 "break": [
-  { "exec": { "service": "db", "cmd": ["chown", "-R", "root:root", "/var/lib/postgresql/data"] } },
-  { "restart": { "service": "db" } }
+  { "cp": { "service": "app", "src": "cache-broken.conf", "dest": "/app/cache.conf" } },
+  { "restart": { "service": "app" } }
 ]
 ```
 
@@ -147,10 +157,23 @@ real script logic (loops, conditionals, piping between commands), write
 `break.sh` instead - it still works exactly as before.
 
 `replaybook add` and `replaybook run` validate each scenario (compose file
-parses, `shell_service` and any `break` step's `service` match a real
-service, `break.sh` or `break` exists, and `check.sh` exists if
-`success_condition` is `exit_zero`) and report problems before anything
-runs.
+parses, any `break` step's `service` matches a real service, `break.sh` or
+`break` exists, and `check.sh` exists if `success_condition` is `exit_zero`)
+and report problems before anything runs.
+
+### Testing scenarios
+
+`replaybook test <id>` verifies a scenario end-to-end without a player: it
+brings the stack up, injects the fault, asserts the check fails, runs the
+scenario's `solve.sh`, and asserts the check recovers. Run it in CI on your
+scenario pack so broken scenarios never reach players.
+
+### A note on trust
+
+Scenario packs are code. `break.sh`, `check.sh`, and `solve.sh` run on
+**your machine** with your privileges, and the workstation container gets
+the Docker socket. Only add packs you'd be comfortable running as a shell
+script - which is exactly what they are.
 
 ## Session data
 
