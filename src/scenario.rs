@@ -31,13 +31,12 @@ pub struct ScenarioMeta {
     pub title: String,
     pub page: String,
     pub difficulty: u8,
+    #[serde(default)]
     pub tags: Vec<String>,
     pub hints: Vec<String>,
     pub success_condition: SuccessCondition,
-    pub success_target: String,
-    /// Which compose service to exec into. Defaults to the first container.
     #[serde(default)]
-    pub shell_service: Option<String>,
+    pub success_target: String,
     /// Declarative fault injection steps, run instead of break.sh if present.
     #[serde(rename = "break", default)]
     pub break_steps: Option<Vec<BreakStep>>,
@@ -72,6 +71,10 @@ impl Scenario {
 
     pub fn check_script(&self) -> PathBuf {
         self.dir.join("check.sh")
+    }
+
+    pub fn solve_script(&self) -> PathBuf {
+        self.dir.join("solve.sh")
     }
 }
 

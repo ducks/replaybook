@@ -40,10 +40,10 @@
       </thead>
       <tbody>
         <tr><td><code>001-nginx-502</code></td><td>502 Bad Gateway</td><td>1</td></tr>
-        <tr><td><code>002-postgres-wont-start</code></td><td>Postgres Won't Start</td><td>1</td></tr>
+        <tr><td><code>002-postgres-rejecting-connections</code></td><td>Postgres Rejecting Connections</td><td>2</td></tr>
         <tr><td><code>003-missing-env-var</code></td><td>App Crashing on Boot</td><td>1</td></tr>
         <tr><td><code>004-disk-full</code></td><td>Health Checks Failing</td><td>2</td></tr>
-        <tr><td><code>005-oom-kill</code></td><td>Container Keeps Restarting</td><td>2</td></tr>
+        <tr><td><code>005-oom-kill</code></td><td>App Keeps Dying</td><td>2</td></tr>
         <tr><td><code>006-sidekiq-cant-connect</code></td><td>Jobs Not Processing</td><td>2</td></tr>
         <tr><td><code>007-packet-loss</code></td><td>Intermittent Request Failures</td><td>3</td></tr>
       </tbody>
@@ -57,7 +57,8 @@
   meta.json            # id, title, page text, difficulty, hints, success condition
   docker-compose.yml   # the environment
   break.sh             # runs after compose up to inject the fault (or use break: [...] below)
-  check.sh             # polled every 2s to detect resolution (or use http_200)</code></pre>
+  check.sh             # polled every 2s to detect resolution (or use http_200)
+  solve.sh             # scripted fix used by `replaybook test` - never shown to players</code></pre>
 
     <p><code>meta.json</code> format:</p>
 
@@ -71,14 +72,18 @@
     "Second hint revealed on second get-hint"
   ],
   "success_condition": "http_200",
-  "success_target": "http://localhost:8080/health",
-  "shell_service": "app"
+  "success_target": "http://localhost:8080/health"
 }</code></pre>
 
     <p>
-      <code>shell_service</code> is the compose service the player is
-      dropped into. If unset, defaults to the first service defined in
-      <code>docker-compose.yml</code>. See any scenario in
+      The player always works from a workstation container that replaybook
+      attaches to every network the compose file defines &mdash; a jumphost
+      with the docker CLI, where <code>docker exec</code> is their ssh into
+      the broken services. Design faults so the fix happens inside the apps
+      and services, not at the Docker level, and keep faulty containers
+      alive: if the broken process dies on boot, wrap it in a small
+      supervisor loop so the process crash-loops while the container stays
+      reachable. See any scenario in
       <a href="https://github.com/ducks/replaybook-scenarios">ducks/replaybook-scenarios</a>
       for a working example.
     </p>
@@ -178,7 +183,7 @@ done</code></pre>
 
     <ul>
       <li>the compose file parses and defines at least one service</li>
-      <li><code>shell_service</code> and any <code>break</code> step's <code>service</code> match a real compose service</li>
+      <li>any <code>break</code> step's <code>service</code> matches a real compose service</li>
       <li><code>break.sh</code> or a <code>break</code> array is present</li>
       <li><code>check.sh</code> is present when <code>success_condition</code> is <code>exit_zero</code></li>
       <li><code>success_target</code> is a valid <code>http(s)</code> URL when <code>success_condition</code> is <code>http_200</code></li>
