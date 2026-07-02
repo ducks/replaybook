@@ -328,7 +328,9 @@ pub fn test_scenario(scenario: &Scenario) -> Result<()> {
             break;
         }
         if Instant::now() >= deadline {
-            bail!("check still failing 90s after solve.sh - the solve is wrong or the check cannot detect recovery");
+            bail!(
+                "check still failing 90s after solve.sh - the solve is wrong or the check cannot detect recovery"
+            );
         }
         std::thread::sleep(Duration::from_secs(2));
     }
@@ -356,7 +358,10 @@ fn setup_workstation(container: &str) -> Result<()> {
     if docker_exec(container, &["sh", "-c", "command -v tmux >/dev/null 2>&1"]) {
         return Ok(());
     }
-    if docker_exec(container, &["apk", "add", "--no-cache", "-q", "tmux", "curl"]) {
+    if docker_exec(
+        container,
+        &["apk", "add", "--no-cache", "-q", "tmux", "curl"],
+    ) {
         return Ok(());
     }
     if docker_exec(
@@ -453,7 +458,9 @@ fn compose_networks(scenario: &Scenario) -> Vec<String> {
         .arg(scenario.compose_file())
         .args(["config", "--format", "json"])
         .output();
-    let Ok(output) = output else { return fallback() };
+    let Ok(output) = output else {
+        return fallback();
+    };
     let Ok(config) = serde_json::from_slice::<serde_json::Value>(&output.stdout) else {
         return fallback();
     };
