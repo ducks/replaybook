@@ -83,6 +83,59 @@
       for a working example.
     </p>
 
+    <h3>Detecting success: http_200 vs check.sh</h3>
+
+    <p>
+      Every 2 seconds, replaybook checks whether the scenario is resolved.
+      Which check runs depends on <code>success_condition</code>:
+    </p>
+
+    <ul>
+      <li>
+        <code>http_200</code> &mdash; runs <code>curl -sf --max-time 4</code>
+        against <code>success_target</code>. Solved when curl exits zero
+        (a 2xx/3xx response). No script needed.
+      </li>
+      <li>
+        <code>exit_zero</code> &mdash; runs <code>check.sh</code> (with its
+        working directory set to the scenario directory) every tick. Solved
+        the moment it exits zero.
+      </li>
+    </ul>
+
+    <p>
+      <code>check.sh</code> only has to exit zero on success and nonzero
+      otherwise &mdash; nothing reads its output. The simplest ones just
+      wrap an existing exit code:
+    </p>
+
+    <pre><code>#!/usr/bin/env bash
+SCENARIO_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+docker compose -f "$SCENARIO_DIR/docker-compose.yml" exec -T db \
+  pg_isready -U postgres -d appdb > /dev/null 2>&1</code></pre>
+
+    <p>
+      Reach for <code>check.sh</code> when a single HTTP request can't
+      express what "resolved" means &mdash; for example, requiring several
+      consecutive successful requests before declaring a flaky-network
+      scenario fixed:
+    </p>
+
+    <pre><code>#!/usr/bin/env bash
+# Must succeed 5 times in a row to confirm packet loss is gone
+set -e
+for i in $(seq 1 5); do
+  curl -sf --max-time 2 http://localhost:8080/health > /dev/null || exit 1
+done</code></pre>
+
+    <p>
+      Because <code>check.sh</code> runs on every 2-second tick, keep it
+      fast &mdash; there's no timeout on it (unlike the <code>http_200</code>
+      curl call, which caps at 4 seconds), so a slow or hanging check
+      script delays every subsequent poll.
+    </p>
+
     <h3>Fault injection: break.sh vs break steps</h3>
 
     <p>
