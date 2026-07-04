@@ -13,6 +13,9 @@ path = "src/main.rs"
 name = "replay"
 path = "src/main.rs"
 
+[dev-dependencies]
+tempfile = "3"
+
 [dependencies]
 anyhow = "1"
 clap = { version = "4", features = ["derive"] }

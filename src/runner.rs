@@ -11,6 +11,7 @@ use std::time::{Duration, Instant};
 
 const HINT_FLAG: &str = "/tmp/on-call-hint";
 const TMUX_SESSION: &str = "on-call";
+const TRANSCRIPT_PATH: &str = "/tmp/on-call-transcript";
 /// The service the player is dropped into: a jumphost on the incident's
 /// network with the docker CLI (docker exec is your ssh).
 const WORKSTATION_SERVICE: &str = "replaybook-workstation";
@@ -219,6 +220,19 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
     ) {
         bail!("failed to start tmux in the workstation container");
     }
+    // Record everything the player types and sees in the shell pane.
+    // Best-effort: a failed recording never blocks the run.
+    docker_exec(
+        &workstation,
+        &[
+            "tmux",
+            "pipe-pane",
+            "-t",
+            &format!("{TMUX_SESSION}:0.0"),
+            "-o",
+            &format!("cat >> {TRANSCRIPT_PATH}"),
+        ],
+    );
     if !docker_exec(
         &workstation,
         &[
@@ -261,6 +275,9 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
     let elapsed = started.elapsed();
     let used = hints_used.load(Ordering::SeqCst);
 
+    // Pull the transcript out before ComposeGuard tears the container down.
+    let transcript = save_transcript(&workstation, &scenario.meta.id);
+
     // The player may fix the issue and exit the shell inside the poller's 2s
     // window - do one final check before classifying the run as abandoned.
     if !solved.load(Ordering::SeqCst)
@@ -281,12 +298,38 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
         return Ok(RunResult::Success {
             elapsed,
             hints_used: used,
+            transcript,
         });
     }
     if timed_out.load(Ordering::SeqCst) {
-        return Ok(RunResult::Timeout { hints_used: used });
+        return Ok(RunResult::Timeout {
+            hints_used: used,
+            transcript,
+        });
     }
-    Ok(RunResult::Abandoned)
+    Ok(RunResult::Abandoned { transcript })
+}
+
+/// Copy the tmux pipe-pane capture out of the workstation container into
+/// the local transcripts directory. Returns None (never errors) if there is
+/// nothing to save - recording is strictly best-effort.
+fn save_transcript(workstation: &str, scenario_id: &str) -> Option<PathBuf> {
+    let dir = crate::recorder::transcripts_dir();
+    fs::create_dir_all(&dir).ok()?;
+    let name = format!(
+        "{scenario_id}-{}.log",
+        chrono::Utc::now().format("%Y%m%dT%H%M%SZ")
+    );
+    let dest = dir.join(name);
+    let status = Command::new("docker")
+        .args(["cp", &format!("{workstation}:{TRANSCRIPT_PATH}")])
+        .arg(&dest)
+        .status()
+        .ok()?;
+    if !status.success() || !dest.exists() {
+        return None;
+    }
+    Some(dest)
 }
 
 /// Test a scenario end-to-end without a player:
@@ -585,9 +628,13 @@ pub enum RunResult {
     Success {
         elapsed: Duration,
         hints_used: usize,
+        transcript: Option<PathBuf>,
     },
     Timeout {
         hints_used: usize,
+        transcript: Option<PathBuf>,
     },
-    Abandoned,
+    Abandoned {
+        transcript: Option<PathBuf>,
+    },
 }
