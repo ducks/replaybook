@@ -184,7 +184,15 @@ replaybook export > sessions.jsonl
 ```
 
 Each record contains scenario ID, outcome (success/timeout/abandoned),
-elapsed time, and hints used.
+elapsed time, hints used, and the path to the session transcript.
+
+Every run also records a full terminal transcript of the player's shell
+pane (via tmux pipe-pane) to
+`~/.local/share/replaybook/sessions/transcripts/<scenario>-<timestamp>.log` -
+every command typed and everything it printed. Review it after a run to
+compare what you did against the scenario's intended fix, or feed it to
+whatever training/analysis pipeline you like. Transcripts are raw terminal
+output (ANSI escapes included); `less -R` renders them nicely.
 
 ## Releasing
 

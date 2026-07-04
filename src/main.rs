@@ -66,6 +66,12 @@ fn no_scenarios_found() {
     println!("Add a scenario pack with: replaybook add ducks/replaybook-scenarios");
 }
 
+fn print_transcript(transcript: &Option<PathBuf>) {
+    if let Some(path) = transcript {
+        println!("  transcript: {}", path.display());
+    }
+}
+
 #[tokio::main]
 async fn main() -> Result<()> {
     let cli = Cli::parse();
@@ -172,31 +178,46 @@ async fn main() -> Result<()> {
                 RunResult::Success {
                     elapsed,
                     hints_used,
+                    transcript,
                 } => {
                     println!(
                         "\n✓ resolved in {}s ({} hints used)",
                         elapsed.as_secs(),
                         hints_used
                     );
+                    print_transcript(&transcript);
                     recorder::record(
                         &scenario.meta.id,
                         recorder::Outcome::Success,
                         Some(elapsed),
                         hints_used as u8,
+                        transcript.as_deref(),
                     )?;
                 }
-                RunResult::Timeout { hints_used } => {
+                RunResult::Timeout {
+                    hints_used,
+                    transcript,
+                } => {
                     println!("\n✗ SLA breached ({} hints used).", hints_used);
+                    print_transcript(&transcript);
                     recorder::record(
                         &scenario.meta.id,
                         recorder::Outcome::Timeout,
                         None,
                         hints_used as u8,
+                        transcript.as_deref(),
                     )?;
                 }
-                RunResult::Abandoned => {
+                RunResult::Abandoned { transcript } => {
                     println!("\nShell exited before resolution. Run again to retry.");
-                    recorder::record(&scenario.meta.id, recorder::Outcome::Abandoned, None, 0)?;
+                    print_transcript(&transcript);
+                    recorder::record(
+                        &scenario.meta.id,
+                        recorder::Outcome::Abandoned,
+                        None,
+                        0,
+                        transcript.as_deref(),
+                    )?;
                 }
             }
         }
