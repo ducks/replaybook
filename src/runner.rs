@@ -495,16 +495,23 @@ fn override_path(scenario: &Scenario) -> PathBuf {
 /// Networks defined by the scenario's compose file, so the workstation can be
 /// attached to all of them. Falls back to the implicit default network.
 fn compose_networks(scenario: &Scenario) -> Vec<String> {
-    let fallback = || vec!["default".to_string()];
     let output = Command::new("docker")
         .args(["compose", "-f"])
         .arg(scenario.compose_file())
         .args(["config", "--format", "json"])
         .output();
-    let Ok(output) = output else {
-        return fallback();
-    };
-    let Ok(config) = serde_json::from_slice::<serde_json::Value>(&output.stdout) else {
+    match output {
+        Ok(output) => parse_networks(&output.stdout),
+        Err(_) => vec!["default".to_string()],
+    }
+}
+
+/// Extract the logical network names from `docker compose config --format
+/// json` output. Anything unparseable falls back to the implicit default
+/// network rather than failing the run.
+fn parse_networks(config_json: &[u8]) -> Vec<String> {
+    let fallback = || vec!["default".to_string()];
+    let Ok(config) = serde_json::from_slice::<serde_json::Value>(config_json) else {
         return fallback();
     };
     match config.get("networks").and_then(|n| n.as_object()) {
@@ -513,25 +520,31 @@ fn compose_networks(scenario: &Scenario) -> Vec<String> {
     }
 }
 
+/// The compose override that injects the workstation service: joined to
+/// every scenario network, docker socket mounted, HUD state file mounted.
+fn workstation_override(state_host_path: &Path, networks: &[String]) -> String {
+    let host_path = state_host_path.display();
+    let container_path = StateFile::container_path();
+    let mut content = format!(
+        "services:\n  {WORKSTATION_SERVICE}:\n    image: {WORKSTATION_IMAGE}\n    command: [\"sleep\", \"infinity\"]\n    working_dir: /root\n    volumes:\n      - {host_path}:{container_path}\n      - /var/run/docker.sock:/var/run/docker.sock\n    networks:\n"
+    );
+    for n in networks {
+        content.push_str(&format!("      - {n}\n"));
+    }
+    content.push_str("networks:\n");
+    for n in networks {
+        content.push_str(&format!("  {n}: {{}}\n"));
+    }
+    content
+}
+
 /// Brings the stack up plus a workstation container joined to the scenario's
 /// networks, with the docker CLI and the HUD state file mounted. Returns the
 /// workstation's container ID.
 fn compose_up(scenario: &Scenario, state: &StateFile) -> Result<String> {
     let override_file = override_path(scenario);
-    let host_path = state.host_path.display();
-    let container_path = StateFile::container_path();
     let networks = compose_networks(scenario);
-
-    let mut content = format!(
-        "services:\n  {WORKSTATION_SERVICE}:\n    image: {WORKSTATION_IMAGE}\n    command: [\"sleep\", \"infinity\"]\n    working_dir: /root\n    volumes:\n      - {host_path}:{container_path}\n      - /var/run/docker.sock:/var/run/docker.sock\n    networks:\n"
-    );
-    for n in &networks {
-        content.push_str(&format!("      - {n}\n"));
-    }
-    content.push_str("networks:\n");
-    for n in &networks {
-        content.push_str(&format!("  {n}: {{}}\n"));
-    }
+    let content = workstation_override(&state.host_path, &networks);
     fs::write(&override_file, content)?;
 
     let status = Command::new("docker")
@@ -637,4 +650,74 @@ pub enum RunResult {
     Abandoned {
         transcript: Option<PathBuf>,
     },
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn parse_networks_reads_logical_names() {
+        let json = br#"{"networks": {"internal": {"name": "001_internal"}, "edge": {}}}"#;
+        let mut nets = parse_networks(json);
+        nets.sort();
+        assert_eq!(nets, vec!["edge", "internal"]);
+    }
+
+    #[test]
+    fn parse_networks_falls_back_to_default() {
+        // Missing key, empty map, and garbage all fall back rather than fail.
+        assert_eq!(parse_networks(br#"{"services": {}}"#), vec!["default"]);
+        assert_eq!(parse_networks(br#"{"networks": {}}"#), vec!["default"]);
+        assert_eq!(parse_networks(b"not json at all"), vec!["default"]);
+        assert_eq!(parse_networks(b""), vec!["default"]);
+    }
+
+    #[test]
+    fn workstation_override_mounts_and_networks() {
+        let state = Path::new("/tmp/on-call-state-x");
+        let networks = vec!["internal".to_string(), "default".to_string()];
+        let yaml = workstation_override(state, &networks);
+
+        assert!(yaml.contains("replaybook-workstation:"));
+        assert!(yaml.contains("- /tmp/on-call-state-x:/tmp/on-call-state"));
+        assert!(yaml.contains("- /var/run/docker.sock:/var/run/docker.sock"));
+        // Service is attached to each network...
+        assert!(yaml.contains("      - internal\n"));
+        assert!(yaml.contains("      - default\n"));
+        // ...and each network is declared at the top level so the override
+        // merges whether or not the main file declares it.
+        assert!(yaml.contains("  internal: {}\n"));
+        assert!(yaml.contains("  default: {}\n"));
+    }
+
+    #[test]
+    fn state_file_format_matches_hud_line_contract() {
+        // The HUD shell script reads this file with `sed -n '1p'..'4p'` and
+        // `tail -n +5`; this test pins that line layout.
+        let state = StateFile::new("test-contract").unwrap();
+        state.write(
+            "ACTIVE",
+            125,
+            1,
+            2,
+            &["first hint".to_string(), "second hint".to_string()],
+        );
+        let content = fs::read_to_string(&state.host_path).unwrap();
+        let lines: Vec<&str> = content.lines().collect();
+        assert_eq!(
+            lines,
+            vec!["ACTIVE", "125", "1", "2", "first hint", "second hint"]
+        );
+    }
+
+    #[test]
+    fn state_file_removed_on_drop() {
+        let path = {
+            let state = StateFile::new("test-drop").unwrap();
+            assert!(state.host_path.exists());
+            state.host_path.clone()
+        };
+        assert!(!path.exists());
+    }
 }
