@@ -262,3 +262,45 @@ async fn main() -> Result<()> {
 
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn run_defaults_to_15_minute_sla() {
+        let cli = Cli::try_parse_from(["replaybook", "run", "001-nginx-502"]).unwrap();
+        match cli.command {
+            Commands::Run { id, sla, .. } => {
+                assert_eq!(id, "001-nginx-502");
+                assert_eq!(sla, 15);
+            }
+            _ => panic!("expected run"),
+        }
+    }
+
+    #[test]
+    fn run_and_test_accept_scenarios_dir() {
+        let cli = Cli::try_parse_from([
+            "replaybook",
+            "test",
+            "002-postgres-rejecting-connections",
+            "--scenarios-dir",
+            "/tmp/packs",
+        ])
+        .unwrap();
+        match cli.command {
+            Commands::Test { id, scenarios_dir } => {
+                assert_eq!(id, "002-postgres-rejecting-connections");
+                assert_eq!(scenarios_dir, Some(PathBuf::from("/tmp/packs")));
+            }
+            _ => panic!("expected test"),
+        }
+    }
+
+    #[test]
+    fn unknown_subcommand_is_rejected() {
+        assert!(Cli::try_parse_from(["replaybook", "conquer"]).is_err());
+        assert!(Cli::try_parse_from(["replaybook", "run"]).is_err()); // id required
+    }
+}
