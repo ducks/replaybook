@@ -15,6 +15,9 @@ pub struct SessionRecord {
     pub hints_used: u8,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub transcript: Option<String>,
+    /// Which fault variant was played, for multi-fault scenarios.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fault: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -31,6 +34,7 @@ pub fn record(
     elapsed: Option<Duration>,
     hints_used: u8,
     transcript: Option<&Path>,
+    fault: Option<&str>,
 ) -> Result<()> {
     record_to(
         &sessions_dir(),
@@ -39,9 +43,11 @@ pub fn record(
         elapsed,
         hints_used,
         transcript,
+        fault,
     )
 }
 
+#[allow(clippy::too_many_arguments)]
 fn record_to(
     dir: &Path,
     scenario_id: &str,
@@ -49,6 +55,7 @@ fn record_to(
     elapsed: Option<Duration>,
     hints_used: u8,
     transcript: Option<&Path>,
+    fault: Option<&str>,
 ) -> Result<()> {
     let record = SessionRecord {
         scenario_id: scenario_id.to_string(),
@@ -57,6 +64,7 @@ fn record_to(
         elapsed_secs: elapsed.map(|d| d.as_secs()),
         hints_used,
         transcript: transcript.map(|p| p.display().to_string()),
+        fault: fault.map(String::from),
     };
 
     fs::create_dir_all(dir)?;
@@ -100,9 +108,19 @@ mod tests {
             Some(Duration::from_secs(90)),
             2,
             None,
+            None,
         )
         .unwrap();
-        record_to(dir.path(), "001-nginx-502", Outcome::Timeout, None, 1, None).unwrap();
+        record_to(
+            dir.path(),
+            "001-nginx-502",
+            Outcome::Timeout,
+            None,
+            1,
+            None,
+            Some("redis-auth"),
+        )
+        .unwrap();
 
         let lines = read_lines(dir.path());
         assert_eq!(lines.len(), 2);
@@ -121,7 +139,7 @@ mod tests {
     #[test]
     fn transcript_field_only_serialized_when_present() {
         let dir = tempfile::tempdir().unwrap();
-        record_to(dir.path(), "s", Outcome::Abandoned, None, 0, None).unwrap();
+        record_to(dir.path(), "s", Outcome::Abandoned, None, 0, None, None).unwrap();
         record_to(
             dir.path(),
             "s",
@@ -129,6 +147,7 @@ mod tests {
             None,
             0,
             Some(Path::new("/tmp/t.log")),
+            None,
         )
         .unwrap();
 

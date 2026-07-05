@@ -1,4 +1,4 @@
-use crate::scenario::{BreakStep, Scenario, SuccessCondition};
+use crate::scenario::{ActiveFault, BreakStep, Scenario, SuccessCondition};
 use anyhow::{Result, bail};
 use std::fs;
 use std::path::{Path, PathBuf};
@@ -103,7 +103,11 @@ fn check_success(
     }
 }
 
-pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunResult> {
+pub async fn run_scenario(
+    scenario: &Scenario,
+    fault: &ActiveFault,
+    sla_seconds: u64,
+) -> Result<RunResult> {
     // Touch state file before compose up so bind mount sees a file not a dir
     let state = StateFile::new(&scenario.meta.id)?;
 
@@ -116,13 +120,13 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
     std::thread::sleep(Duration::from_secs(2));
 
     println!("[replaybook] injecting fault...");
-    inject_fault(scenario)?;
+    inject_fault(scenario, fault)?;
 
     println!("[replaybook] preparing workstation...");
     setup_workstation(&workstation)?;
     inject_tools(&workstation, scenario)?;
 
-    state.write("ACTIVE", sla_seconds, 0, scenario.meta.hints.len(), &[]);
+    state.write("ACTIVE", sla_seconds, 0, fault.hints.len(), &[]);
 
     let solved = Arc::new(AtomicBool::new(false));
     let timed_out = Arc::new(AtomicBool::new(false));
@@ -138,7 +142,7 @@ pub async fn run_scenario(scenario: &Scenario, sla_seconds: u64) -> Result<RunRe
     let success_condition = scenario.meta.success_condition.clone();
     let success_target = scenario.meta.success_target.clone();
     let deadline = Duration::from_secs(sla_seconds);
-    let hints = scenario.meta.hints.clone();
+    let hints = fault.hints.clone();
     let container_bg = workstation.clone();
     let hint_count = hints.len();
     let state_path = state.host_path.clone();
@@ -333,13 +337,33 @@ fn save_transcript(workstation: &str, scenario_id: &str) -> Option<PathBuf> {
 }
 
 /// Test a scenario end-to-end without a player:
-/// up -> break -> assert the check fails -> solve.sh -> assert the check passes.
-pub fn test_scenario(scenario: &Scenario) -> Result<()> {
-    let solve = scenario.solve_script();
-    if !solve.exists() {
+/// up -> break -> assert the check fails -> solve -> assert the check passes.
+/// Scenarios with a faults list get one full cycle per fault; `requested`
+/// narrows to a single named fault.
+pub fn test_scenario(scenario: &Scenario, requested: Option<&str>) -> Result<()> {
+    if scenario.meta.faults.is_empty() || requested.is_some() {
+        let fault = scenario.select_fault(requested, 0)?;
+        return test_fault(scenario, &fault);
+    }
+    let total = scenario.meta.faults.len();
+    for (i, f) in scenario.meta.faults.iter().enumerate() {
+        println!(
+            "[replaybook] test: fault \"{}\" ({}/{total})",
+            f.name,
+            i + 1
+        );
+        let fault = scenario.select_fault(Some(&f.name), 0)?;
+        test_fault(scenario, &fault)?;
+    }
+    Ok(())
+}
+
+fn test_fault(scenario: &Scenario, fault: &ActiveFault) -> Result<()> {
+    if !fault.solve_script.exists() {
         bail!(
-            "{} has no solve.sh - replaybook test needs one to verify the fix path",
-            scenario.meta.id
+            "{} has no solve script at {} - replaybook test needs one to verify the fix path",
+            scenario.meta.id,
+            fault.solve_script.display()
         );
     }
 
@@ -351,7 +375,7 @@ pub fn test_scenario(scenario: &Scenario) -> Result<()> {
     std::thread::sleep(Duration::from_secs(2));
 
     println!("[replaybook] test: injecting fault...");
-    inject_fault(scenario)?;
+    inject_fault(scenario, fault)?;
 
     // Give the fault a moment to take effect (processes die, checks settle).
     std::thread::sleep(Duration::from_secs(5));
@@ -362,8 +386,8 @@ pub fn test_scenario(scenario: &Scenario) -> Result<()> {
     }
     println!("[replaybook] test: check fails while broken (good)");
 
-    println!("[replaybook] test: applying solve.sh...");
-    run_script(&solve, &scenario.dir)?;
+    println!("[replaybook] test: applying solve script...");
+    run_script(&fault.solve_script, &scenario.dir)?;
 
     let deadline = Instant::now() + Duration::from_secs(90);
     loop {
@@ -372,7 +396,7 @@ pub fn test_scenario(scenario: &Scenario) -> Result<()> {
         }
         if Instant::now() >= deadline {
             bail!(
-                "check still failing 90s after solve.sh - the solve is wrong or the check cannot detect recovery"
+                "check still failing 90s after the solve script - the solve is wrong or the check cannot detect recovery"
             );
         }
         std::thread::sleep(Duration::from_secs(2));
@@ -390,10 +414,10 @@ fn scenario_check(scenario: &Scenario) -> bool {
     )
 }
 
-fn inject_fault(scenario: &Scenario) -> Result<()> {
-    match &scenario.meta.break_steps {
+fn inject_fault(scenario: &Scenario, fault: &ActiveFault) -> Result<()> {
+    match &fault.break_steps {
         Some(steps) => run_break_steps(scenario, steps),
-        None => run_script(&scenario.break_script(), &scenario.dir),
+        None => run_script(&fault.break_script, &scenario.dir),
     }
 }
 
