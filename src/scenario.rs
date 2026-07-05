@@ -25,6 +25,27 @@ pub enum BreakStep {
     Restart { service: String },
 }
 
+/// One of several possible root causes behind a scenario's symptom. When a
+/// scenario defines faults, `run` draws one at random - the page stays the
+/// same, so repeat runs stay diagnostic instead of becoming memorization.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Fault {
+    pub name: String,
+    /// Declarative injection steps, like the scenario-level `break`.
+    #[serde(rename = "break", default)]
+    pub break_steps: Option<Vec<BreakStep>>,
+    /// A script filename in the scenario dir, for faults that need real
+    /// script logic. Used when `break` is absent.
+    #[serde(default)]
+    pub script: Option<String>,
+    /// Per-fault hints. Falls back to the scenario-level hints if empty.
+    #[serde(default)]
+    pub hints: Vec<String>,
+    /// Per-fault solve script filename. Falls back to solve.sh.
+    #[serde(default)]
+    pub solve: Option<String>,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ScenarioMeta {
     pub id: String,
@@ -33,6 +54,7 @@ pub struct ScenarioMeta {
     pub difficulty: u8,
     #[serde(default)]
     pub tags: Vec<String>,
+    #[serde(default)]
     pub hints: Vec<String>,
     pub success_condition: SuccessCondition,
     #[serde(default)]
@@ -40,6 +62,20 @@ pub struct ScenarioMeta {
     /// Declarative fault injection steps, run instead of break.sh if present.
     #[serde(rename = "break", default)]
     pub break_steps: Option<Vec<BreakStep>>,
+    /// Alternative root causes; one is selected per run.
+    #[serde(default)]
+    pub faults: Vec<Fault>,
+}
+
+/// The fault actually being played this run, with every fallback resolved.
+#[derive(Debug, Clone)]
+pub struct ActiveFault {
+    /// None for single-fault scenarios that don't use the faults list.
+    pub name: Option<String>,
+    pub break_steps: Option<Vec<BreakStep>>,
+    pub break_script: PathBuf,
+    pub hints: Vec<String>,
+    pub solve_script: PathBuf,
 }
 
 #[derive(Debug, Clone)]
@@ -75,6 +111,69 @@ impl Scenario {
 
     pub fn solve_script(&self) -> PathBuf {
         self.dir.join("solve.sh")
+    }
+
+    /// Resolve which fault this run plays. `requested` forces a named fault;
+    /// otherwise `seed` picks one (callers pass something arbitrary like
+    /// clock nanos). Scenarios without a faults list resolve to their
+    /// scenario-level break/hints/solve.
+    pub fn select_fault(&self, requested: Option<&str>, seed: usize) -> Result<ActiveFault> {
+        if self.meta.faults.is_empty() {
+            if let Some(name) = requested {
+                anyhow::bail!(
+                    "scenario '{}' does not define named faults (asked for \"{name}\")",
+                    self.meta.id
+                );
+            }
+            return Ok(ActiveFault {
+                name: None,
+                break_steps: self.meta.break_steps.clone(),
+                break_script: self.break_script(),
+                hints: self.meta.hints.clone(),
+                solve_script: self.solve_script(),
+            });
+        }
+
+        let fault = match requested {
+            Some(name) => self
+                .meta
+                .faults
+                .iter()
+                .find(|f| f.name == name)
+                .ok_or_else(|| {
+                    anyhow::anyhow!(
+                        "scenario '{}' has no fault \"{name}\" (available: {})",
+                        self.meta.id,
+                        self.meta
+                            .faults
+                            .iter()
+                            .map(|f| f.name.as_str())
+                            .collect::<Vec<_>>()
+                            .join(", ")
+                    )
+                })?,
+            None => &self.meta.faults[seed % self.meta.faults.len()],
+        };
+
+        Ok(ActiveFault {
+            name: Some(fault.name.clone()),
+            break_steps: fault.break_steps.clone(),
+            break_script: fault
+                .script
+                .as_ref()
+                .map(|s| self.dir.join(s))
+                .unwrap_or_else(|| self.break_script()),
+            hints: if fault.hints.is_empty() {
+                self.meta.hints.clone()
+            } else {
+                fault.hints.clone()
+            },
+            solve_script: fault
+                .solve
+                .as_ref()
+                .map(|s| self.dir.join(s))
+                .unwrap_or_else(|| self.solve_script()),
+        })
     }
 }
 
@@ -257,5 +356,78 @@ mod tests {
         assert_eq!(s.break_script(), dir.join("break.sh"));
         assert_eq!(s.check_script(), dir.join("check.sh"));
         assert_eq!(s.solve_script(), dir.join("solve.sh"));
+    }
+
+    const MULTI_FAULT_META: &str = r#"{
+        "id": "jobs-not-processing",
+        "title": "Jobs Not Processing",
+        "page": "background work stopped",
+        "difficulty": 2,
+        "hints": ["shared fallback hint"],
+        "success_condition": "exit_zero",
+        "faults": [
+            { "name": "redis-auth",
+              "break": [ { "restart": { "service": "sidekiq" } } ],
+              "hints": ["auth hint"],
+              "solve": "solve-auth.sh" },
+            { "name": "redis-stopped",
+              "script": "break-stopped.sh" }
+        ]
+    }"#;
+
+    fn multi_fault_scenario(dir: &Path) -> Scenario {
+        Scenario {
+            meta: serde_json::from_str(MULTI_FAULT_META).unwrap(),
+            dir: dir.to_path_buf(),
+        }
+    }
+
+    #[test]
+    fn select_fault_without_faults_list_resolves_scenario_level() {
+        let s = Scenario {
+            meta: serde_json::from_str(MINIMAL_META).unwrap(),
+            dir: PathBuf::from("/s"),
+        };
+        let f = s.select_fault(None, 7).unwrap();
+        assert_eq!(f.name, None);
+        assert_eq!(f.break_script, PathBuf::from("/s/break.sh"));
+        assert_eq!(f.solve_script, PathBuf::from("/s/solve.sh"));
+        assert_eq!(f.hints, vec!["hint one"]);
+
+        // Asking for a named fault on a single-fault scenario is an error.
+        assert!(s.select_fault(Some("anything"), 0).is_err());
+    }
+
+    #[test]
+    fn select_fault_by_name_resolves_overrides_and_fallbacks() {
+        let s = multi_fault_scenario(Path::new("/s"));
+
+        let auth = s.select_fault(Some("redis-auth"), 0).unwrap();
+        assert_eq!(auth.name.as_deref(), Some("redis-auth"));
+        assert!(auth.break_steps.is_some());
+        assert_eq!(auth.hints, vec!["auth hint"]);
+        assert_eq!(auth.solve_script, PathBuf::from("/s/solve-auth.sh"));
+
+        let stopped = s.select_fault(Some("redis-stopped"), 0).unwrap();
+        assert!(stopped.break_steps.is_none());
+        assert_eq!(stopped.break_script, PathBuf::from("/s/break-stopped.sh"));
+        // Falls back to scenario-level hints and solve.sh.
+        assert_eq!(stopped.hints, vec!["shared fallback hint"]);
+        assert_eq!(stopped.solve_script, PathBuf::from("/s/solve.sh"));
+
+        let err = s.select_fault(Some("nope"), 0).unwrap_err().to_string();
+        assert!(err.contains("redis-auth, redis-stopped"), "{err}");
+    }
+
+    #[test]
+    fn select_fault_seed_picks_deterministically_and_in_bounds() {
+        let s = multi_fault_scenario(Path::new("/s"));
+        let names: Vec<_> = (0..4)
+            .map(|seed| s.select_fault(None, seed).unwrap().name.unwrap())
+            .collect();
+        assert_eq!(
+            names,
+            vec!["redis-auth", "redis-stopped", "redis-auth", "redis-stopped"]
+        );
     }
 }

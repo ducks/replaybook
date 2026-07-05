@@ -49,34 +49,60 @@ fn validate_with_services(scenario: &Scenario, services: &[&str]) -> Vec<Issue> 
         issues.push(issue("docker-compose.yml defines no services"));
     }
 
-    match &scenario.meta.break_steps {
-        Some(steps) => {
-            for (i, step) in steps.iter().enumerate() {
-                let service = match step {
-                    BreakStep::Cp { service, src, .. } => {
-                        if !scenario.dir.join(src).exists() {
-                            issues.push(issue(format!(
-                                "break[{i}]: cp source \"{src}\" does not exist"
-                            )));
-                        }
-                        service
-                    }
-                    BreakStep::Exec { service, .. } => service,
-                    BreakStep::Restart { service } => service,
-                };
-                if !services.contains(&service.as_str()) {
-                    issues.push(issue(format!(
-                        "break[{i}]: service \"{service}\" is not a service in docker-compose.yml (found: {})",
-                        services.join(", ")
-                    )));
+    if scenario.meta.faults.is_empty() {
+        match &scenario.meta.break_steps {
+            Some(steps) => validate_steps(scenario, steps, services, "break", &mut issues),
+            None => {
+                if !scenario.break_script().exists() {
+                    issues.push(issue(
+                        "missing break.sh (or a break: [...] step list, or a faults: [...] list in meta.json)",
+                    ));
                 }
             }
         }
-        None => {
-            if !scenario.break_script().exists() {
-                issues.push(issue(
-                    "missing break.sh (or a break: [...] step list in meta.json)",
-                ));
+    } else {
+        if scenario.meta.break_steps.is_some() {
+            issues.push(issue(
+                "both a top-level break: [...] and a faults: [...] list are defined - faults win, drop the top-level break",
+            ));
+        }
+        let mut seen = std::collections::HashSet::new();
+        for fault in &scenario.meta.faults {
+            if fault.name.trim().is_empty() {
+                issues.push(issue("faults[]: fault with an empty name"));
+                continue;
+            }
+            if !seen.insert(fault.name.as_str()) {
+                issues.push(issue(format!(
+                    "faults[]: duplicate name \"{}\"",
+                    fault.name
+                )));
+            }
+            let label = format!("faults[{}].break", fault.name);
+            match &fault.break_steps {
+                Some(steps) => validate_steps(scenario, steps, services, &label, &mut issues),
+                None => match &fault.script {
+                    Some(script) => {
+                        if !scenario.dir.join(script).exists() {
+                            issues.push(issue(format!(
+                                "faults[{}]: script \"{script}\" does not exist",
+                                fault.name
+                            )));
+                        }
+                    }
+                    None => issues.push(issue(format!(
+                        "faults[{}]: needs a break: [...] list or a script",
+                        fault.name
+                    ))),
+                },
+            }
+            if let Some(solve) = &fault.solve
+                && !scenario.dir.join(solve).exists()
+            {
+                issues.push(issue(format!(
+                    "faults[{}]: solve script \"{solve}\" does not exist",
+                    fault.name
+                )));
             }
         }
     }
@@ -106,6 +132,35 @@ fn validate_with_services(scenario: &Scenario, services: &[&str]) -> Vec<Issue> 
     }
 
     issues
+}
+
+fn validate_steps(
+    scenario: &Scenario,
+    steps: &[BreakStep],
+    services: &[&str],
+    label: &str,
+    issues: &mut Vec<Issue>,
+) {
+    for (i, step) in steps.iter().enumerate() {
+        let service = match step {
+            BreakStep::Cp { service, src, .. } => {
+                if !scenario.dir.join(src).exists() {
+                    issues.push(issue(format!(
+                        "{label}[{i}]: cp source \"{src}\" does not exist"
+                    )));
+                }
+                service
+            }
+            BreakStep::Exec { service, .. } => service,
+            BreakStep::Restart { service } => service,
+        };
+        if !services.contains(&service.as_str()) {
+            issues.push(issue(format!(
+                "{label}[{i}]: service \"{service}\" is not a service in docker-compose.yml (found: {})",
+                services.join(", ")
+            )));
+        }
+    }
 }
 
 #[cfg(test)]
@@ -163,7 +218,9 @@ mod tests {
         let issues = validate_with_services(&s, &["app"]);
         assert_eq!(
             messages(&issues),
-            vec!["missing break.sh (or a break: [...] step list in meta.json)"]
+            vec![
+                "missing break.sh (or a break: [...] step list, or a faults: [...] list in meta.json)"
+            ]
         );
     }
 
@@ -252,5 +309,90 @@ mod tests {
         let s = scenario_in(dir.path(), &meta("exit_zero", "", ""));
         let issues = validate_with_services(&s, &["app"]);
         assert_eq!(issues.len(), 2);
+    }
+
+    #[test]
+    fn faults_conflict_with_top_level_break() {
+        let dir = tempfile::tempdir().unwrap();
+        let s = scenario_in(
+            dir.path(),
+            &meta(
+                "http_200",
+                "http://x/",
+                r#", "break": [ { "restart": { "service": "app" } } ],
+                   "faults": [ { "name": "a", "break": [ { "restart": { "service": "app" } } ] } ]"#,
+            ),
+        );
+        let issues = validate_with_services(&s, &["app"]);
+        assert_eq!(issues.len(), 1);
+        assert!(issues[0].message.contains("faults win"));
+    }
+
+    #[test]
+    fn fault_names_must_be_unique_and_nonempty() {
+        let dir = tempfile::tempdir().unwrap();
+        let s = scenario_in(
+            dir.path(),
+            &meta(
+                "http_200",
+                "http://x/",
+                r#", "faults": [
+                    { "name": "a", "break": [ { "restart": { "service": "app" } } ] },
+                    { "name": "a", "break": [ { "restart": { "service": "app" } } ] },
+                    { "name": " ", "break": [ { "restart": { "service": "app" } } ] }
+                ]"#,
+            ),
+        );
+        let issues = validate_with_services(&s, &["app"]);
+        let msgs = messages(&issues);
+        assert!(msgs.contains(&"faults[]: duplicate name \"a\""));
+        assert!(msgs.contains(&"faults[]: fault with an empty name"));
+    }
+
+    #[test]
+    fn fault_needs_steps_or_existing_script() {
+        let dir = tempfile::tempdir().unwrap();
+        let s = scenario_in(
+            dir.path(),
+            &meta(
+                "http_200",
+                "http://x/",
+                r#", "faults": [
+                    { "name": "no-injection" },
+                    { "name": "missing-script", "script": "break-x.sh" }
+                ]"#,
+            ),
+        );
+        let issues = validate_with_services(&s, &["app"]);
+        let msgs = messages(&issues);
+        assert!(msgs.contains(&"faults[no-injection]: needs a break: [...] list or a script"));
+        assert!(msgs.contains(&"faults[missing-script]: script \"break-x.sh\" does not exist"));
+
+        std::fs::write(dir.path().join("break-x.sh"), "").unwrap();
+        let msgs2 = validate_with_services(&s, &["app"]);
+        assert_eq!(msgs2.len(), 1); // only the no-injection fault remains
+    }
+
+    #[test]
+    fn fault_break_steps_validate_services_with_fault_label() {
+        let dir = tempfile::tempdir().unwrap();
+        let s = scenario_in(
+            dir.path(),
+            &meta(
+                "http_200",
+                "http://x/",
+                r#", "faults": [
+                    { "name": "bad", "break": [ { "restart": { "service": "ghost" } } ],
+                      "solve": "solve-bad.sh" }
+                ]"#,
+            ),
+        );
+        let issues = validate_with_services(&s, &["app"]);
+        let msgs = messages(&issues);
+        assert!(
+            msgs.iter()
+                .any(|m| m.starts_with("faults[bad].break[0]: service \"ghost\""))
+        );
+        assert!(msgs.contains(&"faults[bad]: solve script \"solve-bad.sh\" does not exist"));
     }
 }

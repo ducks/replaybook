@@ -54,9 +54,18 @@ replaybook run 001-nginx-502
 # run with a custom SLA
 replaybook run 001-nginx-502 --sla 5
 
+# run a random scenario, optionally narrowed by tag
+replaybook run --random
+replaybook run --random --tag postgres
+
+# force a specific fault variant of a multi-fault scenario
+replaybook run 006-sidekiq-cant-connect --fault redis-auth
+
 # test a scenario end-to-end without playing it:
-# break -> assert broken -> solve.sh -> assert solved
+# break -> assert broken -> solve -> assert solved
+# (multi-fault scenarios get one full cycle per fault)
 replaybook test 001-nginx-502
+replaybook test 006-sidekiq-cant-connect --fault redis-auth
 
 # export session history as JSONL
 replaybook export
@@ -155,6 +164,29 @@ Steps run in order. Three kinds:
 If `break` is present, it's used instead of `break.sh`. If a fault needs
 real script logic (loops, conditionals, piping between commands), write
 `break.sh` instead - it still works exactly as before.
+
+### Fault variants: one symptom, several root causes
+
+A scenario can define a `faults` list instead of a single break. Each run
+draws one at random - the page stays the same, so a second run of the same
+scenario stays a diagnosis instead of becoming memorization:
+
+```json
+"faults": [
+  { "name": "redis-auth",
+    "break": [ { "exec": { "service": "redis", "cmd": ["..."] } } ],
+    "hints": ["hint shown for this fault only"],
+    "solve": "solve-auth.sh" },
+  { "name": "redis-stopped",
+    "script": "break-stopped.sh" }
+]
+```
+
+Per fault: `break` steps or a `script` filename inject it; `hints` fall
+back to the scenario-level hints when omitted; `solve` falls back to
+`solve.sh`. Players pick blind (`replaybook run <id>`), the drawn fault is
+revealed after the run and recorded on the session. `--fault <name>`
+forces one; `replaybook test` cycles through all of them.
 
 `replaybook add` and `replaybook run` validate each scenario (compose file
 parses, any `break` step's `service` matches a real service, `break.sh` or

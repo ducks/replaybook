@@ -30,20 +30,33 @@ enum Commands {
         #[arg(long)]
         scenarios_dir: Option<PathBuf>,
     },
-    /// Run a scenario by ID
+    /// Run a scenario by ID, or a random one with --random
     Run {
         /// Scenario ID (e.g. 001-nginx-502)
-        id: String,
+        #[arg(required_unless_present = "random", conflicts_with = "random")]
+        id: Option<String>,
+        /// Pick a random scenario instead of naming one
+        #[arg(long)]
+        random: bool,
+        /// With --random, only consider scenarios carrying this tag
+        #[arg(long)]
+        tag: Option<String>,
+        /// Force a named fault variant (defaults to a random one)
+        #[arg(long)]
+        fault: Option<String>,
         #[arg(long)]
         scenarios_dir: Option<PathBuf>,
         /// SLA time limit in minutes
         #[arg(long, default_value_t = 15)]
         sla: u64,
     },
-    /// Test a scenario end-to-end: break, assert broken, solve.sh, assert solved
+    /// Test a scenario end-to-end: break, assert broken, solve, assert solved
     Test {
         /// Scenario ID (e.g. 001-nginx-502)
         id: String,
+        /// Test only this fault variant (defaults to all of them)
+        #[arg(long)]
+        fault: Option<String>,
         #[arg(long)]
         scenarios_dir: Option<PathBuf>,
     },
@@ -70,6 +83,20 @@ fn print_transcript(transcript: &Option<PathBuf>) {
     if let Some(path) = transcript {
         println!("  transcript: {}", path.display());
     }
+}
+
+fn print_fault(fault: Option<&str>) {
+    if let Some(name) = fault {
+        println!("  fault: {name}");
+    }
+}
+
+/// Arbitrary entropy for scenario/fault picks - game randomness, not crypto.
+fn seed() -> usize {
+    std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.subsec_nanos() as usize)
+        .unwrap_or(0)
 }
 
 #[tokio::main]
@@ -147,33 +174,70 @@ async fn main() -> Result<()> {
 
         Commands::Run {
             id,
+            random,
+            tag,
+            fault,
             scenarios_dir,
             sla,
         } => {
+            // clap can't express "--tag needs --random" against a bool flag
+            // (default values satisfy `requires`), so enforce it here.
+            if tag.is_some() && !random {
+                anyhow::bail!("--tag only applies with --random");
+            }
             let dir = resolve_scenarios_dir(scenarios_dir);
             if !dir.exists() {
                 no_scenarios_found();
                 return Ok(());
             }
             let scenarios = scenario::discover(&dir)?;
-            let scenario = scenarios
-                .iter()
-                .find(|s| s.meta.id == id)
-                .ok_or_else(|| anyhow::anyhow!("scenario '{}' not found", id))?;
+            let scenario = match (&id, random) {
+                (Some(id), _) => scenarios
+                    .iter()
+                    .find(|s| s.meta.id == *id)
+                    .ok_or_else(|| anyhow::anyhow!("scenario '{}' not found", id))?,
+                (None, _) => {
+                    let pool: Vec<_> = scenarios
+                        .iter()
+                        .filter(|s| {
+                            tag.as_ref()
+                                .is_none_or(|t| s.meta.tags.iter().any(|st| st == t))
+                        })
+                        .collect();
+                    if pool.is_empty() {
+                        match &tag {
+                            Some(t) => anyhow::bail!("no scenarios tagged \"{t}\""),
+                            None => {
+                                no_scenarios_found();
+                                return Ok(());
+                            }
+                        }
+                    }
+                    pool[seed() % pool.len()]
+                }
+            };
 
             let issues = validate::validate(scenario)?;
             if !issues.is_empty() {
-                eprintln!("[replaybook] scenario '{}' failed validation:", id);
+                eprintln!(
+                    "[replaybook] scenario '{}' failed validation:",
+                    scenario.meta.id
+                );
                 for issue in &issues {
                     eprintln!("  - {}", issue.message);
                 }
                 anyhow::bail!("cannot run an invalid scenario");
             }
 
+            // Resolved before the run but only revealed after - the fault
+            // name would spoil the diagnosis.
+            let active = scenario.select_fault(fault.as_deref(), seed())?;
+
             println!("[replaybook] scenario: {}", scenario.meta.title);
 
-            let result = runner::run_scenario(scenario, sla * 60).await?;
+            let result = runner::run_scenario(scenario, &active, sla * 60).await?;
 
+            let fault_name = active.name.as_deref();
             match result {
                 RunResult::Success {
                     elapsed,
@@ -185,6 +249,7 @@ async fn main() -> Result<()> {
                         elapsed.as_secs(),
                         hints_used
                     );
+                    print_fault(fault_name);
                     print_transcript(&transcript);
                     recorder::record(
                         &scenario.meta.id,
@@ -192,6 +257,7 @@ async fn main() -> Result<()> {
                         Some(elapsed),
                         hints_used as u8,
                         transcript.as_deref(),
+                        fault_name,
                     )?;
                 }
                 RunResult::Timeout {
@@ -199,6 +265,7 @@ async fn main() -> Result<()> {
                     transcript,
                 } => {
                     println!("\n✗ SLA breached ({} hints used).", hints_used);
+                    print_fault(fault_name);
                     print_transcript(&transcript);
                     recorder::record(
                         &scenario.meta.id,
@@ -206,10 +273,12 @@ async fn main() -> Result<()> {
                         None,
                         hints_used as u8,
                         transcript.as_deref(),
+                        fault_name,
                     )?;
                 }
                 RunResult::Abandoned { transcript } => {
                     println!("\nShell exited before resolution. Run again to retry.");
+                    print_fault(fault_name);
                     print_transcript(&transcript);
                     recorder::record(
                         &scenario.meta.id,
@@ -217,12 +286,17 @@ async fn main() -> Result<()> {
                         None,
                         0,
                         transcript.as_deref(),
+                        fault_name,
                     )?;
                 }
             }
         }
 
-        Commands::Test { id, scenarios_dir } => {
+        Commands::Test {
+            id,
+            fault,
+            scenarios_dir,
+        } => {
             let dir = resolve_scenarios_dir(scenarios_dir);
             if !dir.exists() {
                 no_scenarios_found();
@@ -244,7 +318,7 @@ async fn main() -> Result<()> {
             }
 
             println!("[replaybook] testing: {}", scenario.meta.title);
-            runner::test_scenario(scenario)?;
+            runner::test_scenario(scenario, fault.as_deref())?;
             println!("\n✓ {} passed", scenario.meta.id);
         }
 
@@ -271,9 +345,10 @@ mod tests {
     fn run_defaults_to_15_minute_sla() {
         let cli = Cli::try_parse_from(["replaybook", "run", "001-nginx-502"]).unwrap();
         match cli.command {
-            Commands::Run { id, sla, .. } => {
-                assert_eq!(id, "001-nginx-502");
+            Commands::Run { id, sla, fault, .. } => {
+                assert_eq!(id.as_deref(), Some("001-nginx-502"));
                 assert_eq!(sla, 15);
+                assert_eq!(fault, None);
             }
             _ => panic!("expected run"),
         }
@@ -290,8 +365,13 @@ mod tests {
         ])
         .unwrap();
         match cli.command {
-            Commands::Test { id, scenarios_dir } => {
+            Commands::Test {
+                id,
+                fault,
+                scenarios_dir,
+            } => {
                 assert_eq!(id, "002-postgres-rejecting-connections");
+                assert_eq!(fault, None);
                 assert_eq!(scenarios_dir, Some(PathBuf::from("/tmp/packs")));
             }
             _ => panic!("expected test"),
@@ -301,6 +381,41 @@ mod tests {
     #[test]
     fn unknown_subcommand_is_rejected() {
         assert!(Cli::try_parse_from(["replaybook", "conquer"]).is_err());
-        assert!(Cli::try_parse_from(["replaybook", "run"]).is_err()); // id required
+        assert!(Cli::try_parse_from(["replaybook", "run"]).is_err()); // id or --random required
+    }
+
+    #[test]
+    fn run_random_replaces_id_and_gates_tag() {
+        let cli =
+            Cli::try_parse_from(["replaybook", "run", "--random", "--tag", "postgres"]).unwrap();
+        match cli.command {
+            Commands::Run {
+                id, random, tag, ..
+            } => {
+                assert_eq!(id, None);
+                assert!(random);
+                assert_eq!(tag.as_deref(), Some("postgres"));
+            }
+            _ => panic!("expected run"),
+        }
+        // id and --random conflict at parse time; --tag-without---random is
+        // rejected at runtime (clap default values defeat `requires`).
+        assert!(Cli::try_parse_from(["replaybook", "run", "x", "--random"]).is_err());
+    }
+
+    #[test]
+    fn run_and_test_accept_fault() {
+        let cli =
+            Cli::try_parse_from(["replaybook", "run", "006-x", "--fault", "redis-auth"]).unwrap();
+        match cli.command {
+            Commands::Run { fault, .. } => assert_eq!(fault.as_deref(), Some("redis-auth")),
+            _ => panic!("expected run"),
+        }
+        let cli =
+            Cli::try_parse_from(["replaybook", "test", "006-x", "--fault", "redis-auth"]).unwrap();
+        match cli.command {
+            Commands::Test { fault, .. } => assert_eq!(fault.as_deref(), Some("redis-auth")),
+            _ => panic!("expected test"),
+        }
     }
 }
