@@ -395,4 +395,16 @@ mod tests {
         );
         assert!(msgs.contains(&"faults[bad]: solve script \"solve-bad.sh\" does not exist"));
     }
+
+    #[test]
+    fn reports_missing_compose_file_without_invoking_docker() {
+        let dir = tempfile::tempdir().unwrap();
+        let s = scenario_in(dir.path(), &meta("http_200", "http://x/", ""));
+
+        let issues = validate(&s).expect("validation should succeed");
+
+        assert_eq!(issues.len(), 1);
+        assert!(issues[0].message.contains("missing"));
+        assert!(issues[0].message.contains("docker-compose.yml"));
+    }
 }
