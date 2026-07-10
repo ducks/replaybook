@@ -12,6 +12,7 @@ use std::time::{Duration, Instant};
 const HINT_FLAG: &str = "/tmp/on-call-hint";
 const TMUX_SESSION: &str = "on-call";
 const TRANSCRIPT_PATH: &str = "/tmp/on-call-transcript";
+const FAULT_SETTLE: Duration = Duration::from_secs(5);
 /// The service the player is dropped into: a jumphost on the incident's
 /// network with the docker CLI (docker exec is your ssh).
 const WORKSTATION_SERVICE: &str = "replaybook-workstation";
@@ -151,6 +152,8 @@ pub async fn run_scenario(
 
     println!("[replaybook] injecting fault...");
     inject_fault(scenario, fault)?;
+    std::thread::sleep(FAULT_SETTLE);
+    ensure_fault_active(scenario)?;
 
     println!("[replaybook] preparing workstation...");
     setup_workstation(&workstation)?;
@@ -366,12 +369,8 @@ fn test_fault(scenario: &Scenario, fault: &ActiveFault) -> Result<()> {
     inject_fault(scenario, fault)?;
 
     // Give the fault a moment to take effect (processes die, checks settle).
-    std::thread::sleep(Duration::from_secs(5));
-    if scenario_check(scenario) {
-        bail!(
-            "check passes while the fault is applied - the fault didn't take or the check is wrong"
-        );
-    }
+    std::thread::sleep(FAULT_SETTLE);
+    ensure_fault_active(scenario)?;
     println!("[replaybook] test: check fails while broken (good)");
 
     println!("[replaybook] test: applying solve script...");
@@ -400,6 +399,19 @@ fn scenario_check(scenario: &Scenario) -> bool {
         &scenario.check_script(),
         &scenario.dir,
     )
+}
+
+fn ensure_fault_active(scenario: &Scenario) -> Result<()> {
+    fault_preflight_result(scenario_check(scenario))
+}
+
+fn fault_preflight_result(check_passes: bool) -> Result<()> {
+    if check_passes {
+        bail!(
+            "check passes while the fault is applied - the fault didn't take or the check is wrong"
+        );
+    }
+    Ok(())
 }
 
 fn inject_fault(scenario: &Scenario, fault: &ActiveFault) -> Result<()> {
@@ -803,5 +815,13 @@ mod tests {
             resolution.elapsed_or(Duration::from_secs(20)),
             Duration::from_secs(4)
         );
+    }
+
+    #[test]
+    fn fault_preflight_requires_oracle_to_fail() {
+        assert!(fault_preflight_result(false).is_ok());
+
+        let err = fault_preflight_result(true).unwrap_err().to_string();
+        assert!(err.contains("check passes while the fault is applied"));
     }
 }
