@@ -430,4 +430,60 @@ mod tests {
             vec!["redis-auth", "redis-stopped", "redis-auth", "redis-stopped"]
         );
     }
+
+    #[test]
+    fn discovers_direct_and_packed_scenarios_in_stable_order() {
+        let root = tempfile::tempdir().unwrap();
+        write_scenario(
+            &root.path().join("020-direct"),
+            &MINIMAL_META.replace("my-scenario", "020-direct"),
+        );
+
+        let pack = root.path().join("scenario-pack");
+        write_scenario(
+            &pack.join("010-packed"),
+            &MINIMAL_META.replace("my-scenario", "010-packed"),
+        );
+        write_scenario(
+            &pack.join("030-packed"),
+            &MINIMAL_META.replace("my-scenario", "030-packed"),
+        );
+
+        let scenarios = discover(root.path()).expect("scenario discovery should succeed");
+        let ids: Vec<_> = scenarios.iter().map(|s| s.meta.id.as_str()).collect();
+
+        assert_eq!(ids, ["020-direct", "010-packed", "030-packed"]);
+    }
+
+    #[test]
+    fn ignores_dot_directories_and_skips_malformed_pack_scenarios() {
+        let root = tempfile::tempdir().unwrap();
+        write_scenario(
+            &root.path().join("valid-direct"),
+            &MINIMAL_META.replace("my-scenario", "valid-direct"),
+        );
+        write_scenario(
+            &root.path().join(".hidden-direct"),
+            &MINIMAL_META.replace("my-scenario", "hidden-direct"),
+        );
+
+        let pack = root.path().join("pack");
+        write_scenario(
+            &pack.join("valid-packed"),
+            &MINIMAL_META.replace("my-scenario", "valid-packed"),
+        );
+        write_scenario(
+            &pack.join(".hidden-packed"),
+            &MINIMAL_META.replace("my-scenario", "hidden-packed"),
+        );
+
+        let malformed = pack.join("malformed");
+        std::fs::create_dir_all(&malformed).expect("failed to create malformed dir");
+        std::fs::write(malformed.join("meta.json"), "{not json").expect("failed to write bad json");
+
+        let scenarios = discover(root.path()).expect("scenario discovery should succeed");
+        let ids: Vec<_> = scenarios.iter().map(|s| s.meta.id.as_str()).collect();
+
+        assert_eq!(ids, ["valid-packed", "valid-direct"]);
+    }
 }
