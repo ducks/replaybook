@@ -4,7 +4,7 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 use std::sync::{
-    Arc,
+    Arc, Mutex,
     atomic::{AtomicBool, AtomicUsize, Ordering},
 };
 use std::time::{Duration, Instant};
@@ -62,6 +62,36 @@ impl StateFile {
 impl Drop for StateFile {
     fn drop(&mut self) {
         fs::remove_file(&self.host_path).ok();
+    }
+}
+
+#[derive(Default)]
+struct Resolution {
+    solved: AtomicBool,
+    elapsed: Mutex<Option<Duration>>,
+}
+
+impl Resolution {
+    fn mark_solved(&self, elapsed: Duration) {
+        let mut recorded = self
+            .elapsed
+            .lock()
+            .unwrap_or_else(|poisoned| poisoned.into_inner());
+        if recorded.is_none() {
+            *recorded = Some(elapsed);
+        }
+        self.solved.store(true, Ordering::SeqCst);
+    }
+
+    fn is_solved(&self) -> bool {
+        self.solved.load(Ordering::SeqCst)
+    }
+
+    fn elapsed_or(&self, fallback: Duration) -> Duration {
+        self.elapsed
+            .lock()
+            .unwrap_or_else(|poisoned| poisoned.into_inner())
+            .unwrap_or(fallback)
     }
 }
 
@@ -125,15 +155,19 @@ pub async fn run_scenario(
     println!("[replaybook] preparing workstation...");
     setup_workstation(&workstation)?;
     inject_tools(&workstation, scenario)?;
+    setup_tmux(&workstation)?;
 
     state.write("ACTIVE", sla_seconds, 0, fault.hints.len(), &[]);
 
-    let solved = Arc::new(AtomicBool::new(false));
+    // One clock drives both the SLA and the recorded score. Start it only
+    // after the environment and terminal are ready for the player.
+    let run_started = Instant::now();
+    let resolution = Arc::new(Resolution::default());
     let timed_out = Arc::new(AtomicBool::new(false));
     let cancelled = Arc::new(AtomicBool::new(false));
     let hints_used = Arc::new(AtomicUsize::new(0));
 
-    let solved_bg = solved.clone();
+    let resolution_bg = resolution.clone();
     let timed_out_bg = timed_out.clone();
     let cancelled_bg = cancelled.clone();
     let hints_used_bg = hints_used.clone();
@@ -148,7 +182,6 @@ pub async fn run_scenario(
     let state_path = state.host_path.clone();
 
     let _poller = tokio::task::spawn_blocking(move || {
-        let started = Instant::now();
         loop {
             std::thread::sleep(Duration::from_secs(2));
 
@@ -156,7 +189,7 @@ pub async fn run_scenario(
                 return;
             }
 
-            let elapsed = started.elapsed();
+            let elapsed = run_started.elapsed();
 
             if elapsed >= deadline {
                 timed_out_bg.store(true, Ordering::SeqCst);
@@ -209,58 +242,13 @@ pub async fn run_scenario(
             fs::write(&state_path, content).ok();
 
             if ok {
-                solved_bg.store(true, Ordering::SeqCst);
+                resolution_bg.mark_solved(elapsed);
                 return;
             }
         }
     });
 
-    let started = Instant::now();
-
-    // Create session detached, split HUD pane, then attach
-    if !docker_exec(
-        &workstation,
-        &["tmux", "new-session", "-d", "-s", TMUX_SESSION],
-    ) {
-        bail!("failed to start tmux in the workstation container");
-    }
-    // Record everything the player types and sees in the shell pane.
-    // Best-effort: a failed recording never blocks the run.
-    docker_exec(
-        &workstation,
-        &[
-            "tmux",
-            "pipe-pane",
-            "-t",
-            &format!("{TMUX_SESSION}:0.0"),
-            "-o",
-            &format!("cat >> {TRANSCRIPT_PATH}"),
-        ],
-    );
-    if !docker_exec(
-        &workstation,
-        &[
-            "tmux",
-            "split-window",
-            "-h",
-            "-l",
-            "44",
-            "-t",
-            TMUX_SESSION,
-            "/usr/local/bin/on-call-hud",
-        ],
-    ) {
-        bail!("failed to open the HUD pane in the workstation container");
-    }
-    docker_exec(
-        &workstation,
-        &[
-            "tmux",
-            "select-pane",
-            "-t",
-            &format!("{}:0.0", TMUX_SESSION),
-        ],
-    );
+    // The session is ready; attaching is the start of player interaction.
     Command::new("docker")
         .args([
             "exec",
@@ -276,7 +264,7 @@ pub async fn run_scenario(
 
     cancelled.store(true, Ordering::SeqCst);
 
-    let elapsed = started.elapsed();
+    let terminal_elapsed = run_started.elapsed();
     let used = hints_used.load(Ordering::SeqCst);
 
     // Pull the transcript out before ComposeGuard tears the container down.
@@ -284,7 +272,7 @@ pub async fn run_scenario(
 
     // The player may fix the issue and exit the shell inside the poller's 2s
     // window - do one final check before classifying the run as abandoned.
-    if !solved.load(Ordering::SeqCst)
+    if !resolution.is_solved()
         && !timed_out.load(Ordering::SeqCst)
         && check_success(
             &scenario.meta.success_condition,
@@ -293,14 +281,14 @@ pub async fn run_scenario(
             &scenario.dir,
         )
     {
-        solved.store(true, Ordering::SeqCst);
+        resolution.mark_solved(run_started.elapsed());
     }
 
     // compose stack torn down by ComposeGuard::drop, state file by StateFile::drop
 
-    if solved.load(Ordering::SeqCst) {
+    if resolution.is_solved() {
         return Ok(RunResult::Success {
-            elapsed,
+            elapsed: resolution.elapsed_or(terminal_elapsed),
             hints_used: used,
             transcript,
         });
@@ -442,6 +430,55 @@ fn setup_workstation(container: &str) -> Result<()> {
         return Ok(());
     }
     bail!("could not install tmux in the workstation container (tried apk and apt-get)");
+}
+
+fn setup_tmux(container: &str) -> Result<()> {
+    if !docker_exec(
+        container,
+        &["tmux", "new-session", "-d", "-s", TMUX_SESSION],
+    ) {
+        bail!("failed to start tmux in the workstation container");
+    }
+    // Record everything the player types and sees in the shell pane.
+    // Best-effort: a failed recording never blocks the run.
+    docker_exec(
+        container,
+        &[
+            "tmux",
+            "pipe-pane",
+            "-t",
+            &format!("{TMUX_SESSION}:0.0"),
+            "-o",
+            &format!("cat >> {TRANSCRIPT_PATH}"),
+        ],
+    );
+    if !docker_exec(
+        container,
+        &[
+            "tmux",
+            "split-window",
+            "-h",
+            "-l",
+            "44",
+            "-t",
+            TMUX_SESSION,
+            "/usr/local/bin/on-call-hud",
+        ],
+    ) {
+        bail!("failed to open the HUD pane in the workstation container");
+    }
+    if !docker_exec(
+        container,
+        &[
+            "tmux",
+            "select-pane",
+            "-t",
+            &format!("{}:0.0", TMUX_SESSION),
+        ],
+    ) {
+        bail!("failed to select the workstation shell pane");
+    }
+    Ok(())
 }
 
 fn inject_tools(container: &str, scenario: &Scenario) -> Result<()> {
@@ -743,5 +780,28 @@ mod tests {
             state.host_path.clone()
         };
         assert!(!path.exists());
+    }
+
+    #[test]
+    fn success_elapsed_uses_oracle_time_not_terminal_exit() {
+        let resolution = Resolution::default();
+        resolution.mark_solved(Duration::from_millis(1_250));
+
+        assert_eq!(
+            resolution.elapsed_or(Duration::from_secs(90)),
+            Duration::from_millis(1_250)
+        );
+    }
+
+    #[test]
+    fn success_elapsed_preserves_first_success() {
+        let resolution = Resolution::default();
+        resolution.mark_solved(Duration::from_secs(4));
+        resolution.mark_solved(Duration::from_secs(9));
+
+        assert_eq!(
+            resolution.elapsed_or(Duration::from_secs(20)),
+            Duration::from_secs(4)
+        );
     }
 }

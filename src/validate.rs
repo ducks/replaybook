@@ -96,13 +96,13 @@ fn validate_with_services(scenario: &Scenario, services: &[&str]) -> Vec<Issue> 
                     ))),
                 },
             }
-            if let Some(solve) = &fault.solve
-                && !scenario.dir.join(solve).exists()
-            {
-                issues.push(issue(format!(
-                    "faults[{}]: solve script \"{solve}\" does not exist",
-                    fault.name
-                )));
+            if let Some(solve) = &fault.solve {
+                if !scenario.dir.join(solve).exists() {
+                    issues.push(issue(format!(
+                        "faults[{}]: solve script \"{solve}\" does not exist",
+                        fault.name
+                    )));
+                }
             }
         }
     }
