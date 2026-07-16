@@ -4,6 +4,7 @@ set -euo pipefail
 REPO="ducks/replaybook"
 BIN="replaybook"
 INSTALL_DIR="${INSTALL_DIR:-/usr/local/bin}"
+VERSION="${REPLAYBOOK_VERSION:-latest}"
 
 detect_target() {
   local os arch
@@ -33,17 +34,58 @@ detect_target() {
 }
 
 TARGET="$(detect_target)"
-URL="https://github.com/${REPO}/releases/latest/download/${BIN}-${TARGET}"
+ARTIFACT="${BIN}-${TARGET}"
+if [[ "$VERSION" == "latest" ]]; then
+  RELEASE_URL="https://github.com/${REPO}/releases/latest/download"
+else
+  [[ "$VERSION" == v* ]] || VERSION="v${VERSION}"
+  RELEASE_URL="https://github.com/${REPO}/releases/download/${VERSION}"
+fi
+URL="${RELEASE_URL}/${ARTIFACT}"
 
-echo "Downloading ${BIN} for ${TARGET}..."
-curl -fsSL "$URL" -o "/tmp/${BIN}"
-chmod +x "/tmp/${BIN}"
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_DIR"' EXIT
+
+sha256_file() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$1" | awk '{print $1}'
+  elif command -v shasum >/dev/null 2>&1; then
+    shasum -a 256 "$1" | awk '{print $1}'
+  else
+    echo "no SHA-256 tool found (need sha256sum or shasum)" >&2
+    exit 1
+  fi
+}
+
+echo "Downloading ${BIN} ${VERSION} for ${TARGET}..."
+curl -fsSL "$URL" -o "${TMP_DIR}/${ARTIFACT}"
+if curl -fsSL "${RELEASE_URL}/SHA256SUMS" -o "${TMP_DIR}/SHA256SUMS"; then
+  expected="$(awk -v artifact="$ARTIFACT" '$2 == artifact || $2 == "*" artifact { print $1 }' "${TMP_DIR}/SHA256SUMS")"
+  if [[ -z "$expected" ]]; then
+    echo "SHA256SUMS does not contain ${ARTIFACT}" >&2
+    exit 1
+  fi
+  actual="$(sha256_file "${TMP_DIR}/${ARTIFACT}")"
+  if [[ "$actual" != "$expected" ]]; then
+    echo "checksum verification failed for ${ARTIFACT}" >&2
+    exit 1
+  fi
+  echo "Checksum verified."
+elif [[ "$VERSION" == "latest" ]]; then
+  echo "warning: latest release has no SHA256SUMS; continuing for backward compatibility" >&2
+elif [[ "${ALLOW_UNVERIFIED_DOWNLOAD:-0}" != "1" ]]; then
+  echo "release has no SHA256SUMS; set ALLOW_UNVERIFIED_DOWNLOAD=1 to install an older release" >&2
+  exit 1
+fi
+chmod +x "${TMP_DIR}/${ARTIFACT}"
 
 if [[ -w "$INSTALL_DIR" ]]; then
-  mv "/tmp/${BIN}" "${INSTALL_DIR}/${BIN}"
+  install -m 0755 "${TMP_DIR}/${ARTIFACT}" "${INSTALL_DIR}/${BIN}"
+  ln -sf "${INSTALL_DIR}/${BIN}" "${INSTALL_DIR}/replay"
 else
-  sudo mv "/tmp/${BIN}" "${INSTALL_DIR}/${BIN}"
+  sudo install -m 0755 "${TMP_DIR}/${ARTIFACT}" "${INSTALL_DIR}/${BIN}"
+  sudo ln -sf "${INSTALL_DIR}/${BIN}" "${INSTALL_DIR}/replay"
 fi
 
 echo "Installed to ${INSTALL_DIR}/${BIN}"
-echo "Run: replaybook list"
+"${INSTALL_DIR}/${BIN}" --version

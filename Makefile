@@ -1,4 +1,4 @@
-.PHONY: help version-bump release build test clean clippy fmt fmt-check lint install-hooks
+.PHONY: help version-bump release build test clean clippy fmt fmt-check lint deploy-check install-hooks
 
 define get_next_version
 $(shell \
@@ -24,6 +24,7 @@ help:
 	@echo "  make build                         - Build release binary"
 	@echo "  make test                          - Run tests"
 	@echo "  make clippy                        - Run clippy"
+	@echo "  make deploy-check                  - Validate deployment shell scripts"
 	@echo "  make clean                         - Clean build artifacts"
 	@echo ""
 	@echo "Next version will be: $(VERSION)"
@@ -79,7 +80,10 @@ fmt:
 fmt-check:
 	cargo fmt -- --check
 
-lint: fmt-check
+deploy-check:
+	@find deploy -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
+
+lint: fmt-check deploy-check
 	cargo clippy -- -D warnings
 	cargo test
 

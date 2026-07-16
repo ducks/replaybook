@@ -69,7 +69,12 @@ jobs:
         with:
           merge-multiple: true
 
+      - name: Generate checksums
+        run: sha256sum replaybook-* > SHA256SUMS
+
       - uses: softprops/action-gh-release@v2
         with:
-          files: replaybook-*
+          files: |
+            replaybook-*
+            SHA256SUMS
           generate_release_notes: true

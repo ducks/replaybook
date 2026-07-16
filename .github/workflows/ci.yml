@@ -40,4 +40,5 @@ jobs:
           components: clippy, rustfmt
 
       - run: cargo fmt -- --check
+      - run: make deploy-check
       - run: cargo clippy -- -D warnings
