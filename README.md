@@ -48,7 +48,15 @@ replaybook add mycompany/incidents
 # list available scenarios
 replaybook list
 
-# run a scenario (15 minute SLA by default)
+# create a runnable scenario in the current pack
+replaybook new 010-checkout-down
+
+# validate, test, and run by ID or direct path
+replaybook validate ./010-checkout-down
+replaybook test ./010-checkout-down
+replaybook run ./010-checkout-down
+
+# run an installed scenario (15 minute SLA by default)
 replaybook run 001-nginx-502
 
 # run with a custom SLA
@@ -66,6 +74,9 @@ replaybook run 006-sidekiq-cant-connect --fault redis-auth
 # (multi-fault scenarios get one full cycle per fault)
 replaybook test 001-nginx-502
 replaybook test 006-sidekiq-cant-connect --fault redis-auth
+
+# test every scenario in a pack (use this in pack CI)
+replaybook test --all ./company-incidents
 
 # export session history as JSONL
 replaybook export
@@ -101,6 +112,19 @@ Official pack: [ducks/replaybook-scenarios](https://github.com/ducks/replaybook-
 
 ## Writing scenarios
 
+Start with the interactive authoring command:
+
+```bash
+replaybook new checkout-db-exhaustion --pack ./company-incidents
+replaybook validate ./company-incidents/checkout-db-exhaustion
+replaybook test ./company-incidents/checkout-db-exhaustion
+```
+
+`new` asks for the incident page, difficulty, tags, hints, learning objectives,
+fault and repair commands, success check, and optional incident provenance. It writes a small working
+scenario that can be validated and tested immediately; replace the starter
+service and fault with the sanitized system behavior from the real incident.
+
 Each scenario is a directory with:
 
 ```
@@ -124,6 +148,15 @@ my-scenario/
     "First hint revealed on first get-hint",
     "Second hint revealed on second get-hint"
   ],
+  "learning_objectives": [
+    "Recognize connection-pool exhaustion",
+    "Identify the process consuming connections"
+  ],
+  "source": {
+    "incident_date": "2026-06-14",
+    "reference": "INC-1842",
+    "sanitized": true
+  },
   "success_condition": "http_200",
   "success_target": "http://localhost:8080/health"
 }
@@ -190,17 +223,22 @@ back to the scenario-level hints when omitted; `solve` falls back to
 revealed after the run and recorded on the session. `--fault <name>`
 forces one; `replaybook test` cycles through all of them.
 
-`replaybook add` and `replaybook run` validate each scenario (compose file
+`replaybook validate <id-or-path>`, `replaybook add`, and `replaybook run`
+validate each scenario (compose file
 parses, any `break` step's `service` matches a real service, `break.sh` or
 `break` exists, and `check.sh` exists if `success_condition` is `exit_zero`)
 and report problems before anything runs.
 
 ### Testing scenarios
 
-`replaybook test <id>` verifies a scenario end-to-end without a player: it
+`replaybook test <id-or-path>` verifies a scenario end-to-end without a player: it
 brings the stack up, injects the fault, asserts the check fails, runs the
 scenario's `solve.sh`, and asserts the check recovers. Run it in CI on your
-scenario pack so broken scenarios never reach players.
+scenario pack so broken scenarios never reach players:
+
+```bash
+replaybook test --all ./company-incidents
+```
 
 ### A note on trust
 

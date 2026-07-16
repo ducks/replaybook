@@ -1,3 +1,4 @@
+mod author;
 mod recorder;
 mod runner;
 mod scenario;
@@ -20,6 +21,14 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
+    /// Create a runnable starter scenario in a pack directory
+    New {
+        /// Scenario ID (lowercase letters, digits, and hyphens)
+        id: String,
+        /// Directory that will contain the new scenario
+        #[arg(long, default_value = ".")]
+        pack: PathBuf,
+    },
     /// Add a scenario pack from a GitHub repo (e.g. ducks/replaybook-scenarios)
     Add {
         /// GitHub repo in owner/repo format
@@ -30,9 +39,9 @@ enum Commands {
         #[arg(long)]
         scenarios_dir: Option<PathBuf>,
     },
-    /// Run a scenario by ID, or a random one with --random
+    /// Run a scenario by ID or directory, or a random one with --random
     Run {
-        /// Scenario ID (e.g. 001-nginx-502)
+        /// Scenario ID or path (e.g. 001-nginx-502 or ./scenarios/001-nginx-502)
         #[arg(required_unless_present = "random", conflicts_with = "random")]
         id: Option<String>,
         /// Pick a random scenario instead of naming one
@@ -50,12 +59,22 @@ enum Commands {
         #[arg(long, default_value_t = 15)]
         sla: u64,
     },
-    /// Test a scenario end-to-end: break, assert broken, solve, assert solved
-    Test {
-        /// Scenario ID (e.g. 001-nginx-502)
-        id: String,
-        /// Test only this fault variant (defaults to all of them)
+    /// Validate a scenario without starting its environment
+    Validate {
+        /// Scenario ID or directory
+        target: String,
         #[arg(long)]
+        scenarios_dir: Option<PathBuf>,
+    },
+    /// Test one scenario end-to-end, or every scenario in a pack with --all
+    Test {
+        /// Scenario ID/directory, or pack directory with --all
+        target: Option<String>,
+        /// Test every scenario in the target pack
+        #[arg(long)]
+        all: bool,
+        /// Test only this fault variant (defaults to all of them)
+        #[arg(long, conflicts_with = "all")]
         fault: Option<String>,
         #[arg(long)]
         scenarios_dir: Option<PathBuf>,
@@ -91,6 +110,56 @@ fn print_fault(fault: Option<&str>) {
     }
 }
 
+fn resolve_scenario(target: &str, scenarios_dir: Option<PathBuf>) -> Result<scenario::Scenario> {
+    let path = PathBuf::from(target);
+    if path.is_dir() {
+        return scenario::Scenario::load(&path);
+    }
+    if path.is_file() && path.file_name().is_some_and(|name| name == "meta.json") {
+        return scenario::Scenario::load(
+            path.parent().unwrap_or_else(|| std::path::Path::new(".")),
+        );
+    }
+    if path.is_absolute() || target.starts_with('.') || target.contains(std::path::MAIN_SEPARATOR) {
+        anyhow::bail!("scenario path '{}' does not exist", path.display());
+    }
+
+    let dir = resolve_scenarios_dir(scenarios_dir);
+    if !dir.exists() {
+        anyhow::bail!(
+            "scenario directory {} does not exist; add a pack or pass a scenario path",
+            dir.display()
+        );
+    }
+    scenario::discover(&dir)?
+        .into_iter()
+        .find(|scenario| scenario.meta.id == target)
+        .ok_or_else(|| anyhow::anyhow!("scenario '{}' not found", target))
+}
+
+fn print_validation(scenario: &scenario::Scenario, issues: &[validate::Issue]) {
+    if issues.is_empty() {
+        println!("✓ {} is valid", scenario.meta.id);
+        return;
+    }
+    eprintln!(
+        "[replaybook] scenario '{}' failed validation:",
+        scenario.meta.id
+    );
+    for issue in issues {
+        eprintln!("  - {}", issue.message);
+    }
+}
+
+fn validate_scenario(scenario: &scenario::Scenario) -> Result<()> {
+    let issues = validate::validate(scenario)?;
+    print_validation(scenario, &issues);
+    if !issues.is_empty() {
+        anyhow::bail!("scenario validation failed");
+    }
+    Ok(())
+}
+
 /// Arbitrary entropy for scenario/fault picks - game randomness, not crypto.
 fn seed() -> usize {
     std::time::SystemTime::now()
@@ -104,6 +173,13 @@ async fn main() -> Result<()> {
     let cli = Cli::parse();
 
     match cli.command {
+        Commands::New { id, pack } => {
+            let stdin = std::io::stdin();
+            let mut input = stdin.lock();
+            let stdout = std::io::stdout();
+            let mut output = stdout.lock();
+            author::create(&id, &pack, &mut input, &mut output)?;
+        }
         Commands::Add { repo } => {
             let url = format!("https://github.com/{}.git", repo);
             let pack_name = repo.split('/').next_back().unwrap_or(&repo);
@@ -185,20 +261,17 @@ async fn main() -> Result<()> {
             if tag.is_some() && !random {
                 anyhow::bail!("--tag only applies with --random");
             }
-            let dir = resolve_scenarios_dir(scenarios_dir);
-            if !dir.exists() {
-                no_scenarios_found();
-                return Ok(());
-            }
-            let scenarios = scenario::discover(&dir)?;
             let scenario = match (&id, random) {
-                (Some(id), _) => scenarios
-                    .iter()
-                    .find(|s| s.meta.id == *id)
-                    .ok_or_else(|| anyhow::anyhow!("scenario '{}' not found", id))?,
+                (Some(target), _) => resolve_scenario(target, scenarios_dir)?,
                 (None, _) => {
+                    let dir = resolve_scenarios_dir(scenarios_dir);
+                    if !dir.exists() {
+                        no_scenarios_found();
+                        return Ok(());
+                    }
+                    let scenarios = scenario::discover(&dir)?;
                     let pool: Vec<_> = scenarios
-                        .iter()
+                        .into_iter()
                         .filter(|s| {
                             tag.as_ref()
                                 .is_none_or(|t| s.meta.tags.iter().any(|st| st == t))
@@ -213,21 +286,13 @@ async fn main() -> Result<()> {
                             }
                         }
                     }
-                    pool[seed() % pool.len()]
+                    let index = seed() % pool.len();
+                    pool.into_iter().nth(index).unwrap()
                 }
             };
 
-            let issues = validate::validate(scenario)?;
-            if !issues.is_empty() {
-                eprintln!(
-                    "[replaybook] scenario '{}' failed validation:",
-                    scenario.meta.id
-                );
-                for issue in &issues {
-                    eprintln!("  - {}", issue.message);
-                }
-                anyhow::bail!("cannot run an invalid scenario");
-            }
+            validate_scenario(&scenario)
+                .map_err(|_| anyhow::anyhow!("cannot run an invalid scenario"))?;
 
             // Resolved before the run but only revealed after - the fault
             // name would spoil the diagnosis.
@@ -235,7 +300,7 @@ async fn main() -> Result<()> {
 
             println!("[replaybook] scenario: {}", scenario.meta.title);
 
-            let result = runner::run_scenario(scenario, &active, sla * 60).await?;
+            let result = runner::run_scenario(&scenario, &active, sla * 60).await?;
 
             let fault_name = active.name.as_deref();
             match result {
@@ -292,34 +357,69 @@ async fn main() -> Result<()> {
             }
         }
 
+        Commands::Validate {
+            target,
+            scenarios_dir,
+        } => {
+            let scenario = resolve_scenario(&target, scenarios_dir)?;
+            validate_scenario(&scenario)?;
+        }
+
         Commands::Test {
-            id,
+            target,
+            all,
             fault,
             scenarios_dir,
         } => {
-            let dir = resolve_scenarios_dir(scenarios_dir);
-            if !dir.exists() {
-                no_scenarios_found();
-                return Ok(());
-            }
-            let scenarios = scenario::discover(&dir)?;
-            let scenario = scenarios
-                .iter()
-                .find(|s| s.meta.id == id)
-                .ok_or_else(|| anyhow::anyhow!("scenario '{}' not found", id))?;
-
-            let issues = validate::validate(scenario)?;
-            if !issues.is_empty() {
-                eprintln!("[replaybook] scenario '{}' failed validation:", id);
-                for issue in &issues {
-                    eprintln!("  - {}", issue.message);
+            if all {
+                let dir = target
+                    .map(PathBuf::from)
+                    .unwrap_or_else(|| resolve_scenarios_dir(scenarios_dir));
+                if !dir.exists() {
+                    anyhow::bail!("scenario pack path '{}' does not exist", dir.display());
                 }
-                anyhow::bail!("cannot test an invalid scenario");
+                let scenarios = scenario::discover_strict(&dir)?;
+                if scenarios.is_empty() {
+                    anyhow::bail!("no scenarios found in {}", dir.display());
+                }
+                println!(
+                    "[replaybook] testing {} scenario(s) from {}",
+                    scenarios.len(),
+                    dir.display()
+                );
+                let mut invalid = 0;
+                for scenario in &scenarios {
+                    let issues = validate::validate(scenario)?;
+                    if !issues.is_empty() {
+                        invalid += 1;
+                        print_validation(scenario, &issues);
+                    }
+                }
+                if invalid > 0 {
+                    anyhow::bail!("{invalid} scenario(s) failed validation; no tests were run");
+                }
+                for (index, scenario) in scenarios.iter().enumerate() {
+                    println!(
+                        "\n[replaybook] ({}/{}) {}",
+                        index + 1,
+                        scenarios.len(),
+                        scenario.meta.id
+                    );
+                    runner::test_scenario(scenario, None)?;
+                    println!("✓ {} passed", scenario.meta.id);
+                }
+                println!("\n✓ all {} scenarios passed", scenarios.len());
+            } else {
+                let target = target.ok_or_else(|| {
+                    anyhow::anyhow!("provide a scenario ID or path, or use --all [PACK]")
+                })?;
+                let scenario = resolve_scenario(&target, scenarios_dir)?;
+                validate_scenario(&scenario)
+                    .map_err(|_| anyhow::anyhow!("cannot test an invalid scenario"))?;
+                println!("[replaybook] testing: {}", scenario.meta.title);
+                runner::test_scenario(&scenario, fault.as_deref())?;
+                println!("\n✓ {} passed", scenario.meta.id);
             }
-
-            println!("[replaybook] testing: {}", scenario.meta.title);
-            runner::test_scenario(scenario, fault.as_deref())?;
-            println!("\n✓ {} passed", scenario.meta.id);
         }
 
         Commands::Export => {
@@ -366,11 +466,16 @@ mod tests {
         .unwrap();
         match cli.command {
             Commands::Test {
-                id,
+                target,
+                all,
                 fault,
                 scenarios_dir,
             } => {
-                assert_eq!(id, "002-postgres-rejecting-connections");
+                assert_eq!(
+                    target.as_deref(),
+                    Some("002-postgres-rejecting-connections")
+                );
+                assert!(!all);
                 assert_eq!(fault, None);
                 assert_eq!(scenarios_dir, Some(PathBuf::from("/tmp/packs")));
             }
@@ -417,5 +522,47 @@ mod tests {
             Commands::Test { fault, .. } => assert_eq!(fault.as_deref(), Some("redis-auth")),
             _ => panic!("expected test"),
         }
+    }
+
+    #[test]
+    fn authoring_commands_accept_paths() {
+        let cli = Cli::try_parse_from([
+            "replaybook",
+            "new",
+            "010-checkout-down",
+            "--pack",
+            "./incidents",
+        ])
+        .unwrap();
+        match cli.command {
+            Commands::New { id, pack } => {
+                assert_eq!(id, "010-checkout-down");
+                assert_eq!(pack, PathBuf::from("./incidents"));
+            }
+            _ => panic!("expected new"),
+        }
+
+        let cli = Cli::try_parse_from(["replaybook", "validate", "./incidents/010-x"]).unwrap();
+        match cli.command {
+            Commands::Validate { target, .. } => assert_eq!(target, "./incidents/010-x"),
+            _ => panic!("expected validate"),
+        }
+    }
+
+    #[test]
+    fn test_all_accepts_an_optional_pack_and_rejects_fault() {
+        let cli =
+            Cli::try_parse_from(["replaybook", "test", "--all", "./company-incidents"]).unwrap();
+        match cli.command {
+            Commands::Test {
+                target, all, fault, ..
+            } => {
+                assert_eq!(target.as_deref(), Some("./company-incidents"));
+                assert!(all);
+                assert!(fault.is_none());
+            }
+            _ => panic!("expected test"),
+        }
+        assert!(Cli::try_parse_from(["replaybook", "test", "--all", "--fault", "x"]).is_err());
     }
 }

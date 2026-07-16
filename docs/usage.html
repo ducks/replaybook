@@ -30,7 +30,16 @@ replaybook add mycompany/incidents
 # list available scenarios
 replaybook list
 
-# run a scenario (15 minute SLA by default)
+# create, validate, test, and run a scenario by direct path
+replaybook new 010-checkout-down --pack ./company-incidents
+replaybook validate ./company-incidents/010-checkout-down
+replaybook test ./company-incidents/010-checkout-down
+replaybook run ./company-incidents/010-checkout-down
+
+# test every scenario in a pack
+replaybook test --all ./company-incidents
+
+# run an installed scenario (15 minute SLA by default)
 replaybook run 001-nginx-502
 
 # run with a custom SLA

@@ -65,6 +65,22 @@ pub struct ScenarioMeta {
     /// Alternative root causes; one is selected per run.
     #[serde(default)]
     pub faults: Vec<Fault>,
+    /// Optional link back to the sanitized incident that inspired the drill.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source: Option<IncidentSource>,
+    /// Skills a player should practice by completing the scenario.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub learning_objectives: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct IncidentSource {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub incident_date: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub reference: Option<String>,
+    #[serde(default)]
+    pub sanitized: bool,
 }
 
 /// The fault actually being played this run, with every fallback resolved.
@@ -184,6 +200,25 @@ fn is_dotdir(path: &Path) -> bool {
 }
 
 pub fn discover(scenarios_dir: &Path) -> Result<Vec<Scenario>> {
+    discover_with_mode(scenarios_dir, false)
+}
+
+/// Discover a scenario pack for CI. Unlike regular discovery, malformed
+/// scenario metadata is an error instead of something to skip.
+pub fn discover_strict(scenarios_dir: &Path) -> Result<Vec<Scenario>> {
+    discover_with_mode(scenarios_dir, true)
+}
+
+fn load_discovered(dir: &Path, strict: bool, scenarios: &mut Vec<Scenario>) -> Result<()> {
+    match Scenario::load(dir) {
+        Ok(scenario) => scenarios.push(scenario),
+        Err(error) if strict => return Err(error),
+        Err(error) => eprintln!("skipping {}: {error}", dir.display()),
+    }
+    Ok(())
+}
+
+fn discover_with_mode(scenarios_dir: &Path, strict: bool) -> Result<Vec<Scenario>> {
     let mut scenarios = Vec::new();
     let mut entries: Vec<_> = std::fs::read_dir(scenarios_dir)
         .with_context(|| format!("reading {}", scenarios_dir.display()))?
@@ -197,10 +232,7 @@ pub fn discover(scenarios_dir: &Path) -> Result<Vec<Scenario>> {
         let dir = entry.path();
         if dir.join("meta.json").exists() {
             // A scenario placed directly under scenarios_dir.
-            match Scenario::load(&dir) {
-                Ok(s) => scenarios.push(s),
-                Err(e) => eprintln!("skipping {}: {e}", dir.display()),
-            }
+            load_discovered(&dir, strict, &mut scenarios)?;
             continue;
         }
 
@@ -218,9 +250,11 @@ pub fn discover(scenarios_dir: &Path) -> Result<Vec<Scenario>> {
 
         for pack_entry in pack_entries {
             let scenario_dir = pack_entry.path();
-            match Scenario::load(&scenario_dir) {
-                Ok(s) => scenarios.push(s),
-                Err(e) => eprintln!("skipping {}: {e}", scenario_dir.display()),
+            // Repositories can also contain docs and other directories. A
+            // meta.json marks an actual scenario; malformed metadata should
+            // fail strict discovery rather than being silently omitted.
+            if scenario_dir.join("meta.json").exists() {
+                load_discovered(&scenario_dir, strict, &mut scenarios)?;
             }
         }
     }
@@ -263,6 +297,30 @@ mod tests {
         assert!(meta.tags.is_empty());
         assert_eq!(meta.success_target, "");
         assert!(meta.break_steps.is_none());
+        assert!(meta.source.is_none());
+        assert!(meta.learning_objectives.is_empty());
+    }
+
+    #[test]
+    fn parses_incident_provenance_and_learning_objectives() {
+        let meta: ScenarioMeta = serde_json::from_str(
+            r#"{
+                "id": "x", "title": "t", "page": "p", "difficulty": 1,
+                "hints": [], "success_condition": "exit_zero",
+                "source": {
+                    "incident_date": "2026-06-14",
+                    "reference": "INC-1842",
+                    "sanitized": true
+                },
+                "learning_objectives": ["Recognize pool exhaustion"]
+            }"#,
+        )
+        .unwrap();
+        let source = meta.source.unwrap();
+        assert_eq!(source.incident_date.as_deref(), Some("2026-06-14"));
+        assert_eq!(source.reference.as_deref(), Some("INC-1842"));
+        assert!(source.sanitized);
+        assert_eq!(meta.learning_objectives, ["Recognize pool exhaustion"]);
     }
 
     #[test]
@@ -344,6 +402,17 @@ mod tests {
         let scenarios = discover(root.path()).unwrap();
         assert_eq!(scenarios.len(), 1);
         assert_eq!(scenarios[0].meta.id, "my-scenario");
+    }
+
+    #[test]
+    fn strict_discovery_rejects_invalid_meta() {
+        let root = tempfile::tempdir().unwrap();
+        write_scenario(&root.path().join("001-good"), MINIMAL_META);
+        write_scenario(&root.path().join("002-bad"), "{ not json");
+
+        let error = discover_strict(root.path()).unwrap_err().to_string();
+        assert!(error.contains("parsing"), "{error}");
+        assert!(error.contains("002-bad/meta.json"), "{error}");
     }
 
     #[test]

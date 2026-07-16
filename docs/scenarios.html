@@ -53,6 +53,18 @@
 
     <h2>Writing scenarios</h2>
 
+    <p>Start with the interactive authoring command:</p>
+
+    <pre><code>replaybook new checkout-db-exhaustion --pack ./company-incidents
+replaybook validate ./company-incidents/checkout-db-exhaustion
+replaybook test ./company-incidents/checkout-db-exhaustion</code></pre>
+
+    <p>
+      <code>new</code> writes a small working scenario from your answers. Use
+      it as the starting point, then replace the starter service and fault
+      with sanitized behavior from the real incident.
+    </p>
+
     <p>Each scenario is a directory with:</p>
 
     <pre><code>my-scenario/
@@ -73,6 +85,15 @@
     "First hint revealed on first get-hint",
     "Second hint revealed on second get-hint"
   ],
+  "learning_objectives": [
+    "Recognize connection-pool exhaustion",
+    "Identify the process consuming connections"
+  ],
+  "source": {
+    "incident_date": "2026-06-14",
+    "reference": "INC-1842",
+    "sanitized": true
+  },
   "success_condition": "http_200",
   "success_target": "http://localhost:8080/health"
 }</code></pre>
@@ -179,7 +200,8 @@ done</code></pre>
     <h3 id="validation">Validation</h3>
 
     <p>
-      <code>replaybook add</code> and <code>replaybook run</code> validate
+      <code>replaybook validate &lt;id-or-path&gt;</code>,
+      <code>replaybook add</code>, and <code>replaybook run</code> validate
       each scenario before anything runs:
     </p>
 
@@ -197,6 +219,15 @@ done</code></pre>
       re-checks the single scenario it's about to launch and refuses to
       start if it fails.
     </p>
+
+    <h3>Testing a pack</h3>
+
+    <p>
+      <code>replaybook test &lt;id-or-path&gt;</code> runs one full break and
+      recovery cycle. In a scenario-pack CI workflow, test every scenario:
+    </p>
+
+    <pre><code>replaybook test --all ./company-incidents</code></pre>
 
     <footer class="site">
       <a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a>
