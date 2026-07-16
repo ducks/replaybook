@@ -38,6 +38,23 @@ replaybook run 001-nginx-502
 
 Both `replaybook` and `replay` are installed - use whichever you prefer.
 
+## Hosted sessions
+
+Replaybook can stage a scenario on a dedicated disposable Linux VM and issue a
+restricted SSH credential to a trainee. For a one-off session:
+
+```bash
+replaybook remote 001-nginx-502 \
+  --host replaybook@training-vm.example.com
+```
+
+`replaybook serve` adds an authenticated control API for creating, inspecting,
+expiring, and destroying sessions. Hosted execution is intentionally limited
+to one live session per configured VM: the trainee workstation has the Docker
+socket and must be treated as owning that VM. See
+[Hosted execution](docs/HOSTING.md) for setup, API examples, and the security
+model.
+
 ## Usage
 
 ```bash

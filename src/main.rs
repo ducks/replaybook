@@ -1,12 +1,17 @@
 mod author;
+mod backend;
+mod control;
+mod hosted;
 mod recorder;
 mod runner;
 mod scenario;
 mod validate;
 
 use anyhow::Result;
+use backend::{ExecutionBackend, LocalDockerBackend, RemoteVmBackend};
 use clap::{Parser, Subcommand};
 use runner::RunResult;
+use std::net::SocketAddr;
 use std::path::PathBuf;
 
 #[derive(Parser)]
@@ -59,6 +64,43 @@ enum Commands {
         #[arg(long, default_value_t = 15)]
         sla: u64,
     },
+    /// Run a scenario on a dedicated remote VM and attach over SSH
+    Remote {
+        /// Scenario ID or local directory to stage
+        target: String,
+        /// Provisioning SSH destination in [user@]host form
+        #[arg(long)]
+        host: String,
+        /// Provisioning and participant SSH port
+        #[arg(long, default_value_t = 22)]
+        ssh_port: u16,
+        /// Force a named fault variant
+        #[arg(long)]
+        fault: Option<String>,
+        #[arg(long)]
+        scenarios_dir: Option<PathBuf>,
+        /// SLA time limit in minutes
+        #[arg(long, default_value_t = 15)]
+        sla: u64,
+    },
+    /// Serve the authenticated hosted-session control plane
+    Serve {
+        /// Dedicated VM reached through provisioning SSH
+        #[arg(long)]
+        host: String,
+        #[arg(long, default_value_t = 22)]
+        ssh_port: u16,
+        /// HTTP listen address; use a TLS reverse proxy for non-loopback access
+        #[arg(long, default_value = "127.0.0.1:8080")]
+        bind: SocketAddr,
+        /// Environment variable containing the bearer token
+        #[arg(long, default_value = "REPLAYBOOK_CONTROL_TOKEN")]
+        token_env: String,
+        #[arg(long)]
+        scenarios_dir: Option<PathBuf>,
+        #[arg(long, default_value_t = 60)]
+        default_ttl: u64,
+    },
     /// Validate a scenario without starting its environment
     Validate {
         /// Scenario ID or directory
@@ -81,6 +123,34 @@ enum Commands {
     },
     /// Export session records as JSONL
     Export,
+    #[command(hide = true)]
+    HostedRun {
+        #[arg(long)]
+        session: String,
+        #[arg(long)]
+        scenario: PathBuf,
+        #[arg(long)]
+        sla: u64,
+        #[arg(long)]
+        fault: Option<String>,
+    },
+    #[command(hide = true)]
+    HostedStatus {
+        #[arg(long)]
+        session: String,
+    },
+    #[command(hide = true)]
+    HostedReady {
+        #[arg(long)]
+        session: String,
+    },
+    #[command(hide = true)]
+    HostedCleanup {
+        #[arg(long)]
+        session: String,
+        #[arg(long)]
+        scenario: PathBuf,
+    },
 }
 
 fn default_scenarios_dir() -> PathBuf {
@@ -158,6 +228,90 @@ fn validate_scenario(scenario: &scenario::Scenario) -> Result<()> {
         anyhow::bail!("scenario validation failed");
     }
     Ok(())
+}
+
+async fn execute_run<B: ExecutionBackend>(
+    backend: &B,
+    scenario: &scenario::Scenario,
+    requested_fault: Option<&str>,
+    sla_minutes: u64,
+    record_locally: bool,
+) -> Result<()> {
+    validate_scenario(scenario).map_err(|_| anyhow::anyhow!("cannot run an invalid scenario"))?;
+    let active = scenario.select_fault(requested_fault, seed())?;
+    println!("[replaybook] scenario: {}", scenario.meta.title);
+    let result = backend
+        .run(scenario, &active, checked_sla_seconds(sla_minutes)?)
+        .await?;
+    let fault_name = active.name.as_deref();
+    match result {
+        RunResult::Success {
+            elapsed,
+            hints_used,
+            transcript,
+        } => {
+            println!(
+                "\n✓ resolved in {}s ({} hints used)",
+                elapsed.as_secs(),
+                hints_used
+            );
+            print_fault(fault_name);
+            print_transcript(&transcript);
+            if record_locally {
+                recorder::record(
+                    &scenario.meta.id,
+                    recorder::Outcome::Success,
+                    Some(elapsed),
+                    hints_used as u8,
+                    transcript.as_deref(),
+                    fault_name,
+                )?;
+            }
+        }
+        RunResult::Timeout {
+            hints_used,
+            transcript,
+        } => {
+            println!("\n✗ SLA breached ({} hints used).", hints_used);
+            print_fault(fault_name);
+            print_transcript(&transcript);
+            if record_locally {
+                recorder::record(
+                    &scenario.meta.id,
+                    recorder::Outcome::Timeout,
+                    None,
+                    hints_used as u8,
+                    transcript.as_deref(),
+                    fault_name,
+                )?;
+            }
+        }
+        RunResult::Abandoned { transcript } => {
+            println!("\nShell exited before resolution. Run again to retry.");
+            print_fault(fault_name);
+            print_transcript(&transcript);
+            if record_locally {
+                recorder::record(
+                    &scenario.meta.id,
+                    recorder::Outcome::Abandoned,
+                    None,
+                    0,
+                    transcript.as_deref(),
+                    fault_name,
+                )?;
+            }
+        }
+    }
+    Ok(())
+}
+
+fn checked_sla_seconds(minutes: u64) -> Result<u64> {
+    if minutes == 0 {
+        anyhow::bail!("SLA must be greater than zero");
+    }
+    minutes
+        .checked_mul(60)
+        .ok_or_else(|| anyhow::anyhow!("SLA is too large"))
 }
 
 /// Arbitrary entropy for scenario/fault picks - game randomness, not crypto.
@@ -291,70 +445,41 @@ async fn main() -> Result<()> {
                 }
             };
 
-            validate_scenario(&scenario)
-                .map_err(|_| anyhow::anyhow!("cannot run an invalid scenario"))?;
+            execute_run(&LocalDockerBackend, &scenario, fault.as_deref(), sla, true).await?;
+        }
 
-            // Resolved before the run but only revealed after - the fault
-            // name would spoil the diagnosis.
-            let active = scenario.select_fault(fault.as_deref(), seed())?;
+        Commands::Remote {
+            target,
+            host,
+            ssh_port,
+            fault,
+            scenarios_dir,
+            sla,
+        } => {
+            let scenario = resolve_scenario(&target, scenarios_dir)?;
+            let backend = RemoteVmBackend::new(host, ssh_port)?;
+            execute_run(&backend, &scenario, fault.as_deref(), sla, false).await?;
+        }
 
-            println!("[replaybook] scenario: {}", scenario.meta.title);
-
-            let result = runner::run_scenario(&scenario, &active, sla * 60).await?;
-
-            let fault_name = active.name.as_deref();
-            match result {
-                RunResult::Success {
-                    elapsed,
-                    hints_used,
-                    transcript,
-                } => {
-                    println!(
-                        "\n✓ resolved in {}s ({} hints used)",
-                        elapsed.as_secs(),
-                        hints_used
-                    );
-                    print_fault(fault_name);
-                    print_transcript(&transcript);
-                    recorder::record(
-                        &scenario.meta.id,
-                        recorder::Outcome::Success,
-                        Some(elapsed),
-                        hints_used as u8,
-                        transcript.as_deref(),
-                        fault_name,
-                    )?;
-                }
-                RunResult::Timeout {
-                    hints_used,
-                    transcript,
-                } => {
-                    println!("\n✗ SLA breached ({} hints used).", hints_used);
-                    print_fault(fault_name);
-                    print_transcript(&transcript);
-                    recorder::record(
-                        &scenario.meta.id,
-                        recorder::Outcome::Timeout,
-                        None,
-                        hints_used as u8,
-                        transcript.as_deref(),
-                        fault_name,
-                    )?;
-                }
-                RunResult::Abandoned { transcript } => {
-                    println!("\nShell exited before resolution. Run again to retry.");
-                    print_fault(fault_name);
-                    print_transcript(&transcript);
-                    recorder::record(
-                        &scenario.meta.id,
-                        recorder::Outcome::Abandoned,
-                        None,
-                        0,
-                        transcript.as_deref(),
-                        fault_name,
-                    )?;
-                }
-            }
+        Commands::Serve {
+            host,
+            ssh_port,
+            bind,
+            token_env,
+            scenarios_dir,
+            default_ttl,
+        } => {
+            let token = std::env::var(&token_env).map_err(|_| {
+                anyhow::anyhow!("environment variable {token_env} must contain the bearer token")
+            })?;
+            control::serve(control::ControlConfig {
+                bind,
+                token,
+                scenarios_dir: resolve_scenarios_dir(scenarios_dir),
+                backend: RemoteVmBackend::new(host, ssh_port)?,
+                default_ttl_minutes: default_ttl,
+            })
+            .await?;
         }
 
         Commands::Validate {
@@ -432,6 +557,23 @@ async fn main() -> Result<()> {
 
             print!("{}", std::fs::read_to_string(&path)?);
         }
+
+        Commands::HostedRun {
+            session,
+            scenario,
+            sla,
+            fault,
+        } => hosted::run(&session, &scenario, sla, fault.as_deref()).await?,
+
+        Commands::HostedStatus { session } => {
+            println!("{}", serde_json::to_string(&hosted::status(&session)?)?);
+        }
+
+        Commands::HostedReady { session } => hosted::ready(&session)?,
+
+        Commands::HostedCleanup { session, scenario } => {
+            hosted::cleanup(&session, &scenario)?;
+        }
     }
 
     Ok(())
@@ -440,6 +582,7 @@ async fn main() -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use clap::CommandFactory;
 
     #[test]
     fn run_defaults_to_15_minute_sla() {
@@ -452,6 +595,13 @@ mod tests {
             }
             _ => panic!("expected run"),
         }
+    }
+
+    #[test]
+    fn sla_conversion_rejects_zero_and_overflow() {
+        assert_eq!(checked_sla_seconds(15).unwrap(), 900);
+        assert!(checked_sla_seconds(0).is_err());
+        assert!(checked_sla_seconds(u64::MAX).is_err());
     }
 
     #[test]
@@ -564,5 +714,80 @@ mod tests {
             _ => panic!("expected test"),
         }
         assert!(Cli::try_parse_from(["replaybook", "test", "--all", "--fault", "x"]).is_err());
+    }
+
+    #[test]
+    fn remote_command_requires_a_host_and_defaults_ssh_and_sla() {
+        let cli = Cli::try_parse_from([
+            "replaybook",
+            "remote",
+            "001-nginx-502",
+            "--host",
+            "replay@training.example.com",
+        ])
+        .unwrap();
+        match cli.command {
+            Commands::Remote {
+                target,
+                host,
+                ssh_port,
+                sla,
+                ..
+            } => {
+                assert_eq!(target, "001-nginx-502");
+                assert_eq!(host, "replay@training.example.com");
+                assert_eq!(ssh_port, 22);
+                assert_eq!(sla, 15);
+            }
+            _ => panic!("expected remote"),
+        }
+        assert!(Cli::try_parse_from(["replaybook", "remote", "001-x"]).is_err());
+    }
+
+    #[test]
+    fn serve_defaults_to_loopback_and_token_environment() {
+        let cli = Cli::try_parse_from([
+            "replaybook",
+            "serve",
+            "--host",
+            "replay@training.example.com",
+        ])
+        .unwrap();
+        match cli.command {
+            Commands::Serve {
+                bind,
+                token_env,
+                default_ttl,
+                ..
+            } => {
+                assert_eq!(bind, "127.0.0.1:8080".parse::<SocketAddr>().unwrap());
+                assert_eq!(token_env, "REPLAYBOOK_CONTROL_TOKEN");
+                assert_eq!(default_ttl, 60);
+            }
+            _ => panic!("expected serve"),
+        }
+    }
+
+    #[test]
+    fn hosted_commands_parse_but_are_hidden_from_help() {
+        let id = "b4fd7a54-72a8-42a5-919f-d8b6fbdff8b0";
+        assert!(
+            Cli::try_parse_from([
+                "replaybook",
+                "hosted-run",
+                "--session",
+                id,
+                "--scenario",
+                "/tmp/replaybook-hosted/b4fd7a54-72a8-42a5-919f-d8b6fbdff8b0/scenario",
+                "--sla",
+                "15",
+            ])
+            .is_ok()
+        );
+        let mut help = Vec::new();
+        Cli::command().write_long_help(&mut help).unwrap();
+        let help = String::from_utf8(help).unwrap();
+        assert!(!help.contains("hosted-run"));
+        assert!(!help.contains("hosted-cleanup"));
     }
 }
