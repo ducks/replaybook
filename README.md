@@ -53,7 +53,8 @@ expiring, and destroying sessions. Hosted execution is intentionally limited
 to one live session per configured VM: the trainee workstation has the Docker
 socket and must be treated as owning that VM. See
 [Hosted execution](docs/HOSTING.md) for setup, API examples, and the security
-model.
+model. A repeatable [two-host deployment kit](deploy/README.md) configures a
+trusted controller and a disposable Fornex-compatible Ubuntu worker.
 
 ## Usage
 

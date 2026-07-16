@@ -16,6 +16,9 @@ disposable VM with Terraform, cloud-init, an internal VM service, or the cloud
 provider of your choice, then point Replaybook at its SSH destination. The
 current control plane enforces one live session on its configured VM.
 
+For a concrete two-host installation using an existing trusted controller VPS
+and a disposable Fornex worker, see the [deployment kit](../deploy/README.md).
+
 ## Security boundary
 
 The trainee workstation mounts the VM's Docker socket. A trainee must therefore

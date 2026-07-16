@@ -17,7 +17,8 @@ use std::path::PathBuf;
 #[derive(Parser)]
 #[command(
     name = "replaybook",
-    about = "Incident replay trainer. Fix broken infrastructure to win."
+    about = "Incident replay trainer. Fix broken infrastructure to win.",
+    version
 )]
 struct Cli {
     #[command(subcommand)]
@@ -595,6 +596,14 @@ mod tests {
             }
             _ => panic!("expected run"),
         }
+    }
+
+    #[test]
+    fn cli_reports_the_package_version() {
+        assert_eq!(
+            Cli::command().get_version(),
+            Some(env!("CARGO_PKG_VERSION"))
+        );
     }
 
     #[test]
