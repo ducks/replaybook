@@ -102,15 +102,19 @@ pub struct Scenario {
 
 impl Scenario {
     pub fn load(dir: &Path) -> Result<Self> {
+        // Canonicalize so every derived path (break/check/solve scripts,
+        // compose file) is absolute. Scripts run with current_dir set to the
+        // scenario dir; a relative scenario path ("replaybook test ./foo")
+        // would otherwise resolve relative to that new cwd and double up.
+        let dir = dir
+            .canonicalize()
+            .with_context(|| format!("resolving scenario dir {}", dir.display()))?;
         let meta_path = dir.join("meta.json");
         let raw = std::fs::read_to_string(&meta_path)
             .with_context(|| format!("reading {}", meta_path.display()))?;
         let meta: ScenarioMeta = serde_json::from_str(&raw)
             .with_context(|| format!("parsing {}", meta_path.display()))?;
-        Ok(Self {
-            meta,
-            dir: dir.to_path_buf(),
-        })
+        Ok(Self { meta, dir })
     }
 
     pub fn compose_file(&self) -> PathBuf {
@@ -421,10 +425,31 @@ mod tests {
         let dir = root.path().join("001-x");
         write_scenario(&dir, MINIMAL_META);
         let s = Scenario::load(&dir).unwrap();
+        let dir = dir.canonicalize().unwrap();
         assert_eq!(s.compose_file(), dir.join("docker-compose.yml"));
         assert_eq!(s.break_script(), dir.join("break.sh"));
         assert_eq!(s.check_script(), dir.join("check.sh"));
         assert_eq!(s.solve_script(), dir.join("solve.sh"));
+    }
+
+    #[test]
+    fn load_canonicalizes_scenario_dir() {
+        // Scripts run with current_dir set to the scenario dir. If the dir
+        // stayed relative ("replaybook test ./foo"), bash would resolve
+        // foo/break.sh against that new cwd and double the path. Loading
+        // must therefore yield an absolute, canonical dir.
+        let root = tempfile::tempdir().unwrap();
+        let dir = root.path().join("001-x");
+        write_scenario(&dir, MINIMAL_META);
+
+        let indirect = dir.join("..").join("001-x");
+        let s = Scenario::load(&indirect).unwrap();
+        assert!(s.dir.is_absolute());
+        assert_eq!(s.dir, dir.canonicalize().unwrap());
+        assert!(!s
+            .break_script()
+            .components()
+            .any(|c| matches!(c, std::path::Component::ParentDir)));
     }
 
     const MULTI_FAULT_META: &str = r#"{
