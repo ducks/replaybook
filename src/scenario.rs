@@ -446,10 +446,11 @@ mod tests {
         let s = Scenario::load(&indirect).unwrap();
         assert!(s.dir.is_absolute());
         assert_eq!(s.dir, dir.canonicalize().unwrap());
-        assert!(!s
-            .break_script()
-            .components()
-            .any(|c| matches!(c, std::path::Component::ParentDir)));
+        assert!(
+            !s.break_script()
+                .components()
+                .any(|c| matches!(c, std::path::Component::ParentDir))
+        );
     }
 
     const MULTI_FAULT_META: &str = r#"{
