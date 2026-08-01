@@ -51,6 +51,8 @@ ln -s /usr/lib/docker/cli-plugins/docker-compose $"($docker_config)/cli-plugins/
 with-env {
     DOCKER_CONFIG: $docker_config
     PYTHONPATH: (pwd | path expand)
+    CODEX_FORCE_AUTH_JSON: "1"
+    CLAUDE_FORCE_OAUTH: "1"
     CLAUDE_CODE_OAUTH_TOKEN: $claude_token
     OPENROUTER_API_KEY: $openrouter_key
     HARBOR_TELEMETRY: "off"

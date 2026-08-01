@@ -71,8 +71,10 @@ The launcher reads `CLAUDE_CODE_OAUTH_TOKEN` and `OPENROUTER_API_KEY` from the
 environment when set, otherwise prompts for them privately. It selects a
 compatible Nix-provided Buildx without modifying the user Docker installation
 and starts the job defined in
-`jobs/three-agent-smoke.yaml`. The job runs nine trials total, with up to one
-trial per agent and three trials overall executing concurrently.
+`jobs/three-agent-smoke.yaml`. The job runs nine trials total, with one trial
+executing at a time. Local concurrency is intentionally disabled because the
+current workstation Docker socket can see other trials and unrelated host
+containers. Use a dedicated disposable VM before enabling parallel trials.
 
 The fixed pairings are:
 
