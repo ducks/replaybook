@@ -57,6 +57,7 @@ def main [
     --base-port: int = 22300 # First forwarded worker SSH port.
     --agent: string = all    # Agent to run: all, codex, claude, or claux.
     --scenario: string = 001-nginx-502 # Harbor scenario directory name.
+    --all-scenarios         # Run every configured scenario.
     --oracle                 # Run only oracle attempts as a worker-pool smoke test.
 ] {
     if $attempts <= 0 {
@@ -94,39 +95,60 @@ def main [
             oracle: integrations/harbor/jobs/oracle-003.yaml
         }
     }
-    let selected_configs = ($scenario_configs | get --optional $scenario)
-    if $selected_configs == null {
-        error make {msg: $"unknown scenario: ($scenario)"}
+    let scenario_names = [
+        "001-nginx-502"
+        "002-postgres-rejecting-connections"
+        "003-missing-env-var"
+    ]
+    let selected_scenarios = if $all_scenarios {
+        $scenario_names
+    } else {
+        if ($scenario_configs | get --optional $scenario) == null {
+            error make {msg: $"unknown scenario: ($scenario)"}
+        }
+        [$scenario]
     }
 
-    let comparison_agents = [
-        {
-            agent: codex
-            config: ($selected_configs | get codex)
-            auth_options: [--codex-auth]
+    let comparison_agents = (
+        $selected_scenarios
+        | each {|scenario_name|
+            let configs = ($scenario_configs | get $scenario_name)
+            [
+                {
+                    scenario: $scenario_name
+                    agent: codex
+                    config: ($configs | get codex)
+                    auth_options: [--codex-auth]
+                }
+                {
+                    scenario: $scenario_name
+                    agent: claude
+                    config: ($configs | get claude)
+                    auth_options: [--env CLAUDE_CODE_OAUTH_TOKEN]
+                }
+                {
+                    scenario: $scenario_name
+                    agent: claux
+                    config: ($configs | get claux)
+                    auth_options: [--env OPENROUTER_API_KEY]
+                }
+            ]
         }
-        {
-            agent: claude
-            config: ($selected_configs | get claude)
-            auth_options: [--env CLAUDE_CODE_OAUTH_TOKEN]
-        }
-        {
-            agent: claux
-            config: ($selected_configs | get claux)
-            auth_options: [--env OPENROUTER_API_KEY]
-        }
-    ]
+        | flatten
+    )
     let agents = if $oracle {
         if $agent != "all" {
             error make {msg: "--oracle cannot be combined with --agent"}
         }
-        [
+        $selected_scenarios
+        | each {|scenario_name|
             {
+                scenario: $scenario_name
                 agent: oracle
-                config: ($selected_configs | get oracle)
+                config: (($scenario_configs | get $scenario_name) | get oracle)
                 auth_options: []
             }
-        ]
+        }
     } else if $agent == "all" {
         $comparison_agents
     } else {
@@ -187,7 +209,7 @@ def main [
         | each {|agent|
             1..$attempts
             | each {|attempt|
-                let run_id = $"($agent.agent)-($attempt)"
+                let run_id = $"($agent.scenario)-($agent.agent)-($attempt)"
                 let output_dir = ([$runs_dir $run_id] | path join)
                 {
                     agent: $agent.agent

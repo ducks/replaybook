@@ -94,6 +94,9 @@ nu integrations/harbor/run-isolated-matrix.nu \
 
 nu integrations/harbor/run-isolated-matrix.nu \
   --scenario 003-missing-env-var
+
+# Run all three scenarios for each selected agent
+nu integrations/harbor/run-isolated-matrix.nu --all-scenarios
 ```
 
 Use `--oracle --attempts 1` first for a credential-free verifier smoke test.
@@ -145,6 +148,10 @@ port and result directory; the launcher writes an aggregate `summary.json` after
 all workers finish. Validate the worker pool without model credentials or API
 cost using `--oracle --attempts 2`. Run or recover a single model with
 `--agent codex`, `--agent claude`, or `--agent claux`.
+
+Use `--all-scenarios` to run the Nginx, PostgreSQL, and missing-environment
+scenarios in one matrix. The selected attempt count applies to every
+agent/scenario pair.
 
 The Nushell launcher snapshots the Bash worker runner before starting the pool,
 so edits to the checkout cannot alter already-running trials.
