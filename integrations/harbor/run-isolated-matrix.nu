@@ -56,6 +56,7 @@ def main [
     --concurrency: int = 2   # Maximum simultaneous VMs.
     --base-port: int = 22300 # First forwarded worker SSH port.
     --agent: string = all    # Agent to run: all, codex, claude, or claux.
+    --scenario: string = 001-nginx-502 # Harbor scenario directory name.
     --oracle                 # Run only oracle attempts as a worker-pool smoke test.
 ] {
     if $attempts <= 0 {
@@ -73,20 +74,45 @@ def main [
     let runner = ([$script_dir "run-isolated.sh"] | path join)
     let runner_source = (open --raw $runner)
 
+    let scenario_configs = {
+        "001-nginx-502": {
+            codex: integrations/harbor/jobs/codex-single.yaml
+            claude: integrations/harbor/jobs/claude-single.yaml
+            claux: integrations/harbor/jobs/claux-single.yaml
+            oracle: integrations/harbor/jobs/oracle-smoke.yaml
+        }
+        "002-postgres-rejecting-connections": {
+            codex: integrations/harbor/jobs/codex-002.yaml
+            claude: integrations/harbor/jobs/claude-002.yaml
+            claux: integrations/harbor/jobs/claux-002.yaml
+            oracle: integrations/harbor/jobs/oracle-002.yaml
+        }
+        "003-missing-env-var": {
+            codex: integrations/harbor/jobs/codex-003.yaml
+            claude: integrations/harbor/jobs/claude-003.yaml
+            claux: integrations/harbor/jobs/claux-003.yaml
+            oracle: integrations/harbor/jobs/oracle-003.yaml
+        }
+    }
+    let selected_configs = ($scenario_configs | get --optional $scenario)
+    if $selected_configs == null {
+        error make {msg: $"unknown scenario: ($scenario)"}
+    }
+
     let comparison_agents = [
         {
             agent: codex
-            config: integrations/harbor/jobs/codex-single.yaml
+            config: ($selected_configs | get codex)
             auth_options: [--codex-auth]
         }
         {
             agent: claude
-            config: integrations/harbor/jobs/claude-single.yaml
+            config: ($selected_configs | get claude)
             auth_options: [--env CLAUDE_CODE_OAUTH_TOKEN]
         }
         {
             agent: claux
-            config: integrations/harbor/jobs/claux-single.yaml
+            config: ($selected_configs | get claux)
             auth_options: [--env OPENROUTER_API_KEY]
         }
     ]
@@ -97,7 +123,7 @@ def main [
         [
             {
                 agent: oracle
-                config: integrations/harbor/jobs/oracle-smoke.yaml
+                config: ($selected_configs | get oracle)
                 auth_options: []
             }
         ]

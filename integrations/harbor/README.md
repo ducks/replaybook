@@ -4,12 +4,13 @@ This directory contains a proof of concept for running a Replaybook incident as
 a graded [Harbor](https://harborframework.com/) task. It deliberately lives
 outside Replaybook's CLI while the integration boundary is being evaluated.
 
-The spike converts `001-nginx-502` into a deterministic task. Harbor runs the
-agent in a `main` workstation container alongside the incident's application
-and nginx containers. The workstation mounts the local Docker socket, matching
-Replaybook's current workstation security model, so the agent can inspect and
-repair the sibling services with `docker ps`, `docker logs`, `docker exec`, and
-`docker cp`.
+The spike converts three Replaybook scenarios into deterministic tasks:
+`001-nginx-502`, `002-postgres-rejecting-connections`, and
+`003-missing-env-var`. Harbor runs the agent in a `main` workstation container
+alongside the incident's services. The workstation mounts the local Docker
+socket, matching Replaybook's current workstation security model, so the agent
+can inspect and repair sibling services with `docker ps`, `docker logs`,
+`docker exec`, and `docker cp`.
 
 ## Prerequisites
 
@@ -61,8 +62,8 @@ output, and cache tokens plus provider-reported or estimated cost to Harbor.
 
 ## Run the three-agent comparison
 
-After the individual smoke tests pass, run three attempts each for Codex,
-Claude Code, and Claux with:
+After the individual smoke tests pass, run three attempts each for Codex, Claude
+Code, and Claux against the nginx task with:
 
 ```sh
 claude setup-token
@@ -83,6 +84,19 @@ The fixed pairings are:
 - Codex with `gpt-5.6-sol`
 - Claude Code with `claude-sonnet-5`
 - Claux with `deepseek/deepseek-v4-flash` through OpenRouter
+
+The isolated matrix launcher can select the converted Postgres and environment
+scenarios too:
+
+```sh
+nu integrations/harbor/run-isolated-matrix.nu \
+  --scenario 002-postgres-rejecting-connections
+
+nu integrations/harbor/run-isolated-matrix.nu \
+  --scenario 003-missing-env-var
+```
+
+Use `--oracle --attempts 1` first for a credential-free verifier smoke test.
 
 ## Run on a disposable local worker
 
@@ -145,7 +159,7 @@ that disposable VM.
 - A fault can be selected deterministically by baking its broken state into a
   task variant.
 - Replaybook's objective recovery check maps to a Harbor verifier reward.
-- The nginx verifier checks that recovery survives app and proxy restarts, so a
+- The converted service verifiers check that recovery survives a restart, so a
   temporary in-container workaround does not count as a durable fix.
 - Harbor can run a reference solution without exposing it to a normal agent.
 
@@ -160,6 +174,6 @@ that disposable VM.
 - The Claux adapter reports one-shot usage and cost, but does not yet translate
   Claux's structured session into an ATIF trajectory.
 
-If the oracle and a real agent both run successfully, the next step is to
-generate one Harbor task per Replaybook scenario and fault variant rather than
-maintaining copied task definitions by hand.
+The next integration step is an exporter that generates Harbor task definitions
+from Replaybook scenarios and fault variants rather than maintaining copied
+task definitions by hand.
