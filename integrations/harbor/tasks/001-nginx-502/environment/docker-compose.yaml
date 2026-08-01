@@ -1,0 +1,29 @@
+services:
+  main:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      nginx:
+        condition: service_started
+    networks:
+      - incident
+
+  app:
+    image: python:3.12-alpine
+    command: >-
+      sh -c "mkdir -p /srv/www && echo ok > /srv/www/health &&
+      cd /srv/www && python -m http.server 3000"
+    networks:
+      - incident
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    depends_on:
+      - app
+    networks:
+      - incident
+
+networks:
+  incident:
