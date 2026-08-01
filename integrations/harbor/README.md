@@ -55,7 +55,9 @@ PYTHONPATH="$PWD" HARBOR_TELEMETRY=off harbor run \
 Use `--ak release_tag=v...` to evaluate another published Claux version. The
 adapter installs the release in the incident workstation, initializes a
 credential-free OpenRouter configuration, runs Claux headlessly with bypass
-permissions, and saves its console output under Harbor's agent logs.
+permissions, and saves its machine-readable output under Harbor's agent logs.
+For Claux releases that support `--output-format json`, it also reports input,
+output, and cache tokens plus provider-reported or estimated cost to Harbor.
 
 ## Run the three-agent comparison
 
@@ -153,9 +155,8 @@ that disposable VM.
 - The verifier shares the agent environment. This is sufficient for an honest
   harness comparison, but a public adversarial benchmark needs a controller-
   held verifier that the worker cannot inspect or modify.
-- The Claux adapter records console output but does not yet translate Claux's
-  structured session into an ATIF trajectory or report tokens and cost to
-  Harbor.
+- The Claux adapter reports one-shot usage and cost, but does not yet translate
+  Claux's structured session into an ATIF trajectory.
 
 If the oracle and a real agent both run successfully, the next step is to
 generate one Harbor task per Replaybook scenario and fault variant rather than
