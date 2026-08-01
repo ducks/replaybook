@@ -12,6 +12,7 @@ Worker options:
   --env NAME       Forward a set host environment variable into the worker.
                    Repeat for additional variables.
   --codex-auth     Copy ~/.codex/auth.json into the disposable worker.
+  --output-dir DIR Store the retrieved worker job under DIR. DIR must not exist.
   -h, --help       Show this help.
 
 Examples:
@@ -27,6 +28,7 @@ Examples:
 Environment:
   REPLAYBOOK_WORKER_SSH_KEY   SSH private key (default: ~/.ssh/id_ed25519)
   REPLAYBOOK_WORKER_SSH_PORT  Forwarded worker SSH port (default: 22222)
+  REPLAYBOOK_WORKER_TMPDIR    Parent for ephemeral VM files (default: /var/tmp)
   REPLAYBOOK_CODEX_AUTH_FILE  Codex auth file (default: ~/.codex/auth.json)
 EOF
 }
@@ -37,8 +39,10 @@ VM_CONFIG="${SCRIPT_DIR}/worker/nixos.nix"
 SSH_KEY="${REPLAYBOOK_WORKER_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 SSH_PORT="${REPLAYBOOK_WORKER_SSH_PORT:-22222}"
 CODEX_AUTH_FILE="${REPLAYBOOK_CODEX_AUTH_FILE:-${HOME}/.codex/auth.json}"
+WORK_PARENT="${REPLAYBOOK_WORKER_TMPDIR:-/var/tmp}"
 FORWARDED_ENV=()
 COPY_CODEX_AUTH=false
+OUTPUT_DIR=""
 HARBOR_ARGS=()
 
 while (( $# > 0 )); do
@@ -54,6 +58,14 @@ while (( $# > 0 )); do
     --codex-auth)
       COPY_CODEX_AUTH=true
       shift
+      ;;
+    --output-dir)
+      (( $# >= 2 )) || {
+        echo "--output-dir requires a path" >&2
+        exit 2
+      }
+      OUTPUT_DIR="$2"
+      shift 2
       ;;
     -h|--help)
       usage
@@ -108,8 +120,21 @@ if ss -ltn "sport = :${SSH_PORT}" | tail -n +2 | grep -q .; then
   echo "SSH forwarding port ${SSH_PORT} is already in use" >&2
   exit 1
 fi
+[[ -d "${WORK_PARENT}" ]] || {
+  echo "worker temporary directory does not exist: ${WORK_PARENT}" >&2
+  exit 1
+}
+if [[ -n "${OUTPUT_DIR}" ]]; then
+  if [[ "${OUTPUT_DIR}" != /* ]]; then
+    OUTPUT_DIR="${REPO_DIR}/${OUTPUT_DIR}"
+  fi
+  [[ ! -e "${OUTPUT_DIR}" ]] || {
+    echo "worker output directory already exists: ${OUTPUT_DIR}" >&2
+    exit 1
+  }
+fi
 
-WORK_DIR="$(mktemp -d /tmp/replaybook-eval-worker.XXXXXX)"
+WORK_DIR="$(mktemp -d "${WORK_PARENT%/}/replaybook-eval-worker.XXXXXX")"
 VM_PID=""
 
 cleanup() {
@@ -203,8 +228,14 @@ set +e
 RUN_STATUS=$?
 set -e
 
-RESULT_DIR="${REPO_DIR}/jobs/isolated-worker-$(date -u +%Y-%m-%d__%H-%M-%S)"
-mkdir -p "${RESULT_DIR}"
+if [[ -n "${OUTPUT_DIR}" ]]; then
+  mkdir -p "$(dirname "${OUTPUT_DIR}")"
+  mkdir "${OUTPUT_DIR}"
+  RESULT_DIR="${OUTPUT_DIR}"
+else
+  mkdir -p "${REPO_DIR}/jobs"
+  RESULT_DIR="$(mktemp -d "${REPO_DIR}/jobs/isolated-worker-$(date -u +%Y-%m-%d__%H-%M-%S).XXXXXX")"
+fi
 "${SSH[@]}" "if [[ -d /root/replaybook/jobs ]]; then tar -C /root/replaybook -czf - jobs; else exit 3; fi" \
   | tar -xzf - -C "${RESULT_DIR}"
 

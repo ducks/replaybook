@@ -116,6 +116,19 @@ transfers its value in a mode-`0600` file rather than exposing it in the SSH
 command line. `--codex-auth` copies the configured Codex auth file only for the
 lifetime of the VM. Set `REPLAYBOOK_CODEX_AUTH_FILE` to override its path.
 
+For the clean comparison run, launch one VM for every model attempt:
+
+```sh
+bash integrations/harbor/run-isolated-matrix.sh
+```
+
+This runs three attempts each for Codex, Claude Code, and Claux. It uses at most
+two simultaneous VMs by default because each worker has 4 GiB of memory. Pass
+`--concurrency N` to change the pool size. Every attempt receives a distinct SSH
+port and result directory; the launcher writes an aggregate `summary.json` after
+all workers finish. Validate the worker pool without model credentials or API
+cost using `--oracle --attempts 2`.
+
 This is a reusable isolated job runner, not yet a Harbor environment adapter.
 The whole Harbor job runs inside the worker, so its Docker socket owns only
 that disposable VM.
