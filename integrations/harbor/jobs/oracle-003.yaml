@@ -1,0 +1,12 @@
+jobs_dir: jobs
+n_attempts: 1
+n_concurrent_trials: 1
+timeout_multiplier: 1.0
+environment:
+  type: docker
+  force_build: false
+  delete: true
+agents:
+  - name: oracle
+tasks:
+  - path: integrations/harbor/tasks/003-missing-env-var

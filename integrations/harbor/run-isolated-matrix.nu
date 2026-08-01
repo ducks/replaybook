@@ -56,6 +56,8 @@ def main [
     --concurrency: int = 2   # Maximum simultaneous VMs.
     --base-port: int = 22300 # First forwarded worker SSH port.
     --agent: string = all    # Agent to run: all, codex, claude, or claux.
+    --scenario: string = 001-nginx-502 # Harbor scenario directory name.
+    --all-scenarios         # Run every configured scenario.
     --oracle                 # Run only oracle attempts as a worker-pool smoke test.
 ] {
     if $attempts <= 0 {
@@ -73,34 +75,80 @@ def main [
     let runner = ([$script_dir "run-isolated.sh"] | path join)
     let runner_source = (open --raw $runner)
 
-    let comparison_agents = [
-        {
-            agent: codex
-            config: integrations/harbor/jobs/codex-single.yaml
-            auth_options: [--codex-auth]
+    let scenario_configs = {
+        "001-nginx-502": {
+            codex: integrations/harbor/jobs/codex-single.yaml
+            claude: integrations/harbor/jobs/claude-single.yaml
+            claux: integrations/harbor/jobs/claux-single.yaml
+            oracle: integrations/harbor/jobs/oracle-smoke.yaml
         }
-        {
-            agent: claude
-            config: integrations/harbor/jobs/claude-single.yaml
-            auth_options: [--env CLAUDE_CODE_OAUTH_TOKEN]
+        "002-postgres-rejecting-connections": {
+            codex: integrations/harbor/jobs/codex-002.yaml
+            claude: integrations/harbor/jobs/claude-002.yaml
+            claux: integrations/harbor/jobs/claux-002.yaml
+            oracle: integrations/harbor/jobs/oracle-002.yaml
         }
-        {
-            agent: claux
-            config: integrations/harbor/jobs/claux-single.yaml
-            auth_options: [--env OPENROUTER_API_KEY]
+        "003-missing-env-var": {
+            codex: integrations/harbor/jobs/codex-003.yaml
+            claude: integrations/harbor/jobs/claude-003.yaml
+            claux: integrations/harbor/jobs/claux-003.yaml
+            oracle: integrations/harbor/jobs/oracle-003.yaml
         }
+    }
+    let scenario_names = [
+        "001-nginx-502"
+        "002-postgres-rejecting-connections"
+        "003-missing-env-var"
     ]
+    let selected_scenarios = if $all_scenarios {
+        $scenario_names
+    } else {
+        if ($scenario_configs | get --optional $scenario) == null {
+            error make {msg: $"unknown scenario: ($scenario)"}
+        }
+        [$scenario]
+    }
+
+    let comparison_agents = (
+        $selected_scenarios
+        | each {|scenario_name|
+            let configs = ($scenario_configs | get $scenario_name)
+            [
+                {
+                    scenario: $scenario_name
+                    agent: codex
+                    config: ($configs | get codex)
+                    auth_options: [--codex-auth]
+                }
+                {
+                    scenario: $scenario_name
+                    agent: claude
+                    config: ($configs | get claude)
+                    auth_options: [--env CLAUDE_CODE_OAUTH_TOKEN]
+                }
+                {
+                    scenario: $scenario_name
+                    agent: claux
+                    config: ($configs | get claux)
+                    auth_options: [--env OPENROUTER_API_KEY]
+                }
+            ]
+        }
+        | flatten
+    )
     let agents = if $oracle {
         if $agent != "all" {
             error make {msg: "--oracle cannot be combined with --agent"}
         }
-        [
+        $selected_scenarios
+        | each {|scenario_name|
             {
+                scenario: $scenario_name
                 agent: oracle
-                config: integrations/harbor/jobs/oracle-smoke.yaml
+                config: (($scenario_configs | get $scenario_name) | get oracle)
                 auth_options: []
             }
-        ]
+        }
     } else if $agent == "all" {
         $comparison_agents
     } else {
@@ -161,7 +209,7 @@ def main [
         | each {|agent|
             1..$attempts
             | each {|attempt|
-                let run_id = $"($agent.agent)-($attempt)"
+                let run_id = $"($agent.scenario)-($agent.agent)-($attempt)"
                 let output_dir = ([$runs_dir $run_id] | path join)
                 {
                     agent: $agent.agent
