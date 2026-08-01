@@ -85,21 +85,40 @@ The fixed pairings are:
 ## Run on a disposable local worker
 
 On a Linux host with KVM, QEMU, Nix, and an Ed25519 SSH key, validate the task
-inside a disposable NixOS VM:
+inside a disposable NixOS VM. Pass normal `harbor run` arguments after `--`:
 
 ```sh
-bash integrations/harbor/run-isolated-oracle.sh
+bash integrations/harbor/run-isolated.sh -- \
+  --config integrations/harbor/jobs/oracle-smoke.yaml \
+  --yes
 ```
 
 The launcher builds and boots a minimal VM, forwards SSH to localhost port
-`22222`, stages only the Harbor integration, installs Harbor, runs the oracle,
-retrieves the result, and terminates the VM. Override the defaults with
-`REPLAYBOOK_WORKER_SSH_KEY` and
+`22222`, stages only the Harbor integration, installs Harbor, runs the requested
+evaluation, retrieves the result, and terminates the VM. Override the defaults
+with `REPLAYBOOK_WORKER_SSH_KEY` and
 `REPLAYBOOK_WORKER_SSH_PORT`.
 
-This is the first isolation proof, not yet the final Harbor environment
-adapter. The whole Harbor job runs inside the worker, so its Docker socket owns
-only that disposable VM.
+The original oracle shortcut remains available as
+`run-isolated-oracle.sh`. To run a complete job configuration and forward only
+the credentials it needs:
+
+```sh
+bash integrations/harbor/run-isolated.sh \
+  --codex-auth \
+  --env CLAUDE_CODE_OAUTH_TOKEN \
+  --env OPENROUTER_API_KEY \
+  -- --config integrations/harbor/jobs/three-agent-smoke.yaml --yes
+```
+
+`--env` accepts an environment variable name, validates that it is set, and
+transfers its value in a mode-`0600` file rather than exposing it in the SSH
+command line. `--codex-auth` copies the configured Codex auth file only for the
+lifetime of the VM. Set `REPLAYBOOK_CODEX_AUTH_FILE` to override its path.
+
+This is a reusable isolated job runner, not yet a Harbor environment adapter.
+The whole Harbor job runs inside the worker, so its Docker socket owns only
+that disposable VM.
 
 ## What this proves
 
