@@ -145,6 +145,8 @@ that disposable VM.
 - A fault can be selected deterministically by baking its broken state into a
   task variant.
 - Replaybook's objective recovery check maps to a Harbor verifier reward.
+- The nginx verifier checks that recovery survives app and proxy restarts, so a
+  temporary in-container workaround does not count as a durable fix.
 - Harbor can run a reference solution without exposing it to a normal agent.
 
 ## Known limitations
