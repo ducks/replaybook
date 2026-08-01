@@ -74,7 +74,7 @@ def populate_context(payload: dict[str, Any], context: AgentContext) -> None:
 class ClauxAgent(BaseInstalledAgent):
     """Install a released Claux binary and run it headlessly via OpenRouter."""
 
-    _DEFAULT_RELEASE_TAG = "v20260730.0.1"
+    _DEFAULT_RELEASE_TAG = "v20260801.0.1"
 
     def __init__(self, *args, release_tag: str | None = None, **kwargs):
         self._release_tag = release_tag or self._DEFAULT_RELEASE_TAG
