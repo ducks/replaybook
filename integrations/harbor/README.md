@@ -82,6 +82,25 @@ The fixed pairings are:
 - Claude Code with `claude-sonnet-5`
 - Claux with `deepseek/deepseek-v4-flash` through OpenRouter
 
+## Run on a disposable local worker
+
+On a Linux host with KVM, QEMU, Nix, and an Ed25519 SSH key, validate the task
+inside a disposable NixOS VM:
+
+```sh
+bash integrations/harbor/run-isolated-oracle.sh
+```
+
+The launcher builds and boots a minimal VM, forwards SSH to localhost port
+`22222`, stages only the Harbor integration, installs Harbor, runs the oracle,
+retrieves the result, and terminates the VM. Override the defaults with
+`REPLAYBOOK_WORKER_SSH_KEY` and
+`REPLAYBOOK_WORKER_SSH_PORT`.
+
+This is the first isolation proof, not yet the final Harbor environment
+adapter. The whole Harbor job runs inside the worker, so its Docker socket owns
+only that disposable VM.
+
 ## What this proves
 
 - Harbor can represent Replaybook's multi-container workstation topology.
