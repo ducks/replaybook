@@ -57,6 +57,29 @@ adapter installs the release in the incident workstation, initializes a
 credential-free OpenRouter configuration, runs Claux headlessly with bypass
 permissions, and saves its console output under Harbor's agent logs.
 
+## Run the three-agent comparison
+
+After the individual smoke tests pass, run three attempts each for Codex,
+Claude Code, and Claux with:
+
+```sh
+claude setup-token
+nu integrations/harbor/run-three-agent-smoke.nu
+```
+
+The launcher reads `CLAUDE_CODE_OAUTH_TOKEN` and `OPENROUTER_API_KEY` from the
+environment when set, otherwise prompts for them privately. It selects a
+compatible Nix-provided Buildx without modifying the user Docker installation
+and starts the job defined in
+`jobs/three-agent-smoke.yaml`. The job runs nine trials total, with up to one
+trial per agent and three trials overall executing concurrently.
+
+The fixed pairings are:
+
+- Codex with `gpt-5.6-sol`
+- Claude Code with `claude-sonnet-5`
+- Claux with `deepseek/deepseek-v4-flash` through OpenRouter
+
 ## What this proves
 
 - Harbor can represent Replaybook's multi-container workstation topology.
