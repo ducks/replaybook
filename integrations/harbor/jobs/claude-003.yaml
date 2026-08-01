@@ -11,6 +11,6 @@ agents:
     model_name: claude-sonnet-5
     n_concurrent: 1
     env:
-      CLAUDE_CODE_OAUTH_TOKEN: \${CLAUDE_CODE_OAUTH_TOKEN}
+      CLAUDE_CODE_OAUTH_TOKEN: ${CLAUDE_CODE_OAUTH_TOKEN}
 tasks:
   - path: integrations/harbor/tasks/003-missing-env-var
