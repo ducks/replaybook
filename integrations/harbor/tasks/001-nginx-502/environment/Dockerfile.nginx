@@ -1,0 +1,5 @@
+FROM nginx:alpine
+
+# This task represents the selected fault after Replaybook injection: nginx is
+# proxying to port 3001 while the application listens on port 3000.
+COPY nginx-broken.conf /etc/nginx/nginx.conf
