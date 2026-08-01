@@ -13,33 +13,28 @@ def prompt-secret [name: string, prompt: string] {
     $value
 }
 
-def run-worker [job: record, runner: string, claude_token: string, openrouter_key: string] {
+def run-worker [
+    job: record,
+    runner_source: string,
+    script_dir: string,
+    repo_dir: string,
+    claude_token: string,
+    openrouter_key: string,
+] {
     print $"[matrix] starting ($job.run_id) on SSH port ($job.port)"
 
-    let worker = match $job.agent {
-        "claude" => {
-            with-env {
-                REPLAYBOOK_WORKER_SSH_PORT: ($job.port | into string)
-                CLAUDE_CODE_OAUTH_TOKEN: $claude_token
-            } {
-                ^bash $runner ...$job.worker_options -- --config $job.config --yes | complete
-            }
-        }
-        "claux" => {
-            with-env {
-                REPLAYBOOK_WORKER_SSH_PORT: ($job.port | into string)
-                OPENROUTER_API_KEY: $openrouter_key
-            } {
-                ^bash $runner ...$job.worker_options -- --config $job.config --yes | complete
-            }
-        }
-        _ => {
-            with-env {
-                REPLAYBOOK_WORKER_SSH_PORT: ($job.port | into string)
-            } {
-                ^bash $runner ...$job.worker_options -- --config $job.config --yes | complete
-            }
-        }
+    let base_env = {
+        REPLAYBOOK_WORKER_SSH_PORT: ($job.port | into string)
+        REPLAYBOOK_HARBOR_DIR: $script_dir
+        REPLAYBOOK_REPO_DIR: $repo_dir
+    }
+    let worker_env = match $job.agent {
+        "claude" => ($base_env | insert CLAUDE_CODE_OAUTH_TOKEN $claude_token)
+        "claux" => ($base_env | insert OPENROUTER_API_KEY $openrouter_key)
+        _ => $base_env
+    }
+    let worker = with-env $worker_env {
+        ^bash -c $runner_source run-isolated.sh ...$job.worker_options -- --config $job.config --yes | complete
     }
 
     $"($worker.stdout)($worker.stderr)" | save --force $job.log_file
@@ -60,6 +55,7 @@ def main [
     --attempts: int = 3      # Attempts per agent.
     --concurrency: int = 2   # Maximum simultaneous VMs.
     --base-port: int = 22300 # First forwarded worker SSH port.
+    --agent: string = all    # Agent to run: all, codex, claude, or claux.
     --oracle                 # Run only oracle attempts as a worker-pool smoke test.
 ] {
     if $attempts <= 0 {
@@ -75,8 +71,29 @@ def main [
     let script_dir = ($env.FILE_PWD | path expand)
     let repo_dir = ([$script_dir "../.."] | path join | path expand)
     let runner = ([$script_dir "run-isolated.sh"] | path join)
+    let runner_source = (open --raw $runner)
 
+    let comparison_agents = [
+        {
+            agent: codex
+            config: integrations/harbor/jobs/codex-single.yaml
+            auth_options: [--codex-auth]
+        }
+        {
+            agent: claude
+            config: integrations/harbor/jobs/claude-single.yaml
+            auth_options: [--env CLAUDE_CODE_OAUTH_TOKEN]
+        }
+        {
+            agent: claux
+            config: integrations/harbor/jobs/claux-single.yaml
+            auth_options: [--env OPENROUTER_API_KEY]
+        }
+    ]
     let agents = if $oracle {
+        if $agent != "all" {
+            error make {msg: "--oracle cannot be combined with --agent"}
+        }
         [
             {
                 agent: oracle
@@ -84,24 +101,14 @@ def main [
                 auth_options: []
             }
         ]
+    } else if $agent == "all" {
+        $comparison_agents
     } else {
-        [
-            {
-                agent: codex
-                config: integrations/harbor/jobs/codex-single.yaml
-                auth_options: [--codex-auth]
-            }
-            {
-                agent: claude
-                config: integrations/harbor/jobs/claude-single.yaml
-                auth_options: [--env CLAUDE_CODE_OAUTH_TOKEN]
-            }
-            {
-                agent: claux
-                config: integrations/harbor/jobs/claux-single.yaml
-                auth_options: [--env OPENROUTER_API_KEY]
-            }
-        ]
+        let selected = ($comparison_agents | where agent == $agent)
+        if ($selected | is-empty) {
+            error make {msg: "--agent must be one of: all, codex, claude, claux"}
+        }
+        $selected
     }
 
     let expected_trials = ($attempts * ($agents | length))
@@ -117,18 +124,21 @@ def main [
         }
     }
 
-    let claude_token = if $oracle {
-        ""
-    } else {
+    let needs_claude = ($agents | any {|candidate| $candidate.agent == "claude" })
+    let needs_claux = ($agents | any {|candidate| $candidate.agent == "claux" })
+    let needs_codex = ($agents | any {|candidate| $candidate.agent == "codex" })
+    let claude_token = if $needs_claude {
         prompt-secret CLAUDE_CODE_OAUTH_TOKEN "Claude OAuth token"
-    }
-    let openrouter_key = if $oracle {
-        ""
     } else {
+        ""
+    }
+    let openrouter_key = if $needs_claux {
         prompt-secret OPENROUTER_API_KEY "OpenRouter API key"
+    } else {
+        ""
     }
 
-    if not $oracle {
+    if $needs_codex {
         let codex_auth = (
             $env.REPLAYBOOK_CODEX_AUTH_FILE?
             | default "~/.codex/auth.json"
@@ -174,7 +184,7 @@ def main [
     let worker_results = (
         $jobs
         | par-each --keep-order --threads $concurrency {|job|
-            run-worker $job $runner $claude_token $openrouter_key
+            run-worker $job $runner_source $script_dir $repo_dir $claude_token $openrouter_key
         }
     )
 
@@ -191,6 +201,8 @@ def main [
         totals: {
           completed: ([.[].stats.n_completed_trials // 0] | add // 0),
           errored: ([.[].stats.n_errored_trials // 0] | add // 0),
+          pending: ([.[].stats.n_pending_trials // 0] | add // 0),
+          cancelled: ([.[].stats.n_cancelled_trials // 0] | add // 0),
           input_tokens: ([.[].stats.n_input_tokens // 0] | add // 0),
           cache_tokens: ([.[].stats.n_cache_tokens // 0] | add // 0),
           output_tokens: ([.[].stats.n_output_tokens // 0] | add // 0),
@@ -234,7 +246,7 @@ def main [
     '#
 
     let summary_json = if ($result_files | is-empty) {
-        ^jq --null-input --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) '{schema_version: 1, generated_at: $generated_at, expected_trials: $expected_trials, received_jobs: 0, totals: {completed: 0, errored: 0}, runs: [], by_agent: []}'
+        ^jq --null-input --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) '{schema_version: 1, generated_at: $generated_at, expected_trials: $expected_trials, received_jobs: 0, totals: {completed: 0, errored: 0, pending: 0, cancelled: 0}, runs: [], by_agent: []}'
     } else {
         ^jq --slurp --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) $jq_filter ...$result_files
     }
@@ -249,10 +261,11 @@ def main [
     if (
         $worker_failures > 0
         or $summary.received_jobs != $expected_trials
+        or $summary.totals.completed != $expected_trials
         or $summary.totals.errored > 0
     ) {
         error make {
-            msg: $"matrix incomplete: ($worker_failures) workers failed, ($summary.received_jobs)/($expected_trials) results received, ($summary.totals.errored) trials errored"
+            msg: $"matrix incomplete: ($worker_failures) workers failed, ($summary.received_jobs)/($expected_trials) results received, ($summary.totals.completed)/($expected_trials) trials completed, ($summary.totals.errored) trials errored"
         }
     }
 

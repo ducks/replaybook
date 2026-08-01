@@ -33,8 +33,8 @@ Environment:
 EOF
 }
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+SCRIPT_DIR="${REPLAYBOOK_HARBOR_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
+REPO_DIR="${REPLAYBOOK_REPO_DIR:-$(cd "${SCRIPT_DIR}/../.." && pwd)}"
 VM_CONFIG="${SCRIPT_DIR}/worker/nixos.nix"
 SSH_KEY="${REPLAYBOOK_WORKER_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 SSH_PORT="${REPLAYBOOK_WORKER_SSH_PORT:-22222}"
@@ -152,6 +152,7 @@ trap 'exit 143' TERM
   printf 'export CODEX_FORCE_AUTH_JSON=%q\n' "1"
   printf 'export CLAUDE_FORCE_OAUTH=%q\n' "1"
   printf 'export HARBOR_TELEMETRY=%q\n' "off"
+  printf 'export PYTHONPATH=%q\n' "/root/replaybook"
   for name in "${FORWARDED_ENV[@]}"; do
     printf 'export %s=%q\n' "${name}" "${!name}"
   done
@@ -217,8 +218,7 @@ tar -C "${WORK_DIR}" -czf - runtime.env \
 if [[ "${COPY_CODEX_AUTH}" == true ]]; then
   echo "[worker] staging Codex authentication"
   "${SSH[@]}" "install -d -m 700 /root/.codex"
-  tar -C "$(dirname "${CODEX_AUTH_FILE}")" -czf - "$(basename "${CODEX_AUTH_FILE}")" \
-    | "${SSH[@]}" "tar -xzf - -C /root/.codex && mv /root/.codex/$(printf '%q' "$(basename "${CODEX_AUTH_FILE}")") /root/.codex/auth.json && chmod 600 /root/.codex/auth.json"
+  "${SSH[@]}" "umask 077 && cat > /root/.codex/auth.json" <"${CODEX_AUTH_FILE}"
 fi
 
 echo "[worker] installing Harbor and running evaluation"

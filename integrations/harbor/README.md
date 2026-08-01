@@ -127,7 +127,11 @@ two simultaneous VMs by default because each worker has 4 GiB of memory. Pass
 `--concurrency N` to change the pool size. Every attempt receives a distinct SSH
 port and result directory; the launcher writes an aggregate `summary.json` after
 all workers finish. Validate the worker pool without model credentials or API
-cost using `--oracle --attempts 2`.
+cost using `--oracle --attempts 2`. Run or recover a single model with
+`--agent codex`, `--agent claude`, or `--agent claux`.
+
+The Nushell launcher snapshots the Bash worker runner before starting the pool,
+so edits to the checkout cannot alter already-running trials.
 
 This is a reusable isolated job runner, not yet a Harbor environment adapter.
 The whole Harbor job runs inside the worker, so its Docker socket owns only
