@@ -119,7 +119,7 @@ lifetime of the VM. Set `REPLAYBOOK_CODEX_AUTH_FILE` to override its path.
 For the clean comparison run, launch one VM for every model attempt:
 
 ```sh
-bash integrations/harbor/run-isolated-matrix.sh
+nu integrations/harbor/run-isolated-matrix.nu
 ```
 
 This runs three attempts each for Codex, Claude Code, and Claux. It uses at most
