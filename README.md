@@ -77,11 +77,12 @@ trusted controller and a disposable Fornex-compatible Ubuntu worker.
 ## Evaluate agents
 
 The Harbor integration converts the first three scenarios into agent tasks. Run
-the full Claux matrix with three attempts per scenario:
+three agents against every scenario, with three attempts per agent/scenario
+pair:
 
 ```nu
 nu integrations/harbor/run-isolated-matrix.nu \
-  --all-scenarios --agent claux --attempts 3
+  --all-scenarios --attempts 3
 ```
 
 Each attempt gets a fresh NixOS VM, an isolated Docker network, and its own
@@ -90,11 +91,21 @@ after restarting the repaired service, so an in-memory workaround does not
 count as a success. Use `--agent codex` or `--agent claude` to compare other
 adapters, or omit `--agent` to run all configured agents.
 
-As one real smoke run, Claux completed 7 of 9 trials across the three scenarios
-at a total reported cost of $0.06. The two misses were informative: one repair
-did not survive a restart, and one trial timed out. Those are agent-behavior
-signals, not setup failures. See [`integrations/harbor/README.md`](integrations/harbor/README.md)
-for task definitions, worker setup, and result inspection.
+One 27-trial matrix produced the following results:
+
+| Agent | Durable repairs | Median trial time | Reported cost |
+|---|---:|---:|---:|
+| Codex / GPT-5.6 Sol | 9/9 | 3:35 | unavailable |
+| Claude Code / Sonnet 5 | 8/9 | 3:15 | $2.30 |
+| Claux / DeepSeek V4 Flash | 8/9 | 3:15 | $0.07 |
+| **Total** | **25/27** | | **$2.37 known** |
+
+Both misses were on the Nginx scenario. One repair did not survive the service
+restart. The other replaced the managed app container, so the verifier could
+no longer identify and restart the deployed topology. Those are agent-behavior
+signals, not setup failures. Codex cost is unavailable, not zero. See
+[`integrations/harbor/README.md`](integrations/harbor/README.md) for task
+definitions, worker setup, and result inspection.
 
 For a deeper dive into why the restart check matters, see [Evaluating
 Infrastructure Agents in Running Systems](https://jakegoldsborough.com/blog/2026/evaluating-infrastructure-agents-in-running-systems/).
