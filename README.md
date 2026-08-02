@@ -96,6 +96,9 @@ did not survive a restart, and one trial timed out. Those are agent-behavior
 signals, not setup failures. See [`integrations/harbor/README.md`](integrations/harbor/README.md)
 for task definitions, worker setup, and result inspection.
 
+For a deeper dive into why the restart check matters, see [Evaluating
+Infrastructure Agents in Running Systems](https://jakegoldsborough.com/blog/2026/evaluating-infrastructure-agents-in-running-systems/).
+
 ## Usage
 
 ```bash
