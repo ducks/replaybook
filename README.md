@@ -13,6 +13,24 @@ goes green, you're done.
 Built to turn post-mortems into playable scenarios. New engineers build muscle
 memory on the actual failure modes your team has hit, not simulations.
 
+Replaybook can also evaluate agents operating those systems. The same scenarios
+run as reproducible Harbor tasks inside disposable NixOS workers. An agent must
+inspect the live services, repair the deployed system, and pass a hidden
+verifier after the affected services restart. This measures durable operational
+reasoning, not just whether an agent can produce a plausible patch.
+
+The evaluation stack is deliberately composable:
+
+- Replaybook supplies realistic incidents, fault injection, and verifiers.
+- [Harbor](https://github.com/laude-institute/harbor) runs agents and records
+  rewards, tokens, and costs.
+- Nix provides isolated, reproducible workers with a fresh Docker environment.
+- [Claux](https://github.com/ducks/claux) provides a lightweight OpenRouter
+  agent adapter with usage and cost reporting.
+
+The result is a small harness for comparing agents on diagnosis, remediation,
+durability, cost, and (with the raw trial results) execution time.
+
 ## Install
 
 ```bash
@@ -55,6 +73,28 @@ socket and must be treated as owning that VM. See
 [Hosted execution](docs/HOSTING.md) for setup, API examples, and the security
 model. A repeatable [two-host deployment kit](deploy/README.md) configures a
 trusted controller and a disposable Fornex-compatible Ubuntu worker.
+
+## Evaluate agents
+
+The Harbor integration converts the first three scenarios into agent tasks. Run
+the full Claux matrix with three attempts per scenario:
+
+```nu
+nu integrations/harbor/run-isolated-matrix.nu \
+  --all-scenarios --agent claux --attempts 3
+```
+
+Each attempt gets a fresh NixOS VM, an isolated Docker network, and its own
+result directory. The verifier checks the user-facing health path before and
+after restarting the repaired service, so an in-memory workaround does not
+count as a success. Use `--agent codex` or `--agent claude` to compare other
+adapters, or omit `--agent` to run all configured agents.
+
+As one real smoke run, Claux completed 7 of 9 trials across the three scenarios
+at a total reported cost of $0.06. The two misses were informative: one repair
+did not survive a restart, and one trial timed out. Those are agent-behavior
+signals, not setup failures. See [`integrations/harbor/README.md`](integrations/harbor/README.md)
+for task definitions, worker setup, and result inspection.
 
 ## Usage
 
