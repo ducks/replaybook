@@ -243,7 +243,12 @@ def main [
     let jq_filter = r#'
       def seconds:
         if . == null then null
-        else (sub("\\.[0-9]+Z$"; "Z") | fromdateiso8601)
+        else (
+          sub("Z$"; "")
+          | sub("\\.[0-9]+$"; "")
+          | . + "Z"
+          | fromdateiso8601
+        )
         end;
       {
         schema_version: 1,
