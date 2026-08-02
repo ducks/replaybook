@@ -20,7 +20,6 @@ def run-worker [
     repo_dir: string,
     claude_token: string,
     openrouter_key: string,
-    claux_model: string,
 ] {
     print $"[matrix] starting ($job.run_id) on SSH port ($job.port)"
 
@@ -31,9 +30,7 @@ def run-worker [
     }
     let worker_env = match $job.agent {
         "claude" => ($base_env | insert CLAUDE_CODE_OAUTH_TOKEN $claude_token)
-        "claux" => ($base_env
-            | insert OPENROUTER_API_KEY $openrouter_key
-            | insert CLAUX_MODEL $claux_model)
+        "claux" => ($base_env | insert OPENROUTER_API_KEY $openrouter_key)
         _ => $base_env
     }
     let worker = with-env $worker_env {
@@ -155,7 +152,7 @@ def main [
                     scenario: $scenario_name
                     agent: claux
                     config: ($configs | get claux)
-                    auth_options: [--env OPENROUTER_API_KEY --env CLAUX_MODEL]
+                    auth_options: [--env OPENROUTER_API_KEY]
                 }
             ]
         }
@@ -227,22 +224,47 @@ def main [
     let matrix_dir = ([$repo_dir jobs $"isolated-matrix-($timestamp).($suffix)"] | path join)
     let logs_dir = ([$matrix_dir logs] | path join)
     let runs_dir = ([$matrix_dir runs] | path join)
-    mkdir $logs_dir $runs_dir
+    let configs_dir = ([$matrix_dir configs] | path join)
+    mkdir $logs_dir $runs_dir $configs_dir
+
+    let configured_agents = (
+        $agents
+        | each {|agent|
+            if $agent.agent == "claux" {
+                let source_config = ([$repo_dir $agent.config] | path join)
+                let generated_config = ([$configs_dir $"($agent.scenario)-claux.yaml"] | path join)
+                open $source_config
+                    | update agents.0.model_name $claux_model
+                    | to yaml
+                    | save --force $generated_config
+                $agent
+                    | update config /root/worker/job.yaml
+                    | insert job_config $generated_config
+            } else {
+                $agent | insert job_config null
+            }
+        }
+    )
 
     let jobs = (
-        $agents
+        $configured_agents
         | each {|agent|
             1..$attempts
             | each {|attempt|
                 let run_id = $"($agent.scenario)-($agent.agent)-($attempt)"
                 let output_dir = ([$runs_dir $run_id] | path join)
+                let config_options = if $agent.job_config == null {
+                    []
+                } else {
+                    [--job-config $agent.job_config]
+                }
                 {
                     agent: $agent.agent
                     attempt: $attempt
                     run_id: $run_id
                     port: 0
                     config: $agent.config
-                    worker_options: [--output-dir $output_dir ...$agent.auth_options]
+                    worker_options: [--output-dir $output_dir ...$config_options ...$agent.auth_options]
                     log_file: ([$logs_dir $"($run_id).log"] | path join)
                 }
             }
@@ -257,7 +279,7 @@ def main [
     let worker_results = (
         $jobs
         | par-each --keep-order --threads $concurrency {|job|
-            run-worker $job $runner_source $script_dir $repo_dir $claude_token $openrouter_key $claux_model
+            run-worker $job $runner_source $script_dir $repo_dir $claude_token $openrouter_key
         }
     )
 

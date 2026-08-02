@@ -11,6 +11,8 @@ Usage:
 Worker options:
   --env NAME       Forward a set host environment variable into the worker.
                    Repeat for additional variables.
+  --job-config FILE
+                   Copy a generated Harbor job config into the worker.
   --codex-auth     Copy ~/.codex/auth.json into the disposable worker.
   --output-dir DIR Store the retrieved worker job under DIR. DIR must not exist.
   -h, --help       Show this help.
@@ -43,6 +45,7 @@ WORK_PARENT="${REPLAYBOOK_WORKER_TMPDIR:-/var/tmp}"
 FORWARDED_ENV=()
 COPY_CODEX_AUTH=false
 OUTPUT_DIR=""
+JOB_CONFIG=""
 HARBOR_ARGS=()
 
 while (( $# > 0 )); do
@@ -58,6 +61,14 @@ while (( $# > 0 )); do
     --codex-auth)
       COPY_CODEX_AUTH=true
       shift
+      ;;
+    --job-config)
+      (( $# >= 2 )) || {
+        echo "--job-config requires a file" >&2
+        exit 2
+      }
+      JOB_CONFIG="$2"
+      shift 2
       ;;
     --output-dir)
       (( $# >= 2 )) || {
@@ -110,6 +121,10 @@ done
 }
 if [[ "${COPY_CODEX_AUTH}" == true && ! -f "${CODEX_AUTH_FILE}" ]]; then
   echo "missing Codex auth file: ${CODEX_AUTH_FILE}" >&2
+  exit 1
+fi
+if [[ -n "${JOB_CONFIG}" && ! -f "${JOB_CONFIG}" ]]; then
+  echo "job config does not exist: ${JOB_CONFIG}" >&2
   exit 1
 fi
 if [[ ! "${SSH_PORT}" =~ ^[0-9]+$ ]] || (( SSH_PORT <= 0 || SSH_PORT > 65535 )); then
@@ -214,6 +229,10 @@ tar -C "${REPO_DIR}" -czf - integrations/harbor \
   | "${SSH[@]}" "tar -xzf - -C /root/replaybook"
 tar -C "${WORK_DIR}" -czf - runtime.env \
   | "${SSH[@]}" "tar -xzf - -C /root/worker && chmod 600 /root/worker/runtime.env"
+
+if [[ -n "${JOB_CONFIG}" ]]; then
+  "${SSH[@]}" "umask 077 && cat > /root/worker/job.yaml" <"${JOB_CONFIG}"
+fi
 
 if [[ "${COPY_CODEX_AUTH}" == true ]]; then
   echo "[worker] staging Codex authentication"
