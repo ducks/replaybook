@@ -292,6 +292,7 @@ def main [
           .runs
           | group_by(.agent_model)
           | map(
+              ([.[] | .duration_seconds | select(. != null)] | sort) as $durations |
               ([.[] | .agent_duration_seconds | select(. != null)] | sort) as $agent_durations |
               {
               agent_model: .[0].agent_model,
@@ -301,10 +302,12 @@ def main [
                 ([.[] | select(.mean != null) | (.mean * .trials)] | add // 0)
                 / ([.[] | select(.mean != null) | .trials] | add // 1)
               ),
-              input_tokens: ([.[].input_tokens // 0] | add // 0),
-              cache_tokens: ([.[].cache_tokens // 0] | add // 0),
-              output_tokens: ([.[].output_tokens // 0] | add // 0),
-              mean_agent_duration_seconds: (if ($agent_durations | length) == 0 then null else (($agent_durations | add) / ($agent_durations | length)) end),
+                input_tokens: ([.[].input_tokens // 0] | add // 0),
+                cache_tokens: ([.[].cache_tokens // 0] | add // 0),
+                output_tokens: ([.[].output_tokens // 0] | add // 0),
+                mean_duration_seconds: (if ($durations | length) == 0 then null else (($durations | add) / ($durations | length)) end),
+                median_duration_seconds: (if ($durations | length) == 0 then null elif ($durations | length) % 2 == 1 then $durations[($durations | length) / 2 | floor] else (($durations[(($durations | length) / 2) - 1] + $durations[($durations | length) / 2]) / 2) end),
+                mean_agent_duration_seconds: (if ($agent_durations | length) == 0 then null else (($agent_durations | add) / ($agent_durations | length)) end),
               median_agent_duration_seconds: (if ($agent_durations | length) == 0 then null elif ($agent_durations | length) % 2 == 1 then $agent_durations[($agent_durations | length) / 2 | floor] else (($agent_durations[(($agent_durations | length) / 2) - 1] + $agent_durations[($agent_durations | length) / 2]) / 2) end),
               known_cost_usd: ([.[].cost_usd // 0] | add // 0),
               cost_reported_jobs: ([.[] | select(.cost_usd != null)] | length)
@@ -322,7 +325,7 @@ def main [
 
     let summary = (open $summary_file)
     print ""
-    print ($summary.by_agent | select agent_model trials errors mean mean_agent_duration_seconds median_agent_duration_seconds known_cost_usd)
+    print ($summary.by_agent | select agent_model trials errors mean mean_duration_seconds median_duration_seconds known_cost_usd)
     print $"[matrix] summary: ($summary_file)"
 
     let worker_failures = ($worker_results | where exit_code != 0 | length)
