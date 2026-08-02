@@ -153,6 +153,17 @@ Use `--all-scenarios` to run the Nginx, PostgreSQL, and missing-environment
 scenarios in one matrix. The selected attempt count applies to every
 agent/scenario pair.
 
+If a worker run completes but summary generation fails, recover the report
+without rerunning the trials:
+
+```sh
+nu integrations/harbor/recover-matrix-summary.nu \
+  jobs/isolated-matrix-YYYY-MM-DD__HH-MM-SS.XXXXXX
+```
+
+The recovery command reads the saved worker results and regenerates
+`summary.json`, including rewards, costs, and mean and median trial durations.
+
 The Nushell launcher snapshots the Bash worker runner before starting the pool,
 so edits to the checkout cannot alter already-running trials.
 
