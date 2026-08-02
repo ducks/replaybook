@@ -25,6 +25,10 @@ def main [matrix_dir: string] {
           | fromdateiso8601
         )
         end;
+      def scenario_name:
+        if . == "002-postgres-rejecting-connectio" then "002-postgres-rejecting-connections"
+        else .
+        end;
       {
         schema_version: 1,
         generated_at: $generated_at,
@@ -44,12 +48,14 @@ def main [matrix_dir: string] {
         runs: [
           .[] |
           (.stats.evals | to_entries[0]) as $eval |
+          ([$eval.value.reward_stats | .. | strings] + [$eval.value.exception_stats | .. | strings] | first) as $trial_id |
           (.started_at | seconds) as $started |
           (.finished_at | seconds) as $finished |
           (.agent_execution.started_at | seconds) as $agent_started |
           (.agent_execution.finished_at | seconds) as $agent_finished |
           {
             job_id: .id,
+            scenario: (($trial_id // "unknown") | split("__")[0] | scenario_name),
             agent_model: $eval.key,
             trials: (.stats.n_completed_trials // 0),
             errors: (.stats.n_errored_trials // 0),
@@ -89,6 +95,33 @@ def main [matrix_dir: string] {
               }
             )
         )
+      | .by_scenario = (
+          .runs
+          | group_by(.scenario)
+          | map({
+              scenario: .[0].scenario,
+              trials: ([.[].trials] | add // 0),
+              errors: ([.[].errors] | add // 0),
+              mean: (([.[] | select(.mean != null) | (.mean * .trials)] | add // 0) / ([.[] | select(.mean != null) | .trials] | add // 1))
+            })
+        )
+      | .by_scenario_agent = (
+          .runs
+          | group_by([.scenario, .agent_model])
+          | map(
+              ([.[] | .duration_seconds | select(. != null)] | sort) as $durations |
+              {
+                scenario: .[0].scenario,
+                agent_model: .[0].agent_model,
+                trials: ([.[].trials] | add // 0),
+                errors: ([.[].errors] | add // 0),
+                mean: (([.[] | select(.mean != null) | (.mean * .trials)] | add // 0) / ([.[] | select(.mean != null) | .trials] | add // 1)),
+                median_duration_seconds: (if ($durations | length) == 0 then null elif ($durations | length) % 2 == 1 then $durations[($durations | length) / 2 | floor] else (($durations[(($durations | length) / 2) - 1] + $durations[($durations | length) / 2]) / 2) end),
+                known_cost_usd: ([.[].cost_usd // 0] | add // 0),
+                cost_reported_jobs: ([.[] | select(.cost_usd != null)] | length)
+              }
+            )
+        )
     '#
 
     let summary_file = ([$matrix_dir summary.json] | path join)
@@ -97,4 +130,6 @@ def main [matrix_dir: string] {
 
     print $"summary: ($summary_file)"
     print ((open $summary_file).by_agent | select agent_model trials errors mean mean_duration_seconds median_duration_seconds known_cost_usd)
+    print ""
+    print ((open $summary_file).by_scenario_agent | select scenario agent_model trials errors mean median_duration_seconds known_cost_usd)
 }

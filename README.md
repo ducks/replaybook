@@ -76,9 +76,8 @@ trusted controller and a disposable Fornex-compatible Ubuntu worker.
 
 ## Evaluate agents
 
-The Harbor integration converts the first three scenarios into agent tasks. Run
-three agents against every scenario, with three attempts per agent/scenario
-pair:
+The Harbor integration converts six scenarios into agent tasks. Run three
+agents against every scenario, with three attempts per agent/scenario pair:
 
 ```nu
 nu integrations/harbor/run-isolated-matrix.nu \
@@ -91,7 +90,11 @@ after restarting the repaired service, so an in-memory workaround does not
 count as a success. Use `--agent codex` or `--agent claude` to compare other
 adapters, or omit `--agent` to run all configured agents.
 
-One 27-trial matrix produced the following results:
+Use `--claux-model <openrouter/model-id>` to compare another OpenRouter model
+through the same Claux harness. The full six-scenario command runs 54 trials.
+
+One 27-trial matrix across the original three scenarios produced the following
+results:
 
 | Agent | Durable repairs | Median trial time | Reported cost |
 |---|---:|---:|---:|

@@ -1,0 +1,28 @@
+services:
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - app
+    networks:
+      - incident
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    tmpfs:
+      - /tmp:size=8m
+    volumes:
+      - app-state:/var/lib/replaybook
+    networks:
+      - incident
+
+volumes:
+  app-state:
+
+networks:
+  incident:

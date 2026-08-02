@@ -20,6 +20,7 @@ def run-worker [
     repo_dir: string,
     claude_token: string,
     openrouter_key: string,
+    claux_model: string,
 ] {
     print $"[matrix] starting ($job.run_id) on SSH port ($job.port)"
 
@@ -30,7 +31,9 @@ def run-worker [
     }
     let worker_env = match $job.agent {
         "claude" => ($base_env | insert CLAUDE_CODE_OAUTH_TOKEN $claude_token)
-        "claux" => ($base_env | insert OPENROUTER_API_KEY $openrouter_key)
+        "claux" => ($base_env
+            | insert OPENROUTER_API_KEY $openrouter_key
+            | insert CLAUX_MODEL $claux_model)
         _ => $base_env
     }
     let worker = with-env $worker_env {
@@ -57,6 +60,7 @@ def main [
     --base-port: int = 22300 # First forwarded worker SSH port.
     --agent: string = all    # Agent to run: all, codex, claude, or claux.
     --scenario: string = 001-nginx-502 # Harbor scenario directory name.
+    --claux-model: string = deepseek/deepseek-v4-flash # OpenRouter model used by Claux.
     --all-scenarios         # Run every configured scenario.
     --oracle                 # Run only oracle attempts as a worker-pool smoke test.
 ] {
@@ -94,11 +98,32 @@ def main [
             claux: integrations/harbor/jobs/claux-003.yaml
             oracle: integrations/harbor/jobs/oracle-003.yaml
         }
+        "004-disk-full": {
+            codex: integrations/harbor/jobs/codex-004.yaml
+            claude: integrations/harbor/jobs/claude-004.yaml
+            claux: integrations/harbor/jobs/claux-004.yaml
+            oracle: integrations/harbor/jobs/oracle-004.yaml
+        }
+        "006-sidekiq-cant-connect": {
+            codex: integrations/harbor/jobs/codex-006.yaml
+            claude: integrations/harbor/jobs/claude-006.yaml
+            claux: integrations/harbor/jobs/claux-006.yaml
+            oracle: integrations/harbor/jobs/oracle-006.yaml
+        }
+        "009-phantom-backend": {
+            codex: integrations/harbor/jobs/codex-009.yaml
+            claude: integrations/harbor/jobs/claude-009.yaml
+            claux: integrations/harbor/jobs/claux-009.yaml
+            oracle: integrations/harbor/jobs/oracle-009.yaml
+        }
     }
     let scenario_names = [
         "001-nginx-502"
         "002-postgres-rejecting-connections"
         "003-missing-env-var"
+        "004-disk-full"
+        "006-sidekiq-cant-connect"
+        "009-phantom-backend"
     ]
     let selected_scenarios = if $all_scenarios {
         $scenario_names
@@ -130,7 +155,7 @@ def main [
                     scenario: $scenario_name
                     agent: claux
                     config: ($configs | get claux)
-                    auth_options: [--env OPENROUTER_API_KEY]
+                    auth_options: [--env OPENROUTER_API_KEY --env CLAUX_MODEL]
                 }
             ]
         }
@@ -232,7 +257,7 @@ def main [
     let worker_results = (
         $jobs
         | par-each --keep-order --threads $concurrency {|job|
-            run-worker $job $runner_source $script_dir $repo_dir $claude_token $openrouter_key
+            run-worker $job $runner_source $script_dir $repo_dir $claude_token $openrouter_key $claux_model
         }
     )
 
@@ -249,6 +274,10 @@ def main [
           | . + "Z"
           | fromdateiso8601
         )
+        end;
+      def scenario_name:
+        if . == "002-postgres-rejecting-connectio" then "002-postgres-rejecting-connections"
+        else .
         end;
       {
         schema_version: 1,
@@ -269,12 +298,14 @@ def main [
         runs: [
           .[] |
           (.stats.evals | to_entries[0]) as $eval |
+          ([$eval.value.reward_stats | .. | strings] + [$eval.value.exception_stats | .. | strings] | first) as $trial_id |
           (.started_at | seconds) as $started |
           (.finished_at | seconds) as $finished |
           (.agent_execution.started_at | seconds) as $agent_started |
           (.agent_execution.finished_at | seconds) as $agent_finished |
           {
             job_id: .id,
+            scenario: (($trial_id // "unknown") | split("__")[0] | scenario_name),
             agent_model: $eval.key,
             trials: (.stats.n_completed_trials // 0),
             errors: (.stats.n_errored_trials // 0),
@@ -314,6 +345,33 @@ def main [
               }
             )
         )
+      | .by_scenario = (
+          .runs
+          | group_by(.scenario)
+          | map({
+              scenario: .[0].scenario,
+              trials: ([.[].trials] | add // 0),
+              errors: ([.[].errors] | add // 0),
+              mean: (([.[] | select(.mean != null) | (.mean * .trials)] | add // 0) / ([.[] | select(.mean != null) | .trials] | add // 1))
+            })
+        )
+      | .by_scenario_agent = (
+          .runs
+          | group_by([.scenario, .agent_model])
+          | map(
+              ([.[] | .duration_seconds | select(. != null)] | sort) as $durations |
+              {
+                scenario: .[0].scenario,
+                agent_model: .[0].agent_model,
+                trials: ([.[].trials] | add // 0),
+                errors: ([.[].errors] | add // 0),
+                mean: (([.[] | select(.mean != null) | (.mean * .trials)] | add // 0) / ([.[] | select(.mean != null) | .trials] | add // 1)),
+                median_duration_seconds: (if ($durations | length) == 0 then null elif ($durations | length) % 2 == 1 then $durations[($durations | length) / 2 | floor] else (($durations[(($durations | length) / 2) - 1] + $durations[($durations | length) / 2]) / 2) end),
+                known_cost_usd: ([.[].cost_usd // 0] | add // 0),
+                cost_reported_jobs: ([.[] | select(.cost_usd != null)] | length)
+              }
+            )
+        )
     '#
 
     let summary_json = if ($result_files | is-empty) {
@@ -326,6 +384,8 @@ def main [
     let summary = (open $summary_file)
     print ""
     print ($summary.by_agent | select agent_model trials errors mean mean_duration_seconds median_duration_seconds known_cost_usd)
+    print ""
+    print ($summary.by_scenario_agent | select scenario agent_model trials errors mean median_duration_seconds known_cost_usd)
     print $"[matrix] summary: ($summary_file)"
 
     let worker_failures = ($worker_results | where exit_code != 0 | length)
