@@ -4,13 +4,13 @@ This directory contains a proof of concept for running a Replaybook incident as
 a graded [Harbor](https://harborframework.com/) task. It deliberately lives
 outside Replaybook's CLI while the integration boundary is being evaluated.
 
-The spike converts three Replaybook scenarios into deterministic tasks:
-`001-nginx-502`, `002-postgres-rejecting-connections`, and
-`003-missing-env-var`. Harbor runs the agent in a `main` workstation container
-alongside the incident's services. The workstation mounts the local Docker
-socket, matching Replaybook's current workstation security model, so the agent
-can inspect and repair sibling services with `docker ps`, `docker logs`,
-`docker exec`, and `docker cp`.
+The spike converts six Replaybook scenarios into deterministic tasks:
+`001-nginx-502`, `002-postgres-rejecting-connections`, `003-missing-env-var`,
+`004-disk-full`, `006-sidekiq-cant-connect`, and `009-phantom-backend`. Harbor
+runs the agent in a `main` workstation container alongside the incident's
+services. The workstation mounts the local Docker socket, matching Replaybook's
+current workstation security model, so the agent can inspect and repair sibling
+services with `docker ps`, `docker logs`, `docker exec`, and `docker cp`.
 
 ## Prerequisites
 
@@ -79,14 +79,13 @@ executing at a time. Local concurrency is intentionally disabled because the
 current workstation Docker socket can see other trials and unrelated host
 containers. Use a dedicated disposable VM before enabling parallel trials.
 
-The fixed pairings are:
+The default pairings are:
 
 - Codex with `gpt-5.6-sol`
 - Claude Code with `claude-sonnet-5`
 - Claux with `deepseek/deepseek-v4-flash` through OpenRouter
 
-The isolated matrix launcher can select the converted Postgres and environment
-scenarios too:
+The isolated matrix launcher can select any converted scenario:
 
 ```sh
 nu integrations/harbor/run-isolated-matrix.nu \
@@ -95,8 +94,12 @@ nu integrations/harbor/run-isolated-matrix.nu \
 nu integrations/harbor/run-isolated-matrix.nu \
   --scenario 003-missing-env-var
 
-# Run all three scenarios for each selected agent
+# Run all six scenarios for each selected agent
 nu integrations/harbor/run-isolated-matrix.nu --all-scenarios
+
+# Compare another OpenRouter model through Claux
+nu integrations/harbor/run-isolated-matrix.nu \
+  --all-scenarios --agent claux --claux-model moonshotai/kimi-k3
 ```
 
 Use `--oracle --attempts 1` first for a credential-free verifier smoke test.
@@ -149,9 +152,10 @@ all workers finish. Validate the worker pool without model credentials or API
 cost using `--oracle --attempts 2`. Run or recover a single model with
 `--agent codex`, `--agent claude`, or `--agent claux`.
 
-Use `--all-scenarios` to run the Nginx, PostgreSQL, and missing-environment
-scenarios in one matrix. The selected attempt count applies to every
-agent/scenario pair.
+Use `--all-scenarios` to run all six converted scenarios in one matrix. The
+selected attempt count applies to every agent/scenario pair. Claux defaults to
+`deepseek/deepseek-v4-flash`; pass `--claux-model <openrouter/model-id>` to use
+another OpenRouter model with the same adapter and verifier path.
 
 If a worker run completes but summary generation fails, recover the report
 without rerunning the trials:

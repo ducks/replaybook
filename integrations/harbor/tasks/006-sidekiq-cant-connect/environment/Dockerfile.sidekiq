@@ -1,0 +1,6 @@
+FROM redis:7-alpine
+
+COPY run-worker.sh /usr/local/bin/run-worker
+RUN chmod 0755 /usr/local/bin/run-worker
+
+CMD ["/usr/local/bin/run-worker"]

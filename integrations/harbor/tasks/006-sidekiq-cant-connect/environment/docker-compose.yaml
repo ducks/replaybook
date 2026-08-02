@@ -1,0 +1,38 @@
+services:
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - redis
+      - sidekiq
+    networks:
+      - incident
+
+  redis:
+    build:
+      context: .
+      dockerfile: Dockerfile.redis
+    volumes:
+      - redis-state:/var/lib/replaybook
+    networks:
+      - incident
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile.sidekiq
+    environment:
+      REDIS_URL: redis://default:correctpassword@redis:6379/0
+    depends_on:
+      - redis
+    networks:
+      - incident
+
+volumes:
+  redis-state:
+
+networks:
+  incident:
