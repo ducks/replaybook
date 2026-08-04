@@ -110,6 +110,21 @@ signals, not setup failures. Codex cost is unavailable, not zero. See
 [`integrations/harbor/README.md`](integrations/harbor/README.md) for task
 definitions, worker setup, and result inspection.
 
+The same six-scenario matrix also makes OpenRouter models directly comparable
+through Claux. Three attempts per scenario produced:
+
+| Model | Durable repairs | Agent errors | Median trial time | Reported cost |
+|---|---:|---:|---:|---:|
+| DeepSeek V4 Flash | 17/18 | 0 | 3:16 | $0.12 |
+| GPT-5.6 Luna | 15/18 | 0 | 2:36 | $0.07 |
+| Poolside Laguna S 2.1 | 14/18 | 2 | 3:45 | $0.24 known |
+
+Luna completed every scenario except Nginx. In all three misses it diagnosed
+the port mismatch correctly, started the app on the expected port, and passed
+the immediate health check. The repair existed only in the running process, so
+the verifier's restart restored the broken service command. Laguna's reported
+cost excludes two timed-out attempts that did not return usage.
+
 For a deeper dive into why the restart check matters, see [Evaluating
 Infrastructure Agents in Running Systems](https://jakegoldsborough.com/blog/2026/evaluating-infrastructure-agents-in-running-systems/).
 
