@@ -1,0 +1,6 @@
+FROM python:3.12-alpine
+
+WORKDIR /app
+COPY backend.py ./
+
+CMD ["python", "/app/backend.py"]

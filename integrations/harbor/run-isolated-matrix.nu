@@ -101,11 +101,29 @@ def main [
             claux: integrations/harbor/jobs/claux-004.yaml
             oracle: integrations/harbor/jobs/oracle-004.yaml
         }
+        "005-oom-kill": {
+            codex: integrations/harbor/jobs/codex-005.yaml
+            claude: integrations/harbor/jobs/claude-005.yaml
+            claux: integrations/harbor/jobs/claux-005.yaml
+            oracle: integrations/harbor/jobs/oracle-005.yaml
+        }
         "006-sidekiq-cant-connect": {
             codex: integrations/harbor/jobs/codex-006.yaml
             claude: integrations/harbor/jobs/claude-006.yaml
             claux: integrations/harbor/jobs/claux-006.yaml
             oracle: integrations/harbor/jobs/oracle-006.yaml
+        }
+        "007-packet-loss": {
+            codex: integrations/harbor/jobs/codex-007.yaml
+            claude: integrations/harbor/jobs/claude-007.yaml
+            claux: integrations/harbor/jobs/claux-007.yaml
+            oracle: integrations/harbor/jobs/oracle-007.yaml
+        }
+        "008-connection-pool-exhaustion": {
+            codex: integrations/harbor/jobs/codex-008.yaml
+            claude: integrations/harbor/jobs/claude-008.yaml
+            claux: integrations/harbor/jobs/claux-008.yaml
+            oracle: integrations/harbor/jobs/oracle-008.yaml
         }
         "009-phantom-backend": {
             codex: integrations/harbor/jobs/codex-009.yaml
@@ -119,7 +137,10 @@ def main [
         "002-postgres-rejecting-connections"
         "003-missing-env-var"
         "004-disk-full"
+        "005-oom-kill"
         "006-sidekiq-cant-connect"
+        "007-packet-loss"
+        "008-connection-pool-exhaustion"
         "009-phantom-backend"
     ]
     let selected_scenarios = if $all_scenarios {

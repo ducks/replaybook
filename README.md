@@ -76,7 +76,7 @@ trusted controller and a disposable Fornex-compatible Ubuntu worker.
 
 ## Evaluate agents
 
-The Harbor integration converts six scenarios into agent tasks. Run three
+The Harbor integration converts nine scenarios into agent tasks. Run three
 agents against every scenario, with three attempts per agent/scenario pair:
 
 ```nu
@@ -91,7 +91,7 @@ count as a success. Use `--agent codex` or `--agent claude` to compare other
 adapters, or omit `--agent` to run all configured agents.
 
 Use `--claux-model <openrouter/model-id>` to compare another OpenRouter model
-through the same Claux harness. The full six-scenario command runs 54 trials.
+through the same Claux harness. The full nine-scenario command runs 81 trials.
 
 One 27-trial matrix across the original three scenarios produced the following
 results:
@@ -110,7 +110,7 @@ signals, not setup failures. Codex cost is unavailable, not zero. See
 [`integrations/harbor/README.md`](integrations/harbor/README.md) for task
 definitions, worker setup, and result inspection.
 
-The same six-scenario matrix also makes OpenRouter models directly comparable
+One six-scenario matrix also made OpenRouter models directly comparable
 through Claux. Three attempts per scenario produced:
 
 | Model | Durable repairs | Agent errors | Median trial time | Reported cost |

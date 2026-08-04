@@ -4,13 +4,15 @@ This directory contains a proof of concept for running a Replaybook incident as
 a graded [Harbor](https://harborframework.com/) task. It deliberately lives
 outside Replaybook's CLI while the integration boundary is being evaluated.
 
-The spike converts six Replaybook scenarios into deterministic tasks:
+The spike converts nine Replaybook scenarios into deterministic tasks:
 `001-nginx-502`, `002-postgres-rejecting-connections`, `003-missing-env-var`,
-`004-disk-full`, `006-sidekiq-cant-connect`, and `009-phantom-backend`. Harbor
-runs the agent in a `main` workstation container alongside the incident's
-services. The workstation mounts the local Docker socket, matching Replaybook's
-current workstation security model, so the agent can inspect and repair sibling
-services with `docker ps`, `docker logs`, `docker exec`, and `docker cp`.
+`004-disk-full`, `005-oom-kill`, `006-sidekiq-cant-connect`,
+`007-packet-loss`, `008-connection-pool-exhaustion`, and
+`009-phantom-backend`. Harbor runs the agent in a `main` workstation container
+alongside the incident's services. The workstation mounts the local Docker
+socket, matching Replaybook's current workstation security model, so the agent
+can inspect and repair sibling services with `docker ps`, `docker logs`,
+`docker exec`, and `docker cp`.
 
 ## Prerequisites
 
@@ -94,7 +96,7 @@ nu integrations/harbor/run-isolated-matrix.nu \
 nu integrations/harbor/run-isolated-matrix.nu \
   --scenario 003-missing-env-var
 
-# Run all six scenarios for each selected agent
+# Run all nine scenarios for each selected agent
 nu integrations/harbor/run-isolated-matrix.nu --all-scenarios
 
 # Compare another OpenRouter model through Claux
@@ -152,7 +154,7 @@ all workers finish. Validate the worker pool without model credentials or API
 cost using `--oracle --attempts 2`. Run or recover a single model with
 `--agent codex`, `--agent claude`, or `--agent claux`.
 
-Use `--all-scenarios` to run all six converted scenarios in one matrix. The
+Use `--all-scenarios` to run all nine converted scenarios in one matrix. The
 selected attempt count applies to every agent/scenario pair. Claux defaults to
 `deepseek/deepseek-v4-flash`; pass `--claux-model <openrouter/model-id>` to use
 another OpenRouter model with the same adapter and verifier path.

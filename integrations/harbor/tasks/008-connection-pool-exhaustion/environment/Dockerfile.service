@@ -1,0 +1,7 @@
+FROM python:3.12-alpine
+
+RUN apk add --no-cache procps \
+    && pip install --no-cache-dir pg8000
+WORKDIR /app
+COPY app.py leak.py start-batch.sh ./
+RUN chmod 0755 /app/start-batch.sh
