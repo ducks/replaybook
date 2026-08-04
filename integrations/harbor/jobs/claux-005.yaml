@@ -1,0 +1,16 @@
+jobs_dir: jobs
+n_attempts: 1
+n_concurrent_trials: 1
+timeout_multiplier: 1.0
+environment:
+  type: docker
+  force_build: false
+  delete: true
+agents:
+  - import_path: integrations.harbor.claux_agent:ClauxAgent
+    model_name: deepseek/deepseek-v4-flash
+    n_concurrent: 1
+    env:
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+tasks:
+  - path: integrations/harbor/tasks/005-oom-kill

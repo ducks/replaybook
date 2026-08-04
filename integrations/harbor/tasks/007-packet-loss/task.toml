@@ -1,0 +1,26 @@
+schema_version = "1.3"
+
+[task]
+name = "replaybook/007-packet-loss"
+description = "Diagnose and remove Linux traffic control packet loss causing intermittent backend failures."
+authors = [{ name = "Jake Goldsborough" }]
+keywords = ["incident-response", "networking", "packet-loss", "linux"]
+
+[metadata]
+source = "ducks/replaybook-scenarios/007-packet-loss"
+difficulty = 3
+category = "incident-response"
+fault = "netem-packet-loss"
+
+[agent]
+timeout_sec = 900.0
+
+[verifier]
+timeout_sec = 90.0
+environment_mode = "shared"
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 2048
+network_mode = "public"

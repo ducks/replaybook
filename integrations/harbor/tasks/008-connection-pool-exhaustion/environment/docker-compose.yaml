@@ -1,0 +1,50 @@
+services:
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - app
+      - batch
+      - db
+    networks:
+      - incident
+
+  db:
+    image: postgres:16-alpine
+    command: ["postgres", "-c", "max_connections=10"]
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: appdb
+    networks:
+      - incident
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.service
+    command: ["python", "/app/app.py"]
+    depends_on:
+      - db
+    networks:
+      - incident
+
+  batch:
+    build:
+      context: .
+      dockerfile: Dockerfile.service
+    command: ["/app/start-batch.sh"]
+    depends_on:
+      - db
+    volumes:
+      - batch-state:/var/lib/replaybook
+    networks:
+      - incident
+
+volumes:
+  batch-state:
+
+networks:
+  incident:

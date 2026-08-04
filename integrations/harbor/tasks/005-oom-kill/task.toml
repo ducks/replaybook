@@ -1,0 +1,26 @@
+schema_version = "1.3"
+
+[task]
+name = "replaybook/005-oom-kill"
+description = "Diagnose and repair an application process repeatedly killed by its startup cache exceeding the container memory limit."
+authors = [{ name = "Jake Goldsborough" }]
+keywords = ["incident-response", "memory", "oom", "resources"]
+
+[metadata]
+source = "ducks/replaybook-scenarios/005-oom-kill"
+difficulty = 2
+category = "incident-response"
+fault = "oversized-startup-cache"
+
+[agent]
+timeout_sec = 900.0
+
+[verifier]
+timeout_sec = 60.0
+environment_mode = "shared"
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 2048
+network_mode = "public"
