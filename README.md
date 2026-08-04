@@ -125,6 +125,24 @@ the immediate health check. The repair existed only in the running process, so
 the verifier's restart restored the broken service command. Laguna's reported
 cost excludes two timed-out attempts that did not return usage.
 
+The expanded nine-scenario matrix provides a direct comparison between
+DeepSeek V4 Flash and MiniMax M3. Each model ran every scenario three times
+through the same Claux adapter and restart verifier:
+
+| Model | Durable repairs | Agent errors | Median trial time | Reported cost |
+|---|---:|---:|---:|---:|
+| DeepSeek V4 Flash | 27/27 | 0 | 3:39 | $0.20 |
+| MiniMax M3 | 24/27 | 0 | 3:12 | $0.64 |
+
+MiniMax was 27 seconds faster at the median, but made three distinct durability
+mistakes. On Nginx it started a second server that disappeared during restart.
+On the missing environment variable scenario it diagnosed the export issue,
+then replaced the Compose-managed container and broke the expected service
+topology. On packet loss it removed the live impairment and then deleted the
+sentinel whose presence prevented the startup script from injecting the fault
+again. All three trials completed normally; the failed rewards came from the
+verifier rejecting the repairs.
+
 For a deeper dive into why the restart check matters, see [Evaluating
 Infrastructure Agents in Running Systems](https://jakegoldsborough.com/blog/2026/evaluating-infrastructure-agents-in-running-systems/).
 
