@@ -81,7 +81,7 @@ agents against every scenario, with three attempts per agent/scenario pair:
 
 ```nu
 nu integrations/harbor/run-isolated-matrix.nu \
-  --all-scenarios --attempts 3
+  --scenario-set all --attempts 3
 ```
 
 Each attempt gets a fresh NixOS VM, an isolated Docker network, and its own
@@ -93,6 +93,10 @@ adapters, or omit `--agent` to run all configured agents.
 Use `--claux-model <openrouter/model-id>` to compare another OpenRouter model
 through the same Claux harness. The full twelve-scenario command runs 108
 trials.
+
+Use `--scenario-set core` for scenarios 001–009 or `--scenario-set hard` for
+the security, topology, and latency scenarios 010–012. `--all-scenarios`
+remains available as an alias for `--scenario-set all`.
 
 One 27-trial matrix across the original three scenarios produced the following
 results:

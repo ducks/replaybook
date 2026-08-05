@@ -56,9 +56,11 @@ def main [
     --concurrency: int = 2   # Maximum simultaneous VMs.
     --base-port: int = 22300 # First forwarded worker SSH port.
     --agent: string = all    # Agent to run: all, codex, claude, or claux.
-    --scenario: string = 001-nginx-502 # Harbor scenario directory name.
+    --scenario: string       # Run one Harbor scenario directory name.
+    --scenario-set: string   # Named set to run: core, hard, or all.
     --claux-model: string = deepseek/deepseek-v4-flash # OpenRouter model used by Claux.
-    --all-scenarios         # Run every configured scenario.
+    --all-scenarios          # Run every configured scenario (legacy alias for --scenario-set all).
+    --list-scenarios         # Print the selected scenarios without launching workers.
     --oracle                 # Run only oracle attempts as a worker-pool smoke test.
 ] {
     if $attempts <= 0 {
@@ -150,7 +152,7 @@ def main [
             oracle: integrations/harbor/jobs/oracle-012.yaml
         }
     }
-    let scenario_names = [
+    let core_scenarios = [
         "001-nginx-502"
         "002-postgres-rejecting-connections"
         "003-missing-env-var"
@@ -160,17 +162,44 @@ def main [
         "007-packet-loss"
         "008-connection-pool-exhaustion"
         "009-phantom-backend"
+    ]
+    let hard_scenarios = [
         "010-stale-auth-secret"
         "011-partial-rollout"
         "012-retry-storm"
     ]
+    let scenario_names = [$core_scenarios $hard_scenarios] | flatten
+
+    if $all_scenarios and $scenario_set != null {
+        error make {msg: "--all-scenarios cannot be combined with --scenario-set"}
+    }
+    if $all_scenarios and $scenario != null {
+        error make {msg: "--all-scenarios cannot be combined with --scenario"}
+    }
+    if $scenario_set != null and $scenario != null {
+        error make {msg: "--scenario-set cannot be combined with --scenario"}
+    }
+
     let selected_scenarios = if $all_scenarios {
         $scenario_names
-    } else {
-        if ($scenario_configs | get --optional $scenario) == null {
-            error make {msg: $"unknown scenario: ($scenario)"}
+    } else if $scenario_set != null {
+        match $scenario_set {
+            "core" => $core_scenarios
+            "hard" => $hard_scenarios
+            "all" => $scenario_names
+            _ => { error make {msg: "--scenario-set must be one of: core, hard, all"} }
         }
-        [$scenario]
+    } else {
+        let selected_scenario = $scenario | default "001-nginx-502"
+        if ($scenario_configs | get --optional $selected_scenario) == null {
+            error make {msg: $"unknown scenario: ($selected_scenario)"}
+        }
+        [$selected_scenario]
+    }
+
+    if $list_scenarios {
+        $selected_scenarios | each {|selected| print $selected }
+        return
     }
 
     let comparison_agents = (
