@@ -3,6 +3,13 @@ set -uo pipefail
 
 mkdir -p /logs/verifier
 
+fail() {
+  printf '%s\n' "$1" > /logs/verifier/failure-category.txt
+  echo 0 > /logs/verifier/reward.txt
+  echo "FAIL[$1]: $2" >&2
+  exit 1
+}
+
 app_container="$({
   docker ps \
     --filter label=com.docker.compose.service=app \
@@ -15,9 +22,7 @@ backend_container="$({
 } | head -n 1)"
 
 if [[ -z "$app_container" || -z "$backend_container" ]]; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: app or backend container not found" >&2
-  exit 1
+  fail topology_changed "app or backend container not found"
 fi
 
 check_health() {
@@ -30,15 +35,11 @@ for _ in $(seq 1 15); do
 done
 
 if ! check_health; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: application still routes to the wrong backend" >&2
-  exit 1
+  fail repair_incomplete "application still routes to the wrong backend"
 fi
 
 if ! docker restart "$backend_container" "$app_container" >/dev/null; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: service restart failed" >&2
-  exit 1
+  fail restart_failed "service restart failed"
 fi
 
 for _ in $(seq 1 15); do
@@ -47,9 +48,7 @@ for _ in $(seq 1 15); do
 done
 
 if ! check_health; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: routing repair did not survive service restarts" >&2
-  exit 1
+  fail repair_not_durable "routing repair did not survive service restarts"
 fi
 
 echo 1 > /logs/verifier/reward.txt

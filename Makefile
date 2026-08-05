@@ -1,4 +1,4 @@
-.PHONY: help version-bump release build test clean clippy fmt fmt-check lint deploy-check install-hooks
+.PHONY: help version-bump release build test clean clippy fmt fmt-check lint deploy-check harbor-check install-hooks
 
 define get_next_version
 $(shell \
@@ -25,6 +25,7 @@ help:
 	@echo "  make test                          - Run tests"
 	@echo "  make clippy                        - Run clippy"
 	@echo "  make deploy-check                  - Validate deployment shell scripts"
+	@echo "  make harbor-check                  - Validate Harbor integration scripts"
 	@echo "  make clean                         - Clean build artifacts"
 	@echo ""
 	@echo "Next version will be: $(VERSION)"
@@ -83,7 +84,11 @@ fmt-check:
 deploy-check:
 	@find deploy -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
 
-lint: fmt-check deploy-check
+harbor-check:
+	@find integrations/harbor -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
+	@bash integrations/harbor/test-matrix-summary.sh
+
+lint: fmt-check deploy-check harbor-check
 	cargo clippy -- -D warnings
 	cargo test
 

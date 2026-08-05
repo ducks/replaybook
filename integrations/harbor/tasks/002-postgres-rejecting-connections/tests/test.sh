@@ -3,6 +3,13 @@ set -uo pipefail
 
 mkdir -p /logs/verifier
 
+fail() {
+  printf '%s\n' "$1" > /logs/verifier/failure-category.txt
+  echo 0 > /logs/verifier/reward.txt
+  echo "FAIL[$1]: $2" >&2
+  exit 1
+}
+
 db_container="$({
   docker ps \
     --filter label=com.docker.compose.service=db \
@@ -10,9 +17,7 @@ db_container="$({
 } | head -n 1)"
 
 if [[ -z "$db_container" ]]; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: database container not found" >&2
-  exit 1
+  fail topology_changed "database container not found"
 fi
 
 check_connection() {
@@ -26,17 +31,13 @@ for _ in $(seq 1 15); do
 done
 
 if ! check_connection; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: PostgreSQL still rejects TCP connections" >&2
-  exit 1
+  fail repair_incomplete "PostgreSQL still rejects TCP connections"
 fi
 
 # A reload can hide an in-memory-only repair. Restarting the database verifies
 # that pg_hba.conf itself is fixed and that the connection survives a reboot.
 if ! docker restart "$db_container" >/dev/null; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: database restart failed" >&2
-  exit 1
+  fail restart_failed "database restart failed"
 fi
 
 for _ in $(seq 1 15); do
@@ -45,9 +46,7 @@ for _ in $(seq 1 15); do
 done
 
 if ! check_connection; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: PostgreSQL connection did not survive restart" >&2
-  exit 1
+  fail repair_not_durable "PostgreSQL connection did not survive restart"
 fi
 
 echo 1 > /logs/verifier/reward.txt
