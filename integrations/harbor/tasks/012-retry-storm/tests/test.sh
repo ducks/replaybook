@@ -2,6 +2,7 @@
 set -uo pipefail
 
 mkdir -p /logs/verifier
+source /tests/topology.sh
 
 fail() {
   printf '%s\n' "$1" > /logs/verifier/failure-category.txt
@@ -19,6 +20,10 @@ primary_container="$(container_for primary)"
 fallback_container="$(container_for fallback)"
 if [[ -z "$app_container" || -z "$primary_container" || -z "$fallback_container" ]]; then
   fail topology_changed "app, primary, and fallback services must remain deployed"
+fi
+
+if unresolved_service="$(first_unresolved_service app primary fallback)"; then
+  fail topology_changed "expected service address does not resolve: $unresolved_service"
 fi
 
 retry_count="$(docker exec "$app_container" sh -c \
