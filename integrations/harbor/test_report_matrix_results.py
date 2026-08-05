@@ -6,7 +6,9 @@ import unittest
 from pathlib import Path
 
 from integrations.harbor.report_matrix_results import (
+    DEVELOPMENT_SCENARIOS,
     build_report,
+    inferred_scenario_set,
     load_summaries,
     markdown_report,
 )
@@ -106,6 +108,9 @@ class MatrixReportTests(unittest.TestCase):
         self.assertIn("$0.01 known (1/2)", markdown)
         self.assertIn("unavailable", markdown)
         self.assertIn("| model-a | regression | 1 |", markdown)
+
+    def test_identifies_development_scenario_set(self):
+        self.assertEqual(inferred_scenario_set(DEVELOPMENT_SCENARIOS), "development")
 
 
 if __name__ == "__main__":

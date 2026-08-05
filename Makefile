@@ -90,6 +90,7 @@ harbor-check:
 	@bash integrations/harbor/test-verifier-categories.sh
 	@python -m unittest integrations.harbor.test_analyze_trajectory
 	@python -m unittest integrations.harbor.test_report_matrix_results
+	@python -m unittest integrations.harbor.test_scenario_sets
 
 lint: fmt-check deploy-check harbor-check
 	cargo clippy -- -D warnings

@@ -14,22 +14,13 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-CORE_SCENARIOS = [
-    "001-nginx-502",
-    "002-postgres-rejecting-connections",
-    "003-missing-env-var",
-    "004-disk-full",
-    "005-oom-kill",
-    "006-sidekiq-cant-connect",
-    "007-packet-loss",
-    "008-connection-pool-exhaustion",
-    "009-phantom-backend",
-]
-HARD_SCENARIOS = [
-    "010-stale-auth-secret",
-    "011-partial-rollout",
-    "012-retry-storm",
-]
+SCENARIO_SETS = json.loads(
+    (Path(__file__).parent / "scenario-sets.json").read_text()
+)
+CORE_SCENARIOS = SCENARIO_SETS["core"]
+HARD_SCENARIOS = SCENARIO_SETS["hard"]
+DEVELOPMENT_SCENARIOS = SCENARIO_SETS["development"]
+HELDOUT_SCENARIOS = SCENARIO_SETS["heldout"]
 
 
 def resolve_summary(path: Path) -> Path:
@@ -63,6 +54,10 @@ def inferred_scenario_set(scenarios: list[str]) -> str:
         return "core"
     if selected == set(HARD_SCENARIOS):
         return "hard"
+    if selected == set(DEVELOPMENT_SCENARIOS):
+        return "development"
+    if selected == set(HELDOUT_SCENARIOS):
+        return "heldout"
     if selected == set(CORE_SCENARIOS + HARD_SCENARIOS):
         return "all"
     return "custom"

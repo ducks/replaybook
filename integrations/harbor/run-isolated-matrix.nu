@@ -57,7 +57,7 @@ def main [
     --base-port: int = 22300 # First forwarded worker SSH port.
     --agent: string = all    # Agent to run: all, codex, claude, or claux.
     --scenario: string       # Run one Harbor scenario directory name.
-    --scenario-set: string   # Named set to run: core, hard, or all.
+    --scenario-set: string   # Named set: core, hard, development, heldout, or all.
     --claux-model: string = deepseek/deepseek-v4-flash # OpenRouter model used by Claux.
     --all-scenarios          # Run every configured scenario (legacy alias for --scenario-set all).
     --list-scenarios         # Print the selected scenarios without launching workers.
@@ -152,22 +152,14 @@ def main [
             oracle: integrations/harbor/jobs/oracle-012.yaml
         }
     }
-    let core_scenarios = [
-        "001-nginx-502"
-        "002-postgres-rejecting-connections"
-        "003-missing-env-var"
-        "004-disk-full"
-        "005-oom-kill"
-        "006-sidekiq-cant-connect"
-        "007-packet-loss"
-        "008-connection-pool-exhaustion"
-        "009-phantom-backend"
-    ]
-    let hard_scenarios = [
-        "010-stale-auth-secret"
-        "011-partial-rollout"
-        "012-retry-storm"
-    ]
+    let scenario_sets = (open ([$script_dir scenario-sets.json] | path join))
+    if $scenario_sets.schema_version != 1 {
+        error make {msg: "unsupported scenario set schema version"}
+    }
+    let core_scenarios = $scenario_sets.core
+    let hard_scenarios = $scenario_sets.hard
+    let development_scenarios = $scenario_sets.development
+    let heldout_scenarios = $scenario_sets.heldout
     let scenario_names = [$core_scenarios $hard_scenarios] | flatten
 
     if $all_scenarios and $scenario_set != null {
@@ -186,8 +178,10 @@ def main [
         match $scenario_set {
             "core" => $core_scenarios
             "hard" => $hard_scenarios
+            "development" => $development_scenarios
+            "heldout" => $heldout_scenarios
             "all" => $scenario_names
-            _ => { error make {msg: "--scenario-set must be one of: core, hard, all"} }
+            _ => { error make {msg: "--scenario-set must be one of: core, hard, development, heldout, all"} }
         }
     } else {
         let selected_scenario = $scenario | default "001-nginx-502"
