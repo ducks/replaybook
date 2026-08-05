@@ -88,6 +88,7 @@ harbor-check:
 	@find integrations/harbor -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
 	@bash integrations/harbor/test-matrix-summary.sh
 	@bash integrations/harbor/test-verifier-categories.sh
+	@python -m unittest integrations.harbor.test_report_matrix_results
 
 lint: fmt-check deploy-check harbor-check
 	cargo clippy -- -D warnings

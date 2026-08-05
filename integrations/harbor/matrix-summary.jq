@@ -36,8 +36,9 @@ def failure_for($eval; $trial_id):
   end;
 
 {
-  schema_version: 2,
+  schema_version: 3,
   generated_at: $generated_at,
+  benchmark: $benchmark,
   expected_trials: $expected_trials,
   received_jobs: length,
   totals: {

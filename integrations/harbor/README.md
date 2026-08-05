@@ -188,6 +188,29 @@ category capture remain recoverable as `uncategorized`.
 The Nushell launcher snapshots the Bash worker runner before starting the pool,
 so edits to the checkout cannot alter already-running trials.
 
+## Compare matrix results
+
+Combine any number of completed matrix directories into a single report:
+
+```sh
+integrations/harbor/report_matrix_results.py \
+  jobs/isolated-matrix-2026-08-05__01-07-01.AAAAAA \
+  jobs/isolated-matrix-2026-08-05__01-20-07.BBBBBB \
+  jobs/isolated-matrix-2026-08-05__01-32-12.CCCCCC
+```
+
+The default Markdown report compares durable repairs, agent errors, median
+trial time, reported cost, per-scenario results, and failure categories. Write
+it to a file with `--output report.md`, or produce machine-readable output with
+`--format json --output report.json`. Paths may point to either a matrix
+directory or its `summary.json` file. Repeating the same job in multiple input
+summaries does not count it twice.
+
+New matrix runs save the selected scenario set and Replaybook commit in
+`benchmark.json` and carry that metadata into `summary.json`. The comparison
+command also accepts older summaries without this metadata, inferring the
+scenario set from their runs while leaving unavailable provenance explicit.
+
 This is a reusable isolated job runner, not yet a Harbor environment adapter.
 The whole Harbor job runs inside the worker, so its Docker socket owns only
 that disposable VM.

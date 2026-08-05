@@ -196,6 +196,13 @@ def main [
         }
         [$selected_scenario]
     }
+    let selected_set_name = if $all_scenarios {
+        "all"
+    } else if $scenario_set != null {
+        $scenario_set
+    } else {
+        "single"
+    }
 
     if $list_scenarios {
         $selected_scenarios | each {|selected| print $selected }
@@ -298,6 +305,17 @@ def main [
     let configs_dir = ([$matrix_dir configs] | path join)
     mkdir $logs_dir $runs_dir $configs_dir
 
+    let benchmark = {
+        suite: replaybook-harbor-v1
+        replaybook_commit: (^git -C $repo_dir rev-parse HEAD | str trim)
+        scenario_set: $selected_set_name
+        scenarios: $selected_scenarios
+        attempts: $attempts
+        agent: (if $oracle { "oracle" } else { $agent })
+        claux_model: (if $needs_claux { $claux_model } else { null })
+    }
+    $benchmark | save --force ([$matrix_dir benchmark.json] | path join)
+
     let configured_agents = (
         $agents
         | each {|agent|
@@ -378,9 +396,9 @@ def main [
     )
 
     let summary_json = if ($result_files | is-empty) {
-        ^jq --null-input --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) '{schema_version: 2, generated_at: $generated_at, expected_trials: $expected_trials, received_jobs: 0, totals: {completed: 0, errored: 0, pending: 0, cancelled: 0}, runs: [], failure_categories: [], by_agent: [], by_scenario: [], by_scenario_agent: []}'
+        ^jq --null-input --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) --argjson "benchmark" ($benchmark | to json) '{schema_version: 3, generated_at: $generated_at, benchmark: $benchmark, expected_trials: $expected_trials, received_jobs: 0, totals: {completed: 0, errored: 0, pending: 0, cancelled: 0}, runs: [], failure_categories: [], by_agent: [], by_scenario: [], by_scenario_agent: []}'
     } else {
-        ^jq --slurp --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) --argjson "failure_details" ($failure_details | to json) --from-file $summary_filter ...$result_files
+        ^jq --slurp --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) --argjson "failure_details" ($failure_details | to json) --argjson "benchmark" ($benchmark | to json) --from-file $summary_filter ...$result_files
     }
     $summary_json | save --force $summary_file
 

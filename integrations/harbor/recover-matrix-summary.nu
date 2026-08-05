@@ -16,6 +16,12 @@ def main [matrix_dir: string] {
 
     let script_dir = ($env.FILE_PWD | path expand)
     let summary_filter = ([$script_dir matrix-summary.jq] | path join)
+    let benchmark_file = ([$matrix_dir benchmark.json] | path join)
+    let benchmark = if ($benchmark_file | path exists) {
+        open $benchmark_file
+    } else {
+        null
+    }
     let generated_at = (date now | date to-timezone "+0000" | format date "%Y-%m-%dT%H:%M:%SZ")
     let expected_trials = (
         ^jq --slurp '[.[].stats | (.n_completed_trials // 0) + (.n_errored_trials // 0) + (.n_pending_trials // 0) + (.n_cancelled_trials // 0)] | add // 0' ...$result_files
@@ -45,6 +51,7 @@ def main [matrix_dir: string] {
             --arg generated_at $generated_at
             --argjson expected_trials ($expected_trials | into string)
             --argjson failure_details ($failure_details | to json)
+            --argjson benchmark ($benchmark | to json)
             --from-file $summary_filter
             ...$result_files
     )
