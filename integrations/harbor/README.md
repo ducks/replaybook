@@ -97,8 +97,14 @@ nu integrations/harbor/run-isolated-matrix.nu \
 nu integrations/harbor/run-isolated-matrix.nu \
   --scenario 003-missing-env-var
 
+# Run the original nine-scenario core set
+nu integrations/harbor/run-isolated-matrix.nu --scenario-set core
+
+# Run the harder security, topology, and latency set
+nu integrations/harbor/run-isolated-matrix.nu --scenario-set hard
+
 # Run all twelve scenarios for each selected agent
-nu integrations/harbor/run-isolated-matrix.nu --all-scenarios
+nu integrations/harbor/run-isolated-matrix.nu --scenario-set all
 
 # Compare another OpenRouter model through Claux
 nu integrations/harbor/run-isolated-matrix.nu \
@@ -155,8 +161,10 @@ all workers finish. Validate the worker pool without model credentials or API
 cost using `--oracle --attempts 2`. Run or recover a single model with
 `--agent codex`, `--agent claude`, or `--agent claux`.
 
-Use `--all-scenarios` to run all twelve converted scenarios in one matrix. The
-selected attempt count applies to every agent/scenario pair. Claux defaults to
+Use `--scenario-set core`, `--scenario-set hard`, or `--scenario-set all` to
+run a named scenario set in one matrix. `--all-scenarios` remains a compatible
+alias for the full set. The selected attempt count applies to every
+agent/scenario pair. Claux defaults to
 `deepseek/deepseek-v4-flash`; pass `--claux-model <openrouter/model-id>` to use
 another OpenRouter model with the same adapter and verifier path.
 
