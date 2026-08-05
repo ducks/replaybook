@@ -98,6 +98,16 @@ Use `--scenario-set core` for scenarios 001–009 or `--scenario-set hard` for
 the security, topology, and latency scenarios 010–012. `--all-scenarios`
 remains available as an alias for `--scenario-set all`.
 
+Aggregate completed matrices into a Markdown comparison with:
+
+```sh
+integrations/harbor/report_matrix_results.py jobs/isolated-matrix-*/summary.json
+```
+
+Pass `--format json` for structured output. New summaries include the selected
+scenario set and Replaybook commit so published comparisons retain the
+benchmark definition that produced them.
+
 One 27-trial matrix across the original three scenarios produced the following
 results:
 

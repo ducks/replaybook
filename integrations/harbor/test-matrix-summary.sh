@@ -28,6 +28,7 @@ summary="$({
   --slurp \
   --arg generated_at '2026-08-04T00:00:00Z' \
   --argjson expected_trials 1 \
+  --argjson benchmark '{"suite":"replaybook-harbor-v1"}' \
   --argjson failure_details '{
     "001-nginx-502__trial": {
       "category": "repair_not_durable",
@@ -37,7 +38,8 @@ summary="$({
   --from-file "$script_dir/matrix-summary.jq")"
 
 jq --exit-status '
-  .schema_version == 2
+  .schema_version == 3
+  and .benchmark.suite == "replaybook-harbor-v1"
   and .runs[0].failure_category == "repair_not_durable"
   and .runs[0].failure_message == "health failed after restart"
   and .failure_categories == [
@@ -54,6 +56,7 @@ uncategorized="$({
   --slurp \
   --arg generated_at '2026-08-04T00:00:00Z' \
   --argjson expected_trials 1 \
+  --argjson benchmark null \
   --argjson failure_details '{}' \
   --from-file "$script_dir/matrix-summary.jq")"
 
