@@ -3,6 +3,13 @@ set -uo pipefail
 
 mkdir -p /logs/verifier
 
+fail() {
+  printf '%s\n' "$1" > /logs/verifier/failure-category.txt
+  echo 0 > /logs/verifier/reward.txt
+  echo "FAIL[$1]: $2" >&2
+  exit 1
+}
+
 app_container="$({
   docker ps \
     --filter label=com.docker.compose.service=app \
@@ -10,9 +17,7 @@ app_container="$({
 } | head -n 1)"
 
 if [[ -z "$app_container" ]]; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: app container not found" >&2
-  exit 1
+  fail topology_changed "app container not found"
 fi
 
 check_health() {
@@ -25,15 +30,11 @@ for _ in $(seq 1 15); do
 done
 
 if ! check_health; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: application process is still flapping" >&2
-  exit 1
+  fail repair_incomplete "application process is still flapping"
 fi
 
 if ! docker restart "$app_container" >/dev/null; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: app restart failed" >&2
-  exit 1
+  fail restart_failed "app restart failed"
 fi
 
 for _ in $(seq 1 15); do
@@ -42,9 +43,7 @@ for _ in $(seq 1 15); do
 done
 
 if ! check_health; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: memory repair did not survive app restart" >&2
-  exit 1
+  fail repair_not_durable "memory repair did not survive app restart"
 fi
 
 echo 1 > /logs/verifier/reward.txt

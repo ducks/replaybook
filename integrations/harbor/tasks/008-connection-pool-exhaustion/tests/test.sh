@@ -3,6 +3,13 @@ set -uo pipefail
 
 mkdir -p /logs/verifier
 
+fail() {
+  printf '%s\n' "$1" > /logs/verifier/failure-category.txt
+  echo 0 > /logs/verifier/reward.txt
+  echo "FAIL[$1]: $2" >&2
+  exit 1
+}
+
 db_container="$({
   docker ps --filter label=com.docker.compose.service=db --format '{{.ID}}'
 } | head -n 1)"
@@ -14,9 +21,7 @@ batch_container="$({
 } | head -n 1)"
 
 if [[ -z "$db_container" || -z "$app_container" || -z "$batch_container" ]]; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: database, app, or batch container not found" >&2
-  exit 1
+  fail topology_changed "database, app, or batch container not found"
 fi
 
 check_health() {
@@ -36,15 +41,11 @@ for _ in $(seq 1 15); do
 done
 
 if ! check_stable_health; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: checkout still cannot acquire a database connection" >&2
-  exit 1
+  fail repair_incomplete "checkout still cannot acquire a database connection"
 fi
 
 if ! docker restart "$db_container" "$batch_container" "$app_container" >/dev/null; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: service restart failed" >&2
-  exit 1
+  fail restart_failed "service restart failed"
 fi
 
 for _ in $(seq 1 20); do
@@ -53,9 +54,7 @@ for _ in $(seq 1 20); do
 done
 
 if ! check_stable_health; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: connection-pool repair did not survive service restarts" >&2
-  exit 1
+  fail repair_not_durable "connection-pool repair did not survive service restarts"
 fi
 
 echo 1 > /logs/verifier/reward.txt

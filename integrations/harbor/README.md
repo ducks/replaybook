@@ -168,7 +168,13 @@ nu integrations/harbor/recover-matrix-summary.nu \
 ```
 
 The recovery command reads the saved worker results and regenerates
-`summary.json`, including rewards, costs, and mean and median trial durations.
+`summary.json`, including rewards, costs, mean and median trial durations, and
+structured failure categories. Verifiers distinguish repairs that never
+recovered the service (`repair_incomplete`), changed the expected topology
+(`topology_changed`), could not be restarted (`restart_failed`), or failed
+after restart (`repair_not_durable`). Agent exceptions are reported as
+`timeout` when identifiable and `agent_error` otherwise. Results created before
+category capture remain recoverable as `uncategorized`.
 
 The Nushell launcher snapshots the Bash worker runner before starting the pool,
 so edits to the checkout cannot alter already-running trials.

@@ -307,120 +307,30 @@ def main [
     let result_pattern = ([$runs_dir "*" jobs "*" result.json] | path join)
     let result_files = (glob $result_pattern | sort)
     let summary_file = ([$matrix_dir summary.json] | path join)
+    let summary_filter = ([$script_dir matrix-summary.jq] | path join)
     let generated_at = (date now | date to-timezone "+0000" | format date "%Y-%m-%dT%H:%M:%SZ")
-    let jq_filter = r#'
-      def seconds:
-        if . == null then null
-        else (
-          sub("Z$"; "")
-          | sub("\\.[0-9]+$"; "")
-          | . + "Z"
-          | fromdateiso8601
-        )
-        end;
-      def scenario_name:
-        if . == "002-postgres-rejecting-connectio" then "002-postgres-rejecting-connections"
-        else .
-        end;
-      {
-        schema_version: 1,
-        generated_at: $generated_at,
-        expected_trials: $expected_trials,
-        received_jobs: length,
-        totals: {
-          completed: ([.[].stats.n_completed_trials // 0] | add // 0),
-          errored: ([.[].stats.n_errored_trials // 0] | add // 0),
-          pending: ([.[].stats.n_pending_trials // 0] | add // 0),
-          cancelled: ([.[].stats.n_cancelled_trials // 0] | add // 0),
-          input_tokens: ([.[].stats.n_input_tokens // 0] | add // 0),
-          cache_tokens: ([.[].stats.n_cache_tokens // 0] | add // 0),
-          output_tokens: ([.[].stats.n_output_tokens // 0] | add // 0),
-          known_cost_usd: ([.[].stats.cost_usd // 0] | add // 0),
-          cost_reported_jobs: ([.[] | select(.stats.cost_usd != null)] | length)
-        },
-        runs: [
-          .[] |
-          (.stats.evals | to_entries[0]) as $eval |
-          ([$eval.value.reward_stats | .. | strings] + [$eval.value.exception_stats | .. | strings] | first) as $trial_id |
-          (.started_at | seconds) as $started |
-          (.finished_at | seconds) as $finished |
-          (.agent_execution.started_at | seconds) as $agent_started |
-          (.agent_execution.finished_at | seconds) as $agent_finished |
-          {
-            job_id: .id,
-            scenario: (($trial_id // "unknown") | split("__")[0] | scenario_name),
-            agent_model: $eval.key,
-            trials: (.stats.n_completed_trials // 0),
-            errors: (.stats.n_errored_trials // 0),
-            mean: ($eval.value.metrics[0].mean // null),
-            input_tokens: .stats.n_input_tokens,
-            cache_tokens: .stats.n_cache_tokens,
-            output_tokens: .stats.n_output_tokens,
-            cost_usd: .stats.cost_usd,
-            duration_seconds: (if ($started != null and $finished != null) then $finished - $started else null end),
-            agent_duration_seconds: (if ($agent_started != null and $agent_finished != null) then $agent_finished - $agent_started else null end)
-          }
-        ]
-      }
-      | .by_agent = (
-          .runs
-          | group_by(.agent_model)
-          | map(
-              ([.[] | .duration_seconds | select(. != null)] | sort) as $durations |
-              ([.[] | .agent_duration_seconds | select(. != null)] | sort) as $agent_durations |
-              {
-              agent_model: .[0].agent_model,
-              trials: ([.[].trials] | add // 0),
-              errors: ([.[].errors] | add // 0),
-              mean: (
-                ([.[] | select(.mean != null) | (.mean * .trials)] | add // 0)
-                / ([.[] | select(.mean != null) | .trials] | add // 1)
-              ),
-                input_tokens: ([.[].input_tokens // 0] | add // 0),
-                cache_tokens: ([.[].cache_tokens // 0] | add // 0),
-                output_tokens: ([.[].output_tokens // 0] | add // 0),
-                mean_duration_seconds: (if ($durations | length) == 0 then null else (($durations | add) / ($durations | length)) end),
-                median_duration_seconds: (if ($durations | length) == 0 then null elif ($durations | length) % 2 == 1 then $durations[($durations | length) / 2 | floor] else (($durations[(($durations | length) / 2) - 1] + $durations[($durations | length) / 2]) / 2) end),
-                mean_agent_duration_seconds: (if ($agent_durations | length) == 0 then null else (($agent_durations | add) / ($agent_durations | length)) end),
-              median_agent_duration_seconds: (if ($agent_durations | length) == 0 then null elif ($agent_durations | length) % 2 == 1 then $agent_durations[($agent_durations | length) / 2 | floor] else (($agent_durations[(($agent_durations | length) / 2) - 1] + $agent_durations[($agent_durations | length) / 2]) / 2) end),
-              known_cost_usd: ([.[].cost_usd // 0] | add // 0),
-              cost_reported_jobs: ([.[] | select(.cost_usd != null)] | length)
-              }
-            )
-        )
-      | .by_scenario = (
-          .runs
-          | group_by(.scenario)
-          | map({
-              scenario: .[0].scenario,
-              trials: ([.[].trials] | add // 0),
-              errors: ([.[].errors] | add // 0),
-              mean: (([.[] | select(.mean != null) | (.mean * .trials)] | add // 0) / ([.[] | select(.mean != null) | .trials] | add // 1))
-            })
-        )
-      | .by_scenario_agent = (
-          .runs
-          | group_by([.scenario, .agent_model])
-          | map(
-              ([.[] | .duration_seconds | select(. != null)] | sort) as $durations |
-              {
-                scenario: .[0].scenario,
-                agent_model: .[0].agent_model,
-                trials: ([.[].trials] | add // 0),
-                errors: ([.[].errors] | add // 0),
-                mean: (([.[] | select(.mean != null) | (.mean * .trials)] | add // 0) / ([.[] | select(.mean != null) | .trials] | add // 1)),
-                median_duration_seconds: (if ($durations | length) == 0 then null elif ($durations | length) % 2 == 1 then $durations[($durations | length) / 2 | floor] else (($durations[(($durations | length) / 2) - 1] + $durations[($durations | length) / 2]) / 2) end),
-                known_cost_usd: ([.[].cost_usd // 0] | add // 0),
-                cost_reported_jobs: ([.[] | select(.cost_usd != null)] | length)
-              }
-            )
-        )
-    '#
+    let failure_details = (
+        glob ([$runs_dir "*" jobs "*" "*" verifier failure-category.txt] | path join)
+        | reduce --fold {} {|category_file, details|
+            let trial_dir = ($category_file | path dirname | path dirname)
+            let trial_id = ($trial_dir | path basename)
+            let message_file = ([$trial_dir verifier test-stdout.txt] | path join)
+            let message = if ($message_file | path exists) {
+                open --raw $message_file | str trim
+            } else {
+                null
+            }
+            $details | upsert $trial_id {
+                category: (open --raw $category_file | str trim)
+                message: $message
+            }
+        }
+    )
 
     let summary_json = if ($result_files | is-empty) {
-        ^jq --null-input --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) '{schema_version: 1, generated_at: $generated_at, expected_trials: $expected_trials, received_jobs: 0, totals: {completed: 0, errored: 0, pending: 0, cancelled: 0}, runs: [], by_agent: []}'
+        ^jq --null-input --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) '{schema_version: 2, generated_at: $generated_at, expected_trials: $expected_trials, received_jobs: 0, totals: {completed: 0, errored: 0, pending: 0, cancelled: 0}, runs: [], failure_categories: [], by_agent: [], by_scenario: [], by_scenario_agent: []}'
     } else {
-        ^jq --slurp --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) $jq_filter ...$result_files
+        ^jq --slurp --arg "generated_at" $generated_at --argjson "expected_trials" ($expected_trials | into string) --argjson "failure_details" ($failure_details | to json) --from-file $summary_filter ...$result_files
     }
     $summary_json | save --force $summary_file
 
@@ -429,6 +339,10 @@ def main [
     print ($summary.by_agent | select agent_model trials errors mean mean_duration_seconds median_duration_seconds known_cost_usd)
     print ""
     print ($summary.by_scenario_agent | select scenario agent_model trials errors mean median_duration_seconds known_cost_usd)
+    if not ($summary.failure_categories | is-empty) {
+        print ""
+        print ($summary.failure_categories | select category count)
+    }
     print $"[matrix] summary: ($summary_file)"
 
     let worker_failures = ($worker_results | where exit_code != 0 | length)

@@ -3,6 +3,13 @@ set -uo pipefail
 
 mkdir -p /logs/verifier
 
+fail() {
+  printf '%s\n' "$1" > /logs/verifier/failure-category.txt
+  echo 0 > /logs/verifier/reward.txt
+  echo "FAIL[$1]: $2" >&2
+  exit 1
+}
+
 redis_container="$({
   docker ps \
     --filter label=com.docker.compose.service=redis \
@@ -15,9 +22,7 @@ sidekiq_container="$({
 } | head -n 1)"
 
 if [[ -z "$redis_container" || -z "$sidekiq_container" ]]; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: redis or sidekiq container not found" >&2
-  exit 1
+  fail topology_changed "redis or sidekiq container not found"
 fi
 
 last_redis_response=""
@@ -45,16 +50,12 @@ for _ in $(seq 1 15); do
 done
 
 if ! check_write; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: worker's configured Redis connection cannot write" >&2
   printf 'Redis replied: %q\n' "$last_redis_response" >&2
-  exit 1
+  fail repair_incomplete "worker's configured Redis connection cannot write"
 fi
 
 if ! docker restart "$redis_container" "$sidekiq_container" >/dev/null; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: service restart failed" >&2
-  exit 1
+  fail restart_failed "service restart failed"
 fi
 
 for _ in $(seq 1 15); do
@@ -63,10 +64,8 @@ for _ in $(seq 1 15); do
 done
 
 if ! check_write; then
-  echo 0 > /logs/verifier/reward.txt
-  echo "FAIL: Redis repair did not survive service restarts" >&2
   printf 'Redis replied: %q\n' "$last_redis_response" >&2
-  exit 1
+  fail repair_not_durable "Redis repair did not survive service restarts"
 fi
 
 echo 1 > /logs/verifier/reward.txt
