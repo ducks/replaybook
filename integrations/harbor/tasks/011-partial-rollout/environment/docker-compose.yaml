@@ -1,0 +1,42 @@
+services:
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - nginx
+    networks:
+      - incident
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    depends_on:
+      - app-a
+      - app-b
+    networks:
+      - incident
+
+  app-a:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+      args:
+        RELEASE_FILE: release-good.env
+    networks:
+      - incident
+
+  app-b:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+      args:
+        RELEASE_FILE: release-broken.env
+    networks:
+      - incident
+
+networks:
+  incident:

@@ -1,0 +1,38 @@
+services:
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - app
+    networks:
+      - incident
+
+  primary:
+    build:
+      context: .
+      dockerfile: Dockerfile.primary
+    networks:
+      - incident
+
+  fallback:
+    build:
+      context: .
+      dockerfile: Dockerfile.fallback
+    networks:
+      - incident
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    depends_on:
+      - primary
+      - fallback
+    networks:
+      - incident
+
+networks:
+  incident:

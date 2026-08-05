@@ -1,0 +1,26 @@
+schema_version = "1.3"
+
+[task]
+name = "replaybook/010-stale-auth-secret"
+description = "Restore authentication after a secret rotation without weakening access controls."
+authors = [{ name = "Jake Goldsborough" }]
+keywords = ["incident-response", "authentication", "secrets", "regression"]
+
+[metadata]
+source = "ducks/replaybook-scenarios/010-stale-auth-secret"
+difficulty = 4
+category = "incident-response"
+fault = "stale-auth-secret-after-rotation"
+
+[agent]
+timeout_sec = 900.0
+
+[verifier]
+timeout_sec = 60.0
+environment_mode = "shared"
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 2048
+network_mode = "public"

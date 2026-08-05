@@ -131,6 +131,24 @@ def main [
             claux: integrations/harbor/jobs/claux-009.yaml
             oracle: integrations/harbor/jobs/oracle-009.yaml
         }
+        "010-stale-auth-secret": {
+            codex: integrations/harbor/jobs/codex-010.yaml
+            claude: integrations/harbor/jobs/claude-010.yaml
+            claux: integrations/harbor/jobs/claux-010.yaml
+            oracle: integrations/harbor/jobs/oracle-010.yaml
+        }
+        "011-partial-rollout": {
+            codex: integrations/harbor/jobs/codex-011.yaml
+            claude: integrations/harbor/jobs/claude-011.yaml
+            claux: integrations/harbor/jobs/claux-011.yaml
+            oracle: integrations/harbor/jobs/oracle-011.yaml
+        }
+        "012-retry-storm": {
+            codex: integrations/harbor/jobs/codex-012.yaml
+            claude: integrations/harbor/jobs/claude-012.yaml
+            claux: integrations/harbor/jobs/claux-012.yaml
+            oracle: integrations/harbor/jobs/oracle-012.yaml
+        }
     }
     let scenario_names = [
         "001-nginx-502"
@@ -142,6 +160,9 @@ def main [
         "007-packet-loss"
         "008-connection-pool-exhaustion"
         "009-phantom-backend"
+        "010-stale-auth-secret"
+        "011-partial-rollout"
+        "012-retry-storm"
     ]
     let selected_scenarios = if $all_scenarios {
         $scenario_names
