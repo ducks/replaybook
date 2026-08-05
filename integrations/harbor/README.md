@@ -162,12 +162,19 @@ all workers finish. Validate the worker pool without model credentials or API
 cost using `--oracle --attempts 2`. Run or recover a single model with
 `--agent codex`, `--agent claude`, or `--agent claux`.
 
-Use `--scenario-set core`, `--scenario-set hard`, or `--scenario-set all` to
-run a named scenario set in one matrix. `--all-scenarios` remains a compatible
-alias for the full set. The selected attempt count applies to every
-agent/scenario pair. Claux defaults to
+Use `--scenario-set core`, `--scenario-set hard`, `--scenario-set development`,
+`--scenario-set heldout`, or `--scenario-set all` to run a named scenario set
+in one matrix. `--all-scenarios` remains a compatible alias for the full set.
+The selected attempt count applies to every agent/scenario pair. Claux defaults to
 `deepseek/deepseek-v4-flash`; pass `--claux-model <openrouter/model-id>` to use
 another OpenRouter model with the same adapter and verifier path.
+
+The `development` and `heldout` sets are a fixed, non-overlapping partition of
+the converted scenarios. Use development results to inspect trajectories and
+change prompts, tools, or agent policy. Reserve held-out results for measuring
+whether those changes generalize. Do not move a scenario between the sets after
+using its result for agent development; add new scenarios or version the split
+instead. The versioned source of truth is `scenario-sets.json`.
 
 If a worker run completes but summary generation fails, recover the report
 without rerunning the trials:
