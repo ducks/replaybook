@@ -212,6 +212,22 @@ New matrix runs save the selected scenario set and Replaybook commit in
 command also accepts older summaries without this metadata, inferring the
 scenario set from their runs while leaving unavailable provenance explicit.
 
+## Analyze agent trajectories
+
+Claux runs retain their exact tool inputs and outputs as an ATIF trajectory.
+Summarize one trial or a complete matrix directory with:
+
+```sh
+integrations/harbor/analyze_trajectory.py \
+  jobs/isolated-matrix-YYYY-MM-DD__HH-MM-SS.XXXXXX
+```
+
+The report shows tool and error counts, output volume, the first detected
+system mutation, mutation categories, high-risk container replacement and
+image rebuild signals, the largest tool outputs, usage, cost, and the verifier
+outcome. Use `--format json` for further analysis or `--output FILE` to retain
+the report.
+
 This is a reusable isolated job runner, not yet a Harbor environment adapter.
 The whole Harbor job runs inside the worker, so its Docker socket owns only
 that disposable VM.
