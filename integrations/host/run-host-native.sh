@@ -269,8 +269,8 @@ else
       "https://github.com/ducks/claux/releases/download/${CLAUX_RELEASE}/claux-linux-x86_64" \
       --output "$CLAUX_BINARY"
   fi
-  "${SCP[@]}" "$CLAUX_BINARY" root@127.0.0.1:/usr/local/bin/claux
-  "${SSH[@]}" "chmod 0755 /usr/local/bin/claux"
+  "${SCP[@]}" "$CLAUX_BINARY" root@127.0.0.1:/root/replaybook-eval/claux
+  "${SSH[@]}" "chmod 0755 /root/replaybook-eval/claux"
   printf '%s\n' "$MODEL" | "${SSH[@]}" "umask 077; cat > /root/replaybook-eval/model"
   printf 'export OPENROUTER_API_KEY=%q\n' "$OPENROUTER_API_KEY" \
     | "${SSH[@]}" "umask 077; cat > /root/replaybook-eval/runtime.env"
@@ -323,7 +323,13 @@ fi
 
 usage='null'
 if [[ -f "${OUTPUT_DIR}/results/claux.json" ]]; then
-  usage="$(jq '.usage' "${OUTPUT_DIR}/results/claux.json")"
+  usage_candidate="$(
+    jq -c 'if type == "object" then (.usage // null) else null end' \
+      "${OUTPUT_DIR}/results/claux.json" 2>/dev/null || true
+  )"
+  if [[ -n "$usage_candidate" ]] && jq -e . <<<"$usage_candidate" >/dev/null 2>&1; then
+    usage="$usage_candidate"
+  fi
 fi
 finished_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 jq -n \

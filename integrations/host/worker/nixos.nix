@@ -66,6 +66,9 @@ in
     vim
   ];
 
+  # Claux release artifacts target conventional glibc-based Linux systems.
+  programs.nix-ld.enable = true;
+
   systemd.services.incident-provision = {
     description = "Provision the Replaybook host-native incident";
     wantedBy = [ "multi-user.target" ];

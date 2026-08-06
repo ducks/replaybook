@@ -11,6 +11,7 @@ grep -q 'systemd.services.checkout-backend' "$script_dir/worker/nixos.nix"
 grep -q 'systemd.services.incident-nginx' "$script_dir/worker/nixos.nix"
 grep -q 'guest.port = 80' "$script_dir/worker/nixos.nix"
 grep -q 'pid /run/incident-nginx/nginx.pid' "$script_dir/worker/nixos.nix"
+grep -q 'programs.nix-ld.enable = true' "$script_dir/worker/nixos.nix"
 
 if grep -qE 'docker\.enable|docker\.sock|docker-compose' "$script_dir/worker/nixos.nix"; then
   echo "host-native worker unexpectedly enables Docker" >&2
@@ -21,6 +22,15 @@ if grep -q 'harbor run' "$script_dir/run-host-native.sh"; then
   echo "host-native controller unexpectedly nests Harbor in the incident VM" >&2
   exit 1
 fi
+
+grep -q 'root@127.0.0.1:/root/replaybook-eval/claux' "$script_dir/run-host-native.sh"
+if grep -q '/usr/local/bin/claux' \
+  "$script_dir/run-host-native.sh" "$script_dir/run-claux.sh"; then
+  echo "host-native runner assumes /usr/local/bin exists" >&2
+  exit 1
+fi
+
+grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 
 output="$($script_dir/run-host-native.sh --help)"
 grep -q 'host-native infrastructure evaluation' <<<"$output"
