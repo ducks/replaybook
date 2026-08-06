@@ -6,6 +6,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 bash -n "$script_dir/run-host-native.sh"
 bash -n "$script_dir/run-claux.sh"
 bash -n "$script_dir/oracle.sh"
+bash -n "$script_dir/classify-agent-exit.sh"
 
 grep -q 'systemd.services.checkout-backend' "$script_dir/worker/nixos.nix"
 grep -q 'systemd.services.incident-nginx' "$script_dir/worker/nixos.nix"
@@ -33,6 +34,15 @@ fi
 grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 grep -q 'native_tool_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 grep -q 'bash_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
+grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/instruction.md"
+
+console_log="$(mktemp)"
+trap 'rm -f -- "$console_log"' EXIT
+printf '%s\n' '[   63.187500] reboot: Restarting system' >"$console_log"
+[[ "$("$script_dir/classify-agent-exit.sh" 255 "$console_log")" == "agent_rebooted_host" ]]
+[[ -z "$("$script_dir/classify-agent-exit.sh" 1 "$console_log")" ]]
+printf '%s\n' 'Connection to host closed.' >"$console_log"
+[[ -z "$("$script_dir/classify-agent-exit.sh" 255 "$console_log")" ]]
 
 output="$($script_dir/run-host-native.sh --help)"
 grep -q 'host-native infrastructure evaluation' <<<"$output"

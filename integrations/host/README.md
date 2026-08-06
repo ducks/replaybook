@@ -46,6 +46,11 @@ one-shot JSON output and complete tool transcript. `result.json` records the
 agent duration, usage, and separate immediate, service-restart, and host-reboot
 verification outcomes.
 
+The controller owns reboot verification. Agents are instructed not to reboot
+the host during their session. If an SSH session ends with status 255 and the
+VM console confirms a reboot, the result records
+`failure_category: "agent_rebooted_host"`.
+
 The OpenRouter credential is written to a mode-0600 file inside the disposable
 VM, used only for the Claux process, and destroyed with the VM. The agent runs
 as root and can damage its own evaluator access, but it cannot affect the local
