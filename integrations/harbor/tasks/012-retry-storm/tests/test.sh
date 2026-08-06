@@ -22,6 +22,36 @@ if [[ -z "$app_container" || -z "$primary_container" || -z "$fallback_container"
   fail topology_changed "app, primary, and fallback services must remain deployed"
 fi
 
+for service_container in \
+  "app:$app_container" \
+  "primary:$primary_container" \
+  "fallback:$fallback_container"; do
+  service="${service_container%%:*}"
+  container="${service_container#*:}"
+  if violation="$(compose_contract_violation "$container" "$service")"; then
+    fail topology_changed "$violation"
+  fi
+done
+
+app_project="$(compose_project "$app_container")"
+primary_project="$(compose_project "$primary_container")"
+fallback_project="$(compose_project "$fallback_container")"
+if [[ "$app_project" != "$primary_project" || "$app_project" != "$fallback_project" ]]; then
+  fail topology_changed "app, primary, and fallback no longer share a Compose project"
+fi
+
+for project_label in \
+  com.docker.compose.project.config_files \
+  com.docker.compose.project.working_dir \
+  com.docker.compose.version; do
+  app_value="$(compose_label "$app_container" "$project_label")"
+  primary_value="$(compose_label "$primary_container" "$project_label")"
+  fallback_value="$(compose_label "$fallback_container" "$project_label")"
+  if [[ "$app_value" != "$primary_value" || "$app_value" != "$fallback_value" ]]; then
+    fail topology_changed "Compose project metadata differs across deployed services"
+  fi
+done
+
 if unresolved_service="$(first_unresolved_service app primary fallback)"; then
   fail topology_changed "expected service address does not resolve: $unresolved_service"
 fi
