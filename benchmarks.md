@@ -41,6 +41,7 @@ strengthened.
 Run metadata:
 
 - Scenario set: `development`
+- Benchmark suite: `replaybook-harbor-v1`
 - Attempts per scenario: `1`
 - Replaybook commit: `ff4965752535994c994fad9dec05532843355b1a`
 - Claux release: `20260804.0.0`
@@ -51,6 +52,10 @@ Run metadata:
 The six-scenario development result is deliberately not a leaderboard entry.
 It is the baseline used to improve prompts, tools, and agent policy. The held-out
 set remains reserved for measuring whether those changes generalize.
+
+New runs use `replaybook-harbor-v2`. Version 2 strengthens retry-storm topology
+verification to reject raw container replacements that only imitate a subset
+of Compose metadata, so its results should not be merged with version 1 scores.
 
 ## Historical comparisons
 

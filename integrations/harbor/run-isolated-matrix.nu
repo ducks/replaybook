@@ -300,7 +300,7 @@ def main [
     mkdir $logs_dir $runs_dir $configs_dir
 
     let benchmark = {
-        suite: replaybook-harbor-v1
+        suite: replaybook-harbor-v2
         replaybook_commit: (^git -C $repo_dir rev-parse HEAD | str trim)
         scenario_set: $selected_set_name
         scenarios: $selected_scenarios
