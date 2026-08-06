@@ -16,6 +16,9 @@ Claux runs directly as root on that VM and investigates with normal Linux tools
 such as `systemctl`, `journalctl`, `ps`, `ss`, and the filesystem. The controller
 remains outside the incident host and verifies the HTTP endpoint after the
 repair, after restarting both services, and after rebooting the entire VM.
+The worker explicitly sets Claux's native-tool and Bash filesystem policies to
+`unrestricted`; infrastructure repair requires writes outside a source
+workspace, and the VM itself is the disposable security boundary.
 
 ## Reference smoke test
 
