@@ -98,6 +98,10 @@ Use `--scenario-set core` for scenarios 001–009 or `--scenario-set hard` for
 the security, topology, and latency scenarios 010–012. `--all-scenarios`
 remains available as an alias for `--scenario-set all`.
 
+Use `--scenario-set development` while changing prompts, tools, or agent
+policy. Reserve `--scenario-set heldout` for measuring whether those changes
+generalize.
+
 Aggregate completed matrices into a Markdown comparison with:
 
 ```sh
@@ -108,55 +112,10 @@ Pass `--format json` for structured output. New summaries include the selected
 scenario set and Replaybook commit so published comparisons retain the
 benchmark definition that produced them.
 
-One 27-trial matrix across the original three scenarios produced the following
-results:
-
-| Agent | Durable repairs | Median trial time | Reported cost |
-|---|---:|---:|---:|
-| Codex / GPT-5.6 Sol | 9/9 | 3:35 | unavailable |
-| Claude Code / Sonnet 5 | 8/9 | 3:15 | $2.30 |
-| Claux / DeepSeek V4 Flash | 8/9 | 3:15 | $0.07 |
-| **Total** | **25/27** | | **$2.37 known** |
-
-Both misses were on the Nginx scenario. One repair did not survive the service
-restart. The other replaced the managed app container, so the verifier could
-no longer identify and restart the deployed topology. Those are agent-behavior
-signals, not setup failures. Codex cost is unavailable, not zero. See
-[`integrations/harbor/README.md`](integrations/harbor/README.md) for task
-definitions, worker setup, and result inspection.
-
-One six-scenario matrix also made OpenRouter models directly comparable
-through Claux. Three attempts per scenario produced:
-
-| Model | Durable repairs | Agent errors | Median trial time | Reported cost |
-|---|---:|---:|---:|---:|
-| DeepSeek V4 Flash | 17/18 | 0 | 3:16 | $0.12 |
-| GPT-5.6 Luna | 15/18 | 0 | 2:36 | $0.07 |
-| Poolside Laguna S 2.1 | 14/18 | 2 | 3:45 | $0.24 known |
-
-Luna completed every scenario except Nginx. In all three misses it diagnosed
-the port mismatch correctly, started the app on the expected port, and passed
-the immediate health check. The repair existed only in the running process, so
-the verifier's restart restored the broken service command. Laguna's reported
-cost excludes two timed-out attempts that did not return usage.
-
-The expanded nine-scenario matrix provides a direct comparison between
-DeepSeek V4 Flash and MiniMax M3. Each model ran every scenario three times
-through the same Claux adapter and restart verifier:
-
-| Model | Durable repairs | Agent errors | Median trial time | Reported cost |
-|---|---:|---:|---:|---:|
-| DeepSeek V4 Flash | 27/27 | 0 | 3:39 | $0.20 |
-| MiniMax M3 | 24/27 | 0 | 3:12 | $0.64 |
-
-MiniMax was 27 seconds faster at the median, but made three distinct durability
-mistakes. On Nginx it started a second server that disappeared during restart.
-On the missing environment variable scenario it diagnosed the export issue,
-then replaced the Compose-managed container and broke the expected service
-topology. On packet loss it removed the live impairment and then deleted the
-sentinel whose presence prevented the startup script from injecting the fault
-again. All three trials completed normally; the failed rewards came from the
-verifier rejecting the repairs.
+See [`benchmarks.md`](benchmarks.md) for development baselines, historical
+model comparisons, methodology, known verifier limitations, and reproduction
+commands. Results from different scenario sets and verifier versions are kept
+separate rather than presented as one authoritative leaderboard.
 
 For a deeper dive into why the restart check matters, see [Evaluating
 Infrastructure Agents in Running Systems](https://jakegoldsborough.com/blog/2026/evaluating-infrastructure-agents-in-running-systems/).
