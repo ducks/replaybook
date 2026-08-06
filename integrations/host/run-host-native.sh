@@ -281,11 +281,30 @@ agent_seconds="$(( $(date +%s) - start_seconds ))"
 
 reward=0
 failure=""
+failure_category=""
 immediate_passed=false
 restart_passed=false
 reboot_passed=false
+if (( run_status == 255 )); then
+  for _ in $(seq 1 10); do
+    failure_category="$(
+      "$SCRIPT_DIR/classify-agent-exit.sh" "$run_status" "$OUTPUT_DIR/console.log"
+    )"
+    [[ -n "$failure_category" ]] && break
+    sleep 1
+  done
+  if [[ "$failure_category" == "agent_rebooted_host" ]]; then
+    echo "[host] detected an agent-initiated host reboot" >&2
+    wait_for_ssh 120 || true
+  fi
+fi
+
 if (( run_status != 0 )); then
-  failure="agent exited with status ${run_status}"
+  if [[ "$failure_category" == "agent_rebooted_host" ]]; then
+    failure="agent rebooted the host during its session"
+  else
+    failure="agent exited with status $run_status"
+  fi
 elif ! verify_repaired; then
   failure="HTTP repair did not recover"
 else
@@ -340,6 +359,7 @@ jq -n \
   --arg started_at "$started_at" \
   --arg finished_at "$finished_at" \
   --arg failure "$failure" \
+  --arg failure_category "$failure_category" \
   --argjson reward "$reward" \
   --argjson agent_seconds "$agent_seconds" \
   --argjson immediate_passed "$immediate_passed" \
@@ -357,6 +377,7 @@ jq -n \
     agent_duration_seconds: $agent_seconds,
     reward: $reward,
     failure: (if $failure == "" then null else $failure end),
+    failure_category: (if $failure_category == "" then null else $failure_category end),
     usage: $usage,
     verification: {
       immediate_http: $immediate_passed,
