@@ -31,6 +31,8 @@ if grep -q '/usr/local/bin/claux' \
 fi
 
 grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
+grep -q 'native_tool_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
+grep -q 'bash_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 
 output="$($script_dir/run-host-native.sh --help)"
 grep -q 'host-native infrastructure evaluation' <<<"$output"
