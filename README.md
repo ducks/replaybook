@@ -76,6 +76,21 @@ trusted controller and a disposable Fornex-compatible Ubuntu worker.
 
 ## Evaluate agents
 
+The host-native evaluation spike runs an agent directly on a disposable NixOS
+machine with real systemd services and no Docker socket. The controller verifies
+the repair after service restarts and a full host reboot:
+
+```sh
+integrations/host/run-host-native.sh --oracle
+```
+
+See [`integrations/host/README.md`](integrations/host/README.md) for the Claux
+command, architecture, and result artifacts.
+
+The older Harbor integration below evaluates agents from a privileged Docker
+workstation. It remains available for historical comparisons while scenarios
+move to the host-native environment.
+
 The Harbor integration converts twelve scenarios into agent tasks. Run three
 agents against every scenario, with three attempts per agent/scenario pair:
 
