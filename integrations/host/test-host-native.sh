@@ -31,6 +31,11 @@ grep -q 'SCENARIO_VERSION="2"' "$script_dir/scenarios/013-sidekiq-wrong-redis/sc
 grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/014-missing-rails-migration/scenario.conf"
 grep -q '202608070001_add_delivery_state.sql' "$script_dir/scenarios/014-missing-rails-migration/oracle.sh"
 grep -q 'deployment/migration' "$script_dir/scenarios/014-missing-rails-migration/verify.sh"
+if grep -q 'ADD COLUMN IF NOT EXISTS' \
+  "$script_dir/scenarios/014-missing-rails-migration/app/db/migrate/202608070001_add_delivery_state.sql"; then
+  echo "migration scenario unexpectedly permits untracked manual schema repair" >&2
+  exit 1
+fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
 
 if grep -qER 'docker\.enable|docker\.sock|docker-compose' "$script_dir/worker" "$script_dir/scenarios"; then

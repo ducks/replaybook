@@ -1,7 +1,7 @@
 BEGIN;
 
 ALTER TABLE checkout_confirmations
-  ADD COLUMN IF NOT EXISTS delivery_state text;
+  ADD COLUMN delivery_state text;
 
 UPDATE checkout_confirmations
 SET delivery_state = 'confirmed'
