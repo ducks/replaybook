@@ -7,14 +7,20 @@ bash -n "$script_dir/run-host-native.sh"
 bash -n "$script_dir/run-claux.sh"
 bash -n "$script_dir/oracle.sh"
 bash -n "$script_dir/classify-agent-exit.sh"
+find "$script_dir/scenarios" -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
+ruby -c "$script_dir/scenarios/013-sidekiq-wrong-redis/app/jobs.rb" >/dev/null
+ruby -c "$script_dir/scenarios/013-sidekiq-wrong-redis/app/server.rb" >/dev/null
 
 grep -q 'systemd.services.checkout-backend' "$script_dir/worker/nixos.nix"
 grep -q 'systemd.services.incident-nginx' "$script_dir/worker/nixos.nix"
-grep -q 'guest.port = 80' "$script_dir/worker/nixos.nix"
+grep -q 'guest.port = 80' "$script_dir/worker/base.nix"
 grep -q 'pid /run/incident-nginx/nginx.pid' "$script_dir/worker/nixos.nix"
-grep -q 'programs.nix-ld.enable = true' "$script_dir/worker/nixos.nix"
+grep -q 'programs.nix-ld.enable = true' "$script_dir/worker/base.nix"
+grep -q 'systemd.services.checkout-sidekiq' "$script_dir/scenarios/013-sidekiq-wrong-redis/nixos.nix"
+grep -q 'redis://127.0.0.1:6379/1' "$script_dir/scenarios/013-sidekiq-wrong-redis/nixos.nix"
+grep -q 'redis://127.0.0.1:6379/0' "$script_dir/scenarios/013-sidekiq-wrong-redis/oracle.sh"
 
-if grep -qE 'docker\.enable|docker\.sock|docker-compose' "$script_dir/worker/nixos.nix"; then
+if grep -qER 'docker\.enable|docker\.sock|docker-compose' "$script_dir/worker" "$script_dir/scenarios"; then
   echo "host-native worker unexpectedly enables Docker" >&2
   exit 1
 fi
@@ -35,6 +41,7 @@ grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 grep -q 'native_tool_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 grep -q 'bash_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/instruction.md"
+grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/scenarios/013-sidekiq-wrong-redis/instruction.md"
 
 console_log="$(mktemp)"
 trap 'rm -f -- "$console_log"' EXIT
@@ -53,3 +60,10 @@ status=$?
 set -e
 [[ "$status" -eq 2 ]]
 grep -q 'SSH and HTTP ports must differ' <<<"$output"
+
+set +e
+output="$("$script_dir/run-host-native.sh" --scenario missing --oracle 2>&1)"
+status=$?
+set -e
+[[ "$status" -eq 2 ]]
+grep -q 'unknown host-native scenario: missing' <<<"$output"

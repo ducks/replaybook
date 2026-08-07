@@ -78,10 +78,14 @@ trusted controller and a disposable Fornex-compatible Ubuntu worker.
 
 The host-native evaluation spike runs an agent directly on a disposable NixOS
 machine with real systemd services and no Docker socket. The controller verifies
-the repair after service restarts and a full host reboot:
+the repair after service restarts and a full host reboot. Scenarios include an
+Nginx upstream failure and an end-to-end Ruby, Sidekiq, Redis, and PostgreSQL
+job-processing failure:
 
 ```sh
-integrations/host/run-host-native.sh --oracle
+integrations/host/run-host-native.sh \
+  --scenario 013-sidekiq-wrong-redis \
+  --oracle
 ```
 
 See [`integrations/host/README.md`](integrations/host/README.md) for the Claux

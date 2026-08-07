@@ -4,13 +4,17 @@ This spike evaluates an infrastructure agent on a real disposable Linux host.
 The agent does not receive a Docker socket and does not manage sibling
 containers.
 
-The local controller builds and boots a NixOS VM containing:
+The local controller builds and boots a scenario-selected NixOS VM. Two
+scenarios are currently available:
 
-- `checkout-backend.service`, a Python HTTP backend listening on port 3000
-- `incident-nginx.service`, Nginx using mutable configuration under
-  `/etc/replaybook`
-- A broken upstream configuration pointing Nginx at port 3001
-- SSH access for the agent
+- `001-nginx-502-host`: Nginx points at the wrong backend port.
+- `013-sidekiq-wrong-redis`: a healthy Ruby web service enqueues checkout
+  confirmation jobs into Redis database 0 while Sidekiq watches database 1.
+  Successful jobs write a durable completion record to PostgreSQL.
+
+Each scenario supplies its NixOS topology, incident instruction, reference
+repair, broken-state preflight, and external verifier. The controller verifies
+the repair through the user-facing HTTP boundary.
 
 Claux runs directly as root on that VM and investigates with normal Linux tools
 such as `systemctl`, `journalctl`, `ps`, `ss`, and the filesystem. The controller
@@ -28,12 +32,21 @@ Run the reference repair without model credentials:
 integrations/host/run-host-native.sh --oracle
 ```
 
+Run the Ruby and Sidekiq reference repair:
+
+```sh
+integrations/host/run-host-native.sh \
+  --scenario 013-sidekiq-wrong-redis \
+  --oracle
+```
+
 ## Run Claux
 
 With `OPENROUTER_API_KEY` set:
 
 ```sh
 integrations/host/run-host-native.sh \
+  --scenario 013-sidekiq-wrong-redis \
   --model deepseek/deepseek-v4-flash
 ```
 
