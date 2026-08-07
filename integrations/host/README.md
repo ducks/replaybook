@@ -58,8 +58,9 @@ the default released Claux version.
 
 Results are written under `jobs/host-native-*`. Claux runs include its native
 one-shot JSON output and complete tool transcript. `result.json` records the
-agent duration, usage, and separate immediate, service-restart, and host-reboot
-verification outcomes.
+scenario version, agent duration, usage, and separate immediate,
+service-restart, and host-reboot verification outcomes. A result is comparable
+only with runs using the same scenario version.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the

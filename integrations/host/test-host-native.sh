@@ -22,6 +22,9 @@ grep -q 'redis://127.0.0.1:6379/0' "$script_dir/scenarios/013-sidekiq-wrong-redi
 grep -q 'backlog-job-ids' "$script_dir/scenarios/013-sidekiq-wrong-redis/preflight.sh"
 grep -q 'exit 20' "$script_dir/scenarios/013-sidekiq-wrong-redis/verify.sh"
 grep -q 'failure_category="backlog_not_recovered"' "$script_dir/run-host-native.sh"
+grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/001-nginx-502-host/scenario.conf"
+grep -q 'SCENARIO_VERSION="2"' "$script_dir/scenarios/013-sidekiq-wrong-redis/scenario.conf"
+grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
 
 if grep -qER 'docker\.enable|docker\.sock|docker-compose' "$script_dir/worker" "$script_dir/scenarios"; then
   echo "host-native worker unexpectedly enables Docker" >&2
