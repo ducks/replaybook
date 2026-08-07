@@ -79,8 +79,9 @@ trusted controller and a disposable Fornex-compatible Ubuntu worker.
 The host-native evaluator runs an agent directly on a disposable NixOS
 machine with real systemd services and no Docker socket. The controller verifies
 the repair after service restarts and a full host reboot. Scenarios include an
-Nginx upstream failure and an end-to-end Ruby, Sidekiq, Redis, and PostgreSQL
-job-processing failure:
+Nginx upstream failure and end-to-end Ruby, Sidekiq, Redis, and PostgreSQL
+incidents involving queue routing, backlog preservation, and deployment
+migrations:
 
 ```sh
 integrations/host/run-host-native.sh \

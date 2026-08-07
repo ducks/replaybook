@@ -257,6 +257,8 @@ run_verification() {
   verify_repaired "$phase" || status=$?
   if (( status == 20 )); then
     failure_category="backlog_not_recovered"
+  elif (( status == 21 )); then
+    failure_category="migration_not_applied"
   fi
   return "$status"
 }
@@ -360,6 +362,8 @@ if (( run_status != 0 )); then
 elif ! run_verification immediate; then
   if [[ "$failure_category" == "backlog_not_recovered" ]]; then
     failure="repair did not recover the pre-existing backlog"
+  elif [[ "$failure_category" == "migration_not_applied" ]]; then
+    failure="repair did not apply the deployed migration"
   else
     failure="HTTP repair did not recover"
   fi
@@ -371,6 +375,8 @@ else
   elif ! run_verification service_restart; then
     if [[ "$failure_category" == "backlog_not_recovered" ]]; then
       failure="pre-existing backlog recovery did not survive service restarts"
+    elif [[ "$failure_category" == "migration_not_applied" ]]; then
+      failure="deployed migration was not applied after service restarts"
     else
       failure="repair did not survive service restarts"
     fi
@@ -389,6 +395,8 @@ else
     elif ! run_verification host_reboot; then
       if [[ "$failure_category" == "backlog_not_recovered" ]]; then
         failure="pre-existing backlog recovery did not survive host reboot"
+      elif [[ "$failure_category" == "migration_not_applied" ]]; then
+        failure="deployed migration was not applied after host reboot"
       else
         failure="repair did not survive host reboot"
       fi

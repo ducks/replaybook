@@ -4,7 +4,7 @@ This integration evaluates an infrastructure agent on a real disposable Linux
 host. The agent does not receive a Docker socket and does not manage sibling
 containers.
 
-The local controller builds and boots a scenario-selected NixOS VM. Two
+The local controller builds and boots a scenario-selected NixOS VM. Three
 scenarios are currently available:
 
 - `001-nginx-502-host`: Nginx points at the wrong backend port.
@@ -13,6 +13,10 @@ scenarios are currently available:
   Successful jobs write a durable completion record to PostgreSQL. Its verifier
   requires both new jobs and the pre-existing backlog to complete, so deleting
   or abandoning queued work does not pass.
+- `014-missing-rails-migration`: a deployed Ruby worker expects a PostgreSQL
+  column from a migration that was shipped but never applied. The verifier
+  requires the migration record, the schema change, retry recovery for the
+  exact pre-existing jobs, and one execution of every new job.
 
 Each scenario supplies its NixOS topology, incident instruction, reference
 repair, broken-state preflight, and external verifier. The controller verifies
@@ -39,6 +43,14 @@ Run the Ruby and Sidekiq reference repair:
 ```sh
 integrations/host/run-host-native.sh \
   --scenario 013-sidekiq-wrong-redis \
+  --oracle
+```
+
+Run the missing migration reference repair:
+
+```sh
+integrations/host/run-host-native.sh \
+  --scenario 014-missing-rails-migration \
   --oracle
 ```
 
@@ -100,6 +112,8 @@ VM console confirms a reboot, the result records
 Scenario verifiers may also return a specific failure category. The Sidekiq
 scenario records `failure_category: "backlog_not_recovered"` when the agent
 repairs future processing but abandons or deletes work that was already queued.
+The migration scenario records `failure_category: "migration_not_applied"`
+when the application appears healthy without the deployed schema migration.
 
 The OpenRouter credential is written to a mode-0600 file inside the disposable
 VM, used only for the Claux process, and destroyed with the VM. The agent runs
