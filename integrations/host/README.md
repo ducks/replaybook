@@ -10,7 +10,9 @@ scenarios are currently available:
 - `001-nginx-502-host`: Nginx points at the wrong backend port.
 - `013-sidekiq-wrong-redis`: a healthy Ruby web service enqueues checkout
   confirmation jobs into Redis database 0 while Sidekiq watches database 1.
-  Successful jobs write a durable completion record to PostgreSQL.
+  Successful jobs write a durable completion record to PostgreSQL. Its verifier
+  requires both new jobs and the pre-existing backlog to complete, so deleting
+  or abandoning queued work does not pass.
 
 Each scenario supplies its NixOS topology, incident instruction, reference
 repair, broken-state preflight, and external verifier. The controller verifies
@@ -63,6 +65,10 @@ The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the
 VM console confirms a reboot, the result records
 `failure_category: "agent_rebooted_host"`.
+
+Scenario verifiers may also return a specific failure category. The Sidekiq
+scenario records `failure_category: "backlog_not_recovered"` when the agent
+repairs future processing but abandons or deletes work that was already queued.
 
 The OpenRouter credential is written to a mode-0600 file inside the disposable
 VM, used only for the Claux process, and destroyed with the VM. The agent runs
