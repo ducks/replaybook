@@ -93,6 +93,10 @@ SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.conf"
 }
 # shellcheck source=/dev/null
 source "$SCENARIO_MANIFEST"
+[[ "${SCENARIO_VERSION:-}" =~ ^[1-9][0-9]*$ ]] || {
+  echo "scenario ${SCENARIO_ID} has an invalid SCENARIO_VERSION" >&2
+  exit 2
+}
 for scenario_field in NIXOS_CONFIG INSTRUCTION ORACLE PREFLIGHT VERIFY REQUIRED_SERVICES RESTART_SERVICES; do
   [[ -n "${!scenario_field:-}" ]] || {
     echo "scenario ${SCENARIO_ID} is missing ${scenario_field}" >&2
@@ -413,6 +417,7 @@ finished_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 jq -n \
   --arg suite "replaybook-host-v1" \
   --arg scenario "$SCENARIO_ID" \
+  --argjson scenario_version "$SCENARIO_VERSION" \
   --arg agent "$agent" \
   --arg model "$(if [[ "$RUN_ORACLE" == true ]]; then printf 'oracle'; else printf '%s' "$MODEL"; fi)" \
   --arg started_at "$started_at" \
@@ -429,6 +434,7 @@ jq -n \
     schema_version: 1,
     suite: $suite,
     scenario: $scenario,
+    scenario_version: $scenario_version,
     agent: $agent,
     model: $model,
     started_at: $started_at,

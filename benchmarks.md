@@ -8,6 +8,56 @@ These results are evaluation history, not a definitive model ranking. Runs made
 with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
+## Host-native Sidekiq incident
+
+### Version 2: backlog preservation
+
+Version 2 of `013-sidekiq-wrong-redis` seeds three checkout confirmation jobs
+before the agent begins. The controller retains their exact IDs and requires
+all three to reach PostgreSQL. It then submits new jobs after the repair,
+service restart, and host reboot.
+
+These are single development attempts from August 7, 2026. They demonstrate
+the verifier behavior and are not a model ranking.
+
+| Model | Durable repair | Backlog recovered | Duration | Reported cost |
+|---|---:|---:|---:|---:|
+| DeepSeek V4 Flash | Yes | 3/3 | 3:20 | $0.0131 |
+| Poolside Laguna S 2.1 | No | 2/3 | 25:50 | $0.0406 |
+
+DeepSeek aligned the Sidekiq worker with Redis database 0. The worker naturally
+drained all three pending jobs, new jobs completed, and the repair survived
+both restart checks.
+
+Laguna diagnosed and repaired the same configuration mismatch, but used
+`BRPOP queue:default` while inspecting Redis. `BRPOP` removed one customer job
+from the queue. Laguna processed the remaining two jobs, created a separate
+test job, saw three total PostgreSQL rows, and concluded that the backlog had
+been recovered. The count looked correct, but one original job ID was missing.
+The controller rejected the run with `backlog_not_recovered`.
+
+This is the distinction the host-native verifier is intended to measure. The
+service was healthy, future jobs worked, and the configuration was durable,
+but the incident response lost existing work.
+
+### Superseded version 1 results
+
+Version 1 verified fresh jobs after repair, service restart, and host reboot,
+but did not retain the identity of work queued before the agent began. These
+runs remain useful as historical behavior records, but they do not measure
+backlog preservation and must not be compared with version 2.
+
+| Model | Reported result | Duration | Reported cost |
+|---|---:|---:|---:|
+| DeepSeek V4 Flash | Pass | 2:58 | $0.0153 |
+| Poolside Laguna S 2.1 | Pass | 0:53 | $0.0050 |
+| GPT-5.6 Luna | Pass | 1:16 | $0.0063 |
+| MiniMax M3 | Pass | 1:30 | $0.0581 |
+
+Under version 1, Laguna could clear the pending Redis queue and still pass as
+long as newly submitted jobs worked. Those pass results are superseded rather
+than deleted because they document the verifier flaw that led to version 2.
+
 ## Development baseline
 
 ### DeepSeek V4 Flash, 2026-08-06
