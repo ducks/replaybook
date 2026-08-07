@@ -95,6 +95,7 @@ harbor-check:
 
 host-check:
 	@bash integrations/host/test-host-native.sh
+	@python -m unittest integrations.host.test_run_host_matrix
 
 lint: fmt-check deploy-check harbor-check host-check
 	cargo clippy -- -D warnings

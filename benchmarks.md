@@ -40,6 +40,16 @@ This is the distinction the host-native verifier is intended to measure. The
 service was healthy, future jobs worked, and the configuration was durable,
 but the incident response lost existing work.
 
+Reproduce a versioned comparison with the Python matrix runner:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --scenario 013-sidekiq-wrong-redis \
+  --models deepseek/deepseek-v4-flash poolside/laguna-s-2.1 \
+  --attempts 3 \
+  --concurrency 2
+```
+
 ### Superseded version 1 results
 
 Version 1 verified fresh jobs after repair, service restart, and host reboot,

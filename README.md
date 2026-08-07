@@ -76,7 +76,7 @@ trusted controller and a disposable Fornex-compatible Ubuntu worker.
 
 ## Evaluate agents
 
-The host-native evaluation spike runs an agent directly on a disposable NixOS
+The host-native evaluator runs an agent directly on a disposable NixOS
 machine with real systemd services and no Docker socket. The controller verifies
 the repair after service restarts and a full host reboot. Scenarios include an
 Nginx upstream failure and an end-to-end Ruby, Sidekiq, Redis, and PostgreSQL
@@ -86,6 +86,14 @@ job-processing failure:
 integrations/host/run-host-native.sh \
   --scenario 013-sidekiq-wrong-redis \
   --oracle
+```
+
+Run repeatable model comparisons with the Python matrix orchestrator:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --models deepseek/deepseek-v4-flash poolside/laguna-s-2.1 \
+  --attempts 3
 ```
 
 See [`integrations/host/README.md`](integrations/host/README.md) for the Claux
