@@ -250,6 +250,21 @@ verify_repaired() {
   "$VERIFY" "http://127.0.0.1:${HTTP_PORT}" "$phase" "$SCENARIO_STATE_DIR"
 }
 
+capture_agent_results() {
+  local archive="${WORK_DIR}/agent-results.tar.gz"
+
+  [[ "$RUN_ORACLE" == false ]] || return 0
+  if ! "${SSH[@]}" "tar -C /root/replaybook-eval -czf - results" >"$archive"; then
+    rm -f -- "$archive"
+    return 1
+  fi
+  if ! tar -tzf "$archive" >/dev/null 2>&1; then
+    rm -f -- "$archive"
+    return 1
+  fi
+  tar -xzf "$archive" -C "$OUTPUT_DIR"
+}
+
 run_verification() {
   local phase="$1"
   local status=0
@@ -333,6 +348,11 @@ else
 fi
 agent_seconds="$(( $(date +%s) - start_seconds ))"
 
+# Preserve usage and transcript data while the repaired host is still
+# reachable. Verification deliberately restarts and reboots that host, and a
+# broken repair may prevent it from ever returning.
+capture_agent_results || true
+
 reward=0
 failure=""
 failure_category=""
@@ -387,10 +407,13 @@ else
     "${SSH[@]}" "systemctl reboot" >/dev/null 2>&1
     set -e
     if ! wait_for_ssh_down; then
+      failure_category="host_reboot_failed"
       failure="VM did not shut down for reboot"
     elif ! wait_for_ssh 120; then
+      failure_category="host_reboot_failed"
       failure="VM did not return after reboot"
     elif ! wait_for_services; then
+      failure_category="services_failed_after_reboot"
       failure="required systemd services are not active after reboot"
     elif ! run_verification host_reboot; then
       if [[ "$failure_category" == "backlog_not_recovered" ]]; then
@@ -408,8 +431,9 @@ else
   fi
 fi
 
-"${SSH[@]}" "tar -C /root/replaybook-eval -czf - results" \
-  | tar -xzf - -C "$OUTPUT_DIR" || true
+if [[ "$RUN_ORACLE" == false && ! -f "${OUTPUT_DIR}/results/claux.json" ]]; then
+  capture_agent_results || true
+fi
 
 usage='null'
 if [[ -f "${OUTPUT_DIR}/results/claux.json" ]]; then

@@ -109,6 +109,13 @@ the host during their session. If an SSH session ends with status 255 and the
 VM console confirms a reboot, the result records
 `failure_category: "agent_rebooted_host"`.
 
+The controller captures Claux's result and transcript before verification
+restarts the repaired services or reboots the host. Usage therefore remains
+available even when a broken repair prevents the VM from returning. A VM that
+does not complete the verifier-controlled reboot records
+`failure_category: "host_reboot_failed"`; a host that returns without its
+required services records `failure_category: "services_failed_after_reboot"`.
+
 Scenario verifiers may also return a specific failure category. The Sidekiq
 scenario records `failure_category: "backlog_not_recovered"` when the agent
 repairs future processing but abandons or deletes work that was already queued.

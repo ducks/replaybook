@@ -56,6 +56,9 @@ if grep -q '/usr/local/bin/claux' \
 fi
 
 grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
+grep -q 'capture_agent_results || true' "$script_dir/run-host-native.sh"
+grep -q 'failure_category="host_reboot_failed"' "$script_dir/run-host-native.sh"
+grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"
 grep -q 'native_tool_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 grep -q 'bash_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/instruction.md"
