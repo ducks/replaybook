@@ -6,8 +6,21 @@ state_dir="${2:?usage: preflight.sh BASE_URL STATE_DIR}"
 jobs_file="$state_dir/backlog-job-ids"
 
 install -d -m 0700 "$state_dir"
+
+service_ready=false
+for _ in $(seq 1 60); do
+  if [[ "$(curl --silent --fail --max-time 2 "$base_url/health" 2>/dev/null || true)" == "ok" ]]; then
+    service_ready=true
+    break
+  fi
+  sleep 1
+done
+[[ "$service_ready" == true ]] || {
+  echo "checkout web service did not become ready for preflight" >&2
+  exit 1
+}
+
 : >"$jobs_file"
-[[ "$(curl --silent --fail --max-time 2 "$base_url/health")" == "ok" ]]
 
 for index in 1 2 3; do
   job_id="preflight-$(date +%s%N)-$$-$RANDOM-$index"
