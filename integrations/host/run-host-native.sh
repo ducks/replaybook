@@ -10,6 +10,7 @@ Usage:
 
 Options:
   --oracle            Run the reference repair instead of Claux.
+  --scenario ID       Host-native scenario (default: 001-nginx-502-host).
   --model MODEL       OpenRouter model for Claux.
   --ssh-port PORT     Forwarded SSH port (default: 22600).
   --http-port PORT    Forwarded HTTP port (default: 22601).
@@ -27,26 +28,31 @@ EOF
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
-VM_CONFIG="${SCRIPT_DIR}/worker/nixos.nix"
 SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260804.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
 MODEL="deepseek/deepseek-v4-flash"
+SCENARIO_ID="001-nginx-502-host"
 SSH_PORT=22600
 HTTP_PORT=22601
 OUTPUT_DIR=""
-ORACLE=false
+RUN_ORACLE=false
 
 while (( $# > 0 )); do
   case "$1" in
     --oracle)
-      ORACLE=true
+      RUN_ORACLE=true
       shift
       ;;
     --model)
       (( $# >= 2 )) || { echo "--model requires a value" >&2; exit 2; }
       MODEL="$2"
+      shift 2
+      ;;
+    --scenario)
+      (( $# >= 2 )) || { echo "--scenario requires a value" >&2; exit 2; }
+      SCENARIO_ID="$2"
       shift 2
       ;;
     --ssh-port)
@@ -75,6 +81,43 @@ while (( $# > 0 )); do
   esac
 done
 
+[[ "$SCENARIO_ID" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]*$ ]] || {
+  echo "scenario ID contains unsafe characters: ${SCENARIO_ID}" >&2
+  exit 2
+}
+SCENARIO_DIR="${SCRIPT_DIR}/scenarios/${SCENARIO_ID}"
+SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.conf"
+[[ -f "$SCENARIO_MANIFEST" ]] || {
+  echo "unknown host-native scenario: ${SCENARIO_ID}" >&2
+  exit 2
+}
+# shellcheck source=/dev/null
+source "$SCENARIO_MANIFEST"
+for scenario_field in NIXOS_CONFIG INSTRUCTION ORACLE PREFLIGHT VERIFY REQUIRED_SERVICES RESTART_SERVICES; do
+  [[ -n "${!scenario_field:-}" ]] || {
+    echo "scenario ${SCENARIO_ID} is missing ${scenario_field}" >&2
+    exit 2
+  }
+  if [[ "$scenario_field" != "REQUIRED_SERVICES" && "$scenario_field" != "RESTART_SERVICES" ]]; then
+    scenario_path="${SCENARIO_DIR}/${!scenario_field}"
+    [[ -f "$scenario_path" ]] || {
+      echo "scenario ${SCENARIO_ID} file does not exist: ${scenario_path}" >&2
+      exit 2
+    }
+    printf -v "$scenario_field" '%s' "$scenario_path"
+  fi
+done
+service_list_pattern='^[a-zA-Z0-9@_. -]+$'
+[[ "$REQUIRED_SERVICES" =~ $service_list_pattern ]] || {
+  echo "scenario ${SCENARIO_ID} has unsafe required service names" >&2
+  exit 2
+}
+[[ "$RESTART_SERVICES" =~ $service_list_pattern ]] || {
+  echo "scenario ${SCENARIO_ID} has unsafe restart service names" >&2
+  exit 2
+}
+VM_CONFIG="$NIXOS_CONFIG"
+
 for port_name in SSH_PORT HTTP_PORT; do
   port="${!port_name}"
   if [[ ! "$port" =~ ^[0-9]+$ ]] || (( port <= 0 || port > 65535 )); then
@@ -102,7 +145,7 @@ done
   echo "temporary directory does not exist: ${WORK_PARENT}" >&2
   exit 1
 }
-if [[ "$ORACLE" == false && -z "${OPENROUTER_API_KEY:-}" ]]; then
+if [[ "$RUN_ORACLE" == false && -z "${OPENROUTER_API_KEY:-}" ]]; then
   echo "OPENROUTER_API_KEY is required unless --oracle is used" >&2
   exit 1
 fi
@@ -183,28 +226,22 @@ wait_for_ssh_down() {
   return 1
 }
 
-http_code() {
-  curl --silent --output /dev/null --max-time 2 \
-    --write-out '%{http_code}' "http://127.0.0.1:${HTTP_PORT}/health" || true
-}
-
-wait_for_http_code() {
-  local expected="$1"
-  local attempts="${2:-20}"
-  local code
+wait_for_services() {
+  local attempts="${1:-60}"
   for _ in $(seq 1 "$attempts"); do
-    code="$(http_code)"
-    if [[ "$code" == "$expected" ]]; then
+    if "${SSH[@]}" \
+      "for service in $REQUIRED_SERVICES; do systemctl is-active \"\$service\" >/dev/null || exit 1; done" \
+      >/dev/null 2>&1; then
       return 0
     fi
-    sleep 1
+    sleep 2
   done
   return 1
 }
 
 verify_repaired() {
-  wait_for_http_code 200 20 || return 1
-  [[ "$(curl --silent --fail --max-time 2 "http://127.0.0.1:${HTTP_PORT}/health")" == "ok" ]]
+  local phase="$1"
+  "$VERIFY" "http://127.0.0.1:${HTTP_PORT}" "$phase"
 }
 
 echo "[host] building disposable NixOS incident host"
@@ -230,34 +267,32 @@ wait_for_ssh || {
   tail -100 "${OUTPUT_DIR}/console.log" >&2
   exit 1
 }
-if ! "${SSH[@]}" \
-  "systemctl is-active checkout-backend.service >/dev/null && systemctl is-active incident-nginx.service >/dev/null"; then
+if ! wait_for_services; then
   echo "incident services did not start" >&2
   "${SSH[@]}" \
-    "systemctl --no-pager --full status checkout-backend.service incident-nginx.service; journalctl --no-pager -u checkout-backend.service -u incident-nginx.service -n 100" \
+    "systemctl --no-pager --full status $REQUIRED_SERVICES; journalctl --no-pager -n 100 $(
+      for service in $REQUIRED_SERVICES; do printf -- '-u %q ' "$service"; done
+    )" \
     >&2 || true
   exit 1
 fi
 
-if ! wait_for_http_code 502 20; then
-  code="$(http_code)"
-  echo "incident preflight failed: expected HTTP 502, got HTTP ${code}" >&2
+if ! "$PREFLIGHT" "http://127.0.0.1:${HTTP_PORT}"; then
+  echo "incident preflight failed for ${SCENARIO_ID}" >&2
   exit 1
 fi
-echo "[host] preflight confirmed HTTP 502"
+echo "[host] preflight confirmed ${SCENARIO_ID}"
 
 "${SSH[@]}" "install -d -m 700 /root/replaybook-eval/results"
-"${SCP[@]}" \
-  "${SCRIPT_DIR}/instruction.md" \
-  "${SCRIPT_DIR}/oracle.sh" \
-  "${SCRIPT_DIR}/run-claux.sh" \
-  root@127.0.0.1:/root/replaybook-eval/
+"${SCP[@]}" "$INSTRUCTION" root@127.0.0.1:/root/replaybook-eval/instruction.md
+"${SCP[@]}" "$ORACLE" root@127.0.0.1:/root/replaybook-eval/oracle.sh
+"${SCP[@]}" "${SCRIPT_DIR}/run-claux.sh" root@127.0.0.1:/root/replaybook-eval/
 
 agent="claux"
 run_status=0
 started_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 start_seconds="$(date +%s)"
-if [[ "$ORACLE" == true ]]; then
+if [[ "$RUN_ORACLE" == true ]]; then
   agent="oracle"
   echo "[host] running reference repair"
   "${SSH[@]}" "bash /root/replaybook-eval/oracle.sh" || run_status=$?
@@ -305,14 +340,14 @@ if (( run_status != 0 )); then
   else
     failure="agent exited with status $run_status"
   fi
-elif ! verify_repaired; then
+elif ! verify_repaired immediate; then
   failure="HTTP repair did not recover"
 else
   immediate_passed=true
   echo "[host] immediate verification passed"
-  if ! "${SSH[@]}" "systemctl restart checkout-backend.service incident-nginx.service"; then
+  if ! "${SSH[@]}" "systemctl restart $RESTART_SERVICES"; then
     failure="service restart failed"
-  elif ! verify_repaired; then
+  elif ! verify_repaired service_restart; then
     failure="repair did not survive service restarts"
   else
     restart_passed=true
@@ -324,10 +359,9 @@ else
       failure="VM did not shut down for reboot"
     elif ! wait_for_ssh 120; then
       failure="VM did not return after reboot"
-    elif ! "${SSH[@]}" \
-      "systemctl is-active checkout-backend.service >/dev/null && systemctl is-active incident-nginx.service >/dev/null"; then
+    elif ! wait_for_services; then
       failure="required systemd services are not active after reboot"
-    elif ! verify_repaired; then
+    elif ! verify_repaired host_reboot; then
       failure="repair did not survive host reboot"
     else
       reboot_passed=true
@@ -353,9 +387,9 @@ fi
 finished_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 jq -n \
   --arg suite "replaybook-host-v1" \
-  --arg scenario "001-nginx-502-host" \
+  --arg scenario "$SCENARIO_ID" \
   --arg agent "$agent" \
-  --arg model "$(if [[ "$ORACLE" == true ]]; then printf 'oracle'; else printf '%s' "$MODEL"; fi)" \
+  --arg model "$(if [[ "$RUN_ORACLE" == true ]]; then printf 'oracle'; else printf '%s' "$MODEL"; fi)" \
   --arg started_at "$started_at" \
   --arg finished_at "$finished_at" \
   --arg failure "$failure" \
