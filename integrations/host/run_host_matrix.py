@@ -24,6 +24,7 @@ from typing import Any, Iterable
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
+DEFAULT_AGENT_TIMEOUT_SECONDS = 900
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 SCENARIO_VERSION_PATTERN = re.compile(
     r'^SCENARIO_VERSION=["\']?([1-9][0-9]*)["\']?$', re.MULTILINE
@@ -160,6 +161,7 @@ async def run_worker(
     runner: Path,
     environment: dict[str, str],
     semaphore: asyncio.Semaphore,
+    agent_timeout_seconds: int = DEFAULT_AGENT_TIMEOUT_SECONDS,
 ) -> WorkerResult:
     async with semaphore:
         print(
@@ -178,6 +180,8 @@ async def run_worker(
             str(job.http_port),
             "--output-dir",
             str(job.output_dir),
+            "--agent-timeout-seconds",
+            str(agent_timeout_seconds),
         ]
         if job.model is None:
             command.append("--oracle")
@@ -227,11 +231,18 @@ async def run_jobs(
     runner: Path,
     environment: dict[str, str],
     concurrency: int,
+    agent_timeout_seconds: int = DEFAULT_AGENT_TIMEOUT_SECONDS,
 ) -> list[WorkerResult]:
     semaphore = asyncio.Semaphore(concurrency)
     tasks = [
         asyncio.create_task(
-            run_worker(job, runner=runner, environment=environment, semaphore=semaphore)
+            run_worker(
+                job,
+                runner=runner,
+                environment=environment,
+                semaphore=semaphore,
+                agent_timeout_seconds=agent_timeout_seconds,
+            )
         )
         for job in jobs
     ]
@@ -468,6 +479,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--attempts", type=int, default=1)
     parser.add_argument("--concurrency", type=int, default=2)
     parser.add_argument(
+        "--agent-timeout-seconds",
+        type=int,
+        default=DEFAULT_AGENT_TIMEOUT_SECONDS,
+        help=f"maximum Claux runtime per trial (default: {DEFAULT_AGENT_TIMEOUT_SECONDS})",
+    )
+    parser.add_argument(
         "--base-port",
         type=int,
         default=22600,
@@ -486,6 +503,8 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
         raise ValueError("--attempts must be a positive integer")
     if args.concurrency <= 0:
         raise ValueError("--concurrency must be a positive integer")
+    if args.agent_timeout_seconds <= 0:
+        raise ValueError("--agent-timeout-seconds must be a positive integer")
     if args.oracle and args.models:
         raise ValueError("--oracle cannot be combined with --models")
     if not args.oracle and not args.models and not args.list_scenarios:
@@ -561,6 +580,7 @@ def main(argv: list[str] | None = None) -> int:
         "models": ["oracle" if model is None else model for model in models],
         "attempts": args.attempts,
         "concurrency": args.concurrency,
+        "agent_timeout_seconds": args.agent_timeout_seconds,
         "claux_release": args.claux_release
         or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260804.0.0"),
     }
@@ -579,6 +599,7 @@ def main(argv: list[str] | None = None) -> int:
                 runner=SCRIPT_DIR / "run-host-native.sh",
                 environment=environment,
                 concurrency=args.concurrency,
+                agent_timeout_seconds=args.agent_timeout_seconds,
             )
         )
     except KeyboardInterrupt:

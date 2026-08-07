@@ -105,16 +105,18 @@ set -euo pipefail
 output=""
 model="oracle"
 scenario=""
+agent_timeout=""
 while (( $# > 0 )); do
   case "$1" in
     --output-dir) output="$2"; shift 2 ;;
     --model) model="$2"; shift 2 ;;
     --scenario) scenario="$2"; shift 2 ;;
+    --agent-timeout-seconds) agent_timeout="$2"; shift 2 ;;
     *) shift ;;
   esac
 done
 mkdir -p "$output"
-python - "$output/result.json" "$scenario" "$model" <<'PY'
+python - "$output/result.json" "$scenario" "$model" "$agent_timeout" <<'PY'
 import json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
 result = {
@@ -123,6 +125,7 @@ result = {
     "model": sys.argv[3],
     "reward": 0,
     "failure_category": "backlog_not_recovered",
+    "test_agent_timeout_seconds": int(sys.argv[4]),
 }
 path.write_text(json.dumps(result))
 PY
@@ -145,12 +148,14 @@ exit 1
                     runner=runner,
                     environment={},
                     concurrency=1,
+                    agent_timeout_seconds=321,
                 )
             )
 
         self.assertEqual(results[0].exit_code, 1)
         self.assertIsNotNone(results[0].result)
         self.assertIsNone(results[0].error)
+        self.assertEqual(results[0].result["test_agent_timeout_seconds"], 321)
 
     def test_slugify_model_id(self) -> None:
         self.assertEqual(slugify("OpenAI/GPT-5.6 Luna"), "openai-gpt-5-6-luna")

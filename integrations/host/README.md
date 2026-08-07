@@ -66,7 +66,8 @@ integrations/host/run-host-native.sh \
 
 Use `--ssh-port` and `--http-port` when running workers concurrently. Set
 `REPLAYBOOK_HOST_CLAUX_BINARY` to evaluate a local binary instead of downloading
-the default released Claux version.
+the default released Claux version. Claux receives 900 seconds by default;
+override it with `--agent-timeout-seconds`.
 
 ## Run a model matrix
 
@@ -91,6 +92,10 @@ result and transcript paths, benchmark metadata, failure categories, model
 aggregates with token and cost totals, and scenario-version-aware aggregates.
 Evaluation failures are valid matrix results; the command exits nonzero only
 when a worker fails to produce a valid result.
+
+The matrix passes `--agent-timeout-seconds` to every worker and records the
+chosen value in `benchmark.json`. A model that exceeds the limit is terminated
+inside its VM and recorded with `failure_category: "agent_timeout"`.
 
 List available scenarios and their versions with:
 

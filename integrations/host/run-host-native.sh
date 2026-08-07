@@ -14,6 +14,8 @@ Options:
   --model MODEL       OpenRouter model for Claux.
   --ssh-port PORT     Forwarded SSH port (default: 22600).
   --http-port PORT    Forwarded HTTP port (default: 22601).
+  --agent-timeout-seconds SECONDS
+                      Maximum Claux runtime (default: 900).
   --output-dir DIR    Result directory. It must not already exist.
   -h, --help          Show this help.
 
@@ -36,6 +38,7 @@ MODEL="deepseek/deepseek-v4-flash"
 SCENARIO_ID="001-nginx-502-host"
 SSH_PORT=22600
 HTTP_PORT=22601
+AGENT_TIMEOUT_SECONDS=900
 OUTPUT_DIR=""
 RUN_ORACLE=false
 
@@ -63,6 +66,11 @@ while (( $# > 0 )); do
     --http-port)
       (( $# >= 2 )) || { echo "--http-port requires a value" >&2; exit 2; }
       HTTP_PORT="$2"
+      shift 2
+      ;;
+    --agent-timeout-seconds)
+      (( $# >= 2 )) || { echo "--agent-timeout-seconds requires a value" >&2; exit 2; }
+      AGENT_TIMEOUT_SECONDS="$2"
       shift 2
       ;;
     --output-dir)
@@ -133,6 +141,10 @@ done
   echo "SSH and HTTP ports must differ" >&2
   exit 2
 }
+if [[ ! "$AGENT_TIMEOUT_SECONDS" =~ ^[0-9]+$ ]] || (( AGENT_TIMEOUT_SECONDS <= 0 )); then
+  echo "--agent-timeout-seconds must be a positive integer" >&2
+  exit 2
+fi
 
 for port in "$SSH_PORT" "$HTTP_PORT"; do
   if ss -ltn "sport = :${port}" | tail -n +2 | grep -q .; then
@@ -344,9 +356,16 @@ else
   printf 'export OPENROUTER_API_KEY=%q\n' "$OPENROUTER_API_KEY" \
     | "${SSH[@]}" "umask 077; cat > /root/replaybook-eval/runtime.env"
   echo "[host] running Claux directly on the incident host"
-  "${SSH[@]}" "bash /root/replaybook-eval/run-claux.sh" || run_status=$?
+  "${SSH[@]}" \
+    "timeout --signal=TERM --kill-after=30s ${AGENT_TIMEOUT_SECONDS}s bash /root/replaybook-eval/run-claux.sh" \
+    || run_status=$?
 fi
 agent_seconds="$(( $(date +%s) - start_seconds ))"
+agent_timed_out=false
+if (( run_status == 124 )) \
+  || (( run_status == 137 && agent_seconds >= AGENT_TIMEOUT_SECONDS )); then
+  agent_timed_out=true
+fi
 
 # Preserve usage and transcript data while the repaired host is still
 # reachable. Verification deliberately restarts and reboots that host, and a
@@ -374,7 +393,10 @@ if (( run_status == 255 )); then
 fi
 
 if (( run_status != 0 )); then
-  if [[ "$failure_category" == "agent_rebooted_host" ]]; then
+  if [[ "$agent_timed_out" == true ]]; then
+    failure_category="agent_timeout"
+    failure="agent exceeded ${AGENT_TIMEOUT_SECONDS} second timeout"
+  elif [[ "$failure_category" == "agent_rebooted_host" ]]; then
     failure="agent rebooted the host during its session"
   else
     failure="agent exited with status $run_status"
@@ -458,6 +480,7 @@ jq -n \
   --arg failure_category "$failure_category" \
   --argjson reward "$reward" \
   --argjson agent_seconds "$agent_seconds" \
+  --argjson agent_timeout_seconds "$AGENT_TIMEOUT_SECONDS" \
   --argjson immediate_passed "$immediate_passed" \
   --argjson restart_passed "$restart_passed" \
   --argjson reboot_passed "$reboot_passed" \
@@ -472,6 +495,7 @@ jq -n \
     started_at: $started_at,
     finished_at: $finished_at,
     agent_duration_seconds: $agent_seconds,
+    agent_timeout_seconds: $agent_timeout_seconds,
     reward: $reward,
     failure: (if $failure == "" then null else $failure end),
     failure_category: (if $failure_category == "" then null else $failure_category end),
