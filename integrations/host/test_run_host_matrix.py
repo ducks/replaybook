@@ -22,6 +22,7 @@ class HostMatrixTests(unittest.TestCase):
         scenarios = discover_scenarios()
         self.assertEqual(scenarios["001-nginx-502-host"], 1)
         self.assertEqual(scenarios["013-sidekiq-wrong-redis"], 2)
+        self.assertEqual(scenarios["014-missing-rails-migration"], 1)
 
     def test_build_jobs_assigns_stable_adjacent_port_pairs(self) -> None:
         jobs = build_jobs(

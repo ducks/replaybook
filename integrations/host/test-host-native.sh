@@ -10,6 +10,8 @@ bash -n "$script_dir/classify-agent-exit.sh"
 find "$script_dir/scenarios" -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
 ruby -c "$script_dir/scenarios/013-sidekiq-wrong-redis/app/jobs.rb" >/dev/null
 ruby -c "$script_dir/scenarios/013-sidekiq-wrong-redis/app/server.rb" >/dev/null
+ruby -c "$script_dir/scenarios/014-missing-rails-migration/app/jobs.rb" >/dev/null
+ruby -c "$script_dir/scenarios/014-missing-rails-migration/app/server.rb" >/dev/null
 
 grep -q 'systemd.services.checkout-backend' "$script_dir/worker/nixos.nix"
 grep -q 'systemd.services.incident-nginx' "$script_dir/worker/nixos.nix"
@@ -23,8 +25,17 @@ grep -q 'backlog-job-ids' "$script_dir/scenarios/013-sidekiq-wrong-redis/preflig
 grep -q 'checkout web service did not become ready for preflight' "$script_dir/scenarios/013-sidekiq-wrong-redis/preflight.sh"
 grep -q 'exit 20' "$script_dir/scenarios/013-sidekiq-wrong-redis/verify.sh"
 grep -q 'failure_category="backlog_not_recovered"' "$script_dir/run-host-native.sh"
+grep -q 'failure_category="migration_not_applied"' "$script_dir/run-host-native.sh"
 grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/001-nginx-502-host/scenario.conf"
 grep -q 'SCENARIO_VERSION="2"' "$script_dir/scenarios/013-sidekiq-wrong-redis/scenario.conf"
+grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/014-missing-rails-migration/scenario.conf"
+grep -q '202608070001_add_delivery_state.sql' "$script_dir/scenarios/014-missing-rails-migration/oracle.sh"
+grep -q 'deployment/migration' "$script_dir/scenarios/014-missing-rails-migration/verify.sh"
+if grep -q 'ADD COLUMN IF NOT EXISTS' \
+  "$script_dir/scenarios/014-missing-rails-migration/app/db/migrate/202608070001_add_delivery_state.sql"; then
+  echo "migration scenario unexpectedly permits untracked manual schema repair" >&2
+  exit 1
+fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
 
 if grep -qER 'docker\.enable|docker\.sock|docker-compose' "$script_dir/worker" "$script_dir/scenarios"; then
@@ -49,6 +60,7 @@ grep -q 'native_tool_filesystem_policy = "unrestricted"' "$script_dir/run-claux.
 grep -q 'bash_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/instruction.md"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/scenarios/013-sidekiq-wrong-redis/instruction.md"
+grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/scenarios/014-missing-rails-migration/instruction.md"
 
 console_log="$(mktemp)"
 trap 'rm -f -- "$console_log"' EXIT
