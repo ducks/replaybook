@@ -1,7 +1,7 @@
-# Host-native evaluation spike
+# Host-native evaluation
 
-This spike evaluates an infrastructure agent on a real disposable Linux host.
-The agent does not receive a Docker socket and does not manage sibling
+This integration evaluates an infrastructure agent on a real disposable Linux
+host. The agent does not receive a Docker socket and does not manage sibling
 containers.
 
 The local controller builds and boots a scenario-selected NixOS VM. Two
@@ -55,6 +55,36 @@ integrations/host/run-host-native.sh \
 Use `--ssh-port` and `--http-port` when running workers concurrently. Set
 `REPLAYBOOK_HOST_CLAUX_BINARY` to evaluate a local binary instead of downloading
 the default released Claux version.
+
+## Run a model matrix
+
+The Python matrix runner schedules multiple models and attempts while the Bash
+runner remains the single-worker primitive:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --scenario 013-sidekiq-wrong-redis \
+  --models \
+    deepseek/deepseek-v4-flash \
+    poolside/laguna-s-2.1 \
+    openai/gpt-5.6-luna \
+    minimax/minimax-m3 \
+  --attempts 3 \
+  --concurrency 2
+```
+
+Each trial receives adjacent SSH and HTTP ports starting at `--base-port`.
+Results are written under `jobs/host-matrix-*`, including per-trial logs,
+result and transcript paths, benchmark metadata, failure categories, model
+aggregates with token and cost totals, and scenario-version-aware aggregates.
+Evaluation failures are valid matrix results; the command exits nonzero only
+when a worker fails to produce a valid result.
+
+List available scenarios and their versions with:
+
+```sh
+python integrations/host/run_host_matrix.py --list-scenarios
+```
 
 Results are written under `jobs/host-native-*`. Claux runs include its native
 one-shot JSON output and complete tool transcript. `result.json` records the
