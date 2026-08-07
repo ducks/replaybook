@@ -17,8 +17,40 @@ before the agent begins. The controller retains their exact IDs and requires
 all three to reach PostgreSQL. It then submits new jobs after the repair,
 service restart, and host reboot.
 
-These are single development attempts from August 7, 2026. They demonstrate
-the verifier behavior and are not a model ranking.
+### Current matrix results
+
+These August 7, 2026 runs used the Python host-native matrix runner and version
+2 of the scenario. DeepSeek, Laguna, Luna, and MiniMax ran together in one
+12-trial batch. Qwen ran separately immediately afterward with the same Claux
+harness, scenario, verifier, and attempt count.
+
+| Model | Durable repairs | Median trial time | Reported cost |
+|---|---:|---:|---:|
+| DeepSeek V4 Flash | 3/3 | 1:31 | $0.0187 |
+| Poolside Laguna S 2.1 | 3/3 | 0:57 | $0.0133 |
+| MiniMax M3 | 3/3 | 1:49 | $0.1348 |
+| Qwen3.8 Max | 3/3 | 4:52 | $0.5816 |
+| GPT-5.6 Luna | 2/3 | 1:12 | $0.0236 |
+
+Qwen recovered every seeded job, but used 783,176 input tokens and 38,411
+output tokens across its three attempts. It was more than three times slower
+and roughly 31 times more expensive than DeepSeek on this scenario. The extra
+work did not improve the score because the cheaper models already reached the
+verifier's ceiling.
+
+Luna's failed attempt repaired the live service and processed new jobs, but did
+not recover all three controller-owned backlog IDs. The runner recorded it as
+`backlog_not_recovered`, an evaluation failure rather than an infrastructure
+error. All 15 trials produced valid results.
+
+These are still development results from one scenario, not a general model
+ranking. Qwen's trials were a separate batch, so small differences in host or
+provider conditions may affect timing.
+
+### Earlier single-attempt results
+
+These single development attempts from August 7, 2026 demonstrate the verifier
+behavior that motivated the stricter backlog check.
 
 | Model | Durable repair | Backlog recovered | Duration | Reported cost |
 |---|---:|---:|---:|---:|
@@ -45,7 +77,12 @@ Reproduce a versioned comparison with the Python matrix runner:
 ```sh
 python integrations/host/run_host_matrix.py \
   --scenario 013-sidekiq-wrong-redis \
-  --models deepseek/deepseek-v4-flash poolside/laguna-s-2.1 \
+  --models \
+    deepseek/deepseek-v4-flash \
+    poolside/laguna-s-2.1 \
+    openai/gpt-5.6-luna \
+    minimax/minimax-m3 \
+    qwen/qwen3.8-max \
   --attempts 3 \
   --concurrency 2
 ```
