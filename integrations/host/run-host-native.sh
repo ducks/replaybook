@@ -165,6 +165,8 @@ else
   }
   mkdir -p "$OUTPUT_DIR"
 fi
+SCENARIO_STATE_DIR="${OUTPUT_DIR}/scenario-state"
+mkdir -m 0700 "$SCENARIO_STATE_DIR"
 
 WORK_DIR="$(mktemp -d "${WORK_PARENT%/}/replaybook-host-eval.XXXXXX")"
 VM_PID=""
@@ -241,7 +243,18 @@ wait_for_services() {
 
 verify_repaired() {
   local phase="$1"
-  "$VERIFY" "http://127.0.0.1:${HTTP_PORT}" "$phase"
+  "$VERIFY" "http://127.0.0.1:${HTTP_PORT}" "$phase" "$SCENARIO_STATE_DIR"
+}
+
+run_verification() {
+  local phase="$1"
+  local status=0
+
+  verify_repaired "$phase" || status=$?
+  if (( status == 20 )); then
+    failure_category="backlog_not_recovered"
+  fi
+  return "$status"
 }
 
 echo "[host] building disposable NixOS incident host"
@@ -277,7 +290,7 @@ if ! wait_for_services; then
   exit 1
 fi
 
-if ! "$PREFLIGHT" "http://127.0.0.1:${HTTP_PORT}"; then
+if ! "$PREFLIGHT" "http://127.0.0.1:${HTTP_PORT}" "$SCENARIO_STATE_DIR"; then
   echo "incident preflight failed for ${SCENARIO_ID}" >&2
   exit 1
 fi
@@ -340,15 +353,23 @@ if (( run_status != 0 )); then
   else
     failure="agent exited with status $run_status"
   fi
-elif ! verify_repaired immediate; then
-  failure="HTTP repair did not recover"
+elif ! run_verification immediate; then
+  if [[ "$failure_category" == "backlog_not_recovered" ]]; then
+    failure="repair did not recover the pre-existing backlog"
+  else
+    failure="HTTP repair did not recover"
+  fi
 else
   immediate_passed=true
   echo "[host] immediate verification passed"
   if ! "${SSH[@]}" "systemctl restart $RESTART_SERVICES"; then
     failure="service restart failed"
-  elif ! verify_repaired service_restart; then
-    failure="repair did not survive service restarts"
+  elif ! run_verification service_restart; then
+    if [[ "$failure_category" == "backlog_not_recovered" ]]; then
+      failure="pre-existing backlog recovery did not survive service restarts"
+    else
+      failure="repair did not survive service restarts"
+    fi
   else
     restart_passed=true
     echo "[host] service restart verification passed"
@@ -361,8 +382,12 @@ else
       failure="VM did not return after reboot"
     elif ! wait_for_services; then
       failure="required systemd services are not active after reboot"
-    elif ! verify_repaired host_reboot; then
-      failure="repair did not survive host reboot"
+    elif ! run_verification host_reboot; then
+      if [[ "$failure_category" == "backlog_not_recovered" ]]; then
+        failure="pre-existing backlog recovery did not survive host reboot"
+      else
+        failure="repair did not survive host reboot"
+      fi
     else
       reboot_passed=true
       echo "[host] host reboot verification passed"
