@@ -7,6 +7,7 @@ bash -n "$script_dir/run-host-native.sh"
 bash -n "$script_dir/run-claux.sh"
 bash -n "$script_dir/oracle.sh"
 bash -n "$script_dir/classify-agent-exit.sh"
+bash -n "$script_dir/ssh-probe.sh"
 find "$script_dir/scenarios" -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
 ruby -c "$script_dir/scenarios/013-sidekiq-wrong-redis/app/jobs.rb" >/dev/null
 ruby -c "$script_dir/scenarios/013-sidekiq-wrong-redis/app/server.rb" >/dev/null
@@ -79,6 +80,7 @@ grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 grep -q 'capture_agent_results || true' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="host_reboot_failed"' "$script_dir/run-host-native.sh"
 grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host-native.sh"
+[[ "$(grep -c 'ssh-probe.sh.*"\${SSH\[@\]}"' "$script_dir/run-host-native.sh")" -eq 3 ]]
 grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
@@ -105,6 +107,39 @@ printf '%s\n' '[   63.187500] reboot: Restarting system' >"$console_log"
 [[ -z "$("$script_dir/classify-agent-exit.sh" 1 "$console_log")" ]]
 printf '%s\n' 'Connection to host closed.' >"$console_log"
 [[ -z "$("$script_dir/classify-agent-exit.sh" 255 "$console_log")" ]]
+
+probe_dir="$(mktemp -d)"
+probe_server_pid=""
+cleanup_probe() {
+  [[ -z "$probe_server_pid" ]] || kill "$probe_server_pid" 2>/dev/null || true
+  [[ -z "$probe_server_pid" ]] || wait "$probe_server_pid" 2>/dev/null || true
+  rm -rf -- "$probe_dir"
+}
+trap cleanup_probe EXIT
+python -c 'import socket,time; server=socket.socket(); server.bind(("127.0.0.1", 0)); server.listen(); print(server.getsockname()[1], flush=True); connection,_=server.accept(); time.sleep(30)' \
+  >"$probe_dir/port" &
+probe_server_pid=$!
+for _ in $(seq 1 50); do
+  [[ -s "$probe_dir/port" ]] && break
+  sleep 0.1
+done
+[[ -s "$probe_dir/port" ]]
+probe_port="$(<"$probe_dir/port")"
+probe_started="$SECONDS"
+set +e
+"$script_dir/ssh-probe.sh" 2 ssh \
+  -p "$probe_port" \
+  -o BatchMode=yes \
+  -o StrictHostKeyChecking=no \
+  -o UserKnownHostsFile=/dev/null \
+  root@127.0.0.1 true >/dev/null 2>&1
+probe_status=$?
+set -e
+probe_elapsed="$((SECONDS - probe_started))"
+[[ "$probe_status" -eq 124 ]]
+(( probe_elapsed < 6 ))
+cleanup_probe
+trap 'rm -f -- "$console_log"' EXIT
 
 output="$($script_dir/run-host-native.sh --help)"
 grep -q 'host-native infrastructure evaluation' <<<"$output"

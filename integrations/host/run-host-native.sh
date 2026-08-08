@@ -228,7 +228,7 @@ wait_for_ssh() {
     if [[ -n "$VM_PID" ]] && ! kill -0 "$VM_PID" 2>/dev/null; then
       return 1
     fi
-    if "${SSH[@]}" true >/dev/null 2>&1; then
+    if "$SCRIPT_DIR/ssh-probe.sh" 5 "${SSH[@]}" true >/dev/null 2>&1; then
       return 0
     fi
     sleep 2
@@ -240,7 +240,7 @@ wait_for_ssh_down() {
   local timeout_seconds="${1:-30}"
   local deadline="$((SECONDS + timeout_seconds))"
   while (( SECONDS < deadline )); do
-    if ! "${SSH[@]}" true >/dev/null 2>&1; then
+    if ! "$SCRIPT_DIR/ssh-probe.sh" 5 "${SSH[@]}" true >/dev/null 2>&1; then
       return 0
     fi
     sleep 1
@@ -252,7 +252,7 @@ wait_for_services() {
   local timeout_seconds="${1:-60}"
   local deadline="$((SECONDS + timeout_seconds))"
   while (( SECONDS < deadline )); do
-    if "${SSH[@]}" \
+    if "$SCRIPT_DIR/ssh-probe.sh" 5 "${SSH[@]}" \
       "for service in $REQUIRED_SERVICES; do systemctl is-active \"\$service\" >/dev/null || exit 1; done" \
       >/dev/null 2>&1; then
       return 0
