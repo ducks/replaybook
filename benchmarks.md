@@ -8,6 +8,71 @@ These results are evaluation history, not a definitive model ranking. Runs made
 with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
+## Host-native harness v5 smoke matrix
+
+### Five scenarios and three models, 2026-08-08
+
+DeepSeek V4 Pro, Tencent HY3 Preview, and GLM 5.2 each ran all five current
+host-native scenarios once. All 15 requested trials were evaluated and made a
+durable repair. There were no unavailable attempts or evaluation failures.
+
+| Model | Durable repairs | Median trial time | Input tokens | Reported cost | Cost per repair |
+|---|---:|---:|---:|---:|---:|
+| DeepSeek V4 Pro | 5/5 | 4:28 | 1,688,598 | $0.0408 | $0.0082 |
+| Tencent HY3 Preview | 5/5 | 2:18 | 2,195,048 | $0.0668 | $0.0134 |
+| GLM 5.2 | 5/5 | 3:25 | 1,671,782 | $0.1665 | $0.0333 |
+| **Total** | **15/15** | **3:26 median** | **5,555,428** | **$0.2740** | **$0.0183** |
+
+Each repair passed immediate verification, service restart, and host reboot.
+Stateful verifiers also required the exact pre-existing work to recover.
+
+| Scenario | Version | DeepSeek | HY3 | GLM |
+|---|---:|---:|---:|---:|
+| 001 Nginx 502 | 1 | 4:13 | 1:40 | 0:54 |
+| 013 Sidekiq wrong Redis database | 2 | 3:38 | 3:04 | 1:01 |
+| 014 Missing Rails migration | 2 | 5:25 | 2:08 | 3:25 |
+| 015 Sidekiq poison pill | 1 | 9:51 | 12:41 | 4:21 |
+| 016 Rails pool exhaustion | 1 | 4:28 | 2:18 | 3:26 |
+
+DeepSeek was cheapest. HY3 had the fastest overall median. GLM was fastest on
+three scenarios, including a 4:21 poison-job repair where HY3 took 12:41. These
+are useful cost and latency profiles, but one attempt per model and scenario is
+not enough to compare reliability.
+
+Run metadata:
+
+- Host harness version: `5`
+- Benchmark suite: `replaybook-host-matrix-v1`
+- Attempts per scenario: `1`
+- Replaybook commit: `a4327bfc89e2a73a4321f5b368f6fb10e9504335`
+- Claux release: `v20260808.0.0`
+- Agent timeout: `900` seconds
+- Concurrency: `2`
+- Reported input tokens: `5,555,428`
+- Reported cached tokens: `4,935,116`
+- Reported output tokens: `137,937`
+
+Reproduce the smoke matrix with:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --scenario 001-nginx-502-host \
+  --scenario 013-sidekiq-wrong-redis \
+  --scenario 014-missing-rails-migration \
+  --scenario 015-sidekiq-poison-pill \
+  --scenario 016-rails-pool-exhaustion \
+  --models \
+    deepseek/deepseek-v4-pro \
+    tencent/hy3-preview \
+    z-ai/glm-5.2 \
+  --attempts 1 \
+  --concurrency 2
+```
+
+Harness v5 also distinguishes unavailable attempts from evaluated repairs.
+Provider, authentication, and harness runtime failures remain visible in trial
+and cost totals but do not count against a model's pass rate.
+
 ## Host-native harness v2 baseline
 
 ### DeepSeek V4 Flash 0731, 2026-08-08

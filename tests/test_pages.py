@@ -51,15 +51,26 @@ class PagesTests(unittest.TestCase):
         self.assertIn("path: docs", workflow)
         self.assertIn("actions/deploy-pages@v4", workflow)
 
-    def test_benchmark_page_separates_current_and_archived_results(self) -> None:
-        page = (DOCS_DIR / "benchmarks.html").read_text()
-        self.assertIn("DeepSeek V4 Flash 0731", page)
-        self.assertIn("Host harness v2", page)
-        self.assertIn("9/9", page)
-        self.assertIn("DeepSeek revision comparison", page)
-        self.assertIn("51% fewer", page)
-        self.assertIn("migration_not_applied", page)
-        self.assertIn('class="badge archived"', page)
+    def test_benchmark_pages_separate_current_history_and_methodology(self) -> None:
+        current = (DOCS_DIR / "benchmarks.html").read_text()
+        history = (DOCS_DIR / "benchmark-history.html").read_text()
+        methodology = (DOCS_DIR / "benchmark-methodology.html").read_text()
+
+        self.assertIn("Host harness v5", current)
+        self.assertIn("15/15", current)
+        self.assertIn("DeepSeek V4 Pro", current)
+        self.assertNotIn('class="badge archived"', current)
+
+        self.assertIn("DeepSeek V4 Flash 0731", history)
+        self.assertIn("Host harness v2", history)
+        self.assertIn("DeepSeek revision comparison", history)
+        self.assertIn("51% fewer", history)
+        self.assertIn("migration_not_applied", history)
+        self.assertIn('class="badge archived"', history)
+
+        self.assertIn("Evaluated, failed, and unavailable", methodology)
+        self.assertIn("Price per durable repair", methodology)
+        self.assertIn("v5", methodology)
 
 
 if __name__ == "__main__":

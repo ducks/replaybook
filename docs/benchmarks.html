@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Benchmarks &middot; replaybook</title>
-  <meta name="description" content="Replaybook evaluates whether infrastructure agents make durable repairs to running systems.">
+  <title>Current benchmarks &middot; replaybook</title>
+  <meta name="description" content="Current Replaybook infrastructure-agent benchmark results.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,70 +20,78 @@
       </nav>
     </header>
 
-    <p class="eyebrow">Host-native agent evaluation</p>
-    <h1>Passing is not repairing.</h1>
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html" class="active" aria-current="page">Current</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+    <p class="eyebrow">Host harness v5</p>
+    <h1>Current results</h1>
     <p class="tagline benchmark-tagline">
-      Replaybook puts an agent inside a disposable Linux host with a real
-      incident. The repair must work now, survive service restarts, survive a
-      host reboot, and preserve the work that was already in flight.
+      Five stateful incidents, three models, and fifteen repairs verified after
+      service restart and host reboot.
     </p>
 
-    <div class="metric-grid" aria-label="Current benchmark properties">
+    <div class="metric-grid" aria-label="Current benchmark results">
       <div class="metric">
-        <span class="metric-value">v5</span>
-        <span class="metric-label">current host harness</span>
+        <span class="metric-value">15/15</span>
+        <span class="metric-label">durable repairs</span>
       </div>
       <div class="metric">
-        <span class="metric-value">5</span>
-        <span class="metric-label">host-native scenarios</span>
+        <span class="metric-value">3:26</span>
+        <span class="metric-label">overall median</span>
       </div>
       <div class="metric">
-        <span class="metric-value">0</span>
-        <span class="metric-label">answer keys on model VMs</span>
+        <span class="metric-value">$0.2740</span>
+        <span class="metric-label">total reported cost</span>
       </div>
-    </div>
-
-    <h2>What a trial measures</h2>
-
-    <div class="gate-grid">
-      <article class="gate">
-        <span class="gate-number">01</span>
-        <h3>Repair the live system</h3>
-        <p>The user-facing behavior must recover without replacing the host.</p>
-      </article>
-      <article class="gate">
-        <span class="gate-number">02</span>
-        <h3>Survive service restart</h3>
-        <p>Temporary processes, shell state, and in-memory workarounds disappear.</p>
-      </article>
-      <article class="gate">
-        <span class="gate-number">03</span>
-        <h3>Survive host reboot</h3>
-        <p>Only repairs made to the deployed system remain after a full reboot.</p>
-      </article>
-      <article class="gate">
-        <span class="gate-number">04</span>
-        <h3>Preserve existing work</h3>
-        <p>A green health check does not excuse lost jobs or abandoned state.</p>
-      </article>
     </div>
 
     <div class="callout benchmark-status verified-status">
-      <strong>First verified harness-v2 baseline complete.</strong>
-      DeepSeek V4 Flash 0731 made nine durable repairs in nine trials for a
-      total reported cost of $0.0592. Every trial survived service restart and
-      host reboot verification.
+      <strong>Five-scenario smoke matrix complete.</strong>
+      Every requested trial was evaluated. All fifteen repairs passed immediate,
+      service-restart, and host-reboot verification with no unavailable trials.
     </div>
 
-    <h2>Current baseline</h2>
+    <h2>Model summary</h2>
 
-    <div class="section-heading">
-      <div>
-        <h3>DeepSeek V4 Flash 0731</h3>
-        <p class="muted">Host harness v2, three attempts per scenario, August 8, 2026</p>
-      </div>
-      <span class="badge verified">Verified</span>
+    <p>
+      Each model ran each scenario once through Claux on August 8, 2026. This is
+      enough to expose differences in time and cost, but one attempt per
+      scenario is not enough to rank reliability.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Repairs</th>
+            <th>Median</th>
+            <th>Input tokens</th>
+            <th>Total cost</th>
+            <th>Cost / repair</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>DeepSeek V4 Pro</td><td>5/5</td><td>4:28</td><td>1,688,598</td><td>$0.0408</td><td>$0.0082</td></tr>
+          <tr><td>Tencent HY3 Preview</td><td>5/5</td><td>2:18</td><td>2,195,048</td><td>$0.0668</td><td>$0.0134</td></tr>
+          <tr><td>GLM 5.2</td><td>5/5</td><td>3:25</td><td>1,671,782</td><td>$0.1665</td><td>$0.0333</td></tr>
+          <tr class="total-row"><td>Total</td><td>15/15</td><td>3:26</td><td>5,555,428</td><td>$0.2740</td><td>$0.0183</td></tr>
+        </tbody>
+      </table>
     </div>
+
+    <p>
+      DeepSeek was cheapest at about 0.82 cents per repair. HY3 had the fastest
+      median and cost about 1.6 times as much per repair. GLM cost about four
+      times as much as DeepSeek, but was fastest on the Nginx, Redis, and poison
+      job incidents. With every model at 100 percent, these are cost and latency
+      profiles, not reliability rankings.
+    </p>
+
+    <h2>Scenario breakdown</h2>
 
     <div class="table-scroll">
       <table>
@@ -91,188 +99,39 @@
           <tr>
             <th>Scenario</th>
             <th>Version</th>
-            <th>Durable repairs</th>
-            <th>Median</th>
-            <th>Reported cost</th>
+            <th>DeepSeek</th>
+            <th>HY3</th>
+            <th>GLM</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Nginx 502</td><td>v1</td><td>3/3</td><td>0:55</td><td>$0.0093</td></tr>
-          <tr><td>Sidekiq wrong Redis database</td><td>v2</td><td>3/3</td><td>2:02</td><td>$0.0146</td></tr>
-          <tr><td>Missing Rails migration</td><td>v2</td><td>3/3</td><td>4:24</td><td>$0.0353</td></tr>
-          <tr class="total-row"><td>Total</td><td></td><td>9/9</td><td>2:02 median</td><td>$0.0592</td></tr>
+          <tr><td>Nginx 502</td><td>v1</td><td>4:13</td><td>1:40</td><td>0:54</td></tr>
+          <tr><td>Sidekiq wrong Redis database</td><td>v2</td><td>3:38</td><td>3:04</td><td>1:01</td></tr>
+          <tr><td>Missing Rails migration</td><td>v2</td><td>5:25</td><td>2:08</td><td>3:25</td></tr>
+          <tr><td>Sidekiq poison pill</td><td>v1</td><td>9:51</td><td>12:41</td><td>4:21</td></tr>
+          <tr><td>Rails pool exhaustion</td><td>v1</td><td>4:28</td><td>2:18</td><td>3:26</td></tr>
         </tbody>
       </table>
     </div>
 
     <p>
-      All nine trials reported usage: 1,703,055 input tokens, 1,428,352 cached
-      input tokens, and 44,979 output tokens. No trial timed out, lost the
-      pre-existing backlog, changed the expected topology, or referenced an
-      oracle or verifier in its tool trace.
+      The poison job produced the largest spread. HY3 was fastest overall but
+      took 12:41 there. GLM completed the same repair in 4:21. Repeated trials
+      will show whether that difference is characteristic or one noisy run.
     </p>
 
-    <p class="small muted">
-      This is a baseline, not yet a leaderboard. A controlled model comparison
-      requires other models to run through the same harness and scenario
-      versions with the same attempt count.
-    </p>
-
-    <h2>DeepSeek revision comparison</h2>
+    <h2>What counts as current</h2>
 
     <p>
-      Original V4 Flash and the 0731 revision ran with the same Replaybook
-      commit, harness, scenarios, Claux release, timeout, concurrency, and
-      attempt count. The model ID was the only intentional evaluation variable.
+      Current results use host harness v5 and the scenario versions shown
+      above. Harness v5 keeps the oracle and verifier outside the model VM and
+      separates unavailable provider or harness attempts from evaluated model
+      failures. Results from older harnesses remain available under
+      <a href="benchmark-history.html">History</a>, but are not mixed into this
+      comparison.
     </p>
 
-    <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Metric</th>
-            <th>Original</th>
-            <th>0731</th>
-            <th>Change</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Durable repairs</td><td>8/9</td><td>9/9</td><td>+1 pass</td></tr>
-          <tr><td>Median trial time</td><td>2:13</td><td>2:02</td><td>11s faster</td></tr>
-          <tr><td>Input tokens</td><td>3,488,467</td><td>1,703,055</td><td>51% fewer</td></tr>
-          <tr><td>Output tokens</td><td>64,448</td><td>44,979</td><td>30% fewer</td></tr>
-          <tr><td>Reported cost</td><td>$0.0811</td><td>$0.0592</td><td>27% lower</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="callout comparison-note">
-      <strong>The failed repair was meaningful.</strong>
-      Original V4 Flash added the missing database column manually but did not
-      apply or record the deployed migration. The live schema partially
-      recovered, but the verifier correctly returned
-      <code>migration_not_applied</code>. The 0731 revision completed the full
-      migration repair in all three attempts.
-    </div>
-
-    <p class="small muted">
-      Three attempts per scenario is a small sample. The pass-rate difference
-      is encouraging, while the 51% input-token reduction is the stronger
-      signal. Original V4 Flash was also 11 seconds faster on the Sidekiq
-      scenario, so 0731 was not uniformly faster on every task.
-    </p>
-
-    <h2>Discounted-model smoke test</h2>
-
-    <p>
-      Four discounted OpenRouter models were requested for one attempt on the
-      missing Rails migration. Three completed an evaluated trial and made a
-      durable repair. Ling reached a provider HTTP 429. A later availability
-      check did the same after consuming some tokens, so the table combines the
-      three evaluated smoke trials with that latest Ling attempt. Replaybook
-      records Ling as unavailable rather than as evidence that the model failed
-      the incident.
-    </p>
-
-    <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Result</th>
-            <th>Duration</th>
-            <th>Input tokens</th>
-            <th>Reported cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>DeepSeek V4 Pro</td><td>Pass</td><td>2:41</td><td>377,758</td><td>$0.0082</td></tr>
-          <tr><td>HY3 Preview</td><td>Pass</td><td>2:36</td><td>468,044</td><td>$0.0144</td></tr>
-          <tr><td>GLM 5.2</td><td>Pass</td><td>4:20</td><td>969,338</td><td>$0.0618</td></tr>
-          <tr><td>Ling 2.6 Flash</td><td>Unavailable</td><td>n/a</td><td>85,565</td><td>$0.0004</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p>
-      DeepSeek, HY3, and GLM reached the same verified outcome, but GLM cost
-      about 7.5 times as much as DeepSeek and used about 2.6 times as many input
-      tokens. HY3 finished five seconds sooner than DeepSeek for about 1.7 times
-      the cost. One attempt is useful for choosing the next matrix, not for
-      declaring a winner.
-    </p>
-
-    <div class="callout comparison-note">
-      <strong>Unavailable is not failed.</strong>
-      Host harness v5 separates provider, authentication, and harness failures
-      from evaluated repairs. Unavailable attempts remain visible in the trial
-      count and cost record, but they are excluded from model pass rates.
-    </div>
-
-    <h2>Current scenario set</h2>
-
-    <p>
-      The host-native catalog now covers five incidents: an Nginx upstream port
-      mismatch, a Sidekiq Redis database mismatch, a missing Rails migration, a
-      poison Sidekiq job, and Rails connection-pool exhaustion. The last two
-      extend the suite beyond configuration repair into preserving queued work
-      and recovering concurrent application behavior.
-    </p>
-
-    <h2>Archived development result</h2>
-
-    <div class="section-heading">
-      <div>
-        <h3>Sidekiq using the wrong Redis database</h3>
-        <p class="muted"><code>013-sidekiq-wrong-redis</code>, scenario v2, host harness v1</p>
-      </div>
-      <span class="badge archived">Archived</span>
-    </div>
-
-    <p>
-      These August 7, 2026 runs established useful behavior, including whether
-      agents preserved three queued checkout confirmations. They are archived
-      because host harness v1 exposed the reference repair inside the VM. They
-      must not be presented as current, controlled results.
-    </p>
-
-    <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Durable repairs</th>
-            <th>Median</th>
-            <th>Reported cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>DeepSeek V4 Flash</td><td>3/3</td><td>1:31</td><td>$0.0187</td></tr>
-          <tr><td>Poolside Laguna S 2.1</td><td>3/3</td><td>0:57</td><td>$0.0133</td></tr>
-          <tr><td>MiniMax M3</td><td>3/3</td><td>1:49</td><td>$0.1348</td></tr>
-          <tr><td>Qwen3.8 Max</td><td>3/3</td><td>4:52</td><td>$0.5816</td></tr>
-          <tr><td>GPT-5.6 Luna</td><td>2/3</td><td>1:12</td><td>$0.0236</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="small muted">
-      Archiving does not mean every agent used the leaked repair. It means the
-      harness did not guarantee isolation, so the comparison cannot support a
-      clean model ranking.
-    </p>
-
-    <h2>Failure is part of the result</h2>
-
-    <p>
-      Replaybook records why a repair failed instead of collapsing everything
-      into one score. Current categories include timed-out agents, unrecovered
-      backlogs, unapplied migrations, changed service topology, and hosts that
-      fail to return after reboot. Complete Claux transcripts preserve the
-      commands that produced each outcome.
-    </p>
-
-    <h2>Run the next smoke matrix</h2>
+    <h2>Run the matrix</h2>
 
     <pre><code>python integrations/host/run_host_matrix.py \
   --scenario 001-nginx-502-host \
@@ -287,11 +146,16 @@
   --attempts 1 \
   --concurrency 2</code></pre>
 
+    <p class="small muted">
+      Benchmark suite <code>replaybook-host-matrix-v1</code>, Replaybook commit
+      <code>a4327bfc</code>, Claux <code>v20260808.0.0</code>, 900-second agent
+      timeout, concurrency 2. All fifteen trials reported usage and cost.
+    </p>
+
     <p>
-      See the full
-      <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">benchmark history and methodology</a>
-      or inspect the
-      <a href="https://github.com/ducks/replaybook/tree/main/integrations/host">host-native runner</a>.
+      Read the <a href="benchmark-methodology.html">methodology</a>, browse the
+      <a href="benchmark-history.html">versioned history</a>, or inspect the
+      <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.
     </p>
 
     <footer class="site">
