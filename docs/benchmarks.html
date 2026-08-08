@@ -30,12 +30,12 @@
 
     <div class="metric-grid" aria-label="Current benchmark properties">
       <div class="metric">
-        <span class="metric-value">v2</span>
-        <span class="metric-label">host harness</span>
+        <span class="metric-value">v5</span>
+        <span class="metric-label">current host harness</span>
       </div>
       <div class="metric">
-        <span class="metric-value">4</span>
-        <span class="metric-label">verification checks</span>
+        <span class="metric-value">5</span>
+        <span class="metric-label">host-native scenarios</span>
       </div>
       <div class="metric">
         <span class="metric-value">0</span>
@@ -162,6 +162,63 @@
       scenario, so 0731 was not uniformly faster on every task.
     </p>
 
+    <h2>Discounted-model smoke test</h2>
+
+    <p>
+      Four discounted OpenRouter models were requested for one attempt on the
+      missing Rails migration. Three completed an evaluated trial and made a
+      durable repair. Ling reached a provider HTTP 429. A later availability
+      check did the same after consuming some tokens, so the table combines the
+      three evaluated smoke trials with that latest Ling attempt. Replaybook
+      records Ling as unavailable rather than as evidence that the model failed
+      the incident.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Result</th>
+            <th>Duration</th>
+            <th>Input tokens</th>
+            <th>Reported cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>DeepSeek V4 Pro</td><td>Pass</td><td>2:41</td><td>377,758</td><td>$0.0082</td></tr>
+          <tr><td>HY3 Preview</td><td>Pass</td><td>2:36</td><td>468,044</td><td>$0.0144</td></tr>
+          <tr><td>GLM 5.2</td><td>Pass</td><td>4:20</td><td>969,338</td><td>$0.0618</td></tr>
+          <tr><td>Ling 2.6 Flash</td><td>Unavailable</td><td>n/a</td><td>85,565</td><td>$0.0004</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      DeepSeek, HY3, and GLM reached the same verified outcome, but GLM cost
+      about 7.5 times as much as DeepSeek and used about 2.6 times as many input
+      tokens. HY3 finished five seconds sooner than DeepSeek for about 1.7 times
+      the cost. One attempt is useful for choosing the next matrix, not for
+      declaring a winner.
+    </p>
+
+    <div class="callout comparison-note">
+      <strong>Unavailable is not failed.</strong>
+      Host harness v5 separates provider, authentication, and harness failures
+      from evaluated repairs. Unavailable attempts remain visible in the trial
+      count and cost record, but they are excluded from model pass rates.
+    </div>
+
+    <h2>Current scenario set</h2>
+
+    <p>
+      The host-native catalog now covers five incidents: an Nginx upstream port
+      mismatch, a Sidekiq Redis database mismatch, a missing Rails migration, a
+      poison Sidekiq job, and Rails connection-pool exhaustion. The last two
+      extend the suite beyond configuration repair into preserving queued work
+      and recovering concurrent application behavior.
+    </p>
+
     <h2>Archived development result</h2>
 
     <div class="section-heading">
@@ -215,16 +272,19 @@
       commands that produced each outcome.
     </p>
 
-    <h2>Reproduce the next baseline</h2>
+    <h2>Run the next smoke matrix</h2>
 
     <pre><code>python integrations/host/run_host_matrix.py \
+  --scenario 001-nginx-502-host \
+  --scenario 013-sidekiq-wrong-redis \
   --scenario 014-missing-rails-migration \
+  --scenario 015-sidekiq-poison-pill \
+  --scenario 016-rails-pool-exhaustion \
   --models \
-    deepseek/deepseek-v4-flash-0731 \
-    poolside/laguna-s-2.1 \
-    openai/gpt-5.6-luna \
-    minimax/minimax-m3 \
-  --attempts 3 \
+    deepseek/deepseek-v4-pro \
+    tencent/hy3-preview \
+    z-ai/glm-5.2 \
+  --attempts 1 \
   --concurrency 2</code></pre>
 
     <p>
