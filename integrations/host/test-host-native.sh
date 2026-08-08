@@ -4,6 +4,7 @@ set -euo pipefail
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 bash -n "$script_dir/run-host-native.sh"
+bash -n "$script_dir/run-agent-adapter.sh"
 bash -n "$script_dir/run-claux.sh"
 bash -n "$script_dir/oracle.sh"
 bash -n "$script_dir/classify-agent-exit.sh"
@@ -47,7 +48,7 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=3' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=4' "$script_dir/run-host-native.sh"
 grep -q 'DECLARATIVE_SCENARIO=true' "$script_dir/run-host-native.sh"
 grep -q 'harness_version: $harness_version' "$script_dir/run-host-native.sh"
 
@@ -70,7 +71,10 @@ if grep -q 'harbor run' "$script_dir/run-host-native.sh"; then
   exit 1
 fi
 
-grep -q 'root@127.0.0.1:/root/replaybook-eval/claux' "$script_dir/run-host-native.sh"
+grep -q 'root@127.0.0.1:/root/replaybook-eval/adapter' "$script_dir/run-host-native.sh"
+grep -q 'REPLAYBOOK_RESULT_FILE=' "$script_dir/run-agent-adapter.sh"
+grep -q 'REPLAYBOOK_TRANSCRIPT_FILE=' "$script_dir/run-agent-adapter.sh"
+grep -q 'REPLAYBOOK_AGENT_PAYLOAD=' "$script_dir/run-agent-adapter.sh"
 if grep -q '/usr/local/bin/claux' \
   "$script_dir/run-host-native.sh" "$script_dir/run-claux.sh"; then
   echo "host-native runner assumes /usr/local/bin exists" >&2
@@ -175,7 +179,7 @@ grep -q 'unknown host-native scenario: missing' <<<"$output"
   printf '%s\n' 'export OPENROUTER_API_KEY=test' >"$eval_root/runtime.env"
   printf '%s\n' 'test/model' >"$eval_root/model"
   printf '%s\n' 'keep investigating' >"$eval_root/instruction.md"
-  cat >"$eval_root/claux" <<'EOF'
+  cat >"$eval_root/payload" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 if [[ "${1:-}" == "config" ]]; then
@@ -200,10 +204,15 @@ on_term() {
 trap on_term TERM
 sleep 30
 EOF
-  chmod 0755 "$eval_root/claux"
+  chmod 0755 "$eval_root/payload"
 
   set +e
   HOME="$home" REPLAYBOOK_EVAL_ROOT="$eval_root" \
+    REPLAYBOOK_MODEL="test/model" \
+    REPLAYBOOK_INSTRUCTION_FILE="$eval_root/instruction.md" \
+    REPLAYBOOK_AGENT_PAYLOAD="$eval_root/payload" \
+    REPLAYBOOK_RESULT_FILE="$eval_root/results/agent.json" \
+    REPLAYBOOK_TRANSCRIPT_FILE="$eval_root/results/transcript.json" \
     timeout --signal=TERM --kill-after=5s 1s bash "$script_dir/run-claux.sh" \
     >"$smoke_root/stdout" 2>"$smoke_root/stderr"
   status=$?
@@ -211,7 +220,37 @@ EOF
 
   [[ "$status" -eq 124 ]]
   jq -e '.outcome.status == "error" and (.tool_trace | length) == 1' \
-    "$eval_root/results/claux-transcript.json" >/dev/null
-  jq -e '.result == null and .usage.input_tokens == 12' \
-    "$eval_root/results/claux.json" >/dev/null
+    "$eval_root/results/transcript.json" >/dev/null
+  jq -e '.harness == "claux" and .model == "test/model" and .result == null and .usage.input_tokens == 12' \
+    "$eval_root/results/agent.json" >/dev/null
+)
+
+(
+  smoke_root="$(mktemp -d)"
+  trap 'rm -rf -- "$smoke_root"' EXIT
+  eval_root="$smoke_root/eval"
+  mkdir -p "$eval_root/results"
+  printf '%s\n' 'repair the service' >"$eval_root/instruction.md"
+  printf '%s\n' 'vendor/model' >"$eval_root/model"
+  printf '%s\n' 'export CUSTOM_SECRET=present' >"$eval_root/runtime.env"
+  printf '%s\n' 'payload-data' >"$eval_root/payload"
+  cat >"$eval_root/adapter" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+[[ "$CUSTOM_SECRET" == "present" ]]
+[[ "$(< "$REPLAYBOOK_INSTRUCTION_FILE")" == "repair the service" ]]
+[[ "$(< "$REPLAYBOOK_AGENT_PAYLOAD")" == "payload-data" ]]
+jq -n \
+  --arg model "$REPLAYBOOK_MODEL" \
+  '{schema_version: 1, harness: "custom-agent", model: $model, result: "ok", usage: null}' \
+  >"$REPLAYBOOK_RESULT_FILE"
+printf '%s\n' '{"events":[]}' >"$REPLAYBOOK_TRANSCRIPT_FILE"
+EOF
+  chmod 0755 "$eval_root/adapter"
+
+  REPLAYBOOK_EVAL_ROOT="$eval_root" REPLAYBOOK_WORKSPACE="$smoke_root" \
+    bash "$script_dir/run-agent-adapter.sh"
+  jq -e '.harness == "custom-agent" and .model == "vendor/model"' \
+    "$eval_root/results/agent.json" >/dev/null
+  jq -e '.events == []' "$eval_root/results/transcript.json" >/dev/null
 )

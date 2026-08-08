@@ -78,7 +78,7 @@ class HostMatrixTests(unittest.TestCase):
                 (jobs[1], 0, "backlog_not_recovered"),
             ):
                 result = {
-                    "harness_version": 3,
+                    "harness_version": 4,
                     "scenario": job.scenario,
                     "scenario_version": 2,
                     "model": job.model,
@@ -96,7 +96,7 @@ class HostMatrixTests(unittest.TestCase):
             )
 
         self.assertEqual(summary["received_results"], 2)
-        self.assertEqual(summary["harness_version"], 3)
+        self.assertEqual(summary["harness_version"], 4)
         self.assertEqual(summary["totals"]["passed"], 1)
         self.assertEqual(summary["totals"]["failed"], 1)
         self.assertEqual(summary["totals"]["input_tokens"], 0)
@@ -132,7 +132,7 @@ python - "$output/result.json" "$scenario" "$model" "$agent_timeout" <<'PY'
 import json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
 result = {
-    "harness_version": 3,
+    "harness_version": 4,
     "scenario": sys.argv[2],
     "scenario_version": 2,
     "model": sys.argv[3],
@@ -169,6 +169,78 @@ exit 1
         self.assertIsNotNone(results[0].result)
         self.assertIsNone(results[0].error)
         self.assertEqual(results[0].result["test_agent_timeout_seconds"], 321)
+
+    def test_worker_passes_custom_agent_contract_options(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            runner = root / "fake-runner.sh"
+            runner.write_text(
+                """#!/usr/bin/env bash
+set -euo pipefail
+output=""
+model=""
+scenario=""
+adapter=""
+payload=""
+env_file=""
+agent_name=""
+while (( $# > 0 )); do
+  case "$1" in
+    --output-dir) output="$2"; shift 2 ;;
+    --model) model="$2"; shift 2 ;;
+    --scenario) scenario="$2"; shift 2 ;;
+    --agent-adapter) adapter="$2"; shift 2 ;;
+    --agent-payload) payload="$2"; shift 2 ;;
+    --agent-env-file) env_file="$2"; shift 2 ;;
+    --agent-name) agent_name="$2"; shift 2 ;;
+    *) shift ;;
+  esac
+done
+mkdir -p "$output"
+python - "$output/result.json" "$scenario" "$model" "$adapter" "$payload" "$env_file" "$agent_name" <<'PY'
+import json, pathlib, sys
+path = pathlib.Path(sys.argv[1])
+path.write_text(json.dumps({
+    "harness_version": 4,
+    "scenario": sys.argv[2],
+    "scenario_version": 2,
+    "model": sys.argv[3],
+    "reward": 1,
+    "adapter_args": sys.argv[4:],
+}))
+PY
+"""
+            )
+            job = Job(
+                run_id="adapter-run",
+                scenario="013-sidekiq-wrong-redis",
+                model="vendor/model",
+                attempt=1,
+                ssh_port=23000,
+                http_port=23001,
+                output_dir=root / "run",
+                log_file=root / "run.log",
+            )
+            adapter = root / "adapter"
+            payload = root / "payload"
+            env_file = root / "agent.env"
+            results = asyncio.run(
+                run_jobs(
+                    [job],
+                    runner=runner,
+                    environment={},
+                    concurrency=1,
+                    agent_adapter=adapter,
+                    agent_payload=payload,
+                    agent_env_file=env_file,
+                    agent_name="my-agent",
+                )
+            )
+
+        self.assertEqual(
+            results[0].result["adapter_args"],
+            [str(adapter), str(payload), str(env_file), "my-agent"],
+        )
 
     def test_slugify_model_id(self) -> None:
         self.assertEqual(slugify("OpenAI/GPT-5.6 Luna"), "openai-gpt-5-6-luna")

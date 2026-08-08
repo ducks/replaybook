@@ -4,7 +4,7 @@ This integration evaluates an infrastructure agent on a real disposable Linux
 host. The agent does not receive a Docker socket and does not manage sibling
 containers.
 
-The local controller builds and boots a scenario-selected NixOS VM. Five
+The local controller builds and boots a scenario-selected NixOS VM. Six
 scenarios are currently available:
 
 - `001-nginx-502-host`: Nginx points at the wrong backend port.
@@ -29,7 +29,7 @@ repair, broken-state preflight, and external verifier. The controller verifies
 the repair through the user-facing HTTP boundary. Model VMs never receive the
 reference repair or verifier. The runner only copies the reference repair into
 the VM for an explicit `--oracle` run and asserts that it is absent before
-starting Claux.
+starting an agent adapter.
 
 ## Declarative scenario lifecycle
 
@@ -51,13 +51,11 @@ preflight and verifier scripts are represented entirely by manifest steps.
 Legacy `scenario.conf`, `preflight.sh`, and `verify.sh` hooks remain supported
 while the older scenarios migrate.
 
-Claux runs directly as root on that VM and investigates with normal Linux tools
-such as `systemctl`, `journalctl`, `ps`, `ss`, and the filesystem. The controller
-remains outside the incident host and verifies the HTTP endpoint after the
-repair, after restarting both services, and after rebooting the entire VM.
-The worker explicitly sets Claux's native-tool and Bash filesystem policies to
-`unrestricted`; infrastructure repair requires writes outside a source
-workspace, and the VM itself is the disposable security boundary.
+The selected harness runs directly as root on that VM and investigates with
+normal Linux tools such as `systemctl`, `journalctl`, `ps`, `ss`, and the
+filesystem. The controller remains outside the incident host and verifies the
+HTTP endpoint after the repair, after restarting both services, and after
+rebooting the entire VM. The VM itself is the disposable security boundary.
 
 ## Reference smoke test
 
@@ -98,6 +96,46 @@ Use `--ssh-port` and `--http-port` when running workers concurrently. Set
 the default released Claux version. Claux receives 900 seconds by default;
 override it with `--agent-timeout-seconds`.
 
+## Run another harness
+
+Replaybook owns the incident VM, instruction, lifecycle, and verification. An
+agent adapter owns only the translation between Replaybook's contract and a
+particular harness CLI. Supply an executable adapter and, when useful, a
+harness binary or other artifact:
+
+```sh
+integrations/host/run-host-native.sh \
+  --scenario 013-sidekiq-wrong-redis \
+  --model vendor/model \
+  --agent-adapter ./run-my-agent.sh \
+  --agent-payload ./my-agent \
+  --agent-env-file ./my-agent.env \
+  --agent-name my-agent
+```
+
+The adapter runs as root with `/root` as its working directory. Replaybook
+exports:
+
+- `REPLAYBOOK_INSTRUCTION_FILE`: incident prompt written by the scenario.
+- `REPLAYBOOK_MODEL`: the scheduled model identifier.
+- `REPLAYBOOK_WORKSPACE`: the host workspace, currently `/root`.
+- `REPLAYBOOK_RESULT_FILE`: required normalized result path.
+- `REPLAYBOOK_TRANSCRIPT_FILE`: optional transcript path.
+- `REPLAYBOOK_AGENT_PAYLOAD`: optional staged payload path.
+- `REPLAYBOOK_EVAL_ROOT`: private evaluation directory inside the VM.
+
+The adapter must write a JSON object to `REPLAYBOOK_RESULT_FILE` containing
+`schema_version: 1`, the configured harness name, and the scheduled `model`.
+It may also report `result`, `outcome`, and `usage`; Replaybook copies `usage`
+into the verified trial result and aggregates token and cost fields when they
+are available. A transcript is optional and remains harness-defined JSON.
+
+The environment file is copied with mode 0600 and sourced immediately before
+the adapter starts. It should contain shell assignments required by
+that harness. Replaybook does not require an OpenRouter key for custom
+adapters. The bundled Claux adapter implements this same contract and remains
+the default when `--agent-adapter` is omitted.
+
 Host boot, reboot, and service-readiness checks use wall-clock deadlines, so
 repeated SSH connection attempts cannot extend a failed trial indefinitely.
 When Claux supports graceful one-shot signal cancellation, an agent timeout
@@ -120,6 +158,10 @@ python integrations/host/run_host_matrix.py \
   --concurrency 2
 ```
 
+The matrix runner accepts the same `--agent-adapter`, `--agent-payload`,
+`--agent-env-file`, and `--agent-name` options. One matrix evaluates one
+harness across any number of scenarios, models, and attempts.
+
 Each trial receives adjacent SSH and HTTP ports starting at `--base-port`.
 Results are written under `jobs/host-matrix-*`, including per-trial logs,
 result and transcript paths, benchmark metadata, failure categories, model
@@ -137,22 +179,23 @@ List available scenarios and their versions with:
 python integrations/host/run_host_matrix.py --list-scenarios
 ```
 
-Results are written under `jobs/host-native-*`. Claux runs include its native
-one-shot JSON output and complete tool transcript. `result.json` records the
+Results are written under `jobs/host-native-*`. Adapters may include a complete
+tool transcript alongside their normalized result. `result.json` records the
 host harness version, scenario version, agent duration, usage, and separate
 immediate, service-restart, and host-reboot verification outcomes. A result is
 comparable only with runs using the same host harness and scenario versions.
 Host harness version 2 is the first version that guarantees the reference
 repair is absent from model VMs. Version 3 introduces typed scenario manifests,
 generic lifecycle phases, persistent controller state, and structured verifier
-failure categories.
+failure categories. Version 4 introduces the harness adapter contract and
+generic result and transcript artifacts.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the
 VM console confirms a reboot, the result records
 `failure_category: "agent_rebooted_host"`.
 
-The controller captures Claux's result and transcript before verification
+The controller captures the agent result and transcript before verification
 restarts the repaired services or reboots the host. Usage therefore remains
 available even when a broken repair prevents the VM from returning. A VM that
 does not complete the verifier-controlled reboot records
@@ -169,7 +212,7 @@ when valid work or the bad job is discarded. Declarative scenarios report the
 category named by the failed manifest assertion; the Rails pool scenario uses
 `failure_category: "database_pool_exhausted"`.
 
-The OpenRouter credential is written to a mode-0600 file inside the disposable
-VM, used only for the Claux process, and destroyed with the VM. The agent runs
-as root and can damage its own evaluator access, but it cannot affect the local
+Harness credentials are written to a mode-0600 file inside the disposable VM,
+used only for the adapter process, and destroyed with the VM. The agent runs as
+root and can damage its own evaluator access, but it cannot affect the local
 controller or host beyond the forwarded SSH and HTTP connections.

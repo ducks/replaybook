@@ -9,22 +9,33 @@ Usage:
   run-host-native.sh [options]
 
 Options:
-  --oracle            Run the reference repair instead of Claux.
+  --oracle            Run the reference repair instead of an agent harness.
   --scenario ID       Host-native scenario (default: 001-nginx-502-host).
-  --model MODEL       OpenRouter model for Claux.
+  --model MODEL       Model identifier passed to the agent adapter.
+  --agent-adapter FILE
+                      Adapter executable to run inside the VM.
+  --agent-payload FILE
+                      Optional harness binary or artifact for the adapter.
+  --agent-env-file FILE
+                      Optional environment file copied into the VM mode 0600.
+  --agent-name NAME   Harness name recorded in results.
   --ssh-port PORT     Forwarded SSH port (default: 22600).
   --http-port PORT    Forwarded HTTP port (default: 22601).
   --agent-timeout-seconds SECONDS
-                      Maximum Claux runtime (default: 900).
+                      Maximum agent runtime (default: 900).
   --output-dir DIR    Result directory. It must not already exist.
   -h, --help          Show this help.
 
 Environment:
-  OPENROUTER_API_KEY             Required unless --oracle is used.
+  OPENROUTER_API_KEY             Required by the default Claux adapter.
   REPLAYBOOK_HOST_SSH_KEY        SSH key (default: ~/.ssh/id_ed25519).
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to copy into the VM.
   REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to download (default: v20260808.0.0).
+
+Without --agent-adapter, Replaybook uses its bundled Claux adapter. Custom
+adapters receive the paths and model through REPLAYBOOK_* environment variables
+and must write normalized JSON to REPLAYBOOK_RESULT_FILE.
 EOF
 }
 
@@ -34,7 +45,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260808.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=3
+HOST_HARNESS_VERSION=4
 MODEL="deepseek/deepseek-v4-flash"
 SCENARIO_ID="001-nginx-502-host"
 SSH_PORT=22600
@@ -42,6 +53,11 @@ HTTP_PORT=22601
 AGENT_TIMEOUT_SECONDS=900
 OUTPUT_DIR=""
 RUN_ORACLE=false
+AGENT_ADAPTER=""
+AGENT_PAYLOAD=""
+AGENT_ENV_FILE=""
+AGENT_NAME=""
+CUSTOM_AGENT_ADAPTER=false
 
 while (( $# > 0 )); do
   case "$1" in
@@ -52,6 +68,26 @@ while (( $# > 0 )); do
     --model)
       (( $# >= 2 )) || { echo "--model requires a value" >&2; exit 2; }
       MODEL="$2"
+      shift 2
+      ;;
+    --agent-adapter)
+      (( $# >= 2 )) || { echo "--agent-adapter requires a value" >&2; exit 2; }
+      AGENT_ADAPTER="$2"
+      shift 2
+      ;;
+    --agent-payload)
+      (( $# >= 2 )) || { echo "--agent-payload requires a value" >&2; exit 2; }
+      AGENT_PAYLOAD="$2"
+      shift 2
+      ;;
+    --agent-env-file)
+      (( $# >= 2 )) || { echo "--agent-env-file requires a value" >&2; exit 2; }
+      AGENT_ENV_FILE="$2"
+      shift 2
+      ;;
+    --agent-name)
+      (( $# >= 2 )) || { echo "--agent-name requires a value" >&2; exit 2; }
+      AGENT_NAME="$2"
       shift 2
       ;;
     --scenario)
@@ -89,6 +125,43 @@ while (( $# > 0 )); do
       ;;
   esac
 done
+
+if [[ "$RUN_ORACLE" == true \
+  && ( -n "$AGENT_ADAPTER" || -n "$AGENT_PAYLOAD" \
+    || -n "$AGENT_ENV_FILE" || -n "$AGENT_NAME" ) ]]; then
+  echo "--oracle cannot be combined with agent adapter options" >&2
+  exit 2
+fi
+if [[ -n "$AGENT_ADAPTER" ]]; then
+  CUSTOM_AGENT_ADAPTER=true
+  [[ -f "$AGENT_ADAPTER" ]] || {
+    echo "agent adapter does not exist: ${AGENT_ADAPTER}" >&2
+    exit 2
+  }
+  if [[ -z "$AGENT_NAME" ]]; then
+    AGENT_NAME="$(basename "$AGENT_ADAPTER")"
+    AGENT_NAME="${AGENT_NAME%.*}"
+  fi
+else
+  if [[ -n "$AGENT_PAYLOAD" || -n "$AGENT_ENV_FILE" || -n "$AGENT_NAME" ]]; then
+    echo "custom agent options require --agent-adapter" >&2
+    exit 2
+  fi
+  AGENT_ADAPTER="${SCRIPT_DIR}/run-claux.sh"
+  [[ -n "$AGENT_NAME" ]] || AGENT_NAME="claux"
+fi
+[[ "$AGENT_NAME" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]*$ ]] || {
+  echo "agent name contains unsafe characters: ${AGENT_NAME}" >&2
+  exit 2
+}
+if [[ -n "$AGENT_PAYLOAD" && ! -f "$AGENT_PAYLOAD" ]]; then
+  echo "agent payload does not exist: ${AGENT_PAYLOAD}" >&2
+  exit 2
+fi
+if [[ -n "$AGENT_ENV_FILE" && ! -f "$AGENT_ENV_FILE" ]]; then
+  echo "agent environment file does not exist: ${AGENT_ENV_FILE}" >&2
+  exit 2
+fi
 
 [[ "$SCENARIO_ID" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]*$ ]] || {
   echo "scenario ID contains unsafe characters: ${SCENARIO_ID}" >&2
@@ -183,11 +256,13 @@ done
   echo "temporary directory does not exist: ${WORK_PARENT}" >&2
   exit 1
 }
-if [[ "$RUN_ORACLE" == false && -z "${OPENROUTER_API_KEY:-}" ]]; then
-  echo "OPENROUTER_API_KEY is required unless --oracle is used" >&2
+if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false \
+  && -z "${OPENROUTER_API_KEY:-}" ]]; then
+  echo "OPENROUTER_API_KEY is required by the default Claux adapter" >&2
   exit 1
 fi
-if [[ -n "$CLAUX_BINARY" && ! -f "$CLAUX_BINARY" ]]; then
+if [[ "$CUSTOM_AGENT_ADAPTER" == false \
+  && -n "$CLAUX_BINARY" && ! -f "$CLAUX_BINARY" ]]; then
   echo "Claux binary does not exist: ${CLAUX_BINARY}" >&2
   exit 1
 fi
@@ -376,9 +451,9 @@ echo "[host] preflight confirmed ${SCENARIO_ID}"
 
 "${SSH[@]}" "rm -rf -- /root/replaybook-eval; install -d -m 700 /root/replaybook-eval/results"
 "${SCP[@]}" "$INSTRUCTION" root@127.0.0.1:/root/replaybook-eval/instruction.md
-"${SCP[@]}" "${SCRIPT_DIR}/run-claux.sh" root@127.0.0.1:/root/replaybook-eval/
+"${SCP[@]}" "${SCRIPT_DIR}/run-agent-adapter.sh" root@127.0.0.1:/root/replaybook-eval/launcher
 
-agent="claux"
+agent="$AGENT_NAME"
 run_status=0
 started_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 start_seconds="$(date +%s)"
@@ -391,21 +466,42 @@ else
   # The oracle is the benchmark answer key. Keep this runtime assertion next
   # to the model path so a future staging change cannot silently expose it.
   "${SSH[@]}" "test ! -e /root/replaybook-eval/oracle.sh"
-  if [[ -z "$CLAUX_BINARY" ]]; then
-    CLAUX_BINARY="${WORK_DIR}/claux"
-    echo "[host] downloading Claux ${CLAUX_RELEASE}"
-    curl --fail --location --silent --show-error \
-      "https://github.com/ducks/claux/releases/download/${CLAUX_RELEASE}/claux-linux-x86_64" \
-      --output "$CLAUX_BINARY"
+  if [[ "$CUSTOM_AGENT_ADAPTER" == false ]]; then
+    if [[ -z "$AGENT_PAYLOAD" ]]; then
+      if [[ -z "$CLAUX_BINARY" ]]; then
+        CLAUX_BINARY="${WORK_DIR}/claux"
+        echo "[host] downloading Claux ${CLAUX_RELEASE}"
+        curl --fail --location --silent --show-error \
+          "https://github.com/ducks/claux/releases/download/${CLAUX_RELEASE}/claux-linux-x86_64" \
+          --output "$CLAUX_BINARY"
+      fi
+      AGENT_PAYLOAD="$CLAUX_BINARY"
+    fi
+    if [[ -z "$AGENT_ENV_FILE" ]]; then
+      AGENT_ENV_FILE="${WORK_DIR}/runtime.env"
+      printf 'export OPENROUTER_API_KEY=%q\n' "$OPENROUTER_API_KEY" >"$AGENT_ENV_FILE"
+      chmod 0600 "$AGENT_ENV_FILE"
+    fi
   fi
-  "${SCP[@]}" "$CLAUX_BINARY" root@127.0.0.1:/root/replaybook-eval/claux
-  "${SSH[@]}" "chmod 0755 /root/replaybook-eval/claux"
-  printf '%s\n' "$MODEL" | "${SSH[@]}" "umask 077; cat > /root/replaybook-eval/model"
-  printf 'export OPENROUTER_API_KEY=%q\n' "$OPENROUTER_API_KEY" \
-    | "${SSH[@]}" "umask 077; cat > /root/replaybook-eval/runtime.env"
-  echo "[host] running Claux directly on the incident host"
+  "${SCP[@]}" "$AGENT_ADAPTER" root@127.0.0.1:/root/replaybook-eval/adapter
+  if [[ -n "$AGENT_PAYLOAD" ]]; then
+    "${SCP[@]}" "$AGENT_PAYLOAD" root@127.0.0.1:/root/replaybook-eval/payload
+  fi
+  if [[ -n "$AGENT_ENV_FILE" ]]; then
+    "${SCP[@]}" "$AGENT_ENV_FILE" root@127.0.0.1:/root/replaybook-eval/runtime.env
+  else
+    "${SSH[@]}" "umask 077; : > /root/replaybook-eval/runtime.env"
+  fi
   "${SSH[@]}" \
-    "timeout --signal=TERM --kill-after=30s ${AGENT_TIMEOUT_SECONDS}s bash /root/replaybook-eval/run-claux.sh" \
+    "chmod 0755 /root/replaybook-eval/launcher /root/replaybook-eval/adapter; \
+     chmod 0600 /root/replaybook-eval/runtime.env"
+  if [[ "$CUSTOM_AGENT_ADAPTER" == false ]]; then
+    "${SSH[@]}" "chmod 0755 /root/replaybook-eval/payload"
+  fi
+  printf '%s\n' "$MODEL" | "${SSH[@]}" "umask 077; cat > /root/replaybook-eval/model"
+  echo "[host] running ${AGENT_NAME} directly on the incident host"
+  "${SSH[@]}" \
+    "timeout --signal=TERM --kill-after=30s ${AGENT_TIMEOUT_SECONDS}s /root/replaybook-eval/launcher" \
     || run_status=$?
 fi
 agent_seconds="$(( $(date +%s) - start_seconds ))"
@@ -419,6 +515,26 @@ fi
 # reachable. Verification deliberately restarts and reboots that host, and a
 # broken repair may prevent it from ever returning.
 capture_agent_results || true
+
+agent_result="${OUTPUT_DIR}/results/agent.json"
+agent_result_invalid=false
+if [[ "$RUN_ORACLE" == false && -f "$agent_result" ]]; then
+  reported_agent="$(jq -r --arg model "$MODEL" --arg agent "$AGENT_NAME" 'select(
+      type == "object" and
+      .schema_version == 1 and
+      .harness == $agent and
+      .model == $model
+    ) | .harness' "$agent_result" 2>/dev/null || true)"
+  if [[ -n "$reported_agent" ]]; then
+    agent="$reported_agent"
+  elif (( run_status == 0 )); then
+    agent_result_invalid=true
+    run_status=65
+  fi
+elif [[ "$RUN_ORACLE" == false && $run_status -eq 0 ]]; then
+  agent_result_invalid=true
+  run_status=65
+fi
 
 reward=0
 failure=""
@@ -441,7 +557,10 @@ if (( run_status == 255 )); then
 fi
 
 if (( run_status != 0 )); then
-  if [[ "$agent_timed_out" == true ]]; then
+  if [[ "$agent_result_invalid" == true ]]; then
+    failure_category="agent_result_invalid"
+    failure="agent did not write a valid normalized result"
+  elif [[ "$agent_timed_out" == true ]]; then
     failure_category="agent_timeout"
     failure="agent exceeded ${AGENT_TIMEOUT_SECONDS} second timeout"
   elif [[ "$failure_category" == "agent_rebooted_host" ]]; then
@@ -513,15 +632,15 @@ else
   fi
 fi
 
-if [[ "$RUN_ORACLE" == false && ! -f "${OUTPUT_DIR}/results/claux.json" ]]; then
+if [[ "$RUN_ORACLE" == false && ! -f "$agent_result" ]]; then
   capture_agent_results || true
 fi
 
 usage='null'
-if [[ -f "${OUTPUT_DIR}/results/claux.json" ]]; then
+if [[ -f "$agent_result" ]]; then
   usage_candidate="$(
     jq -c 'if type == "object" then (.usage // null) else null end' \
-      "${OUTPUT_DIR}/results/claux.json" 2>/dev/null || true
+      "$agent_result" 2>/dev/null || true
   )"
   if [[ -n "$usage_candidate" ]] && jq -e . <<<"$usage_candidate" >/dev/null 2>&1; then
     usage="$usage_candidate"
