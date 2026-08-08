@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>replaybook</title>
-  <meta name="description" content="Incident replay trainer. Get paged, fix real broken infrastructure, win.">
+  <meta name="description" content="Practice infrastructure incidents and evaluate whether agents make durable repairs.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,12 +15,13 @@
         <a href="index.html" class="active">Home</a>
         <a href="usage.html">Usage</a>
         <a href="scenarios.html">Scenarios</a>
+        <a href="benchmarks.html">Benchmarks</a>
         <a href="https://github.com/ducks/replaybook">GitHub</a>
       </nav>
     </header>
 
     <h1>replaybook</h1>
-    <p class="tagline">Incident replay trainer. Get paged, fix real broken infrastructure, win.</p>
+    <p class="tagline">Practice incidents. Evaluate agents. Verify durable repairs.</p>
 
     <p>
       Each scenario is a Docker environment with a fault injected. You're dropped
@@ -33,6 +34,12 @@
     <p>
       Built to turn post-mortems into playable scenarios. New engineers build
       muscle memory on the actual failure modes your team has hit, not simulations.
+    </p>
+
+    <p>
+      The same scenarios can evaluate infrastructure agents on disposable Linux
+      hosts. External verifiers restart services, reboot the host, and check that
+      existing work survived. See the <a href="benchmarks.html">benchmark results</a>.
     </p>
 
     <h2>Install</h2>
