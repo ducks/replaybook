@@ -162,6 +162,41 @@ The matrix runner accepts the same `--agent-adapter`, `--agent-payload`,
 `--agent-env-file`, and `--agent-name` options. One matrix evaluates one
 harness across any number of scenarios, models, and attempts.
 
+## Run Codex
+
+The bundled Codex adapter uses `codex exec` and captures its JSON event stream,
+final message, and token usage. Locate the native binary installed with your
+local Codex CLI, then create a temporary mode-0600 environment file containing
+a sanitized copy of the current login cache:
+
+```sh
+codex_binary="$(integrations/host/find-codex-binary.sh)"
+codex_env="$(integrations/host/prepare-codex-env.sh)"
+```
+
+Run one trial with ChatGPT-managed Codex authentication:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --scenario 001-nginx-502-host \
+  --models gpt-5.6-sol \
+  --agent-adapter integrations/host/adapters/codex.sh \
+  --agent-payload "$codex_binary" \
+  --agent-env-file "$codex_env" \
+  --agent-name codex \
+  --attempts 1 \
+  --concurrency 1
+```
+
+Remove the temporary environment file after the run. The helper replaces the
+refresh token before staging the authentication cache, and the adapter uses an
+isolated, disposable `CODEX_HOME`. The VM therefore cannot rotate or expose
+the refresh credential used by your local login. If the access token has
+expired, use Codex locally once and recreate the environment file. For API-key
+automation, provide `CODEX_API_KEY=...` in the environment file instead. The
+adapter deliberately ignores the user's Codex configuration and rules so local
+MCP servers, hooks, and preferences do not change benchmark behavior.
+
 Each trial receives adjacent SSH and HTTP ports starting at `--base-port`.
 Results are written under `jobs/host-matrix-*`, including per-trial logs,
 result and transcript paths, benchmark metadata, failure categories, model

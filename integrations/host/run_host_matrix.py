@@ -559,7 +559,12 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
     if args.oracle and args.models:
         raise ValueError("--oracle cannot be combined with --models")
     if args.oracle and any(
-        (args.agent_adapter, args.agent_payload, args.agent_env_file, args.agent_name)
+        (
+            args.agent_adapter,
+            args.agent_payload,
+            args.agent_env_file,
+            args.agent_name,
+        )
     ):
         raise ValueError("--oracle cannot be combined with agent adapter options")
     if args.agent_adapter is None and any(
