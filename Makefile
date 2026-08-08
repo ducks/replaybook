@@ -97,7 +97,10 @@ host-check:
 	@bash integrations/host/test-host-native.sh
 	@python -m unittest integrations.host.test_run_host_matrix
 
-lint: fmt-check deploy-check harbor-check host-check
+pages-check:
+	@python -m unittest tests.test_pages
+
+lint: fmt-check deploy-check harbor-check host-check pages-check
 	cargo clippy -- -D warnings
 	cargo test
 

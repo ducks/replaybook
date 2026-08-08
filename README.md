@@ -140,10 +140,12 @@ Pass `--format json` for structured output. New summaries include the selected
 scenario set and Replaybook commit so published comparisons retain the
 benchmark definition that produced them.
 
-See [`benchmarks.md`](benchmarks.md) for development baselines, historical
-model comparisons, methodology, known verifier limitations, and reproduction
-commands. Results from different scenario sets and verifier versions are kept
-separate rather than presented as one authoritative leaderboard.
+See the [benchmark site](https://replaybook.dev/benchmarks.html) for the public
+overview and [`benchmarks.md`](benchmarks.md) for development baselines,
+historical model comparisons, methodology, known verifier limitations, and
+reproduction commands. Results from different scenario sets and verifier
+versions are kept separate rather than presented as one authoritative
+leaderboard.
 
 For a deeper dive into why the restart check matters, see [Evaluating
 Infrastructure Agents in Running Systems](https://jakegoldsborough.com/blog/2026/evaluating-infrastructure-agents-in-running-systems/).
