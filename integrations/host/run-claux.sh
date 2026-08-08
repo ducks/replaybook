@@ -2,13 +2,15 @@
 set -euo pipefail
 
 eval_root="${REPLAYBOOK_EVAL_ROOT:-/root/replaybook-eval}"
-source "$eval_root/runtime.env"
-model="$(< "$eval_root/model")"
-instruction="$(< "$eval_root/instruction.md")"
-output="$eval_root/results/claux.json"
-transcript="$eval_root/results/claux-transcript.json"
+model="${REPLAYBOOK_MODEL:-$(< "$eval_root/model")}"
+instruction_file="${REPLAYBOOK_INSTRUCTION_FILE:-$eval_root/instruction.md}"
+instruction="$(< "$instruction_file")"
+claux="${REPLAYBOOK_AGENT_PAYLOAD:-$eval_root/claux}"
+output="${REPLAYBOOK_RESULT_FILE:-$eval_root/results/agent.json}"
+transcript="${REPLAYBOOK_TRANSCRIPT_FILE:-$eval_root/results/transcript.json}"
+native_output="${output}.native"
 
-"$eval_root/claux" config init --provider openrouter --model "$model" >/dev/null
+"$claux" config init --provider openrouter --model "$model" >/dev/null
 config="$HOME/.config/claux/config.toml"
 sed -i \
   -e 's/^native_tool_filesystem_policy = .*/native_tool_filesystem_policy = "unrestricted"/' \
@@ -28,11 +30,11 @@ forward_termination() {
 trap forward_termination TERM INT
 
 set +e
-"$eval_root/claux" --print "$instruction" \
+"$claux" --print "$instruction" \
   --permission-mode bypass \
   --output-format json \
   --transcript "$transcript" \
-  >"$output" &
+  >"$native_output" &
 child_pid=$!
 wait "$child_pid"
 status=$?
@@ -45,13 +47,18 @@ set -e
 # One-shot JSON is normally emitted only for a completed response. Preserve
 # usage and outcome metadata from the partial transcript when cancellation or
 # another error ends the turn first.
-if [[ -s "$transcript" && ! -s "$output" ]]; then
+if [[ -s "$transcript" && ! -s "$native_output" ]]; then
   jq '{schema_version, result: null, model, usage, outcome}' \
-    "$transcript" >"${output}.partial"
-  mv "${output}.partial" "$output"
+    "$transcript" >"${native_output}.partial"
+  mv "${native_output}.partial" "$native_output"
 fi
 
-if [[ -s "$output" ]]; then
+if [[ -s "$native_output" ]]; then
+  jq --arg model "$model" \
+    '. + {schema_version: 1, harness: "claux", model: $model}' \
+    "$native_output" >"${output}.partial"
+  mv "${output}.partial" "$output"
+  rm -f -- "$native_output"
   cat "$output"
 fi
 exit "$status"

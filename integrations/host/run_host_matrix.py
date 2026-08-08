@@ -26,7 +26,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 3
+HOST_HARNESS_VERSION = 4
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 SCENARIO_VERSION_PATTERN = re.compile(
     r'^SCENARIO_VERSION=["\']?([1-9][0-9]*)["\']?$', re.MULTILINE
@@ -183,6 +183,10 @@ async def run_worker(
     environment: dict[str, str],
     semaphore: asyncio.Semaphore,
     agent_timeout_seconds: int = DEFAULT_AGENT_TIMEOUT_SECONDS,
+    agent_adapter: Path | None = None,
+    agent_payload: Path | None = None,
+    agent_env_file: Path | None = None,
+    agent_name: str | None = None,
 ) -> WorkerResult:
     async with semaphore:
         print(
@@ -208,6 +212,14 @@ async def run_worker(
             command.append("--oracle")
         else:
             command.extend(["--model", job.model])
+            if agent_adapter is not None:
+                command.extend(["--agent-adapter", str(agent_adapter)])
+            if agent_payload is not None:
+                command.extend(["--agent-payload", str(agent_payload)])
+            if agent_env_file is not None:
+                command.extend(["--agent-env-file", str(agent_env_file)])
+            if agent_name is not None:
+                command.extend(["--agent-name", agent_name])
 
         job.log_file.parent.mkdir(parents=True, exist_ok=True)
         with job.log_file.open("wb") as log:
@@ -253,6 +265,10 @@ async def run_jobs(
     environment: dict[str, str],
     concurrency: int,
     agent_timeout_seconds: int = DEFAULT_AGENT_TIMEOUT_SECONDS,
+    agent_adapter: Path | None = None,
+    agent_payload: Path | None = None,
+    agent_env_file: Path | None = None,
+    agent_name: str | None = None,
 ) -> list[WorkerResult]:
     semaphore = asyncio.Semaphore(concurrency)
     tasks = [
@@ -263,6 +279,10 @@ async def run_jobs(
                 environment=environment,
                 semaphore=semaphore,
                 agent_timeout_seconds=agent_timeout_seconds,
+                agent_adapter=agent_adapter,
+                agent_payload=agent_payload,
+                agent_env_file=agent_env_file,
+                agent_name=agent_name,
             )
         )
         for job in jobs
@@ -327,7 +347,7 @@ def build_summary(
             )
             continue
         run = dict(worker.result)
-        transcript = worker.job.output_dir / "results" / "claux-transcript.json"
+        transcript = worker.job.output_dir / "results" / "transcript.json"
         run.update(
             {
                 "run_id": worker.job.run_id,
@@ -509,7 +529,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--agent-timeout-seconds",
         type=int,
         default=DEFAULT_AGENT_TIMEOUT_SECONDS,
-        help=f"maximum Claux runtime per trial (default: {DEFAULT_AGENT_TIMEOUT_SECONDS})",
+        help=f"maximum agent runtime per trial (default: {DEFAULT_AGENT_TIMEOUT_SECONDS})",
     )
     parser.add_argument(
         "--base-port",
@@ -520,6 +540,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--claux-binary", type=Path)
     parser.add_argument("--claux-release")
+    parser.add_argument("--agent-adapter", type=Path)
+    parser.add_argument("--agent-payload", type=Path)
+    parser.add_argument("--agent-env-file", type=Path)
+    parser.add_argument("--agent-name")
     parser.add_argument("--oracle", action="store_true")
     parser.add_argument("--list-scenarios", action="store_true")
     return parser.parse_args(argv)
@@ -534,6 +558,25 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
         raise ValueError("--agent-timeout-seconds must be a positive integer")
     if args.oracle and args.models:
         raise ValueError("--oracle cannot be combined with --models")
+    if args.oracle and any(
+        (
+            args.agent_adapter,
+            args.agent_payload,
+            args.agent_env_file,
+            args.agent_name,
+        )
+    ):
+        raise ValueError("--oracle cannot be combined with agent adapter options")
+    if args.agent_adapter is None and any(
+        (args.agent_payload, args.agent_env_file, args.agent_name)
+    ):
+        raise ValueError("custom agent options require --agent-adapter")
+    if args.agent_name and not SCENARIO_ID_PATTERN.fullmatch(args.agent_name):
+        raise ValueError("--agent-name contains unsafe characters")
+    if args.agent_adapter is not None and args.claux_binary:
+        raise ValueError("--agent-adapter cannot be combined with --claux-binary")
+    if args.agent_adapter is not None and args.claux_release:
+        raise ValueError("--agent-adapter cannot be combined with --claux-release")
     if not args.oracle and not args.models and not args.list_scenarios:
         raise ValueError("--models is required unless --oracle is used")
     for scenario in unique(args.scenarios or [DEFAULT_SCENARIO]):
@@ -579,10 +622,21 @@ def main(argv: list[str] | None = None) -> int:
         for job in jobs:
             check_port_available(job.ssh_port)
             check_port_available(job.http_port)
-        if not args.oracle and not os.environ.get("OPENROUTER_API_KEY"):
-            raise ValueError("OPENROUTER_API_KEY is required unless --oracle is used")
+        if (
+            not args.oracle
+            and args.agent_adapter is None
+            and not os.environ.get("OPENROUTER_API_KEY")
+        ):
+            raise ValueError("OPENROUTER_API_KEY is required by the default Claux adapter")
         if args.claux_binary and not args.claux_binary.expanduser().is_file():
             raise ValueError(f"Claux binary does not exist: {args.claux_binary}")
+        for option, supplied in (
+            ("--agent-adapter", args.agent_adapter),
+            ("--agent-payload", args.agent_payload),
+            ("--agent-env-file", args.agent_env_file),
+        ):
+            if supplied is not None and not supplied.expanduser().is_file():
+                raise ValueError(f"{option} file does not exist: {supplied}")
     except ValueError as error:
         print(f"error: {error}", file=sys.stderr)
         return 2
@@ -608,6 +662,16 @@ def main(argv: list[str] | None = None) -> int:
         "attempts": args.attempts,
         "concurrency": args.concurrency,
         "agent_timeout_seconds": args.agent_timeout_seconds,
+        "agent": {
+            "name": args.agent_name
+            or (args.agent_adapter.stem if args.agent_adapter else "claux"),
+            "adapter": str(args.agent_adapter.expanduser().resolve())
+            if args.agent_adapter
+            else "builtin:claux",
+            "payload": str(args.agent_payload.expanduser().resolve())
+            if args.agent_payload
+            else None,
+        },
         "claux_release": args.claux_release
         or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260808.0.0"),
     }
@@ -627,6 +691,16 @@ def main(argv: list[str] | None = None) -> int:
                 environment=environment,
                 concurrency=args.concurrency,
                 agent_timeout_seconds=args.agent_timeout_seconds,
+                agent_adapter=args.agent_adapter.expanduser().resolve()
+                if args.agent_adapter
+                else None,
+                agent_payload=args.agent_payload.expanduser().resolve()
+                if args.agent_payload
+                else None,
+                agent_env_file=args.agent_env_file.expanduser().resolve()
+                if args.agent_env_file
+                else None,
+                agent_name=args.agent_name,
             )
         )
     except KeyboardInterrupt:

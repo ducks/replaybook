@@ -25,8 +25,8 @@ The evaluation stack is deliberately composable:
 - [Harbor](https://github.com/laude-institute/harbor) runs agents and records
   rewards, tokens, and costs.
 - Nix provides isolated, reproducible workers with a fresh Docker environment.
-- [Claux](https://github.com/ducks/claux) provides a lightweight OpenRouter
-  agent adapter with usage and cost reporting.
+- Harness adapters run Claux, Codex, or another agent behind one normalized
+  result and transcript contract.
 
 The result is a small harness for comparing agents on diagnosis, remediation,
 durability, cost, and (with the raw trial results) execution time.
@@ -97,8 +97,10 @@ python integrations/host/run_host_matrix.py \
   --attempts 3
 ```
 
-See [`integrations/host/README.md`](integrations/host/README.md) for the Claux
-command, architecture, and result artifacts.
+See [`integrations/host/README.md`](integrations/host/README.md) for adapter
+commands, architecture, and result artifacts. The bundled
+[`replaybook-add-harness`](skills/replaybook-add-harness/SKILL.md) skill helps
+agents integrate and verify another harness.
 
 The older Harbor integration below evaluates agents from a privileged Docker
 workstation. It remains available for historical comparisons while scenarios
