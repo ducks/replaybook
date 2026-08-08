@@ -8,6 +8,64 @@ These results are evaluation history, not a definitive model ranking. Runs made
 with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
+## Host-native harness v2 baseline
+
+### DeepSeek V4 Flash 0731, 2026-08-08
+
+This is the first baseline produced by host harness version 2. The controller
+boots a disposable NixOS VM, gives the agent the incident instruction, and
+keeps the reference repair and verifier outside the model VM. Each repair must
+pass immediately, after the affected services restart, and after the host
+reboots. Stateful scenarios also require the exact pre-existing jobs to
+complete.
+
+DeepSeek V4 Flash 0731 ran each of the three host-native scenarios three times:
+
+| Scenario | Version | Durable repairs | Median trial time | Reported cost |
+|---|---:|---:|---:|---:|
+| 001 Nginx 502 | 1 | 3/3 | 0:55 | $0.0093 |
+| 013 Sidekiq wrong Redis database | 2 | 3/3 | 2:02 | $0.0146 |
+| 014 Missing Rails migration | 2 | 3/3 | 4:24 | $0.0353 |
+| **Total** | | **9/9** | **2:02 median** | **$0.0592** |
+
+All nine trials returned complete usage data. Together they used 1,703,055
+input tokens, 1,428,352 cached input tokens, and 44,979 output tokens. No trial
+timed out, changed the expected service topology, lost pre-existing work, or
+failed restart or reboot verification. The captured tool traces contain no
+references to the oracle or verifier.
+
+The migration scenario accounted for about 61% of input tokens and 60% of the
+reported cost. Its 4:24 median remains meaningfully slower than the other two
+scenarios, so the current suite still distinguishes a longer stateful repair
+from the simpler Nginx incident.
+
+Run metadata:
+
+- Host harness version: `2`
+- Benchmark suite: `replaybook-host-matrix-v1`
+- Attempts per scenario: `3`
+- Replaybook commit: `3ea781c9ce030ecbcb4e84a0b45389b67fa674c9`
+- Claux release: `v20260808.0.0`
+- Agent timeout: `900` seconds
+- Concurrency: `2`
+
+Reproduce this baseline with:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --scenario 001-nginx-502-host \
+  --scenario 013-sidekiq-wrong-redis \
+  --scenario 014-missing-rails-migration \
+  --models deepseek/deepseek-v4-flash-0731 \
+  --attempts 3 \
+  --concurrency 2
+```
+
+This result should not be used as a direct old-versus-new DeepSeek comparison.
+Earlier DeepSeek runs used older harness or scenario versions. A controlled
+revision comparison requires both model IDs to run through this exact harness
+and scenario set.
+
 ## Host-native Sidekiq incident
 
 ### Version 2: backlog preservation
@@ -17,12 +75,17 @@ before the agent begins. The controller retains their exact IDs and requires
 all three to reach PostgreSQL. It then submits new jobs after the repair,
 service restart, and host reboot.
 
-### Current matrix results
+### Archived harness v1 matrix results
 
 These August 7, 2026 runs used the Python host-native matrix runner and version
 2 of the scenario. DeepSeek, Laguna, Luna, and MiniMax ran together in one
 12-trial batch. Qwen ran separately immediately afterward with the same Claux
 harness, scenario, verifier, and attempt count.
+
+Host harness v1 copied the reference repair into the model VM. The trajectories
+remain useful development records, but the harness did not guarantee answer-key
+isolation. These results are archived and must not be presented as a controlled
+model ranking or compared directly with the harness-v2 baseline.
 
 | Model | Durable repairs | Median trial time | Reported cost |
 |---|---:|---:|---:|
