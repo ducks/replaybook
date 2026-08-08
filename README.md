@@ -100,7 +100,9 @@ python integrations/host/run_host_matrix.py \
 See [`integrations/host/README.md`](integrations/host/README.md) for adapter
 commands, architecture, and result artifacts. The bundled
 [`replaybook-add-harness`](skills/replaybook-add-harness/SKILL.md) skill helps
-agents integrate and verify another harness.
+agents integrate and verify another harness. The
+[`replaybook-build-scenario`](skills/replaybook-build-scenario/SKILL.md) skill
+guides agents through creating durable, leak-resistant incident scenarios.
 
 The older Harbor integration below evaluates agents from a privileged Docker
 workstation. It remains available for historical comparisons while scenarios

@@ -31,6 +31,29 @@ reference repair or verifier. The runner only copies the reference repair into
 the VM for an explicit `--oracle` run and asserts that it is absent before
 starting an agent adapter.
 
+## Build a scenario with the skill
+
+Replaybook ships a Codex skill for turning an operational failure into a
+host-native scenario with a durable verifier, oracle repair, controller-owned
+state, failure categories, and leak checks. Install it from a clone:
+
+```sh
+mkdir -p ~/.codex/skills
+ln -s "$(pwd)/skills/replaybook-build-scenario" \
+  ~/.codex/skills/replaybook-build-scenario
+```
+
+Then ask Codex:
+
+```text
+Use $replaybook-build-scenario to build a scenario for <incident>.
+```
+
+The skill includes declarative scenario templates and a static validator. It
+requires an oracle run before any paid model matrix and treats restart and
+reboot survival, backlog preservation, and benchmark leak review as part of
+scenario correctness.
+
 ## Declarative scenario lifecycle
 
 New host scenarios can define their lifecycle in `scenario.toml`. The typed
