@@ -104,6 +104,13 @@ skills-check:
 	@python skills/replaybook-add-harness/scripts/validate_result.py --help >/dev/null
 	@grep -q '^name: replaybook-add-harness$$' skills/replaybook-add-harness/SKILL.md
 	@grep -q '\$$replaybook-add-harness' skills/replaybook-add-harness/agents/openai.yaml
+	@bash -n skills/replaybook-build-scenario/assets/oracle.sh
+	@python skills/replaybook-build-scenario/scripts/scaffold_scenario.py --help >/dev/null
+	@python skills/replaybook-build-scenario/scripts/validate_scenario.py --help >/dev/null
+	@python skills/replaybook-build-scenario/scripts/test_tools.py >/dev/null
+	@python skills/replaybook-build-scenario/scripts/validate_scenario.py integrations/host/scenarios/016-rails-pool-exhaustion >/dev/null
+	@grep -q '^name: replaybook-build-scenario$$' skills/replaybook-build-scenario/SKILL.md
+	@grep -q '\$$replaybook-build-scenario' skills/replaybook-build-scenario/agents/openai.yaml
 
 pages-check:
 	@python -m unittest tests.test_pages
