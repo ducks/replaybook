@@ -96,6 +96,7 @@ harbor-check:
 host-check:
 	@bash integrations/host/test-host-native.sh
 	@python -m unittest integrations.host.test_run_host_matrix
+	@python -m unittest integrations.host.test_scenario_phase
 
 pages-check:
 	@python -m unittest tests.test_pages

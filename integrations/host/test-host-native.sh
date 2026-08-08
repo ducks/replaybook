@@ -36,9 +36,9 @@ grep -q 'SCENARIO_VERSION="2"' "$script_dir/scenarios/014-missing-rails-migratio
 grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/015-sidekiq-poison-pill/scenario.conf"
 grep -q 'exit 22' "$script_dir/scenarios/015-sidekiq-poison-pill/verify.sh"
 grep -q 'failure_category="poison_not_quarantined"' "$script_dir/run-host-native.sh"
-grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/016-rails-pool-exhaustion/scenario.conf"
-grep -q 'exit 23' "$script_dir/scenarios/016-rails-pool-exhaustion/verify.sh"
-grep -q 'failure_category="database_pool_exhausted"' "$script_dir/run-host-native.sh"
+grep -q 'version = 1' "$script_dir/scenarios/016-rails-pool-exhaustion/scenario.toml"
+grep -q 'failure_category = "database_pool_exhausted"' "$script_dir/scenarios/016-rails-pool-exhaustion/scenario.toml"
+grep -q 'failure_category" == "database_pool_exhausted"' "$script_dir/run-host-native.sh"
 grep -q '202608070001_add_delivery_state.sql' "$script_dir/scenarios/014-missing-rails-migration/oracle.sh"
 grep -q 'deployment/migration' "$script_dir/scenarios/014-missing-rails-migration/verify.sh"
 if grep -q 'ADD COLUMN IF NOT EXISTS' \
@@ -47,7 +47,8 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=2' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=3' "$script_dir/run-host-native.sh"
+grep -q 'DECLARATIVE_SCENARIO=true' "$script_dir/run-host-native.sh"
 grep -q 'harness_version: $harness_version' "$script_dir/run-host-native.sh"
 
 oracle_copy_count="$(grep -c '\$ORACLE.*replaybook-eval/oracle\.sh' "$script_dir/run-host-native.sh")"

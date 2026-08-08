@@ -34,7 +34,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260808.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=2
+HOST_HARNESS_VERSION=3
 MODEL="deepseek/deepseek-v4-flash"
 SCENARIO_ID="001-nginx-502-host"
 SSH_PORT=22600
@@ -95,18 +95,39 @@ done
   exit 2
 }
 SCENARIO_DIR="${SCRIPT_DIR}/scenarios/${SCENARIO_ID}"
-SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.conf"
+TYPED_SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.toml"
+LEGACY_SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.conf"
+DECLARATIVE_SCENARIO=false
+if [[ -f "$TYPED_SCENARIO_MANIFEST" ]]; then
+  DECLARATIVE_SCENARIO=true
+  SCENARIO_MANIFEST="$TYPED_SCENARIO_MANIFEST"
+  scenario_description="$(python "$SCRIPT_DIR/scenario_phase.py" --describe "$SCENARIO_MANIFEST")" || exit 2
+  SCENARIO_VERSION="$(jq -r '.version' <<<"$scenario_description")"
+  NIXOS_CONFIG="$(jq -r '.nixos_config' <<<"$scenario_description")"
+  INSTRUCTION="$(jq -r '.instruction' <<<"$scenario_description")"
+  ORACLE="$(jq -r '.oracle' <<<"$scenario_description")"
+  REQUIRED_SERVICES="$(jq -r '.required_services | join(" ")' <<<"$scenario_description")"
+  RESTART_SERVICES="$(jq -r '.restart_services | join(" ")' <<<"$scenario_description")"
+else
+  SCENARIO_MANIFEST="$LEGACY_SCENARIO_MANIFEST"
+fi
 [[ -f "$SCENARIO_MANIFEST" ]] || {
   echo "unknown host-native scenario: ${SCENARIO_ID}" >&2
   exit 2
 }
-# shellcheck source=/dev/null
-source "$SCENARIO_MANIFEST"
+if [[ "$DECLARATIVE_SCENARIO" == false ]]; then
+  # shellcheck source=/dev/null
+  source "$SCENARIO_MANIFEST"
+fi
 [[ "${SCENARIO_VERSION:-}" =~ ^[1-9][0-9]*$ ]] || {
   echo "scenario ${SCENARIO_ID} has an invalid SCENARIO_VERSION" >&2
   exit 2
 }
-for scenario_field in NIXOS_CONFIG INSTRUCTION ORACLE PREFLIGHT VERIFY REQUIRED_SERVICES RESTART_SERVICES; do
+scenario_fields=(NIXOS_CONFIG INSTRUCTION ORACLE REQUIRED_SERVICES RESTART_SERVICES)
+if [[ "$DECLARATIVE_SCENARIO" == false ]]; then
+  scenario_fields+=(PREFLIGHT VERIFY)
+fi
+for scenario_field in "${scenario_fields[@]}"; do
   [[ -n "${!scenario_field:-}" ]] || {
     echo "scenario ${SCENARIO_ID} is missing ${scenario_field}" >&2
     exit 2
@@ -264,7 +285,21 @@ wait_for_services() {
 
 verify_repaired() {
   local phase="$1"
-  "$VERIFY" "http://127.0.0.1:${HTTP_PORT}" "$phase" "$SCENARIO_STATE_DIR"
+  if [[ "$DECLARATIVE_SCENARIO" == true ]]; then
+    python "$SCRIPT_DIR/scenario_phase.py" \
+      "$SCENARIO_MANIFEST" "$phase" "http://127.0.0.1:${HTTP_PORT}" "$SCENARIO_STATE_DIR"
+  else
+    "$VERIFY" "http://127.0.0.1:${HTTP_PORT}" "$phase" "$SCENARIO_STATE_DIR"
+  fi
+}
+
+run_preflight() {
+  if [[ "$DECLARATIVE_SCENARIO" == true ]]; then
+    python "$SCRIPT_DIR/scenario_phase.py" \
+      "$SCENARIO_MANIFEST" preflight "http://127.0.0.1:${HTTP_PORT}" "$SCENARIO_STATE_DIR"
+  else
+    "$PREFLIGHT" "http://127.0.0.1:${HTTP_PORT}" "$SCENARIO_STATE_DIR"
+  fi
 }
 
 capture_agent_results() {
@@ -287,14 +322,15 @@ run_verification() {
   local status=0
 
   verify_repaired "$phase" || status=$?
-  if (( status == 20 )); then
+  if [[ "$DECLARATIVE_SCENARIO" == true ]] && (( status != 0 )); then
+    failure_category="$(jq -r '.category // empty' "$SCENARIO_STATE_DIR/phase-failure.json" 2>/dev/null || true)"
+    [[ -n "$failure_category" ]] || failure_category="verification_failed"
+  elif (( status == 20 )); then
     failure_category="backlog_not_recovered"
   elif (( status == 21 )); then
     failure_category="migration_not_applied"
   elif (( status == 22 )); then
     failure_category="poison_not_quarantined"
-  elif (( status == 23 )); then
-    failure_category="database_pool_exhausted"
   fi
   return "$status"
 }
@@ -332,7 +368,7 @@ if ! wait_for_services; then
   exit 1
 fi
 
-if ! "$PREFLIGHT" "http://127.0.0.1:${HTTP_PORT}" "$SCENARIO_STATE_DIR"; then
+if ! run_preflight; then
   echo "incident preflight failed for ${SCENARIO_ID}" >&2
   exit 1
 fi

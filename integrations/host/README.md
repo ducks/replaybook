@@ -4,7 +4,7 @@ This integration evaluates an infrastructure agent on a real disposable Linux
 host. The agent does not receive a Docker socket and does not manage sibling
 containers.
 
-The local controller builds and boots a scenario-selected NixOS VM. Three
+The local controller builds and boots a scenario-selected NixOS VM. Five
 scenarios are currently available:
 
 - `001-nginx-502-host`: Nginx points at the wrong backend port.
@@ -17,6 +17,12 @@ scenarios are currently available:
   column from a migration that was shipped but never applied. The verifier
   requires the migration record, the schema change, retry recovery for the
   exact pre-existing jobs, and one execution of every new job.
+- `015-sidekiq-poison-pill`: one poison payload blocks Sidekiq's only worker
+  thread. The verifier requires the poison job to be quarantined, the valid
+  backlog to be recovered, and future poison work to stop blocking valid jobs.
+- `016-rails-pool-exhaustion`: four Puma threads share an undersized
+  ActiveRecord pool. The verifier requires failed checkouts to be recovered
+  and concurrent traffic to succeed after restart and reboot.
 
 Each scenario supplies its NixOS topology, incident instruction, reference
 repair, broken-state preflight, and external verifier. The controller verifies
@@ -24,6 +30,26 @@ the repair through the user-facing HTTP boundary. Model VMs never receive the
 reference repair or verifier. The runner only copies the reference repair into
 the VM for an explicit `--oracle` run and asserts that it is absent before
 starting Claux.
+
+## Declarative scenario lifecycle
+
+New host scenarios can define their lifecycle in `scenario.toml`. The typed
+manifest contains scenario version and topology metadata plus ordered
+`preflight` and `verify` steps. The generic phase runner currently supports:
+
+- `wait_http`: poll an HTTP assertion with bounded request and phase timeouts.
+- `concurrent_http`: generate controller-owned IDs, issue bounded concurrent
+  requests, assert a success range, and persist all or failed IDs.
+- `replay_http`: retry exact IDs from controller state and require recovery.
+
+Each assertion can name its own `failure_category`. On failure, the phase
+runner writes structured `phase-failure.json`; adding a scenario category no
+longer requires assigning another shell exit code in the host runner.
+
+`016-rails-pool-exhaustion` is the first fully declarative scenario. Its former
+preflight and verifier scripts are represented entirely by manifest steps.
+Legacy `scenario.conf`, `preflight.sh`, and `verify.sh` hooks remain supported
+while the older scenarios migrate.
 
 Claux runs directly as root on that VM and investigates with normal Linux tools
 such as `systemctl`, `journalctl`, `ps`, `ss`, and the filesystem. The controller
@@ -117,7 +143,9 @@ host harness version, scenario version, agent duration, usage, and separate
 immediate, service-restart, and host-reboot verification outcomes. A result is
 comparable only with runs using the same host harness and scenario versions.
 Host harness version 2 is the first version that guarantees the reference
-repair is absent from model VMs.
+repair is absent from model VMs. Version 3 introduces typed scenario manifests,
+generic lifecycle phases, persistent controller state, and structured verifier
+failure categories.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the
@@ -136,6 +164,10 @@ scenario records `failure_category: "backlog_not_recovered"` when the agent
 repairs future processing but abandons or deletes work that was already queued.
 The migration scenario records `failure_category: "migration_not_applied"`
 when the application appears healthy without the deployed schema migration.
+The poison-pill scenario records `failure_category: "poison_not_quarantined"`
+when valid work or the bad job is discarded. Declarative scenarios report the
+category named by the failed manifest assertion; the Rails pool scenario uses
+`failure_category: "database_pool_exhausted"`.
 
 The OpenRouter credential is written to a mode-0600 file inside the disposable
 VM, used only for the Claux process, and destroyed with the VM. The agent runs
