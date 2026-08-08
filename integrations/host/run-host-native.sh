@@ -293,6 +293,8 @@ run_verification() {
     failure_category="migration_not_applied"
   elif (( status == 22 )); then
     failure_category="poison_not_quarantined"
+  elif (( status == 23 )); then
+    failure_category="database_pool_exhausted"
   fi
   return "$status"
 }
@@ -418,6 +420,8 @@ elif ! run_verification immediate; then
     failure="repair did not apply the deployed migration"
   elif [[ "$failure_category" == "poison_not_quarantined" ]]; then
     failure="repair did not quarantine poison work safely"
+  elif [[ "$failure_category" == "database_pool_exhausted" ]]; then
+    failure="repair did not restore database connection capacity"
   else
     failure="HTTP repair did not recover"
   fi
@@ -433,6 +437,8 @@ else
       failure="deployed migration was not applied after service restarts"
     elif [[ "$failure_category" == "poison_not_quarantined" ]]; then
       failure="poison handling did not survive service restarts"
+    elif [[ "$failure_category" == "database_pool_exhausted" ]]; then
+      failure="database pool repair did not survive service restarts"
     else
       failure="repair did not survive service restarts"
     fi
@@ -458,6 +464,8 @@ else
         failure="deployed migration was not applied after host reboot"
       elif [[ "$failure_category" == "poison_not_quarantined" ]]; then
         failure="poison handling did not survive host reboot"
+      elif [[ "$failure_category" == "database_pool_exhausted" ]]; then
+        failure="database pool repair did not survive host reboot"
       else
         failure="repair did not survive host reboot"
       fi

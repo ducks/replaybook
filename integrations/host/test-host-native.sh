@@ -14,6 +14,7 @@ ruby -c "$script_dir/scenarios/014-missing-rails-migration/app/jobs.rb" >/dev/nu
 ruby -c "$script_dir/scenarios/014-missing-rails-migration/app/server.rb" >/dev/null
 ruby -c "$script_dir/scenarios/015-sidekiq-poison-pill/app/jobs.rb" >/dev/null
 ruby -c "$script_dir/scenarios/015-sidekiq-poison-pill/app/server.rb" >/dev/null
+ruby -c "$script_dir/scenarios/016-rails-pool-exhaustion/app/app.ru" >/dev/null
 
 grep -q 'systemd.services.checkout-backend' "$script_dir/worker/nixos.nix"
 grep -q 'systemd.services.incident-nginx' "$script_dir/worker/nixos.nix"
@@ -34,6 +35,9 @@ grep -q 'SCENARIO_VERSION="2"' "$script_dir/scenarios/014-missing-rails-migratio
 grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/015-sidekiq-poison-pill/scenario.conf"
 grep -q 'exit 22' "$script_dir/scenarios/015-sidekiq-poison-pill/verify.sh"
 grep -q 'failure_category="poison_not_quarantined"' "$script_dir/run-host-native.sh"
+grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/016-rails-pool-exhaustion/scenario.conf"
+grep -q 'exit 23' "$script_dir/scenarios/016-rails-pool-exhaustion/verify.sh"
+grep -q 'failure_category="database_pool_exhausted"' "$script_dir/run-host-native.sh"
 grep -q '202608070001_add_delivery_state.sql' "$script_dir/scenarios/014-missing-rails-migration/oracle.sh"
 grep -q 'deployment/migration' "$script_dir/scenarios/014-missing-rails-migration/verify.sh"
 if grep -q 'ADD COLUMN IF NOT EXISTS' \
@@ -92,6 +96,7 @@ grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/in
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/scenarios/013-sidekiq-wrong-redis/instruction.md"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/scenarios/014-missing-rails-migration/instruction.md"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/scenarios/015-sidekiq-poison-pill/instruction.md"
+grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/scenarios/016-rails-pool-exhaustion/instruction.md"
 
 console_log="$(mktemp)"
 trap 'rm -f -- "$console_log"' EXIT
