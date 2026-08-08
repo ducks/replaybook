@@ -71,6 +71,8 @@ override it with `--agent-timeout-seconds`.
 
 Host boot, reboot, and service-readiness checks use wall-clock deadlines, so
 repeated SSH connection attempts cannot extend a failed trial indefinitely.
+When Claux supports graceful one-shot signal cancellation, an agent timeout
+also preserves its partial messages, tool trace, token usage, and known cost.
 
 ## Run a model matrix
 
