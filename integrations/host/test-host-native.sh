@@ -11,6 +11,7 @@ bash -n "$script_dir/find-codex-binary.sh"
 bash -n "$script_dir/prepare-codex-env.sh"
 bash -n "$script_dir/oracle.sh"
 bash -n "$script_dir/classify-agent-exit.sh"
+bash -n "$script_dir/classify-agent-outcome.sh"
 bash -n "$script_dir/ssh-probe.sh"
 find "$script_dir/scenarios" -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
 ruby -c "$script_dir/scenarios/013-sidekiq-wrong-redis/app/jobs.rb" >/dev/null
@@ -51,7 +52,7 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=4' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=5' "$script_dir/run-host-native.sh"
 grep -q 'DECLARATIVE_SCENARIO=true' "$script_dir/run-host-native.sh"
 grep -q 'harness_version: $harness_version' "$script_dir/run-host-native.sh"
 
@@ -91,9 +92,22 @@ grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host
 [[ "$(grep -c 'ssh-probe.sh.*"\${SSH\[@\]}"' "$script_dir/run-host-native.sh")" -eq 3 ]]
 grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
+grep -q 'trial_status="unavailable"' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
 grep -q 'v20260808.0.0' "$script_dir/run-host-native.sh"
 grep -q 'v20260808.0.0' "$script_dir/run_host_matrix.py"
+
+agent_error="$(mktemp)"
+trap 'rm -f -- "$agent_error"' EXIT
+printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (429 Too Many Requests): Provider returned error"}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == "provider_unavailable" ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"authentication failed: invalid API key"}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == "authentication_failed" ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"adapter exited unexpectedly"}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == "agent_runtime_error" ]]
+printf '%s\n' '{"outcome":{"status":"cancelled","message":"interrupted"}}' >"$agent_error"
+[[ -z "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" ]]
+rm -f -- "$agent_error"
 if grep -q 'timeout --foreground' "$script_dir/run-host-native.sh"; then
   echo "agent timeout unexpectedly leaves child processes outside its process group" >&2
   exit 1

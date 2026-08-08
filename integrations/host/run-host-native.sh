@@ -45,7 +45,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260808.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=4
+HOST_HARNESS_VERSION=5
 MODEL="deepseek/deepseek-v4-flash"
 SCENARIO_ID="001-nginx-502-host"
 SSH_PORT=22600
@@ -539,6 +539,7 @@ fi
 reward=0
 failure=""
 failure_category=""
+trial_status="evaluated"
 immediate_passed=false
 restart_passed=false
 reboot_passed=false
@@ -565,6 +566,12 @@ if (( run_status != 0 )); then
     failure="agent exceeded ${AGENT_TIMEOUT_SECONDS} second timeout"
   elif [[ "$failure_category" == "agent_rebooted_host" ]]; then
     failure="agent rebooted the host during its session"
+  elif [[ -f "$agent_result" ]] \
+    && agent_outcome_category="$("$SCRIPT_DIR/classify-agent-outcome.sh" "$agent_result")" \
+    && [[ -n "$agent_outcome_category" ]]; then
+    trial_status="unavailable"
+    failure_category="$agent_outcome_category"
+    failure="$(jq -r '.outcome.message // "agent harness could not complete the trial"' "$agent_result")"
   else
     failure="agent exited with status $run_status"
   fi
@@ -658,6 +665,7 @@ jq -n \
   --arg finished_at "$finished_at" \
   --arg failure "$failure" \
   --arg failure_category "$failure_category" \
+  --arg trial_status "$trial_status" \
   --argjson reward "$reward" \
   --argjson agent_seconds "$agent_seconds" \
   --argjson agent_timeout_seconds "$AGENT_TIMEOUT_SECONDS" \
@@ -678,6 +686,7 @@ jq -n \
     agent_duration_seconds: $agent_seconds,
     agent_timeout_seconds: $agent_timeout_seconds,
     reward: $reward,
+    trial_status: $trial_status,
     failure: (if $failure == "" then null else $failure end),
     failure_category: (if $failure_category == "" then null else $failure_category end),
     usage: $usage,

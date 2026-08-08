@@ -245,8 +245,11 @@ Each trial receives adjacent SSH and HTTP ports starting at `--base-port`.
 Results are written under `jobs/host-matrix-*`, including per-trial logs,
 result and transcript paths, benchmark metadata, failure categories, model
 aggregates with token and cost totals, and scenario-version-aware aggregates.
-Evaluation failures are valid matrix results; the command exits nonzero only
-when a worker fails to produce a valid result.
+Evaluation failures are valid matrix results. Provider, authentication, or
+harness runtime errors are recorded as unavailable attempts and excluded from
+pass-rate denominators. The command exits nonzero when a worker produces no
+valid result or a requested attempt is unavailable, because that matrix is
+incomplete rather than evidence of model failure.
 
 The matrix passes `--agent-timeout-seconds` to every worker and records the
 chosen value in `benchmark.json`. A model that exceeds the limit is terminated
@@ -267,7 +270,9 @@ Host harness version 2 is the first version that guarantees the reference
 repair is absent from model VMs. Version 3 introduces typed scenario manifests,
 generic lifecycle phases, persistent controller state, and structured verifier
 failure categories. Version 4 introduces the harness adapter contract and
-generic result and transcript artifacts.
+generic result and transcript artifacts. Version 5 distinguishes unavailable
+provider or harness attempts from evaluated repairs and excludes them from
+model pass-rate denominators.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the

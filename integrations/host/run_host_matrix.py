@@ -26,7 +26,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 4
+HOST_HARNESS_VERSION = 5
+TRIAL_STATUSES = {"evaluated", "unavailable"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 SCENARIO_VERSION_PATTERN = re.compile(
     r'^SCENARIO_VERSION=["\']?([1-9][0-9]*)["\']?$', re.MULTILINE
@@ -154,6 +155,7 @@ def load_result(path: Path) -> tuple[dict[str, Any] | None, str | None]:
         or result["scenario_version"] <= 0
         or not isinstance(result["model"], str)
         or result["reward"] not in (0, 1)
+        or result.get("trial_status", "evaluated") not in TRIAL_STATUSES
     ):
         return None, f"result has invalid required fields: {path}"
     return result, None
@@ -250,6 +252,9 @@ async def run_worker(
                 file=sys.stderr,
                 flush=True,
             )
+        elif result.get("trial_status") == "unavailable":
+            category = result.get("failure_category") or "unavailable"
+            print(f"[matrix] unavailable {job.run_id} ({category})", flush=True)
         elif int(result.get("reward", 0)) == 1:
             print(f"[matrix] passed {job.run_id}", flush=True)
         else:
@@ -297,9 +302,14 @@ async def run_jobs(
 
 
 def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
+    evaluated = [
+        run
+        for run in runs
+        if run.get("trial_status", "evaluated") == "evaluated"
+    ]
     durations = [
         float(run["agent_duration_seconds"])
-        for run in runs
+        for run in evaluated
         if run.get("agent_duration_seconds") is not None
     ]
     costs = [
@@ -309,12 +319,14 @@ def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         and run["usage"].get("cost_usd") is not None
     ]
     usages = [run["usage"] for run in runs if isinstance(run.get("usage"), dict)]
-    passed = sum(int(run.get("reward", 0)) == 1 for run in runs)
+    passed = sum(int(run.get("reward", 0)) == 1 for run in evaluated)
     return {
         "trials": len(runs),
+        "evaluated": len(evaluated),
+        "unavailable": len(runs) - len(evaluated),
         "passed": passed,
-        "failed": len(runs) - passed,
-        "pass_rate": passed / len(runs) if runs else None,
+        "failed": len(evaluated) - passed,
+        "pass_rate": passed / len(evaluated) if evaluated else None,
         "median_duration_seconds": statistics.median(durations) if durations else None,
         "known_cost_usd": sum(costs),
         "cost_reported_trials": len(costs),
@@ -394,7 +406,13 @@ def build_summary(
     failure_categories = Counter(
         str(run["failure_category"])
         for run in runs
-        if run.get("failure_category")
+        if run.get("trial_status", "evaluated") == "evaluated"
+        and run.get("failure_category")
+    )
+    unavailable_categories = Counter(
+        str(run["failure_category"])
+        for run in runs
+        if run.get("trial_status") == "unavailable" and run.get("failure_category")
     )
 
     return {
@@ -411,6 +429,10 @@ def build_summary(
         "failure_categories": [
             {"category": category, "count": count}
             for category, count in sorted(failure_categories.items())
+        ],
+        "unavailable_categories": [
+            {"category": category, "count": count}
+            for category, count in sorted(unavailable_categories.items())
         ],
         "by_model": by_model,
         "by_scenario_model": by_scenario_model,
@@ -440,6 +462,8 @@ def print_table(rows: list[dict[str, Any]]) -> None:
     headers = [
         "model",
         "trials",
+        "eval",
+        "unavail",
         "passed",
         "failed",
         "pass",
@@ -455,6 +479,8 @@ def print_table(rows: list[dict[str, Any]]) -> None:
             [
                 str(row["model"]),
                 str(row["trials"]),
+                str(row["evaluated"]),
+                str(row["unavailable"]),
                 str(row["passed"]),
                 str(row["failed"]),
                 "n/a" if rate is None else f"{rate:.0%}",
@@ -475,13 +501,25 @@ def print_table(rows: list[dict[str, Any]]) -> None:
 
 
 def print_scenario_table(rows: list[dict[str, Any]]) -> None:
-    headers = ["scenario", "ver", "model", "trials", "passed", "failed", "median"]
+    headers = [
+        "scenario",
+        "ver",
+        "model",
+        "trials",
+        "eval",
+        "unavail",
+        "passed",
+        "failed",
+        "median",
+    ]
     formatted = [
         [
             str(row["scenario"]),
             f"v{row['scenario_version']}",
             str(row["model"]),
             str(row["trials"]),
+            str(row["evaluated"]),
+            str(row["unavailable"]),
             str(row["passed"]),
             str(row["failed"]),
             display_duration(row["median_duration_seconds"]),
@@ -720,6 +758,10 @@ def main(argv: list[str] | None = None) -> int:
         print("\nFailure categories:")
         for row in summary["failure_categories"]:
             print(f"  {row['category']}: {row['count']}")
+    if summary["unavailable_categories"]:
+        print("\nUnavailable trial categories:")
+        for row in summary["unavailable_categories"]:
+            print(f"  {row['category']}: {row['count']}")
     print(f"\n[matrix] summary: {summary_file}")
 
     infrastructure_errors = summary["infrastructure_errors"]
@@ -727,6 +769,13 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"[matrix] incomplete: {len(infrastructure_errors)} trials produced "
             "no valid result",
+            file=sys.stderr,
+        )
+        return 1
+    if summary["totals"]["unavailable"]:
+        print(
+            f"[matrix] incomplete: {summary['totals']['unavailable']} trials "
+            "were unavailable and excluded from pass rates",
             file=sys.stderr,
         )
         return 1

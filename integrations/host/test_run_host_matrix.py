@@ -78,7 +78,7 @@ class HostMatrixTests(unittest.TestCase):
                 (jobs[1], 0, "backlog_not_recovered"),
             ):
                 result = {
-                    "harness_version": 4,
+                    "harness_version": 5,
                     "scenario": job.scenario,
                     "scenario_version": 2,
                     "model": job.model,
@@ -96,7 +96,9 @@ class HostMatrixTests(unittest.TestCase):
             )
 
         self.assertEqual(summary["received_results"], 2)
-        self.assertEqual(summary["harness_version"], 4)
+        self.assertEqual(summary["harness_version"], 5)
+        self.assertEqual(summary["totals"]["evaluated"], 2)
+        self.assertEqual(summary["totals"]["unavailable"], 0)
         self.assertEqual(summary["totals"]["passed"], 1)
         self.assertEqual(summary["totals"]["failed"], 1)
         self.assertEqual(summary["totals"]["input_tokens"], 0)
@@ -106,6 +108,69 @@ class HostMatrixTests(unittest.TestCase):
             summary["failure_categories"],
             [{"category": "backlog_not_recovered", "count": 1}],
         )
+        self.assertEqual(summary["unavailable_categories"], [])
+
+    def test_summary_excludes_unavailable_trials_from_pass_rate(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            jobs = build_jobs(
+                scenarios=["014-missing-rails-migration"],
+                models=["pass/model", "unavailable/model"],
+                attempts=1,
+                base_port=23000,
+                matrix_dir=root,
+            )
+            passed = {
+                "harness_version": 5,
+                "scenario": jobs[0].scenario,
+                "scenario_version": 2,
+                "model": jobs[0].model,
+                "reward": 1,
+                "trial_status": "evaluated",
+                "failure_category": None,
+                "agent_duration_seconds": 120,
+                "usage": {"input_tokens": 100, "cost_usd": 0.01},
+            }
+            unavailable = {
+                "harness_version": 5,
+                "scenario": jobs[1].scenario,
+                "scenario_version": 2,
+                "model": jobs[1].model,
+                "reward": 0,
+                "trial_status": "unavailable",
+                "failure_category": "provider_unavailable",
+                "agent_duration_seconds": 4,
+                "usage": {"input_tokens": 0, "cost_usd": None},
+            }
+            workers = [
+                WorkerResult(jobs[0], 0, passed, None),
+                WorkerResult(jobs[1], 1, unavailable, None),
+            ]
+            summary = build_summary(
+                workers,
+                started_at="2026-08-08T00:00:00Z",
+                benchmark={"suite": "test"},
+            )
+
+        self.assertEqual(summary["totals"]["trials"], 2)
+        self.assertEqual(summary["totals"]["evaluated"], 1)
+        self.assertEqual(summary["totals"]["unavailable"], 1)
+        self.assertEqual(summary["totals"]["passed"], 1)
+        self.assertEqual(summary["totals"]["failed"], 0)
+        self.assertEqual(summary["totals"]["pass_rate"], 1.0)
+        self.assertEqual(summary["totals"]["median_duration_seconds"], 120)
+        self.assertEqual(summary["failure_categories"], [])
+        self.assertEqual(
+            summary["unavailable_categories"],
+            [{"category": "provider_unavailable", "count": 1}],
+        )
+        unavailable_row = next(
+            row for row in summary["by_model"] if row["model"] == "unavailable/model"
+        )
+        self.assertEqual(unavailable_row["evaluated"], 0)
+        self.assertEqual(unavailable_row["unavailable"], 1)
+        self.assertIsNone(unavailable_row["pass_rate"])
+        self.assertIsNone(unavailable_row["median_duration_seconds"])
 
     def test_worker_accepts_nonzero_evaluation_with_result(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -132,7 +197,7 @@ python - "$output/result.json" "$scenario" "$model" "$agent_timeout" <<'PY'
 import json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
 result = {
-    "harness_version": 4,
+    "harness_version": 5,
     "scenario": sys.argv[2],
     "scenario_version": 2,
     "model": sys.argv[3],
@@ -201,7 +266,7 @@ python - "$output/result.json" "$scenario" "$model" "$adapter" "$payload" "$env_
 import json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
 path.write_text(json.dumps({
-    "harness_version": 4,
+    "harness_version": 5,
     "scenario": sys.argv[2],
     "scenario_version": 2,
     "model": sys.argv[3],
