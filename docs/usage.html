@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Usage &middot; replaybook</title>
-  <meta name="description" content="replaybook CLI commands, the HUD, and session data.">
+  <meta name="description" content="Run playable incidents, host-native agent evaluations, and hosted Replaybook sessions.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap wide">
     <header class="site">
       <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
       <nav class="site">
@@ -20,61 +20,137 @@
       </nav>
     </header>
 
+    <nav class="benchmark-tabs" aria-label="Usage sections">
+      <a href="#play">Play</a>
+      <a href="#evaluate">Evaluate</a>
+      <a href="#hosted">Hosted</a>
+      <a href="#results">Results</a>
+    </nav>
+
     <h1>Usage</h1>
 
-    <h2>Commands</h2>
+    <h2 id="play">Play Docker incidents</h2>
 
-    <pre><code># add a scenario pack from GitHub
+    <pre><code># install and inspect the official pack
+cargo install replaybook
 replaybook add ducks/replaybook-scenarios
-replaybook add mycompany/incidents
-
-# list available scenarios
 replaybook list
 
-# create, validate, test, and run a scenario by direct path
-replaybook new 010-checkout-down --pack ./company-incidents
+# run by ID, choose randomly, or force a fault variant
+replaybook run 001-nginx-502
+replaybook run --random --tag postgres
+replaybook run 006-sidekiq-cant-connect --fault redis-auth
+
+# change the default 15-minute SLA
+replaybook run 001-nginx-502 --sla 5</code></pre>
+
+    <p>
+      Replaybook opens a tmux session inside a workstation container. The left
+      pane is the incident shell. The right pane shows the page, SLA countdown,
+      and hint status. Run <code>get-hint</code> inside the shell when needed.
+    </p>
+
+    <h3>Create and test a Docker scenario</h3>
+
+    <pre><code>replaybook new 010-checkout-down --pack ./company-incidents
 replaybook validate ./company-incidents/010-checkout-down
 replaybook test ./company-incidents/010-checkout-down
-replaybook run ./company-incidents/010-checkout-down
-
-# test every scenario in a pack
-replaybook test --all ./company-incidents
-
-# run an installed scenario (15 minute SLA by default)
-replaybook run 001-nginx-502
-
-# run with a custom SLA
-replaybook run 001-nginx-502 --sla 5
-
-# export session history as JSONL
-replaybook export</code></pre>
+replaybook test --all ./company-incidents</code></pre>
 
     <p>
-      <code>replaybook add</code> and <code>replaybook run</code> validate
-      scenarios automatically before anything runs &mdash; see
-      <a href="scenarios.html#validation">validation</a> for what's checked.
+      <code>add</code>, <code>run</code>, and <code>test</code> validate scenario
+      structure before starting Docker. See <a href="scenarios.html#docker">Docker
+      scenarios</a> for the format and trust model.
     </p>
 
-    <h2>The HUD</h2>
+    <h2 id="evaluate">Evaluate agents on Linux hosts</h2>
 
     <p>
-      When a scenario starts, the terminal splits via tmux (installed
-      automatically inside the container &mdash; no host dependency). The
-      right pane shows the incident page, SLA countdown, and hint status.
+      The host-native runner builds a disposable NixOS VM, reproduces the
+      selected incident, runs the agent directly as root, then verifies the
+      repair immediately, after service restart, and after host reboot.
+    </p>
+
+    <pre><code># list scenario IDs and versions
+python integrations/host/run_host_matrix.py --list-scenarios
+
+# test the hidden reference repair before spending model tokens
+integrations/host/run-host-native.sh \
+  --scenario 014-missing-rails-migration \
+  --oracle
+
+# run a model matrix through the default Claux adapter
+python integrations/host/run_host_matrix.py \
+  --scenario 013-sidekiq-wrong-redis \
+  --scenario 014-missing-rails-migration \
+  --models deepseek/deepseek-v4-pro tencent/hy3-preview \
+  --attempts 3 \
+  --concurrency 2</code></pre>
+
+    <p>
+      Set <code>OPENROUTER_API_KEY</code> for the bundled Claux adapter. The
+      controller needs Linux, Nix, <code>nixos-generators</code>, QEMU, SSH, and
+      hardware virtualization when available. Each concurrent trial consumes
+      one VM and two adjacent localhost ports.
+    </p>
+
+    <h3>Bring another harness</h3>
+
+    <pre><code>python integrations/host/run_host_matrix.py \
+  --scenario 001-nginx-502-host \
+  --models gpt-5.6-sol \
+  --agent-adapter integrations/host/adapters/codex.sh \
+  --agent-payload /path/to/codex \
+  --agent-env-file /path/to/credentials.env \
+  --agent-name codex \
+  --attempts 1</code></pre>
+
+    <p>
+      Replaybook owns the VM, instruction, timeout, lifecycle, and verifier.
+      The adapter invokes the harness and writes normalized result JSON. It does
+      not decide whether the repair passed. The bundled
+      <a href="https://github.com/ducks/replaybook/tree/main/skills/replaybook-add-harness">harness skill</a>
+      scaffolds and validates a new adapter.
+    </p>
+
+    <h2 id="hosted">Hosted human sessions</h2>
+
+    <p>
+      A dedicated remote VM can host one isolated trainee session. Replaybook
+      provisions the scenario, issues a restricted SSH credential, and attaches
+      the local terminal to it.
+    </p>
+
+    <pre><code>replaybook remote 001-nginx-502 \
+  --host replaybook@training-vm.example.com
+
+REPLAYBOOK_CONTROL_TOKEN=... replaybook serve \
+  --host replaybook@training-vm.example.com \
+  --bind 127.0.0.1:8080</code></pre>
+
+    <p>
+      <code>serve</code> exposes an authenticated control plane for creating,
+      inspecting, expiring, and destroying sessions. Use a TLS reverse proxy
+      before binding it beyond loopback. See the
+      <a href="https://github.com/ducks/replaybook/blob/main/docs/HOSTING.md">hosting security model</a>.
+    </p>
+
+    <h2 id="results">Results and transcripts</h2>
+
+    <p>
+      Human sessions are appended to
+      <code>~/.local/share/replaybook/sessions/sessions.jsonl</code>. Export them
+      with <code>replaybook export</code>. Each record includes the scenario,
+      outcome, elapsed time, hints, selected fault, and terminal transcript path.
     </p>
 
     <p>
-      Run <code>get-hint</code> inside the shell to reveal the next hint.
-      Hints used are recorded with your session outcome.
+      Agent matrices write under <code>jobs/host-matrix-*</code>. Each trial keeps
+      normalized results, complete harness transcripts when available, verifier
+      outcomes, timing, token usage, cost, model, scenario version, Replaybook
+      commit, and harness version. Provider and harness failures are recorded as
+      unavailable rather than counted as failed repairs.
     </p>
-
-    <h2>Session data</h2>
-
-    <p>Sessions are recorded to <code>~/.local/share/replaybook/sessions/sessions.jsonl</code>:</p>
-
-    <pre><code>replaybook export > sessions.jsonl</code></pre>
-
-    <p>Each record contains scenario ID, outcome (success/timeout/abandoned), elapsed time, and hints used.</p>
 
     <footer class="site">
       <a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a>

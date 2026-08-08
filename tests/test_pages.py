@@ -72,6 +72,27 @@ class PagesTests(unittest.TestCase):
         self.assertIn("Price per durable repair", methodology)
         self.assertIn("v5", methodology)
 
+    def test_core_pages_cover_current_workflows(self) -> None:
+        home = (DOCS_DIR / "index.html").read_text()
+        usage = (DOCS_DIR / "usage.html").read_text()
+        scenarios = (DOCS_DIR / "scenarios.html").read_text()
+
+        self.assertIn("Practice incidents", home)
+        self.assertIn("Test infrastructure agents", home)
+        self.assertIn("15 durable repairs in 15 trials", home)
+
+        self.assertIn("replaybook remote", usage)
+        self.assertIn("replaybook serve", usage)
+        self.assertIn("run_host_matrix.py", usage)
+        self.assertIn("--agent-adapter", usage)
+        self.assertIn("unavailable", usage)
+
+        self.assertIn("Docker scenario packs", scenarios)
+        self.assertIn("Host-native evaluation scenarios", scenarios)
+        self.assertIn("016-rails-pool-exhaustion", scenarios)
+        self.assertIn("scenario.toml", scenarios)
+        self.assertIn("replaybook-build-scenario", scenarios)
+
 
 if __name__ == "__main__":
     unittest.main()

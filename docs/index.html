@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>replaybook</title>
-  <meta name="description" content="Practice infrastructure incidents and evaluate whether agents make durable repairs.">
+  <meta name="description" content="Replay infrastructure incidents and evaluate whether agents make durable repairs.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,54 +20,78 @@
       </nav>
     </header>
 
-    <h1>replaybook</h1>
-    <p class="tagline">Practice incidents. Evaluate agents. Verify durable repairs.</p>
-
-    <p>
-      Each scenario is a Docker environment with a fault injected. You're dropped
-      into a shell inside the broken container. The terminal splits &mdash; shell on
-      the left, HUD on the right showing the incident page, SLA countdown, and hints.
-      Diagnose and fix using real tools. The engine polls a health check in the
-      background &mdash; when it goes green, you're done.
+    <p class="eyebrow">Stateful infrastructure evaluation</p>
+    <h1>Replay real incidents. Verify real repairs.</h1>
+    <p class="tagline">
+      Practice production failures yourself, or put an AI agent inside a fresh
+      Linux host and measure what survives after it leaves.
     </p>
 
+    <div class="gate-grid">
+      <article class="gate">
+        <span class="gate-number">PLAY</span>
+        <h3>Practice incidents</h3>
+        <p>
+          Enter a broken Docker environment with real services, an SLA, hints,
+          and a terminal transcript. Diagnose the failure and repair it.
+        </p>
+      </article>
+      <article class="gate">
+        <span class="gate-number">EVALUATE</span>
+        <h3>Test infrastructure agents</h3>
+        <p>
+          Run Claux, Codex, or another harness on a disposable NixOS VM. An
+          external verifier checks the repair after restart and reboot.
+        </p>
+      </article>
+    </div>
+
     <p>
-      Built to turn post-mortems into playable scenarios. New engineers build
-      muscle memory on the actual failure modes your team has hit, not simulations.
+      Replaybook began as a way to turn postmortems into playable incidents.
+      The same idea now supports repeatable agent evaluation: reproduce a
+      stateful failure, preserve the work already in flight, hide the answer
+      from the agent, and verify the deployed system instead of its final
+      explanation.
     </p>
 
+    <div class="callout verified-status">
+      <strong>Current host-native matrix: 15 durable repairs in 15 trials.</strong>
+      Three models repaired five Ruby and Linux incidents for $0.2740 in total
+      reported cost. See the <a href="benchmarks.html">current results</a>.
+    </div>
+
+    <h2>Practice an incident</h2>
+
+    <pre><code>cargo install replaybook
+replaybook add ducks/replaybook-scenarios
+replaybook list
+replaybook run 001-nginx-502</code></pre>
+
     <p>
-      The same scenarios can evaluate infrastructure agents on disposable Linux
-      hosts. External verifiers restart services, reboot the host, and check that
-      existing work survived. See the <a href="benchmarks.html">benchmark results</a>.
-    </p>
-
-    <h2>Install</h2>
-
-    <pre><code>cargo install replaybook</code></pre>
-
-    <p>
-      Requires Docker. Prebuilt binaries for linux-x86_64, linux-arm64,
-      macos-x86_64, and macos-arm64 are on the
+      Playable scenarios require Docker. Replaybook opens a workstation
+      container on the incident network and records the complete terminal
+      session. Prebuilt binaries for Linux and macOS are available on the
       <a href="https://github.com/ducks/replaybook/releases">releases page</a>.
     </p>
 
-    <h2>Getting started</h2>
+    <h2>Evaluate an agent</h2>
 
-    <pre><code># add the official scenario pack
-replaybook add ducks/replaybook-scenarios
+    <pre><code>python integrations/host/run_host_matrix.py \
+  --scenario 014-missing-rails-migration \
+  --models deepseek/deepseek-v4-pro \
+  --attempts 1</code></pre>
 
-# see what's available
-replaybook list
-
-# run your first scenario
-replaybook run 001-nginx-502</code></pre>
-
-    <p>Both <code>replaybook</code> and <code>replay</code> are installed &mdash; use whichever you prefer.</p>
+    <p>
+      Host-native evaluation runs from a Linux controller with Nix and QEMU.
+      Each trial gets a new NixOS VM with real systemd services and no Docker
+      socket. Claux is the default adapter; the normalized adapter contract can
+      run another harness without changing the verifier.
+    </p>
 
     <div class="callout">
-      Next: <a href="usage.html">CLI usage</a> and the HUD, or jump to
-      <a href="scenarios.html">writing your own scenarios</a>.
+      Next: read the <a href="usage.html">usage guide</a>, explore the
+      <a href="scenarios.html">two scenario formats</a>, or inspect the
+      <a href="benchmark-methodology.html">benchmark methodology</a>.
     </div>
 
     <footer class="site">
