@@ -23,6 +23,16 @@ class HostMatrixTests(unittest.TestCase):
         self.assertEqual(scenarios["001-nginx-502-host"], 1)
         self.assertEqual(scenarios["013-sidekiq-wrong-redis"], 2)
         self.assertEqual(scenarios["014-missing-rails-migration"], 2)
+        self.assertEqual(scenarios["015-sidekiq-poison-pill"], 1)
+        self.assertEqual(scenarios["016-rails-pool-exhaustion"], 1)
+
+    def test_typed_manifest_takes_precedence_over_legacy_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            scenario_dir = Path(temporary) / "typed"
+            scenario_dir.mkdir()
+            (scenario_dir / "scenario.toml").write_text("[scenario]\nversion = 3\n")
+            (scenario_dir / "scenario.conf").write_text('SCENARIO_VERSION="1"\n')
+            self.assertEqual(discover_scenarios(Path(temporary)), {"typed": 3})
 
     def test_build_jobs_assigns_stable_adjacent_port_pairs(self) -> None:
         jobs = build_jobs(

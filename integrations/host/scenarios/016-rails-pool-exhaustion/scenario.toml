@@ -1,0 +1,66 @@
+[scenario]
+version = 1
+nixos_config = "nixos.nix"
+instruction = "instruction.md"
+oracle = "oracle.sh"
+required_services = ["postgresql.service", "checkout-web.service", "nginx.service"]
+restart_services = ["checkout-web.service", "nginx.service"]
+
+[[preflight.steps]]
+type = "wait_http"
+path = "/health"
+expected_body = "ok"
+timeout_seconds = 60
+request_timeout_seconds = 2
+failure_category = "incident_not_reproduced"
+
+[[preflight.steps]]
+type = "wait_http"
+path = "/pool"
+expected_body = "1"
+timeout_seconds = 5
+request_timeout_seconds = 2
+failure_category = "incident_not_reproduced"
+
+[[preflight.steps]]
+type = "concurrent_http"
+method = "POST"
+path = "/checkouts/{id}"
+id_prefix = "preflight"
+count = 4
+concurrency = 4
+expected_status = 200
+request_timeout_seconds = 4
+min_success = 1
+max_success = 3
+record_failed_as = "failed_checkouts"
+failure_category = "incident_not_reproduced"
+
+[[verify.steps]]
+type = "wait_http"
+path = "/pool"
+body_integer_min = 4
+timeout_seconds = 30
+request_timeout_seconds = 2
+failure_category = "database_pool_exhausted"
+
+[[verify.steps]]
+type = "replay_http"
+method = "POST"
+path = "/checkouts/{id}"
+ids_from = "failed_checkouts"
+concurrency = 1
+expected_status = 200
+request_timeout_seconds = 4
+failure_category = "database_pool_exhausted"
+
+[[verify.steps]]
+type = "concurrent_http"
+method = "POST"
+path = "/checkouts/{id}"
+id_prefix = "verify-{phase}"
+count = 8
+concurrency = 8
+expected_status = 200
+request_timeout_seconds = 5
+failure_category = "database_pool_exhausted"

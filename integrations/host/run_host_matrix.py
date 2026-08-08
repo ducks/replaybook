@@ -14,6 +14,7 @@ import socket
 import statistics
 import subprocess
 import sys
+import tomllib
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -69,10 +70,21 @@ def discover_scenarios(scenarios_dir: Path = SCRIPT_DIR / "scenarios") -> dict[s
     discovered = {}
     if not scenarios_dir.is_dir():
         return discovered
-    for manifest in sorted(scenarios_dir.glob("*/scenario.conf")):
-        match = SCENARIO_VERSION_PATTERN.search(manifest.read_text())
-        if match:
-            discovered[manifest.parent.name] = int(match.group(1))
+    for scenario_dir in sorted(path for path in scenarios_dir.iterdir() if path.is_dir()):
+        typed_manifest = scenario_dir / "scenario.toml"
+        legacy_manifest = scenario_dir / "scenario.conf"
+        if typed_manifest.is_file():
+            try:
+                scenario = tomllib.loads(typed_manifest.read_text()).get("scenario", {})
+            except tomllib.TOMLDecodeError:
+                continue
+            version = scenario.get("version") if isinstance(scenario, dict) else None
+            if isinstance(version, int) and not isinstance(version, bool) and version > 0:
+                discovered[scenario_dir.name] = version
+        elif legacy_manifest.is_file():
+            match = SCENARIO_VERSION_PATTERN.search(legacy_manifest.read_text())
+            if match:
+                discovered[scenario_dir.name] = int(match.group(1))
     return discovered
 
 
