@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benchmark methodology &middot; replaybook</title>
+  <meta name="description" content="How Replaybook defines, verifies, and compares durable infrastructure repairs.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Current</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html" class="active" aria-current="page">Methodology</a>
+    </nav>
+
+    <p class="eyebrow">What a pass means</p>
+    <h1>Methodology</h1>
+    <p class="tagline benchmark-tagline">
+      Replaybook evaluates the state of a running system after an agent leaves,
+      not the confidence of its final answer.
+    </p>
+
+    <div class="gate-grid">
+      <article class="gate">
+        <span class="gate-number">01</span>
+        <h3>Repair the live system</h3>
+        <p>The user-facing behavior must recover without replacing the host.</p>
+      </article>
+      <article class="gate">
+        <span class="gate-number">02</span>
+        <h3>Preserve existing work</h3>
+        <p>Queued jobs and controller-owned state cannot be discarded.</p>
+      </article>
+      <article class="gate">
+        <span class="gate-number">03</span>
+        <h3>Survive service restart</h3>
+        <p>Temporary processes, shell state, and in-memory workarounds disappear.</p>
+      </article>
+      <article class="gate">
+        <span class="gate-number">04</span>
+        <h3>Survive host reboot</h3>
+        <p>Only changes made durably to the deployed system remain.</p>
+      </article>
+    </div>
+
+    <h2>Who owns what</h2>
+
+    <p>
+      The controller builds a disposable NixOS VM and owns the incident
+      instruction, timeout, lifecycle, restart, reboot, oracle, and verifier.
+      The agent adapter invokes a harness inside the VM and returns normalized
+      output. An adapter can change how an agent runs. It cannot redefine what
+      counts as success.
+    </p>
+
+    <p>
+      The oracle and verifier remain outside the model VM. Replaybook checks for
+      answer-key leaks before starting the agent and preserves the complete tool
+      transcript for later inspection.
+    </p>
+
+    <h2>Evaluated, failed, and unavailable</h2>
+
+    <p>
+      An evaluated trial reaches the agent and the external verifier. A failed
+      repair counts against the model and carries a category such as
+      <code>migration_not_applied</code>, <code>backlog_not_recovered</code>, or
+      <code>agent_timeout</code>.
+    </p>
+
+    <p>
+      Provider HTTP errors, authentication failures, and harness runtime errors
+      are unavailable attempts. They remain visible in trial and cost totals,
+      but are excluded from the model's pass-rate denominator. A provider
+      refusing a request is not evidence that the model failed a repair.
+    </p>
+
+    <h2>Price per durable repair</h2>
+
+    <p>
+      Reported cost includes every evaluated attempt, including failed repairs.
+      Replaybook divides that spend by durable repairs, not by invocations. A
+      cheap attempt with poor reliability can therefore cost more per repair
+      than a more expensive attempt that succeeds consistently.
+    </p>
+
+    <pre><code>price per durable repair = evaluated trial spend / verified repairs</code></pre>
+
+    <p>
+      Subscription-backed harnesses may report tokens without a dollar cost.
+      Replaybook records that cost as unavailable, never as zero.
+    </p>
+
+    <h2>Comparable results</h2>
+
+    <p>A leaderboard-style comparison requires:</p>
+
+    <ul>
+      <li>the same frozen scenario and verifier versions;</li>
+      <li>the same host harness version and agent timeout;</li>
+      <li>the same agent harness, prompt, tools, and permissions;</li>
+      <li>at least three attempts per model and scenario;</li>
+      <li>complete cost, duration, and failure provenance;</li>
+      <li>sanitized artifacts suitable for independent inspection.</li>
+    </ul>
+
+    <p>
+      One-attempt smoke runs select candidates and expose gross failures. They
+      do not establish reliability. Results from different verifier versions
+      belong in <a href="benchmark-history.html">History</a>, not in the same
+      pass-rate table.
+    </p>
+
+    <h2>Harness versions</h2>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Version</th><th>Change</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>v2</td><td>Removed the reference repair and verifier from model VMs.</td></tr>
+          <tr><td>v3</td><td>Added typed scenario manifests and structured verifier failures.</td></tr>
+          <tr><td>v4</td><td>Added the harness adapter contract and normalized artifacts.</td></tr>
+          <tr><td>v5</td><td>Separated unavailable attempts from evaluated model failures.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Inspect the
+      <a href="https://github.com/ducks/replaybook/tree/main/integrations/host">host-native runner</a>
+      or read the
+      <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">full benchmark record</a>.
+    </p>
+
+    <footer class="site">
+      <a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a>
+      &middot; <a href="https://crates.io/crates/replaybook">crates.io</a>
+    </footer>
+  </div>
+</body>
+</html>

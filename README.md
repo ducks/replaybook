@@ -384,9 +384,12 @@ output (ANSI escapes included); `less -R` renders them nicely.
 
 ## Releasing
 
+Replaybook uses DateVer in the Cargo-compatible form `YYYYMMDD.0.PATCH`. The
+first release of a day is `YYYYMMDD.0.0`; later releases increment `PATCH`.
+
 ```bash
 make release
 ```
 
-Bumps version with today's date, tags, pushes, publishes to crates.io.
+Bumps the DateVer version, tags, pushes, and publishes to crates.io.
 GitHub Actions builds binaries for all platforms on the tag push.

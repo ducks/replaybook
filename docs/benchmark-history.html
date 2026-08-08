@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benchmark history &middot; replaybook</title>
+  <meta name="description" content="Versioned Replaybook benchmark history and superseded results.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Current</a>
+      <a href="benchmark-history.html" class="active" aria-current="page">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+    <p class="eyebrow">Versioned evidence</p>
+    <h1>Benchmark history</h1>
+    <p class="tagline benchmark-tagline">
+      Older results still explain model behavior. They remain separate when a
+      stronger verifier or harness changes what a pass means.
+    </p>
+
+    <h2>Host harness v2 baseline</h2>
+
+    <div class="section-heading">
+      <div>
+        <h3>DeepSeek V4 Flash 0731</h3>
+        <p class="muted">Three attempts per scenario, August 8, 2026</p>
+      </div>
+      <span class="badge verified">Verified</span>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Scenario</th><th>Version</th><th>Repairs</th><th>Median</th><th>Cost</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Nginx 502</td><td>v1</td><td>3/3</td><td>0:55</td><td>$0.0093</td></tr>
+          <tr><td>Sidekiq wrong Redis database</td><td>v2</td><td>3/3</td><td>2:02</td><td>$0.0146</td></tr>
+          <tr><td>Missing Rails migration</td><td>v2</td><td>3/3</td><td>4:24</td><td>$0.0353</td></tr>
+          <tr class="total-row"><td>Total</td><td></td><td>9/9</td><td>2:02</td><td>$0.0592</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      All nine trials survived service restart and host reboot verification.
+      They used 1,703,055 input tokens and 44,979 output tokens. This was the
+      first baseline with the reference repair and verifier absent from the
+      model VM.
+    </p>
+
+    <h2>Controlled DeepSeek revision comparison</h2>
+
+    <p>
+      Original V4 Flash and the 0731 revision used the same Replaybook commit,
+      harness, scenarios, Claux release, timeout, concurrency, and attempt
+      count. Only the model ID changed.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Metric</th><th>Original</th><th>0731</th><th>Change</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Durable repairs</td><td>8/9</td><td>9/9</td><td>+1 pass</td></tr>
+          <tr><td>Median trial time</td><td>2:13</td><td>2:02</td><td>11s faster</td></tr>
+          <tr><td>Input tokens</td><td>3,488,467</td><td>1,703,055</td><td>51% fewer</td></tr>
+          <tr><td>Output tokens</td><td>64,448</td><td>44,979</td><td>30% fewer</td></tr>
+          <tr><td>Reported cost</td><td>$0.0811</td><td>$0.0592</td><td>27% lower</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout comparison-note">
+      <strong>The failed repair was meaningful.</strong>
+      Original V4 Flash added the missing database column manually but did not
+      apply or record the deployed migration. The verifier returned
+      <code>migration_not_applied</code>. The 0731 revision completed the full
+      migration repair in all three attempts.
+    </div>
+
+    <h2>Host harness v1 archive</h2>
+
+    <div class="section-heading">
+      <div>
+        <h3>Sidekiq wrong Redis database</h3>
+        <p class="muted">Scenario v2, three attempts per model, August 7, 2026</p>
+      </div>
+      <span class="badge archived">Archived</span>
+    </div>
+
+    <p>
+      These runs tested backlog preservation, but harness v1 exposed the
+      reference repair inside the VM. They remain useful development records
+      and must not be presented as a controlled model ranking.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Model</th><th>Repairs</th><th>Median</th><th>Cost</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>DeepSeek V4 Flash</td><td>3/3</td><td>1:31</td><td>$0.0187</td></tr>
+          <tr><td>Poolside Laguna S 2.1</td><td>3/3</td><td>0:57</td><td>$0.0133</td></tr>
+          <tr><td>MiniMax M3</td><td>3/3</td><td>1:49</td><td>$0.1348</td></tr>
+          <tr><td>Qwen3.8 Max</td><td>3/3</td><td>4:52</td><td>$0.5816</td></tr>
+          <tr><td>GPT-5.6 Luna</td><td>2/3</td><td>1:12</td><td>$0.0236</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Archiving does not mean every agent used the leaked repair. It means the
+      harness did not guarantee isolation, so its scores are not comparable to
+      current harness-v5 results.
+    </p>
+
+    <h2>Why results move here</h2>
+
+    <p>
+      A verifier change can make yesterday's pass invalid under today's rules.
+      Replaybook keeps the old result, its version, and the behavior it exposed.
+      It does not silently recalculate history or mix incompatible denominators.
+      The full development record lives in
+      <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md"><code>benchmarks.md</code></a>.
+    </p>
+
+    <footer class="site">
+      <a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a>
+      &middot; <a href="https://crates.io/crates/replaybook">crates.io</a>
+    </footer>
+  </div>
+</body>
+</html>

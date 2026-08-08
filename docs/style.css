@@ -65,6 +65,35 @@ nav.site a.active {
   color: var(--accent);
 }
 
+.benchmark-tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin: -1rem 0 2.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.benchmark-tabs a {
+  color: var(--fg-dim);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.benchmark-tabs a:hover {
+  color: var(--fg);
+  border-color: var(--border);
+}
+
+.benchmark-tabs a.active {
+  color: var(--accent);
+  background: var(--bg-alt);
+  border-color: var(--border);
+}
+
 h1 {
   font-size: 1.9rem;
   margin: 0 0 0.75rem;
@@ -329,5 +358,13 @@ footer.site a {
 
   .section-heading {
     flex-direction: column;
+  }
+
+  .benchmark-tabs {
+    overflow-x: auto;
+  }
+
+  .benchmark-tabs a {
+    flex: 0 0 auto;
   }
 }
