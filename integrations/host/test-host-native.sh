@@ -58,7 +58,14 @@ fi
 grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 grep -q 'capture_agent_results || true' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="host_reboot_failed"' "$script_dir/run-host-native.sh"
+grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"
+grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
+grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
+if grep -q 'timeout --foreground' "$script_dir/run-host-native.sh"; then
+  echo "agent timeout unexpectedly leaves child processes outside its process group" >&2
+  exit 1
+fi
 grep -q 'native_tool_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 grep -q 'bash_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/instruction.md"
@@ -82,6 +89,13 @@ status=$?
 set -e
 [[ "$status" -eq 2 ]]
 grep -q 'SSH and HTTP ports must differ' <<<"$output"
+
+set +e
+output="$("$script_dir/run-host-native.sh" --agent-timeout-seconds 0 --oracle 2>&1)"
+status=$?
+set -e
+[[ "$status" -eq 2 ]]
+grep -q -- '--agent-timeout-seconds must be a positive integer' <<<"$output"
 
 set +e
 output="$("$script_dir/run-host-native.sh" --scenario missing --oracle 2>&1)"
