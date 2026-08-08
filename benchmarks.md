@@ -61,10 +61,38 @@ python integrations/host/run_host_matrix.py \
   --concurrency 2
 ```
 
-This result should not be used as a direct old-versus-new DeepSeek comparison.
-Earlier DeepSeek runs used older harness or scenario versions. A controlled
-revision comparison requires both model IDs to run through this exact harness
-and scenario set.
+### Controlled DeepSeek revision comparison
+
+The original `deepseek/deepseek-v4-flash` model then ran through the same
+Replaybook commit, host harness, scenario versions, Claux release, timeout,
+concurrency, and three-attempt structure. The model ID was the only intentional
+evaluation variable.
+
+| Metric | Original V4 Flash | V4 Flash 0731 | Change |
+|---|---:|---:|---:|
+| Durable repairs | 8/9 | 9/9 | +1 pass |
+| Median trial time | 2:13 | 2:02 | 11 seconds faster |
+| Input tokens | 3,488,467 | 1,703,055 | 51% fewer |
+| Output tokens | 64,448 | 44,979 | 30% fewer |
+| Reported cost | $0.0811 | $0.0592 | 27% lower |
+
+Original V4 Flash passed Nginx and Sidekiq three times each, then passed the
+migration scenario twice in three attempts. In the failed attempt it diagnosed
+the missing `delivery_state` column and added that column manually, but never
+applied or recorded the deployed migration. The live schema partially
+recovered, while `/deployment/migration` still reported the migration missing.
+The verifier rejected the repair as `migration_not_applied`.
+
+V4 Flash 0731 applied the complete repair in all three migration attempts. It
+also used about 60% fewer input tokens on that scenario. The newer revision was
+not uniformly faster: original V4 Flash had a 1:51 Sidekiq median versus 2:02
+for 0731. Across the complete nine-trial matrix, however, 0731 was faster at the
+median, substantially more token-efficient, cheaper, and more reliable.
+
+Three attempts per scenario is still a small sample. The one-pass reliability
+difference is encouraging rather than definitive. The 51% input-token reduction
+is the stronger signal and is large enough to justify using 0731 as the current
+Claux default while the benchmark grows.
 
 ## Host-native Sidekiq incident
 

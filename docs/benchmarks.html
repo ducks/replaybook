@@ -118,6 +118,50 @@
       versions with the same attempt count.
     </p>
 
+    <h2>DeepSeek revision comparison</h2>
+
+    <p>
+      Original V4 Flash and the 0731 revision ran with the same Replaybook
+      commit, harness, scenarios, Claux release, timeout, concurrency, and
+      attempt count. The model ID was the only intentional evaluation variable.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Original</th>
+            <th>0731</th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Durable repairs</td><td>8/9</td><td>9/9</td><td>+1 pass</td></tr>
+          <tr><td>Median trial time</td><td>2:13</td><td>2:02</td><td>11s faster</td></tr>
+          <tr><td>Input tokens</td><td>3,488,467</td><td>1,703,055</td><td>51% fewer</td></tr>
+          <tr><td>Output tokens</td><td>64,448</td><td>44,979</td><td>30% fewer</td></tr>
+          <tr><td>Reported cost</td><td>$0.0811</td><td>$0.0592</td><td>27% lower</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout comparison-note">
+      <strong>The failed repair was meaningful.</strong>
+      Original V4 Flash added the missing database column manually but did not
+      apply or record the deployed migration. The live schema partially
+      recovered, but the verifier correctly returned
+      <code>migration_not_applied</code>. The 0731 revision completed the full
+      migration repair in all three attempts.
+    </div>
+
+    <p class="small muted">
+      Three attempts per scenario is a small sample. The pass-rate difference
+      is encouraging, while the 51% input-token reduction is the stronger
+      signal. Original V4 Flash was also 11 seconds faster on the Sidekiq
+      scenario, so 0731 was not uniformly faster on every task.
+    </p>
+
     <h2>Archived development result</h2>
 
     <div class="section-heading">

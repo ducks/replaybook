@@ -56,6 +56,9 @@ class PagesTests(unittest.TestCase):
         self.assertIn("DeepSeek V4 Flash 0731", page)
         self.assertIn("Host harness v2", page)
         self.assertIn("9/9", page)
+        self.assertIn("DeepSeek revision comparison", page)
+        self.assertIn("51% fewer", page)
+        self.assertIn("migration_not_applied", page)
         self.assertIn('class="badge archived"', page)
 
 
