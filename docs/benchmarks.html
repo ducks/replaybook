@@ -68,12 +68,55 @@
       </article>
     </div>
 
-    <div class="callout benchmark-status">
-      <strong>Fresh harness-v2 baseline in progress.</strong>
-      Current model results will appear here after they are rerun without the
-      reference repair present on the incident host. Results from different
-      harness or scenario versions will not be combined.
+    <div class="callout benchmark-status verified-status">
+      <strong>First verified harness-v2 baseline complete.</strong>
+      DeepSeek V4 Flash 0731 made nine durable repairs in nine trials for a
+      total reported cost of $0.0592. Every trial survived service restart and
+      host reboot verification.
     </div>
+
+    <h2>Current baseline</h2>
+
+    <div class="section-heading">
+      <div>
+        <h3>DeepSeek V4 Flash 0731</h3>
+        <p class="muted">Host harness v2, three attempts per scenario, August 8, 2026</p>
+      </div>
+      <span class="badge verified">Verified</span>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Version</th>
+            <th>Durable repairs</th>
+            <th>Median</th>
+            <th>Reported cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Nginx 502</td><td>v1</td><td>3/3</td><td>0:55</td><td>$0.0093</td></tr>
+          <tr><td>Sidekiq wrong Redis database</td><td>v2</td><td>3/3</td><td>2:02</td><td>$0.0146</td></tr>
+          <tr><td>Missing Rails migration</td><td>v2</td><td>3/3</td><td>4:24</td><td>$0.0353</td></tr>
+          <tr class="total-row"><td>Total</td><td></td><td>9/9</td><td>2:02 median</td><td>$0.0592</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      All nine trials reported usage: 1,703,055 input tokens, 1,428,352 cached
+      input tokens, and 44,979 output tokens. No trial timed out, lost the
+      pre-existing backlog, changed the expected topology, or referenced an
+      oracle or verifier in its tool trace.
+    </p>
+
+    <p class="small muted">
+      This is a baseline, not yet a leaderboard. A controlled model comparison
+      requires other models to run through the same harness and scenario
+      versions with the same attempt count.
+    </p>
 
     <h2>Archived development result</h2>
 

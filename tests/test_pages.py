@@ -51,6 +51,13 @@ class PagesTests(unittest.TestCase):
         self.assertIn("path: docs", workflow)
         self.assertIn("actions/deploy-pages@v4", workflow)
 
+    def test_benchmark_page_separates_current_and_archived_results(self) -> None:
+        page = (DOCS_DIR / "benchmarks.html").read_text()
+        self.assertIn("DeepSeek V4 Flash 0731", page)
+        self.assertIn("Host harness v2", page)
+        self.assertIn("9/9", page)
+        self.assertIn('class="badge archived"', page)
+
 
 if __name__ == "__main__":
     unittest.main()
