@@ -1,4 +1,4 @@
-.PHONY: help version-bump release build test clean clippy fmt fmt-check lint deploy-check harbor-check host-check install-hooks
+.PHONY: help version-bump release build test clean clippy fmt fmt-check lint deploy-check harbor-check host-check skills-check install-hooks
 
 define get_next_version
 $(shell \
@@ -27,6 +27,7 @@ help:
 	@echo "  make deploy-check                  - Validate deployment shell scripts"
 	@echo "  make harbor-check                  - Validate Harbor integration scripts"
 	@echo "  make host-check                    - Validate host-native evaluation scripts"
+	@echo "  make skills-check                  - Validate bundled agent skills"
 	@echo "  make clean                         - Clean build artifacts"
 	@echo ""
 	@echo "Next version will be: $(VERSION)"
@@ -98,10 +99,16 @@ host-check:
 	@python -m unittest integrations.host.test_run_host_matrix
 	@python -m unittest integrations.host.test_scenario_phase
 
+skills-check:
+	@bash -n skills/replaybook-add-harness/assets/adapter.sh
+	@python skills/replaybook-add-harness/scripts/validate_result.py --help >/dev/null
+	@grep -q '^name: replaybook-add-harness$$' skills/replaybook-add-harness/SKILL.md
+	@grep -q '\$$replaybook-add-harness' skills/replaybook-add-harness/agents/openai.yaml
+
 pages-check:
 	@python -m unittest tests.test_pages
 
-lint: fmt-check deploy-check harbor-check host-check pages-check
+lint: fmt-check deploy-check harbor-check host-check skills-check pages-check
 	cargo clippy -- -D warnings
 	cargo test
 

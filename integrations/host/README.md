@@ -197,6 +197,27 @@ automation, provide `CODEX_API_KEY=...` in the environment file instead. The
 adapter deliberately ignores the user's Codex configuration and rules so local
 MCP servers, hooks, and preferences do not change benchmark behavior.
 
+## Build another adapter with the skill
+
+Replaybook ships a Codex skill that guides adapter discovery, implementation,
+credential handling, normalization, and verification. Install it from a clone:
+
+```sh
+mkdir -p ~/.codex/skills
+ln -s "$(pwd)/skills/replaybook-add-harness" \
+  ~/.codex/skills/replaybook-add-harness
+```
+
+Then ask Codex:
+
+```text
+Use $replaybook-add-harness to integrate <harness> with Replaybook.
+```
+
+The skill includes a shell adapter template and a deterministic validator for
+the normalized result contract. It requires a fake-CLI test before recommending
+a paid model run.
+
 Each trial receives adjacent SSH and HTTP ports starting at `--base-port`.
 Results are written under `jobs/host-matrix-*`, including per-trial logs,
 result and transcript paths, benchmark metadata, failure categories, model
