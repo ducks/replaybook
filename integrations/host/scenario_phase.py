@@ -234,9 +234,10 @@ def save_json(path: Path, value: dict[str, Any]) -> None:
 
 def run_phase(manifest_path: Path, phase: str, base_url: str, state_dir: Path) -> None:
     manifest = load_manifest(manifest_path)
-    phase_config = manifest.get(phase)
+    plan_name = "preflight" if phase == "preflight" else "verify"
+    phase_config = manifest.get(plan_name)
     if not isinstance(phase_config, dict) or not isinstance(phase_config.get("steps"), list):
-        raise ValueError(f"manifest does not define {phase}.steps")
+        raise ValueError(f"manifest does not define {plan_name}.steps")
     state_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
     state = load_state(state_dir)
     failure_path = state_dir / FAILURE_FILE

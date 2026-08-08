@@ -143,7 +143,7 @@ failure_category = "database_pool_exhausted"
             self.assertGreaterEqual(len(state["failed_checkouts"]), 1)
 
             TestHandler.pool_size = 4
-            run_phase(manifest, "verify", self.base_url, state_dir)
+            run_phase(manifest, "immediate", self.base_url, state_dir)
             self.assertTrue(set(state["failed_checkouts"]).issubset(TestHandler.completed))
             self.assertFalse((state_dir / FAILURE_FILE).exists())
 
@@ -155,11 +155,11 @@ failure_category = "database_pool_exhausted"
             run_phase(manifest, "preflight", self.base_url, state_dir)
 
             with self.assertRaisesRegex(PhaseFailure, "HTTP assertion failed"):
-                run_phase(manifest, "verify", self.base_url, state_dir)
+                run_phase(manifest, "service_restart", self.base_url, state_dir)
 
             failure = json.loads((state_dir / FAILURE_FILE).read_text())
             self.assertEqual(failure["category"], "database_pool_exhausted")
-            self.assertEqual(failure["phase"], "verify")
+            self.assertEqual(failure["phase"], "service_restart")
             self.assertEqual(failure["step"], 1)
 
     def test_rejects_unknown_step_type(self) -> None:

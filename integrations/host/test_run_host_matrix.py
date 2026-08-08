@@ -78,7 +78,7 @@ class HostMatrixTests(unittest.TestCase):
                 (jobs[1], 0, "backlog_not_recovered"),
             ):
                 result = {
-                    "harness_version": 2,
+                    "harness_version": 3,
                     "scenario": job.scenario,
                     "scenario_version": 2,
                     "model": job.model,
@@ -96,7 +96,7 @@ class HostMatrixTests(unittest.TestCase):
             )
 
         self.assertEqual(summary["received_results"], 2)
-        self.assertEqual(summary["harness_version"], 2)
+        self.assertEqual(summary["harness_version"], 3)
         self.assertEqual(summary["totals"]["passed"], 1)
         self.assertEqual(summary["totals"]["failed"], 1)
         self.assertEqual(summary["totals"]["input_tokens"], 0)
@@ -132,7 +132,7 @@ python - "$output/result.json" "$scenario" "$model" "$agent_timeout" <<'PY'
 import json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
 result = {
-    "harness_version": 2,
+    "harness_version": 3,
     "scenario": sys.argv[2],
     "scenario_version": 2,
     "model": sys.argv[3],
