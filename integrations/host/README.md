@@ -20,7 +20,10 @@ scenarios are currently available:
 
 Each scenario supplies its NixOS topology, incident instruction, reference
 repair, broken-state preflight, and external verifier. The controller verifies
-the repair through the user-facing HTTP boundary.
+the repair through the user-facing HTTP boundary. Model VMs never receive the
+reference repair or verifier. The runner only copies the reference repair into
+the VM for an explicit `--oracle` run and asserts that it is absent before
+starting Claux.
 
 Claux runs directly as root on that VM and investigates with normal Linux tools
 such as `systemctl`, `journalctl`, `ps`, `ss`, and the filesystem. The controller
@@ -110,9 +113,11 @@ python integrations/host/run_host_matrix.py --list-scenarios
 
 Results are written under `jobs/host-native-*`. Claux runs include its native
 one-shot JSON output and complete tool transcript. `result.json` records the
-scenario version, agent duration, usage, and separate immediate,
-service-restart, and host-reboot verification outcomes. A result is comparable
-only with runs using the same scenario version.
+host harness version, scenario version, agent duration, usage, and separate
+immediate, service-restart, and host-reboot verification outcomes. A result is
+comparable only with runs using the same host harness and scenario versions.
+Host harness version 2 is the first version that guarantees the reference
+repair is absent from model VMs.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the

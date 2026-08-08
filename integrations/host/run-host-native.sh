@@ -34,6 +34,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260808.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
+HOST_HARNESS_VERSION=2
 MODEL="deepseek/deepseek-v4-flash"
 SCENARIO_ID="001-nginx-502-host"
 SSH_PORT=22600
@@ -333,9 +334,8 @@ if ! "$PREFLIGHT" "http://127.0.0.1:${HTTP_PORT}" "$SCENARIO_STATE_DIR"; then
 fi
 echo "[host] preflight confirmed ${SCENARIO_ID}"
 
-"${SSH[@]}" "install -d -m 700 /root/replaybook-eval/results"
+"${SSH[@]}" "rm -rf -- /root/replaybook-eval; install -d -m 700 /root/replaybook-eval/results"
 "${SCP[@]}" "$INSTRUCTION" root@127.0.0.1:/root/replaybook-eval/instruction.md
-"${SCP[@]}" "$ORACLE" root@127.0.0.1:/root/replaybook-eval/oracle.sh
 "${SCP[@]}" "${SCRIPT_DIR}/run-claux.sh" root@127.0.0.1:/root/replaybook-eval/
 
 agent="claux"
@@ -345,8 +345,12 @@ start_seconds="$(date +%s)"
 if [[ "$RUN_ORACLE" == true ]]; then
   agent="oracle"
   echo "[host] running reference repair"
+  "${SCP[@]}" "$ORACLE" root@127.0.0.1:/root/replaybook-eval/oracle.sh
   "${SSH[@]}" "bash /root/replaybook-eval/oracle.sh" || run_status=$?
 else
+  # The oracle is the benchmark answer key. Keep this runtime assertion next
+  # to the model path so a future staging change cannot silently expose it.
+  "${SSH[@]}" "test ! -e /root/replaybook-eval/oracle.sh"
   if [[ -z "$CLAUX_BINARY" ]]; then
     CLAUX_BINARY="${WORK_DIR}/claux"
     echo "[host] downloading Claux ${CLAUX_RELEASE}"
@@ -474,6 +478,7 @@ fi
 finished_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 jq -n \
   --arg suite "replaybook-host-v1" \
+  --argjson harness_version "$HOST_HARNESS_VERSION" \
   --arg scenario "$SCENARIO_ID" \
   --argjson scenario_version "$SCENARIO_VERSION" \
   --arg agent "$agent" \
@@ -492,6 +497,7 @@ jq -n \
   '{
     schema_version: 1,
     suite: $suite,
+    harness_version: $harness_version,
     scenario: $scenario,
     scenario_version: $scenario_version,
     agent: $agent,

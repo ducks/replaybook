@@ -28,7 +28,7 @@ grep -q 'failure_category="backlog_not_recovered"' "$script_dir/run-host-native.
 grep -q 'failure_category="migration_not_applied"' "$script_dir/run-host-native.sh"
 grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/001-nginx-502-host/scenario.conf"
 grep -q 'SCENARIO_VERSION="2"' "$script_dir/scenarios/013-sidekiq-wrong-redis/scenario.conf"
-grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/014-missing-rails-migration/scenario.conf"
+grep -q 'SCENARIO_VERSION="2"' "$script_dir/scenarios/014-missing-rails-migration/scenario.conf"
 grep -q '202608070001_add_delivery_state.sql' "$script_dir/scenarios/014-missing-rails-migration/oracle.sh"
 grep -q 'deployment/migration' "$script_dir/scenarios/014-missing-rails-migration/verify.sh"
 if grep -q 'ADD COLUMN IF NOT EXISTS' \
@@ -37,6 +37,17 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=2' "$script_dir/run-host-native.sh"
+grep -q 'harness_version: $harness_version' "$script_dir/run-host-native.sh"
+
+oracle_copy_count="$(grep -c '\$ORACLE.*replaybook-eval/oracle\.sh' "$script_dir/run-host-native.sh")"
+[[ "$oracle_copy_count" -eq 1 ]]
+oracle_branch="$({
+  sed -n '/if \[\[ "$RUN_ORACLE" == true \]\]; then/,/^else$/p' \
+    "$script_dir/run-host-native.sh"
+} || true)"
+grep -q '\$ORACLE.*replaybook-eval/oracle\.sh' <<<"$oracle_branch"
+grep -q 'test ! -e /root/replaybook-eval/oracle.sh' "$script_dir/run-host-native.sh"
 
 if grep -qER 'docker\.enable|docker\.sock|docker-compose' "$script_dir/worker" "$script_dir/scenarios"; then
   echo "host-native worker unexpectedly enables Docker" >&2

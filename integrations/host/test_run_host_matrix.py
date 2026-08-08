@@ -22,7 +22,7 @@ class HostMatrixTests(unittest.TestCase):
         scenarios = discover_scenarios()
         self.assertEqual(scenarios["001-nginx-502-host"], 1)
         self.assertEqual(scenarios["013-sidekiq-wrong-redis"], 2)
-        self.assertEqual(scenarios["014-missing-rails-migration"], 1)
+        self.assertEqual(scenarios["014-missing-rails-migration"], 2)
 
     def test_build_jobs_assigns_stable_adjacent_port_pairs(self) -> None:
         jobs = build_jobs(
@@ -68,6 +68,7 @@ class HostMatrixTests(unittest.TestCase):
                 (jobs[1], 0, "backlog_not_recovered"),
             ):
                 result = {
+                    "harness_version": 2,
                     "scenario": job.scenario,
                     "scenario_version": 2,
                     "model": job.model,
@@ -85,6 +86,7 @@ class HostMatrixTests(unittest.TestCase):
             )
 
         self.assertEqual(summary["received_results"], 2)
+        self.assertEqual(summary["harness_version"], 2)
         self.assertEqual(summary["totals"]["passed"], 1)
         self.assertEqual(summary["totals"]["failed"], 1)
         self.assertEqual(summary["totals"]["input_tokens"], 0)
@@ -120,6 +122,7 @@ python - "$output/result.json" "$scenario" "$model" "$agent_timeout" <<'PY'
 import json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
 result = {
+    "harness_version": 2,
     "scenario": sys.argv[2],
     "scenario_version": 2,
     "model": sys.argv[3],

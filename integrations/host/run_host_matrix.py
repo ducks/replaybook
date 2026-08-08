@@ -25,6 +25,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
+HOST_HARNESS_VERSION = 2
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 SCENARIO_VERSION_PATTERN = re.compile(
     r'^SCENARIO_VERSION=["\']?([1-9][0-9]*)["\']?$', re.MULTILINE
@@ -124,11 +125,19 @@ def load_result(path: Path) -> tuple[dict[str, Any] | None, str | None]:
         result = json.loads(path.read_text())
     except (OSError, json.JSONDecodeError) as error:
         return None, f"could not read result {path}: {error}"
-    required = {"scenario", "scenario_version", "model", "reward"}
+    required = {
+        "harness_version",
+        "scenario",
+        "scenario_version",
+        "model",
+        "reward",
+    }
     if not isinstance(result, dict) or not required.issubset(result):
         return None, f"result is missing required fields: {path}"
     if (
-        not isinstance(result["scenario"], str)
+        not isinstance(result["harness_version"], int)
+        or result["harness_version"] <= 0
+        or not isinstance(result["scenario"], str)
         or not isinstance(result["scenario_version"], int)
         or result["scenario_version"] <= 0
         or not isinstance(result["model"], str)
@@ -319,6 +328,11 @@ def build_summary(
         )
         runs.append(run)
 
+    harness_versions = {int(run["harness_version"]) for run in runs}
+    if len(harness_versions) > 1:
+        raise ValueError("matrix results contain mixed host harness versions")
+    harness_version = next(iter(harness_versions), HOST_HARNESS_VERSION)
+
     by_model_groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
     by_scenario_model_groups: dict[tuple[str, int, str], list[dict[str, Any]]] = (
         defaultdict(list)
@@ -354,6 +368,7 @@ def build_summary(
     return {
         "schema_version": 1,
         "suite": "replaybook-host-matrix-v1",
+        "harness_version": harness_version,
         "started_at": started_at,
         "finished_at": utc_now(),
         "benchmark": benchmark,
