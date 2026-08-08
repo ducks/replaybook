@@ -24,7 +24,7 @@ Environment:
   REPLAYBOOK_HOST_SSH_KEY        SSH key (default: ~/.ssh/id_ed25519).
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to copy into the VM.
-  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to download (default: v20260804.0.0).
+  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to download (default: v20260808.0.0).
 EOF
 }
 
@@ -32,7 +32,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
-CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260804.0.0}"
+CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260808.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
 MODEL="deepseek/deepseek-v4-flash"
 SCENARIO_ID="001-nginx-502-host"

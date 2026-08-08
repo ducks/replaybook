@@ -582,7 +582,7 @@ def main(argv: list[str] | None = None) -> int:
         "concurrency": args.concurrency,
         "agent_timeout_seconds": args.agent_timeout_seconds,
         "claux_release": args.claux_release
-        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260804.0.0"),
+        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260808.0.0"),
     }
     (matrix_dir / "benchmark.json").write_text(json.dumps(benchmark, indent=2) + "\n")
     started_at = utc_now()

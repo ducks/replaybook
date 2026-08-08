@@ -62,12 +62,16 @@ grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host
 grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
+grep -q 'v20260808.0.0' "$script_dir/run-host-native.sh"
+grep -q 'v20260808.0.0' "$script_dir/run_host_matrix.py"
 if grep -q 'timeout --foreground' "$script_dir/run-host-native.sh"; then
   echo "agent timeout unexpectedly leaves child processes outside its process group" >&2
   exit 1
 fi
 grep -q 'native_tool_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
 grep -q 'bash_filesystem_policy = "unrestricted"' "$script_dir/run-claux.sh"
+grep -q 'trap forward_termination TERM INT' "$script_dir/run-claux.sh"
+grep -q 'result: null' "$script_dir/run-claux.sh"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/instruction.md"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/scenarios/013-sidekiq-wrong-redis/instruction.md"
 grep -q 'Do not reboot, shut down, or replace the host yourself' "$script_dir/scenarios/014-missing-rails-migration/instruction.md"
@@ -103,3 +107,53 @@ status=$?
 set -e
 [[ "$status" -eq 2 ]]
 grep -q 'unknown host-native scenario: missing' <<<"$output"
+
+(
+  smoke_root="$(mktemp -d)"
+  trap 'rm -rf -- "$smoke_root"' EXIT
+  eval_root="$smoke_root/eval"
+  home="$smoke_root/home"
+  mkdir -p "$eval_root/results" "$home"
+  printf '%s\n' 'export OPENROUTER_API_KEY=test' >"$eval_root/runtime.env"
+  printf '%s\n' 'test/model' >"$eval_root/model"
+  printf '%s\n' 'keep investigating' >"$eval_root/instruction.md"
+  cat >"$eval_root/claux" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "config" ]]; then
+  mkdir -p "$HOME/.config/claux"
+  printf '%s\n' \
+    'native_tool_filesystem_policy = "workspace_only"' \
+    'bash_filesystem_policy = "auto"' \
+    >"$HOME/.config/claux/config.toml"
+  exit 0
+fi
+transcript=""
+while (( $# > 0 )); do
+  case "$1" in
+    --transcript) transcript="$2"; shift 2 ;;
+    *) shift ;;
+  esac
+done
+on_term() {
+  printf '%s\n' '{"schema_version":1,"model":"test/model","outcome":{"status":"error","message":"Interrupted by shutdown signal."},"usage":{"input_tokens":12,"output_tokens":3,"cache_read_tokens":4,"cache_creation_tokens":0,"cost_usd":0.001},"messages":[{"role":"user","content":"keep investigating"}],"tool_trace":[{"id":"call-1","name":"Bash","input":{"command":"sleep 30"},"output":"Interrupted by user.","is_error":true}]}' >"$transcript"
+  exit 1
+}
+trap on_term TERM
+sleep 30
+EOF
+  chmod 0755 "$eval_root/claux"
+
+  set +e
+  HOME="$home" REPLAYBOOK_EVAL_ROOT="$eval_root" \
+    timeout --signal=TERM --kill-after=5s 1s bash "$script_dir/run-claux.sh" \
+    >"$smoke_root/stdout" 2>"$smoke_root/stderr"
+  status=$?
+  set -e
+
+  [[ "$status" -eq 124 ]]
+  jq -e '.outcome.status == "error" and (.tool_trace | length) == 1' \
+    "$eval_root/results/claux-transcript.json" >/dev/null
+  jq -e '.result == null and .usage.input_tokens == 12' \
+    "$eval_root/results/claux.json" >/dev/null
+)
