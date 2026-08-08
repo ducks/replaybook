@@ -62,6 +62,8 @@ grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host
 grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
+grep -q 'v20260808.0.0' "$script_dir/run-host-native.sh"
+grep -q 'v20260808.0.0' "$script_dir/run_host_matrix.py"
 if grep -q 'timeout --foreground' "$script_dir/run-host-native.sh"; then
   echo "agent timeout unexpectedly leaves child processes outside its process group" >&2
   exit 1
