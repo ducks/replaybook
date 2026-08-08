@@ -221,8 +221,9 @@ SCP=(
 )
 
 wait_for_ssh() {
-  local attempts="${1:-120}"
-  for _ in $(seq 1 "$attempts"); do
+  local timeout_seconds="${1:-120}"
+  local deadline="$((SECONDS + timeout_seconds))"
+  while (( SECONDS < deadline )); do
     if [[ -n "$VM_PID" ]] && ! kill -0 "$VM_PID" 2>/dev/null; then
       return 1
     fi
@@ -235,7 +236,9 @@ wait_for_ssh() {
 }
 
 wait_for_ssh_down() {
-  for _ in $(seq 1 30); do
+  local timeout_seconds="${1:-30}"
+  local deadline="$((SECONDS + timeout_seconds))"
+  while (( SECONDS < deadline )); do
     if ! "${SSH[@]}" true >/dev/null 2>&1; then
       return 0
     fi
@@ -245,8 +248,9 @@ wait_for_ssh_down() {
 }
 
 wait_for_services() {
-  local attempts="${1:-60}"
-  for _ in $(seq 1 "$attempts"); do
+  local timeout_seconds="${1:-60}"
+  local deadline="$((SECONDS + timeout_seconds))"
+  while (( SECONDS < deadline )); do
     if "${SSH[@]}" \
       "for service in $REQUIRED_SERVICES; do systemctl is-active \"\$service\" >/dev/null || exit 1; done" \
       >/dev/null 2>&1; then

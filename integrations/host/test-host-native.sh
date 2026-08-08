@@ -58,6 +58,7 @@ fi
 grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 grep -q 'capture_agent_results || true' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="host_reboot_failed"' "$script_dir/run-host-native.sh"
+grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"

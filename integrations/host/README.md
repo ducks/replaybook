@@ -69,6 +69,9 @@ Use `--ssh-port` and `--http-port` when running workers concurrently. Set
 the default released Claux version. Claux receives 900 seconds by default;
 override it with `--agent-timeout-seconds`.
 
+Host boot, reboot, and service-readiness checks use wall-clock deadlines, so
+repeated SSH connection attempts cannot extend a failed trial indefinitely.
+
 ## Run a model matrix
 
 The Python matrix runner schedules multiple models and attempts while the Bash
