@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import unittest
 from html.parser import HTMLParser
 from pathlib import Path
@@ -8,6 +9,7 @@ from urllib.parse import urlparse
 
 REPO_DIR = Path(__file__).resolve().parents[1]
 DOCS_DIR = REPO_DIR / "docs"
+BENCHMARK_DATA_DIR = REPO_DIR / "benchmark-data"
 
 
 class LinkParser(HTMLParser):
@@ -56,12 +58,20 @@ class PagesTests(unittest.TestCase):
         history = (DOCS_DIR / "benchmark-history.html").read_text()
         methodology = (DOCS_DIR / "benchmark-methodology.html").read_text()
 
-        self.assertIn("Host harness v5", current)
-        self.assertIn("109/120", current)
-        self.assertIn("20260809.0.1", current)
-        self.assertIn("GPT-5.6 Luna", current)
-        self.assertIn("GPT-5.6 Sol", current)
-        self.assertIn("DeepSeek V4 Pro", current)
+        index = json.loads((BENCHMARK_DATA_DIR / "index.json").read_text())
+        version = index["current_version"]
+        release = json.loads(
+            (BENCHMARK_DATA_DIR / "releases" / f"{version}.json").read_text()
+        )
+        totals = release["totals"]
+        harness_version = release["compatibility"]["harness_version"]
+
+        self.assertIn(f"Host harness v{harness_version}", current)
+        self.assertIn(f'{totals["passed"]}/{totals["trials"]}', current)
+        self.assertIn(version, current)
+        self.assertIn(release["title"], current)
+        for label in release["model_labels"].values():
+            self.assertIn(label, current)
         self.assertNotIn('class="badge archived"', current)
 
         self.assertIn("DeepSeek V4 Flash 0731", history)
@@ -73,7 +83,7 @@ class PagesTests(unittest.TestCase):
 
         self.assertIn("Evaluated, failed, and unavailable", methodology)
         self.assertIn("Price per durable repair", methodology)
-        self.assertIn("v5", methodology)
+        self.assertIn("v6", methodology)
 
     def test_core_pages_cover_current_workflows(self) -> None:
         home = (DOCS_DIR / "index.html").read_text()
