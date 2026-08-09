@@ -8,51 +8,64 @@ These results are evaluation history, not a definitive model ranking. Runs made
 with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
-## Host-native harness v5 smoke matrix
+## Host-native harness v5 repeated baseline
 
 ### Five scenarios and three models, 2026-08-08
 
 DeepSeek V4 Pro, Tencent HY3 Preview, and GLM 5.2 each ran all five current
-host-native scenarios once. All 15 requested trials were evaluated and made a
-durable repair. There were no unavailable attempts or evaluation failures.
+host-native scenarios three times. All 45 requested trials were evaluated. The
+agents made 39 durable repairs and failed six attempts.
 
-| Model | Durable repairs | Median trial time | Input tokens | Reported cost | Cost per repair |
-|---|---:|---:|---:|---:|---:|
-| DeepSeek V4 Pro | 5/5 | 4:28 | 1,688,598 | $0.0408 | $0.0082 |
-| Tencent HY3 Preview | 5/5 | 2:18 | 2,195,048 | $0.0668 | $0.0134 |
-| GLM 5.2 | 5/5 | 3:25 | 1,671,782 | $0.1665 | $0.0333 |
-| **Total** | **15/15** | **3:26 median** | **5,555,428** | **$0.2740** | **$0.0183** |
+| Model | Durable repairs | Pass rate | Median trial time | Input tokens | Known cost | Cost per repair |
+|---|---:|---:|---:|---:|---:|---:|
+| DeepSeek V4 Pro | 13/15 | 87% | 4:27 | 6,817,848 | $0.1592 | $0.0122 |
+| Tencent HY3 Preview | 12/15 | 80% | 3:03 | 2,840,832 | $0.1014+ | $0.0084+ |
+| GLM 5.2 | 14/15 | 93% | 1:35 | 4,276,902 | $0.1846 | $0.0132 |
+| **Total** | **39/45** | **87%** | **3:11 median** | **13,935,582** | **$0.4451+** | **$0.0114+** |
 
-Each repair passed immediate verification, service restart, and host reboot.
-Stateful verifiers also required the exact pre-existing work to recover.
+Each passing repair survived scenario verification, service restart, and host
+reboot. Stateful verifiers also required the exact pre-existing work to
+recover.
 
-| Scenario | Version | DeepSeek | HY3 | GLM |
+| Scenario | Version | DeepSeek repairs / median | HY3 repairs / median | GLM repairs / median |
 |---|---:|---:|---:|---:|
-| 001 Nginx 502 | 1 | 4:13 | 1:40 | 0:54 |
-| 013 Sidekiq wrong Redis database | 2 | 3:38 | 3:04 | 1:01 |
-| 014 Missing Rails migration | 2 | 5:25 | 2:08 | 3:25 |
-| 015 Sidekiq poison pill | 1 | 9:51 | 12:41 | 4:21 |
-| 016 Rails pool exhaustion | 1 | 4:28 | 2:18 | 3:26 |
+| 001 Nginx 502 | 1 | 3/3, 3:40 | 3/3, 1:34 | 3/3, 0:42 |
+| 013 Sidekiq wrong Redis database | 2 | 2/3, 3:18 | 0/3, 3:07 | 2/3, 1:09 |
+| 014 Missing Rails migration | 2 | 3/3, 7:27 | 3/3, 2:13 | 3/3, 1:37 |
+| 015 Sidekiq poison pill | 1 | 2/3, 12:15 | 3/3, 6:14 | 3/3, 5:41 |
+| 016 Rails pool exhaustion | 1 | 3/3, 5:15 | 3/3, 8:21 | 3/3, 1:33 |
 
-DeepSeek was cheapest. HY3 had the fastest overall median. GLM was fastest on
-three scenarios, including a 4:21 poison-job repair where HY3 took 12:41. These
-are useful cost and latency profiles, but one attempt per model and scenario is
-not enough to compare reliability.
+The Redis incident produced four `backlog_not_recovered` failures. In each
+case the agent repaired future job processing but failed to recover the exact
+controller-owned jobs that existed before the repair. One GLM attempt deleted
+the stale queue outright. A passing test job did not excuse losing customer
+work.
+
+The other two failures were agent timeouts. DeepSeek timed out on the poison
+pill incident. HY3's second Redis attempt ran for 934 seconds and SSH returned
+status 255 after the 900-second limit. The raw summary left that attempt
+uncategorized; Replaybook's timeout classifier was corrected after the run.
+
+GLM had the strongest result at 14/15 and the fastest median at 1:35. HY3 had
+the lowest known price per repair, but its total excludes usage from the
+timed-out trial and is therefore a lower bound. This is the economic reason to
+measure successful repairs rather than invocations: reliability is part of the
+price.
 
 Run metadata:
 
 - Host harness version: `5`
 - Benchmark suite: `replaybook-host-matrix-v1`
-- Attempts per scenario: `1`
-- Replaybook commit: `a4327bfc89e2a73a4321f5b368f6fb10e9504335`
+- Attempts per scenario: `3`
+- Replaybook commit: `cf45b7ecf4e36d98b6caca3d6e52cc9deb5a52e3`
 - Claux release: `v20260808.0.0`
 - Agent timeout: `900` seconds
 - Concurrency: `2`
-- Reported input tokens: `5,555,428`
-- Reported cached tokens: `4,935,116`
-- Reported output tokens: `137,937`
+- Reported input tokens: `13,935,582` across 44 trials
+- Reported cached tokens: `12,409,219` across 44 trials
+- Reported output tokens: `375,119` across 44 trials
 
-Reproduce the smoke matrix with:
+Reproduce the repeated baseline with:
 
 ```sh
 python integrations/host/run_host_matrix.py \
@@ -65,13 +78,19 @@ python integrations/host/run_host_matrix.py \
     deepseek/deepseek-v4-pro \
     tencent/hy3-preview \
     z-ai/glm-5.2 \
-  --attempts 1 \
+  --attempts 3 \
   --concurrency 2
 ```
 
 Harness v5 also distinguishes unavailable attempts from evaluated repairs.
 Provider, authentication, and harness runtime failures remain visible in trial
 and cost totals but do not count against a model's pass rate.
+
+### Initial five-scenario smoke matrix
+
+The same models first ran each scenario once. All 15 attempts passed, with a
+3:26 overall median and $0.2740 reported cost. That result established cost and
+latency profiles but hid the reliability differences exposed by repetition.
 
 ## Host-native harness v2 baseline
 

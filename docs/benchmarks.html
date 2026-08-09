@@ -29,37 +29,38 @@
     <p class="eyebrow">Host harness v5</p>
     <h1>Current results</h1>
     <p class="tagline benchmark-tagline">
-      Five stateful incidents, three models, and fifteen repairs verified after
-      service restart and host reboot.
+      Five stateful incidents, three models, and forty-five attempts measured
+      by durable repair rather than a passing health check.
     </p>
 
     <div class="metric-grid" aria-label="Current benchmark results">
       <div class="metric">
-        <span class="metric-value">15/15</span>
+        <span class="metric-value">39/45</span>
         <span class="metric-label">durable repairs</span>
       </div>
       <div class="metric">
-        <span class="metric-value">3:26</span>
+        <span class="metric-value">3:11</span>
         <span class="metric-label">overall median</span>
       </div>
       <div class="metric">
-        <span class="metric-value">$0.2740</span>
-        <span class="metric-label">total reported cost</span>
+        <span class="metric-value">$0.4451+</span>
+        <span class="metric-label">known total cost</span>
       </div>
     </div>
 
     <div class="callout benchmark-status verified-status">
-      <strong>Five-scenario smoke matrix complete.</strong>
-      Every requested trial was evaluated. All fifteen repairs passed immediate,
-      service-restart, and host-reboot verification with no unavailable trials.
+      <strong>Repeated baseline complete.</strong>
+      Every requested trial was evaluated. Thirty-nine repairs survived the
+      scenario verifier, service restart, and host reboot. Six attempts failed:
+      four lost pre-existing backlog and two reached the agent timeout.
     </div>
 
     <h2>Model summary</h2>
 
     <p>
-      Each model ran each scenario once through Claux on August 8, 2026. This is
-      enough to expose differences in time and cost, but one attempt per
-      scenario is not enough to rank reliability.
+      Each model ran each scenario three times through Claux on August 8, 2026.
+      This remains a small sample, but repetition exposed reliability differences
+      hidden by the earlier perfect smoke run.
     </p>
 
     <div class="table-scroll">
@@ -68,6 +69,7 @@
           <tr>
             <th>Model</th>
             <th>Repairs</th>
+            <th>Pass rate</th>
             <th>Median</th>
             <th>Input tokens</th>
             <th>Total cost</th>
@@ -75,20 +77,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>DeepSeek V4 Pro</td><td>5/5</td><td>4:28</td><td>1,688,598</td><td>$0.0408</td><td>$0.0082</td></tr>
-          <tr><td>Tencent HY3 Preview</td><td>5/5</td><td>2:18</td><td>2,195,048</td><td>$0.0668</td><td>$0.0134</td></tr>
-          <tr><td>GLM 5.2</td><td>5/5</td><td>3:25</td><td>1,671,782</td><td>$0.1665</td><td>$0.0333</td></tr>
-          <tr class="total-row"><td>Total</td><td>15/15</td><td>3:26</td><td>5,555,428</td><td>$0.2740</td><td>$0.0183</td></tr>
+          <tr><td>DeepSeek V4 Pro</td><td>13/15</td><td>87%</td><td>4:27</td><td>6,817,848</td><td>$0.1592</td><td>$0.0122</td></tr>
+          <tr><td>Tencent HY3 Preview</td><td>12/15</td><td>80%</td><td>3:03</td><td>2,840,832</td><td>$0.1014+</td><td>$0.0084+</td></tr>
+          <tr><td>GLM 5.2</td><td>14/15</td><td>93%</td><td>1:35</td><td>4,276,902</td><td>$0.1846</td><td>$0.0132</td></tr>
+          <tr class="total-row"><td>Total</td><td>39/45</td><td>87%</td><td>3:11</td><td>13,935,582</td><td>$0.4451+</td><td>$0.0114+</td></tr>
         </tbody>
       </table>
     </div>
 
     <p>
-      DeepSeek was cheapest at about 0.82 cents per repair. HY3 had the fastest
-      median and cost about 1.6 times as much per repair. GLM cost about four
-      times as much as DeepSeek, but was fastest on the Nginx, Redis, and poison
-      job incidents. With every model at 100 percent, these are cost and latency
-      profiles, not reliability rankings.
+      GLM produced the most repairs and the fastest overall median. DeepSeek and
+      GLM cost roughly 1.2 and 1.3 cents per durable repair. HY3's known cost was
+      lower, but one timed-out trial reported no usage, so its total is a lower
+      bound. Reliability is part of the price: the cheapest invocation is not
+      necessarily the cheapest successful repair.
     </p>
 
     <h2>Scenario breakdown</h2>
@@ -99,26 +101,37 @@
           <tr>
             <th>Scenario</th>
             <th>Version</th>
-            <th>DeepSeek</th>
-            <th>HY3</th>
-            <th>GLM</th>
+            <th>DeepSeek repairs / median</th>
+            <th>HY3 repairs / median</th>
+            <th>GLM repairs / median</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Nginx 502</td><td>v1</td><td>4:13</td><td>1:40</td><td>0:54</td></tr>
-          <tr><td>Sidekiq wrong Redis database</td><td>v2</td><td>3:38</td><td>3:04</td><td>1:01</td></tr>
-          <tr><td>Missing Rails migration</td><td>v2</td><td>5:25</td><td>2:08</td><td>3:25</td></tr>
-          <tr><td>Sidekiq poison pill</td><td>v1</td><td>9:51</td><td>12:41</td><td>4:21</td></tr>
-          <tr><td>Rails pool exhaustion</td><td>v1</td><td>4:28</td><td>2:18</td><td>3:26</td></tr>
+          <tr><td>Nginx 502</td><td>v1</td><td>3/3 &middot; 3:40</td><td>3/3 &middot; 1:34</td><td>3/3 &middot; 0:42</td></tr>
+          <tr><td>Sidekiq wrong Redis database</td><td>v2</td><td>2/3 &middot; 3:18</td><td>0/3 &middot; 3:07</td><td>2/3 &middot; 1:09</td></tr>
+          <tr><td>Missing Rails migration</td><td>v2</td><td>3/3 &middot; 7:27</td><td>3/3 &middot; 2:13</td><td>3/3 &middot; 1:37</td></tr>
+          <tr><td>Sidekiq poison pill</td><td>v1</td><td>2/3 &middot; 12:15</td><td>3/3 &middot; 6:14</td><td>3/3 &middot; 5:41</td></tr>
+          <tr><td>Rails pool exhaustion</td><td>v1</td><td>3/3 &middot; 5:15</td><td>3/3 &middot; 8:21</td><td>3/3 &middot; 1:33</td></tr>
         </tbody>
       </table>
     </div>
 
     <p>
-      The poison job produced the largest spread. HY3 was fastest overall but
-      took 12:41 there. GLM completed the same repair in 4:21. Repeated trials
-      will show whether that difference is characteristic or one noisy run.
+      The Redis incident did the most useful separating. Four attempts repaired
+      future job processing but failed to recover the controller-owned backlog.
+      One GLM attempt explicitly deleted the stale queue. The service looked
+      healthy afterward, but customer work was gone, so the verifier rejected
+      it. The poison-pill incident produced the other model failure when
+      DeepSeek reached the 900-second limit.
     </p>
+
+    <div class="callout comparison-note">
+      <strong>One timeout needed a post-run classification correction.</strong>
+      HY3's second Redis attempt ran for 934 seconds and exited through SSH with
+      status 255. The raw summary left it uncategorized even though the configured
+      limit was 900 seconds. Replaybook now recognizes that SSH timeout path;
+      the result above counts it as an agent timeout.
+    </div>
 
     <h2>What counts as current</h2>
 
@@ -143,13 +156,14 @@
     deepseek/deepseek-v4-pro \
     tencent/hy3-preview \
     z-ai/glm-5.2 \
-  --attempts 1 \
+  --attempts 3 \
   --concurrency 2</code></pre>
 
     <p class="small muted">
       Benchmark suite <code>replaybook-host-matrix-v1</code>, Replaybook commit
-      <code>a4327bfc</code>, Claux <code>v20260808.0.0</code>, 900-second agent
-      timeout, concurrency 2. All fifteen trials reported usage and cost.
+      <code>cf45b7ec</code>, Claux <code>v20260808.0.0</code>, 900-second agent
+      timeout, concurrency 2. Forty-four of forty-five trials reported usage
+      and cost.
     </p>
 
     <p>
