@@ -134,9 +134,9 @@ body_integer_min = 4
 failure_category = "database_pool_exhausted"</code></pre>
 
     <p>
-      The migration and pool-exhaustion scenarios use the typed manifest.
-      Older host scenarios still use <code>scenario.conf</code> plus shell
-      preflight and verifier hooks while the rest of the catalog moves over.
+      All bundled host-native scenarios use the typed manifest. Legacy
+      <code>scenario.conf</code> plus shell preflight and verifier hooks remain
+      supported for external scenarios that have not migrated yet.
     </p>
 
     <h2 id="build">Build your own</h2>

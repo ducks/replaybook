@@ -69,10 +69,10 @@ Each assertion can name its own `failure_category`. On failure, the phase
 runner writes structured `phase-failure.json`; adding a scenario category no
 longer requires assigning another shell exit code in the host runner.
 
-`014-missing-rails-migration` and `016-rails-pool-exhaustion` are fully
-declarative. Their preflight and verifier behavior is represented entirely by
-manifest steps. Legacy `scenario.conf`, `preflight.sh`, and `verify.sh` hooks
-remain supported while the older scenarios migrate.
+All bundled host-native scenarios are fully declarative. Their preflight and
+verifier behavior is represented entirely by manifest steps. Legacy
+`scenario.conf`, `preflight.sh`, and `verify.sh` hooks remain supported for
+external scenarios that have not migrated yet.
 
 The selected harness runs directly as root on that VM and investigates with
 normal Linux tools such as `systemctl`, `journalctl`, `ps`, `ss`, and the

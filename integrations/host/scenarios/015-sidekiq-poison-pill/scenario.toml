@@ -1,0 +1,113 @@
+[scenario]
+version = 1
+nixos_config = "nixos.nix"
+instruction = "instruction.md"
+oracle = "oracle.sh"
+required_services = ["postgresql.service", "redis-replaybook.service", "checkout-web.service", "checkout-sidekiq.service", "nginx.service"]
+restart_services = ["checkout-web.service", "checkout-sidekiq.service", "nginx.service"]
+
+[[preflight.steps]]
+type = "wait_http"
+path = "/health"
+expected_body = "ok"
+timeout_seconds = 60
+request_timeout_seconds = 2
+failure_category = "incident_not_reproduced"
+
+[[preflight.steps]]
+type = "concurrent_http"
+method = "POST"
+path = "/jobs/{id}/poison"
+id_prefix = "poison"
+count = 1
+concurrency = 1
+expected_status = 202
+record_all_as = "poison_jobs"
+failure_category = "incident_not_reproduced"
+
+[[preflight.steps]]
+type = "replay_http"
+path = "/jobs/{id}/attempts"
+ids_from = "poison_jobs"
+body_integer_min = 1
+timeout_seconds = 30
+request_timeout_seconds = 2
+failure_category = "incident_not_reproduced"
+
+[[preflight.steps]]
+type = "concurrent_http"
+method = "POST"
+path = "/jobs/{id}"
+id_prefix = "valid"
+count = 3
+concurrency = 1
+expected_status = 202
+record_all_as = "valid_jobs"
+failure_category = "incident_not_reproduced"
+
+[[preflight.steps]]
+type = "replay_http"
+path = "/jobs/{id}"
+ids_from = "valid_jobs"
+expected_status = 404
+initial_delay_seconds = 3
+request_timeout_seconds = 2
+failure_category = "incident_not_reproduced"
+
+[[verify.steps]]
+type = "replay_http"
+path = "/jobs/{id}"
+ids_from = "valid_jobs"
+expected_body = "completed"
+timeout_seconds = 60
+request_timeout_seconds = 2
+failure_category = "backlog_not_recovered"
+
+[[verify.steps]]
+type = "replay_http"
+path = "/jobs/{id}"
+ids_from = "poison_jobs"
+expected_body = "quarantined"
+timeout_seconds = 60
+request_timeout_seconds = 2
+failure_category = "poison_not_quarantined"
+
+[[verify.steps]]
+type = "concurrent_http"
+method = "POST"
+path = "/jobs/{id}/poison"
+id_prefix = "verify-poison-{phase}"
+count = 1
+concurrency = 1
+expected_status = 202
+record_all_as = "verification_poison_jobs"
+failure_category = "poison_not_quarantined"
+
+[[verify.steps]]
+type = "concurrent_http"
+method = "POST"
+path = "/jobs/{id}"
+id_prefix = "verify-valid-{phase}"
+count = 1
+concurrency = 1
+expected_status = 202
+record_all_as = "verification_valid_jobs"
+failure_category = "poison_not_quarantined"
+
+[[verify.steps]]
+type = "replay_http"
+path = "/jobs/{id}"
+ids_from = "verification_poison_jobs"
+expected_body = "quarantined"
+timeout_seconds = 30
+request_timeout_seconds = 2
+failure_category = "poison_not_quarantined"
+
+[[verify.steps]]
+type = "replay_http"
+path = "/jobs/{id}"
+ids_from = "verification_valid_jobs"
+expected_body = "completed"
+timeout_seconds = 30
+request_timeout_seconds = 2
+failure_category = "poison_not_quarantined"
