@@ -54,6 +54,21 @@ class WorkerResult:
     error: str | None
 
 
+@dataclass
+class Progress:
+    total: int
+    started: int = 0
+    completed: int = 0
+
+    def start(self) -> int:
+        self.started += 1
+        return self.started
+
+    def complete(self) -> int:
+        self.completed += 1
+        return self.completed
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
@@ -184,6 +199,7 @@ async def run_worker(
     runner: Path,
     environment: dict[str, str],
     semaphore: asyncio.Semaphore,
+    progress: Progress,
     agent_timeout_seconds: int = DEFAULT_AGENT_TIMEOUT_SECONDS,
     agent_adapter: Path | None = None,
     agent_payload: Path | None = None,
@@ -191,8 +207,10 @@ async def run_worker(
     agent_name: str | None = None,
 ) -> WorkerResult:
     async with semaphore:
+        started = progress.start()
         print(
-            f"[matrix] starting {job.run_id} on SSH {job.ssh_port}, "
+            f"[matrix] starting {started} of {progress.total}: {job.run_id} "
+            f"on SSH {job.ssh_port}, "
             f"HTTP {job.http_port}",
             flush=True,
         )
@@ -246,20 +264,24 @@ async def run_worker(
         ):
             error = f"result identity does not match scheduled job: {job.run_id}"
             result = None
+        output = sys.stdout
         if result is None:
-            print(
-                f"[matrix] infrastructure failure {job.run_id}; see {job.log_file}",
-                file=sys.stderr,
-                flush=True,
-            )
+            outcome = f"infrastructure failure {job.run_id}; see {job.log_file}"
+            output = sys.stderr
         elif result.get("trial_status") == "unavailable":
             category = result.get("failure_category") or "unavailable"
-            print(f"[matrix] unavailable {job.run_id} ({category})", flush=True)
+            outcome = f"unavailable {job.run_id} ({category})"
         elif int(result.get("reward", 0)) == 1:
-            print(f"[matrix] passed {job.run_id}", flush=True)
+            outcome = f"passed {job.run_id}"
         else:
             category = result.get("failure_category") or "uncategorized"
-            print(f"[matrix] failed {job.run_id} ({category})", flush=True)
+            outcome = f"failed {job.run_id} ({category})"
+        completed = progress.complete()
+        print(
+            f"[matrix] completed {completed} of {progress.total}: {outcome}",
+            file=output,
+            flush=True,
+        )
         return WorkerResult(job, exit_code, result, error)
 
 
@@ -276,6 +298,7 @@ async def run_jobs(
     agent_name: str | None = None,
 ) -> list[WorkerResult]:
     semaphore = asyncio.Semaphore(concurrency)
+    progress = Progress(total=len(jobs))
     tasks = [
         asyncio.create_task(
             run_worker(
@@ -283,6 +306,7 @@ async def run_jobs(
                 runner=runner,
                 environment=environment,
                 semaphore=semaphore,
+                progress=progress,
                 agent_timeout_seconds=agent_timeout_seconds,
                 agent_adapter=agent_adapter,
                 agent_payload=agent_payload,

@@ -183,7 +183,9 @@ python integrations/host/run_host_matrix.py \
 
 The matrix runner accepts the same `--agent-adapter`, `--agent-payload`,
 `--agent-env-file`, and `--agent-name` options. One matrix evaluates one
-harness across any number of scenarios, models, and attempts.
+harness across any number of scenarios, models, and attempts. Worker logs show
+both launch position and completed progress, such as `starting 3 of 15` and
+`completed 1 of 15`, so long concurrent matrices remain easy to track.
 
 ## Publish benchmark results
 
