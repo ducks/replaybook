@@ -9,44 +9,56 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## DeepSeek on the declarative host suite
+## Four models on the declarative host suite
 
-DeepSeek V4 Flash 0731 ran the five-scenario declarative suite three times under host harness v6. Every passing repair survived scenario verification, service restart, and host reboot.
+Four models ran the same five declarative infrastructure incidents three times each under host harness v6. Every passing repair survived scenario verification, service restart, and host reboot.
 
-Benchmark release: `20260809.0.2`
+Benchmark release: `20260809.0.3`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
+| GLM 5.2 | 15/15 | 100% | 1:34 | $0.3021 | $0.0201 |
+| GPT-5.6 Luna | 13/15 | 87% | 1:10 | $0.0986 | $0.0076 |
 | DeepSeek V4 Flash 0731 | 13/15 | 87% | 2:28 | $0.2908 | $0.0224 |
-| **Total** | **13/15** | **87%** | **2:28** | **$0.2908** | **$0.0224** |
+| Tencent HY3 Preview | 12/15 | 80% | 2:14 | $0.1050 | $0.0087 |
+| **Total** | **53/60** | **88%** | **1:56** | **$0.7964** | **$0.0150** |
 
-DeepSeek made 13 durable repairs in 15 attempts for $0.2908 total, or about $0.0224 per durable repair.
+GLM 5.2 was the only model to make 15 durable repairs in 15 attempts. Its median was 1:34 and its $0.3021 total cost worked out to about $0.0201 per repair.
 
-It completed all 12 attempts outside the poison-pill incident. On that scenario it passed once and timed out twice, for a 33 percent pass rate and a 15:04 median duration.
+GPT-5.6 Luna was fastest at the median, 1:10, and cheapest per durable repair at about $0.0076. It made 13 repairs in 15 attempts, losing existing backlog once and timing out once on the poison-pill incident.
 
-The poison-pill incident consumed $0.1716, about 59 percent of the matrix cost. Both failures were agent timeouts rather than unavailable provider trials or verifier failures.
+DeepSeek V4 Flash 0731 also finished 13/15, but its 2:28 median and $0.2908 total cost were both higher than Luna's. Both DeepSeek failures were poison-pill timeouts after substantial repair work.
 
-Transcript inspection showed that both timed-out attempts found the root cause and wrote a plausible repair. One continued investigating persistence after restoring service; the other timed out while restarting Sidekiq to apply its fix. The failures remain part of the result because stopping discipline is operational behavior.
+Tencent HY3 Preview made 12 repairs in 15 attempts for $0.1050. Its three failures were stateful: two lost pre-existing Sidekiq backlog and one did not quarantine poison work safely.
 
-This is the first published host harness v6 snapshot. It is kept separate from v5 results so changes in declarative scenario execution are not hidden inside a longer historical leaderboard.
+All four models passed every Nginx, Rails migration, and Rails pool-exhaustion attempt. All seven failures occurred in the two Sidekiq scenarios that require preserving or quarantining existing work, rather than merely restoring a healthy endpoint.
+
+These are 60 controlled trials from one harness generation, not a universal model ranking. Three attempts per model and scenario remain a small sample, but the failures show why durable state verification changes the comparison.
 
 ### Scenario breakdown
 
-| Scenario | Version | DeepSeek V4 Flash 0731 |
-|---|---:|---:|
-| Nginx 502 | v1 | 3/3, 1:30 |
-| Sidekiq wrong Redis database | v2 | 3/3, 2:28 |
-| Missing Rails migration | v2 | 3/3, 2:26 |
-| Sidekiq poison pill | v1 | 1/3, 15:04 |
-| Rails pool exhaustion | v1 | 3/3, 3:56 |
+| Scenario | Version | GLM 5.2 | GPT-5.6 Luna | DeepSeek V4 Flash 0731 | Tencent HY3 Preview |
+|---|---:|---:|---:|---:|---:|
+| Nginx 502 | v1 | 3/3, 0:32 | 3/3, 0:40 | 3/3, 1:30 | 3/3, 1:30 |
+| Sidekiq wrong Redis database | v2 | 3/3, 1:15 | 2/3, 0:56 | 3/3, 2:28 | 1/3, 2:13 |
+| Missing Rails migration | v2 | 3/3, 1:34 | 3/3, 1:15 | 3/3, 2:26 | 3/3, 1:55 |
+| Sidekiq poison pill | v1 | 3/3, 5:21 | 2/3, 1:42 | 1/3, 15:04 | 2/3, 5:40 |
+| Rails pool exhaustion | v1 | 3/3, 3:58 | 3/3, 1:11 | 3/3, 3:56 | 3/3, 5:01 |
 
 ### Failure categories
 
-- `agent_timeout`: 2
+- `agent_timeout`: 3
+- `backlog_not_recovered`: 3
+- `poison_not_quarantined`: 1
 
 ### Source matrices
 
 - `host-matrix-2026-08-09__17-21-52.06cac8`: deepseek/deepseek-v4-flash-0731; Replaybook `f949410f`
+- `host-matrix-2026-08-09__18-49-02.adba93`: openai/gpt-5.6-luna, z-ai/glm-5.2, tencent/hy3-preview; Replaybook `5a7f6a7e`
+
+### Run notes
+
+- Two original GLM Nginx workers were interrupted when the checked-out runner changed during the active matrix. Their incomplete artifacts were preserved and excluded. The two replacement trials used the original harness v6 runner, model, scenario, ports, timeout, adapter, and Claux release.
 
 <!-- replaybook:current-benchmark:end -->
 

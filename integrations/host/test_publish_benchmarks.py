@@ -170,7 +170,11 @@ class PublisherTests(unittest.TestCase):
             release = create_release(
                 "20260809.0.0",
                 [path],
-                {"title": "Current release", "description": "A durable baseline."},
+                {
+                    "title": "Current release",
+                    "description": "A durable baseline.",
+                    "notes": ["One worker was replaced after an infrastructure interruption."],
+                },
             )
             write_json(
                 root / "benchmark-data/index.json",
@@ -195,6 +199,8 @@ class PublisherTests(unittest.TestCase):
             self.assertIn("Current release", current)
             self.assertIn("example/incidents@20260809.0.0", current)
             self.assertIn("scenario pack revisions", current)
+            self.assertIn("Run notes", current)
+            self.assertIn("infrastructure interruption", current)
             self.assertNotIn("\n+  --scenario", current)
 
             (root / "docs/benchmarks.html").write_text("stale")

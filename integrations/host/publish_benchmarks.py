@@ -480,6 +480,16 @@ def html_page(release: dict[str, Any]) -> str:
       <strong>Documented post-run corrections</strong>
       <ul>{correction_items}</ul>
     </div>"""
+    notes = ""
+    if release.get("notes"):
+        note_items = "".join(
+            f"<li>{html.escape(str(item))}</li>" for item in release["notes"]
+        )
+        notes = f"""
+    <div class="callout comparison-note">
+      <strong>Run notes</strong>
+      <ul>{note_items}</ul>
+    </div>"""
     source_rows = "\n".join(
         "          <tr>"
         f"<td><code>{html.escape(source['source'])}</code></td>"
@@ -563,7 +573,7 @@ def html_page(release: dict[str, Any]) -> str:
 
     <h2>Failure categories</h2>
     <ul>{failure_items}</ul>
-{corrections}
+{corrections}{notes}
 
     <h2>Constituent matrices</h2>
     <p>The publisher validated matching harness, {pack_compatibility}scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>{pack_note}
@@ -678,6 +688,9 @@ def markdown_section(release: dict[str, Any]) -> str:
             f"- `{source['source']}`: {', '.join(source['models'])}; "
             f"Replaybook `{str(source['replaybook_commit'])[:8]}`"
         )
+    if release.get("notes"):
+        lines.extend(["", "### Run notes", ""])
+        lines.extend(f"- {item}" for item in release["notes"])
     if release["corrections"]:
         lines.extend(["", "### Post-run corrections", ""])
         for item in release["corrections"]:
