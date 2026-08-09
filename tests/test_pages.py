@@ -57,7 +57,9 @@ class PagesTests(unittest.TestCase):
         methodology = (DOCS_DIR / "benchmark-methodology.html").read_text()
 
         self.assertIn("Host harness v5", current)
-        self.assertIn("15/15", current)
+        self.assertIn("94/105", current)
+        self.assertIn("20260809.0.0", current)
+        self.assertIn("GPT-5.6 Luna", current)
         self.assertIn("DeepSeek V4 Pro", current)
         self.assertNotIn('class="badge archived"', current)
 

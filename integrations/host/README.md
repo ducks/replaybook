@@ -185,6 +185,36 @@ The matrix runner accepts the same `--agent-adapter`, `--agent-payload`,
 `--agent-env-file`, and `--agent-name` options. One matrix evaluates one
 harness across any number of scenarios, models, and attempts.
 
+## Publish benchmark results
+
+The benchmark publisher imports one or more compatible matrix summaries into a
+tracked DateVer snapshot, then generates the current site and Markdown record:
+
+```sh
+python integrations/host/publish_benchmarks.py import \
+  --version 20260809.0.0 \
+  --annotations benchmark-data/annotations/20260809.0.0.json \
+  jobs/host-matrix-first/summary.json \
+  jobs/host-matrix-second/summary.json
+```
+
+Before combining results it requires the same suite, host harness, scenario
+versions, attempt count, agent timeout, adapter, and Claux release. Source
+matrix names and Replaybook commits remain visible in the snapshot. The
+tracked release contains normalized result data, not local paths, transcripts,
+credentials, or VM logs.
+
+Rebuild generated files without the original `jobs/` directories:
+
+```sh
+python integrations/host/publish_benchmarks.py build
+```
+
+CI uses the corresponding `check` command to reject stale generated pages.
+Importing a later DateVer release keeps earlier snapshots in the generated
+history. Optional annotations provide display names, editorial observations,
+and explicit post-run corrections with their original values and reasons.
+
 ## Run Codex
 
 The bundled Codex adapter uses `codex exec` and captures its JSON event stream,

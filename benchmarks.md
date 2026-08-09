@@ -8,89 +8,58 @@ These results are evaluation history, not a definitive model ranking. Runs made
 with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
-## Host-native harness v5 repeated baseline
+<!-- replaybook:current-benchmark:start -->
+## Seven models across five stateful incidents
 
-### Five scenarios and three models, 2026-08-08
+Seven models repaired the same five stateful incidents three times each. Every passing repair survived scenario verification, service restart, and host reboot.
 
-DeepSeek V4 Pro, Tencent HY3 Preview, and GLM 5.2 each ran all five current
-host-native scenarios three times. All 45 requested trials were evaluated. The
-agents made 39 durable repairs and failed six attempts.
+Benchmark release: `20260809.0.0`
 
-| Model | Durable repairs | Pass rate | Median trial time | Input tokens | Known cost | Cost per repair |
-|---|---:|---:|---:|---:|---:|---:|
-| DeepSeek V4 Pro | 13/15 | 87% | 4:27 | 6,817,848 | $0.1592 | $0.0122 |
-| Tencent HY3 Preview | 12/15 | 80% | 3:03 | 2,840,832 | $0.1014+ | $0.0084+ |
-| GLM 5.2 | 14/15 | 93% | 1:35 | 4,276,902 | $0.1846 | $0.0132 |
-| **Total** | **39/45** | **87%** | **3:11 median** | **13,935,582** | **$0.4451+** | **$0.0114+** |
+| Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
+|---|---:|---:|---:|---:|---:|
+| GPT-5.6 Luna | 15/15 | 100% | 1:10 | $0.1152 | $0.0077 |
+| Tencent HY3 Preview | 12/15 | 80% | 3:03 | $0.1014+ | $0.0084+ |
+| DeepSeek V4 Pro | 13/15 | 87% | 4:27 | $0.1592 | $0.0122 |
+| GLM 5.2 | 14/15 | 93% | 1:35 | $0.1846 | $0.0132 |
+| Laguna S 2.1 | 11/15 | 73% | 2:59 | $0.2273 | $0.0207 |
+| MiniMax M3 | 14/15 | 93% | 3:46 | $1.3874 | $0.0991 |
+| Kimi K3 | 15/15 | 100% | 2:28 | $3.3233 | $0.2216 |
+| **Total** | **94/105** | **90%** | **2:34** | **$5.4983+** | **$0.0585+** |
 
-Each passing repair survived scenario verification, service restart, and host
-reboot. Stateful verifiers also required the exact pre-existing work to
-recover.
+GPT-5.6 Luna was the observed Pareto winner: 15 durable repairs in 15 attempts, a 1:10 median, and about $0.0077 per repair.
 
-| Scenario | Version | DeepSeek repairs / median | HY3 repairs / median | GLM repairs / median |
-|---|---:|---:|---:|---:|
-| 001 Nginx 502 | 1 | 3/3, 3:40 | 3/3, 1:34 | 3/3, 0:42 |
-| 013 Sidekiq wrong Redis database | 2 | 2/3, 3:18 | 0/3, 3:07 | 2/3, 1:09 |
-| 014 Missing Rails migration | 2 | 3/3, 7:27 | 3/3, 2:13 | 3/3, 1:37 |
-| 015 Sidekiq poison pill | 1 | 2/3, 12:15 | 3/3, 6:14 | 3/3, 5:41 |
-| 016 Rails pool exhaustion | 1 | 3/3, 5:15 | 3/3, 8:21 | 3/3, 1:33 |
+Kimi K3 also repaired all 15 incidents, but cost about 29 times as much per durable repair as Luna and had a 2:28 median.
 
-The Redis incident produced four `backlog_not_recovered` failures. In each
-case the agent repaired future job processing but failed to recover the exact
-controller-owned jobs that existed before the repair. One GLM attempt deleted
-the stale queue outright. A passing test job did not excuse losing customer
-work.
+Six attempts reached a healthy-looking state while still failing scenario state requirements. Five lost existing backlog, and one failed to quarantine poison work safely.
 
-The other two failures were agent timeouts. DeepSeek timed out on the poison
-pill incident. HY3's second Redis attempt ran for 934 seconds and SSH returned
-status 255 after the 900-second limit. The raw summary left that attempt
-uncategorized; Replaybook's timeout classifier was corrected after the run.
+These are 105 trials from two controlled matrices, not a universal model ranking. Discounted pricing may change, and three attempts per model and scenario remain a small sample.
 
-GLM had the strongest result at 14/15 and the fastest median at 1:35. HY3 had
-the lowest known price per repair, but its total excludes usage from the
-timed-out trial and is therefore a lower bound. This is the economic reason to
-measure successful repairs rather than invocations: reliability is part of the
-price.
+### Scenario breakdown
 
-Run metadata:
+| Scenario | Version | GPT-5.6 Luna | Tencent HY3 Preview | DeepSeek V4 Pro | GLM 5.2 | Laguna S 2.1 | MiniMax M3 | Kimi K3 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Nginx 502 | v1 | 3/3, 0:57 | 3/3, 1:34 | 3/3, 3:40 | 3/3, 0:42 | 3/3, 0:53 | 3/3, 0:45 | 3/3, 1:18 |
+| Sidekiq wrong Redis database | v2 | 3/3, 0:58 | 0/3, 3:07 | 2/3, 3:18 | 2/3, 1:09 | 2/3, 1:17 | 3/3, 1:02 | 3/3, 4:20 |
+| Missing Rails migration | v2 | 3/3, 1:56 | 3/3, 2:13 | 3/3, 7:27 | 3/3, 1:37 | 2/3, 11:01 | 2/3, 6:14 | 3/3, 2:03 |
+| Sidekiq poison pill | v1 | 3/3, 1:38 | 3/3, 6:14 | 2/3, 12:15 | 3/3, 5:41 | 2/3, 2:48 | 3/3, 10:36 | 3/3, 3:59 |
+| Rails pool exhaustion | v1 | 3/3, 0:57 | 3/3, 8:21 | 3/3, 5:15 | 3/3, 1:33 | 2/3, 12:22 | 3/3, 5:07 | 3/3, 2:18 |
 
-- Host harness version: `5`
-- Benchmark suite: `replaybook-host-matrix-v1`
-- Attempts per scenario: `3`
-- Replaybook commit: `cf45b7ecf4e36d98b6caca3d6e52cc9deb5a52e3`
-- Claux release: `v20260808.0.0`
-- Agent timeout: `900` seconds
-- Concurrency: `2`
-- Reported input tokens: `13,935,582` across 44 trials
-- Reported cached tokens: `12,409,219` across 44 trials
-- Reported output tokens: `375,119` across 44 trials
+### Failure categories
 
-Reproduce the repeated baseline with:
+- `agent_timeout`: 5
+- `backlog_not_recovered`: 5
+- `poison_not_quarantined`: 1
 
-```sh
-python integrations/host/run_host_matrix.py \
-  --scenario 001-nginx-502-host \
-  --scenario 013-sidekiq-wrong-redis \
-  --scenario 014-missing-rails-migration \
-  --scenario 015-sidekiq-poison-pill \
-  --scenario 016-rails-pool-exhaustion \
-  --models \
-    deepseek/deepseek-v4-pro \
-    tencent/hy3-preview \
-    z-ai/glm-5.2 \
-  --attempts 3 \
-  --concurrency 2
-```
+### Source matrices
 
-Harness v5 also distinguishes unavailable attempts from evaluated repairs.
-Provider, authentication, and harness runtime failures remain visible in trial
-and cost totals but do not count against a model's pass rate.
+- `host-matrix-2026-08-08__23-40-25.4db432`: deepseek/deepseek-v4-pro, tencent/hy3-preview, z-ai/glm-5.2; Replaybook `cf45b7ec`
+- `host-matrix-2026-08-09__02-18-01.910642`: minimax/minimax-m3, openai/gpt-5.6-luna, poolside/laguna-s-2.1, moonshotai/kimi-k3; Replaybook `e8cc5537`
 
-### Initial five-scenario smoke matrix
+### Post-run corrections
 
-The same models first ran each scenario once. All 15 attempts passed, with a
-3:26 overall median and $0.2740 reported cost. That result established cost and
-latency profiles but hid the reliability differences exposed by repetition.
+- `013-sidekiq-wrong-redis-tencent-hy3-preview-2`: The remote launcher ran for 934 seconds against a 900-second limit, but SSH returned status 255 before timeout exits were classified by elapsed time.
+
+<!-- replaybook:current-benchmark:end -->
 
 ## Host-native harness v2 baseline
 
