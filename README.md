@@ -98,7 +98,8 @@ python integrations/host/run_host_matrix.py \
 ```
 
 See [`integrations/host/README.md`](integrations/host/README.md) for adapter
-commands, architecture, and result artifacts. The bundled
+commands, architecture, result artifacts, and the versioned external scenario
+pack contract. The bundled
 [`replaybook-add-harness`](skills/replaybook-add-harness/SKILL.md) skill helps
 agents integrate and verify another harness. The
 [`replaybook-build-scenario`](skills/replaybook-build-scenario/SKILL.md) skill

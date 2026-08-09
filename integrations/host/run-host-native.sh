@@ -11,6 +11,8 @@ Usage:
 Options:
   --oracle            Run the reference repair instead of an agent harness.
   --scenario ID       Host-native scenario (default: 001-nginx-502-host).
+  --scenario-pack DIR Select a versioned scenario pack. Repeat to combine packs.
+                      Defaults to the pack bundled with Replaybook.
   --model MODEL       Model identifier passed to the agent adapter.
   --agent-adapter FILE
                       Adapter executable to run inside the VM.
@@ -45,7 +47,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260808.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=6
+HOST_HARNESS_VERSION=7
 MODEL="deepseek/deepseek-v4-flash"
 SCENARIO_ID="001-nginx-502-host"
 SSH_PORT=22600
@@ -58,6 +60,7 @@ AGENT_PAYLOAD=""
 AGENT_ENV_FILE=""
 AGENT_NAME=""
 CUSTOM_AGENT_ADAPTER=false
+SCENARIO_PACK_DIRS=()
 
 while (( $# > 0 )); do
   case "$1" in
@@ -93,6 +96,11 @@ while (( $# > 0 )); do
     --scenario)
       (( $# >= 2 )) || { echo "--scenario requires a value" >&2; exit 2; }
       SCENARIO_ID="$2"
+      shift 2
+      ;;
+    --scenario-pack)
+      (( $# >= 2 )) || { echo "--scenario-pack requires a value" >&2; exit 2; }
+      SCENARIO_PACK_DIRS+=("$2")
       shift 2
       ;;
     --ssh-port)
@@ -167,7 +175,17 @@ fi
   echo "scenario ID contains unsafe characters: ${SCENARIO_ID}" >&2
   exit 2
 }
-SCENARIO_DIR="${SCRIPT_DIR}/scenarios/${SCENARIO_ID}"
+if (( ${#SCENARIO_PACK_DIRS[@]} == 0 )); then
+  SCENARIO_PACK_DIRS=("${SCRIPT_DIR}/scenarios")
+fi
+pack_command=(python "${SCRIPT_DIR}/scenario_pack.py" --resolve "$SCENARIO_ID")
+for scenario_pack_dir in "${SCENARIO_PACK_DIRS[@]}"; do
+  pack_command+=(--pack "$scenario_pack_dir")
+done
+scenario_location="$("${pack_command[@]}")" || exit 2
+SCENARIO_DIR="$(jq -r '.path' <<<"$scenario_location")"
+SCENARIO_PACK_ID="$(jq -r '.pack.id' <<<"$scenario_location")"
+SCENARIO_PACK_VERSION="$(jq -r '.pack.version' <<<"$scenario_location")"
 TYPED_SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.toml"
 LEGACY_SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.conf"
 DECLARATIVE_SCENARIO=false
@@ -661,6 +679,8 @@ jq -n \
   --argjson harness_version "$HOST_HARNESS_VERSION" \
   --arg scenario "$SCENARIO_ID" \
   --argjson scenario_version "$SCENARIO_VERSION" \
+  --arg scenario_pack_id "$SCENARIO_PACK_ID" \
+  --arg scenario_pack_version "$SCENARIO_PACK_VERSION" \
   --arg agent "$agent" \
   --arg model "$(if [[ "$RUN_ORACLE" == true ]]; then printf 'oracle'; else printf '%s' "$MODEL"; fi)" \
   --arg started_at "$started_at" \
@@ -681,6 +701,10 @@ jq -n \
     harness_version: $harness_version,
     scenario: $scenario,
     scenario_version: $scenario_version,
+    scenario_pack: {
+      id: $scenario_pack_id,
+      version: $scenario_pack_version
+    },
     agent: $agent,
     model: $model,
     started_at: $started_at,
