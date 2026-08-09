@@ -37,7 +37,9 @@ grep -q 'failure_category="backlog_not_recovered"' "$script_dir/run-host-native.
 grep -q 'failure_category="migration_not_applied"' "$script_dir/run-host-native.sh"
 grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/001-nginx-502-host/scenario.conf"
 grep -q 'SCENARIO_VERSION="2"' "$script_dir/scenarios/013-sidekiq-wrong-redis/scenario.conf"
-grep -q 'SCENARIO_VERSION="2"' "$script_dir/scenarios/014-missing-rails-migration/scenario.conf"
+grep -q 'version = 2' "$script_dir/scenarios/014-missing-rails-migration/scenario.toml"
+grep -q 'failure_category = "migration_not_applied"' "$script_dir/scenarios/014-missing-rails-migration/scenario.toml"
+grep -q 'failure_category = "backlog_not_recovered"' "$script_dir/scenarios/014-missing-rails-migration/scenario.toml"
 grep -q 'SCENARIO_VERSION="1"' "$script_dir/scenarios/015-sidekiq-poison-pill/scenario.conf"
 grep -q 'exit 22' "$script_dir/scenarios/015-sidekiq-poison-pill/verify.sh"
 grep -q 'failure_category="poison_not_quarantined"' "$script_dir/run-host-native.sh"
@@ -45,7 +47,7 @@ grep -q 'version = 1' "$script_dir/scenarios/016-rails-pool-exhaustion/scenario.
 grep -q 'failure_category = "database_pool_exhausted"' "$script_dir/scenarios/016-rails-pool-exhaustion/scenario.toml"
 grep -q 'failure_category" == "database_pool_exhausted"' "$script_dir/run-host-native.sh"
 grep -q '202608070001_add_delivery_state.sql' "$script_dir/scenarios/014-missing-rails-migration/oracle.sh"
-grep -q 'deployment/migration' "$script_dir/scenarios/014-missing-rails-migration/verify.sh"
+grep -q 'path = "/deployment/migration"' "$script_dir/scenarios/014-missing-rails-migration/scenario.toml"
 if grep -q 'ADD COLUMN IF NOT EXISTS' \
   "$script_dir/scenarios/014-missing-rails-migration/app/db/migrate/202608070001_add_delivery_state.sql"; then
   echo "migration scenario unexpectedly permits untracked manual schema repair" >&2

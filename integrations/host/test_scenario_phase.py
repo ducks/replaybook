@@ -19,6 +19,7 @@ class TestHandler(BaseHTTPRequestHandler):
     pool_size = 1
     checkout_count = 0
     completed: set[str] = set()
+    poll_count: dict[str, int] = {}
 
     def do_GET(self) -> None:  # noqa: N802
         if self.path == "/health":
@@ -53,6 +54,7 @@ class ScenarioPhaseTests(unittest.TestCase):
         TestHandler.pool_size = 1
         TestHandler.checkout_count = 0
         TestHandler.completed = set()
+        TestHandler.poll_count = {}
         self.server = ThreadingHTTPServer(("127.0.0.1", 0), TestHandler)
         self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
         self.thread.start()
@@ -161,6 +163,47 @@ failure_category = "database_pool_exhausted"
             self.assertEqual(failure["category"], "database_pool_exhausted")
             self.assertEqual(failure["phase"], "service_restart")
             self.assertEqual(failure["step"], 1)
+
+    def test_replay_http_polls_controller_ids_until_they_match(self) -> None:
+        class PollingHandler(TestHandler):
+            def do_GET(self) -> None:  # noqa: N802
+                identifier = self.path.rsplit("/", 1)[-1]
+                count = type(self).poll_count.get(identifier, 0) + 1
+                type(self).poll_count[identifier] = count
+                self.respond(200, "completed" if count >= 2 else "pending")
+
+        self.server.shutdown()
+        self.thread.join()
+        self.server.server_close()
+        self.server = ThreadingHTTPServer(("127.0.0.1", 0), PollingHandler)
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+        self.base_url = f"http://127.0.0.1:{self.server.server_port}"
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = root / "scenario.toml"
+            manifest.write_text(
+                """
+[[verify.steps]]
+type = "replay_http"
+path = "/jobs/{id}"
+ids_from = "backlog"
+expected_body = "completed"
+timeout_seconds = 1
+interval_seconds = 0.01
+failure_category = "backlog_not_recovered"
+""".strip()
+                + "\n"
+            )
+            state_dir = root / "state"
+            state_dir.mkdir()
+            (state_dir / "scenario-state.json").write_text('{"backlog":["job-1","job-2"]}\n')
+
+            run_phase(manifest, "immediate", self.base_url, state_dir)
+
+            self.assertGreaterEqual(PollingHandler.poll_count["job-1"], 2)
+            self.assertGreaterEqual(PollingHandler.poll_count["job-2"], 2)
 
     def test_rejects_unknown_step_type(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

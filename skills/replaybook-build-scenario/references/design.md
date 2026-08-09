@@ -43,8 +43,9 @@ meaningful.
 
 Use `wait_http` for bounded readiness and stable HTTP assertions. Use
 `concurrent_http` to create load or controller-owned work. Use `replay_http` to
-retry exact IDs stored during preflight. Keep request deadlines short and phase
-deadlines bounded.
+check or retry exact IDs stored by an earlier step. Add `timeout_seconds` when
+each ID may need bounded polling before it reaches the expected state. Keep
+request deadlines short and phase deadlines bounded.
 
 Use a legacy `preflight.sh` or `verify.sh` only for assertions the phase runner
 cannot express, such as direct database invariants or service topology. Keep

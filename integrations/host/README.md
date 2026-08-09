@@ -4,7 +4,7 @@ This integration evaluates an infrastructure agent on a real disposable Linux
 host. The agent does not receive a Docker socket and does not manage sibling
 containers.
 
-The local controller builds and boots a scenario-selected NixOS VM. Six
+The local controller builds and boots a scenario-selected NixOS VM. Five
 scenarios are currently available:
 
 - `001-nginx-502-host`: Nginx points at the wrong backend port.
@@ -69,10 +69,10 @@ Each assertion can name its own `failure_category`. On failure, the phase
 runner writes structured `phase-failure.json`; adding a scenario category no
 longer requires assigning another shell exit code in the host runner.
 
-`016-rails-pool-exhaustion` is the first fully declarative scenario. Its former
-preflight and verifier scripts are represented entirely by manifest steps.
-Legacy `scenario.conf`, `preflight.sh`, and `verify.sh` hooks remain supported
-while the older scenarios migrate.
+`014-missing-rails-migration` and `016-rails-pool-exhaustion` are fully
+declarative. Their preflight and verifier behavior is represented entirely by
+manifest steps. Legacy `scenario.conf`, `preflight.sh`, and `verify.sh` hooks
+remain supported while the older scenarios migrate.
 
 The selected harness runs directly as root on that VM and investigates with
 normal Linux tools such as `systemctl`, `journalctl`, `ps`, `ss`, and the
