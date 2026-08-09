@@ -26,62 +26,49 @@
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Benchmark 20260809.0.1</p>
-    <h1>Eight models across five stateful incidents</h1>
-    <p class="tagline benchmark-tagline">Eight models repaired the same five stateful incidents three times each. Every passing repair survived scenario verification, service restart, and host reboot.</p>
+    <p class="eyebrow">Benchmark 20260809.0.2</p>
+    <h1>DeepSeek on the declarative host suite</h1>
+    <p class="tagline benchmark-tagline">DeepSeek V4 Flash 0731 ran the five-scenario declarative suite three times under host harness v6. Every passing repair survived scenario verification, service restart, and host reboot.</p>
 
     <div class="metric-grid" aria-label="Current benchmark results">
-      <div class="metric"><span class="metric-value">109/120</span><span class="metric-label">durable repairs</span></div>
-      <div class="metric"><span class="metric-value">2:16</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">$12.2351+</span><span class="metric-label">known total cost</span></div>
+      <div class="metric"><span class="metric-value">13/15</span><span class="metric-label">durable repairs</span></div>
+      <div class="metric"><span class="metric-value">2:28</span><span class="metric-label">overall median</span></div>
+      <div class="metric"><span class="metric-value">$0.2908</span><span class="metric-label">known total cost</span></div>
     </div>
 
     <div class="callout benchmark-status verified-status">
-      <strong>120 trials across 3 controlled matrices.</strong>
-      109 repairs passed durable verification. 11 evaluated attempts failed and 0 were unavailable.
+      <strong>15 trials across 1 controlled matrices.</strong>
+      13 repairs passed durable verification. 2 evaluated attempts failed and 0 were unavailable.
     </div>
 
     <h2>Model summary</h2>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
-          <tr><td>GPT-5.6 Luna</td><td>15/15</td><td>100%</td><td>1:10</td><td>3,785,434</td><td>$0.1152</td><td>$0.0077</td></tr>
-          <tr><td>Tencent HY3 Preview</td><td>12/15</td><td>80%</td><td>3:03</td><td>2,840,832</td><td>$0.1014+</td><td>$0.0084+</td></tr>
-          <tr><td>DeepSeek V4 Pro</td><td>13/15</td><td>87%</td><td>4:27</td><td>6,817,848</td><td>$0.1592</td><td>$0.0122</td></tr>
-          <tr><td>GLM 5.2</td><td>14/15</td><td>93%</td><td>1:35</td><td>4,276,902</td><td>$0.1846</td><td>$0.0132</td></tr>
-          <tr><td>Laguna S 2.1</td><td>11/15</td><td>73%</td><td>2:59</td><td>14,766,245</td><td>$0.2273</td><td>$0.0207</td></tr>
-          <tr><td>MiniMax M3</td><td>14/15</td><td>93%</td><td>3:46</td><td>18,004,306</td><td>$1.3874</td><td>$0.0991</td></tr>
-          <tr><td>Kimi K3</td><td>15/15</td><td>100%</td><td>2:28</td><td>3,011,128</td><td>$3.3233</td><td>$0.2216</td></tr>
-          <tr><td>GPT-5.6 Sol</td><td>15/15</td><td>100%</td><td>1:46</td><td>4,720,299</td><td>$6.7367</td><td>$0.4491</td></tr>
+          <tr><td>DeepSeek V4 Flash 0731</td><td>13/15</td><td>87%</td><td>2:28</td><td>9,247,252</td><td>$0.2908</td><td>$0.0224</td></tr>
     </tbody></table></div>
 
-      <p>GPT-5.6 Luna and GPT-5.6 Sol both made 15 durable repairs in 15 attempts. Luna was faster at the median, 1:10 versus 1:46, and cost about $0.0077 per repair versus Sol&#x27;s $0.4491.</p>
-      <p>Sol cost about 58 times as much per durable repair as Luna. Its 15 trials cost $6.7367, more than the entire previous 105-trial benchmark release.</p>
-      <p>Kimi K3 was the third model to reach 15/15. It cost about 29 times as much per durable repair as Luna, while Sol cost about twice as much per repair as Kimi.</p>
-      <p>Six attempts reached a healthy-looking state while still failing scenario state requirements. Five lost existing backlog, and one failed to quarantine poison work safely.</p>
-      <p>These are 120 trials from three controlled matrices, not a universal model ranking. Discounted pricing may change, and three attempts per model and scenario remain a small sample.</p>
+      <p>DeepSeek made 13 durable repairs in 15 attempts for $0.2908 total, or about $0.0224 per durable repair.</p>
+      <p>It completed all 12 attempts outside the poison-pill incident. On that scenario it passed once and timed out twice, for a 33 percent pass rate and a 15:04 median duration.</p>
+      <p>The poison-pill incident consumed $0.1716, about 59 percent of the matrix cost. Both failures were agent timeouts rather than unavailable provider trials or verifier failures.</p>
+      <p>Transcript inspection showed that both timed-out attempts found the root cause and wrote a plausible repair. One continued investigating persistence after restoring service; the other timed out while restarting Sidekiq to apply its fix. The failures remain part of the result because stopping discipline is operational behavior.</p>
+      <p>This is the first published host harness v6 snapshot. It is kept separate from v5 results so changes in declarative scenario execution are not hidden inside a longer historical leaderboard.</p>
 
     <h2>Scenario breakdown</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>GPT-5.6 Luna</th><th>Tencent HY3 Preview</th><th>DeepSeek V4 Pro</th><th>GLM 5.2</th><th>Laguna S 2.1</th><th>MiniMax M3</th><th>Kimi K3</th><th>GPT-5.6 Sol</th></tr></thead><tbody>
-          <tr><td>Nginx 502</td><td>v1</td><td>3/3 &middot; 0:57</td><td>3/3 &middot; 1:34</td><td>3/3 &middot; 3:40</td><td>3/3 &middot; 0:42</td><td>3/3 &middot; 0:53</td><td>3/3 &middot; 0:45</td><td>3/3 &middot; 1:18</td><td>3/3 &middot; 1:14</td></tr>
-          <tr><td>Sidekiq wrong Redis database</td><td>v2</td><td>3/3 &middot; 0:58</td><td>0/3 &middot; 3:07</td><td>2/3 &middot; 3:18</td><td>2/3 &middot; 1:09</td><td>2/3 &middot; 1:17</td><td>3/3 &middot; 1:02</td><td>3/3 &middot; 4:20</td><td>3/3 &middot; 1:21</td></tr>
-          <tr><td>Missing Rails migration</td><td>v2</td><td>3/3 &middot; 1:56</td><td>3/3 &middot; 2:13</td><td>3/3 &middot; 7:27</td><td>3/3 &middot; 1:37</td><td>2/3 &middot; 11:01</td><td>2/3 &middot; 6:14</td><td>3/3 &middot; 2:03</td><td>3/3 &middot; 1:46</td></tr>
-          <tr><td>Sidekiq poison pill</td><td>v1</td><td>3/3 &middot; 1:38</td><td>3/3 &middot; 6:14</td><td>2/3 &middot; 12:15</td><td>3/3 &middot; 5:41</td><td>2/3 &middot; 2:48</td><td>3/3 &middot; 10:36</td><td>3/3 &middot; 3:59</td><td>3/3 &middot; 2:17</td></tr>
-          <tr><td>Rails pool exhaustion</td><td>v1</td><td>3/3 &middot; 0:57</td><td>3/3 &middot; 8:21</td><td>3/3 &middot; 5:15</td><td>3/3 &middot; 1:33</td><td>2/3 &middot; 12:22</td><td>3/3 &middot; 5:07</td><td>3/3 &middot; 2:18</td><td>3/3 &middot; 1:58</td></tr>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>DeepSeek V4 Flash 0731</th></tr></thead><tbody>
+          <tr><td>Nginx 502</td><td>v1</td><td>3/3 &middot; 1:30</td></tr>
+          <tr><td>Sidekiq wrong Redis database</td><td>v2</td><td>3/3 &middot; 2:28</td></tr>
+          <tr><td>Missing Rails migration</td><td>v2</td><td>3/3 &middot; 2:26</td></tr>
+          <tr><td>Sidekiq poison pill</td><td>v1</td><td>1/3 &middot; 15:04</td></tr>
+          <tr><td>Rails pool exhaustion</td><td>v1</td><td>3/3 &middot; 3:56</td></tr>
     </tbody></table></div>
 
     <h2>Failure categories</h2>
-    <ul><li><code>agent_timeout</code>: 5</li><li><code>backlog_not_recovered</code>: 5</li><li><code>poison_not_quarantined</code>: 1</li></ul>
+    <ul><li><code>agent_timeout</code>: 2</li></ul>
 
-    <div class="callout comparison-note">
-      <strong>Documented post-run corrections</strong>
-      <ul><li><code>013-sidekiq-wrong-redis-tencent-hy3-preview-2</code>: The remote launcher ran for 934 seconds against a 900-second limit, but SSH returned status 255 before timeout exits were classified by elapsed time.</li></ul>
-    </div>
 
     <h2>Constituent matrices</h2>
     <p>The publisher validated matching harness, scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
-          <tr><td><code>host-matrix-2026-08-08__23-40-25.4db432</code></td><td>DeepSeek V4 Pro, Tencent HY3 Preview, GLM 5.2</td><td><code>cf45b7ec</code></td></tr>
-          <tr><td><code>host-matrix-2026-08-09__02-18-01.910642</code></td><td>MiniMax M3, GPT-5.6 Luna, Laguna S 2.1, Kimi K3</td><td><code>e8cc5537</code></td></tr>
-          <tr><td><code>host-matrix-2026-08-09__15-49-42.7ebf34</code></td><td>GPT-5.6 Sol</td><td><code>e5fc2881</code></td></tr>
+          <tr><td><code>host-matrix-2026-08-09__17-21-52.06cac8</code></td><td>DeepSeek V4 Flash 0731</td><td><code>f949410f</code></td></tr>
     </tbody></table></div>
 
     <h2>Run the matrix</h2>
@@ -92,18 +79,11 @@
   --scenario 015-sidekiq-poison-pill \
   --scenario 016-rails-pool-exhaustion \
   --models \
-    openai/gpt-5.6-luna \
-    tencent/hy3-preview \
-    deepseek/deepseek-v4-pro \
-    z-ai/glm-5.2 \
-    poolside/laguna-s-2.1 \
-    minimax/minimax-m3 \
-    moonshotai/kimi-k3 \
-    openai/gpt-5.6-sol \
+    deepseek/deepseek-v4-flash-0731 \
   --attempts 3 \
   --concurrency 2</code></pre>
 
-    <p class="small muted">Host harness v5, Claux <code>v20260808.0.0</code>, 900-second agent timeout. Usage was reported for 119 of 120 trials.</p>
+    <p class="small muted">Host harness v6, Claux <code>v20260808.0.0</code>, 900-second agent timeout. Usage was reported for 15 of 15 trials.</p>
 
     <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
 

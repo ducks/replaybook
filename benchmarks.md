@@ -9,59 +9,44 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Eight models across five stateful incidents
+## DeepSeek on the declarative host suite
 
-Eight models repaired the same five stateful incidents three times each. Every passing repair survived scenario verification, service restart, and host reboot.
+DeepSeek V4 Flash 0731 ran the five-scenario declarative suite three times under host harness v6. Every passing repair survived scenario verification, service restart, and host reboot.
 
-Benchmark release: `20260809.0.1`
+Benchmark release: `20260809.0.2`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna | 15/15 | 100% | 1:10 | $0.1152 | $0.0077 |
-| Tencent HY3 Preview | 12/15 | 80% | 3:03 | $0.1014+ | $0.0084+ |
-| DeepSeek V4 Pro | 13/15 | 87% | 4:27 | $0.1592 | $0.0122 |
-| GLM 5.2 | 14/15 | 93% | 1:35 | $0.1846 | $0.0132 |
-| Laguna S 2.1 | 11/15 | 73% | 2:59 | $0.2273 | $0.0207 |
-| MiniMax M3 | 14/15 | 93% | 3:46 | $1.3874 | $0.0991 |
-| Kimi K3 | 15/15 | 100% | 2:28 | $3.3233 | $0.2216 |
-| GPT-5.6 Sol | 15/15 | 100% | 1:46 | $6.7367 | $0.4491 |
-| **Total** | **109/120** | **91%** | **2:16** | **$12.2351+** | **$0.1122+** |
+| DeepSeek V4 Flash 0731 | 13/15 | 87% | 2:28 | $0.2908 | $0.0224 |
+| **Total** | **13/15** | **87%** | **2:28** | **$0.2908** | **$0.0224** |
 
-GPT-5.6 Luna and GPT-5.6 Sol both made 15 durable repairs in 15 attempts. Luna was faster at the median, 1:10 versus 1:46, and cost about $0.0077 per repair versus Sol's $0.4491.
+DeepSeek made 13 durable repairs in 15 attempts for $0.2908 total, or about $0.0224 per durable repair.
 
-Sol cost about 58 times as much per durable repair as Luna. Its 15 trials cost $6.7367, more than the entire previous 105-trial benchmark release.
+It completed all 12 attempts outside the poison-pill incident. On that scenario it passed once and timed out twice, for a 33 percent pass rate and a 15:04 median duration.
 
-Kimi K3 was the third model to reach 15/15. It cost about 29 times as much per durable repair as Luna, while Sol cost about twice as much per repair as Kimi.
+The poison-pill incident consumed $0.1716, about 59 percent of the matrix cost. Both failures were agent timeouts rather than unavailable provider trials or verifier failures.
 
-Six attempts reached a healthy-looking state while still failing scenario state requirements. Five lost existing backlog, and one failed to quarantine poison work safely.
+Transcript inspection showed that both timed-out attempts found the root cause and wrote a plausible repair. One continued investigating persistence after restoring service; the other timed out while restarting Sidekiq to apply its fix. The failures remain part of the result because stopping discipline is operational behavior.
 
-These are 120 trials from three controlled matrices, not a universal model ranking. Discounted pricing may change, and three attempts per model and scenario remain a small sample.
+This is the first published host harness v6 snapshot. It is kept separate from v5 results so changes in declarative scenario execution are not hidden inside a longer historical leaderboard.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Luna | Tencent HY3 Preview | DeepSeek V4 Pro | GLM 5.2 | Laguna S 2.1 | MiniMax M3 | Kimi K3 | GPT-5.6 Sol |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Nginx 502 | v1 | 3/3, 0:57 | 3/3, 1:34 | 3/3, 3:40 | 3/3, 0:42 | 3/3, 0:53 | 3/3, 0:45 | 3/3, 1:18 | 3/3, 1:14 |
-| Sidekiq wrong Redis database | v2 | 3/3, 0:58 | 0/3, 3:07 | 2/3, 3:18 | 2/3, 1:09 | 2/3, 1:17 | 3/3, 1:02 | 3/3, 4:20 | 3/3, 1:21 |
-| Missing Rails migration | v2 | 3/3, 1:56 | 3/3, 2:13 | 3/3, 7:27 | 3/3, 1:37 | 2/3, 11:01 | 2/3, 6:14 | 3/3, 2:03 | 3/3, 1:46 |
-| Sidekiq poison pill | v1 | 3/3, 1:38 | 3/3, 6:14 | 2/3, 12:15 | 3/3, 5:41 | 2/3, 2:48 | 3/3, 10:36 | 3/3, 3:59 | 3/3, 2:17 |
-| Rails pool exhaustion | v1 | 3/3, 0:57 | 3/3, 8:21 | 3/3, 5:15 | 3/3, 1:33 | 2/3, 12:22 | 3/3, 5:07 | 3/3, 2:18 | 3/3, 1:58 |
+| Scenario | Version | DeepSeek V4 Flash 0731 |
+|---|---:|---:|
+| Nginx 502 | v1 | 3/3, 1:30 |
+| Sidekiq wrong Redis database | v2 | 3/3, 2:28 |
+| Missing Rails migration | v2 | 3/3, 2:26 |
+| Sidekiq poison pill | v1 | 1/3, 15:04 |
+| Rails pool exhaustion | v1 | 3/3, 3:56 |
 
 ### Failure categories
 
-- `agent_timeout`: 5
-- `backlog_not_recovered`: 5
-- `poison_not_quarantined`: 1
+- `agent_timeout`: 2
 
 ### Source matrices
 
-- `host-matrix-2026-08-08__23-40-25.4db432`: deepseek/deepseek-v4-pro, tencent/hy3-preview, z-ai/glm-5.2; Replaybook `cf45b7ec`
-- `host-matrix-2026-08-09__02-18-01.910642`: minimax/minimax-m3, openai/gpt-5.6-luna, poolside/laguna-s-2.1, moonshotai/kimi-k3; Replaybook `e8cc5537`
-- `host-matrix-2026-08-09__15-49-42.7ebf34`: openai/gpt-5.6-sol; Replaybook `e5fc2881`
-
-### Post-run corrections
-
-- `013-sidekiq-wrong-redis-tencent-hy3-preview-2`: The remote launcher ran for 934 seconds against a 900-second limit, but SSH returned status 255 before timeout exits were classified by elapsed time.
+- `host-matrix-2026-08-09__17-21-52.06cac8`: deepseek/deepseek-v4-flash-0731; Replaybook `f949410f`
 
 <!-- replaybook:current-benchmark:end -->
 
