@@ -1,0 +1,746 @@
+#!/usr/bin/env python3
+"""Import host-matrix summaries and build the public benchmark record."""
+
+from __future__ import annotations
+
+import argparse
+import html
+import json
+import re
+import statistics
+import sys
+from collections import Counter, defaultdict
+from pathlib import Path
+from typing import Any
+
+
+REPO_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = Path("benchmark-data")
+INDEX_FILE = DATA_DIR / "index.json"
+RELEASES_DIR = DATA_DIR / "releases"
+DOCS_CURRENT = Path("docs/benchmarks.html")
+DOCS_HISTORY = Path("docs/benchmark-history.html")
+MARKDOWN_RECORD = Path("benchmarks.md")
+VERSION_PATTERN = re.compile(r"^[0-9]{8}\.[0-9]+\.[0-9]+$")
+MARKDOWN_START = "<!-- replaybook:current-benchmark:start -->"
+MARKDOWN_END = "<!-- replaybook:current-benchmark:end -->"
+HISTORY_START = "<!-- replaybook:generated-history:start -->"
+HISTORY_END = "<!-- replaybook:generated-history:end -->"
+
+
+class PublishError(ValueError):
+    """A benchmark cannot be imported or rendered safely."""
+
+
+def read_json(path: Path) -> dict[str, Any]:
+    try:
+        value = json.loads(path.read_text())
+    except (OSError, json.JSONDecodeError) as error:
+        raise PublishError(f"could not read JSON from {path}: {error}") from error
+    if not isinstance(value, dict):
+        raise PublishError(f"expected a JSON object in {path}")
+    return value
+
+
+def write_json(path: Path, value: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+
+
+def required_object(value: dict[str, Any], key: str, source: Path) -> dict[str, Any]:
+    child = value.get(key)
+    if not isinstance(child, dict):
+        raise PublishError(f"{source}: {key} must be an object")
+    return child
+
+
+def required_list(value: dict[str, Any], key: str, source: Path) -> list[Any]:
+    child = value.get(key)
+    if not isinstance(child, list):
+        raise PublishError(f"{source}: {key} must be an array")
+    return child
+
+
+def compact_run(run: dict[str, Any], source: Path) -> dict[str, Any]:
+    required = {
+        "run_id",
+        "scenario",
+        "scenario_version",
+        "agent",
+        "model",
+        "attempt",
+        "agent_duration_seconds",
+        "agent_timeout_seconds",
+        "reward",
+        "trial_status",
+    }
+    missing = sorted(required - run.keys())
+    if missing:
+        raise PublishError(f"{source}: run missing fields: {', '.join(missing)}")
+    if run["reward"] not in (0, 1):
+        raise PublishError(f"{source}: {run['run_id']} has invalid reward")
+    usage = run.get("usage")
+    if usage is not None and not isinstance(usage, dict):
+        raise PublishError(f"{source}: {run['run_id']} usage must be an object or null")
+    verification = run.get("verification")
+    if verification is not None and not isinstance(verification, dict):
+        raise PublishError(
+            f"{source}: {run['run_id']} verification must be an object or null"
+        )
+    return {
+        "run_id": run["run_id"],
+        "scenario": run["scenario"],
+        "scenario_version": run["scenario_version"],
+        "agent": run["agent"],
+        "model": run["model"],
+        "attempt": run["attempt"],
+        "started_at": run.get("started_at"),
+        "finished_at": run.get("finished_at"),
+        "agent_duration_seconds": run["agent_duration_seconds"],
+        "agent_timeout_seconds": run["agent_timeout_seconds"],
+        "reward": run["reward"],
+        "trial_status": run["trial_status"],
+        "failure": run.get("failure"),
+        "failure_category": run.get("failure_category"),
+        "usage": usage,
+        "verification": verification,
+    }
+
+
+def import_summary(path: Path) -> dict[str, Any]:
+    summary = read_json(path)
+    benchmark = required_object(summary, "benchmark", path)
+    runs = [compact_run(run, path) for run in required_list(summary, "runs", path)]
+    if not runs:
+        raise PublishError(f"{path}: summary contains no runs")
+    scenarios = benchmark.get("scenarios")
+    models = benchmark.get("models")
+    agent = benchmark.get("agent")
+    if not isinstance(scenarios, list) or not isinstance(models, list):
+        raise PublishError(f"{path}: benchmark scenarios and models must be arrays")
+    if not isinstance(agent, dict):
+        raise PublishError(f"{path}: benchmark agent must be an object")
+    source = {
+        "source": path.parent.name,
+        "started_at": summary.get("started_at"),
+        "finished_at": summary.get("finished_at"),
+        "suite": summary.get("suite"),
+        "harness_version": summary.get("harness_version"),
+        "replaybook_commit": benchmark.get("replaybook_commit"),
+        "scenarios": scenarios,
+        "models": models,
+        "attempts": benchmark.get("attempts"),
+        "concurrency": benchmark.get("concurrency"),
+        "agent_timeout_seconds": benchmark.get("agent_timeout_seconds"),
+        "agent": agent,
+        "claux_release": benchmark.get("claux_release"),
+        "runs": runs,
+    }
+    validate_source_matrix(source, path)
+    return source
+
+
+def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
+    models = source["models"]
+    scenarios = source["scenarios"]
+    attempts = source["attempts"]
+    if (
+        not models
+        or not all(isinstance(model, str) and model for model in models)
+        or len(models) != len(set(models))
+    ):
+        raise PublishError(f"{path}: benchmark models must be unique names")
+    scenario_keys = []
+    for scenario in scenarios:
+        if (
+            not isinstance(scenario, dict)
+            or not isinstance(scenario.get("id"), str)
+            or not isinstance(scenario.get("version"), int)
+        ):
+            raise PublishError(f"{path}: benchmark scenarios are invalid")
+        scenario_keys.append((scenario["id"], scenario["version"]))
+    if not scenario_keys or len(scenario_keys) != len(set(scenario_keys)):
+        raise PublishError(f"{path}: benchmark scenarios must be unique")
+    if not isinstance(attempts, int) or isinstance(attempts, bool) or attempts <= 0:
+        raise PublishError(f"{path}: benchmark attempts must be a positive integer")
+
+    expected = {
+        (scenario, version, model, attempt)
+        for scenario, version in scenario_keys
+        for model in models
+        for attempt in range(1, attempts + 1)
+    }
+    actual = {
+        (run["scenario"], run["scenario_version"], run["model"], run["attempt"])
+        for run in source["runs"]
+    }
+    if len(actual) != len(source["runs"]):
+        raise PublishError(f"{path}: summary contains duplicate trials")
+    if actual != expected:
+        missing = len(expected - actual)
+        extra = len(actual - expected)
+        raise PublishError(
+            f"{path}: summary does not match its benchmark matrix "
+            f"({missing} missing, {extra} unexpected trials)"
+        )
+    for run in source["runs"]:
+        if run["agent"] != source["agent"].get("name"):
+            raise PublishError(f"{path}: {run['run_id']} reports a different agent")
+        if run["agent_timeout_seconds"] != source["agent_timeout_seconds"]:
+            raise PublishError(f"{path}: {run['run_id']} reports a different timeout")
+
+
+def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "suite": source["suite"],
+        "harness_version": source["harness_version"],
+        "scenarios": source["scenarios"],
+        "attempts": source["attempts"],
+        "agent_timeout_seconds": source["agent_timeout_seconds"],
+        "agent": source["agent"],
+        "claux_release": source["claux_release"],
+    }
+
+
+def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
+    expected = compatibility_key(sources[0])
+    for source in sources[1:]:
+        actual = compatibility_key(source)
+        for key, expected_value in expected.items():
+            if actual[key] != expected_value:
+                raise PublishError(
+                    f"incompatible summaries: {key} differs between "
+                    f"{sources[0]['source']} and {source['source']}"
+                )
+    identities: set[tuple[str, str, int]] = set()
+    for source in sources:
+        for run in source["runs"]:
+            identity = (run["scenario"], run["model"], run["attempt"])
+            if identity in identities:
+                raise PublishError(
+                    "duplicate trial across summaries: " + "/".join(map(str, identity))
+                )
+            identities.add(identity)
+    return expected
+
+
+def apply_corrections(
+    runs: list[dict[str, Any]], annotations: dict[str, Any]
+) -> list[dict[str, Any]]:
+    by_id = {run["run_id"]: run for run in runs}
+    applied = []
+    corrections = annotations.get("corrections", [])
+    if not isinstance(corrections, list):
+        raise PublishError("annotations corrections must be an array")
+    for correction in corrections:
+        if not isinstance(correction, dict):
+            raise PublishError("every correction must be an object")
+        run_id = correction.get("run_id")
+        changes = correction.get("changes")
+        reason = correction.get("reason")
+        if run_id not in by_id:
+            raise PublishError(f"correction references unknown run: {run_id}")
+        if not isinstance(changes, dict) or not changes:
+            raise PublishError(f"correction for {run_id} has no changes")
+        if not isinstance(reason, str) or not reason.strip():
+            raise PublishError(f"correction for {run_id} needs a reason")
+        allowed = {"failure", "failure_category"}
+        if not set(changes).issubset(allowed):
+            raise PublishError(f"correction for {run_id} changes unsupported fields")
+        original = {key: by_id[run_id].get(key) for key in changes}
+        by_id[run_id].update(changes)
+        applied.append(
+            {"run_id": run_id, "original": original, "changes": changes, "reason": reason}
+        )
+    return applied
+
+
+def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
+    evaluated = [run for run in runs if run["trial_status"] == "evaluated"]
+    passed = [run for run in evaluated if run["reward"] == 1]
+    durations = [run["agent_duration_seconds"] for run in evaluated]
+    usages = [run["usage"] for run in runs if isinstance(run.get("usage"), dict)]
+    failure_categories = Counter(
+        run["failure_category"]
+        for run in evaluated
+        if run["reward"] == 0 and run.get("failure_category")
+    )
+    return {
+        "trials": len(runs),
+        "evaluated": len(evaluated),
+        "unavailable": len(runs) - len(evaluated),
+        "passed": len(passed),
+        "failed": len(evaluated) - len(passed),
+        "pass_rate": len(passed) / len(evaluated) if evaluated else None,
+        "median_duration_seconds": statistics.median(durations) if durations else None,
+        "known_cost_usd": sum(float(usage.get("cost_usd", 0)) for usage in usages),
+        "cost_reported_trials": len(usages),
+        "input_tokens": sum(int(usage.get("input_tokens", 0)) for usage in usages),
+        "output_tokens": sum(int(usage.get("output_tokens", 0)) for usage in usages),
+        "cache_read_tokens": sum(
+            int(usage.get("cache_read_tokens", 0)) for usage in usages
+        ),
+        "usage_reported_trials": len(usages),
+        "failure_categories": dict(sorted(failure_categories.items())),
+    }
+
+
+def grouped_aggregates(
+    runs: list[dict[str, Any]], key_fields: tuple[str, ...]
+) -> list[dict[str, Any]]:
+    grouped: dict[tuple[Any, ...], list[dict[str, Any]]] = defaultdict(list)
+    for run in runs:
+        grouped[tuple(run[field] for field in key_fields)].append(run)
+    values = []
+    for key, group in sorted(grouped.items()):
+        value = dict(zip(key_fields, key))
+        value.update(aggregate_runs(group))
+        values.append(value)
+    return values
+
+
+def create_release(
+    version: str, source_paths: list[Path], annotations: dict[str, Any]
+) -> dict[str, Any]:
+    if not VERSION_PATTERN.fullmatch(version):
+        raise PublishError("benchmark version must use YYYYMMDD.MAJOR.PATCH DateVer")
+    if not source_paths:
+        raise PublishError("at least one summary is required")
+    sources = [import_summary(path) for path in source_paths]
+    compatibility = validate_compatible(sources)
+    runs = [run for source in sources for run in source.pop("runs")]
+    corrections = apply_corrections(runs, annotations)
+    return {
+        "schema_version": 1,
+        "version": version,
+        "title": annotations.get("title", f"Benchmark {version}"),
+        "description": annotations.get("description", ""),
+        "model_labels": annotations.get("model_labels", {}),
+        "model_order": annotations.get("model_order", []),
+        "scenario_labels": annotations.get("scenario_labels", {}),
+        "observations": annotations.get("observations", []),
+        "notes": annotations.get("notes", []),
+        "compatibility": compatibility,
+        "sources": sources,
+        "corrections": corrections,
+        "totals": aggregate_runs(runs),
+        "by_model": grouped_aggregates(runs, ("model",)),
+        "by_scenario_model": grouped_aggregates(
+            runs, ("scenario", "scenario_version", "model")
+        ),
+        "runs": runs,
+    }
+
+
+def validate_release(release: dict[str, Any], source: Path) -> None:
+    runs = release.get("runs")
+    if not isinstance(runs, list) or not runs:
+        raise PublishError(f"{source}: release contains no normalized runs")
+    expected = {
+        "totals": aggregate_runs(runs),
+        "by_model": grouped_aggregates(runs, ("model",)),
+        "by_scenario_model": grouped_aggregates(
+            runs, ("scenario", "scenario_version", "model")
+        ),
+    }
+    for key, value in expected.items():
+        if release.get(key) != value:
+            raise PublishError(f"{source}: generated {key} does not match normalized runs")
+
+
+def format_duration(seconds: float | int | None) -> str:
+    if seconds is None:
+        return "n/a"
+    rounded = round(float(seconds))
+    return f"{rounded // 60}:{rounded % 60:02d}"
+
+
+def format_rate(value: float | None) -> str:
+    return "n/a" if value is None else f"{round(value * 100):d}%"
+
+
+def money(value: float, incomplete: bool = False) -> str:
+    suffix = "+" if incomplete else ""
+    return f"${value:.4f}{suffix}"
+
+
+def model_sort_key(release: dict[str, Any], model: str) -> tuple[int, str]:
+    order = release.get("model_order", [])
+    try:
+        return order.index(model), model
+    except ValueError:
+        return len(order), model
+
+
+def label(release: dict[str, Any], kind: str, value: str) -> str:
+    labels = release.get(f"{kind}_labels", {})
+    return str(labels.get(value, value))
+
+
+def model_rows(release: dict[str, Any]) -> list[dict[str, Any]]:
+    return sorted(
+        release["by_model"], key=lambda row: model_sort_key(release, row["model"])
+    )
+
+
+def cost_per_repair(row: dict[str, Any]) -> float | None:
+    return row["known_cost_usd"] / row["passed"] if row["passed"] else None
+
+
+def html_page(release: dict[str, Any]) -> str:
+    totals = release["totals"]
+    cost_incomplete = totals["cost_reported_trials"] < totals["trials"]
+    rows = model_rows(release)
+    model_cells = []
+    for row in rows:
+        incomplete = row["cost_reported_trials"] < row["trials"]
+        repair_cost = cost_per_repair(row)
+        model_cells.append(
+            "          <tr>"
+            f"<td>{html.escape(label(release, 'model', row['model']))}</td>"
+            f"<td>{row['passed']}/{row['evaluated']}</td>"
+            f"<td>{format_rate(row['pass_rate'])}</td>"
+            f"<td>{format_duration(row['median_duration_seconds'])}</td>"
+            f"<td>{row['input_tokens']:,}</td>"
+            f"<td>{money(row['known_cost_usd'], incomplete)}</td>"
+            f"<td>{money(repair_cost, incomplete) if repair_cost is not None else 'n/a'}</td>"
+            "</tr>"
+        )
+    scenario_lookup = {
+        (row["scenario"], row["scenario_version"], row["model"]): row
+        for row in release["by_scenario_model"]
+    }
+    scenarios = [
+        (item["id"], item["version"])
+        for item in release["compatibility"]["scenarios"]
+    ]
+    scenario_lines = []
+    for scenario, version in scenarios:
+        cells = [
+            f"<td>{html.escape(label(release, 'scenario', scenario))}</td>",
+            f"<td>v{version}</td>",
+        ]
+        for row in rows:
+            value = scenario_lookup[(scenario, version, row["model"])]
+            cells.append(
+                f"<td>{value['passed']}/{value['evaluated']} &middot; "
+                f"{format_duration(value['median_duration_seconds'])}</td>"
+            )
+        scenario_lines.append("          <tr>" + "".join(cells) + "</tr>")
+    failure_items = "".join(
+        f"<li><code>{html.escape(category)}</code>: {count}</li>"
+        for category, count in totals["failure_categories"].items()
+    ) or "<li>None</li>"
+    observations = "\n".join(
+        f"      <p>{html.escape(str(item))}</p>"
+        for item in release.get("observations", [])
+    )
+    corrections = ""
+    if release["corrections"]:
+        correction_items = "".join(
+            f"<li><code>{html.escape(item['run_id'])}</code>: "
+            f"{html.escape(item['reason'])}</li>"
+            for item in release["corrections"]
+        )
+        corrections = f"""
+    <div class="callout comparison-note">
+      <strong>Documented post-run corrections</strong>
+      <ul>{correction_items}</ul>
+    </div>"""
+    source_rows = "\n".join(
+        "          <tr>"
+        f"<td><code>{html.escape(source['source'])}</code></td>"
+        f"<td>{html.escape(', '.join(label(release, 'model', model) for model in source['models']))}</td>"
+        f"<td><code>{html.escape(str(source['replaybook_commit'])[:8])}</code></td>"
+        "</tr>"
+        for source in release["sources"]
+    )
+    model_headers = "".join(
+        f"<th>{html.escape(label(release, 'model', row['model']))}</th>" for row in rows
+    )
+    attempts = release["compatibility"]["attempts"]
+    command_models = (" " + "\\" + "\n    ").join(row["model"] for row in rows)
+    command_scenarios = (" " + "\\" + "\n  --scenario ").join(
+        scenario for scenario, _ in scenarios
+    )
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Current benchmarks &middot; replaybook</title>
+  <meta name="description" content="Current Replaybook infrastructure-agent benchmark results.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html" class="active" aria-current="page">Current</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+    <p class="eyebrow">Benchmark {html.escape(release['version'])}</p>
+    <h1>{html.escape(release['title'])}</h1>
+    <p class="tagline benchmark-tagline">{html.escape(release['description'])}</p>
+
+    <div class="metric-grid" aria-label="Current benchmark results">
+      <div class="metric"><span class="metric-value">{totals['passed']}/{totals['evaluated']}</span><span class="metric-label">durable repairs</span></div>
+      <div class="metric"><span class="metric-value">{format_duration(totals['median_duration_seconds'])}</span><span class="metric-label">overall median</span></div>
+      <div class="metric"><span class="metric-value">{money(totals['known_cost_usd'], cost_incomplete)}</span><span class="metric-label">known total cost</span></div>
+    </div>
+
+    <div class="callout benchmark-status verified-status">
+      <strong>{totals['trials']} trials across {len(release['sources'])} controlled matrices.</strong>
+      {totals['passed']} repairs passed durable verification. {totals['failed']} evaluated attempts failed and {totals['unavailable']} were unavailable.
+    </div>
+
+    <h2>Model summary</h2>
+    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
+{chr(10).join(model_cells)}
+    </tbody></table></div>
+
+{observations}
+
+    <h2>Scenario breakdown</h2>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th>{model_headers}</tr></thead><tbody>
+{chr(10).join(scenario_lines)}
+    </tbody></table></div>
+
+    <h2>Failure categories</h2>
+    <ul>{failure_items}</ul>
+{corrections}
+
+    <h2>Constituent matrices</h2>
+    <p>The publisher validated matching harness, scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>
+    <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
+{source_rows}
+    </tbody></table></div>
+
+    <h2>Run the matrix</h2>
+    <pre><code>python integrations/host/run_host_matrix.py \\
+  --scenario {command_scenarios} \\
+  --models \\
+    {command_models} \\
+  --attempts {attempts} \\
+  --concurrency 2</code></pre>
+
+    <p class="small muted">Host harness v{release['compatibility']['harness_version']}, Claux <code>{html.escape(str(release['compatibility']['claux_release']))}</code>, {release['compatibility']['agent_timeout_seconds']}-second agent timeout. Usage was reported for {totals['usage_reported_trials']} of {totals['trials']} trials.</p>
+
+    <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
+
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+</body>
+</html>
+"""
+
+
+def markdown_section(release: dict[str, Any]) -> str:
+    totals = release["totals"]
+    incomplete = totals["cost_reported_trials"] < totals["trials"]
+    lines = [
+        MARKDOWN_START,
+        f"## {release['title']}",
+        "",
+        release["description"],
+        "",
+        f"Benchmark release: `{release['version']}`",
+        "",
+        "| Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |",
+        "|---|---:|---:|---:|---:|---:|",
+    ]
+    for row in model_rows(release):
+        row_incomplete = row["cost_reported_trials"] < row["trials"]
+        repair_cost = cost_per_repair(row)
+        lines.append(
+            f"| {label(release, 'model', row['model'])} | {row['passed']}/{row['evaluated']} "
+            f"| {format_rate(row['pass_rate'])} | {format_duration(row['median_duration_seconds'])} "
+            f"| {money(row['known_cost_usd'], row_incomplete)} | "
+            f"{money(repair_cost, row_incomplete) if repair_cost is not None else 'n/a'} |"
+        )
+    lines.extend(
+        [
+            f"| **Total** | **{totals['passed']}/{totals['evaluated']}** | "
+            f"**{format_rate(totals['pass_rate'])}** | "
+            f"**{format_duration(totals['median_duration_seconds'])}** | "
+            f"**{money(totals['known_cost_usd'], incomplete)}** | "
+            f"**{money(cost_per_repair(totals), incomplete)}** |",
+            "",
+        ]
+    )
+    lines.extend(f"{item}\n" for item in release.get("observations", []))
+    rows = model_rows(release)
+    scenario_lookup = {
+        (row["scenario"], row["scenario_version"], row["model"]): row
+        for row in release["by_scenario_model"]
+    }
+    lines.extend(
+        [
+            "### Scenario breakdown",
+            "",
+            "| Scenario | Version | "
+            + " | ".join(label(release, "model", row["model"]) for row in rows)
+            + " |",
+            "|---|---:|" + "---:|" * len(rows),
+        ]
+    )
+    for scenario in release["compatibility"]["scenarios"]:
+        values = []
+        for row in rows:
+            aggregate = scenario_lookup[
+                (scenario["id"], scenario["version"], row["model"])
+            ]
+            values.append(
+                f"{aggregate['passed']}/{aggregate['evaluated']}, "
+                f"{format_duration(aggregate['median_duration_seconds'])}"
+            )
+        lines.append(
+            f"| {label(release, 'scenario', scenario['id'])} | "
+            f"v{scenario['version']} | " + " | ".join(values) + " |"
+        )
+    lines.extend(
+        [
+            "",
+            "### Failure categories",
+            "",
+            *[
+                f"- `{category}`: {count}"
+                for category, count in totals["failure_categories"].items()
+            ],
+            "",
+            "### Source matrices",
+            "",
+        ]
+    )
+    for source in release["sources"]:
+        lines.append(
+            f"- `{source['source']}`: {', '.join(source['models'])}; "
+            f"Replaybook `{str(source['replaybook_commit'])[:8]}`"
+        )
+    if release["corrections"]:
+        lines.extend(["", "### Post-run corrections", ""])
+        for item in release["corrections"]:
+            lines.append(f"- `{item['run_id']}`: {item['reason']}")
+    lines.extend(["", MARKDOWN_END])
+    return "\n".join(lines) + "\n"
+
+
+def replace_managed(text: str, start: str, end: str, content: str) -> str:
+    if start in text and end in text:
+        before, remainder = text.split(start, 1)
+        _, after = remainder.split(end, 1)
+        return before + content.rstrip() + "\n\n" + after.lstrip("\n")
+    raise PublishError(f"managed markers are missing: {start} / {end}")
+
+
+def history_cards(index: dict[str, Any], root: Path) -> str:
+    current = index["current_version"]
+    cards = []
+    for version in reversed(index["releases"]):
+        if version == current:
+            continue
+        release = read_json(root / RELEASES_DIR / f"{version}.json")
+        totals = release["totals"]
+        cards.append(
+            f"""    <div class="section-heading">
+      <div><h3>{html.escape(release['title'])}</h3><p class="muted">Benchmark {html.escape(version)}</p></div>
+      <span class="badge archived">Superseded</span>
+    </div>
+    <p>{totals['passed']}/{totals['evaluated']} durable repairs, {format_duration(totals['median_duration_seconds'])} median, {money(totals['known_cost_usd'], totals['cost_reported_trials'] < totals['trials'])} known cost.</p>"""
+        )
+    return HISTORY_START + "\n" + "\n".join(cards) + "\n    " + HISTORY_END
+
+
+def build_outputs(root: Path, *, check: bool = False) -> None:
+    index = read_json(root / INDEX_FILE)
+    current = index.get("current_version")
+    releases = index.get("releases")
+    if not isinstance(current, str) or not isinstance(releases, list) or current not in releases:
+        raise PublishError("benchmark-data/index.json has an invalid current release")
+    release_path = root / RELEASES_DIR / f"{current}.json"
+    release = read_json(release_path)
+    validate_release(release, release_path)
+    outputs = {
+        root / DOCS_CURRENT: html_page(release),
+        root / MARKDOWN_RECORD: replace_managed(
+            (root / MARKDOWN_RECORD).read_text(),
+            MARKDOWN_START,
+            MARKDOWN_END,
+            markdown_section(release),
+        ),
+        root / DOCS_HISTORY: replace_managed(
+            (root / DOCS_HISTORY).read_text(),
+            HISTORY_START,
+            HISTORY_END,
+            history_cards(index, root),
+        ),
+    }
+    stale = []
+    for path, rendered in outputs.items():
+        if check:
+            if not path.is_file() or path.read_text() != rendered:
+                stale.append(str(path.relative_to(root)))
+        else:
+            path.write_text(rendered)
+    if stale:
+        raise PublishError("generated benchmark files are stale: " + ", ".join(stale))
+
+
+def import_release(args: argparse.Namespace, root: Path) -> None:
+    annotations = read_json(args.annotations) if args.annotations else {}
+    release = create_release(args.version, args.summaries, annotations)
+    index_path = root / INDEX_FILE
+    if index_path.is_file():
+        index = read_json(index_path)
+    else:
+        index = {"schema_version": 1, "current_version": args.version, "releases": []}
+    releases = index.setdefault("releases", [])
+    if args.version not in releases:
+        releases.append(args.version)
+    index["current_version"] = args.version
+    write_json(root / RELEASES_DIR / f"{args.version}.json", release)
+    write_json(index_path, index)
+    build_outputs(root)
+
+
+def parser() -> argparse.ArgumentParser:
+    value = argparse.ArgumentParser(description=__doc__)
+    value.add_argument("--repo-dir", type=Path, default=REPO_DIR)
+    commands = value.add_subparsers(dest="command", required=True)
+    importer = commands.add_parser("import", help="import summaries and build the site")
+    importer.add_argument("--version", required=True)
+    importer.add_argument("--annotations", type=Path)
+    importer.add_argument("summaries", nargs="+", type=Path)
+    commands.add_parser("build", help="build pages from tracked benchmark data")
+    commands.add_parser("check", help="fail when generated pages are stale")
+    return value
+
+
+def main() -> int:
+    args = parser().parse_args()
+    root = args.repo_dir.resolve()
+    try:
+        if args.command == "import":
+            import_release(args, root)
+        else:
+            build_outputs(root, check=args.command == "check")
+    except PublishError as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

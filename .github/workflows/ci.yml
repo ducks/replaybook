@@ -42,4 +42,6 @@ jobs:
       - run: cargo fmt -- --check
       - run: make deploy-check
       - run: make harbor-check
+      - run: make host-check
+      - run: make pages-check
       - run: cargo clippy -- -D warnings

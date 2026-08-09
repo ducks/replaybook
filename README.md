@@ -151,6 +151,12 @@ reproduction commands. Results from different scenario sets and verifier
 versions are kept separate rather than presented as one authoritative
 leaderboard.
 
+Published results are generated from tracked, normalized benchmark snapshots.
+The publisher validates compatible harness and scenario versions before
+combining summaries and retains every source matrix and Replaybook commit. See
+the [host integration guide](integrations/host/README.md#publish-benchmark-results)
+for the import and rebuild commands.
+
 For a deeper dive into why the restart check matters, see [Evaluating
 Infrastructure Agents in Running Systems](https://jakegoldsborough.com/blog/2026/evaluating-infrastructure-agents-in-running-systems/).
 

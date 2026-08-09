@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "benchmark-data/**"
+      - "benchmarks.md"
+      - "integrations/host/publish_benchmarks.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -28,6 +31,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
+      - name: Verify generated benchmark pages
+        run: python integrations/host/publish_benchmarks.py check
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
