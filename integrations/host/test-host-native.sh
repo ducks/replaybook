@@ -52,7 +52,7 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=5' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=6' "$script_dir/run-host-native.sh"
 grep -q 'DECLARATIVE_SCENARIO=true' "$script_dir/run-host-native.sh"
 grep -q 'harness_version: $harness_version' "$script_dir/run-host-native.sh"
 
