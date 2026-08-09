@@ -9,11 +9,11 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Seven models across five stateful incidents
+## Eight models across five stateful incidents
 
-Seven models repaired the same five stateful incidents three times each. Every passing repair survived scenario verification, service restart, and host reboot.
+Eight models repaired the same five stateful incidents three times each. Every passing repair survived scenario verification, service restart, and host reboot.
 
-Benchmark release: `20260809.0.0`
+Benchmark release: `20260809.0.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
@@ -24,25 +24,28 @@ Benchmark release: `20260809.0.0`
 | Laguna S 2.1 | 11/15 | 73% | 2:59 | $0.2273 | $0.0207 |
 | MiniMax M3 | 14/15 | 93% | 3:46 | $1.3874 | $0.0991 |
 | Kimi K3 | 15/15 | 100% | 2:28 | $3.3233 | $0.2216 |
-| **Total** | **94/105** | **90%** | **2:34** | **$5.4983+** | **$0.0585+** |
+| GPT-5.6 Sol | 15/15 | 100% | 1:46 | $6.7367 | $0.4491 |
+| **Total** | **109/120** | **91%** | **2:16** | **$12.2351+** | **$0.1122+** |
 
-GPT-5.6 Luna was the observed Pareto winner: 15 durable repairs in 15 attempts, a 1:10 median, and about $0.0077 per repair.
+GPT-5.6 Luna and GPT-5.6 Sol both made 15 durable repairs in 15 attempts. Luna was faster at the median, 1:10 versus 1:46, and cost about $0.0077 per repair versus Sol's $0.4491.
 
-Kimi K3 also repaired all 15 incidents, but cost about 29 times as much per durable repair as Luna and had a 2:28 median.
+Sol cost about 58 times as much per durable repair as Luna. Its 15 trials cost $6.7367, more than the entire previous 105-trial benchmark release.
+
+Kimi K3 was the third model to reach 15/15. It cost about 29 times as much per durable repair as Luna, while Sol cost about twice as much per repair as Kimi.
 
 Six attempts reached a healthy-looking state while still failing scenario state requirements. Five lost existing backlog, and one failed to quarantine poison work safely.
 
-These are 105 trials from two controlled matrices, not a universal model ranking. Discounted pricing may change, and three attempts per model and scenario remain a small sample.
+These are 120 trials from three controlled matrices, not a universal model ranking. Discounted pricing may change, and three attempts per model and scenario remain a small sample.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Luna | Tencent HY3 Preview | DeepSeek V4 Pro | GLM 5.2 | Laguna S 2.1 | MiniMax M3 | Kimi K3 |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Nginx 502 | v1 | 3/3, 0:57 | 3/3, 1:34 | 3/3, 3:40 | 3/3, 0:42 | 3/3, 0:53 | 3/3, 0:45 | 3/3, 1:18 |
-| Sidekiq wrong Redis database | v2 | 3/3, 0:58 | 0/3, 3:07 | 2/3, 3:18 | 2/3, 1:09 | 2/3, 1:17 | 3/3, 1:02 | 3/3, 4:20 |
-| Missing Rails migration | v2 | 3/3, 1:56 | 3/3, 2:13 | 3/3, 7:27 | 3/3, 1:37 | 2/3, 11:01 | 2/3, 6:14 | 3/3, 2:03 |
-| Sidekiq poison pill | v1 | 3/3, 1:38 | 3/3, 6:14 | 2/3, 12:15 | 3/3, 5:41 | 2/3, 2:48 | 3/3, 10:36 | 3/3, 3:59 |
-| Rails pool exhaustion | v1 | 3/3, 0:57 | 3/3, 8:21 | 3/3, 5:15 | 3/3, 1:33 | 2/3, 12:22 | 3/3, 5:07 | 3/3, 2:18 |
+| Scenario | Version | GPT-5.6 Luna | Tencent HY3 Preview | DeepSeek V4 Pro | GLM 5.2 | Laguna S 2.1 | MiniMax M3 | Kimi K3 | GPT-5.6 Sol |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Nginx 502 | v1 | 3/3, 0:57 | 3/3, 1:34 | 3/3, 3:40 | 3/3, 0:42 | 3/3, 0:53 | 3/3, 0:45 | 3/3, 1:18 | 3/3, 1:14 |
+| Sidekiq wrong Redis database | v2 | 3/3, 0:58 | 0/3, 3:07 | 2/3, 3:18 | 2/3, 1:09 | 2/3, 1:17 | 3/3, 1:02 | 3/3, 4:20 | 3/3, 1:21 |
+| Missing Rails migration | v2 | 3/3, 1:56 | 3/3, 2:13 | 3/3, 7:27 | 3/3, 1:37 | 2/3, 11:01 | 2/3, 6:14 | 3/3, 2:03 | 3/3, 1:46 |
+| Sidekiq poison pill | v1 | 3/3, 1:38 | 3/3, 6:14 | 2/3, 12:15 | 3/3, 5:41 | 2/3, 2:48 | 3/3, 10:36 | 3/3, 3:59 | 3/3, 2:17 |
+| Rails pool exhaustion | v1 | 3/3, 0:57 | 3/3, 8:21 | 3/3, 5:15 | 3/3, 1:33 | 2/3, 12:22 | 3/3, 5:07 | 3/3, 2:18 | 3/3, 1:58 |
 
 ### Failure categories
 
@@ -54,6 +57,7 @@ These are 105 trials from two controlled matrices, not a universal model ranking
 
 - `host-matrix-2026-08-08__23-40-25.4db432`: deepseek/deepseek-v4-pro, tencent/hy3-preview, z-ai/glm-5.2; Replaybook `cf45b7ec`
 - `host-matrix-2026-08-09__02-18-01.910642`: minimax/minimax-m3, openai/gpt-5.6-luna, poolside/laguna-s-2.1, moonshotai/kimi-k3; Replaybook `e8cc5537`
+- `host-matrix-2026-08-09__15-49-42.7ebf34`: openai/gpt-5.6-sol; Replaybook `e5fc2881`
 
 ### Post-run corrections
 
