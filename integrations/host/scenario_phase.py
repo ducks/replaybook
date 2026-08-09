@@ -210,10 +210,23 @@ def run_replay_http(
     identifiers = state.get(state_key)
     if not isinstance(identifiers, list) or not identifiers or not all(isinstance(item, str) for item in identifiers):
         raise failure(step, f"{phase} phase is missing controller-owned IDs in {state_key}")
-    results = concurrent_requests(base_url, phase, step, identifiers)
-    failed = [identifier for identifier, response in results if not matches(response, step)]
-    if failed:
-        raise failure(step, f"{phase} could not recover controller-owned IDs: {', '.join(failed)}")
+    pending = identifiers
+    timeout = step.get("timeout_seconds")
+    if timeout is not None:
+        deadline = time.monotonic() + number_value(step, "timeout_seconds", 30.0)
+        interval = number_value(step, "interval_seconds", 1.0)
+    else:
+        deadline = time.monotonic()
+        interval = 0.0
+
+    while pending:
+        results = concurrent_requests(base_url, phase, step, pending)
+        pending = [identifier for identifier, response in results if not matches(response, step)]
+        if not pending or time.monotonic() >= deadline:
+            break
+        time.sleep(interval)
+    if pending:
+        raise failure(step, f"{phase} could not recover controller-owned IDs: {', '.join(pending)}")
 
 
 def load_state(state_dir: Path) -> dict[str, Any]:

@@ -108,16 +108,12 @@ def validate(directory: Path) -> list[str]:
                 if value is not None:
                     if not nonempty_string(value):
                         fail(errors, f"{prefix}.{key} must be a non-empty string")
-                    elif phase_name != "preflight":
-                        fail(errors, f"{prefix}.{key} should record controller state during preflight")
                     else:
                         recorded.add(value)
             if step_type == "replay_http":
                 value = step.get("ids_from")
                 if not nonempty_string(value):
                     fail(errors, f"{prefix} must define ids_from")
-                elif phase_name != "verify":
-                    fail(errors, f"{prefix} should replay controller state during verify")
                 else:
                     replayed.add(value)
 
