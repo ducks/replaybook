@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
+import io
 import json
 import tempfile
 import unittest
@@ -220,20 +222,27 @@ exit 1
                 output_dir=root / "run",
                 log_file=root / "run.log",
             )
-            results = asyncio.run(
-                run_jobs(
-                    [job],
-                    runner=runner,
-                    environment={},
-                    concurrency=1,
-                    agent_timeout_seconds=321,
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                results = asyncio.run(
+                    run_jobs(
+                        [job],
+                        runner=runner,
+                        environment={},
+                        concurrency=1,
+                        agent_timeout_seconds=321,
+                    )
                 )
-            )
 
         self.assertEqual(results[0].exit_code, 1)
         self.assertIsNotNone(results[0].result)
         self.assertIsNone(results[0].error)
         self.assertEqual(results[0].result["test_agent_timeout_seconds"], 321)
+        self.assertIn("[matrix] starting 1 of 1: test-run", output.getvalue())
+        self.assertIn(
+            "[matrix] completed 1 of 1: failed test-run (backlog_not_recovered)",
+            output.getvalue(),
+        )
 
     def test_worker_passes_custom_agent_contract_options(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
