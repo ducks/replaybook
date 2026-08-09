@@ -1,0 +1,23 @@
+[scenario]
+version = 1
+nixos_config = "nixos.nix"
+instruction = "instruction.md"
+oracle = "oracle.sh"
+required_services = ["checkout-backend.service", "incident-nginx.service"]
+restart_services = ["checkout-backend.service", "incident-nginx.service"]
+
+[[preflight.steps]]
+type = "wait_http"
+path = "/health"
+expected_status = 502
+timeout_seconds = 20
+request_timeout_seconds = 2
+failure_category = "incident_not_reproduced"
+
+[[verify.steps]]
+type = "wait_http"
+path = "/health"
+expected_body = "ok\n"
+timeout_seconds = 20
+request_timeout_seconds = 2
+failure_category = "verification_failed"

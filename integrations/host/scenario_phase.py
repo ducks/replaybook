@@ -210,6 +210,8 @@ def run_replay_http(
     identifiers = state.get(state_key)
     if not isinstance(identifiers, list) or not identifiers or not all(isinstance(item, str) for item in identifiers):
         raise failure(step, f"{phase} phase is missing controller-owned IDs in {state_key}")
+    if step.get("initial_delay_seconds") is not None:
+        time.sleep(number_value(step, "initial_delay_seconds", 1.0))
     pending = identifiers
     timeout = step.get("timeout_seconds")
     if timeout is not None:

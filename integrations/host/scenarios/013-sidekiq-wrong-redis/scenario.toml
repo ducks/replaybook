@@ -1,0 +1,64 @@
+[scenario]
+version = 2
+nixos_config = "nixos.nix"
+instruction = "instruction.md"
+oracle = "oracle.sh"
+required_services = ["postgresql.service", "redis-replaybook.service", "checkout-web.service", "checkout-sidekiq.service", "nginx.service"]
+restart_services = ["checkout-web.service", "checkout-sidekiq.service", "nginx.service"]
+
+[[preflight.steps]]
+type = "wait_http"
+path = "/health"
+expected_body = "ok"
+timeout_seconds = 60
+request_timeout_seconds = 2
+failure_category = "incident_not_reproduced"
+
+[[preflight.steps]]
+type = "concurrent_http"
+method = "POST"
+path = "/jobs/{id}"
+id_prefix = "preflight"
+count = 3
+concurrency = 1
+expected_status = 202
+record_all_as = "backlog_jobs"
+failure_category = "incident_not_reproduced"
+
+[[preflight.steps]]
+type = "replay_http"
+path = "/jobs/{id}"
+ids_from = "backlog_jobs"
+expected_status = 404
+initial_delay_seconds = 4
+request_timeout_seconds = 2
+failure_category = "incident_not_reproduced"
+
+[[verify.steps]]
+type = "replay_http"
+path = "/jobs/{id}"
+ids_from = "backlog_jobs"
+expected_body = "completed"
+timeout_seconds = 30
+request_timeout_seconds = 2
+failure_category = "backlog_not_recovered"
+
+[[verify.steps]]
+type = "concurrent_http"
+method = "POST"
+path = "/jobs/{id}"
+id_prefix = "verify-{phase}"
+count = 1
+concurrency = 1
+expected_status = 202
+record_all_as = "verification_jobs"
+failure_category = "verification_failed"
+
+[[verify.steps]]
+type = "replay_http"
+path = "/jobs/{id}"
+ids_from = "verification_jobs"
+expected_body = "completed"
+timeout_seconds = 30
+request_timeout_seconds = 2
+failure_category = "verification_failed"
