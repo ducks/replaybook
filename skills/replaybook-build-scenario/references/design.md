@@ -1,5 +1,10 @@
 # Scenario design reference
 
+Host scenarios may live in Replaybook's bundled pack or an external pack. An
+external pack root must include `replaybook-pack.toml` with a stable `pack.id`
+and version. Increment the pack version whenever scenario contents or verifier
+behavior change, even when individual scenario version numbers are unchanged.
+
 ## Incident contract
 
 Define these fields in notes before writing code:

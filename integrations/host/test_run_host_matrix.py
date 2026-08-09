@@ -14,6 +14,7 @@ from integrations.host.run_host_matrix import (
     build_jobs,
     build_summary,
     discover_scenarios,
+    main,
     run_jobs,
     slugify,
 )
@@ -30,11 +31,34 @@ class HostMatrixTests(unittest.TestCase):
 
     def test_typed_manifest_takes_precedence_over_legacy_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
+            (Path(temporary) / "replaybook-pack.toml").write_text(
+                '[pack]\nid = "test/typed"\nversion = "20260809.0.0"\n'
+            )
             scenario_dir = Path(temporary) / "typed"
             scenario_dir.mkdir()
             (scenario_dir / "scenario.toml").write_text("[scenario]\nversion = 3\n")
             (scenario_dir / "scenario.conf").write_text('SCENARIO_VERSION="1"\n')
             self.assertEqual(discover_scenarios(Path(temporary)), {"typed": 3})
+
+    def test_lists_scenarios_from_an_external_pack(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "replaybook-pack.toml").write_text(
+                '[pack]\nid = "test/external"\nversion = "20260809.0.0"\n'
+            )
+            scenario = root / "external-incident"
+            scenario.mkdir()
+            (scenario / "scenario.toml").write_text(
+                "[scenario]\nversion = 4\n"
+            )
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                status = main(
+                    ["--scenario-pack", str(root), "--list-scenarios"]
+                )
+
+        self.assertEqual(status, 0)
+        self.assertEqual(output.getvalue(), "external-incident\tv4\n")
 
     def test_build_jobs_assigns_stable_adjacent_port_pairs(self) -> None:
         jobs = build_jobs(
@@ -258,6 +282,7 @@ adapter=""
 payload=""
 env_file=""
 agent_name=""
+scenario_packs=""
 while (( $# > 0 )); do
   case "$1" in
     --output-dir) output="$2"; shift 2 ;;
@@ -267,11 +292,12 @@ while (( $# > 0 )); do
     --agent-payload) payload="$2"; shift 2 ;;
     --agent-env-file) env_file="$2"; shift 2 ;;
     --agent-name) agent_name="$2"; shift 2 ;;
+    --scenario-pack) scenario_packs="${scenario_packs}${scenario_packs:+,}$2"; shift 2 ;;
     *) shift ;;
   esac
 done
 mkdir -p "$output"
-python - "$output/result.json" "$scenario" "$model" "$adapter" "$payload" "$env_file" "$agent_name" <<'PY'
+python - "$output/result.json" "$scenario" "$model" "$adapter" "$payload" "$env_file" "$agent_name" "$scenario_packs" <<'PY'
 import json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
 path.write_text(json.dumps({
@@ -280,7 +306,8 @@ path.write_text(json.dumps({
     "scenario_version": 2,
     "model": sys.argv[3],
     "reward": 1,
-    "adapter_args": sys.argv[4:],
+    "adapter_args": sys.argv[4:8],
+    "scenario_packs": sys.argv[8].split(","),
 }))
 PY
 """
@@ -308,12 +335,17 @@ PY
                     agent_payload=payload,
                     agent_env_file=env_file,
                     agent_name="my-agent",
+                    scenario_pack_dirs=[root / "pack-a", root / "pack-b"],
                 )
             )
 
         self.assertEqual(
             results[0].result["adapter_args"],
             [str(adapter), str(payload), str(env_file), "my-agent"],
+        )
+        self.assertEqual(
+            results[0].result["scenario_packs"],
+            [str(root / "pack-a"), str(root / "pack-b")],
         )
 
     def test_slugify_model_id(self) -> None:

@@ -74,6 +74,51 @@ verifier behavior is represented entirely by manifest steps. Legacy
 `scenario.conf`, `preflight.sh`, and `verify.sh` hooks remain supported for
 external scenarios that have not migrated yet.
 
+## External scenario packs
+
+Host incidents can live outside the Replaybook repository. A scenario pack is
+a directory containing `replaybook-pack.toml` and one directory per scenario:
+
+```text
+company-incidents/
+  replaybook-pack.toml
+  database-failover/
+    scenario.toml
+    nixos.nix
+    instruction.md
+    oracle.sh
+```
+
+The pack manifest gives the source a stable identity and independently
+versioned release:
+
+```toml
+[pack]
+id = "example/company-incidents"
+version = "20260809.0.0"
+```
+
+Select it for a single run or a matrix with `--scenario-pack`:
+
+```sh
+integrations/host/run-host-native.sh \
+  --scenario-pack ../company-incidents \
+  --scenario database-failover \
+  --oracle
+
+python integrations/host/run_host_matrix.py \
+  --scenario-pack ../company-incidents \
+  --scenario database-failover \
+  --models deepseek/deepseek-v4-flash-0731 \
+  --attempts 3
+```
+
+Repeat `--scenario-pack` to combine packs with distinct scenario IDs. Supplying
+any pack replaces the bundled default for that command. Replaybook rejects
+duplicate pack or scenario IDs and records the selected pack ID and version in
+the matrix metadata. The benchmark publisher refuses to combine results from
+different pack revisions.
+
 The selected harness runs directly as root on that VM and investigates with
 normal Linux tools such as `systemctl`, `journalctl`, `ps`, `ss`, and the
 filesystem. The controller remains outside the incident host and verifies the
@@ -201,10 +246,10 @@ python integrations/host/publish_benchmarks.py import \
 ```
 
 Before combining results it requires the same suite, host harness, scenario
-versions, attempt count, agent timeout, adapter, and Claux release. Source
-matrix names and Replaybook commits remain visible in the snapshot. The
-tracked release contains normalized result data, not local paths, transcripts,
-credentials, or VM logs.
+pack revisions, scenario versions, attempt count, agent timeout, adapter, and
+Claux release. Source matrix names and Replaybook commits remain visible in the
+snapshot. The tracked release contains normalized result data, not local paths,
+transcripts, credentials, or VM logs.
 
 Rebuild generated files without the original `jobs/` directories:
 

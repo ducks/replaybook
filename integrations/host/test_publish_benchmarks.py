@@ -20,7 +20,13 @@ from integrations.host.publish_benchmarks import (
 )
 
 
-def summary(model: str, *, scenario_version: int = 1, reward: int = 1) -> dict:
+def summary(
+    model: str,
+    *,
+    scenario_version: int = 1,
+    pack_version: str = "20260809.0.0",
+    reward: int = 1,
+) -> dict:
     run_id = f"001-nginx-{model}-1"
     return {
         "schema_version": 1,
@@ -31,7 +37,16 @@ def summary(model: str, *, scenario_version: int = 1, reward: int = 1) -> dict:
         "benchmark": {
             "suite": "replaybook-host-matrix-v1",
             "replaybook_commit": "abcdef123456",
-            "scenarios": [{"id": "001-nginx", "version": scenario_version}],
+            "scenarios": [
+                {
+                    "id": "001-nginx",
+                    "version": scenario_version,
+                    "pack": {"id": "example/incidents", "version": pack_version},
+                }
+            ],
+            "scenario_packs": [
+                {"id": "example/incidents", "version": pack_version}
+            ],
             "models": [model],
             "attempts": 1,
             "concurrency": 1,
@@ -106,6 +121,18 @@ class PublisherTests(unittest.TestCase):
             with self.assertRaisesRegex(PublishError, "scenarios differs"):
                 create_release("20260809.0.0", [first, second], {})
 
+    def test_rejects_incompatible_scenario_pack_versions(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = self.write_summary(root, "matrix-one", summary("model/a"))
+            second = self.write_summary(
+                root,
+                "matrix-two",
+                summary("model/b", pack_version="20260809.0.1"),
+            )
+            with self.assertRaisesRegex(PublishError, "scenarios differs"):
+                create_release("20260809.0.0", [first, second], {})
+
     def test_rejects_an_incomplete_source_matrix(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -166,6 +193,8 @@ class PublisherTests(unittest.TestCase):
             build_outputs(root, check=True)
             current = (root / "docs/benchmarks.html").read_text()
             self.assertIn("Current release", current)
+            self.assertIn("example/incidents@20260809.0.0", current)
+            self.assertIn("scenario pack revisions", current)
             self.assertNotIn("\n+  --scenario", current)
 
             (root / "docs/benchmarks.html").write_text("stale")

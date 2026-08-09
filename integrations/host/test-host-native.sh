@@ -52,7 +52,14 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=6' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=7' "$script_dir/run-host-native.sh"
+pack_description="$(
+  python "$script_dir/scenario_pack.py" \
+    --pack "$script_dir/scenarios" \
+    --resolve 001-nginx-502-host
+)"
+[[ "$(jq -r '.pack.id' <<<"$pack_description")" == "ducks/replaybook-host-scenarios" ]]
+[[ "$(jq -r '.version' <<<"$pack_description")" == "1" ]]
 grep -q 'DECLARATIVE_SCENARIO=true' "$script_dir/run-host-native.sh"
 grep -q 'harness_version: $harness_version' "$script_dir/run-host-native.sh"
 

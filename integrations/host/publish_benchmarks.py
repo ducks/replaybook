@@ -114,9 +114,14 @@ def import_summary(path: Path) -> dict[str, Any]:
     if not runs:
         raise PublishError(f"{path}: summary contains no runs")
     scenarios = benchmark.get("scenarios")
+    scenario_packs = benchmark.get("scenario_packs", [])
     models = benchmark.get("models")
     agent = benchmark.get("agent")
-    if not isinstance(scenarios, list) or not isinstance(models, list):
+    if (
+        not isinstance(scenarios, list)
+        or not isinstance(scenario_packs, list)
+        or not isinstance(models, list)
+    ):
         raise PublishError(f"{path}: benchmark scenarios and models must be arrays")
     if not isinstance(agent, dict):
         raise PublishError(f"{path}: benchmark agent must be an object")
@@ -128,6 +133,7 @@ def import_summary(path: Path) -> dict[str, Any]:
         "harness_version": summary.get("harness_version"),
         "replaybook_commit": benchmark.get("replaybook_commit"),
         "scenarios": scenarios,
+        "scenario_packs": scenario_packs,
         "models": models,
         "attempts": benchmark.get("attempts"),
         "concurrency": benchmark.get("concurrency"),
@@ -143,6 +149,7 @@ def import_summary(path: Path) -> dict[str, Any]:
 def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
     models = source["models"]
     scenarios = source["scenarios"]
+    scenario_packs = source["scenario_packs"]
     attempts = source["attempts"]
     if (
         not models
@@ -151,6 +158,20 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
     ):
         raise PublishError(f"{path}: benchmark models must be unique names")
     scenario_keys = []
+    pack_keys = []
+    for pack in scenario_packs:
+        if (
+            not isinstance(pack, dict)
+            or not isinstance(pack.get("id"), str)
+            or not isinstance(pack.get("version"), str)
+        ):
+            raise PublishError(f"{path}: benchmark scenario packs are invalid")
+        pack_keys.append((pack["id"], pack["version"]))
+    if len({pack_id for pack_id, _ in pack_keys}) != len(pack_keys):
+        raise PublishError(f"{path}: benchmark scenario packs must be unique")
+    declared_packs = {
+        pack_id: version for pack_id, version in pack_keys
+    }
     for scenario in scenarios:
         if (
             not isinstance(scenario, dict)
@@ -158,6 +179,17 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
             or not isinstance(scenario.get("version"), int)
         ):
             raise PublishError(f"{path}: benchmark scenarios are invalid")
+        pack = scenario.get("pack")
+        if pack is not None:
+            if (
+                not isinstance(pack, dict)
+                or not isinstance(pack.get("id"), str)
+                or not isinstance(pack.get("version"), str)
+                or declared_packs.get(pack["id"]) != pack["version"]
+            ):
+                raise PublishError(
+                    f"{path}: benchmark scenario references an undeclared pack"
+                )
         scenario_keys.append((scenario["id"], scenario["version"]))
     if not scenario_keys or len(scenario_keys) != len(set(scenario_keys)):
         raise PublishError(f"{path}: benchmark scenarios must be unique")
@@ -195,6 +227,7 @@ def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
         "suite": source["suite"],
         "harness_version": source["harness_version"],
         "scenarios": source["scenarios"],
+        "scenario_packs": source["scenario_packs"],
         "attempts": source["attempts"],
         "agent_timeout_seconds": source["agent_timeout_seconds"],
         "agent": source["agent"],
@@ -463,6 +496,16 @@ def html_page(release: dict[str, Any]) -> str:
     command_scenarios = (" " + "\\" + "\n  --scenario ").join(
         scenario for scenario, _ in scenarios
     )
+    scenario_packs = release["compatibility"].get("scenario_packs", [])
+    pack_note = ""
+    pack_compatibility = ""
+    if scenario_packs:
+        pack_compatibility = "scenario pack revisions, "
+        pack_names = ", ".join(
+            f"<code>{html.escape(pack['id'])}@{html.escape(pack['version'])}</code>"
+            for pack in scenario_packs
+        )
+        pack_note = f"\n    <p class=\"small muted\">Scenario packs: {pack_names}.</p>"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -523,7 +566,7 @@ def html_page(release: dict[str, Any]) -> str:
 {corrections}
 
     <h2>Constituent matrices</h2>
-    <p>The publisher validated matching harness, scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>
+    <p>The publisher validated matching harness, {pack_compatibility}scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>{pack_note}
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
 {source_rows}
     </tbody></table></div>
@@ -561,6 +604,12 @@ def markdown_section(release: dict[str, Any]) -> str:
         "| Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |",
         "|---|---:|---:|---:|---:|---:|",
     ]
+    scenario_packs = release["compatibility"].get("scenario_packs", [])
+    if scenario_packs:
+        pack_names = ", ".join(
+            f"`{pack['id']}@{pack['version']}`" for pack in scenario_packs
+        )
+        lines[7:7] = [f"Scenario packs: {pack_names}", ""]
     for row in model_rows(release):
         row_incomplete = row["cost_reported_trials"] < row["trials"]
         repair_cost = cost_per_repair(row)

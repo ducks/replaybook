@@ -83,11 +83,20 @@
     <h2 id="host-native">Host-native evaluation scenarios</h2>
 
     <p>
-      Host-native scenarios ship with Replaybook under
-      <code>integrations/host/scenarios</code>. Each trial boots a disposable
-      NixOS VM and gives the agent normal Linux tools such as
+      Replaybook includes a default host scenario pack under
+      <code>integrations/host/scenarios</code> and accepts independently
+      versioned external packs through <code>--scenario-pack</code>. Each trial
+      boots a disposable NixOS VM and gives the agent normal Linux tools such as
       <code>systemctl</code>, <code>journalctl</code>, <code>ps</code>, and
       <code>ss</code>. The model VM never receives the oracle or verifier.
+    </p>
+
+    <p>
+      A pack declares a stable ID and version in
+      <code>replaybook-pack.toml</code>. Matrix summaries retain that identity,
+      and the publisher will not combine results produced from different pack
+      revisions. Supplying any explicit pack replaces the bundled default;
+      repeat the option to combine packs with distinct scenario IDs.
     </p>
 
     <div class="table-scroll">

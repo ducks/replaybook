@@ -14,24 +14,26 @@ import socket
 import statistics
 import subprocess
 import sys
-import tomllib
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
+try:
+    from .scenario_pack import discover
+except ImportError:
+    from scenario_pack import discover
+
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
+DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 5
+HOST_HARNESS_VERSION = 7
 TRIAL_STATUSES = {"evaluated", "unavailable"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
-SCENARIO_VERSION_PATTERN = re.compile(
-    r'^SCENARIO_VERSION=["\']?([1-9][0-9]*)["\']?$', re.MULTILINE
-)
 
 
 @dataclass(frozen=True)
@@ -82,26 +84,11 @@ def slugify(value: str) -> str:
     return slug or "unnamed"
 
 
-def discover_scenarios(scenarios_dir: Path = SCRIPT_DIR / "scenarios") -> dict[str, int]:
-    discovered = {}
-    if not scenarios_dir.is_dir():
-        return discovered
-    for scenario_dir in sorted(path for path in scenarios_dir.iterdir() if path.is_dir()):
-        typed_manifest = scenario_dir / "scenario.toml"
-        legacy_manifest = scenario_dir / "scenario.conf"
-        if typed_manifest.is_file():
-            try:
-                scenario = tomllib.loads(typed_manifest.read_text()).get("scenario", {})
-            except tomllib.TOMLDecodeError:
-                continue
-            version = scenario.get("version") if isinstance(scenario, dict) else None
-            if isinstance(version, int) and not isinstance(version, bool) and version > 0:
-                discovered[scenario_dir.name] = version
-        elif legacy_manifest.is_file():
-            match = SCENARIO_VERSION_PATTERN.search(legacy_manifest.read_text())
-            if match:
-                discovered[scenario_dir.name] = int(match.group(1))
-    return discovered
+def discover_scenarios(
+    scenarios_dir: Path = DEFAULT_SCENARIO_PACK,
+) -> dict[str, int]:
+    _, scenarios = discover([scenarios_dir])
+    return {scenario_id: scenario.version for scenario_id, scenario in scenarios.items()}
 
 
 def check_port_available(port: int) -> None:
@@ -205,6 +192,7 @@ async def run_worker(
     agent_payload: Path | None = None,
     agent_env_file: Path | None = None,
     agent_name: str | None = None,
+    scenario_pack_dirs: list[Path] | None = None,
 ) -> WorkerResult:
     async with semaphore:
         started = progress.start()
@@ -228,6 +216,8 @@ async def run_worker(
             "--agent-timeout-seconds",
             str(agent_timeout_seconds),
         ]
+        for scenario_pack_dir in scenario_pack_dirs or []:
+            command.extend(["--scenario-pack", str(scenario_pack_dir)])
         if job.model is None:
             command.append("--oracle")
         else:
@@ -296,6 +286,7 @@ async def run_jobs(
     agent_payload: Path | None = None,
     agent_env_file: Path | None = None,
     agent_name: str | None = None,
+    scenario_pack_dirs: list[Path] | None = None,
 ) -> list[WorkerResult]:
     semaphore = asyncio.Semaphore(concurrency)
     progress = Progress(total=len(jobs))
@@ -312,6 +303,7 @@ async def run_jobs(
                 agent_payload=agent_payload,
                 agent_env_file=agent_env_file,
                 agent_name=agent_name,
+                scenario_pack_dirs=scenario_pack_dirs,
             )
         )
         for job in jobs
@@ -581,6 +573,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help=f"scenario ID; repeat for multiple scenarios (default: {DEFAULT_SCENARIO})",
     )
     parser.add_argument(
+        "--scenario-pack",
+        action="append",
+        type=Path,
+        dest="scenario_packs",
+        help="versioned host scenario pack; repeat to combine packs "
+        "(default: bundled pack)",
+    )
+    parser.add_argument(
         "--models",
         nargs="+",
         help="OpenRouter model IDs; omit only with --oracle",
@@ -661,7 +661,19 @@ def matrix_directory(supplied: Path | None) -> Path:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    available = discover_scenarios()
+    scenario_pack_dirs = [
+        path.expanduser().resolve()
+        for path in (args.scenario_packs or [DEFAULT_SCENARIO_PACK])
+    ]
+    try:
+        packs, discovered = discover(scenario_pack_dirs)
+    except ValueError as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+    available = {
+        scenario_id: scenario.version
+        for scenario_id, scenario in discovered.items()
+    }
     if args.list_scenarios:
         for scenario, version in available.items():
             print(f"{scenario}\tv{version}")
@@ -717,9 +729,10 @@ def main(argv: list[str] | None = None) -> int:
         "suite": "replaybook-host-matrix-v1",
         "replaybook_commit": current_commit(),
         "scenarios": [
-            {"id": scenario, "version": available[scenario]}
+            discovered[scenario].metadata()
             for scenario in scenarios
         ],
+        "scenario_packs": [pack.metadata() for pack in packs],
         "models": ["oracle" if model is None else model for model in models],
         "attempts": args.attempts,
         "concurrency": args.concurrency,
@@ -763,6 +776,7 @@ def main(argv: list[str] | None = None) -> int:
                 if args.agent_env_file
                 else None,
                 agent_name=args.agent_name,
+                scenario_pack_dirs=scenario_pack_dirs,
             )
         )
     except KeyboardInterrupt:
