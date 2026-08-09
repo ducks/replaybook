@@ -92,6 +92,11 @@ grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host
 [[ "$(grep -c 'ssh-probe.sh.*"\${SSH\[@\]}"' "$script_dir/run-host-native.sh")" -eq 3 ]]
 grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
+[[ "$("$script_dir/classify-agent-run-exit.sh" 124 1 900)" == "agent_timeout" ]]
+[[ "$("$script_dir/classify-agent-run-exit.sh" 137 900 900)" == "agent_timeout" ]]
+[[ "$("$script_dir/classify-agent-run-exit.sh" 255 934 900)" == "agent_timeout" ]]
+[[ -z "$("$script_dir/classify-agent-run-exit.sh" 255 899 900)" ]]
+[[ -z "$("$script_dir/classify-agent-run-exit.sh" 1 934 900)" ]]
 grep -q 'trial_status="unavailable"' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
 grep -q 'v20260808.0.0' "$script_dir/run-host-native.sh"
