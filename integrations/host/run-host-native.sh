@@ -506,8 +506,10 @@ else
 fi
 agent_seconds="$(( $(date +%s) - start_seconds ))"
 agent_timed_out=false
-if (( run_status == 124 )) \
-  || (( run_status == 137 && agent_seconds >= AGENT_TIMEOUT_SECONDS )); then
+if [[ "$(
+  "$SCRIPT_DIR/classify-agent-run-exit.sh" \
+    "$run_status" "$agent_seconds" "$AGENT_TIMEOUT_SECONDS"
+)" == "agent_timeout" ]]; then
   agent_timed_out=true
 fi
 
