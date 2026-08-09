@@ -26,6 +26,7 @@ def summary(
     scenario_version: int = 1,
     pack_version: str = "20260809.0.0",
     reward: int = 1,
+    snapshot_hash: str | None = None,
 ) -> dict:
     run_id = f"001-nginx-{model}-1"
     return {
@@ -47,6 +48,25 @@ def summary(
             "scenario_packs": [
                 {"id": "example/incidents", "version": pack_version}
             ],
+            "execution_snapshot": (
+                {
+                    "schema_version": 1,
+                    "host_harness_sha256": snapshot_hash,
+                    "scenario_packs": [
+                        {
+                            "id": "example/incidents",
+                            "version": pack_version,
+                            "sha256": "b" * 64,
+                        }
+                    ],
+                    "agent_adapter_sha256": None,
+                    "agent_payload_sha256": None,
+                    "agent_env_sha256": None,
+                    "claux_binary_sha256": None,
+                }
+                if snapshot_hash is not None
+                else None
+            ),
             "models": [model],
             "attempts": 1,
             "concurrency": 1,
@@ -131,6 +151,22 @@ class PublisherTests(unittest.TestCase):
                 summary("model/b", pack_version="20260809.0.1"),
             )
             with self.assertRaisesRegex(PublishError, "scenarios differs"):
+                create_release("20260809.0.0", [first, second], {})
+
+    def test_rejects_incompatible_execution_snapshots(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = self.write_summary(
+                root,
+                "matrix-one",
+                summary("model/a", snapshot_hash="a" * 64),
+            )
+            second = self.write_summary(
+                root,
+                "matrix-two",
+                summary("model/b", snapshot_hash="c" * 64),
+            )
+            with self.assertRaisesRegex(PublishError, "execution_snapshot differs"):
                 create_release("20260809.0.0", [first, second], {})
 
     def test_rejects_an_incomplete_source_matrix(self) -> None:

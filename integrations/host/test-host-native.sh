@@ -22,11 +22,11 @@ ruby -c "$script_dir/scenarios/015-sidekiq-poison-pill/app/jobs.rb" >/dev/null
 ruby -c "$script_dir/scenarios/015-sidekiq-poison-pill/app/server.rb" >/dev/null
 ruby -c "$script_dir/scenarios/016-rails-pool-exhaustion/app/app.ru" >/dev/null
 
-grep -q 'systemd.services.checkout-backend' "$script_dir/worker/nixos.nix"
-grep -q 'systemd.services.incident-nginx' "$script_dir/worker/nixos.nix"
-grep -q 'guest.port = 80' "$script_dir/worker/base.nix"
-grep -q 'pid /run/incident-nginx/nginx.pid' "$script_dir/worker/nixos.nix"
-grep -q 'programs.nix-ld.enable = true' "$script_dir/worker/base.nix"
+grep -q 'systemd.services.checkout-backend' "$script_dir/scenarios/worker/nixos.nix"
+grep -q 'systemd.services.incident-nginx' "$script_dir/scenarios/worker/nixos.nix"
+grep -q 'guest.port = 80' "$script_dir/scenarios/worker/base.nix"
+grep -q 'pid /run/incident-nginx/nginx.pid' "$script_dir/scenarios/worker/nixos.nix"
+grep -q 'programs.nix-ld.enable = true' "$script_dir/scenarios/worker/base.nix"
 grep -q 'systemd.services.checkout-sidekiq' "$script_dir/scenarios/013-sidekiq-wrong-redis/nixos.nix"
 grep -q 'redis://127.0.0.1:6379/1' "$script_dir/scenarios/013-sidekiq-wrong-redis/nixos.nix"
 grep -q 'redis://127.0.0.1:6379/0' "$script_dir/scenarios/013-sidekiq-wrong-redis/oracle.sh"
@@ -52,7 +52,7 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=7' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=8' "$script_dir/run-host-native.sh"
 pack_description="$(
   python "$script_dir/scenario_pack.py" \
     --pack "$script_dir/scenarios" \
@@ -72,7 +72,7 @@ oracle_branch="$({
 grep -q '\$ORACLE.*replaybook-eval/oracle\.sh' <<<"$oracle_branch"
 grep -q 'test ! -e /root/replaybook-eval/oracle.sh' "$script_dir/run-host-native.sh"
 
-if grep -qER 'docker\.enable|docker\.sock|docker-compose' "$script_dir/worker" "$script_dir/scenarios"; then
+if grep -qER 'docker\.enable|docker\.sock|docker-compose' "$script_dir/scenarios"; then
   echo "host-native worker unexpectedly enables Docker" >&2
   exit 1
 fi

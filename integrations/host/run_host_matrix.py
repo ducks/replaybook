@@ -5,15 +5,19 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import contextlib
+import hashlib
 import json
 import os
 import re
 import secrets
+import shutil
 import signal
 import socket
 import statistics
 import subprocess
 import sys
+import tempfile
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -21,9 +25,9 @@ from pathlib import Path
 from typing import Any, Iterable
 
 try:
-    from .scenario_pack import discover
+    from .scenario_pack import ScenarioPack, discover
 except ImportError:
-    from scenario_pack import discover
+    from scenario_pack import ScenarioPack, discover
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -31,9 +35,20 @@ REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 7
+HOST_HARNESS_VERSION = 8
 TRIAL_STATUSES = {"evaluated", "unavailable"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+HOST_RUNNER_FILES = (
+    "classify-agent-exit.sh",
+    "classify-agent-outcome.sh",
+    "classify-agent-run-exit.sh",
+    "run-agent-adapter.sh",
+    "run-claux.sh",
+    "run-host-native.sh",
+    "scenario_pack.py",
+    "scenario_phase.py",
+    "ssh-probe.sh",
+)
 
 
 @dataclass(frozen=True)
@@ -71,6 +86,16 @@ class Progress:
         return self.completed
 
 
+@dataclass(frozen=True)
+class ExecutionSnapshot:
+    runner: Path
+    scenario_pack_dirs: list[Path]
+    agent_adapter: Path | None
+    agent_payload: Path | None
+    claux_binary: Path | None
+    metadata: dict[str, Any]
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
@@ -82,6 +107,116 @@ def unique(values: Iterable[str]) -> list[str]:
 def slugify(value: str) -> str:
     slug = re.sub(r"[^A-Za-z0-9]+", "-", value).strip("-").lower()
     return slug or "unnamed"
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def sha256_tree(path: Path) -> str:
+    digest = hashlib.sha256()
+    for item in sorted(candidate for candidate in path.rglob("*") if candidate.is_file()):
+        relative = item.relative_to(path).as_posix().encode()
+        digest.update(len(relative).to_bytes(4, "big"))
+        digest.update(relative)
+        digest.update((item.stat().st_mode & 0o777).to_bytes(2, "big"))
+        file_digest = bytes.fromhex(sha256_file(item))
+        digest.update(file_digest)
+    return digest.hexdigest()
+
+
+def copy_artifact(source: Path | None, destination: Path) -> tuple[Path | None, str | None]:
+    if source is None:
+        return None, None
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, destination)
+    return destination, sha256_file(destination)
+
+
+def stage_execution_snapshot(
+    matrix_dir: Path,
+    *,
+    packs: list[ScenarioPack],
+    agent_adapter: Path | None,
+    agent_payload: Path | None,
+    agent_env_file: Path | None,
+    claux_binary: Path | None,
+    host_dir: Path = SCRIPT_DIR,
+) -> ExecutionSnapshot:
+    snapshot_dir = matrix_dir / "execution-snapshot"
+    harness_dir = snapshot_dir / "host-harness"
+    harness_dir.mkdir(parents=True)
+    for name in HOST_RUNNER_FILES:
+        source = host_dir / name
+        if not source.is_file():
+            raise ValueError(f"host runner snapshot file does not exist: {source}")
+        shutil.copy2(source, harness_dir / name)
+
+    pack_dirs = []
+    pack_metadata = []
+    packs_dir = snapshot_dir / "scenario-packs"
+    packs_dir.mkdir()
+    for index, pack in enumerate(packs, start=1):
+        destination = packs_dir / f"{index:02d}-{slugify(pack.id)}"
+        shutil.copytree(pack.path, destination, symlinks=False)
+        pack_dirs.append(destination)
+        pack_metadata.append(
+            {
+                **pack.metadata(),
+                "sha256": sha256_tree(destination),
+            }
+        )
+
+    adapter, adapter_hash = copy_artifact(
+        agent_adapter,
+        snapshot_dir / "agent" / "adapter",
+    )
+    payload, payload_hash = copy_artifact(
+        agent_payload,
+        snapshot_dir / "agent" / "payload",
+    )
+    binary, binary_hash = copy_artifact(
+        claux_binary,
+        snapshot_dir / "agent" / "claux",
+    )
+    metadata = {
+        "schema_version": 1,
+        "host_harness_sha256": sha256_tree(harness_dir),
+        "scenario_packs": pack_metadata,
+        "agent_adapter_sha256": adapter_hash,
+        "agent_payload_sha256": payload_hash,
+        "agent_env_sha256": sha256_file(agent_env_file)
+        if agent_env_file is not None
+        else None,
+        "claux_binary_sha256": binary_hash,
+    }
+    (snapshot_dir / "manifest.json").write_text(
+        json.dumps(metadata, indent=2, sort_keys=True) + "\n"
+    )
+    return ExecutionSnapshot(
+        runner=harness_dir / "run-host-native.sh",
+        scenario_pack_dirs=pack_dirs,
+        agent_adapter=adapter,
+        agent_payload=payload,
+        claux_binary=binary,
+        metadata=metadata,
+    )
+
+
+@contextlib.contextmanager
+def stage_runtime_env(source: Path | None) -> Iterable[Path | None]:
+    if source is None:
+        yield None
+        return
+    with tempfile.TemporaryDirectory(prefix="replaybook-matrix-secrets.") as temporary:
+        destination = Path(temporary) / "runtime.env"
+        shutil.copy2(source, destination)
+        destination.chmod(0o600)
+        yield destination
 
 
 def discover_scenarios(
@@ -507,7 +642,7 @@ def print_table(rows: list[dict[str, Any]]) -> None:
             ]
         )
     widths = [
-        max(len(headers[index]), *(len(row[index]) for row in formatted))
+        max([len(headers[index]), *(len(row[index]) for row in formatted)])
         for index in range(len(headers))
     ]
     print("  ".join(header.ljust(widths[index]) for index, header in enumerate(headers)))
@@ -543,7 +678,7 @@ def print_scenario_table(rows: list[dict[str, Any]]) -> None:
         for row in rows
     ]
     widths = [
-        max(len(headers[index]), *(len(row[index]) for row in formatted))
+        max([len(headers[index]), *(len(row[index]) for row in formatted)])
         for index in range(len(headers))
     ]
     print("  ".join(header.ljust(widths[index]) for index, header in enumerate(headers)))
@@ -717,11 +852,29 @@ def main(argv: list[str] | None = None) -> int:
 
     (matrix_dir / "logs").mkdir(parents=True)
     (matrix_dir / "runs").mkdir()
-    environment = dict(os.environ)
-    if args.claux_binary:
-        environment["REPLAYBOOK_HOST_CLAUX_BINARY"] = str(
-            args.claux_binary.expanduser().resolve()
+    try:
+        snapshot = stage_execution_snapshot(
+            matrix_dir,
+            packs=packs,
+            agent_adapter=args.agent_adapter.expanduser().resolve()
+            if args.agent_adapter
+            else None,
+            agent_payload=args.agent_payload.expanduser().resolve()
+            if args.agent_payload
+            else None,
+            agent_env_file=args.agent_env_file.expanduser().resolve()
+            if args.agent_env_file
+            else None,
+            claux_binary=args.claux_binary.expanduser().resolve()
+            if args.claux_binary
+            else None,
         )
+    except (OSError, ValueError) as error:
+        print(f"error: could not stage execution snapshot: {error}", file=sys.stderr)
+        return 2
+    environment = dict(os.environ)
+    if snapshot.claux_binary:
+        environment["REPLAYBOOK_HOST_CLAUX_BINARY"] = str(snapshot.claux_binary)
     if args.claux_release:
         environment["REPLAYBOOK_HOST_CLAUX_RELEASE"] = args.claux_release
 
@@ -733,6 +886,7 @@ def main(argv: list[str] | None = None) -> int:
             for scenario in scenarios
         ],
         "scenario_packs": [pack.metadata() for pack in packs],
+        "execution_snapshot": snapshot.metadata,
         "models": ["oracle" if model is None else model for model in models],
         "attempts": args.attempts,
         "concurrency": args.concurrency,
@@ -754,31 +908,35 @@ def main(argv: list[str] | None = None) -> int:
     started_at = utc_now()
     print(f"[matrix] results: {matrix_dir}")
     print(
+        "[matrix] execution snapshot: "
+        f"{snapshot.metadata['host_harness_sha256'][:12]} "
+        f"({matrix_dir / 'execution-snapshot'})"
+    )
+    print(
         f"[matrix] launching {len(jobs)} trials with at most "
         f"{args.concurrency} VMs"
     )
 
     try:
-        worker_results = asyncio.run(
-            run_jobs(
-                jobs,
-                runner=SCRIPT_DIR / "run-host-native.sh",
-                environment=environment,
-                concurrency=args.concurrency,
-                agent_timeout_seconds=args.agent_timeout_seconds,
-                agent_adapter=args.agent_adapter.expanduser().resolve()
-                if args.agent_adapter
-                else None,
-                agent_payload=args.agent_payload.expanduser().resolve()
-                if args.agent_payload
-                else None,
-                agent_env_file=args.agent_env_file.expanduser().resolve()
-                if args.agent_env_file
-                else None,
-                agent_name=args.agent_name,
-                scenario_pack_dirs=scenario_pack_dirs,
+        with stage_runtime_env(
+            args.agent_env_file.expanduser().resolve()
+            if args.agent_env_file
+            else None
+        ) as runtime_env:
+            worker_results = asyncio.run(
+                run_jobs(
+                    jobs,
+                    runner=snapshot.runner,
+                    environment=environment,
+                    concurrency=args.concurrency,
+                    agent_timeout_seconds=args.agent_timeout_seconds,
+                    agent_adapter=snapshot.agent_adapter,
+                    agent_payload=snapshot.agent_payload,
+                    agent_env_file=runtime_env,
+                    agent_name=args.agent_name,
+                    scenario_pack_dirs=snapshot.scenario_pack_dirs,
+                )
             )
-        )
     except KeyboardInterrupt:
         print("\n[matrix] interrupted; active workers terminated", file=sys.stderr)
         return 130

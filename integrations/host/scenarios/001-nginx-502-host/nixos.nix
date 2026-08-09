@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ../../worker/nixos.nix ];
+  imports = [ ../worker/nixos.nix ];
 }
