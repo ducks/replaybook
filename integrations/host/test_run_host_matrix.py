@@ -10,14 +10,19 @@ from pathlib import Path
 
 from integrations.host.run_host_matrix import (
     Job,
+    HOST_RUNNER_FILES,
     WorkerResult,
     build_jobs,
     build_summary,
     discover_scenarios,
     main,
+    print_scenario_table,
+    print_table,
     run_jobs,
+    stage_execution_snapshot,
     slugify,
 )
+from integrations.host.scenario_pack import load_pack
 
 
 class HostMatrixTests(unittest.TestCase):
@@ -60,6 +65,61 @@ class HostMatrixTests(unittest.TestCase):
         self.assertEqual(status, 0)
         self.assertEqual(output.getvalue(), "external-incident\tv4\n")
 
+    def test_execution_snapshot_is_independent_of_live_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            host = root / "host"
+            host.mkdir()
+            for name in HOST_RUNNER_FILES:
+                path = host / name
+                path.write_text(f"original {name}\n")
+                path.chmod(0o755 if name.endswith(".sh") else 0o644)
+            pack = root / "pack"
+            pack.mkdir()
+            (pack / "replaybook-pack.toml").write_text(
+                '[pack]\nid = "test/snapshot"\nversion = "20260809.0.0"\n'
+            )
+            scenario = pack / "incident"
+            scenario.mkdir()
+            (scenario / "scenario.toml").write_text(
+                "[scenario]\nversion = 1\n"
+            )
+            adapter = root / "adapter"
+            adapter.write_text("original adapter\n")
+            matrix = root / "matrix"
+            matrix.mkdir()
+
+            snapshot = stage_execution_snapshot(
+                matrix,
+                packs=[load_pack(pack)],
+                agent_adapter=adapter,
+                agent_payload=None,
+                agent_env_file=None,
+                claux_binary=None,
+                host_dir=host,
+            )
+            (host / "run-host-native.sh").write_text("changed\n")
+            adapter.write_text("changed\n")
+            (scenario / "scenario.toml").write_text(
+                "[scenario]\nversion = 2\n"
+            )
+
+            self.assertEqual(
+                snapshot.runner.read_text(),
+                "original run-host-native.sh\n",
+            )
+            self.assertEqual(snapshot.agent_adapter.read_text(), "original adapter\n")
+            self.assertIn(
+                "version = 1",
+                (snapshot.scenario_pack_dirs[0] / "incident/scenario.toml").read_text(),
+            )
+            self.assertEqual(snapshot.metadata["schema_version"], 1)
+            self.assertEqual(len(snapshot.metadata["host_harness_sha256"]), 64)
+            self.assertEqual(
+                len(snapshot.metadata["scenario_packs"][0]["sha256"]),
+                64,
+            )
+
     def test_build_jobs_assigns_stable_adjacent_port_pairs(self) -> None:
         jobs = build_jobs(
             scenarios=["013-sidekiq-wrong-redis"],
@@ -87,6 +147,14 @@ class HostMatrixTests(unittest.TestCase):
                 base_port=23000,
                 matrix_dir=Path("/tmp/matrix"),
             )
+
+    def test_empty_summary_tables_still_render_headers(self) -> None:
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            print_table([])
+            print_scenario_table([])
+        self.assertIn("model", output.getvalue())
+        self.assertIn("scenario", output.getvalue())
 
     def test_summary_keeps_evaluation_failures_as_results(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

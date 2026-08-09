@@ -22,6 +22,7 @@ DOCS_CURRENT = Path("docs/benchmarks.html")
 DOCS_HISTORY = Path("docs/benchmark-history.html")
 MARKDOWN_RECORD = Path("benchmarks.md")
 VERSION_PATTERN = re.compile(r"^[0-9]{8}\.[0-9]+\.[0-9]+$")
+SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 MARKDOWN_START = "<!-- replaybook:current-benchmark:start -->"
 MARKDOWN_END = "<!-- replaybook:current-benchmark:end -->"
 HISTORY_START = "<!-- replaybook:generated-history:start -->"
@@ -134,6 +135,7 @@ def import_summary(path: Path) -> dict[str, Any]:
         "replaybook_commit": benchmark.get("replaybook_commit"),
         "scenarios": scenarios,
         "scenario_packs": scenario_packs,
+        "execution_snapshot": benchmark.get("execution_snapshot"),
         "models": models,
         "attempts": benchmark.get("attempts"),
         "concurrency": benchmark.get("concurrency"),
@@ -150,6 +152,7 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
     models = source["models"]
     scenarios = source["scenarios"]
     scenario_packs = source["scenario_packs"]
+    execution_snapshot = source["execution_snapshot"]
     attempts = source["attempts"]
     if (
         not models
@@ -172,6 +175,43 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
     declared_packs = {
         pack_id: version for pack_id, version in pack_keys
     }
+    if execution_snapshot is not None:
+        if (
+            not isinstance(execution_snapshot, dict)
+            or execution_snapshot.get("schema_version") != 1
+            or not isinstance(execution_snapshot.get("host_harness_sha256"), str)
+            or not SHA256_PATTERN.fullmatch(execution_snapshot["host_harness_sha256"])
+            or not isinstance(execution_snapshot.get("scenario_packs"), list)
+        ):
+            raise PublishError(f"{path}: execution snapshot metadata is invalid")
+        snapshot_packs = set()
+        for pack in execution_snapshot["scenario_packs"]:
+            if (
+                not isinstance(pack, dict)
+                or not isinstance(pack.get("id"), str)
+                or not isinstance(pack.get("version"), str)
+                or not isinstance(pack.get("sha256"), str)
+                or not SHA256_PATTERN.fullmatch(pack["sha256"])
+            ):
+                raise PublishError(
+                    f"{path}: execution snapshot scenario pack is invalid"
+                )
+            snapshot_packs.add((pack["id"], pack["version"]))
+        if snapshot_packs != set(pack_keys):
+            raise PublishError(
+                f"{path}: execution snapshot does not match declared scenario packs"
+            )
+        for key in (
+            "agent_adapter_sha256",
+            "agent_payload_sha256",
+            "agent_env_sha256",
+            "claux_binary_sha256",
+        ):
+            value = execution_snapshot.get(key)
+            if value is not None and (
+                not isinstance(value, str) or not SHA256_PATTERN.fullmatch(value)
+            ):
+                raise PublishError(f"{path}: execution snapshot {key} is invalid")
     for scenario in scenarios:
         if (
             not isinstance(scenario, dict)
@@ -228,6 +268,7 @@ def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
         "harness_version": source["harness_version"],
         "scenarios": source["scenarios"],
         "scenario_packs": source["scenario_packs"],
+        "execution_snapshot": source["execution_snapshot"],
         "attempts": source["attempts"],
         "agent_timeout_seconds": source["agent_timeout_seconds"],
         "agent": source["agent"],

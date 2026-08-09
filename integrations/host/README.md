@@ -232,6 +232,19 @@ harness across any number of scenarios, models, and attempts. Worker logs show
 both launch position and completed progress, such as `starting 3 of 15` and
 `completed 1 of 15`, so long concurrent matrices remain easy to track.
 
+Before launching its first worker, the matrix runner copies the host runner,
+helper scripts, selected scenario packs, custom adapter, custom payload, and
+local Claux binary into `execution-snapshot/` inside the matrix result
+directory. Every worker executes those immutable copies. Switching branches or
+editing a live scenario while a matrix runs cannot change later workers.
+
+`benchmark.json` and `execution-snapshot/manifest.json` record SHA-256 hashes
+for the staged harness, packs, and optional agent artifacts. Runtime environment
+files are copied once into a temporary mode-0600 directory for the duration of
+the matrix, hashed for compatibility, and deliberately excluded from retained
+artifacts. The benchmark publisher refuses to combine matrices whose execution
+snapshots differ.
+
 ## Publish benchmark results
 
 The benchmark publisher imports one or more compatible matrix summaries into a

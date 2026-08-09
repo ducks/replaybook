@@ -5,7 +5,7 @@ let
   rubyEnv = pkgs.ruby.withPackages (packages: with packages; [ activerecord pg puma rack ]);
 in
 {
-  imports = [ ../../worker/base.nix ];
+  imports = [ ../worker/base.nix ];
 
   environment.systemPackages = with pkgs; [ nginx postgresql_16 rubyEnv ];
 

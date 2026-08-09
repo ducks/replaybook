@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../../worker/base.nix ];
+  imports = [ ../worker/base.nix ];
 
   environment.systemPackages = with pkgs; [ curl ];
 

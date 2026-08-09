@@ -99,6 +99,13 @@
       repeat the option to combine packs with distinct scenario IDs.
     </p>
 
+    <p>
+      A matrix copies its selected packs and host runner into an immutable
+      execution snapshot before launching workers. Content hashes become part
+      of benchmark compatibility, so edits to a checkout cannot change an
+      active matrix or be silently mixed into another published result.
+    </p>
+
     <div class="table-scroll">
       <table>
         <thead><tr><th>ID</th><th>Version</th><th>Incident</th><th>Durable requirement</th></tr></thead>

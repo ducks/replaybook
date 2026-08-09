@@ -8,7 +8,7 @@ let
   };
 in
 {
-  imports = [ ../../worker/base.nix ];
+  imports = [ ../worker/base.nix ];
 
   environment.systemPackages = with pkgs; [ nginx postgresql_16 redis rubyEnv.wrappedRuby ];
 
