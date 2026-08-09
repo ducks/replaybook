@@ -1,0 +1,24 @@
+{
+  "description": "DeepSeek V4 Flash 0731 ran the five-scenario declarative suite three times under host harness v6. Every passing repair survived scenario verification, service restart, and host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731"
+  },
+  "model_order": [
+    "deepseek/deepseek-v4-flash-0731"
+  ],
+  "observations": [
+    "DeepSeek made 13 durable repairs in 15 attempts for $0.2908 total, or about $0.0224 per durable repair.",
+    "It completed all 12 attempts outside the poison-pill incident. On that scenario it passed once and timed out twice, for a 33 percent pass rate and a 15:04 median duration.",
+    "The poison-pill incident consumed $0.1716, about 59 percent of the matrix cost. Both failures were agent timeouts rather than unavailable provider trials or verifier failures.",
+    "Transcript inspection showed that both timed-out attempts found the root cause and wrote a plausible repair. One continued investigating persistence after restoring service; the other timed out while restarting Sidekiq to apply its fix. The failures remain part of the result because stopping discipline is operational behavior.",
+    "This is the first published host harness v6 snapshot. It is kept separate from v5 results so changes in declarative scenario execution are not hidden inside a longer historical leaderboard."
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502",
+    "013-sidekiq-wrong-redis": "Sidekiq wrong Redis database",
+    "014-missing-rails-migration": "Missing Rails migration",
+    "015-sidekiq-poison-pill": "Sidekiq poison pill",
+    "016-rails-pool-exhaustion": "Rails pool exhaustion"
+  },
+  "title": "DeepSeek on the declarative host suite"
+}
