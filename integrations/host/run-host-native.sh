@@ -14,6 +14,8 @@ Options:
   --scenario-pack DIR Select a versioned scenario pack. Repeat to combine packs.
                       Defaults to the pack bundled with Replaybook.
   --model MODEL       Model identifier passed to the agent adapter.
+  --reasoning-effort EFFORT
+                      Claux reasoning effort for this trial.
   --agent-adapter FILE
                       Adapter executable to run inside the VM.
   --agent-payload FILE
@@ -33,7 +35,7 @@ Environment:
   REPLAYBOOK_HOST_SSH_KEY        SSH key (default: ~/.ssh/id_ed25519).
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to copy into the VM.
-  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to download (default: v20260808.0.0).
+  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to download (default: v20260809.0.0).
 
 Without --agent-adapter, Replaybook uses its bundled Claux adapter. Custom
 adapters receive the paths and model through REPLAYBOOK_* environment variables
@@ -45,10 +47,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
-CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260808.0.0}"
+CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260809.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=8
+HOST_HARNESS_VERSION=9
 MODEL="deepseek/deepseek-v4-flash"
+REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
 SSH_PORT=22600
 HTTP_PORT=22601
@@ -71,6 +74,11 @@ while (( $# > 0 )); do
     --model)
       (( $# >= 2 )) || { echo "--model requires a value" >&2; exit 2; }
       MODEL="$2"
+      shift 2
+      ;;
+    --reasoning-effort)
+      (( $# >= 2 )) || { echo "--reasoning-effort requires a value" >&2; exit 2; }
+      REASONING_EFFORT="$2"
       shift 2
       ;;
     --agent-adapter)
@@ -136,12 +144,22 @@ done
 
 if [[ "$RUN_ORACLE" == true \
   && ( -n "$AGENT_ADAPTER" || -n "$AGENT_PAYLOAD" \
-    || -n "$AGENT_ENV_FILE" || -n "$AGENT_NAME" ) ]]; then
+    || -n "$AGENT_ENV_FILE" || -n "$AGENT_NAME" \
+    || -n "$REASONING_EFFORT" ) ]]; then
   echo "--oracle cannot be combined with agent adapter options" >&2
+  exit 2
+fi
+if [[ -n "$REASONING_EFFORT" \
+  && ! "$REASONING_EFFORT" =~ ^(none|minimal|low|medium|high|xhigh|max)$ ]]; then
+  echo "unsupported reasoning effort: ${REASONING_EFFORT}" >&2
   exit 2
 fi
 if [[ -n "$AGENT_ADAPTER" ]]; then
   CUSTOM_AGENT_ADAPTER=true
+  if [[ -n "$REASONING_EFFORT" ]]; then
+    echo "--reasoning-effort is supported only by the built-in Claux adapter" >&2
+    exit 2
+  fi
   [[ -f "$AGENT_ADAPTER" ]] || {
     echo "agent adapter does not exist: ${AGENT_ADAPTER}" >&2
     exit 2
@@ -519,7 +537,7 @@ else
   printf '%s\n' "$MODEL" | "${SSH[@]}" "umask 077; cat > /root/replaybook-eval/model"
   echo "[host] running ${AGENT_NAME} directly on the incident host"
   "${SSH[@]}" \
-    "timeout --signal=TERM --kill-after=30s ${AGENT_TIMEOUT_SECONDS}s /root/replaybook-eval/launcher" \
+    "REPLAYBOOK_REASONING_EFFORT=$(printf '%q' "$REASONING_EFFORT") timeout --signal=TERM --kill-after=30s ${AGENT_TIMEOUT_SECONDS}s /root/replaybook-eval/launcher" \
     || run_status=$?
 fi
 agent_seconds="$(( $(date +%s) - start_seconds ))"
@@ -683,6 +701,7 @@ jq -n \
   --arg scenario_pack_version "$SCENARIO_PACK_VERSION" \
   --arg agent "$agent" \
   --arg model "$(if [[ "$RUN_ORACLE" == true ]]; then printf 'oracle'; else printf '%s' "$MODEL"; fi)" \
+  --arg reasoning_effort "$REASONING_EFFORT" \
   --arg started_at "$started_at" \
   --arg finished_at "$finished_at" \
   --arg failure "$failure" \
@@ -707,6 +726,7 @@ jq -n \
     },
     agent: $agent,
     model: $model,
+    reasoning_effort: (if $reasoning_effort == "" then null else $reasoning_effort end),
     started_at: $started_at,
     finished_at: $finished_at,
     agent_duration_seconds: $agent_seconds,

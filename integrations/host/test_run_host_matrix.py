@@ -138,6 +138,30 @@ class HostMatrixTests(unittest.TestCase):
             "013-sidekiq-wrong-redis-vendor-model-a-1",
         )
 
+    def test_build_jobs_expands_reasoning_efforts_as_distinct_trials(self) -> None:
+        jobs = build_jobs(
+            scenarios=["001-nginx-502-host"],
+            models=["deepseek/model"],
+            reasoning_efforts=["low", "high"],
+            attempts=2,
+            base_port=23000,
+            matrix_dir=Path("/tmp/matrix"),
+        )
+
+        self.assertEqual(len(jobs), 4)
+        self.assertEqual(
+            [job.reasoning_effort for job in jobs],
+            ["low", "low", "high", "high"],
+        )
+        self.assertEqual(
+            jobs[0].run_id,
+            "001-nginx-502-host-deepseek-model-reasoning-low-1",
+        )
+        self.assertEqual(
+            jobs[2].run_id,
+            "001-nginx-502-host-deepseek-model-reasoning-high-1",
+        )
+
     def test_build_jobs_rejects_slug_collisions(self) -> None:
         with self.assertRaisesRegex(ValueError, "colliding run IDs"):
             build_jobs(
@@ -277,17 +301,19 @@ output=""
 model="oracle"
 scenario=""
 agent_timeout=""
+reasoning_effort=""
 while (( $# > 0 )); do
   case "$1" in
     --output-dir) output="$2"; shift 2 ;;
     --model) model="$2"; shift 2 ;;
     --scenario) scenario="$2"; shift 2 ;;
     --agent-timeout-seconds) agent_timeout="$2"; shift 2 ;;
+    --reasoning-effort) reasoning_effort="$2"; shift 2 ;;
     *) shift ;;
   esac
 done
 mkdir -p "$output"
-python - "$output/result.json" "$scenario" "$model" "$agent_timeout" <<'PY'
+python - "$output/result.json" "$scenario" "$model" "$agent_timeout" "$reasoning_effort" <<'PY'
 import json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
 result = {
@@ -298,6 +324,7 @@ result = {
     "reward": 0,
     "failure_category": "backlog_not_recovered",
     "test_agent_timeout_seconds": int(sys.argv[4]),
+    "reasoning_effort": sys.argv[5] or None,
 }
 path.write_text(json.dumps(result))
 PY
@@ -313,6 +340,7 @@ exit 1
                 http_port=23001,
                 output_dir=root / "run",
                 log_file=root / "run.log",
+                reasoning_effort="low",
             )
             output = io.StringIO()
             with contextlib.redirect_stdout(output):
@@ -330,6 +358,7 @@ exit 1
         self.assertIsNotNone(results[0].result)
         self.assertIsNone(results[0].error)
         self.assertEqual(results[0].result["test_agent_timeout_seconds"], 321)
+        self.assertEqual(results[0].result["reasoning_effort"], "low")
         self.assertIn("[matrix] starting 1 of 1: test-run", output.getvalue())
         self.assertIn(
             "[matrix] completed 1 of 1: failed test-run (backlog_not_recovered)",

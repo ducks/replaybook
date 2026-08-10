@@ -222,13 +222,18 @@ python integrations/host/run_host_matrix.py \
     poolside/laguna-s-2.1 \
     openai/gpt-5.6-luna \
     minimax/minimax-m3 \
+  --reasoning-efforts low high \
   --attempts 3 \
   --concurrency 2
 ```
 
 The matrix runner accepts the same `--agent-adapter`, `--agent-payload`,
 `--agent-env-file`, and `--agent-name` options. One matrix evaluates one
-harness across any number of scenarios, models, and attempts. Worker logs show
+harness across any number of scenarios, models, reasoning efforts, and attempts.
+Reasoning effort is supported by the bundled Claux adapter and is recorded in
+run IDs, individual results, summary tables, and benchmark metadata. Custom
+adapters remain responsible for defining their own configuration dimensions.
+Worker logs show
 both launch position and completed progress, such as `starting 3 of 15` and
 `completed 1 of 15`, so long concurrent matrices remain easy to track.
 

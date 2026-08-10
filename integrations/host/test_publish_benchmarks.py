@@ -131,6 +131,32 @@ class PublisherTests(unittest.TestCase):
         self.assertNotIn("result_file", release["runs"][0])
         self.assertNotIn("transcript_file", release["runs"][0])
 
+    def test_reasoning_efforts_are_published_as_distinct_model_variants(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = summary("deepseek/model")
+            value["benchmark"]["reasoning_efforts"] = ["low", "high"]
+            low = value["runs"][0]
+            low["reasoning_effort"] = "low"
+            low["run_id"] = "001-nginx-deepseek-model-reasoning-low-1"
+            high = deepcopy(low)
+            high["reasoning_effort"] = "high"
+            high["run_id"] = "001-nginx-deepseek-model-reasoning-high-1"
+            value["runs"].append(high)
+            path = self.write_summary(root, "reasoning-matrix", value)
+
+            release = create_release("20260809.0.0", [path], {})
+
+        self.assertEqual(len(release["by_model"]), 2)
+        self.assertEqual(
+            {row["reasoning_effort"] for row in release["by_model"]},
+            {"low", "high"},
+        )
+        page = html_page(release)
+        self.assertIn("deepseek/model (low)", page)
+        self.assertIn("deepseek/model (high)", page)
+        self.assertIn("--reasoning-efforts low high", page)
+
     def test_rejects_incompatible_scenario_versions(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
