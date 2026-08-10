@@ -53,7 +53,7 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=10' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=11' "$script_dir/run-host-native.sh"
 pack_description="$(
   python "$script_dir/scenario_pack.py" \
     --pack "$script_dir/scenarios" \
@@ -245,7 +245,7 @@ while (( $# > 0 )); do
   esac
 done
 on_term() {
-  printf '%s\n' '{"schema_version":1,"model":"test/model","outcome":{"status":"error","message":"Interrupted by shutdown signal."},"usage":{"input_tokens":12,"output_tokens":3,"cache_read_tokens":4,"cache_creation_tokens":0,"cost_usd":0.001},"messages":[{"role":"user","content":"keep investigating"}],"tool_trace":[{"id":"call-1","name":"Bash","input":{"command":"sleep 30"},"output":"Interrupted by user.","is_error":true}]}' >"$transcript"
+  printf '%s\n' '{"schema_version":2,"model":"test/model","outcome":{"status":"error","message":"Interrupted by shutdown signal."},"usage":{"input_tokens":12,"output_tokens":3,"cache_read_tokens":4,"cache_creation_tokens":0,"cost_usd":0.001},"messages":[{"role":"user","content":"keep investigating"}],"tool_trace":[{"id":"call-1","name":"Bash","input":{"command":"sleep 30"},"output":"Interrupted by user.","is_error":true,"read_only":false,"started_after_ms":400,"duration_ms":600}],"timing":{"total_duration_ms":1000,"model_rounds":[{"index":1,"started_after_ms":0,"duration_ms":300,"status":"completed","usage":{"input_tokens":12,"output_tokens":3,"cache_read_tokens":4,"cache_creation_tokens":0,"cost_usd":0.001}}]}}' >"$transcript"
   exit 1
 }
 trap on_term TERM
@@ -270,7 +270,7 @@ EOF
   jq -e '.outcome.status == "error" and (.tool_trace | length) == 1' \
     "$eval_root/results/transcript.json" >/dev/null
   grep -q 'reasoning_effort = "low"' "$home/.config/claux/config.toml"
-  jq -e '.harness == "claux" and .model == "test/model" and .reasoning_effort == "low" and .result == null and .usage.input_tokens == 12' \
+  jq -e '.harness == "claux" and .model == "test/model" and .reasoning_effort == "low" and .result == null and .usage.input_tokens == 12 and .recording.transcript_schema_version == 2 and .recording.total_duration_ms == 1000 and .recording.model_rounds[0].duration_ms == 300 and .recording.tools[0].duration_ms == 600 and (.recording.tools[0] | has("input") | not) and (.recording.tools[0] | has("output") | not)' \
     "$eval_root/results/agent.json" >/dev/null
 )
 

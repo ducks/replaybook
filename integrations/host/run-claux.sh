@@ -73,11 +73,28 @@ fi
 
 if [[ -s "$native_output" ]]; then
   jq --arg model "$model" --arg reasoning_effort "$reasoning_effort" \
+    --slurpfile transcript "$transcript" \
     '. + {
       schema_version: 1,
       harness: "claux",
       model: $model,
-      reasoning_effort: (if $reasoning_effort == "" then null else $reasoning_effort end)
+      reasoning_effort: (if $reasoning_effort == "" then null else $reasoning_effort end),
+      recording: (
+        if ($transcript | length) == 0 or ($transcript[0].timing? == null) then null
+        else {
+          transcript_schema_version: $transcript[0].schema_version,
+          total_duration_ms: $transcript[0].timing.total_duration_ms,
+          model_rounds: ($transcript[0].timing.model_rounds // []),
+          tools: (($transcript[0].tool_trace // []) | map({
+            name,
+            is_error,
+            read_only,
+            started_after_ms,
+            duration_ms
+          }))
+        }
+        end
+      )
     }' \
     "$native_output" >"${output}.partial"
   mv "${output}.partial" "$output"

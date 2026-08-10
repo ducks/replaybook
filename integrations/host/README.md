@@ -349,7 +349,12 @@ a paid model run.
 Each trial receives adjacent SSH and HTTP ports starting at `--base-port`.
 Results are written under `jobs/host-matrix-*`, including per-trial logs,
 result and transcript paths, benchmark metadata, failure categories, model
-aggregates with token and cost totals, and scenario-version-aware aggregates.
+aggregates with token, cost, and execution-timing totals, and
+scenario-version-aware aggregates. Claux transcript v2 recordings add each
+provider round and tool call with monotonic start offsets and durations. The
+matrix reports median model rounds, model time, tool calls, tool time, time to
+the first write-capable tool, and time remaining after that tool. Older and
+third-party adapters remain valid and simply report no execution recording.
 Evaluation failures are valid matrix results. Provider, authentication, or
 harness runtime errors are recorded as unavailable attempts and excluded from
 pass-rate denominators. The command exits nonzero when a worker produces no
@@ -368,7 +373,8 @@ python integrations/host/run_host_matrix.py --list-scenarios
 
 Results are written under `jobs/host-native-*`. Adapters may include a complete
 tool transcript alongside their normalized result. `result.json` records the
-host harness version, scenario version, agent duration, usage, and separate
+host harness version, scenario version, agent duration, usage, optional
+execution recording, and separate
 immediate, service-restart, and host-reboot verification outcomes. A result is
 comparable only with runs using the same host harness and scenario versions.
 Host harness version 2 is the first version that guarantees the reference
@@ -377,7 +383,8 @@ generic lifecycle phases, persistent controller state, and structured verifier
 failure categories. Version 4 introduces the harness adapter contract and
 generic result and transcript artifacts. Version 5 distinguishes unavailable
 provider or harness attempts from evaluated repairs and excludes them from
-model pass-rate denominators.
+model pass-rate denominators. Version 11 carries sanitized model-round and tool
+timings from supporting adapters into run and matrix results.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the

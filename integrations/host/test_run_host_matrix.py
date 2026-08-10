@@ -248,6 +248,25 @@ class HostMatrixTests(unittest.TestCase):
                 "failure_category": None,
                 "agent_duration_seconds": 120,
                 "usage": {"input_tokens": 100, "cost_usd": 0.01},
+                "recording": {
+                    "total_duration_ms": 110_000,
+                    "model_rounds": [
+                        {"duration_ms": 30_000},
+                        {"duration_ms": 40_000},
+                    ],
+                    "tools": [
+                        {
+                            "read_only": True,
+                            "started_after_ms": 25_000,
+                            "duration_ms": 5_000,
+                        },
+                        {
+                            "read_only": False,
+                            "started_after_ms": 75_000,
+                            "duration_ms": 10_000,
+                        },
+                    ],
+                },
             }
             unavailable = {
                 "harness_version": 5,
@@ -277,6 +296,17 @@ class HostMatrixTests(unittest.TestCase):
         self.assertEqual(summary["totals"]["failed"], 0)
         self.assertEqual(summary["totals"]["pass_rate"], 1.0)
         self.assertEqual(summary["totals"]["median_duration_seconds"], 120)
+        self.assertEqual(summary["totals"]["recording_reported_trials"], 1)
+        self.assertEqual(summary["totals"]["median_model_rounds"], 2)
+        self.assertEqual(summary["totals"]["median_model_duration_seconds"], 70)
+        self.assertEqual(summary["totals"]["median_tool_calls"], 2)
+        self.assertEqual(summary["totals"]["median_tool_duration_seconds"], 15)
+        self.assertEqual(
+            summary["totals"]["median_first_non_read_only_tool_seconds"], 75
+        )
+        self.assertEqual(
+            summary["totals"]["median_post_first_non_read_only_seconds"], 35
+        )
         self.assertEqual(summary["failure_categories"], [])
         self.assertEqual(
             summary["unavailable_categories"],
