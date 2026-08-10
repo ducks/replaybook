@@ -35,7 +35,7 @@ REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 10
+HOST_HARNESS_VERSION = 11
 TRIAL_STATUSES = {"evaluated", "unavailable"}
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -486,6 +486,49 @@ def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         and run["usage"].get("cost_usd") is not None
     ]
     usages = [run["usage"] for run in runs if isinstance(run.get("usage"), dict)]
+    recordings = [
+        run["recording"]
+        for run in runs
+        if isinstance(run.get("recording"), dict)
+    ]
+    model_round_counts = [
+        len(recording.get("model_rounds") or []) for recording in recordings
+    ]
+    model_durations = [
+        sum(
+            float(round_.get("duration_ms") or 0)
+            for round_ in recording.get("model_rounds") or []
+        )
+        / 1000
+        for recording in recordings
+    ]
+    tool_counts = [len(recording.get("tools") or []) for recording in recordings]
+    tool_durations = [
+        sum(
+            float(tool.get("duration_ms") or 0)
+            for tool in recording.get("tools") or []
+        )
+        / 1000
+        for recording in recordings
+    ]
+    first_non_read_only_seconds = []
+    post_non_read_only_seconds = []
+    for recording in recordings:
+        non_read_only_tools = [
+            float(tool.get("started_after_ms") or 0) / 1000
+            for tool in recording.get("tools") or []
+            if tool.get("read_only") is False
+        ]
+        if non_read_only_tools:
+            first_non_read_only = min(non_read_only_tools)
+            first_non_read_only_seconds.append(first_non_read_only)
+            post_non_read_only_seconds.append(
+                max(
+                    0.0,
+                    float(recording.get("total_duration_ms") or 0) / 1000
+                    - first_non_read_only,
+                )
+            )
     passed = sum(int(run.get("reward", 0)) == 1 for run in evaluated)
     return {
         "trials": len(runs),
@@ -503,6 +546,27 @@ def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
             int(usage.get("cache_read_tokens") or 0) for usage in usages
         ),
         "usage_reported_trials": len(usages),
+        "recording_reported_trials": len(recordings),
+        "median_model_rounds": (
+            statistics.median(model_round_counts) if model_round_counts else None
+        ),
+        "median_model_duration_seconds": (
+            statistics.median(model_durations) if model_durations else None
+        ),
+        "median_tool_calls": statistics.median(tool_counts) if tool_counts else None,
+        "median_tool_duration_seconds": (
+            statistics.median(tool_durations) if tool_durations else None
+        ),
+        "median_first_non_read_only_tool_seconds": (
+            statistics.median(first_non_read_only_seconds)
+            if first_non_read_only_seconds
+            else None
+        ),
+        "median_post_first_non_read_only_seconds": (
+            statistics.median(post_non_read_only_seconds)
+            if post_non_read_only_seconds
+            else None
+        ),
     }
 
 
@@ -705,6 +769,45 @@ def print_scenario_table(rows: list[dict[str, Any]]) -> None:
             str(row["passed"]),
             str(row["failed"]),
             display_duration(row["median_duration_seconds"]),
+        ]
+        for row in rows
+    ]
+    widths = [
+        max([len(headers[index]), *(len(row[index]) for row in formatted)])
+        for index in range(len(headers))
+    ]
+    print("  ".join(header.ljust(widths[index]) for index, header in enumerate(headers)))
+    print("  ".join("-" * width for width in widths))
+    for row in formatted:
+        print("  ".join(value.ljust(widths[index]) for index, value in enumerate(row)))
+
+
+def print_recording_table(rows: list[dict[str, Any]]) -> None:
+    rows = [row for row in rows if row["recording_reported_trials"]]
+    if not rows:
+        return
+    headers = [
+        "model",
+        "reasoning",
+        "recorded",
+        "rounds",
+        "model time",
+        "tools",
+        "tool time",
+        "first non-read",
+        "after non-read",
+    ]
+    formatted = [
+        [
+            str(row["model"]),
+            str(row.get("reasoning_effort") or "default"),
+            f"{row['recording_reported_trials']}/{row['trials']}",
+            f"{row['median_model_rounds']:g}",
+            display_duration(row["median_model_duration_seconds"]),
+            f"{row['median_tool_calls']:g}",
+            display_duration(row["median_tool_duration_seconds"]),
+            display_duration(row["median_first_non_read_only_tool_seconds"]),
+            display_duration(row["median_post_first_non_read_only_seconds"]),
         ]
         for row in rows
     ]
@@ -1001,6 +1104,9 @@ def main(argv: list[str] | None = None) -> int:
     print_table(summary["by_model"])
     print()
     print_scenario_table(summary["by_scenario_model"])
+    if summary["totals"]["recording_reported_trials"]:
+        print("\nExecution recording (medians):")
+        print_recording_table(summary["by_model"])
     if summary["failure_categories"]:
         print("\nFailure categories:")
         for row in summary["failure_categories"]:

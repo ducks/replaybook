@@ -49,7 +49,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260809.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=10
+HOST_HARNESS_VERSION=11
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
@@ -748,6 +748,7 @@ if [[ "$RUN_ORACLE" == false && ! -f "$agent_result" ]]; then
 fi
 
 usage='null'
+recording='null'
 if [[ -f "$agent_result" ]]; then
   usage_candidate="$(
     jq -c 'if type == "object" then (.usage // null) else null end' \
@@ -755,6 +756,13 @@ if [[ -f "$agent_result" ]]; then
   )"
   if [[ -n "$usage_candidate" ]] && jq -e . <<<"$usage_candidate" >/dev/null 2>&1; then
     usage="$usage_candidate"
+  fi
+  recording_candidate="$(
+    jq -c 'if type == "object" then (.recording // null) else null end' \
+      "$agent_result" 2>/dev/null || true
+  )"
+  if [[ -n "$recording_candidate" ]] && jq -e . <<<"$recording_candidate" >/dev/null 2>&1; then
+    recording="$recording_candidate"
   fi
 fi
 finished_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -780,6 +788,7 @@ jq -n \
   --argjson restart_passed "$restart_passed" \
   --argjson reboot_passed "$reboot_passed" \
   --argjson usage "$usage" \
+  --argjson recording "$recording" \
   '{
     schema_version: 1,
     suite: $suite,
@@ -802,6 +811,7 @@ jq -n \
     failure: (if $failure == "" then null else $failure end),
     failure_category: (if $failure_category == "" then null else $failure_category end),
     usage: $usage,
+    recording: $recording,
     verification: {
       immediate_http: $immediate_passed,
       service_restart: $restart_passed,
