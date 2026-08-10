@@ -23,6 +23,7 @@ DOCS_HISTORY = Path("docs/benchmark-history.html")
 MARKDOWN_RECORD = Path("benchmarks.md")
 VERSION_PATTERN = re.compile(r"^[0-9]{8}\.[0-9]+\.[0-9]+$")
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
+REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 MARKDOWN_START = "<!-- replaybook:current-benchmark:start -->"
 MARKDOWN_END = "<!-- replaybook:current-benchmark:end -->"
 HISTORY_START = "<!-- replaybook:generated-history:start -->"
@@ -94,6 +95,7 @@ def compact_run(run: dict[str, Any], source: Path) -> dict[str, Any]:
         "scenario_version": run["scenario_version"],
         "agent": run["agent"],
         "model": run["model"],
+        "reasoning_effort": run.get("reasoning_effort"),
         "attempt": run["attempt"],
         "started_at": run.get("started_at"),
         "finished_at": run.get("finished_at"),
@@ -117,11 +119,13 @@ def import_summary(path: Path) -> dict[str, Any]:
     scenarios = benchmark.get("scenarios")
     scenario_packs = benchmark.get("scenario_packs", [])
     models = benchmark.get("models")
+    reasoning_efforts = benchmark.get("reasoning_efforts", [])
     agent = benchmark.get("agent")
     if (
         not isinstance(scenarios, list)
         or not isinstance(scenario_packs, list)
         or not isinstance(models, list)
+        or not isinstance(reasoning_efforts, list)
     ):
         raise PublishError(f"{path}: benchmark scenarios and models must be arrays")
     if not isinstance(agent, dict):
@@ -137,6 +141,7 @@ def import_summary(path: Path) -> dict[str, Any]:
         "scenario_packs": scenario_packs,
         "execution_snapshot": benchmark.get("execution_snapshot"),
         "models": models,
+        "reasoning_efforts": reasoning_efforts,
         "attempts": benchmark.get("attempts"),
         "concurrency": benchmark.get("concurrency"),
         "agent_timeout_seconds": benchmark.get("agent_timeout_seconds"),
@@ -150,6 +155,8 @@ def import_summary(path: Path) -> dict[str, Any]:
 
 def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
     models = source["models"]
+    declared_reasoning_efforts = source["reasoning_efforts"]
+    reasoning_efforts = declared_reasoning_efforts or [None]
     scenarios = source["scenarios"]
     scenario_packs = source["scenario_packs"]
     execution_snapshot = source["execution_snapshot"]
@@ -160,6 +167,14 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
         or len(models) != len(set(models))
     ):
         raise PublishError(f"{path}: benchmark models must be unique names")
+    if (
+        not all(
+            isinstance(effort, str) and effort in REASONING_EFFORTS
+            for effort in declared_reasoning_efforts
+        )
+        or len(declared_reasoning_efforts) != len(set(declared_reasoning_efforts))
+    ):
+        raise PublishError(f"{path}: benchmark reasoning efforts are invalid")
     scenario_keys = []
     pack_keys = []
     for pack in scenario_packs:
@@ -237,13 +252,20 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
         raise PublishError(f"{path}: benchmark attempts must be a positive integer")
 
     expected = {
-        (scenario, version, model, attempt)
+        (scenario, version, model, reasoning_effort, attempt)
         for scenario, version in scenario_keys
         for model in models
+        for reasoning_effort in reasoning_efforts
         for attempt in range(1, attempts + 1)
     }
     actual = {
-        (run["scenario"], run["scenario_version"], run["model"], run["attempt"])
+        (
+            run["scenario"],
+            run["scenario_version"],
+            run["model"],
+            run.get("reasoning_effort"),
+            run["attempt"],
+        )
         for run in source["runs"]
     }
     if len(actual) != len(source["runs"]):
@@ -286,10 +308,15 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
                     f"incompatible summaries: {key} differs between "
                     f"{sources[0]['source']} and {source['source']}"
                 )
-    identities: set[tuple[str, str, int]] = set()
+    identities: set[tuple[str, str, str | None, int]] = set()
     for source in sources:
         for run in source["runs"]:
-            identity = (run["scenario"], run["model"], run["attempt"])
+            identity = (
+                run["scenario"],
+                run["model"],
+                run.get("reasoning_effort"),
+                run["attempt"],
+            )
             if identity in identities:
                 raise PublishError(
                     "duplicate trial across summaries: " + "/".join(map(str, identity))
@@ -373,6 +400,18 @@ def grouped_aggregates(
     return values
 
 
+def model_group_fields(runs: list[dict[str, Any]]) -> tuple[str, ...]:
+    if any(run.get("reasoning_effort") is not None for run in runs):
+        return ("model", "reasoning_effort")
+    return ("model",)
+
+
+def scenario_model_group_fields(runs: list[dict[str, Any]]) -> tuple[str, ...]:
+    if any(run.get("reasoning_effort") is not None for run in runs):
+        return ("scenario", "scenario_version", "model", "reasoning_effort")
+    return ("scenario", "scenario_version", "model")
+
+
 def create_release(
     version: str, source_paths: list[Path], annotations: dict[str, Any]
 ) -> dict[str, Any]:
@@ -383,6 +422,13 @@ def create_release(
     sources = [import_summary(path) for path in source_paths]
     compatibility = validate_compatible(sources)
     runs = [run for source in sources for run in source.pop("runs")]
+    compatibility["reasoning_efforts"] = list(
+        dict.fromkeys(
+            run["reasoning_effort"]
+            for run in runs
+            if run.get("reasoning_effort") is not None
+        )
+    )
     corrections = apply_corrections(runs, annotations)
     return {
         "schema_version": 1,
@@ -398,10 +444,8 @@ def create_release(
         "sources": sources,
         "corrections": corrections,
         "totals": aggregate_runs(runs),
-        "by_model": grouped_aggregates(runs, ("model",)),
-        "by_scenario_model": grouped_aggregates(
-            runs, ("scenario", "scenario_version", "model")
-        ),
+        "by_model": grouped_aggregates(runs, model_group_fields(runs)),
+        "by_scenario_model": grouped_aggregates(runs, scenario_model_group_fields(runs)),
         "runs": runs,
     }
 
@@ -412,10 +456,8 @@ def validate_release(release: dict[str, Any], source: Path) -> None:
         raise PublishError(f"{source}: release contains no normalized runs")
     expected = {
         "totals": aggregate_runs(runs),
-        "by_model": grouped_aggregates(runs, ("model",)),
-        "by_scenario_model": grouped_aggregates(
-            runs, ("scenario", "scenario_version", "model")
-        ),
+        "by_model": grouped_aggregates(runs, model_group_fields(runs)),
+        "by_scenario_model": grouped_aggregates(runs, scenario_model_group_fields(runs)),
     }
     for key, value in expected.items():
         if release.get(key) != value:
@@ -438,12 +480,14 @@ def money(value: float, incomplete: bool = False) -> str:
     return f"${value:.4f}{suffix}"
 
 
-def model_sort_key(release: dict[str, Any], model: str) -> tuple[int, str]:
+def model_sort_key(
+    release: dict[str, Any], model: str, reasoning_effort: str | None = None
+) -> tuple[int, str, str]:
     order = release.get("model_order", [])
     try:
-        return order.index(model), model
+        return order.index(model), model, reasoning_effort or ""
     except ValueError:
-        return len(order), model
+        return len(order), model, reasoning_effort or ""
 
 
 def label(release: dict[str, Any], kind: str, value: str) -> str:
@@ -453,8 +497,21 @@ def label(release: dict[str, Any], kind: str, value: str) -> str:
 
 def model_rows(release: dict[str, Any]) -> list[dict[str, Any]]:
     return sorted(
-        release["by_model"], key=lambda row: model_sort_key(release, row["model"])
+        release["by_model"],
+        key=lambda row: model_sort_key(
+            release, row["model"], row.get("reasoning_effort")
+        ),
     )
+
+
+def model_variant_label(release: dict[str, Any], row: dict[str, Any]) -> str:
+    model = label(release, "model", row["model"])
+    effort = row.get("reasoning_effort")
+    return f"{model} ({effort})" if effort is not None else model
+
+
+def variant_key(row: dict[str, Any]) -> tuple[str, str | None]:
+    return row["model"], row.get("reasoning_effort")
 
 
 def cost_per_repair(row: dict[str, Any]) -> float | None:
@@ -471,7 +528,7 @@ def html_page(release: dict[str, Any]) -> str:
         repair_cost = cost_per_repair(row)
         model_cells.append(
             "          <tr>"
-            f"<td>{html.escape(label(release, 'model', row['model']))}</td>"
+            f"<td>{html.escape(model_variant_label(release, row))}</td>"
             f"<td>{row['passed']}/{row['evaluated']}</td>"
             f"<td>{format_rate(row['pass_rate'])}</td>"
             f"<td>{format_duration(row['median_duration_seconds'])}</td>"
@@ -481,7 +538,12 @@ def html_page(release: dict[str, Any]) -> str:
             "</tr>"
         )
     scenario_lookup = {
-        (row["scenario"], row["scenario_version"], row["model"]): row
+        (
+            row["scenario"],
+            row["scenario_version"],
+            row["model"],
+            row.get("reasoning_effort"),
+        ): row
         for row in release["by_scenario_model"]
     }
     scenarios = [
@@ -495,7 +557,7 @@ def html_page(release: dict[str, Any]) -> str:
             f"<td>v{version}</td>",
         ]
         for row in rows:
-            value = scenario_lookup[(scenario, version, row["model"])]
+            value = scenario_lookup[(scenario, version, *variant_key(row))]
             cells.append(
                 f"<td>{value['passed']}/{value['evaluated']} &middot; "
                 f"{format_duration(value['median_duration_seconds'])}</td>"
@@ -534,16 +596,25 @@ def html_page(release: dict[str, Any]) -> str:
     source_rows = "\n".join(
         "          <tr>"
         f"<td><code>{html.escape(source['source'])}</code></td>"
-        f"<td>{html.escape(', '.join(label(release, 'model', model) for model in source['models']))}</td>"
+        f"<td>{html.escape(', '.join(label(release, 'model', model) for model in source['models']))}"
+        f"{html.escape(' · reasoning ' + '/'.join(source.get('reasoning_efforts', []))) if source.get('reasoning_efforts') else ''}</td>"
         f"<td><code>{html.escape(str(source['replaybook_commit'])[:8])}</code></td>"
         "</tr>"
         for source in release["sources"]
     )
     model_headers = "".join(
-        f"<th>{html.escape(label(release, 'model', row['model']))}</th>" for row in rows
+        f"<th>{html.escape(model_variant_label(release, row))}</th>" for row in rows
     )
     attempts = release["compatibility"]["attempts"]
-    command_models = (" " + "\\" + "\n    ").join(row["model"] for row in rows)
+    command_models = (" " + "\\" + "\n    ").join(
+        dict.fromkeys(row["model"] for row in rows)
+    )
+    reasoning_efforts = release["compatibility"].get("reasoning_efforts", [])
+    command_reasoning = (
+        " " + "\\" + "\n  --reasoning-efforts " + " ".join(reasoning_efforts)
+        if reasoning_efforts
+        else ""
+    )
     command_scenarios = (" " + "\\" + "\n  --scenario ").join(
         scenario for scenario, _ in scenarios
     )
@@ -626,7 +697,7 @@ def html_page(release: dict[str, Any]) -> str:
     <pre><code>python integrations/host/run_host_matrix.py \\
   --scenario {command_scenarios} \\
   --models \\
-    {command_models} \\
+    {command_models}{command_reasoning} \\
   --attempts {attempts} \\
   --concurrency 2</code></pre>
 
@@ -665,7 +736,7 @@ def markdown_section(release: dict[str, Any]) -> str:
         row_incomplete = row["cost_reported_trials"] < row["trials"]
         repair_cost = cost_per_repair(row)
         lines.append(
-            f"| {label(release, 'model', row['model'])} | {row['passed']}/{row['evaluated']} "
+            f"| {model_variant_label(release, row)} | {row['passed']}/{row['evaluated']} "
             f"| {format_rate(row['pass_rate'])} | {format_duration(row['median_duration_seconds'])} "
             f"| {money(row['known_cost_usd'], row_incomplete)} | "
             f"{money(repair_cost, row_incomplete) if repair_cost is not None else 'n/a'} |"
@@ -683,7 +754,12 @@ def markdown_section(release: dict[str, Any]) -> str:
     lines.extend(f"{item}\n" for item in release.get("observations", []))
     rows = model_rows(release)
     scenario_lookup = {
-        (row["scenario"], row["scenario_version"], row["model"]): row
+        (
+            row["scenario"],
+            row["scenario_version"],
+            row["model"],
+            row.get("reasoning_effort"),
+        ): row
         for row in release["by_scenario_model"]
     }
     lines.extend(
@@ -691,7 +767,7 @@ def markdown_section(release: dict[str, Any]) -> str:
             "### Scenario breakdown",
             "",
             "| Scenario | Version | "
-            + " | ".join(label(release, "model", row["model"]) for row in rows)
+            + " | ".join(model_variant_label(release, row) for row in rows)
             + " |",
             "|---|---:|" + "---:|" * len(rows),
         ]
@@ -700,7 +776,7 @@ def markdown_section(release: dict[str, Any]) -> str:
         values = []
         for row in rows:
             aggregate = scenario_lookup[
-                (scenario["id"], scenario["version"], row["model"])
+                (scenario["id"], scenario["version"], *variant_key(row))
             ]
             values.append(
                 f"{aggregate['passed']}/{aggregate['evaluated']}, "
@@ -725,9 +801,14 @@ def markdown_section(release: dict[str, Any]) -> str:
         ]
     )
     for source in release["sources"]:
+        reasoning = (
+            f"; reasoning {'/'.join(source.get('reasoning_efforts', []))}"
+            if source.get("reasoning_efforts")
+            else ""
+        )
         lines.append(
             f"- `{source['source']}`: {', '.join(source['models'])}; "
-            f"Replaybook `{str(source['replaybook_commit'])[:8]}`"
+            f"Replaybook `{str(source['replaybook_commit'])[:8]}`{reasoning}"
         )
     if release.get("notes"):
         lines.extend(["", "### Run notes", ""])

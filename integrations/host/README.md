@@ -125,6 +125,14 @@ filesystem. The controller remains outside the incident host and verifies the
 HTTP endpoint after the repair, after restarting both services, and after
 rebooting the entire VM. The VM itself is the disposable security boundary.
 
+The bundled Claux adapter does not receive the real OpenRouter credential.
+Replaybook keeps that key in a host-side forwarding proxy and exposes only a
+localhost endpoint plus a non-secret placeholder token inside the VM. The
+proxy replaces the placeholder authorization header before forwarding each
+request. This prevents an agent running as root from recovering the credential
+from files, child-process environments, or `/proc`. Raw provider credentials
+never enter retained execution snapshots or transcripts.
+
 ## Reference smoke test
 
 Run the reference repair without model credentials:
@@ -198,11 +206,13 @@ It may also report `result`, `outcome`, and `usage`; Replaybook copies `usage`
 into the verified trial result and aggregates token and cost fields when they
 are available. A transcript is optional and remains harness-defined JSON.
 
-The environment file is copied with mode 0600 and sourced immediately before
-the adapter starts. It should contain shell assignments required by
-that harness. Replaybook does not require an OpenRouter key for custom
-adapters. The bundled Claux adapter implements this same contract and remains
-the default when `--agent-adapter` is omitted.
+The environment file is copied with mode 0600, sourced, and unlinked before the
+adapter starts. It should contain shell assignments required by that harness.
+The resulting values remain in the adapter process environment, so custom
+adapters are responsible for preventing their tools from exposing secrets.
+Replaybook does not require an OpenRouter key for custom adapters. The bundled
+Claux adapter instead uses the host-side credential proxy and remains the
+default when `--agent-adapter` is omitted.
 
 Host boot, reboot, and service-readiness checks use wall-clock deadlines, so
 repeated SSH connection attempts cannot extend a failed trial indefinitely.
@@ -222,13 +232,18 @@ python integrations/host/run_host_matrix.py \
     poolside/laguna-s-2.1 \
     openai/gpt-5.6-luna \
     minimax/minimax-m3 \
+  --reasoning-efforts low high \
   --attempts 3 \
   --concurrency 2
 ```
 
 The matrix runner accepts the same `--agent-adapter`, `--agent-payload`,
 `--agent-env-file`, and `--agent-name` options. One matrix evaluates one
-harness across any number of scenarios, models, and attempts. Worker logs show
+harness across any number of scenarios, models, reasoning efforts, and attempts.
+Reasoning effort is supported by the bundled Claux adapter and is recorded in
+run IDs, individual results, summary tables, and benchmark metadata. Custom
+adapters remain responsible for defining their own configuration dimensions.
+Worker logs show
 both launch position and completed progress, such as `starting 3 of 15` and
 `completed 1 of 15`, so long concurrent matrices remain easy to track.
 

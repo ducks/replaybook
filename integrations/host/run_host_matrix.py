@@ -35,13 +35,15 @@ REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 8
+HOST_HARNESS_VERSION = 10
 TRIAL_STATUSES = {"evaluated", "unavailable"}
+REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 HOST_RUNNER_FILES = (
     "classify-agent-exit.sh",
     "classify-agent-outcome.sh",
     "classify-agent-run-exit.sh",
+    "openrouter_proxy.py",
     "run-agent-adapter.sh",
     "run-claux.sh",
     "run-host-native.sh",
@@ -61,6 +63,7 @@ class Job:
     http_port: int
     output_dir: Path
     log_file: Path
+    reasoning_effort: str | None = None
 
 
 @dataclass(frozen=True)
@@ -241,27 +244,36 @@ def build_jobs(
     attempts: int,
     base_port: int,
     matrix_dir: Path,
+    reasoning_efforts: list[str | None] | None = None,
 ) -> list[Job]:
     jobs = []
     index = 0
     for scenario in scenarios:
         for model in models:
             model_slug = "oracle" if model is None else slugify(model)
-            for attempt in range(1, attempts + 1):
-                run_id = f"{scenario}-{model_slug}-{attempt}"
-                jobs.append(
-                    Job(
-                        run_id=run_id,
-                        scenario=scenario,
-                        model=model,
-                        attempt=attempt,
-                        ssh_port=base_port + index * 2,
-                        http_port=base_port + index * 2 + 1,
-                        output_dir=matrix_dir / "runs" / run_id,
-                        log_file=matrix_dir / "logs" / f"{run_id}.log",
-                    )
+            efforts = reasoning_efforts or [None]
+            for reasoning_effort in efforts:
+                effort_slug = (
+                    f"-reasoning-{slugify(reasoning_effort)}"
+                    if reasoning_effort is not None
+                    else ""
                 )
-                index += 1
+                for attempt in range(1, attempts + 1):
+                    run_id = f"{scenario}-{model_slug}{effort_slug}-{attempt}"
+                    jobs.append(
+                        Job(
+                            run_id=run_id,
+                            scenario=scenario,
+                            model=model,
+                            attempt=attempt,
+                            ssh_port=base_port + index * 2,
+                            http_port=base_port + index * 2 + 1,
+                            output_dir=matrix_dir / "runs" / run_id,
+                            log_file=matrix_dir / "logs" / f"{run_id}.log",
+                            reasoning_effort=reasoning_effort,
+                        )
+                    )
+                    index += 1
     run_ids = [job.run_id for job in jobs]
     if len(run_ids) != len(set(run_ids)):
         raise ValueError("model names produce colliding run IDs")
@@ -357,6 +369,8 @@ async def run_worker(
             command.append("--oracle")
         else:
             command.extend(["--model", job.model])
+            if job.reasoning_effort is not None:
+                command.extend(["--reasoning-effort", job.reasoning_effort])
             if agent_adapter is not None:
                 command.extend(["--agent-adapter", str(agent_adapter)])
             if agent_payload is not None:
@@ -385,7 +399,9 @@ async def run_worker(
         result, error = load_result(job.output_dir / "result.json")
         expected_model = "oracle" if job.model is None else job.model
         if result is not None and (
-            result["scenario"] != job.scenario or result["model"] != expected_model
+            result["scenario"] != job.scenario
+            or result["model"] != expected_model
+            or result.get("reasoning_effort") != job.reasoning_effort
         ):
             error = f"result identity does not match scheduled job: {job.run_id}"
             result = None
@@ -528,30 +544,41 @@ def build_summary(
         raise ValueError("matrix results contain mixed host harness versions")
     harness_version = next(iter(harness_versions), HOST_HARNESS_VERSION)
 
-    by_model_groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    by_scenario_model_groups: dict[tuple[str, int, str], list[dict[str, Any]]] = (
+    by_model_groups: dict[tuple[str, str | None], list[dict[str, Any]]] = defaultdict(list)
+    by_scenario_model_groups: dict[
+        tuple[str, int, str, str | None], list[dict[str, Any]]
+    ] = (
         defaultdict(list)
     )
     for run in runs:
         model = str(run.get("model", "unknown"))
         scenario = str(run.get("scenario", "unknown"))
         version = int(run.get("scenario_version", 0))
-        by_model_groups[model].append(run)
-        by_scenario_model_groups[(scenario, version, model)].append(run)
+        reasoning_effort = run.get("reasoning_effort")
+        by_model_groups[(model, reasoning_effort)].append(run)
+        by_scenario_model_groups[(scenario, version, model, reasoning_effort)].append(run)
 
     by_model = [
-        {"model": model, **summarize_runs(group)}
-        for model, group in sorted(by_model_groups.items())
+        {
+            "model": model,
+            "reasoning_effort": reasoning_effort,
+            **summarize_runs(group),
+        }
+        for (model, reasoning_effort), group in sorted(
+            by_model_groups.items(), key=lambda item: (item[0][0], item[0][1] or "")
+        )
     ]
     by_scenario_model = [
         {
             "scenario": scenario,
             "scenario_version": version,
             "model": model,
+            "reasoning_effort": reasoning_effort,
             **summarize_runs(group),
         }
-        for (scenario, version, model), group in sorted(
-            by_scenario_model_groups.items()
+        for (scenario, version, model, reasoning_effort), group in sorted(
+            by_scenario_model_groups.items(),
+            key=lambda item: (*item[0][:3], item[0][3] or ""),
         )
     ]
     failure_categories = Counter(
@@ -612,6 +639,7 @@ def display_tokens(value: int, coverage: int) -> str:
 def print_table(rows: list[dict[str, Any]]) -> None:
     headers = [
         "model",
+        "reasoning",
         "trials",
         "eval",
         "unavail",
@@ -629,6 +657,7 @@ def print_table(rows: list[dict[str, Any]]) -> None:
         formatted.append(
             [
                 str(row["model"]),
+                str(row.get("reasoning_effort") or "default"),
                 str(row["trials"]),
                 str(row["evaluated"]),
                 str(row["unavailable"]),
@@ -656,6 +685,7 @@ def print_scenario_table(rows: list[dict[str, Any]]) -> None:
         "scenario",
         "ver",
         "model",
+        "reasoning",
         "trials",
         "eval",
         "unavail",
@@ -668,6 +698,7 @@ def print_scenario_table(rows: list[dict[str, Any]]) -> None:
             str(row["scenario"]),
             f"v{row['scenario_version']}",
             str(row["model"]),
+            str(row.get("reasoning_effort") or "default"),
             str(row["trials"]),
             str(row["evaluated"]),
             str(row["unavailable"]),
@@ -720,6 +751,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         nargs="+",
         help="OpenRouter model IDs; omit only with --oracle",
     )
+    parser.add_argument(
+        "--reasoning-efforts",
+        nargs="+",
+        help="Claux reasoning efforts to compare, such as low high",
+    )
     parser.add_argument("--attempts", type=int, default=1)
     parser.add_argument("--concurrency", type=int, default=2)
     parser.add_argument(
@@ -755,6 +791,8 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
         raise ValueError("--agent-timeout-seconds must be a positive integer")
     if args.oracle and args.models:
         raise ValueError("--oracle cannot be combined with --models")
+    if args.oracle and args.reasoning_efforts:
+        raise ValueError("--oracle cannot be combined with --reasoning-efforts")
     if args.oracle and any(
         (
             args.agent_adapter,
@@ -768,6 +806,14 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
         (args.agent_payload, args.agent_env_file, args.agent_name)
     ):
         raise ValueError("custom agent options require --agent-adapter")
+    if args.agent_adapter is not None and args.reasoning_efforts:
+        raise ValueError("--reasoning-efforts is supported only by the built-in Claux adapter")
+    if args.reasoning_efforts:
+        invalid = set(args.reasoning_efforts) - REASONING_EFFORTS
+        if invalid:
+            raise ValueError(
+                "unsupported reasoning effort: " + ", ".join(sorted(invalid))
+            )
     if args.agent_name and not SCENARIO_ID_PATTERN.fullmatch(args.agent_name):
         raise ValueError("--agent-name contains unsafe characters")
     if args.agent_adapter is not None and args.claux_binary:
@@ -818,6 +864,9 @@ def main(argv: list[str] | None = None) -> int:
         validate_args(args, available)
         scenarios = unique(args.scenarios or [DEFAULT_SCENARIO])
         models: list[str | None] = [None] if args.oracle else unique(args.models)
+        reasoning_efforts: list[str | None] = (
+            unique(args.reasoning_efforts) if args.reasoning_efforts else [None]
+        )
         matrix_dir = matrix_directory(args.output_dir)
         jobs = build_jobs(
             scenarios=scenarios,
@@ -825,6 +874,7 @@ def main(argv: list[str] | None = None) -> int:
             attempts=args.attempts,
             base_port=args.base_port,
             matrix_dir=matrix_dir,
+            reasoning_efforts=reasoning_efforts,
         )
         if jobs[-1].http_port > 65535 or args.base_port <= 0:
             raise ValueError("matrix port range must stay between 1 and 65535")
@@ -888,6 +938,7 @@ def main(argv: list[str] | None = None) -> int:
         "scenario_packs": [pack.metadata() for pack in packs],
         "execution_snapshot": snapshot.metadata,
         "models": ["oracle" if model is None else model for model in models],
+        "reasoning_efforts": args.reasoning_efforts or [],
         "attempts": args.attempts,
         "concurrency": args.concurrency,
         "agent_timeout_seconds": args.agent_timeout_seconds,
@@ -902,7 +953,7 @@ def main(argv: list[str] | None = None) -> int:
             else None,
         },
         "claux_release": args.claux_release
-        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260808.0.0"),
+        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260809.0.0"),
     }
     (matrix_dir / "benchmark.json").write_text(json.dumps(benchmark, indent=2) + "\n")
     started_at = utc_now()

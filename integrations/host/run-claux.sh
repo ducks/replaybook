@@ -9,9 +9,27 @@ claux="${REPLAYBOOK_AGENT_PAYLOAD:-$eval_root/claux}"
 output="${REPLAYBOOK_RESULT_FILE:-$eval_root/results/agent.json}"
 transcript="${REPLAYBOOK_TRANSCRIPT_FILE:-$eval_root/results/transcript.json}"
 native_output="${output}.native"
+reasoning_effort="${REPLAYBOOK_REASONING_EFFORT:-}"
+base_url="${REPLAYBOOK_OPENAI_BASE_URL:-}"
 
 "$claux" config init --provider openrouter --model "$model" >/dev/null
 config="$HOME/.config/claux/config.toml"
+if [[ -n "$base_url" ]]; then
+  sed -i "s#^base_url = .*#base_url = \"${base_url}\"#" "$config"
+  grep -qx "base_url = \"${base_url}\"" "$config"
+fi
+if [[ -n "$reasoning_effort" ]]; then
+  profile="$(sed -n 's/^default_profile = "\([^"]*\)"/\1/p' "$config")"
+  [[ -n "$profile" ]] || {
+    echo "Claux config is missing default_profile" >&2
+    exit 2
+  }
+  awk -v section="[model_profiles.${profile}]" -v effort="$reasoning_effort" '
+    { print }
+    $0 == section { print "reasoning_effort = \"" effort "\"" }
+  ' "$config" >"${config}.partial"
+  mv "${config}.partial" "$config"
+fi
 sed -i \
   -e 's/^native_tool_filesystem_policy = .*/native_tool_filesystem_policy = "unrestricted"/' \
   -e 's/^bash_filesystem_policy = .*/bash_filesystem_policy = "unrestricted"/' \
@@ -54,8 +72,13 @@ if [[ -s "$transcript" && ! -s "$native_output" ]]; then
 fi
 
 if [[ -s "$native_output" ]]; then
-  jq --arg model "$model" \
-    '. + {schema_version: 1, harness: "claux", model: $model}' \
+  jq --arg model "$model" --arg reasoning_effort "$reasoning_effort" \
+    '. + {
+      schema_version: 1,
+      harness: "claux",
+      model: $model,
+      reasoning_effort: (if $reasoning_effort == "" then null else $reasoning_effort end)
+    }' \
     "$native_output" >"${output}.partial"
   mv "${output}.partial" "$output"
   rm -f -- "$native_output"

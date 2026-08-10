@@ -23,6 +23,7 @@ if [[ -f "$runtime_env" ]]; then
   # shellcheck source=/dev/null
   source "$runtime_env"
   set +a
+  rm -f -- "$runtime_env"
 fi
 
 export REPLAYBOOK_EVAL_ROOT="$eval_root"

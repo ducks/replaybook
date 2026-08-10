@@ -97,6 +97,7 @@ harbor-check:
 host-check:
 	@bash integrations/host/test-host-native.sh
 	@python -m unittest integrations.host.test_run_host_matrix
+	@python -m unittest integrations.host.test_openrouter_proxy
 	@python -m unittest integrations.host.test_scenario_phase
 	@python -m unittest integrations.host.test_publish_benchmarks
 	@python integrations/host/publish_benchmarks.py check

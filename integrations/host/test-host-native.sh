@@ -6,6 +6,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 bash -n "$script_dir/run-host-native.sh"
 bash -n "$script_dir/run-agent-adapter.sh"
 bash -n "$script_dir/run-claux.sh"
+python -m py_compile "$script_dir/openrouter_proxy.py"
 bash -n "$script_dir/adapters/codex.sh"
 bash -n "$script_dir/find-codex-binary.sh"
 bash -n "$script_dir/prepare-codex-env.sh"
@@ -52,7 +53,7 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=8' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=10' "$script_dir/run-host-native.sh"
 pack_description="$(
   python "$script_dir/scenario_pack.py" \
     --pack "$script_dir/scenarios" \
@@ -86,6 +87,15 @@ grep -q 'root@127.0.0.1:/root/replaybook-eval/adapter' "$script_dir/run-host-nat
 grep -q 'REPLAYBOOK_RESULT_FILE=' "$script_dir/run-agent-adapter.sh"
 grep -q 'REPLAYBOOK_TRANSCRIPT_FILE=' "$script_dir/run-agent-adapter.sh"
 grep -q 'REPLAYBOOK_AGENT_PAYLOAD=' "$script_dir/run-agent-adapter.sh"
+grep -q 'rm -f -- "$runtime_env"' "$script_dir/run-agent-adapter.sh"
+grep -q 'OPENROUTER_API_KEY=replaybook-proxy' "$script_dir/run-host-native.sh"
+grep -q 'REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091/api/v1' \
+  "$script_dir/run-host-native.sh"
+if grep -q "printf .*OPENROUTER_API_KEY.*\$OPENROUTER_API_KEY" \
+  "$script_dir/run-host-native.sh"; then
+  echo "host-native runner writes the real OpenRouter key into the VM" >&2
+  exit 1
+fi
 if grep -q '/usr/local/bin/claux' \
   "$script_dir/run-host-native.sh" "$script_dir/run-claux.sh"; then
   echo "host-native runner assumes /usr/local/bin exists" >&2
@@ -106,8 +116,8 @@ grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
 [[ -z "$("$script_dir/classify-agent-run-exit.sh" 1 934 900)" ]]
 grep -q 'trial_status="unavailable"' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
-grep -q 'v20260808.0.0' "$script_dir/run-host-native.sh"
-grep -q 'v20260808.0.0' "$script_dir/run_host_matrix.py"
+grep -q 'v20260809.0.0' "$script_dir/run-host-native.sh"
+grep -q 'v20260809.0.0' "$script_dir/run_host_matrix.py"
 
 agent_error="$(mktemp)"
 trap 'rm -f -- "$agent_error"' EXIT
@@ -220,6 +230,10 @@ if [[ "${1:-}" == "config" ]]; then
   printf '%s\n' \
     'native_tool_filesystem_policy = "workspace_only"' \
     'bash_filesystem_policy = "auto"' \
+    'default_profile = "test-profile"' \
+    '[model_profiles.test-profile]' \
+    'provider = "openrouter"' \
+    'model = "test/model"' \
     >"$HOME/.config/claux/config.toml"
   exit 0
 fi
@@ -242,6 +256,7 @@ EOF
   set +e
   HOME="$home" REPLAYBOOK_EVAL_ROOT="$eval_root" \
     REPLAYBOOK_MODEL="test/model" \
+    REPLAYBOOK_REASONING_EFFORT="low" \
     REPLAYBOOK_INSTRUCTION_FILE="$eval_root/instruction.md" \
     REPLAYBOOK_AGENT_PAYLOAD="$eval_root/payload" \
     REPLAYBOOK_RESULT_FILE="$eval_root/results/agent.json" \
@@ -254,7 +269,8 @@ EOF
   [[ "$status" -eq 124 ]]
   jq -e '.outcome.status == "error" and (.tool_trace | length) == 1' \
     "$eval_root/results/transcript.json" >/dev/null
-  jq -e '.harness == "claux" and .model == "test/model" and .result == null and .usage.input_tokens == 12' \
+  grep -q 'reasoning_effort = "low"' "$home/.config/claux/config.toml"
+  jq -e '.harness == "claux" and .model == "test/model" and .reasoning_effort == "low" and .result == null and .usage.input_tokens == 12' \
     "$eval_root/results/agent.json" >/dev/null
 )
 
@@ -351,6 +367,7 @@ EOF
 #!/usr/bin/env bash
 set -euo pipefail
 [[ "$CUSTOM_SECRET" == "present" ]]
+[[ ! -e "$REPLAYBOOK_EVAL_ROOT/runtime.env" ]]
 [[ "$(< "$REPLAYBOOK_INSTRUCTION_FILE")" == "repair the service" ]]
 [[ "$(< "$REPLAYBOOK_AGENT_PAYLOAD")" == "payload-data" ]]
 jq -n \
