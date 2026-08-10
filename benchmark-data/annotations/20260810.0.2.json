@@ -1,0 +1,38 @@
+{
+  "description": "Six model configurations ran the same five declarative infrastructure incidents three times each under host harness v11 with execution recording enabled, including a controlled DeepSeek low, high, and xhigh reasoning comparison.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "tencent/hy3-preview": "Tencent HY3 Preview",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "deepseek/deepseek-v4-flash-0731",
+    "z-ai/glm-5.2",
+    "openai/gpt-5.6-luna",
+    "tencent/hy3-preview"
+  ],
+  "notes": [
+    "This release adds compact execution-recording metrics to the same compatible 90-trial cohort published in 20260810.0.1.",
+    "One DeepSeek low-reasoning poison-pill trial and one GLM poison-pill trial were rejected by the provider before evaluation. They are preserved as provider_unavailable and excluded from model pass rates.",
+    "A trailing plus sign on reported cost means at least one trial did not report metered cost, so the displayed total is a lower bound."
+  ],
+  "observations": [
+    "DeepSeek high reasoning made 15 durable repairs in 15 attempts, the strongest raw result in the reasoning comparison. Its 4:13 median and $0.2838 total worked out to about $0.0189 per repair.",
+    "DeepSeek low reasoning made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. Its 4:12 median was nearly identical to high, while its $0.1422 total worked out to about $0.0102 per repair.",
+    "DeepSeek xhigh reasoning made 14 repairs in 15 attempts with a 4:01 median. It was the fastest DeepSeek setting by eleven seconds, but it timed out once and its $0.2916 total was the most expensive, about $0.0208 per repair.",
+    "More reasoning did not produce a monotonic improvement. High was the most reliable DeepSeek setting, low was much cheaper with no evaluated failures, and xhigh spent the most while introducing a timeout.",
+    "GLM 5.2 made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. It was fastest overall at 2:06, but its $2.2353 reported total was about $0.1597 per durable repair.",
+    "GPT-5.6 Luna made 14 repairs in 15 attempts with a 2:26 median. Its known reported cost was $0.1265, or at least $0.0090 per repair. Tencent HY3 Preview made 11 repairs in 15 attempts with a 4:16 median and at least $0.0094 per repair.",
+    "All six configurations passed every Nginx and Rails pool-exhaustion attempt. The six evaluation failures were concentrated in the stateful Sidekiq incidents and the missing-migration scenario.",
+    "These are 90 controlled trials from one harness generation. Three attempts per configuration and scenario remain a small sample, and the two unavailable trials say nothing about repair ability."
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502",
+    "013-sidekiq-wrong-redis": "Sidekiq wrong Redis database",
+    "014-missing-rails-migration": "Missing Rails migration",
+    "015-sidekiq-poison-pill": "Sidekiq poison pill",
+    "016-rails-pool-exhaustion": "Rails pool exhaustion"
+  },
+  "title": "Six agent configurations with execution recording"
+}

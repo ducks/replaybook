@@ -169,6 +169,48 @@ class PublisherTests(unittest.TestCase):
         self.assertIn("deepseek/model (high)", page)
         self.assertIn("--reasoning-efforts low high", page)
 
+    def test_publishes_compact_execution_recording_medians(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = summary("model/a")
+            value["runs"][0]["recording"] = {
+                "transcript_schema_version": 2,
+                "total_duration_ms": 12000,
+                "model_rounds": [
+                    {"index": 1, "duration_ms": 4000},
+                    {"index": 2, "duration_ms": 3000},
+                ],
+                "tools": [
+                    {
+                        "name": "Bash",
+                        "read_only": True,
+                        "started_after_ms": 1000,
+                        "duration_ms": 500,
+                    },
+                    {
+                        "name": "Bash",
+                        "read_only": False,
+                        "started_after_ms": 3000,
+                        "duration_ms": 1000,
+                    },
+                ],
+            }
+            path = self.write_summary(root, "recorded-matrix", value)
+
+            release = create_release("20260810.0.0", [path], {})
+
+        run_recording = release["runs"][0]["recording"]
+        self.assertEqual(run_recording["model_rounds"], 2)
+        self.assertEqual(run_recording["model_duration_seconds"], 7)
+        self.assertEqual(run_recording["first_non_read_only_tool_seconds"], 3)
+        self.assertNotIsInstance(run_recording["model_rounds"], list)
+        aggregate = release["by_model"][0]
+        self.assertEqual(aggregate["recording_reported_trials"], 1)
+        self.assertEqual(aggregate["median_post_first_non_read_only_seconds"], 9)
+        page = html_page(release)
+        self.assertIn("Execution recording", page)
+        self.assertIn("First non-read", page)
+
     def test_rejects_incompatible_scenario_versions(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
