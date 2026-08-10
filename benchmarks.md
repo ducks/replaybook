@@ -13,7 +13,7 @@ counts should not be compared as if they were one controlled experiment.
 
 Six model configurations ran the same five declarative infrastructure incidents three times each under host harness v11 with execution recording enabled, including a controlled DeepSeek low, high, and xhigh reasoning comparison.
 
-Benchmark release: `20260810.0.1`
+Benchmark release: `20260810.0.2`
 
 Scenario packs: `ducks/replaybook-host-scenarios@20260809.0.1`
 
@@ -26,6 +26,19 @@ Scenario packs: `ducks/replaybook-host-scenarios@20260809.0.1`
 | GPT-5.6 Luna | 14/15 | 93% | 2:26 | $0.1265+ | $0.0090+ |
 | Tencent HY3 Preview | 11/15 | 73% | 4:16 | $0.1035+ | $0.0094+ |
 | **Total** | **82/88** | **93%** | **3:24** | **$3.1828+** | **$0.0388+** |
+
+### Execution recording
+
+Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.
+
+| Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| DeepSeek V4 Flash 0731 (high) | 15/15 | 20 | 3:19 | 25 | 0:23 | 0:04 | 4:00 |
+| DeepSeek V4 Flash 0731 (low) | 15/15 | 18 | 2:24 | 26 | 0:45 | 0:04 | 4:17 |
+| DeepSeek V4 Flash 0731 (xhigh) | 15/15 | 21 | 3:37 | 29 | 0:20 | 0:05 | 3:53 |
+| GLM 5.2 | 15/15 | 18 | 1:30 | 28 | 0:22 | 0:03 | 1:58 |
+| GPT-5.6 Luna | 14/15 | 14.5 | 1:19 | 24.5 | 0:45 | 0:08 | 2:08 |
+| Tencent HY3 Preview | 14/15 | 14.5 | 3:03 | 35.5 | 0:09 | 0:09 | 3:29 |
 
 DeepSeek high reasoning made 15 durable repairs in 15 attempts, the strongest raw result in the reasoning comparison. Its 4:13 median and $0.2838 total worked out to about $0.0189 per repair.
 
@@ -66,6 +79,7 @@ These are 90 controlled trials from one harness generation. Three attempts per c
 
 ### Run notes
 
+- This release adds compact execution-recording metrics to the same compatible 90-trial cohort published in 20260810.0.1.
 - One DeepSeek low-reasoning poison-pill trial and one GLM poison-pill trial were rejected by the provider before evaluation. They are preserved as provider_unavailable and excluded from model pass rates.
 - A trailing plus sign on reported cost means at least one trial did not report metered cost, so the displayed total is a lower bound.
 

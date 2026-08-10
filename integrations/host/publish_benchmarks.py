@@ -70,6 +70,49 @@ def required_list(value: dict[str, Any], key: str, source: Path) -> list[Any]:
     return child
 
 
+def compact_recording(
+    recording: Any, run_id: str, source: Path
+) -> dict[str, Any] | None:
+    if recording is None:
+        return None
+    if not isinstance(recording, dict):
+        raise PublishError(f"{source}: {run_id} recording must be an object or null")
+    model_rounds = recording.get("model_rounds") or []
+    tools = recording.get("tools") or []
+    if not isinstance(model_rounds, list) or not isinstance(tools, list):
+        raise PublishError(f"{source}: {run_id} recording arrays are invalid")
+    model_duration = sum(
+        float(round_.get("duration_ms") or 0)
+        for round_ in model_rounds
+        if isinstance(round_, dict)
+    ) / 1000
+    tool_duration = sum(
+        float(tool.get("duration_ms") or 0)
+        for tool in tools
+        if isinstance(tool, dict)
+    ) / 1000
+    non_read_only = [
+        float(tool.get("started_after_ms") or 0) / 1000
+        for tool in tools
+        if isinstance(tool, dict) and tool.get("read_only") is False
+    ]
+    first_non_read_only = min(non_read_only) if non_read_only else None
+    total_duration = float(recording.get("total_duration_ms") or 0) / 1000
+    return {
+        "total_duration_seconds": total_duration,
+        "model_rounds": len(model_rounds),
+        "model_duration_seconds": model_duration,
+        "tool_calls": len(tools),
+        "tool_duration_seconds": tool_duration,
+        "first_non_read_only_tool_seconds": first_non_read_only,
+        "post_first_non_read_only_seconds": (
+            max(0.0, total_duration - first_non_read_only)
+            if first_non_read_only is not None
+            else None
+        ),
+    }
+
+
 def compact_run(run: dict[str, Any], source: Path) -> dict[str, Any]:
     required = {
         "run_id",
@@ -96,7 +139,7 @@ def compact_run(run: dict[str, Any], source: Path) -> dict[str, Any]:
         raise PublishError(
             f"{source}: {run['run_id']} verification must be an object or null"
         )
-    return {
+    compact = {
         "run_id": run["run_id"],
         "scenario": run["scenario"],
         "scenario_version": run["scenario_version"],
@@ -115,6 +158,10 @@ def compact_run(run: dict[str, Any], source: Path) -> dict[str, Any]:
         "usage": usage,
         "verification": verification,
     }
+    recording = compact_recording(run.get("recording"), run["run_id"], source)
+    if recording is not None:
+        compact["recording"] = recording
+    return compact
 
 
 def import_summary(path: Path) -> dict[str, Any]:
@@ -392,7 +439,7 @@ def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         for run in evaluated
         if run["reward"] == 0 and run.get("failure_category")
     )
-    return {
+    result = {
         "trials": len(runs),
         "evaluated": len(evaluated),
         "unavailable": len(runs) - len(evaluated),
@@ -410,6 +457,50 @@ def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         "usage_reported_trials": len(usages),
         "failure_categories": dict(sorted(failure_categories.items())),
     }
+    recordings = [
+        run["recording"]
+        for run in runs
+        if isinstance(run.get("recording"), dict)
+    ]
+    if recordings:
+        first_non_read_only = [
+            recording["first_non_read_only_tool_seconds"]
+            for recording in recordings
+            if recording["first_non_read_only_tool_seconds"] is not None
+        ]
+        post_first_non_read_only = [
+            recording["post_first_non_read_only_seconds"]
+            for recording in recordings
+            if recording["post_first_non_read_only_seconds"] is not None
+        ]
+        result.update(
+            {
+                "recording_reported_trials": len(recordings),
+                "median_model_rounds": statistics.median(
+                    recording["model_rounds"] for recording in recordings
+                ),
+                "median_model_duration_seconds": statistics.median(
+                    recording["model_duration_seconds"] for recording in recordings
+                ),
+                "median_tool_calls": statistics.median(
+                    recording["tool_calls"] for recording in recordings
+                ),
+                "median_tool_duration_seconds": statistics.median(
+                    recording["tool_duration_seconds"] for recording in recordings
+                ),
+                "median_first_non_read_only_tool_seconds": (
+                    statistics.median(first_non_read_only)
+                    if first_non_read_only
+                    else None
+                ),
+                "median_post_first_non_read_only_seconds": (
+                    statistics.median(post_first_non_read_only)
+                    if post_first_non_read_only
+                    else None
+                ),
+            }
+        )
+    return result
 
 
 def grouped_aggregates(
@@ -563,6 +654,31 @@ def html_page(release: dict[str, Any]) -> str:
             f"<td>{money(repair_cost, incomplete) if repair_cost is not None else 'n/a'}</td>"
             "</tr>"
         )
+    recording_cells = []
+    for row in rows:
+        if not row.get("recording_reported_trials"):
+            continue
+        recording_cells.append(
+            "          <tr>"
+            f"<td>{html.escape(model_variant_label(release, row))}</td>"
+            f"<td>{row['recording_reported_trials']}/{row['trials']}</td>"
+            f"<td>{row['median_model_rounds']:g}</td>"
+            f"<td>{format_duration(row['median_model_duration_seconds'])}</td>"
+            f"<td>{row['median_tool_calls']:g}</td>"
+            f"<td>{format_duration(row['median_tool_duration_seconds'])}</td>"
+            f"<td>{format_duration(row['median_first_non_read_only_tool_seconds'])}</td>"
+            f"<td>{format_duration(row['median_post_first_non_read_only_seconds'])}</td>"
+            "</tr>"
+        )
+    recording_section = ""
+    if recording_cells:
+        recording_section = f"""
+    <h2>Execution recording</h2>
+    <p class="small muted">Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.</p>
+    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Model time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
+{chr(10).join(recording_cells)}
+    </tbody></table></div>
+"""
     scenario_lookup = {
         (
             row["scenario"],
@@ -701,6 +817,7 @@ def html_page(release: dict[str, Any]) -> str:
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
 {chr(10).join(model_cells)}
     </tbody></table></div>
+{recording_section}
 
 {observations}
 
@@ -741,6 +858,7 @@ def html_page(release: dict[str, Any]) -> str:
 def markdown_section(release: dict[str, Any]) -> str:
     totals = release["totals"]
     incomplete = totals["cost_reported_trials"] < totals["trials"]
+    rows = model_rows(release)
     lines = [
         MARKDOWN_START,
         f"## {release['title']}",
@@ -758,7 +876,7 @@ def markdown_section(release: dict[str, Any]) -> str:
             f"`{pack['id']}@{pack['version']}`" for pack in scenario_packs
         )
         lines[7:7] = [f"Scenario packs: {pack_names}", ""]
-    for row in model_rows(release):
+    for row in rows:
         row_incomplete = row["cost_reported_trials"] < row["trials"]
         repair_cost = cost_per_repair(row)
         lines.append(
@@ -777,8 +895,31 @@ def markdown_section(release: dict[str, Any]) -> str:
             "",
         ]
     )
+    recording_rows = [row for row in rows if row.get("recording_reported_trials")]
+    if recording_rows:
+        lines.extend(
+            [
+                "### Execution recording",
+                "",
+                "Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.",
+                "",
+                "| Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |",
+                "|---|---:|---:|---:|---:|---:|---:|---:|",
+            ]
+        )
+        for row in recording_rows:
+            lines.append(
+                f"| {model_variant_label(release, row)} | "
+                f"{row['recording_reported_trials']}/{row['trials']} | "
+                f"{row['median_model_rounds']:g} | "
+                f"{format_duration(row['median_model_duration_seconds'])} | "
+                f"{row['median_tool_calls']:g} | "
+                f"{format_duration(row['median_tool_duration_seconds'])} | "
+                f"{format_duration(row['median_first_non_read_only_tool_seconds'])} | "
+                f"{format_duration(row['median_post_first_non_read_only_seconds'])} |"
+            )
+        lines.append("")
     lines.extend(f"{item}\n" for item in release.get("observations", []))
-    rows = model_rows(release)
     scenario_lookup = {
         (
             row["scenario"],

@@ -26,7 +26,7 @@
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Benchmark 20260810.0.1</p>
+    <p class="eyebrow">Benchmark 20260810.0.2</p>
     <h1>Six agent configurations with execution recording</h1>
     <p class="tagline benchmark-tagline">Six model configurations ran the same five declarative infrastructure incidents three times each under host harness v11 with execution recording enabled, including a controlled DeepSeek low, high, and xhigh reasoning comparison.</p>
 
@@ -51,6 +51,18 @@
           <tr><td>Tencent HY3 Preview</td><td>11/15</td><td>73%</td><td>4:16</td><td>2,787,310</td><td>$0.1035+</td><td>$0.0094+</td></tr>
     </tbody></table></div>
 
+    <h2>Execution recording</h2>
+    <p class="small muted">Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.</p>
+    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Model time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
+          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>15/15</td><td>20</td><td>3:19</td><td>25</td><td>0:23</td><td>0:04</td><td>4:00</td></tr>
+          <tr><td>DeepSeek V4 Flash 0731 (low)</td><td>15/15</td><td>18</td><td>2:24</td><td>26</td><td>0:45</td><td>0:04</td><td>4:17</td></tr>
+          <tr><td>DeepSeek V4 Flash 0731 (xhigh)</td><td>15/15</td><td>21</td><td>3:37</td><td>29</td><td>0:20</td><td>0:05</td><td>3:53</td></tr>
+          <tr><td>GLM 5.2</td><td>15/15</td><td>18</td><td>1:30</td><td>28</td><td>0:22</td><td>0:03</td><td>1:58</td></tr>
+          <tr><td>GPT-5.6 Luna</td><td>14/15</td><td>14.5</td><td>1:19</td><td>24.5</td><td>0:45</td><td>0:08</td><td>2:08</td></tr>
+          <tr><td>Tencent HY3 Preview</td><td>14/15</td><td>14.5</td><td>3:03</td><td>35.5</td><td>0:09</td><td>0:09</td><td>3:29</td></tr>
+    </tbody></table></div>
+
+
       <p>DeepSeek high reasoning made 15 durable repairs in 15 attempts, the strongest raw result in the reasoning comparison. Its 4:13 median and $0.2838 total worked out to about $0.0189 per repair.</p>
       <p>DeepSeek low reasoning made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. Its 4:12 median was nearly identical to high, while its $0.1422 total worked out to about $0.0102 per repair.</p>
       <p>DeepSeek xhigh reasoning made 14 repairs in 15 attempts with a 4:01 median. It was the fastest DeepSeek setting by eleven seconds, but it timed out once and its $0.2916 total was the most expensive, about $0.0208 per repair.</p>
@@ -74,7 +86,7 @@
 
     <div class="callout comparison-note">
       <strong>Run notes</strong>
-      <ul><li>One DeepSeek low-reasoning poison-pill trial and one GLM poison-pill trial were rejected by the provider before evaluation. They are preserved as provider_unavailable and excluded from model pass rates.</li><li>A trailing plus sign on reported cost means at least one trial did not report metered cost, so the displayed total is a lower bound.</li></ul>
+      <ul><li>This release adds compact execution-recording metrics to the same compatible 90-trial cohort published in 20260810.0.1.</li><li>One DeepSeek low-reasoning poison-pill trial and one GLM poison-pill trial were rejected by the provider before evaluation. They are preserved as provider_unavailable and excluded from model pass rates.</li><li>A trailing plus sign on reported cost means at least one trial did not report metered cost, so the displayed total is a lower bound.</li></ul>
     </div>
 
     <h2>Constituent matrices</h2>
