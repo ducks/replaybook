@@ -1,0 +1,1869 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 4232897,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 4619774,
+      "known_cost_usd": 0.12650551999999998,
+      "median_duration_seconds": 146,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 59722,
+      "pass_rate": 0.9333333333333333,
+      "passed": 14,
+      "trials": 15,
+      "unavailable": 0,
+      "usage_reported_trials": 14
+    },
+    {
+      "cache_read_tokens": 2322112,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 4,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "backlog_not_recovered": 2
+      },
+      "input_tokens": 2787310,
+      "known_cost_usd": 0.10346628599999999,
+      "median_duration_seconds": 256,
+      "model": "tencent/hy3-preview",
+      "output_tokens": 120926,
+      "pass_rate": 0.7333333333333333,
+      "passed": 11,
+      "trials": 15,
+      "unavailable": 0,
+      "usage_reported_trials": 14
+    },
+    {
+      "cache_read_tokens": 4191134,
+      "cost_reported_trials": 15,
+      "evaluated": 14,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 5850351,
+      "known_cost_usd": 2.2352606796,
+      "median_duration_seconds": 125.5,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 116077,
+      "pass_rate": 1.0,
+      "passed": 14,
+      "trials": 15,
+      "unavailable": 1,
+      "usage_reported_trials": 15
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 507292,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 569214,
+      "known_cost_usd": 0.018122195,
+      "median_duration_seconds": 91,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 8853,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 151360,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 185337,
+      "known_cost_usd": 0.008079560999999999,
+      "median_duration_seconds": 97,
+      "model": "tencent/hy3-preview",
+      "output_tokens": 13145,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 191984,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 245347,
+      "known_cost_usd": 0.0897942644,
+      "median_duration_seconds": 56,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 11089,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 398411,
+      "cost_reported_trials": 2,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 446156,
+      "known_cost_usd": 0.013814435,
+      "median_duration_seconds": 69,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 6440,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 2
+    },
+    {
+      "cache_read_tokens": 454784,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "backlog_not_recovered": 2
+      },
+      "input_tokens": 553941,
+      "known_cost_usd": 0.020953695,
+      "median_duration_seconds": 194,
+      "model": "tencent/hy3-preview",
+      "output_tokens": 24554,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 258168,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 309773,
+      "known_cost_usd": 0.0938694268,
+      "median_duration_seconds": 61,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 8365,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1423136,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1548076,
+      "known_cost_usd": 0.03805266,
+      "median_duration_seconds": 152,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 13679,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 392064,
+      "cost_reported_trials": 2,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 502003,
+      "known_cost_usd": 0.017689371000000002,
+      "median_duration_seconds": 159,
+      "model": "tencent/hy3-preview",
+      "output_tokens": 12047,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 2
+    },
+    {
+      "cache_read_tokens": 1889371,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 2265011,
+      "known_cost_usd": 0.5748316005999999,
+      "median_duration_seconds": 171,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 22390,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1042374,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1112869,
+      "known_cost_usd": 0.030641539999999995,
+      "median_duration_seconds": 166,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 19018,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 880512,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 1037831,
+      "known_cost_usd": 0.038592099,
+      "median_duration_seconds": 555,
+      "model": "tencent/hy3-preview",
+      "output_tokens": 48525,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1194030,
+      "cost_reported_trials": 3,
+      "evaluated": 2,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 2185499,
+      "known_cost_usd": 1.2568254400000003,
+      "median_duration_seconds": 397.0,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 57731,
+      "pass_rate": 1.0,
+      "passed": 2,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 1,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 861684,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 943459,
+      "known_cost_usd": 0.02587469,
+      "median_duration_seconds": 138,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 11732,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 443392,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 508198,
+      "known_cost_usd": 0.01815156,
+      "median_duration_seconds": 256,
+      "model": "tencent/hy3-preview",
+      "output_tokens": 22655,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 657581,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 844721,
+      "known_cost_usd": 0.2199399478,
+      "median_duration_seconds": 126,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 16502,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": null,
+    "claux_release": "v20260810.0.0",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "b83a0df08fd49f4322440ad6dac5db14e72e25ad9d6a37af96d7d06ddd885cf8",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-host-scenarios",
+          "sha256": "9f25fceb5c4efdc2e34f12dfb84754fc866245c9146ea8a19913bd7a017f8e4a",
+          "version": "20260809.0.1"
+        }
+      ],
+      "schema_version": 1
+    },
+    "harness_version": 11,
+    "reasoning_efforts": [],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-host-scenarios",
+        "version": "20260809.0.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-host-scenarios",
+          "version": "20260809.0.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-host-scenarios",
+          "version": "20260809.0.1"
+        },
+        "version": 2
+      },
+      {
+        "id": "014-missing-rails-migration",
+        "pack": {
+          "id": "ducks/replaybook-host-scenarios",
+          "version": "20260809.0.1"
+        },
+        "version": 2
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-host-scenarios",
+          "version": "20260809.0.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-host-scenarios",
+          "version": "20260809.0.1"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Luna, HY3, and GLM ran the same five declarative infrastructure incidents three times each with execution recording enabled. Every passing repair survived scenario verification, service restart, and host reboot.",
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "tencent/hy3-preview": "Tencent HY3 Preview",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "z-ai/glm-5.2",
+    "openai/gpt-5.6-luna",
+    "tencent/hy3-preview"
+  ],
+  "notes": [
+    "One GLM poison-pill trial was rejected by the provider before evaluation. It is preserved as provider_unavailable and excluded from GLM's pass rate.",
+    "A trailing plus sign on reported cost means at least one trial did not report metered cost, so the displayed total is a lower bound."
+  ],
+  "observations": [
+    "GLM 5.2 made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. It was fastest at the median at 2:06, but its $2.2353 reported total was about $0.1597 per durable repair.",
+    "GPT-5.6 Luna made 14 repairs in 15 attempts with a 2:26 median. Its known reported cost was $0.1265, or at least $0.0090 per repair. Its only failure was an agent timeout on the wrong-Redis incident.",
+    "Tencent HY3 Preview made 11 repairs in 15 attempts with a 4:16 median. Its known reported cost was $0.1035, or at least $0.0094 per repair. Two attempts lost pre-existing Sidekiq backlog and two timed out.",
+    "All three models passed every Nginx and Rails pool-exhaustion attempt. The five evaluation failures were concentrated in the stateful Sidekiq incidents and the missing-migration scenario.",
+    "Execution recording shows different operating profiles: GLM reached its first non-read action in a median 0:03, Luna in 0:08, and HY3 in 0:09. These timings describe this matrix, not a universal model ranking.",
+    "These are 45 controlled trials from one harness generation. Three attempts per model and scenario remain a small sample, and the unavailable GLM trial should not be treated as evidence about repair ability."
+  ],
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:31:46Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "001-nginx-502-host-openai-gpt-5-6-luna-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T16:30:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 19883,
+        "cache_read_tokens": 147064,
+        "cost_usd": 0.005688515,
+        "input_tokens": 166980,
+        "output_tokens": 2882
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 87,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:31:43Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "001-nginx-502-host-openai-gpt-5-6-luna-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T16:30:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 22300,
+        "cache_read_tokens": 143155,
+        "cost_usd": 0.00574155,
+        "input_tokens": 165488,
+        "output_tokens": 2532
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 208,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:35:46Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "001-nginx-502-host-openai-gpt-5-6-luna-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T16:32:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 19628,
+        "cache_read_tokens": 217073,
+        "cost_usd": 0.006692129999999999,
+        "input_tokens": 236746,
+        "output_tokens": 3439
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 330,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:37:54Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "001-nginx-502-host-tencent-hy3-preview-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T16:32:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 76416,
+        "cost_usd": 0.003952305,
+        "input_tokens": 90699,
+        "output_tokens": 6894
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 79,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:37:40Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "001-nginx-502-host-tencent-hy3-preview-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T16:36:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 33664,
+        "cost_usd": 0.001592451,
+        "input_tokens": 39893,
+        "output_tokens": 2348
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 97,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:39:51Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "001-nginx-502-host-tencent-hy3-preview-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T16:38:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 41280,
+        "cost_usd": 0.0025348050000000002,
+        "input_tokens": 54745,
+        "output_tokens": 3903
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 56,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:39:22Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "001-nginx-502-host-z-ai-glm-5-2-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T16:38:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 48782,
+        "cost_usd": 0.025605995200000002,
+        "input_tokens": 67403,
+        "output_tokens": 2310
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 107,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:41:41Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "001-nginx-502-host-z-ai-glm-5-2-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T16:39:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 88532,
+        "cost_usd": 0.0460770472,
+        "input_tokens": 114944,
+        "output_tokens": 6589
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 43,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:41:06Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "001-nginx-502-host-z-ai-glm-5-2-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T16:40:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 54670,
+        "cost_usd": 0.018111222,
+        "input_tokens": 63000,
+        "output_tokens": 2190
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 69,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:42:58Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-openai-gpt-5-6-luna-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T16:41:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 26964,
+        "cache_read_tokens": 215840,
+        "cost_usd": 0.0077326999999999995,
+        "input_tokens": 242840,
+        "output_tokens": 3667
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 933,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-08-10T16:57:50Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "013-sidekiq-wrong-redis-openai-gpt-5-6-luna-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T16:42:06Z",
+      "trial_status": "evaluated",
+      "usage": null,
+      "verification": {
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 68,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:44:54Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-openai-gpt-5-6-luna-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T16:43:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 20709,
+        "cache_read_tokens": 182571,
+        "cost_usd": 0.0060817350000000004,
+        "input_tokens": 203316,
+        "output_tokens": 2773
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 194,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "repair did not recover the pre-existing backlog",
+      "failure_category": "backlog_not_recovered",
+      "finished_at": "2026-08-10T16:49:07Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "013-sidekiq-wrong-redis-tencent-hy3-preview-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T16:45:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 129280,
+        "cost_usd": 0.00642978,
+        "input_tokens": 163880,
+        "output_tokens": 7310
+      },
+      "verification": {
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 149,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T16:52:23Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-tencent-hy3-preview-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T16:49:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 84352,
+        "cost_usd": 0.004557504,
+        "input_tokens": 111746,
+        "output_tokens": 5049
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 316,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "repair did not recover the pre-existing backlog",
+      "failure_category": "backlog_not_recovered",
+      "finished_at": "2026-08-10T16:58:40Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "013-sidekiq-wrong-redis-tencent-hy3-preview-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T16:52:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 241152,
+        "cost_usd": 0.009966411,
+        "input_tokens": 278315,
+        "output_tokens": 12195
+      },
+      "verification": {
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 203,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:02:00Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-z-ai-glm-5-2-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T16:58:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 112287,
+        "cost_usd": 0.0485461042,
+        "input_tokens": 142639,
+        "output_tokens": 3550
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 61,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:00:24Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-z-ai-glm-5-2-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T16:59:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 82110,
+        "cost_usd": 0.026197374,
+        "input_tokens": 94092,
+        "output_tokens": 3010
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 50,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:02:03Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-z-ai-glm-5-2-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:00:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 63771,
+        "cost_usd": 0.019125948599999998,
+        "input_tokens": 73042,
+        "output_tokens": 1805
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 152,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:05:15Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-openai-gpt-5-6-luna-1",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:02:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 40349,
+        "cache_read_tokens": 434070,
+        "cost_usd": 0.011763025,
+        "input_tokens": 474464,
+        "output_tokens": 3957
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 138,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:05:00Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-openai-gpt-5-6-luna-2",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:02:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 46475,
+        "cache_read_tokens": 475024,
+        "cost_usd": 0.012998014999999998,
+        "input_tokens": 521541,
+        "output_tokens": 4057
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 385,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:12:09Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-openai-gpt-5-6-luna-3",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:05:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 37972,
+        "cache_read_tokens": 514042,
+        "cost_usd": 0.01329162,
+        "input_tokens": 552071,
+        "output_tokens": 5665
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 159,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:08:34Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-tencent-hy3-preview-1",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:05:38Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 216832,
+        "cost_usd": 0.009025611000000001,
+        "input_tokens": 265885,
+        "output_tokens": 6580
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 935,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-08-10T17:24:40Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "014-missing-rails-migration-tencent-hy3-preview-2",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:08:55Z",
+      "trial_status": "evaluated",
+      "usage": null,
+      "verification": {
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 124,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:14:49Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-tencent-hy3-preview-3",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:12:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 175232,
+        "cost_usd": 0.00866376,
+        "input_tokens": 236118,
+        "output_tokens": 5467
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 281,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:20:07Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-z-ai-glm-5-2-1",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:15:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1412105,
+        "cost_usd": 0.382654503,
+        "input_tokens": 1647724,
+        "output_tokens": 11174
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 171,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:23:34Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-z-ai-glm-5-2-2",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:20:27Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 372185,
+        "cost_usd": 0.128210147,
+        "input_tokens": 457468,
+        "output_tokens": 7313
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 125,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:26:20Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-z-ai-glm-5-2-3",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-10T17:23:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 105081,
+        "cost_usd": 0.0639669506,
+        "input_tokens": 159819,
+        "output_tokens": 3903
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 146,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:27:52Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-openai-gpt-5-6-luna-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:25:05Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 24188,
+        "cache_read_tokens": 280778,
+        "cost_usd": 0.00885948,
+        "input_tokens": 305020,
+        "output_tokens": 5038
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 364,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:33:12Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-openai-gpt-5-6-luna-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:26:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 30275,
+        "cache_read_tokens": 582347,
+        "cost_usd": 0.014679644999999998,
+        "input_tokens": 612712,
+        "output_tokens": 8438
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 166,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:31:32Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-openai-gpt-5-6-luna-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:28:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 15837,
+        "cache_read_tokens": 179249,
+        "cost_usd": 0.007102414999999999,
+        "input_tokens": 195137,
+        "output_tokens": 5542
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 555,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:41:32Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-tencent-hy3-preview-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:31:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 229120,
+        "cost_usd": 0.010721129999999999,
+        "input_tokens": 268660,
+        "output_tokens": 16279
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 904,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-08-10T17:48:41Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-tencent-hy3-preview-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:33:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 511744,
+        "cost_usd": 0.020543522999999998,
+        "input_tokens": 592957,
+        "output_tokens": 22288
+      },
+      "verification": {
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 278,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:46:54Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-tencent-hy3-preview-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:41:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 139648,
+        "cost_usd": 0.007327446,
+        "input_tokens": 176214,
+        "output_tokens": 9958
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 266,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:52:02Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-z-ai-glm-5-2-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:47:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 252160,
+        "cost_usd": 0.3107018200000001,
+        "input_tokens": 565736,
+        "output_tokens": 15323
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 528,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T17:58:12Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-z-ai-glm-5-2-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:49:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 543428,
+        "cost_usd": 0.6415660200000001,
+        "input_tokens": 1011331,
+        "output_tokens": 24026
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 329,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "API error: unsupported OpenAI finish reason: error",
+      "failure_category": "provider_unavailable",
+      "finished_at": "2026-08-10T17:57:56Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-z-ai-glm-5-2-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:52:27Z",
+      "trial_status": "unavailable",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 398442,
+        "cost_usd": 0.3045576000000001,
+        "input_tokens": 608432,
+        "output_tokens": 18382
+      },
+      "verification": {
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 138,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T18:01:08Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-openai-gpt-5-6-luna-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:58:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 19750,
+        "cache_read_tokens": 198520,
+        "cost_usd": 0.006697949999999999,
+        "input_tokens": 218312,
+        "output_tokens": 3733
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 178,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T18:02:07Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-openai-gpt-5-6-luna-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T17:58:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 43665,
+        "cache_read_tokens": 509241,
+        "cost_usd": 0.013276034999999999,
+        "input_tokens": 552957,
+        "output_tokens": 4534
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T18:03:21Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-openai-gpt-5-6-luna-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T18:01:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 18231,
+        "cache_read_tokens": 153923,
+        "cost_usd": 0.005900705000000001,
+        "input_tokens": 172190,
+        "output_tokens": 3465
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 256,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T18:07:15Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-tencent-hy3-preview-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T18:02:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 220672,
+        "cost_usd": 0.009092664,
+        "input_tokens": 260996,
+        "output_tokens": 9134
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 371,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T18:10:27Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-tencent-hy3-preview-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T18:03:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 158080,
+        "cost_usd": 0.005877396,
+        "input_tokens": 172772,
+        "output_tokens": 7772
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 164,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T18:12:20Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-tencent-hy3-preview-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T18:07:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 64640,
+        "cost_usd": 0.0031815,
+        "input_tokens": 74430,
+        "output_tokens": 5749
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 126,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T18:13:27Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-z-ai-glm-5-2-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T18:10:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 196230,
+        "cost_usd": 0.0987714844,
+        "input_tokens": 293678,
+        "output_tokens": 4942
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 87,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T18:14:36Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-z-ai-glm-5-2-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T18:12:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 173713,
+        "cost_usd": 0.03730770420000001,
+        "input_tokens": 197942,
+        "output_tokens": 3767
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 264,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-10T18:18:47Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": null,
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-z-ai-glm-5-2-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-10T18:13:51Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 287638,
+        "cost_usd": 0.0838607592,
+        "input_tokens": 353101,
+        "output_tokens": 7793
+      },
+      "verification": {
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502",
+    "013-sidekiq-wrong-redis": "Sidekiq wrong Redis database",
+    "014-missing-rails-migration": "Missing Rails migration",
+    "015-sidekiq-poison-pill": "Sidekiq poison pill",
+    "016-rails-pool-exhaustion": "Rails pool exhaustion"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": null,
+      "claux_release": "v20260810.0.0",
+      "concurrency": 2,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "b83a0df08fd49f4322440ad6dac5db14e72e25ad9d6a37af96d7d06ddd885cf8",
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-host-scenarios",
+            "sha256": "9f25fceb5c4efdc2e34f12dfb84754fc866245c9146ea8a19913bd7a017f8e4a",
+            "version": "20260809.0.1"
+          }
+        ],
+        "schema_version": 1
+      },
+      "finished_at": "2026-08-10T18:18:47.283863Z",
+      "harness_version": 11,
+      "models": [
+        "openai/gpt-5.6-luna",
+        "tencent/hy3-preview",
+        "z-ai/glm-5.2"
+      ],
+      "reasoning_efforts": [],
+      "replaybook_commit": "3e9f86873cbeeb9ec5ca7ec596d1c9737ea0650a",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-host-scenarios",
+          "version": "20260809.0.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-10__16-29-42.dcb119",
+      "started_at": "2026-08-10T16:29:42.812715Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "title": "Three models with execution recording",
+  "totals": {
+    "cache_read_tokens": 10746143,
+    "cost_reported_trials": 43,
+    "evaluated": 44,
+    "failed": 5,
+    "failure_categories": {
+      "agent_timeout": 3,
+      "backlog_not_recovered": 2
+    },
+    "input_tokens": 13257435,
+    "known_cost_usd": 2.4652324856,
+    "median_duration_seconds": 161.5,
+    "output_tokens": 296725,
+    "pass_rate": 0.8863636363636364,
+    "passed": 39,
+    "trials": 45,
+    "unavailable": 1,
+    "usage_reported_trials": 43
+  },
+  "version": "20260810.0.0"
+}
