@@ -24,6 +24,13 @@ MARKDOWN_RECORD = Path("benchmarks.md")
 VERSION_PATTERN = re.compile(r"^[0-9]{8}\.[0-9]+\.[0-9]+$")
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
+OPTIONAL_SNAPSHOT_HASHES = (
+    "agent_adapter_sha256",
+    "agent_payload_sha256",
+    "agent_env_sha256",
+    "claux_binary_sha256",
+    "benchmark_manifest_sha256",
+)
 MARKDOWN_START = "<!-- replaybook:current-benchmark:start -->"
 MARKDOWN_END = "<!-- replaybook:current-benchmark:end -->"
 HISTORY_START = "<!-- replaybook:generated-history:start -->"
@@ -130,6 +137,11 @@ def import_summary(path: Path) -> dict[str, Any]:
         raise PublishError(f"{path}: benchmark scenarios and models must be arrays")
     if not isinstance(agent, dict):
         raise PublishError(f"{path}: benchmark agent must be an object")
+    execution_snapshot = benchmark.get("execution_snapshot")
+    if isinstance(execution_snapshot, dict):
+        execution_snapshot = dict(execution_snapshot)
+        for key in OPTIONAL_SNAPSHOT_HASHES:
+            execution_snapshot.setdefault(key, None)
     source = {
         "source": path.parent.name,
         "started_at": summary.get("started_at"),
@@ -140,7 +152,7 @@ def import_summary(path: Path) -> dict[str, Any]:
         "scenarios": scenarios,
         "scenario_packs": scenario_packs,
         "benchmark_manifest": benchmark.get("benchmark_manifest"),
-        "execution_snapshot": benchmark.get("execution_snapshot"),
+        "execution_snapshot": execution_snapshot,
         "models": models,
         "reasoning_efforts": reasoning_efforts,
         "attempts": benchmark.get("attempts"),
@@ -227,13 +239,7 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
             raise PublishError(
                 f"{path}: execution snapshot does not match declared scenario packs"
             )
-        for key in (
-            "agent_adapter_sha256",
-            "agent_payload_sha256",
-            "agent_env_sha256",
-            "claux_binary_sha256",
-            "benchmark_manifest_sha256",
-        ):
+        for key in OPTIONAL_SNAPSHOT_HASHES:
             value = execution_snapshot.get(key)
             if value is not None and (
                 not isinstance(value, str) or not SHA256_PATTERN.fullmatch(value)

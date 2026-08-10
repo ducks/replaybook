@@ -9,55 +9,64 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Three models with execution recording
+## Six agent configurations with execution recording
 
-Luna, HY3, and GLM ran the same five declarative infrastructure incidents three times each with execution recording enabled. Every passing repair survived scenario verification, service restart, and host reboot.
+Six model configurations ran the same five declarative infrastructure incidents three times each under host harness v11 with execution recording enabled, including a controlled DeepSeek low, high, and xhigh reasoning comparison.
 
-Benchmark release: `20260810.0.0`
+Benchmark release: `20260810.0.1`
 
 Scenario packs: `ducks/replaybook-host-scenarios@20260809.0.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
+| DeepSeek V4 Flash 0731 (high) | 15/15 | 100% | 4:13 | $0.2838 | $0.0189 |
+| DeepSeek V4 Flash 0731 (low) | 14/14 | 100% | 4:12 | $0.1422 | $0.0102 |
+| DeepSeek V4 Flash 0731 (xhigh) | 14/15 | 93% | 4:01 | $0.2916 | $0.0208 |
 | GLM 5.2 | 14/14 | 100% | 2:06 | $2.2353 | $0.1597 |
 | GPT-5.6 Luna | 14/15 | 93% | 2:26 | $0.1265+ | $0.0090+ |
 | Tencent HY3 Preview | 11/15 | 73% | 4:16 | $0.1035+ | $0.0094+ |
-| **Total** | **39/44** | **89%** | **2:42** | **$2.4652+** | **$0.0632+** |
+| **Total** | **82/88** | **93%** | **3:24** | **$3.1828+** | **$0.0388+** |
 
-GLM 5.2 made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. It was fastest at the median at 2:06, but its $2.2353 reported total was about $0.1597 per durable repair.
+DeepSeek high reasoning made 15 durable repairs in 15 attempts, the strongest raw result in the reasoning comparison. Its 4:13 median and $0.2838 total worked out to about $0.0189 per repair.
 
-GPT-5.6 Luna made 14 repairs in 15 attempts with a 2:26 median. Its known reported cost was $0.1265, or at least $0.0090 per repair. Its only failure was an agent timeout on the wrong-Redis incident.
+DeepSeek low reasoning made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. Its 4:12 median was nearly identical to high, while its $0.1422 total worked out to about $0.0102 per repair.
 
-Tencent HY3 Preview made 11 repairs in 15 attempts with a 4:16 median. Its known reported cost was $0.1035, or at least $0.0094 per repair. Two attempts lost pre-existing Sidekiq backlog and two timed out.
+DeepSeek xhigh reasoning made 14 repairs in 15 attempts with a 4:01 median. It was the fastest DeepSeek setting by eleven seconds, but it timed out once and its $0.2916 total was the most expensive, about $0.0208 per repair.
 
-All three models passed every Nginx and Rails pool-exhaustion attempt. The five evaluation failures were concentrated in the stateful Sidekiq incidents and the missing-migration scenario.
+More reasoning did not produce a monotonic improvement. High was the most reliable DeepSeek setting, low was much cheaper with no evaluated failures, and xhigh spent the most while introducing a timeout.
 
-Execution recording shows different operating profiles: GLM reached its first non-read action in a median 0:03, Luna in 0:08, and HY3 in 0:09. These timings describe this matrix, not a universal model ranking.
+GLM 5.2 made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. It was fastest overall at 2:06, but its $2.2353 reported total was about $0.1597 per durable repair.
 
-These are 45 controlled trials from one harness generation. Three attempts per model and scenario remain a small sample, and the unavailable GLM trial should not be treated as evidence about repair ability.
+GPT-5.6 Luna made 14 repairs in 15 attempts with a 2:26 median. Its known reported cost was $0.1265, or at least $0.0090 per repair. Tencent HY3 Preview made 11 repairs in 15 attempts with a 4:16 median and at least $0.0094 per repair.
+
+All six configurations passed every Nginx and Rails pool-exhaustion attempt. The six evaluation failures were concentrated in the stateful Sidekiq incidents and the missing-migration scenario.
+
+These are 90 controlled trials from one harness generation. Three attempts per configuration and scenario remain a small sample, and the two unavailable trials say nothing about repair ability.
 
 ### Scenario breakdown
 
-| Scenario | Version | GLM 5.2 | GPT-5.6 Luna | Tencent HY3 Preview |
-|---|---:|---:|---:|---:|
-| Nginx 502 | v1 | 3/3, 0:56 | 3/3, 1:31 | 3/3, 1:37 |
-| Sidekiq wrong Redis database | v2 | 3/3, 1:01 | 2/3, 1:09 | 1/3, 3:14 |
-| Missing Rails migration | v2 | 3/3, 2:51 | 3/3, 2:32 | 2/3, 2:39 |
-| Sidekiq poison pill | v1 | 2/2, 6:37 | 3/3, 2:46 | 2/3, 9:15 |
-| Rails pool exhaustion | v1 | 3/3, 2:06 | 3/3, 2:18 | 3/3, 4:16 |
+| Scenario | Version | DeepSeek V4 Flash 0731 (high) | DeepSeek V4 Flash 0731 (low) | DeepSeek V4 Flash 0731 (xhigh) | GLM 5.2 | GPT-5.6 Luna | Tencent HY3 Preview |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Nginx 502 | v1 | 3/3, 1:17 | 3/3, 2:13 | 3/3, 2:06 | 3/3, 0:56 | 3/3, 1:31 | 3/3, 1:37 |
+| Sidekiq wrong Redis database | v2 | 3/3, 1:56 | 3/3, 1:30 | 3/3, 3:16 | 3/3, 1:01 | 2/3, 1:09 | 1/3, 3:14 |
+| Missing Rails migration | v2 | 3/3, 7:43 | 3/3, 5:29 | 2/3, 8:05 | 3/3, 2:51 | 3/3, 2:32 | 2/3, 2:39 |
+| Sidekiq poison pill | v1 | 3/3, 9:21 | 2/2, 4:56 | 3/3, 9:06 | 2/2, 6:37 | 3/3, 2:46 | 2/3, 9:15 |
+| Rails pool exhaustion | v1 | 3/3, 4:13 | 3/3, 4:56 | 3/3, 3:52 | 3/3, 2:06 | 3/3, 2:18 | 3/3, 4:16 |
 
 ### Failure categories
 
-- `agent_timeout`: 3
+- `agent_timeout`: 4
 - `backlog_not_recovered`: 2
 
 ### Source matrices
 
+- `host-matrix-2026-08-10__18-28-05.e549b9`: deepseek/deepseek-v4-flash-0731; Replaybook `d7985483`; reasoning low/high
+- `host-matrix-2026-08-10__14-33-45.fa2330`: deepseek/deepseek-v4-flash-0731; Replaybook `ef03309d`; reasoning xhigh
 - `host-matrix-2026-08-10__16-29-42.dcb119`: openai/gpt-5.6-luna, tencent/hy3-preview, z-ai/glm-5.2; Replaybook `3e9f8687`
 
 ### Run notes
 
-- One GLM poison-pill trial was rejected by the provider before evaluation. It is preserved as provider_unavailable and excluded from GLM's pass rate.
+- One DeepSeek low-reasoning poison-pill trial and one GLM poison-pill trial were rejected by the provider before evaluation. They are preserved as provider_unavailable and excluded from model pass rates.
 - A trailing plus sign on reported cost means at least one trial did not report metered cost, so the displayed total is a lower bound.
 
 <!-- replaybook:current-benchmark:end -->
