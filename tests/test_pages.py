@@ -67,7 +67,8 @@ class PagesTests(unittest.TestCase):
         harness_version = release["compatibility"]["harness_version"]
 
         self.assertIn(f"Host harness v{harness_version}", current)
-        self.assertIn(f'{totals["passed"]}/{totals["trials"]}', current)
+        self.assertIn(f'{totals["passed"]}/{totals["evaluated"]}', current)
+        self.assertIn(f'{totals["trials"]} trials', current)
         self.assertIn(version, current)
         self.assertIn(release["title"], current)
         for label in release["model_labels"].values():
