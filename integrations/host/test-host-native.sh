@@ -116,8 +116,8 @@ grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
 [[ -z "$("$script_dir/classify-agent-run-exit.sh" 1 934 900)" ]]
 grep -q 'trial_status="unavailable"' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
-grep -q 'v20260809.0.0' "$script_dir/run-host-native.sh"
-grep -q 'v20260809.0.0' "$script_dir/run_host_matrix.py"
+grep -q 'v20260810.0.0' "$script_dir/run-host-native.sh"
+grep -q 'v20260810.0.0' "$script_dir/run_host_matrix.py"
 
 agent_error="$(mktemp)"
 trap 'rm -f -- "$agent_error"' EXIT

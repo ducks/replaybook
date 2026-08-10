@@ -1056,7 +1056,7 @@ def main(argv: list[str] | None = None) -> int:
             else None,
         },
         "claux_release": args.claux_release
-        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260809.0.0"),
+        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260810.0.0"),
     }
     (matrix_dir / "benchmark.json").write_text(json.dumps(benchmark, indent=2) + "\n")
     started_at = utc_now()
