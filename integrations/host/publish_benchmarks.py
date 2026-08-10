@@ -139,6 +139,7 @@ def import_summary(path: Path) -> dict[str, Any]:
         "replaybook_commit": benchmark.get("replaybook_commit"),
         "scenarios": scenarios,
         "scenario_packs": scenario_packs,
+        "benchmark_manifest": benchmark.get("benchmark_manifest"),
         "execution_snapshot": benchmark.get("execution_snapshot"),
         "models": models,
         "reasoning_efforts": reasoning_efforts,
@@ -159,6 +160,7 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
     reasoning_efforts = declared_reasoning_efforts or [None]
     scenarios = source["scenarios"]
     scenario_packs = source["scenario_packs"]
+    benchmark_manifest = source["benchmark_manifest"]
     execution_snapshot = source["execution_snapshot"]
     attempts = source["attempts"]
     if (
@@ -187,6 +189,15 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
         pack_keys.append((pack["id"], pack["version"]))
     if len({pack_id for pack_id, _ in pack_keys}) != len(pack_keys):
         raise PublishError(f"{path}: benchmark scenario packs must be unique")
+    if benchmark_manifest is not None and (
+        not isinstance(benchmark_manifest, dict)
+        or benchmark_manifest.get("schema_version") != 1
+        or not isinstance(benchmark_manifest.get("id"), str)
+        or not isinstance(benchmark_manifest.get("version"), str)
+        or not isinstance(benchmark_manifest.get("sha256"), str)
+        or not SHA256_PATTERN.fullmatch(benchmark_manifest["sha256"])
+    ):
+        raise PublishError(f"{path}: benchmark manifest metadata is invalid")
     declared_packs = {
         pack_id: version for pack_id, version in pack_keys
     }
@@ -221,12 +232,20 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
             "agent_payload_sha256",
             "agent_env_sha256",
             "claux_binary_sha256",
+            "benchmark_manifest_sha256",
         ):
             value = execution_snapshot.get(key)
             if value is not None and (
                 not isinstance(value, str) or not SHA256_PATTERN.fullmatch(value)
             ):
                 raise PublishError(f"{path}: execution snapshot {key} is invalid")
+        if benchmark_manifest is not None and (
+            execution_snapshot.get("benchmark_manifest_sha256")
+            != benchmark_manifest["sha256"]
+        ):
+            raise PublishError(
+                f"{path}: execution snapshot does not match benchmark manifest"
+            )
     for scenario in scenarios:
         if (
             not isinstance(scenario, dict)
@@ -290,6 +309,7 @@ def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
         "harness_version": source["harness_version"],
         "scenarios": source["scenarios"],
         "scenario_packs": source["scenario_packs"],
+        "benchmark_manifest": source["benchmark_manifest"],
         "execution_snapshot": source["execution_snapshot"],
         "attempts": source["attempts"],
         "agent_timeout_seconds": source["agent_timeout_seconds"],

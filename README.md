@@ -97,6 +97,17 @@ python integrations/host/run_host_matrix.py \
   --attempts 3
 ```
 
+Run the separately versioned
+[Replaybook Infra](https://github.com/ducks/replaybook-infra) benchmark from
+its executable manifest:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --benchmark ../replaybook-infra/benchmark.toml \
+  --models deepseek/deepseek-v4-flash-0731 \
+  --concurrency 2
+```
+
 See [`integrations/host/README.md`](integrations/host/README.md) for adapter
 commands, architecture, result artifacts, and the versioned external scenario
 pack contract. The bundled

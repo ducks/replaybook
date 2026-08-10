@@ -86,6 +86,8 @@ class HostMatrixTests(unittest.TestCase):
             )
             adapter = root / "adapter"
             adapter.write_text("original adapter\n")
+            benchmark_manifest = root / "benchmark.toml"
+            benchmark_manifest.write_text("schema_version = 1\n")
             matrix = root / "matrix"
             matrix.mkdir()
 
@@ -96,6 +98,7 @@ class HostMatrixTests(unittest.TestCase):
                 agent_payload=None,
                 agent_env_file=None,
                 claux_binary=None,
+                benchmark_manifest=benchmark_manifest,
                 host_dir=host,
             )
             (host / "run-host-native.sh").write_text("changed\n")
@@ -114,6 +117,13 @@ class HostMatrixTests(unittest.TestCase):
                 (snapshot.scenario_pack_dirs[0] / "incident/scenario.toml").read_text(),
             )
             self.assertEqual(snapshot.metadata["schema_version"], 1)
+            self.assertEqual(
+                (matrix / "execution-snapshot/benchmark.toml").read_text(),
+                "schema_version = 1\n",
+            )
+            self.assertEqual(
+                len(snapshot.metadata["benchmark_manifest_sha256"]), 64
+            )
             self.assertEqual(len(snapshot.metadata["host_harness_sha256"]), 64)
             self.assertEqual(
                 len(snapshot.metadata["scenario_packs"][0]["sha256"]),

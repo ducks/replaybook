@@ -25,8 +25,10 @@ from pathlib import Path
 from typing import Any, Iterable
 
 try:
+    from .benchmark_manifest import BenchmarkManifest, load_benchmark_manifest
     from .scenario_pack import ScenarioPack, discover
 except ImportError:
+    from benchmark_manifest import BenchmarkManifest, load_benchmark_manifest
     from scenario_pack import ScenarioPack, discover
 
 
@@ -148,6 +150,7 @@ def stage_execution_snapshot(
     agent_payload: Path | None,
     agent_env_file: Path | None,
     claux_binary: Path | None,
+    benchmark_manifest: Path | None = None,
     host_dir: Path = SCRIPT_DIR,
 ) -> ExecutionSnapshot:
     snapshot_dir = matrix_dir / "execution-snapshot"
@@ -186,6 +189,10 @@ def stage_execution_snapshot(
         claux_binary,
         snapshot_dir / "agent" / "claux",
     )
+    _, benchmark_manifest_hash = copy_artifact(
+        benchmark_manifest,
+        snapshot_dir / "benchmark.toml",
+    )
     metadata = {
         "schema_version": 1,
         "host_harness_sha256": sha256_tree(harness_dir),
@@ -196,6 +203,7 @@ def stage_execution_snapshot(
         if agent_env_file is not None
         else None,
         "claux_binary_sha256": binary_hash,
+        "benchmark_manifest_sha256": benchmark_manifest_hash,
     }
     (snapshot_dir / "manifest.json").write_text(
         json.dumps(metadata, indent=2, sort_keys=True) + "\n"
@@ -836,6 +844,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         description="Run host-native Replaybook scenarios across models and attempts."
     )
     parser.add_argument(
+        "--benchmark",
+        type=Path,
+        help="executable benchmark.toml defining the pack, scenarios, attempts, "
+        "timeout, and required host harness",
+    )
+    parser.add_argument(
         "--scenario",
         action="append",
         dest="scenarios",
@@ -859,12 +873,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         nargs="+",
         help="Claux reasoning efforts to compare, such as low high",
     )
-    parser.add_argument("--attempts", type=int, default=1)
+    parser.add_argument("--attempts", type=int)
     parser.add_argument("--concurrency", type=int, default=2)
     parser.add_argument(
         "--agent-timeout-seconds",
         type=int,
-        default=DEFAULT_AGENT_TIMEOUT_SECONDS,
+        default=None,
         help=f"maximum agent runtime per trial (default: {DEFAULT_AGENT_TIMEOUT_SECONDS})",
     )
     parser.add_argument(
@@ -881,8 +895,44 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--agent-env-file", type=Path)
     parser.add_argument("--agent-name")
     parser.add_argument("--oracle", action="store_true")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="validate the benchmark and selected pack without starting VMs",
+    )
     parser.add_argument("--list-scenarios", action="store_true")
     return parser.parse_args(argv)
+
+
+def apply_benchmark_manifest(args: argparse.Namespace) -> BenchmarkManifest | None:
+    if args.benchmark is None:
+        args.attempts = 1 if args.attempts is None else args.attempts
+        args.agent_timeout_seconds = (
+            DEFAULT_AGENT_TIMEOUT_SECONDS
+            if args.agent_timeout_seconds is None
+            else args.agent_timeout_seconds
+        )
+        return None
+    manifest = load_benchmark_manifest(args.benchmark)
+    conflicts = []
+    if args.scenarios:
+        conflicts.append("--scenario")
+    if args.scenario_packs:
+        conflicts.append("--scenario-pack")
+    if args.attempts is not None:
+        conflicts.append("--attempts")
+    if args.agent_timeout_seconds is not None:
+        conflicts.append("--agent-timeout-seconds")
+    if conflicts:
+        raise ValueError(
+            "--benchmark defines scenarios, packs, attempts, and timeout; remove "
+            + ", ".join(conflicts)
+        )
+    args.scenario_packs = [manifest.pack_path]
+    args.scenarios = [scenario.id for scenario in manifest.scenarios]
+    args.attempts = 1 if args.oracle else manifest.attempts
+    args.agent_timeout_seconds = manifest.agent_timeout_seconds
+    return manifest
 
 
 def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
@@ -894,6 +944,8 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
         raise ValueError("--agent-timeout-seconds must be a positive integer")
     if args.oracle and args.models:
         raise ValueError("--oracle cannot be combined with --models")
+    if args.oracle and args.check:
+        raise ValueError("--oracle cannot be combined with --check")
     if args.oracle and args.reasoning_efforts:
         raise ValueError("--oracle cannot be combined with --reasoning-efforts")
     if args.oracle and any(
@@ -923,7 +975,7 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
         raise ValueError("--agent-adapter cannot be combined with --claux-binary")
     if args.agent_adapter is not None and args.claux_release:
         raise ValueError("--agent-adapter cannot be combined with --claux-release")
-    if not args.oracle and not args.models and not args.list_scenarios:
+    if not args.oracle and not args.models and not args.list_scenarios and not args.check:
         raise ValueError("--models is required unless --oracle is used")
     for scenario in unique(args.scenarios or [DEFAULT_SCENARIO]):
         if not SCENARIO_ID_PATTERN.fullmatch(scenario) or scenario not in available:
@@ -945,6 +997,11 @@ def matrix_directory(supplied: Path | None) -> Path:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    try:
+        manifest = apply_benchmark_manifest(args)
+    except ValueError as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
     scenario_pack_dirs = [
         path.expanduser().resolve()
         for path in (args.scenario_packs or [DEFAULT_SCENARIO_PACK])
@@ -958,14 +1015,33 @@ def main(argv: list[str] | None = None) -> int:
         scenario_id: scenario.version
         for scenario_id, scenario in discovered.items()
     }
+    try:
+        if manifest is not None:
+            manifest.validate_environment(packs, discovered, HOST_HARNESS_VERSION)
+    except ValueError as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
     if args.list_scenarios:
-        for scenario, version in available.items():
+        selected = args.scenarios or list(available)
+        for scenario in selected:
+            version = available[scenario]
             print(f"{scenario}\tv{version}")
         return 0
 
     try:
         validate_args(args, available)
         scenarios = unique(args.scenarios or [DEFAULT_SCENARIO])
+        if args.check:
+            if manifest is None:
+                raise ValueError("--check requires --benchmark")
+            print(f"[benchmark] {manifest.id}@{manifest.version} is valid")
+            print(f"[benchmark] pack: {manifest.pack_id}@{manifest.pack_version}")
+            print(
+                f"[benchmark] {len(scenarios)} scenarios, "
+                f"{manifest.attempts} attempts per model, "
+                f"{manifest.agent_timeout_seconds}-second timeout"
+            )
+            return 0
         models: list[str | None] = [None] if args.oracle else unique(args.models)
         reasoning_efforts: list[str | None] = (
             unique(args.reasoning_efforts) if args.reasoning_efforts else [None]
@@ -1021,7 +1097,13 @@ def main(argv: list[str] | None = None) -> int:
             claux_binary=args.claux_binary.expanduser().resolve()
             if args.claux_binary
             else None,
+            benchmark_manifest=manifest.path if manifest else None,
         )
+        if (
+            manifest is not None
+            and snapshot.metadata["benchmark_manifest_sha256"] != manifest.sha256
+        ):
+            raise ValueError("benchmark manifest changed while staging the matrix")
     except (OSError, ValueError) as error:
         print(f"error: could not stage execution snapshot: {error}", file=sys.stderr)
         return 2
@@ -1034,6 +1116,7 @@ def main(argv: list[str] | None = None) -> int:
     benchmark = {
         "suite": "replaybook-host-matrix-v1",
         "replaybook_commit": current_commit(),
+        "benchmark_manifest": manifest.metadata() if manifest else None,
         "scenarios": [
             discovered[scenario].metadata()
             for scenario in scenarios
