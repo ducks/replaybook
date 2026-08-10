@@ -74,6 +74,25 @@ verifier behavior is represented entirely by manifest steps. Legacy
 `scenario.conf`, `preflight.sh`, and `verify.sh` hooks remain supported for
 external scenarios that have not migrated yet.
 
+### Guest image leak audit
+
+Declarative scenarios can reject answer-shaped text that accidentally reaches
+the built VM:
+
+```toml
+[guest_leak_audit]
+forbidden_strings = ["partial rollout", "intentionally wrong redis database"]
+scan_paths = ["/etc/replaybook", "/var/lib/checkout"]
+```
+
+After the services become ready and before preflight or agent staging, the
+controller scans systemd metadata, guest filesystem names and symlink targets,
+Nix store entry names, and file contents beneath `scan_paths`. Forbidden
+strings remain controller-side. A match aborts the trial without revealing the
+matched text to the guest or recording it in the result. Real operational
+evidence, such as a connection-refused log containing the configured port,
+should not be forbidden. Labels that explain the diagnosis should be.
+
 ## External scenario packs
 
 Host incidents can live outside the Replaybook repository. A scenario pack is

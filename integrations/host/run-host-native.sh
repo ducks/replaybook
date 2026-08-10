@@ -49,7 +49,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260810.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=11
+HOST_HARNESS_VERSION=12
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
@@ -207,6 +207,8 @@ SCENARIO_PACK_VERSION="$(jq -r '.pack.version' <<<"$scenario_location")"
 TYPED_SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.toml"
 LEGACY_SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.conf"
 DECLARATIVE_SCENARIO=false
+GUEST_LEAK_AUDIT_ENABLED=false
+GUEST_LEAK_SCAN_PATHS=()
 if [[ -f "$TYPED_SCENARIO_MANIFEST" ]]; then
   DECLARATIVE_SCENARIO=true
   SCENARIO_MANIFEST="$TYPED_SCENARIO_MANIFEST"
@@ -217,6 +219,12 @@ if [[ -f "$TYPED_SCENARIO_MANIFEST" ]]; then
   ORACLE="$(jq -r '.oracle' <<<"$scenario_description")"
   REQUIRED_SERVICES="$(jq -r '.required_services | join(" ")' <<<"$scenario_description")"
   RESTART_SERVICES="$(jq -r '.restart_services | join(" ")' <<<"$scenario_description")"
+  if (( $(jq -r '.guest_leak_audit.forbidden_strings | length' <<<"$scenario_description") > 0 )); then
+    GUEST_LEAK_AUDIT_ENABLED=true
+    mapfile -t GUEST_LEAK_SCAN_PATHS < <(
+      jq -r '.guest_leak_audit.scan_paths[]' <<<"$scenario_description"
+    )
+  fi
 else
   SCENARIO_MANIFEST="$LEGACY_SCENARIO_MANIFEST"
 fi
@@ -404,6 +412,47 @@ wait_for_services() {
   return 1
 }
 
+audit_guest_image() {
+  [[ "$GUEST_LEAK_AUDIT_ENABLED" == true ]] || return 0
+
+  local audit_dir="${WORK_DIR}/guest-leak-audit"
+  local content_archive="${audit_dir}/configured-paths.tar.gz"
+  mkdir -m 0700 "$audit_dir"
+
+  "${SSH[@]}" \
+    "systemctl list-units --all --plain --no-pager --no-legend; systemctl list-unit-files --no-pager --no-legend; systemctl list-units --all --plain --no-pager --no-legend | while read -r unit rest; do systemctl show --all --no-pager -- \"\$unit\"; done" \
+    >"${audit_dir}/systemd.txt"
+  "${SSH[@]}" \
+    "nix-store --query --requisites /run/current-system; find /etc /root /var/lib -xdev -printf '%p -> %l\\n'" \
+    >"${audit_dir}/paths.txt"
+
+  if (( ${#GUEST_LEAK_SCAN_PATHS[@]} > 0 )); then
+    "${SSH[@]}" bash -s -- "${GUEST_LEAK_SCAN_PATHS[@]}" >"$content_archive" <<'EOF'
+set -euo pipefail
+existing=()
+for path in "$@"; do
+  [[ ! -e "$path" ]] || existing+=("${path#/}")
+done
+if (( ${#existing[@]} == 0 )); then
+  tar -czf - --files-from /dev/null
+else
+  tar -C / -czf - -- "${existing[@]}"
+fi
+EOF
+  else
+    tar -czf "$content_archive" --files-from /dev/null
+  fi
+
+  if ! python "$SCRIPT_DIR/guest_leak_audit.py" "$SCENARIO_MANIFEST" \
+    --surface "systemd=${audit_dir}/systemd.txt" \
+    --surface "paths=${audit_dir}/paths.txt" \
+    --archive "configured-paths=${content_archive}"; then
+    echo "guest image leak audit failed for ${SCENARIO_ID}" >&2
+    return 1
+  fi
+  rm -rf -- "$audit_dir"
+}
+
 verify_repaired() {
   local phase="$1"
   if [[ "$DECLARATIVE_SCENARIO" == true ]]; then
@@ -539,6 +588,10 @@ if ! wait_for_services; then
       for service in $REQUIRED_SERVICES; do printf -- '-u %q ' "$service"; done
     )" \
     >&2 || true
+  exit 1
+fi
+
+if ! audit_guest_image; then
   exit 1
 fi
 

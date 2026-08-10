@@ -27,6 +27,8 @@ the repair through service restart and host reboot.
 4. Build a normal NixOS service topology. Introduce one intentional fault in
    deployed state or configuration. Do not name the fault in unit names,
    filenames, comments, logs, the instruction, or other agent-visible clues.
+   Declare answer-shaped labels in `[guest_leak_audit]` so Replaybook checks the
+   built guest before starting the agent.
 5. Implement preflight first. Prove the healthy control path and the broken
    user path. When existing work matters, generate controller-owned IDs and
    record them for verification.

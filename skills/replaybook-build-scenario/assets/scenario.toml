@@ -6,6 +6,10 @@ oracle = "oracle.sh"
 required_services = ["example.service"]
 restart_services = ["example.service"]
 
+[guest_leak_audit]
+forbidden_strings = ["intentionally broken setting", "benchmark answer label"]
+scan_paths = ["/etc/replaybook", "/var/lib/example"]
+
 [[preflight.steps]]
 type = "wait_http"
 path = "/health"
