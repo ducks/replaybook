@@ -247,6 +247,46 @@ Worker logs show
 both launch position and completed progress, such as `starting 3 of 15` and
 `completed 1 of 15`, so long concurrent matrices remain easy to track.
 
+## Run an executable benchmark manifest
+
+A benchmark repository can freeze its scenario pack, scenario versions,
+attempt count, timeout, verification policy, and required host harness in a
+`benchmark.toml`. Run that controlled experiment without repeating its matrix
+dimensions on the command line:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --benchmark ../replaybook-infra/benchmark.toml \
+  --models deepseek/deepseek-v4-flash-0731 \
+  --concurrency 2
+```
+
+The submitting user still chooses the model, reasoning effort, adapter,
+credentials, concurrency, and output directory. Replaybook rejects
+`--scenario`, `--scenario-pack`, `--attempts`, or `--agent-timeout-seconds`
+overrides when `--benchmark` is present.
+
+Validate the manifest, pack identity, scenario versions, and required harness
+without starting a VM:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --benchmark ../replaybook-infra/benchmark.toml \
+  --check
+```
+
+Run each benchmark scenario once with its controller-only reference repair:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --benchmark ../replaybook-infra/benchmark.toml \
+  --oracle
+```
+
+Every generated matrix records the benchmark ID, version, and manifest hash.
+The publisher treats that identity as part of benchmark compatibility, so
+results from modified manifests cannot be silently combined.
+
 Before launching its first worker, the matrix runner copies the host runner,
 helper scripts, selected scenario packs, custom adapter, custom payload, and
 local Claux binary into `execution-snapshot/` inside the matrix result

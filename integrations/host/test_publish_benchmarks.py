@@ -27,6 +27,7 @@ def summary(
     pack_version: str = "20260809.0.0",
     reward: int = 1,
     snapshot_hash: str | None = None,
+    benchmark_hash: str | None = None,
 ) -> dict:
     run_id = f"001-nginx-{model}-1"
     return {
@@ -65,6 +66,17 @@ def summary(
                     "claux_binary_sha256": None,
                 }
                 if snapshot_hash is not None
+                else None
+            ),
+            "benchmark_manifest": (
+                {
+                    "schema_version": 1,
+                    "id": "replaybook-infra",
+                    "version": "20260810.0.0",
+                    "status": "preview",
+                    "sha256": benchmark_hash,
+                }
+                if benchmark_hash is not None
                 else None
             ),
             "models": [model],
@@ -194,6 +206,22 @@ class PublisherTests(unittest.TestCase):
             )
             with self.assertRaisesRegex(PublishError, "execution_snapshot differs"):
                 create_release("20260809.0.0", [first, second], {})
+
+    def test_rejects_incompatible_benchmark_manifests(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = self.write_summary(
+                root,
+                "matrix-one",
+                summary("model/a", benchmark_hash="a" * 64),
+            )
+            second = self.write_summary(
+                root,
+                "matrix-two",
+                summary("model/b", benchmark_hash="b" * 64),
+            )
+            with self.assertRaisesRegex(PublishError, "benchmark_manifest differs"):
+                create_release("20260810.0.0", [first, second], {})
 
     def test_rejects_an_incomplete_source_matrix(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
