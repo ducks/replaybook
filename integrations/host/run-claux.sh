@@ -10,9 +10,14 @@ output="${REPLAYBOOK_RESULT_FILE:-$eval_root/results/agent.json}"
 transcript="${REPLAYBOOK_TRANSCRIPT_FILE:-$eval_root/results/transcript.json}"
 native_output="${output}.native"
 reasoning_effort="${REPLAYBOOK_REASONING_EFFORT:-}"
+base_url="${REPLAYBOOK_OPENAI_BASE_URL:-}"
 
 "$claux" config init --provider openrouter --model "$model" >/dev/null
 config="$HOME/.config/claux/config.toml"
+if [[ -n "$base_url" ]]; then
+  sed -i "s#^base_url = .*#base_url = \"${base_url}\"#" "$config"
+  grep -qx "base_url = \"${base_url}\"" "$config"
+fi
 if [[ -n "$reasoning_effort" ]]; then
   profile="$(sed -n 's/^default_profile = "\([^"]*\)"/\1/p' "$config")"
   [[ -n "$profile" ]] || {

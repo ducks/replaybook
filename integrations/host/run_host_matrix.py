@@ -35,7 +35,7 @@ REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 9
+HOST_HARNESS_VERSION = 10
 TRIAL_STATUSES = {"evaluated", "unavailable"}
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -43,6 +43,7 @@ HOST_RUNNER_FILES = (
     "classify-agent-exit.sh",
     "classify-agent-outcome.sh",
     "classify-agent-run-exit.sh",
+    "openrouter_proxy.py",
     "run-agent-adapter.sh",
     "run-claux.sh",
     "run-host-native.sh",

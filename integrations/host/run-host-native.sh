@@ -49,7 +49,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260809.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=9
+HOST_HARNESS_VERSION=10
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
@@ -319,8 +319,18 @@ mkdir -m 0700 "$SCENARIO_STATE_DIR"
 
 WORK_DIR="$(mktemp -d "${WORK_PARENT%/}/replaybook-host-eval.XXXXXX")"
 VM_PID=""
+PROXY_PID=""
+TUNNEL_PID=""
 
 cleanup() {
+  if [[ -n "$TUNNEL_PID" ]] && kill -0 "$TUNNEL_PID" 2>/dev/null; then
+    kill "$TUNNEL_PID" 2>/dev/null || true
+    wait "$TUNNEL_PID" 2>/dev/null || true
+  fi
+  if [[ -n "$PROXY_PID" ]] && kill -0 "$PROXY_PID" 2>/dev/null; then
+    kill "$PROXY_PID" 2>/dev/null || true
+    wait "$PROXY_PID" 2>/dev/null || true
+  fi
   if [[ -n "$VM_PID" ]] && kill -0 "$VM_PID" 2>/dev/null; then
     kill "$VM_PID" 2>/dev/null || true
     wait "$VM_PID" 2>/dev/null || true
@@ -469,6 +479,59 @@ wait_for_ssh || {
   tail -100 "${OUTPUT_DIR}/console.log" >&2
   exit 1
 }
+
+if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]]; then
+  proxy_ready="${WORK_DIR}/openrouter-proxy.port"
+  OPENROUTER_API_KEY="$OPENROUTER_API_KEY" \
+    python "${SCRIPT_DIR}/openrouter_proxy.py" \
+      --port 0 \
+      --ready-file "$proxy_ready" \
+      >"${WORK_DIR}/openrouter-proxy.log" 2>&1 &
+  PROXY_PID=$!
+  for _ in $(seq 1 100); do
+    [[ -s "$proxy_ready" ]] && break
+    kill -0 "$PROXY_PID" 2>/dev/null || {
+      cat "${WORK_DIR}/openrouter-proxy.log" >&2
+      echo "OpenRouter credential proxy exited before becoming ready" >&2
+      exit 1
+    }
+    sleep 0.05
+  done
+  [[ -s "$proxy_ready" ]] || {
+    echo "OpenRouter credential proxy did not become ready" >&2
+    exit 1
+  }
+  proxy_host_port="$(<"$proxy_ready")"
+  proxy_vm_port=19091
+  ssh \
+    -i "$SSH_KEY" \
+    -p "$SSH_PORT" \
+    -o BatchMode=yes \
+    -o ExitOnForwardFailure=yes \
+    -o LogLevel=ERROR \
+    -o StrictHostKeyChecking=no \
+    -o UserKnownHostsFile=/dev/null \
+    -N \
+    -R "127.0.0.1:${proxy_vm_port}:127.0.0.1:${proxy_host_port}" \
+    root@127.0.0.1 &
+  TUNNEL_PID=$!
+  for _ in $(seq 1 100); do
+    if "${SSH[@]}" "timeout 1 bash -c '</dev/tcp/127.0.0.1/${proxy_vm_port}'" \
+      >/dev/null 2>&1; then
+      break
+    fi
+    kill -0 "$TUNNEL_PID" 2>/dev/null || {
+      echo "OpenRouter credential tunnel exited before becoming ready" >&2
+      exit 1
+    }
+    sleep 0.05
+  done
+  "${SSH[@]}" "timeout 1 bash -c '</dev/tcp/127.0.0.1/${proxy_vm_port}'" \
+    >/dev/null 2>&1 || {
+      echo "OpenRouter credential tunnel did not become ready" >&2
+      exit 1
+    }
+fi
 if ! wait_for_services; then
   echo "incident services did not start" >&2
   "${SSH[@]}" \
@@ -515,7 +578,10 @@ else
     fi
     if [[ -z "$AGENT_ENV_FILE" ]]; then
       AGENT_ENV_FILE="${WORK_DIR}/runtime.env"
-      printf 'export OPENROUTER_API_KEY=%q\n' "$OPENROUTER_API_KEY" >"$AGENT_ENV_FILE"
+      printf '%s\n' \
+        'export OPENROUTER_API_KEY=replaybook-proxy' \
+        'export REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091/api/v1' \
+        >"$AGENT_ENV_FILE"
       chmod 0600 "$AGENT_ENV_FILE"
     fi
   fi

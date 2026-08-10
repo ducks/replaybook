@@ -6,6 +6,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 bash -n "$script_dir/run-host-native.sh"
 bash -n "$script_dir/run-agent-adapter.sh"
 bash -n "$script_dir/run-claux.sh"
+python -m py_compile "$script_dir/openrouter_proxy.py"
 bash -n "$script_dir/adapters/codex.sh"
 bash -n "$script_dir/find-codex-binary.sh"
 bash -n "$script_dir/prepare-codex-env.sh"
@@ -52,7 +53,7 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=9' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=10' "$script_dir/run-host-native.sh"
 pack_description="$(
   python "$script_dir/scenario_pack.py" \
     --pack "$script_dir/scenarios" \
@@ -86,6 +87,15 @@ grep -q 'root@127.0.0.1:/root/replaybook-eval/adapter' "$script_dir/run-host-nat
 grep -q 'REPLAYBOOK_RESULT_FILE=' "$script_dir/run-agent-adapter.sh"
 grep -q 'REPLAYBOOK_TRANSCRIPT_FILE=' "$script_dir/run-agent-adapter.sh"
 grep -q 'REPLAYBOOK_AGENT_PAYLOAD=' "$script_dir/run-agent-adapter.sh"
+grep -q 'rm -f -- "$runtime_env"' "$script_dir/run-agent-adapter.sh"
+grep -q 'OPENROUTER_API_KEY=replaybook-proxy' "$script_dir/run-host-native.sh"
+grep -q 'REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091/api/v1' \
+  "$script_dir/run-host-native.sh"
+if grep -q "printf .*OPENROUTER_API_KEY.*\$OPENROUTER_API_KEY" \
+  "$script_dir/run-host-native.sh"; then
+  echo "host-native runner writes the real OpenRouter key into the VM" >&2
+  exit 1
+fi
 if grep -q '/usr/local/bin/claux' \
   "$script_dir/run-host-native.sh" "$script_dir/run-claux.sh"; then
   echo "host-native runner assumes /usr/local/bin exists" >&2
@@ -357,6 +367,7 @@ EOF
 #!/usr/bin/env bash
 set -euo pipefail
 [[ "$CUSTOM_SECRET" == "present" ]]
+[[ ! -e "$REPLAYBOOK_EVAL_ROOT/runtime.env" ]]
 [[ "$(< "$REPLAYBOOK_INSTRUCTION_FILE")" == "repair the service" ]]
 [[ "$(< "$REPLAYBOOK_AGENT_PAYLOAD")" == "payload-data" ]]
 jq -n \
