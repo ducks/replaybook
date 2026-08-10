@@ -22,6 +22,7 @@ FAILURE_FILE = "phase-failure.json"
 SUPPORTED_STEPS = {"wait_http", "concurrent_http", "replay_http"}
 SCENARIO_FILE_FIELDS = ("nixos_config", "instruction", "oracle")
 SCENARIO_SERVICE_FIELDS = ("required_services", "restart_services")
+LEAK_AUDIT_TABLE = "guest_leak_audit"
 
 
 @dataclass(frozen=True)
@@ -66,7 +67,57 @@ def describe_manifest(manifest_path: Path) -> dict[str, Any]:
         if not isinstance(phase_config, dict) or not isinstance(phase_config.get("steps"), list):
             raise ValueError(f"manifest does not define {phase}.steps")
         description[f"{phase}_steps"] = len(phase_config["steps"])
+    description[LEAK_AUDIT_TABLE] = leak_audit_config(manifest)
     return description
+
+
+def leak_audit_config(manifest: dict[str, Any]) -> dict[str, list[str]]:
+    config = manifest.get(LEAK_AUDIT_TABLE)
+    if config is None:
+        return {"forbidden_strings": [], "scan_paths": []}
+    if not isinstance(config, dict):
+        raise ValueError(f"{LEAK_AUDIT_TABLE} must be a table")
+
+    forbidden = config.get("forbidden_strings")
+    if not isinstance(forbidden, list) or not forbidden:
+        raise ValueError(
+            f"{LEAK_AUDIT_TABLE}.forbidden_strings must be a non-empty string array"
+        )
+    if not all(
+        isinstance(value, str)
+        and len(value.strip()) >= 4
+        and not any(character in value for character in "\r\n\0")
+        for value in forbidden
+    ):
+        raise ValueError(
+            f"{LEAK_AUDIT_TABLE}.forbidden_strings entries must be at least four characters and contain no control lines"
+        )
+    normalized_forbidden = [value.strip() for value in forbidden]
+    if len({value.casefold() for value in normalized_forbidden}) != len(
+        normalized_forbidden
+    ):
+        raise ValueError(
+            f"{LEAK_AUDIT_TABLE}.forbidden_strings contains duplicates"
+        )
+
+    scan_paths = config.get("scan_paths", [])
+    if not isinstance(scan_paths, list) or not all(
+        isinstance(path, str)
+        and path.startswith("/")
+        and path != "/"
+        and ".." not in Path(path).parts
+        and all(character.isalnum() or character in "/._-" for character in path)
+        for path in scan_paths
+    ):
+        raise ValueError(
+            f"{LEAK_AUDIT_TABLE}.scan_paths must contain safe absolute guest paths"
+        )
+    if len(scan_paths) != len(set(scan_paths)):
+        raise ValueError(f"{LEAK_AUDIT_TABLE}.scan_paths contains duplicates")
+    return {
+        "forbidden_strings": normalized_forbidden,
+        "scan_paths": scan_paths,
+    }
 
 
 def request(base_url: str, step: dict[str, Any], path: str) -> Response:

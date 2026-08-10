@@ -11,6 +11,8 @@ from integrations.host.scenario_phase import (
     FAILURE_FILE,
     PhaseFailure,
     describe_manifest,
+    leak_audit_config,
+    load_manifest,
     run_phase,
 )
 
@@ -77,6 +79,10 @@ oracle = "oracle.sh"
 required_services = ["postgresql.service", "checkout-web.service", "nginx.service"]
 restart_services = ["checkout-web.service", "nginx.service"]
 
+[guest_leak_audit]
+forbidden_strings = ["intentionally undersized pool", "pool exhaustion benchmark"]
+scan_paths = ["/etc/replaybook", "/var/lib/checkout"]
+
 [[preflight.steps]]
 type = "wait_http"
 path = "/health"
@@ -134,6 +140,25 @@ failure_category = "database_pool_exhausted"
             self.assertEqual(description["nixos_config"], "nixos.nix")
             self.assertEqual(description["preflight_steps"], 2)
             self.assertEqual(description["verify_steps"], 3)
+            self.assertEqual(
+                description["guest_leak_audit"]["forbidden_strings"],
+                ["intentionally undersized pool", "pool exhaustion benchmark"],
+            )
+            self.assertEqual(
+                description["guest_leak_audit"]["scan_paths"],
+                ["/etc/replaybook", "/var/lib/checkout"],
+            )
+
+    def test_rejects_unsafe_guest_leak_audit_config(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            manifest = self.write_manifest(Path(temporary))
+            text = manifest.read_text().replace(
+                'scan_paths = ["/etc/replaybook", "/var/lib/checkout"]',
+                'scan_paths = ["/"]',
+            )
+            manifest.write_text(text)
+            with self.assertRaisesRegex(ValueError, "safe absolute guest paths"):
+                leak_audit_config(load_manifest(manifest))
 
     def test_records_failed_ids_then_replays_them_after_repair(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

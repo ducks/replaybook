@@ -38,6 +38,17 @@ def safe_relative_path(value: Any) -> bool:
     return not path.is_absolute() and ".." not in path.parts
 
 
+def safe_guest_path(value: Any) -> bool:
+    if not nonempty_string(value) or value == "/":
+        return False
+    path = PurePosixPath(value)
+    return (
+        path.is_absolute()
+        and ".." not in path.parts
+        and all(character.isalnum() or character in "/._-" for character in value)
+    )
+
+
 def validate(directory: Path) -> list[str]:
     errors: list[str] = []
     manifest_path = directory / "scenario.toml"
@@ -84,6 +95,40 @@ def validate(directory: Path) -> list[str]:
         unknown = set(services["restart_services"]) - set(services["required_services"])
         if unknown:
             fail(errors, "restart_services must also be required_services: " + ", ".join(sorted(unknown)))
+
+    forbidden_strings: list[str] = []
+    leak_audit = manifest.get("guest_leak_audit")
+    if leak_audit is not None:
+        if not isinstance(leak_audit, dict):
+            fail(errors, "guest_leak_audit must be a table")
+        else:
+            forbidden = leak_audit.get("forbidden_strings")
+            if not isinstance(forbidden, list) or not forbidden or not all(
+                nonempty_string(value)
+                and len(value.strip()) >= 4
+                and not any(character in value for character in "\r\n\0")
+                for value in forbidden
+            ):
+                fail(
+                    errors,
+                    "guest_leak_audit.forbidden_strings must be a non-empty string array with entries of at least four characters",
+                )
+            else:
+                forbidden_strings = [value.strip() for value in forbidden]
+                if len({value.casefold() for value in forbidden_strings}) != len(
+                    forbidden_strings
+                ):
+                    fail(errors, "guest_leak_audit.forbidden_strings contains duplicates")
+            scan_paths = leak_audit.get("scan_paths", [])
+            if not isinstance(scan_paths, list) or not all(
+                safe_guest_path(path) for path in scan_paths
+            ):
+                fail(
+                    errors,
+                    "guest_leak_audit.scan_paths must contain safe absolute guest paths",
+                )
+            elif len(scan_paths) != len(set(scan_paths)):
+                fail(errors, "guest_leak_audit.scan_paths contains duplicates")
 
     recorded: set[str] = set()
     replayed: set[str] = set()
@@ -140,6 +185,22 @@ def validate(directory: Path) -> list[str]:
         for marker in LEAK_MARKERS:
             if marker.lower() in text:
                 fail(errors, f"NixOS config exposes controller-only artifact: {marker}")
+
+    if forbidden_strings:
+        ignored = {manifest_path.resolve()}
+        oracle_path = resolved_files.get("oracle")
+        if oracle_path is not None:
+            ignored.add(oracle_path.resolve())
+        for path in directory.rglob("*"):
+            if not path.is_file() or path.resolve() in ignored:
+                continue
+            text = path.read_text(errors="replace").casefold()
+            for index, marker in enumerate(forbidden_strings, start=1):
+                if marker.casefold() in text:
+                    fail(
+                        errors,
+                        f"agent-visible source contains guest leak rule #{index}: {path.relative_to(directory)}",
+                    )
 
     oracle = resolved_files.get("oracle")
     if oracle and oracle.is_file():

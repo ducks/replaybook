@@ -7,6 +7,7 @@ bash -n "$script_dir/run-host-native.sh"
 bash -n "$script_dir/run-agent-adapter.sh"
 bash -n "$script_dir/run-claux.sh"
 python -m py_compile "$script_dir/openrouter_proxy.py"
+python -m py_compile "$script_dir/guest_leak_audit.py"
 bash -n "$script_dir/adapters/codex.sh"
 bash -n "$script_dir/find-codex-binary.sh"
 bash -n "$script_dir/prepare-codex-env.sh"
@@ -53,7 +54,9 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=11' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=12' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION = 12' "$script_dir/run_host_matrix.py"
+grep -q 'audit_guest_image' "$script_dir/run-host-native.sh"
 pack_description="$(
   python "$script_dir/scenario_pack.py" \
     --pack "$script_dir/scenarios" \
