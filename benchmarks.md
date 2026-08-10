@@ -9,56 +9,56 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Four models on the declarative host suite
+## Three models with execution recording
 
-Four models ran the same five declarative infrastructure incidents three times each under host harness v6. Every passing repair survived scenario verification, service restart, and host reboot.
+Luna, HY3, and GLM ran the same five declarative infrastructure incidents three times each with execution recording enabled. Every passing repair survived scenario verification, service restart, and host reboot.
 
-Benchmark release: `20260809.0.3`
+Benchmark release: `20260810.0.0`
+
+Scenario packs: `ducks/replaybook-host-scenarios@20260809.0.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GLM 5.2 | 15/15 | 100% | 1:34 | $0.3021 | $0.0201 |
-| GPT-5.6 Luna | 13/15 | 87% | 1:10 | $0.0986 | $0.0076 |
-| DeepSeek V4 Flash 0731 | 13/15 | 87% | 2:28 | $0.2908 | $0.0224 |
-| Tencent HY3 Preview | 12/15 | 80% | 2:14 | $0.1050 | $0.0087 |
-| **Total** | **53/60** | **88%** | **1:56** | **$0.7964** | **$0.0150** |
+| GLM 5.2 | 14/14 | 100% | 2:06 | $2.2353 | $0.1597 |
+| GPT-5.6 Luna | 14/15 | 93% | 2:26 | $0.1265+ | $0.0090+ |
+| Tencent HY3 Preview | 11/15 | 73% | 4:16 | $0.1035+ | $0.0094+ |
+| **Total** | **39/44** | **89%** | **2:42** | **$2.4652+** | **$0.0632+** |
 
-GLM 5.2 was the only model to make 15 durable repairs in 15 attempts. Its median was 1:34 and its $0.3021 total cost worked out to about $0.0201 per repair.
+GLM 5.2 made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. It was fastest at the median at 2:06, but its $2.2353 reported total was about $0.1597 per durable repair.
 
-GPT-5.6 Luna was fastest at the median, 1:10, and cheapest per durable repair at about $0.0076. It made 13 repairs in 15 attempts, losing existing backlog once and timing out once on the poison-pill incident.
+GPT-5.6 Luna made 14 repairs in 15 attempts with a 2:26 median. Its known reported cost was $0.1265, or at least $0.0090 per repair. Its only failure was an agent timeout on the wrong-Redis incident.
 
-DeepSeek V4 Flash 0731 also finished 13/15, but its 2:28 median and $0.2908 total cost were both higher than Luna's. Both DeepSeek failures were poison-pill timeouts after substantial repair work.
+Tencent HY3 Preview made 11 repairs in 15 attempts with a 4:16 median. Its known reported cost was $0.1035, or at least $0.0094 per repair. Two attempts lost pre-existing Sidekiq backlog and two timed out.
 
-Tencent HY3 Preview made 12 repairs in 15 attempts for $0.1050. Its three failures were stateful: two lost pre-existing Sidekiq backlog and one did not quarantine poison work safely.
+All three models passed every Nginx and Rails pool-exhaustion attempt. The five evaluation failures were concentrated in the stateful Sidekiq incidents and the missing-migration scenario.
 
-All four models passed every Nginx, Rails migration, and Rails pool-exhaustion attempt. All seven failures occurred in the two Sidekiq scenarios that require preserving or quarantining existing work, rather than merely restoring a healthy endpoint.
+Execution recording shows different operating profiles: GLM reached its first non-read action in a median 0:03, Luna in 0:08, and HY3 in 0:09. These timings describe this matrix, not a universal model ranking.
 
-These are 60 controlled trials from one harness generation, not a universal model ranking. Three attempts per model and scenario remain a small sample, but the failures show why durable state verification changes the comparison.
+These are 45 controlled trials from one harness generation. Three attempts per model and scenario remain a small sample, and the unavailable GLM trial should not be treated as evidence about repair ability.
 
 ### Scenario breakdown
 
-| Scenario | Version | GLM 5.2 | GPT-5.6 Luna | DeepSeek V4 Flash 0731 | Tencent HY3 Preview |
-|---|---:|---:|---:|---:|---:|
-| Nginx 502 | v1 | 3/3, 0:32 | 3/3, 0:40 | 3/3, 1:30 | 3/3, 1:30 |
-| Sidekiq wrong Redis database | v2 | 3/3, 1:15 | 2/3, 0:56 | 3/3, 2:28 | 1/3, 2:13 |
-| Missing Rails migration | v2 | 3/3, 1:34 | 3/3, 1:15 | 3/3, 2:26 | 3/3, 1:55 |
-| Sidekiq poison pill | v1 | 3/3, 5:21 | 2/3, 1:42 | 1/3, 15:04 | 2/3, 5:40 |
-| Rails pool exhaustion | v1 | 3/3, 3:58 | 3/3, 1:11 | 3/3, 3:56 | 3/3, 5:01 |
+| Scenario | Version | GLM 5.2 | GPT-5.6 Luna | Tencent HY3 Preview |
+|---|---:|---:|---:|---:|
+| Nginx 502 | v1 | 3/3, 0:56 | 3/3, 1:31 | 3/3, 1:37 |
+| Sidekiq wrong Redis database | v2 | 3/3, 1:01 | 2/3, 1:09 | 1/3, 3:14 |
+| Missing Rails migration | v2 | 3/3, 2:51 | 3/3, 2:32 | 2/3, 2:39 |
+| Sidekiq poison pill | v1 | 2/2, 6:37 | 3/3, 2:46 | 2/3, 9:15 |
+| Rails pool exhaustion | v1 | 3/3, 2:06 | 3/3, 2:18 | 3/3, 4:16 |
 
 ### Failure categories
 
 - `agent_timeout`: 3
-- `backlog_not_recovered`: 3
-- `poison_not_quarantined`: 1
+- `backlog_not_recovered`: 2
 
 ### Source matrices
 
-- `host-matrix-2026-08-09__17-21-52.06cac8`: deepseek/deepseek-v4-flash-0731; Replaybook `f949410f`
-- `host-matrix-2026-08-09__18-49-02.adba93`: openai/gpt-5.6-luna, z-ai/glm-5.2, tencent/hy3-preview; Replaybook `5a7f6a7e`
+- `host-matrix-2026-08-10__16-29-42.dcb119`: openai/gpt-5.6-luna, tencent/hy3-preview, z-ai/glm-5.2; Replaybook `3e9f8687`
 
 ### Run notes
 
-- Two original GLM Nginx workers were interrupted when the checked-out runner changed during the active matrix. Their incomplete artifacts were preserved and excluded. The two replacement trials used the original harness v6 runner, model, scenario, ports, timeout, adapter, and Claux release.
+- One GLM poison-pill trial was rejected by the provider before evaluation. It is preserved as provider_unavailable and excluded from GLM's pass rate.
+- A trailing plus sign on reported cost means at least one trial did not report metered cost, so the displayed total is a lower bound.
 
 <!-- replaybook:current-benchmark:end -->
 

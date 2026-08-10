@@ -1,0 +1,33 @@
+{
+  "description": "Luna, HY3, and GLM ran the same five declarative infrastructure incidents three times each with execution recording enabled. Every passing repair survived scenario verification, service restart, and host reboot.",
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "tencent/hy3-preview": "Tencent HY3 Preview",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "z-ai/glm-5.2",
+    "openai/gpt-5.6-luna",
+    "tencent/hy3-preview"
+  ],
+  "notes": [
+    "One GLM poison-pill trial was rejected by the provider before evaluation. It is preserved as provider_unavailable and excluded from GLM's pass rate.",
+    "A trailing plus sign on reported cost means at least one trial did not report metered cost, so the displayed total is a lower bound."
+  ],
+  "observations": [
+    "GLM 5.2 made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. It was fastest at the median at 2:06, but its $2.2353 reported total was about $0.1597 per durable repair.",
+    "GPT-5.6 Luna made 14 repairs in 15 attempts with a 2:26 median. Its known reported cost was $0.1265, or at least $0.0090 per repair. Its only failure was an agent timeout on the wrong-Redis incident.",
+    "Tencent HY3 Preview made 11 repairs in 15 attempts with a 4:16 median. Its known reported cost was $0.1035, or at least $0.0094 per repair. Two attempts lost pre-existing Sidekiq backlog and two timed out.",
+    "All three models passed every Nginx and Rails pool-exhaustion attempt. The five evaluation failures were concentrated in the stateful Sidekiq incidents and the missing-migration scenario.",
+    "Execution recording shows different operating profiles: GLM reached its first non-read action in a median 0:03, Luna in 0:08, and HY3 in 0:09. These timings describe this matrix, not a universal model ranking.",
+    "These are 45 controlled trials from one harness generation. Three attempts per model and scenario remain a small sample, and the unavailable GLM trial should not be treated as evidence about repair ability."
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502",
+    "013-sidekiq-wrong-redis": "Sidekiq wrong Redis database",
+    "014-missing-rails-migration": "Missing Rails migration",
+    "015-sidekiq-poison-pill": "Sidekiq poison pill",
+    "016-rails-pool-exhaustion": "Rails pool exhaustion"
+  },
+  "title": "Three models with execution recording"
+}
