@@ -414,11 +414,15 @@ provider round and tool call with monotonic start offsets and durations. The
 matrix reports median model rounds, model time, tool calls, tool time, time to
 the first write-capable tool, and time remaining after that tool. Older and
 third-party adapters remain valid and simply report no execution recording.
-Evaluation failures are valid matrix results. Provider, authentication, or
-harness runtime errors are recorded as unavailable attempts and excluded from
-pass-rate denominators. The command exits nonzero when a worker produces no
-valid result or a requested attempt is unavailable, because that matrix is
-incomplete rather than evidence of model failure.
+Evaluation failures are valid matrix results. Authentication failures and
+provider or harness errors that occur before meaningful inference are recorded
+as unavailable attempts and excluded from pass-rate denominators. Once an
+agent has completed a model round or invoked a tool, later provider
+interruptions and runtime errors are evaluated failures. Exhausting a model
+response's output-token limit is also an evaluated failure. The command exits
+nonzero when a worker produces no valid result or a requested attempt is
+unavailable, because that matrix is incomplete rather than evidence of model
+failure.
 
 The matrix passes `--agent-timeout-seconds` to every worker and records the
 chosen value in `benchmark.json`. A model that exceeds the limit is terminated
@@ -443,7 +447,9 @@ failure categories. Version 4 introduces the harness adapter contract and
 generic result and transcript artifacts. Version 5 distinguishes unavailable
 provider or harness attempts from evaluated repairs and excludes them from
 model pass-rate denominators. Version 11 carries sanitized model-round and tool
-timings from supporting adapters into run and matrix results.
+timings from supporting adapters into run and matrix results. Version 13
+distinguishes failures before inference from interruptions after an agent has
+begun work and records output-token exhaustion as an evaluated agent failure.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the
