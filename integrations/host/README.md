@@ -454,6 +454,9 @@ Version 14 tells agents their wall-clock budget and runs the full external
 verification lifecycle after a timeout. A durable repair left by a timed-out
 agent remains an `agent_timeout` failure, but is recorded separately under
 `verification.after_agent_timeout` and summarized by the matrix runner.
+Version 15 builds a dedicated Nix store image for every incident VM. Agents
+can inspect only the selected scenario's closure instead of unrelated
+derivations accumulated in the controller host's Nix store.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the

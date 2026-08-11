@@ -54,8 +54,11 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=14' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION = 14' "$script_dir/run_host_matrix.py"
+grep -q 'HOST_HARNESS_VERSION=15' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION = 15' "$script_dir/run_host_matrix.py"
+grep -q 'virtualisation.useNixStoreImage = true' "$script_dir/isolated-vm.nix"
+grep -q 'virtualisation.mountHostNixStore = false' "$script_dir/isolated-vm.nix"
+grep -q 'incident VM unexpectedly exposes the host Nix store' "$script_dir/run-host-native.sh"
 grep -q 'audit_guest_image' "$script_dir/run-host-native.sh"
 pack_description="$(
   python "$script_dir/scenario_pack.py" \
