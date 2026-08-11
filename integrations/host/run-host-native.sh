@@ -49,7 +49,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260810.0.1}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=14
+HOST_HARNESS_VERSION=15
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
@@ -267,7 +267,8 @@ service_list_pattern='^[a-zA-Z0-9@_. -]+$'
   echo "scenario ${SCENARIO_ID} has unsafe restart service names" >&2
   exit 2
 }
-VM_CONFIG="$NIXOS_CONFIG"
+SCENARIO_VM_CONFIG="$NIXOS_CONFIG"
+VM_CONFIG="${SCRIPT_DIR}/isolated-vm.nix"
 
 for port_name in SSH_PORT HTTP_PORT; do
   port="${!port_name}"
@@ -326,6 +327,8 @@ SCENARIO_STATE_DIR="${OUTPUT_DIR}/scenario-state"
 mkdir -m 0700 "$SCENARIO_STATE_DIR"
 
 WORK_DIR="$(mktemp -d "${WORK_PARENT%/}/replaybook-host-eval.XXXXXX")"
+export TMPDIR="${WORK_DIR}/tmp"
+mkdir -p "$TMPDIR"
 VM_PID=""
 PROXY_PID=""
 TUNNEL_PID=""
@@ -582,6 +585,7 @@ echo "[host] building disposable NixOS incident host"
 export REPLAYBOOK_HOST_PUBLIC_KEY_FILE="${SSH_KEY}.pub"
 export REPLAYBOOK_HOST_SSH_PORT="$SSH_PORT"
 export REPLAYBOOK_HOST_HTTP_PORT="$HTTP_PORT"
+export REPLAYBOOK_HOST_SCENARIO_CONFIG="$SCENARIO_VM_CONFIG"
 nix-shell -p nixos-generators --run \
   "nixos-generate -f vm-nogui -c '${VM_CONFIG}' -o '${WORK_DIR}/vm'"
 
@@ -593,6 +597,7 @@ VM_RUNNER="$(find -L "${WORK_DIR}/vm/bin" -maxdepth 1 -type f -name 'run-*-vm' -
 
 echo "[host] booting VM on SSH ${SSH_PORT}, HTTP ${HTTP_PORT}"
 NIX_DISK_IMAGE="${WORK_DIR}/disk.qcow2" \
+  USE_TMPDIR=1 \
   "$VM_RUNNER" >"${OUTPUT_DIR}/console.log" 2>&1 &
 VM_PID=$!
 
@@ -661,6 +666,11 @@ if ! wait_for_services; then
       for service in $REQUIRED_SERVICES; do printf -- '-u %q ' "$service"; done
     )" \
     >&2 || true
+  exit 1
+fi
+
+if "${SSH[@]}" "grep -q '^nix-store /nix/.ro-store 9p ' /proc/mounts"; then
+  echo "incident VM unexpectedly exposes the host Nix store" >&2
   exit 1
 fi
 
