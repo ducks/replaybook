@@ -770,6 +770,8 @@ def html_page(release: dict[str, Any]) -> str:
             for pack in scenario_packs
         )
         pack_note = f"\n    <p class=\"small muted\">Scenario packs: {pack_names}.</p>"
+    source_count = len(release["sources"])
+    source_noun = "matrix" if source_count == 1 else "matrices"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -809,7 +811,7 @@ def html_page(release: dict[str, Any]) -> str:
     </div>
 
     <div class="callout benchmark-status verified-status">
-      <strong>{totals['trials']} trials across {len(release['sources'])} controlled matrices.</strong>
+      <strong>{totals['trials']} trials across {source_count} controlled {source_noun}.</strong>
       {totals['passed']} repairs passed durable verification. {totals['failed']} evaluated attempts failed and {totals['unavailable']} were unavailable.
     </div>
 
