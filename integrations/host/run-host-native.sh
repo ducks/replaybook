@@ -327,6 +327,8 @@ SCENARIO_STATE_DIR="${OUTPUT_DIR}/scenario-state"
 mkdir -m 0700 "$SCENARIO_STATE_DIR"
 
 WORK_DIR="$(mktemp -d "${WORK_PARENT%/}/replaybook-host-eval.XXXXXX")"
+export TMPDIR="${WORK_DIR}/tmp"
+mkdir -p "$TMPDIR"
 VM_PID=""
 PROXY_PID=""
 TUNNEL_PID=""
@@ -595,6 +597,7 @@ VM_RUNNER="$(find -L "${WORK_DIR}/vm/bin" -maxdepth 1 -type f -name 'run-*-vm' -
 
 echo "[host] booting VM on SSH ${SSH_PORT}, HTTP ${HTTP_PORT}"
 NIX_DISK_IMAGE="${WORK_DIR}/disk.qcow2" \
+  USE_TMPDIR=1 \
   "$VM_RUNNER" >"${OUTPUT_DIR}/console.log" 2>&1 &
 VM_PID=$!
 
