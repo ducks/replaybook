@@ -37,7 +37,7 @@ REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 12
+HOST_HARNESS_VERSION = 13
 TRIAL_STATUSES = {"evaluated", "unavailable"}
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -1140,7 +1140,7 @@ def main(argv: list[str] | None = None) -> int:
             else None,
         },
         "claux_release": args.claux_release
-        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260810.0.0"),
+        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260810.0.1"),
     }
     (matrix_dir / "benchmark.json").write_text(json.dumps(benchmark, indent=2) + "\n")
     started_at = utc_now()

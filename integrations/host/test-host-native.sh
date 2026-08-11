@@ -54,8 +54,8 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=12' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION = 12' "$script_dir/run_host_matrix.py"
+grep -q 'HOST_HARNESS_VERSION=13' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION = 13' "$script_dir/run_host_matrix.py"
 grep -q 'audit_guest_image' "$script_dir/run-host-native.sh"
 pack_description="$(
   python "$script_dir/scenario_pack.py" \
@@ -117,19 +117,25 @@ grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
 [[ "$("$script_dir/classify-agent-run-exit.sh" 255 934 900)" == "agent_timeout" ]]
 [[ -z "$("$script_dir/classify-agent-run-exit.sh" 255 899 900)" ]]
 [[ -z "$("$script_dir/classify-agent-run-exit.sh" 1 934 900)" ]]
-grep -q 'trial_status="unavailable"' "$script_dir/run-host-native.sh"
+grep -q 'read -r trial_status agent_outcome_category' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
-grep -q 'v20260810.0.0' "$script_dir/run-host-native.sh"
-grep -q 'v20260810.0.0' "$script_dir/run_host_matrix.py"
+grep -q 'v20260810.0.1' "$script_dir/run-host-native.sh"
+grep -q 'v20260810.0.1' "$script_dir/run_host_matrix.py"
 
 agent_error="$(mktemp)"
 trap 'rm -f -- "$agent_error"' EXIT
 printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (429 Too Many Requests): Provider returned error"}}' >"$agent_error"
-[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == "provider_unavailable" ]]
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_unavailable' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"API error: response reached its output token limit"},"recording":{"model_rounds":[{"status":"completed"}],"tools":[]}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tagent_output_limit' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (502 Bad Gateway): upstream request failed"},"recording":{"model_rounds":[{"status":"completed"}],"tools":[{"name":"Bash"}]}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tprovider_interrupted' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"authentication failed: invalid API key"}}' >"$agent_error"
-[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == "authentication_failed" ]]
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tauthentication_failed' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"adapter exited unexpectedly"}}' >"$agent_error"
-[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == "agent_runtime_error" ]]
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tagent_runtime_error' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"adapter exited unexpectedly"},"recording":{"model_rounds":[],"tools":[{"name":"Bash"}]}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tagent_runtime_error' ]]
 printf '%s\n' '{"outcome":{"status":"cancelled","message":"interrupted"}}' >"$agent_error"
 [[ -z "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" ]]
 rm -f -- "$agent_error"

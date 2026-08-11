@@ -35,7 +35,7 @@ Environment:
   REPLAYBOOK_HOST_SSH_KEY        SSH key (default: ~/.ssh/id_ed25519).
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to copy into the VM.
-  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to download (default: v20260810.0.0).
+  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to download (default: v20260810.0.1).
 
 Without --agent-adapter, Replaybook uses its bundled Claux adapter. Custom
 adapters receive the paths and model through REPLAYBOOK_* environment variables
@@ -47,9 +47,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
-CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260810.0.0}"
+CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260810.0.1}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=12
+HOST_HARNESS_VERSION=13
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
@@ -724,9 +724,9 @@ if (( run_status != 0 )); then
   elif [[ "$failure_category" == "agent_rebooted_host" ]]; then
     failure="agent rebooted the host during its session"
   elif [[ -f "$agent_result" ]] \
-    && agent_outcome_category="$("$SCRIPT_DIR/classify-agent-outcome.sh" "$agent_result")" \
-    && [[ -n "$agent_outcome_category" ]]; then
-    trial_status="unavailable"
+    && agent_outcome_classification="$("$SCRIPT_DIR/classify-agent-outcome.sh" "$agent_result")" \
+    && [[ -n "$agent_outcome_classification" ]]; then
+    read -r trial_status agent_outcome_category <<<"$agent_outcome_classification"
     failure_category="$agent_outcome_category"
     failure="$(jq -r '.outcome.message // "agent harness could not complete the trial"' "$agent_result")"
   else
