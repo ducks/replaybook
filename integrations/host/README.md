@@ -450,6 +450,10 @@ model pass-rate denominators. Version 11 carries sanitized model-round and tool
 timings from supporting adapters into run and matrix results. Version 13
 distinguishes failures before inference from interruptions after an agent has
 begun work and records output-token exhaustion as an evaluated agent failure.
+Version 14 tells agents their wall-clock budget and runs the full external
+verification lifecycle after a timeout. A durable repair left by a timed-out
+agent remains an `agent_timeout` failure, but is recorded separately under
+`verification.after_agent_timeout` and summarized by the matrix runner.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the

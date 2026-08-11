@@ -229,6 +229,7 @@ class HostMatrixTests(unittest.TestCase):
         self.assertEqual(summary["totals"]["unavailable"], 0)
         self.assertEqual(summary["totals"]["passed"], 1)
         self.assertEqual(summary["totals"]["failed"], 1)
+        self.assertEqual(summary["totals"]["durable_repairs_after_timeout"], 0)
         self.assertEqual(summary["totals"]["input_tokens"], 0)
         self.assertEqual(summary["totals"]["usage_reported_trials"], 2)
         self.assertEqual(summary["infrastructure_errors"], [])
@@ -237,6 +238,45 @@ class HostMatrixTests(unittest.TestCase):
             [{"category": "backlog_not_recovered", "count": 1}],
         )
         self.assertEqual(summary["unavailable_categories"], [])
+
+    def test_summary_counts_durable_repairs_left_by_timed_out_agents(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            jobs = build_jobs(
+                scenarios=["001-nginx-502-host"],
+                models=["slow/model"],
+                attempts=1,
+                base_port=23000,
+                matrix_dir=Path(temporary),
+            )
+            result = {
+                "harness_version": 14,
+                "scenario": jobs[0].scenario,
+                "scenario_version": 1,
+                "model": jobs[0].model,
+                "reward": 0,
+                "trial_status": "evaluated",
+                "failure_category": "agent_timeout",
+                "agent_duration_seconds": 900,
+                "verification": {
+                    "immediate_http": True,
+                    "service_restart": True,
+                    "host_reboot": True,
+                    "after_agent_timeout": {
+                        "durable_repair": True,
+                        "failure": None,
+                        "failure_category": None,
+                    },
+                },
+            }
+            summary = build_summary(
+                [WorkerResult(jobs[0], 1, result, None)],
+                started_at="2026-08-11T00:00:00Z",
+                benchmark={"suite": "test"},
+            )
+
+        self.assertEqual(summary["totals"]["passed"], 0)
+        self.assertEqual(summary["totals"]["failed"], 1)
+        self.assertEqual(summary["totals"]["durable_repairs_after_timeout"], 1)
 
     def test_summary_excludes_unavailable_trials_from_pass_rate(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
