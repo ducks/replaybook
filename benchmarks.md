@@ -9,23 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Six agent configurations with execution recording
+## Durable upload recovery on an isolated host
 
-Six model configurations ran the same five declarative infrastructure incidents three times each under host harness v11 with execution recording enabled, including a controlled DeepSeek low, high, and xhigh reasoning comparison.
+Four model configurations attempted the same Discourse-shaped shared-upload incident three times each under isolated host harness v15. The verifier required exact pre-existing uploads to survive service restart and host reboot.
 
-Benchmark release: `20260810.0.2`
+Benchmark release: `20260811.0.0`
 
-Scenario packs: `ducks/replaybook-host-scenarios@20260809.0.1`
+Scenario packs: `ducks/replaybook-infra@20260810.4.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash 0731 (high) | 15/15 | 100% | 4:13 | $0.2838 | $0.0189 |
-| DeepSeek V4 Flash 0731 (low) | 14/14 | 100% | 4:12 | $0.1422 | $0.0102 |
-| DeepSeek V4 Flash 0731 (xhigh) | 14/15 | 93% | 4:01 | $0.2916 | $0.0208 |
-| GLM 5.2 | 14/14 | 100% | 2:06 | $2.2353 | $0.1597 |
-| GPT-5.6 Luna | 14/15 | 93% | 2:26 | $0.1265+ | $0.0090+ |
-| Tencent HY3 Preview | 11/15 | 73% | 4:16 | $0.1035+ | $0.0094+ |
-| **Total** | **82/88** | **93%** | **3:24** | **$3.1828+** | **$0.0388+** |
+| GPT-5.6 Luna (high) | 3/3 | 100% | 1:57 | $0.0500 | $0.0167 |
+| GLM 5.2 (high) | 3/3 | 100% | 3:15 | $0.2104 | $0.0701 |
+| DeepSeek V4 Flash 0731 (high) | 2/3 | 67% | 11:59 | $0.1013 | $0.0506 |
+| Tencent HY3 Preview (high) | 0/3 | 0% | 15:03 | $0.1034 | n/a |
+| **Total** | **8/12** | **67%** | **5:54** | **$0.4651** | **$0.0581** |
 
 ### Execution recording
 
@@ -33,55 +31,41 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash 0731 (high) | 15/15 | 20 | 3:19 | 25 | 0:23 | 0:04 | 4:00 |
-| DeepSeek V4 Flash 0731 (low) | 15/15 | 18 | 2:24 | 26 | 0:45 | 0:04 | 4:17 |
-| DeepSeek V4 Flash 0731 (xhigh) | 15/15 | 21 | 3:37 | 29 | 0:20 | 0:05 | 3:53 |
-| GLM 5.2 | 15/15 | 18 | 1:30 | 28 | 0:22 | 0:03 | 1:58 |
-| GPT-5.6 Luna | 14/15 | 14.5 | 1:19 | 24.5 | 0:45 | 0:08 | 2:08 |
-| Tencent HY3 Preview | 14/15 | 14.5 | 3:03 | 35.5 | 0:09 | 0:09 | 3:29 |
+| GPT-5.6 Luna (high) | 3/3 | 19 | 1:46 | 37 | 0:05 | 0:07 | 1:44 |
+| GLM 5.2 (high) | 3/3 | 18 | 3:02 | 26 | 0:07 | 0:02 | 3:07 |
+| DeepSeek V4 Flash 0731 (high) | 3/3 | 24 | 11:44 | 33 | 0:03 | 0:03 | 11:52 |
+| Tencent HY3 Preview (high) | 3/3 | 49 | 14:35 | 103 | 0:17 | 0:16 | 14:42 |
 
-DeepSeek high reasoning made 15 durable repairs in 15 attempts, the strongest raw result in the reasoning comparison. Its 4:13 median and $0.2838 total worked out to about $0.0189 per repair.
+GPT-5.6 Luna repaired all three hosts with a 1:57 median and $0.0500 total reported cost, about $0.0167 per durable repair. It was both the fastest and least expensive successful configuration in this matrix.
 
-DeepSeek low reasoning made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. Its 4:12 median was nearly identical to high, while its $0.1422 total worked out to about $0.0102 per repair.
+GLM 5.2 also repaired all three hosts. Its 3:15 median was slower than Luna and its $0.2104 total worked out to about $0.0701 per durable repair.
 
-DeepSeek xhigh reasoning made 14 repairs in 15 attempts with a 4:01 median. It was the fastest DeepSeek setting by eleven seconds, but it timed out once and its $0.2916 total was the most expensive, about $0.0208 per repair.
+DeepSeek V4 Flash 0731 repaired two of three hosts with an 11:59 median. Its $0.1013 total worked out to about $0.0506 per repair after failed-attempt spend was included. The failed attempt copied the accepted uploads, then chose a symlink topology that let the existing ExecStartPre delete shared data during restart.
 
-More reasoning did not produce a monotonic improvement. High was the most reliable DeepSeek setting, low was much cheaper with no evaluated failures, and xhigh spent the most while introducing a timeout.
+Tencent HY3 Preview repaired none of three hosts. Two attempts timed out and one failed to recover the controller-owned upload IDs. The trajectories used runtime-only overrides, missed accepted state, or recreated a topology that deleted shared uploads during restart.
 
-GLM 5.2 made 14 durable repairs in 14 evaluated attempts, with one provider-unavailable trial. It was fastest overall at 2:06, but its $2.2353 reported total was about $0.1597 per durable repair.
-
-GPT-5.6 Luna made 14 repairs in 15 attempts with a 2:26 median. Its known reported cost was $0.1265, or at least $0.0090 per repair. Tencent HY3 Preview made 11 repairs in 15 attempts with a 4:16 median and at least $0.0094 per repair.
-
-All six configurations passed every Nginx and Rails pool-exhaustion attempt. The six evaluation failures were concentrated in the stateful Sidekiq incidents and the missing-migration scenario.
-
-These are 90 controlled trials from one harness generation. Three attempts per configuration and scenario remain a small sample, and the two unavailable trials say nothing about repair ability.
+The scenario separated immediate health from durable repair: changing where future uploads were written was insufficient unless the exact historical and preflight uploads remained available after restart and reboot.
 
 ### Scenario breakdown
 
-| Scenario | Version | DeepSeek V4 Flash 0731 (high) | DeepSeek V4 Flash 0731 (low) | DeepSeek V4 Flash 0731 (xhigh) | GLM 5.2 | GPT-5.6 Luna | Tencent HY3 Preview |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Nginx 502 | v1 | 3/3, 1:17 | 3/3, 2:13 | 3/3, 2:06 | 3/3, 0:56 | 3/3, 1:31 | 3/3, 1:37 |
-| Sidekiq wrong Redis database | v2 | 3/3, 1:56 | 3/3, 1:30 | 3/3, 3:16 | 3/3, 1:01 | 2/3, 1:09 | 1/3, 3:14 |
-| Missing Rails migration | v2 | 3/3, 7:43 | 3/3, 5:29 | 2/3, 8:05 | 3/3, 2:51 | 3/3, 2:32 | 2/3, 2:39 |
-| Sidekiq poison pill | v1 | 3/3, 9:21 | 2/2, 4:56 | 3/3, 9:06 | 2/2, 6:37 | 3/3, 2:46 | 2/3, 9:15 |
-| Rails pool exhaustion | v1 | 3/3, 4:13 | 3/3, 4:56 | 3/3, 3:52 | 3/3, 2:06 | 3/3, 2:18 | 3/3, 4:16 |
+| Scenario | Version | GPT-5.6 Luna (high) | GLM 5.2 (high) | DeepSeek V4 Flash 0731 (high) | Tencent HY3 Preview (high) |
+|---|---:|---:|---:|---:|---:|
+| Discourse shared uploads | v1 | 3/3, 1:57 | 3/3, 3:15 | 2/3, 11:59 | 0/3, 15:03 |
 
 ### Failure categories
 
-- `agent_timeout`: 4
-- `backlog_not_recovered`: 2
+- `accepted_uploads_not_recovered`: 1
+- `agent_timeout`: 3
 
 ### Source matrices
 
-- `host-matrix-2026-08-10__18-28-05.e549b9`: deepseek/deepseek-v4-flash-0731; Replaybook `d7985483`; reasoning low/high
-- `host-matrix-2026-08-10__14-33-45.fa2330`: deepseek/deepseek-v4-flash-0731; Replaybook `ef03309d`; reasoning xhigh
-- `host-matrix-2026-08-10__16-29-42.dcb119`: openai/gpt-5.6-luna, tencent/hy3-preview, z-ai/glm-5.2; Replaybook `3e9f8687`
+- `host-matrix-2026-08-11__16-35-31.453438`: deepseek/deepseek-v4-flash-0731, openai/gpt-5.6-luna, tencent/hy3-preview, z-ai/glm-5.2; Replaybook `0ced3bf4`; reasoning high
 
 ### Run notes
 
-- This release adds compact execution-recording metrics to the same compatible 90-trial cohort published in 20260810.0.1.
-- One DeepSeek low-reasoning poison-pill trial and one GLM poison-pill trial were rejected by the provider before evaluation. They are preserved as provider_unavailable and excluded from model pass rates.
-- A trailing plus sign on reported cost means at least one trial did not report metered cost, so the displayed total is a lower bound.
+- Host harness v15 gives every VM a dedicated Nix store image. The agent cannot inspect unrelated derivations from the controller's Nix store.
+- All twelve trials were evaluated and reported usage. None of the three timed-out attempts contained a durable repair when the controller ran verification afterward.
+- This is a three-attempt comparison on one stateful scenario, not a general model ranking. Tencent HY3 Preview remains in the historical result but is no longer part of the recommended smoke fleet.
 
 <!-- replaybook:current-benchmark:end -->
 

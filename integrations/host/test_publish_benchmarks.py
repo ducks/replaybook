@@ -168,6 +168,7 @@ class PublisherTests(unittest.TestCase):
         self.assertIn("deepseek/model (low)", page)
         self.assertIn("deepseek/model (high)", page)
         self.assertIn("--reasoning-efforts low high", page)
+        self.assertIn("1 controlled matrix.", page)
 
     def test_publishes_compact_execution_recording_medians(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

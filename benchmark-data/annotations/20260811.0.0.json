@@ -1,0 +1,31 @@
+{
+  "description": "Four model configurations attempted the same Discourse-shaped shared-upload incident three times each under isolated host harness v15. The verifier required exact pre-existing uploads to survive service restart and host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "tencent/hy3-preview": "Tencent HY3 Preview",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "z-ai/glm-5.2",
+    "deepseek/deepseek-v4-flash-0731",
+    "tencent/hy3-preview"
+  ],
+  "notes": [
+    "Host harness v15 gives every VM a dedicated Nix store image. The agent cannot inspect unrelated derivations from the controller's Nix store.",
+    "All twelve trials were evaluated and reported usage. None of the three timed-out attempts contained a durable repair when the controller ran verification afterward.",
+    "This is a three-attempt comparison on one stateful scenario, not a general model ranking. Tencent HY3 Preview remains in the historical result but is no longer part of the recommended smoke fleet."
+  ],
+  "observations": [
+    "GPT-5.6 Luna repaired all three hosts with a 1:57 median and $0.0500 total reported cost, about $0.0167 per durable repair. It was both the fastest and least expensive successful configuration in this matrix.",
+    "GLM 5.2 also repaired all three hosts. Its 3:15 median was slower than Luna and its $0.2104 total worked out to about $0.0701 per durable repair.",
+    "DeepSeek V4 Flash 0731 repaired two of three hosts with an 11:59 median. Its $0.1013 total worked out to about $0.0506 per repair after failed-attempt spend was included. The failed attempt copied the accepted uploads, then chose a symlink topology that let the existing ExecStartPre delete shared data during restart.",
+    "Tencent HY3 Preview repaired none of three hosts. Two attempts timed out and one failed to recover the controller-owned upload IDs. The trajectories used runtime-only overrides, missed accepted state, or recreated a topology that deleted shared uploads during restart.",
+    "The scenario separated immediate health from durable repair: changing where future uploads were written was insufficient unless the exact historical and preflight uploads remained available after restart and reboot."
+  ],
+  "scenario_labels": {
+    "021-discourse-shared-uploads": "Discourse shared uploads"
+  },
+  "title": "Durable upload recovery on an isolated host"
+}

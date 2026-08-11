@@ -93,7 +93,7 @@ Run repeatable model comparisons with the Python matrix orchestrator:
 
 ```sh
 python integrations/host/run_host_matrix.py \
-  --models deepseek/deepseek-v4-flash poolside/laguna-s-2.1 \
+  --models deepseek/deepseek-v4-flash-0731 openai/gpt-5.6-luna z-ai/glm-5.2 \
   --attempts 3
 ```
 

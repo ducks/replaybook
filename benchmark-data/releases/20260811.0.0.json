@@ -1,0 +1,873 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 2232832,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 2811641,
+      "known_cost_usd": 0.10125969748000002,
+      "median_duration_seconds": 719,
+      "median_first_non_read_only_tool_seconds": 3.44,
+      "median_model_duration_seconds": 703.942,
+      "median_model_rounds": 24,
+      "median_post_first_non_read_only_seconds": 711.959,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 3.305,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "output_tokens": 117521,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1664630,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1799632,
+      "known_cost_usd": 0.050044725,
+      "median_duration_seconds": 117,
+      "median_first_non_read_only_tool_seconds": 7.048,
+      "median_model_duration_seconds": 106.033,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 103.94200000000001,
+      "median_tool_calls": 37,
+      "median_tool_duration_seconds": 4.792,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 27546,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 2716992,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1,
+        "agent_timeout": 2
+      },
+      "input_tokens": 3133749,
+      "known_cost_usd": 0.10341246300000001,
+      "median_duration_seconds": 903,
+      "median_first_non_read_only_tool_seconds": 15.607,
+      "median_model_duration_seconds": 875.132,
+      "median_model_rounds": 49,
+      "median_post_first_non_read_only_seconds": 882.464,
+      "median_tool_calls": 103,
+      "median_tool_duration_seconds": 17.296,
+      "model": "tencent/hy3-preview",
+      "output_tokens": 95714,
+      "pass_rate": 0.0,
+      "passed": 0,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 734807,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 870346,
+      "known_cost_usd": 0.210367847,
+      "median_duration_seconds": 195,
+      "median_first_non_read_only_tool_seconds": 2.04,
+      "median_model_duration_seconds": 181.811,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 186.894,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 6.998,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 38292,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 2232832,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 2811641,
+      "known_cost_usd": 0.10125969748000002,
+      "median_duration_seconds": 719,
+      "median_first_non_read_only_tool_seconds": 3.44,
+      "median_model_duration_seconds": 703.942,
+      "median_model_rounds": 24,
+      "median_post_first_non_read_only_seconds": 711.959,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 3.305,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "output_tokens": 117521,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1664630,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1799632,
+      "known_cost_usd": 0.050044725,
+      "median_duration_seconds": 117,
+      "median_first_non_read_only_tool_seconds": 7.048,
+      "median_model_duration_seconds": 106.033,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 103.94200000000001,
+      "median_tool_calls": 37,
+      "median_tool_duration_seconds": 4.792,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 27546,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 2716992,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1,
+        "agent_timeout": 2
+      },
+      "input_tokens": 3133749,
+      "known_cost_usd": 0.10341246300000001,
+      "median_duration_seconds": 903,
+      "median_first_non_read_only_tool_seconds": 15.607,
+      "median_model_duration_seconds": 875.132,
+      "median_model_rounds": 49,
+      "median_post_first_non_read_only_seconds": 882.464,
+      "median_tool_calls": 103,
+      "median_tool_duration_seconds": 17.296,
+      "model": "tencent/hy3-preview",
+      "output_tokens": 95714,
+      "pass_rate": 0.0,
+      "passed": 0,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 734807,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 870346,
+      "known_cost_usd": 0.210367847,
+      "median_duration_seconds": 195,
+      "median_first_non_read_only_tool_seconds": 2.04,
+      "median_model_duration_seconds": 181.811,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 186.894,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 6.998,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 38292,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": null,
+    "claux_release": "v20260810.0.1",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": null,
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "810fe151a8c0a9c8135693792df7c0f127ce11b210d3f96747030dad7c68e1c0",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "sha256": "2005bd5e5a07aa9d291d9cc1da806b1e93a7004a1cc17ee03e5fe6a1dc21ff07",
+          "version": "20260810.4.0"
+        }
+      ],
+      "schema_version": 1
+    },
+    "harness_version": 15,
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260810.4.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260810.4.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Four model configurations attempted the same Discourse-shaped shared-upload incident three times each under isolated host harness v15. The verifier required exact pre-existing uploads to survive service restart and host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "tencent/hy3-preview": "Tencent HY3 Preview",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "z-ai/glm-5.2",
+    "deepseek/deepseek-v4-flash-0731",
+    "tencent/hy3-preview"
+  ],
+  "notes": [
+    "Host harness v15 gives every VM a dedicated Nix store image. The agent cannot inspect unrelated derivations from the controller's Nix store.",
+    "All twelve trials were evaluated and reported usage. None of the three timed-out attempts contained a durable repair when the controller ran verification afterward.",
+    "This is a three-attempt comparison on one stateful scenario, not a general model ranking. Tencent HY3 Preview remains in the historical result but is no longer part of the recommended smoke fleet."
+  ],
+  "observations": [
+    "GPT-5.6 Luna repaired all three hosts with a 1:57 median and $0.0500 total reported cost, about $0.0167 per durable repair. It was both the fastest and least expensive successful configuration in this matrix.",
+    "GLM 5.2 also repaired all three hosts. Its 3:15 median was slower than Luna and its $0.2104 total worked out to about $0.0701 per durable repair.",
+    "DeepSeek V4 Flash 0731 repaired two of three hosts with an 11:59 median. Its $0.1013 total worked out to about $0.0506 per repair after failed-attempt spend was included. The failed attempt copied the accepted uploads, then chose a symlink topology that let the existing ExecStartPre delete shared data during restart.",
+    "Tencent HY3 Preview repaired none of three hosts. Two attempts timed out and one failed to recover the controller-owned upload IDs. The trajectories used runtime-only overrides, missed accepted state, or recreated a topology that deleted shared uploads during restart.",
+    "The scenario separated immediate health from durable repair: changing where future uploads were written was insufficient unless the exact historical and preflight uploads remained available after restart and reboot."
+  ],
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 719,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-11T16:48:49Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.44,
+        "model_duration_seconds": 703.942,
+        "model_rounds": 29,
+        "post_first_non_read_only_seconds": 711.959,
+        "tool_calls": 36,
+        "tool_duration_seconds": 10.351,
+        "total_duration_seconds": 715.399
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-deepseek-deepseek-v4-flash-0731-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T16:36:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1288448,
+        "cost_usd": 0.047696747280000014,
+        "input_tokens": 1518752,
+        "output_tokens": 54855
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-08-11T16:51:54Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.218,
+        "model_duration_seconds": 897.57,
+        "model_rounds": 24,
+        "post_first_non_read_only_seconds": 896.6220000000001,
+        "tool_calls": 33,
+        "tool_duration_seconds": 2.03,
+        "total_duration_seconds": 899.84
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-deepseek-deepseek-v4-flash-0731-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T16:36:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 513408,
+        "cost_usd": 0.020730573640000003,
+        "input_tokens": 608532,
+        "output_tokens": 27384
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not survive service restarts",
+          "failure_category": "historical_uploads_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 508,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-11T16:58:34Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.082,
+        "model_duration_seconds": 499.085,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 496.886,
+        "tool_calls": 30,
+        "tool_duration_seconds": 3.305,
+        "total_duration_seconds": 502.968
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-deepseek-deepseek-v4-flash-0731-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T16:49:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 430976,
+        "cost_usd": 0.03283237656,
+        "input_tokens": 684357,
+        "output_tokens": 35282
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 159,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-11T16:55:39Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.048,
+        "model_duration_seconds": 152.378,
+        "model_rounds": 24,
+        "post_first_non_read_only_seconds": 149.12,
+        "tool_calls": 39,
+        "tool_duration_seconds": 3.648,
+        "total_duration_seconds": 156.168
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T16:52:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 48654,
+        "cache_read_tokens": 737564,
+        "cost_usd": 0.01990859,
+        "input_tokens": 786290,
+        "output_tokens": 10740
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 114,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-11T16:58:38Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.038,
+        "model_duration_seconds": 106.033,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 103.94200000000001,
+        "tool_calls": 37,
+        "tool_duration_seconds": 4.792,
+        "total_duration_seconds": 110.98
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T16:56:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 39324,
+        "cache_read_tokens": 472519,
+        "cost_usd": 0.015016390000000001,
+        "input_tokens": 511900,
+        "output_tokens": 8950
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 117,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-11T17:02:14Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.616,
+        "model_duration_seconds": 89.869,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 102.561,
+        "tool_calls": 33,
+        "tool_duration_seconds": 20.178,
+        "total_duration_seconds": 110.177
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T17:00:05Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 46847,
+        "cache_read_tokens": 454547,
+        "cost_usd": 0.015119745,
+        "input_tokens": 501442,
+        "output_tokens": 7856
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 906,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-08-11T17:14:51Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 15.607,
+        "model_duration_seconds": 875.132,
+        "model_rounds": 48,
+        "post_first_non_read_only_seconds": 884.1940000000001,
+        "tool_calls": 103,
+        "tool_duration_seconds": 23.646,
+        "total_duration_seconds": 899.801
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-tencent-hy3-preview-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T16:59:45Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1099072,
+        "cost_usd": 0.04590345900000001,
+        "input_tokens": 1320531,
+        "output_tokens": 42243
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "uploads_not_writable"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 516,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "accepted_uploads_not_recovered",
+      "finished_at": "2026-08-11T17:11:48Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.907,
+        "model_duration_seconds": 507.715,
+        "model_rounds": 49,
+        "post_first_non_read_only_seconds": 504.99399999999997,
+        "tool_calls": 48,
+        "tool_duration_seconds": 4.572,
+        "total_duration_seconds": 512.901
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-tencent-hy3-preview-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T17:03:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 599296,
+        "cost_usd": 0.021826098,
+        "input_tokens": 672700,
+        "output_tokens": 21983
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-08-11T17:27:57Z",
+      "model": "tencent/hy3-preview",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 17.357,
+        "model_duration_seconds": 881.628,
+        "model_rounds": 50,
+        "post_first_non_read_only_seconds": 882.464,
+        "tool_calls": 123,
+        "tool_duration_seconds": 17.296,
+        "total_duration_seconds": 899.821
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-tencent-hy3-preview-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T17:12:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1018624,
+        "cost_usd": 0.035682906,
+        "input_tokens": 1140518,
+        "output_tokens": 31488
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "historical_uploads_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 183,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-11T17:18:40Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.349,
+        "model_duration_seconds": 172.279,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 178.127,
+        "tool_calls": 26,
+        "tool_duration_seconds": 6.998,
+        "total_duration_seconds": 179.476
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-z-ai-glm-5-2-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T17:15:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 219386,
+        "cost_usd": 0.079499486,
+        "input_tokens": 272265,
+        "output_tokens": 12005
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 199,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-11T17:22:48Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.04,
+        "model_duration_seconds": 189.809,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 192.83,
+        "tool_calls": 26,
+        "tool_duration_seconds": 4.908,
+        "total_duration_seconds": 194.87
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-z-ai-glm-5-2-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T17:19:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 276784,
+        "cost_usd": 0.06334308400000001,
+        "input_tokens": 313934,
+        "output_tokens": 12956
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 195,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-11T17:26:50Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.707,
+        "model_duration_seconds": 181.811,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 186.894,
+        "tool_calls": 25,
+        "tool_duration_seconds": 7.62,
+        "total_duration_seconds": 189.601
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-z-ai-glm-5-2-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-11T17:23:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 238637,
+        "cost_usd": 0.06752527700000001,
+        "input_tokens": 284147,
+        "output_tokens": 13331
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {
+    "021-discourse-shared-uploads": "Discourse shared uploads"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": null,
+      "claux_release": "v20260810.0.1",
+      "concurrency": 2,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": null,
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "810fe151a8c0a9c8135693792df7c0f127ce11b210d3f96747030dad7c68e1c0",
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra",
+            "sha256": "2005bd5e5a07aa9d291d9cc1da806b1e93a7004a1cc17ee03e5fe6a1dc21ff07",
+            "version": "20260810.4.0"
+          }
+        ],
+        "schema_version": 1
+      },
+      "finished_at": "2026-08-11T17:27:58.038306Z",
+      "harness_version": 15,
+      "models": [
+        "deepseek/deepseek-v4-flash-0731",
+        "openai/gpt-5.6-luna",
+        "tencent/hy3-preview",
+        "z-ai/glm-5.2"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "0ced3bf4a2a7582f941deb1828f0e66e6da560ab",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260810.4.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260810.4.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-11__16-35-31.453438",
+      "started_at": "2026-08-11T16:35:31.741981Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "title": "Durable upload recovery on an isolated host",
+  "totals": {
+    "cache_read_tokens": 7349261,
+    "cost_reported_trials": 12,
+    "evaluated": 12,
+    "failed": 4,
+    "failure_categories": {
+      "accepted_uploads_not_recovered": 1,
+      "agent_timeout": 3
+    },
+    "input_tokens": 8615368,
+    "known_cost_usd": 0.46508473248000004,
+    "median_duration_seconds": 353.5,
+    "median_first_non_read_only_tool_seconds": 6.5600000000000005,
+    "median_model_duration_seconds": 344.447,
+    "median_model_rounds": 21.5,
+    "median_post_first_non_read_only_seconds": 344.858,
+    "median_tool_calls": 34.5,
+    "median_tool_duration_seconds": 5.953,
+    "output_tokens": 279073,
+    "pass_rate": 0.6666666666666666,
+    "passed": 8,
+    "recording_reported_trials": 12,
+    "trials": 12,
+    "unavailable": 0,
+    "usage_reported_trials": 12
+  },
+  "version": "20260811.0.0"
+}

@@ -93,7 +93,7 @@ class PagesTests(unittest.TestCase):
 
         self.assertIn("Practice incidents", home)
         self.assertIn("Test infrastructure agents", home)
-        self.assertIn("15 durable repairs in 15 trials", home)
+        self.assertIn("8 durable repairs in 12 trials", home)
 
         self.assertIn("replaybook remote", usage)
         self.assertIn("replaybook serve", usage)
