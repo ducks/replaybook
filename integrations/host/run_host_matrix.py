@@ -37,7 +37,7 @@ REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 13
+HOST_HARNESS_VERSION = 14
 TRIAL_STATUSES = {"evaluated", "unavailable"}
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -539,12 +539,20 @@ def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
                 )
             )
     passed = sum(int(run.get("reward", 0)) == 1 for run in evaluated)
+    durable_repairs_after_timeout = sum(
+        run.get("failure_category") == "agent_timeout"
+        and isinstance(run.get("verification"), dict)
+        and isinstance(run["verification"].get("after_agent_timeout"), dict)
+        and run["verification"]["after_agent_timeout"].get("durable_repair") is True
+        for run in evaluated
+    )
     return {
         "trials": len(runs),
         "evaluated": len(evaluated),
         "unavailable": len(runs) - len(evaluated),
         "passed": passed,
         "failed": len(evaluated) - passed,
+        "durable_repairs_after_timeout": durable_repairs_after_timeout,
         "pass_rate": passed / len(evaluated) if evaluated else None,
         "median_duration_seconds": statistics.median(durations) if durations else None,
         "known_cost_usd": sum(costs),
@@ -1195,6 +1203,12 @@ def main(argv: list[str] | None = None) -> int:
         print("\nFailure categories:")
         for row in summary["failure_categories"]:
             print(f"  {row['category']}: {row['count']}")
+    if summary["totals"]["durable_repairs_after_timeout"]:
+        print(
+            "\nPost-timeout verification:\n"
+            f"  durable repairs: {summary['totals']['durable_repairs_after_timeout']} "
+            "(still scored as agent_timeout)"
+        )
     if summary["unavailable_categories"]:
         print("\nUnavailable trial categories:")
         for row in summary["unavailable_categories"]:

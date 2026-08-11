@@ -49,7 +49,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260810.0.1}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=13
+HOST_HARNESS_VERSION=14
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
@@ -505,6 +505,79 @@ run_verification() {
   return "$status"
 }
 
+verify_repair_lifecycle() {
+  if ! run_verification immediate; then
+    if [[ "$failure_category" == "backlog_not_recovered" ]]; then
+      failure="repair did not recover the pre-existing backlog"
+    elif [[ "$failure_category" == "migration_not_applied" ]]; then
+      failure="repair did not apply the deployed migration"
+    elif [[ "$failure_category" == "poison_not_quarantined" ]]; then
+      failure="repair did not quarantine poison work safely"
+    elif [[ "$failure_category" == "database_pool_exhausted" ]]; then
+      failure="repair did not restore database connection capacity"
+    else
+      failure="HTTP repair did not recover"
+    fi
+    return 1
+  fi
+
+  immediate_passed=true
+  echo "[host] immediate verification passed"
+  if ! "${SSH[@]}" "systemctl restart $RESTART_SERVICES"; then
+    failure="service restart failed"
+    return 1
+  elif ! run_verification service_restart; then
+    if [[ "$failure_category" == "backlog_not_recovered" ]]; then
+      failure="pre-existing backlog recovery did not survive service restarts"
+    elif [[ "$failure_category" == "migration_not_applied" ]]; then
+      failure="deployed migration was not applied after service restarts"
+    elif [[ "$failure_category" == "poison_not_quarantined" ]]; then
+      failure="poison handling did not survive service restarts"
+    elif [[ "$failure_category" == "database_pool_exhausted" ]]; then
+      failure="database pool repair did not survive service restarts"
+    else
+      failure="repair did not survive service restarts"
+    fi
+    return 1
+  fi
+
+  restart_passed=true
+  echo "[host] service restart verification passed"
+  set +e
+  "${SSH[@]}" "systemctl reboot" >/dev/null 2>&1
+  set -e
+  if ! wait_for_ssh_down; then
+    failure_category="host_reboot_failed"
+    failure="VM did not shut down for reboot"
+    return 1
+  elif ! wait_for_ssh 120; then
+    failure_category="host_reboot_failed"
+    failure="VM did not return after reboot"
+    return 1
+  elif ! wait_for_services; then
+    failure_category="services_failed_after_reboot"
+    failure="required systemd services are not active after reboot"
+    return 1
+  elif ! run_verification host_reboot; then
+    if [[ "$failure_category" == "backlog_not_recovered" ]]; then
+      failure="pre-existing backlog recovery did not survive host reboot"
+    elif [[ "$failure_category" == "migration_not_applied" ]]; then
+      failure="deployed migration was not applied after host reboot"
+    elif [[ "$failure_category" == "poison_not_quarantined" ]]; then
+      failure="poison handling did not survive host reboot"
+    elif [[ "$failure_category" == "database_pool_exhausted" ]]; then
+      failure="database pool repair did not survive host reboot"
+    else
+      failure="repair did not survive host reboot"
+    fi
+    return 1
+  fi
+
+  reboot_passed=true
+  echo "[host] host reboot verification passed"
+  return 0
+}
+
 echo "[host] building disposable NixOS incident host"
 export REPLAYBOOK_HOST_PUBLIC_KEY_FILE="${SSH_KEY}.pub"
 export REPLAYBOOK_HOST_SSH_PORT="$SSH_PORT"
@@ -602,7 +675,14 @@ fi
 echo "[host] preflight confirmed ${SCENARIO_ID}"
 
 "${SSH[@]}" "rm -rf -- /root/replaybook-eval; install -d -m 700 /root/replaybook-eval/results"
-"${SCP[@]}" "$INSTRUCTION" root@127.0.0.1:/root/replaybook-eval/instruction.md
+RUNTIME_INSTRUCTION="${WORK_DIR}/instruction.md"
+{
+  cat "$INSTRUCTION"
+  printf '\n%s\n' \
+    "You have a hard limit of ${AGENT_TIMEOUT_SECONDS} seconds for this task." \
+    "Budget the investigation accordingly. Once you have applied and verified a durable repair, stop investigating and return your final report before the deadline."
+} >"$RUNTIME_INSTRUCTION"
+"${SCP[@]}" "$RUNTIME_INSTRUCTION" root@127.0.0.1:/root/replaybook-eval/instruction.md
 "${SCP[@]}" "${SCRIPT_DIR}/run-agent-adapter.sh" root@127.0.0.1:/root/replaybook-eval/launcher
 
 agent="$AGENT_NAME"
@@ -700,6 +780,10 @@ trial_status="evaluated"
 immediate_passed=false
 restart_passed=false
 reboot_passed=false
+post_timeout_verification_attempted=false
+post_timeout_durable_repair=false
+post_timeout_failure=""
+post_timeout_failure_category=""
 if (( run_status == 255 )); then
   for _ in $(seq 1 10); do
     failure_category="$(
@@ -732,68 +816,25 @@ if (( run_status != 0 )); then
   else
     failure="agent exited with status $run_status"
   fi
-elif ! run_verification immediate; then
-  if [[ "$failure_category" == "backlog_not_recovered" ]]; then
-    failure="repair did not recover the pre-existing backlog"
-  elif [[ "$failure_category" == "migration_not_applied" ]]; then
-    failure="repair did not apply the deployed migration"
-  elif [[ "$failure_category" == "poison_not_quarantined" ]]; then
-    failure="repair did not quarantine poison work safely"
-  elif [[ "$failure_category" == "database_pool_exhausted" ]]; then
-    failure="repair did not restore database connection capacity"
-  else
-    failure="HTTP repair did not recover"
-  fi
-else
-  immediate_passed=true
-  echo "[host] immediate verification passed"
-  if ! "${SSH[@]}" "systemctl restart $RESTART_SERVICES"; then
-    failure="service restart failed"
-  elif ! run_verification service_restart; then
-    if [[ "$failure_category" == "backlog_not_recovered" ]]; then
-      failure="pre-existing backlog recovery did not survive service restarts"
-    elif [[ "$failure_category" == "migration_not_applied" ]]; then
-      failure="deployed migration was not applied after service restarts"
-    elif [[ "$failure_category" == "poison_not_quarantined" ]]; then
-      failure="poison handling did not survive service restarts"
-    elif [[ "$failure_category" == "database_pool_exhausted" ]]; then
-      failure="database pool repair did not survive service restarts"
+  if [[ "$agent_timed_out" == true ]]; then
+    primary_failure="$failure"
+    primary_failure_category="$failure_category"
+    failure=""
+    failure_category=""
+    post_timeout_verification_attempted=true
+    echo "[host] verifying host state after agent timeout"
+    if verify_repair_lifecycle; then
+      post_timeout_durable_repair=true
+      echo "[host] timed-out agent left a durable repair"
     else
-      failure="repair did not survive service restarts"
+      post_timeout_failure="$failure"
+      post_timeout_failure_category="$failure_category"
     fi
-  else
-    restart_passed=true
-    echo "[host] service restart verification passed"
-    set +e
-    "${SSH[@]}" "systemctl reboot" >/dev/null 2>&1
-    set -e
-    if ! wait_for_ssh_down; then
-      failure_category="host_reboot_failed"
-      failure="VM did not shut down for reboot"
-    elif ! wait_for_ssh 120; then
-      failure_category="host_reboot_failed"
-      failure="VM did not return after reboot"
-    elif ! wait_for_services; then
-      failure_category="services_failed_after_reboot"
-      failure="required systemd services are not active after reboot"
-    elif ! run_verification host_reboot; then
-      if [[ "$failure_category" == "backlog_not_recovered" ]]; then
-        failure="pre-existing backlog recovery did not survive host reboot"
-      elif [[ "$failure_category" == "migration_not_applied" ]]; then
-        failure="deployed migration was not applied after host reboot"
-      elif [[ "$failure_category" == "poison_not_quarantined" ]]; then
-        failure="poison handling did not survive host reboot"
-      elif [[ "$failure_category" == "database_pool_exhausted" ]]; then
-        failure="database pool repair did not survive host reboot"
-      else
-        failure="repair did not survive host reboot"
-      fi
-    else
-      reboot_passed=true
-      echo "[host] host reboot verification passed"
-      reward=1
-    fi
+    failure="$primary_failure"
+    failure_category="$primary_failure_category"
   fi
+elif verify_repair_lifecycle; then
+  reward=1
 fi
 
 if [[ "$RUN_ORACLE" == false && ! -f "$agent_result" ]]; then
@@ -840,6 +881,10 @@ jq -n \
   --argjson immediate_passed "$immediate_passed" \
   --argjson restart_passed "$restart_passed" \
   --argjson reboot_passed "$reboot_passed" \
+  --argjson post_timeout_verification_attempted "$post_timeout_verification_attempted" \
+  --argjson post_timeout_durable_repair "$post_timeout_durable_repair" \
+  --arg post_timeout_failure "$post_timeout_failure" \
+  --arg post_timeout_failure_category "$post_timeout_failure_category" \
   --argjson usage "$usage" \
   --argjson recording "$recording" \
   '{
@@ -868,7 +913,14 @@ jq -n \
     verification: {
       immediate_http: $immediate_passed,
       service_restart: $restart_passed,
-      host_reboot: $reboot_passed
+      host_reboot: $reboot_passed,
+      after_agent_timeout: (
+        if $post_timeout_verification_attempted then {
+          durable_repair: $post_timeout_durable_repair,
+          failure: (if $post_timeout_failure == "" then null else $post_timeout_failure end),
+          failure_category: (if $post_timeout_failure_category == "" then null else $post_timeout_failure_category end)
+        } else null end
+      )
     }
   }' >"${OUTPUT_DIR}/result.json"
 

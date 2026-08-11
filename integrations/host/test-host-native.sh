@@ -54,8 +54,8 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=13' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION = 13' "$script_dir/run_host_matrix.py"
+grep -q 'HOST_HARNESS_VERSION=14' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION = 14' "$script_dir/run_host_matrix.py"
 grep -q 'audit_guest_image' "$script_dir/run-host-native.sh"
 pack_description="$(
   python "$script_dir/scenario_pack.py" \
@@ -112,6 +112,9 @@ grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host
 [[ "$(grep -c 'ssh-probe.sh.*"\${SSH\[@\]}"' "$script_dir/run-host-native.sh")" -eq 3 ]]
 grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="agent_timeout"' "$script_dir/run-host-native.sh"
+grep -q 'verifying host state after agent timeout' "$script_dir/run-host-native.sh"
+grep -q 'You have a hard limit of.*seconds for this task' "$script_dir/run-host-native.sh"
+grep -q 'after_agent_timeout:' "$script_dir/run-host-native.sh"
 [[ "$("$script_dir/classify-agent-run-exit.sh" 124 1 900)" == "agent_timeout" ]]
 [[ "$("$script_dir/classify-agent-run-exit.sh" 137 900 900)" == "agent_timeout" ]]
 [[ "$("$script_dir/classify-agent-run-exit.sh" 255 934 900)" == "agent_timeout" ]]
