@@ -765,9 +765,7 @@ def build_summary(
         runs.append(run)
 
     harness_versions = {int(run["harness_version"]) for run in runs}
-    if len(harness_versions) > 1:
-        raise ValueError("matrix results contain mixed host harness versions")
-    harness_version = next(iter(harness_versions), HOST_HARNESS_VERSION)
+    harness_version = max(harness_versions, default=HOST_HARNESS_VERSION)
 
     by_model_groups: dict[tuple[str, str | None], list[dict[str, Any]]] = defaultdict(list)
     by_scenario_model_groups: dict[
@@ -822,6 +820,7 @@ def build_summary(
         "schema_version": 1,
         "suite": "replaybook-host-matrix-v1",
         "harness_version": harness_version,
+        "harness_versions": sorted(harness_versions),
         "started_at": started_at,
         "finished_at": utc_now(),
         "benchmark": benchmark,
@@ -1095,6 +1094,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         metavar="MATRIX_DIR",
         help="resume an interrupted matrix from its immutable execution snapshot",
     )
+    parser.add_argument(
+        "--refresh-controller",
+        action="store_true",
+        help="with --resume, run pending trials through the current host controller "
+        "while retaining the frozen scenario packs",
+    )
     parser.add_argument("--claux-binary", type=Path)
     parser.add_argument("--claux-release")
     parser.add_argument("--agent-adapter", type=Path)
@@ -1190,6 +1195,8 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
 
 
 def validate_resume_args(args: argparse.Namespace) -> None:
+    if args.refresh_controller and args.resume is None:
+        raise ValueError("--refresh-controller requires --resume")
     conflicts = []
     for flag, value in (
         ("--benchmark", args.benchmark),
@@ -1263,10 +1270,16 @@ def resume_matrix(args: argparse.Namespace) -> int:
         environment["REPLAYBOOK_HOST_CLAUX_RELEASE"] = plan.claux_release
 
     print(f"[matrix] resuming: {plan.matrix_dir}")
+    runner = SCRIPT_DIR / "run-host-native.sh" if args.refresh_controller else plan.snapshot.runner
+    controller_label = (
+        f"current v{HOST_HARNESS_VERSION} controller"
+        if args.refresh_controller
+        else f"snapshot {plan.snapshot.metadata['host_harness_sha256'][:12]}"
+    )
+    print(f"[matrix] controller: {controller_label}")
     print(
-        "[matrix] execution snapshot: "
-        f"{plan.snapshot.metadata['host_harness_sha256'][:12]} "
-        f"({plan.matrix_dir / 'execution-snapshot'})"
+        f"[matrix] frozen scenarios: "
+        f"{plan.matrix_dir / 'execution-snapshot' / 'scenario-packs'}"
     )
     print(
         f"[matrix] recovered {len(plan.completed)} of {len(plan.all_jobs)} valid results; "
@@ -1277,7 +1290,7 @@ def resume_matrix(args: argparse.Namespace) -> int:
             resumed = asyncio.run(
                 run_jobs(
                     plan.pending,
-                    runner=plan.snapshot.runner,
+                    runner=runner,
                     environment=environment,
                     concurrency=args.concurrency,
                     agent_timeout_seconds=plan.agent_timeout_seconds,
@@ -1306,6 +1319,9 @@ def resume_matrix(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.refresh_controller and args.resume is None:
+        print("error: --refresh-controller requires --resume", file=sys.stderr)
+        return 2
     if args.resume is not None:
         return resume_matrix(args)
     try:

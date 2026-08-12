@@ -352,6 +352,7 @@ class HostMatrixTests(unittest.TestCase):
 
         self.assertEqual(summary["received_results"], 2)
         self.assertEqual(summary["harness_version"], 5)
+        self.assertEqual(summary["harness_versions"], [5])
         self.assertEqual(summary["totals"]["evaluated"], 2)
         self.assertEqual(summary["totals"]["unavailable"], 0)
         self.assertEqual(summary["totals"]["passed"], 1)
@@ -365,6 +366,39 @@ class HostMatrixTests(unittest.TestCase):
             [{"category": "backlog_not_recovered", "count": 1}],
         )
         self.assertEqual(summary["unavailable_categories"], [])
+
+    def test_summary_reports_mixed_harness_versions(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            jobs = build_jobs(
+                scenarios=["incident"],
+                models=["old/model", "new/model"],
+                attempts=1,
+                base_port=23000,
+                matrix_dir=Path(temporary),
+            )
+            workers = [
+                WorkerResult(
+                    job,
+                    0,
+                    {
+                        "harness_version": version,
+                        "scenario": job.scenario,
+                        "scenario_version": 1,
+                        "model": job.model,
+                        "reward": 1,
+                    },
+                    None,
+                )
+                for job, version in zip(jobs, (15, 17), strict=True)
+            ]
+            summary = build_summary(
+                workers,
+                started_at="2026-08-12T00:00:00Z",
+                benchmark={"suite": "test"},
+            )
+
+        self.assertEqual(summary["harness_version"], 17)
+        self.assertEqual(summary["harness_versions"], [15, 17])
 
     def test_summary_counts_durable_repairs_left_by_timed_out_agents(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

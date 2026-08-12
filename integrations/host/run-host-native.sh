@@ -232,6 +232,10 @@ acquire_claux() {
 }
 
 acquire_claux
+GUEST_CLAUX_BINARY=""
+if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]]; then
+  GUEST_CLAUX_BINARY="$CLAUX_BINARY"
+fi
 
 [[ "$SCENARIO_ID" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]*$ ]] || {
   echo "scenario ID contains unsafe characters: ${SCENARIO_ID}" >&2
@@ -630,7 +634,7 @@ export REPLAYBOOK_HOST_PUBLIC_KEY_FILE="${SSH_KEY}.pub"
 export REPLAYBOOK_HOST_SSH_PORT="$SSH_PORT"
 export REPLAYBOOK_HOST_HTTP_PORT="$HTTP_PORT"
 export REPLAYBOOK_HOST_SCENARIO_CONFIG="$SCENARIO_VM_CONFIG"
-export REPLAYBOOK_HOST_CLAUX_BINARY="$CLAUX_BINARY"
+export REPLAYBOOK_HOST_CLAUX_BINARY="$GUEST_CLAUX_BINARY"
 nix-shell -p nixos-generators --run \
   "nixos-generate -f vm-nogui -c '${VM_CONFIG}' -o '${WORK_DIR}/vm'"
 
