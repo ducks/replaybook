@@ -187,8 +187,10 @@ integrations/host/run-host-native.sh \
 ```
 
 Use `--ssh-port` and `--http-port` when running workers concurrently. Set
-`REPLAYBOOK_HOST_CLAUX_BINARY` to evaluate a local binary instead of downloading
-the default released Claux version. Claux receives 900 seconds by default;
+`REPLAYBOOK_HOST_CLAUX_BINARY` to bake a local binary into the guest instead of
+using the cached default release. Replaybook downloads each pinned Claux release
+once on the host and includes it in the immutable guest closure. Claux receives
+900 seconds by default;
 override it with `--agent-timeout-seconds`.
 
 ## Run another harness

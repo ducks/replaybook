@@ -34,8 +34,8 @@ Environment:
   OPENROUTER_API_KEY             Required by the default Claux adapter.
   REPLAYBOOK_HOST_SSH_KEY        SSH key (default: ~/.ssh/id_ed25519).
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
-  REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to copy into the VM.
-  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to download (default: v20260810.0.1).
+  REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to bake into the VM.
+  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260810.0.1).
 
 Without --agent-adapter, Replaybook uses its bundled Claux adapter. Custom
 adapters receive the paths and model through REPLAYBOOK_* environment variables
@@ -49,7 +49,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260810.0.1}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=15
+HOST_HARNESS_VERSION=16
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
@@ -188,6 +188,37 @@ if [[ -n "$AGENT_ENV_FILE" && ! -f "$AGENT_ENV_FILE" ]]; then
   echo "agent environment file does not exist: ${AGENT_ENV_FILE}" >&2
   exit 2
 fi
+
+acquire_claux() {
+  [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]] || return 0
+  if [[ -n "$CLAUX_BINARY" ]]; then
+    CLAUX_BINARY="$(realpath "$CLAUX_BINARY")"
+    return 0
+  fi
+
+  local cache_root="${XDG_CACHE_HOME:-${HOME}/.cache}/replaybook/claux/${CLAUX_RELEASE}"
+  local cached_binary="${cache_root}/claux-linux-x86_64"
+  local lock_file="${cache_root}.lock"
+  mkdir -p "$(dirname "$cache_root")"
+  exec {claux_lock_fd}>"$lock_file"
+  flock "$claux_lock_fd"
+  if [[ ! -x "$cached_binary" ]]; then
+    mkdir -p "$cache_root"
+    local partial="${cached_binary}.partial.$$"
+    echo "[host] caching Claux ${CLAUX_RELEASE}"
+    curl --fail --location --silent --show-error \
+      --retry 5 --retry-all-errors --retry-delay 2 \
+      "https://github.com/ducks/claux/releases/download/${CLAUX_RELEASE}/claux-linux-x86_64" \
+      --output "$partial"
+    chmod 0755 "$partial"
+    mv "$partial" "$cached_binary"
+  fi
+  CLAUX_BINARY="$cached_binary"
+  flock -u "$claux_lock_fd"
+  exec {claux_lock_fd}>&-
+}
+
+acquire_claux
 
 [[ "$SCENARIO_ID" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]*$ ]] || {
   echo "scenario ID contains unsafe characters: ${SCENARIO_ID}" >&2
@@ -586,6 +617,7 @@ export REPLAYBOOK_HOST_PUBLIC_KEY_FILE="${SSH_KEY}.pub"
 export REPLAYBOOK_HOST_SSH_PORT="$SSH_PORT"
 export REPLAYBOOK_HOST_HTTP_PORT="$HTTP_PORT"
 export REPLAYBOOK_HOST_SCENARIO_CONFIG="$SCENARIO_VM_CONFIG"
+export REPLAYBOOK_HOST_CLAUX_BINARY="$CLAUX_BINARY"
 nix-shell -p nixos-generators --run \
   "nixos-generate -f vm-nogui -c '${VM_CONFIG}' -o '${WORK_DIR}/vm'"
 
@@ -709,16 +741,6 @@ else
   # to the model path so a future staging change cannot silently expose it.
   "${SSH[@]}" "test ! -e /root/replaybook-eval/oracle.sh"
   if [[ "$CUSTOM_AGENT_ADAPTER" == false ]]; then
-    if [[ -z "$AGENT_PAYLOAD" ]]; then
-      if [[ -z "$CLAUX_BINARY" ]]; then
-        CLAUX_BINARY="${WORK_DIR}/claux"
-        echo "[host] downloading Claux ${CLAUX_RELEASE}"
-        curl --fail --location --silent --show-error \
-          "https://github.com/ducks/claux/releases/download/${CLAUX_RELEASE}/claux-linux-x86_64" \
-          --output "$CLAUX_BINARY"
-      fi
-      AGENT_PAYLOAD="$CLAUX_BINARY"
-    fi
     if [[ -z "$AGENT_ENV_FILE" ]]; then
       AGENT_ENV_FILE="${WORK_DIR}/runtime.env"
       printf '%s\n' \
@@ -740,9 +762,6 @@ else
   "${SSH[@]}" \
     "chmod 0755 /root/replaybook-eval/launcher /root/replaybook-eval/adapter; \
      chmod 0600 /root/replaybook-eval/runtime.env"
-  if [[ "$CUSTOM_AGENT_ADAPTER" == false ]]; then
-    "${SSH[@]}" "chmod 0755 /root/replaybook-eval/payload"
-  fi
   printf '%s\n' "$MODEL" | "${SSH[@]}" "umask 077; cat > /root/replaybook-eval/model"
   echo "[host] running ${AGENT_NAME} directly on the incident host"
   "${SSH[@]}" \
