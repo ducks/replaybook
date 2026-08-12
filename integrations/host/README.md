@@ -266,6 +266,22 @@ Worker logs show
 both launch position and completed progress, such as `starting 3 of 15` and
 `completed 1 of 15`, so long concurrent matrices remain easy to track.
 
+If a matrix is interrupted, resume it in place:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --resume jobs/host-matrix-2026-08-11__18-47-25.10fa16 \
+  --concurrency 2
+```
+
+Resume reconstructs the complete job plan from `benchmark.json`, verifies the
+saved harness and scenario-pack hashes, keeps every identity-matching
+`result.json`, removes partial output only for unfinished jobs, and schedules
+the remainder on their original port assignments. The final summary covers the
+whole matrix, not only the resumed workers. A custom adapter whose original
+matrix used `--agent-env-file` must supply that file again; Replaybook verifies
+its hash without retaining the secret-bearing file.
+
 ## Run an executable benchmark manifest
 
 A benchmark repository can freeze its scenario pack, scenario versions,

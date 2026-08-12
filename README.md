@@ -97,6 +97,15 @@ python integrations/host/run_host_matrix.py \
   --attempts 3
 ```
 
+Interrupted matrices resume from their immutable execution snapshot and skip
+trials that already produced valid results:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --resume jobs/host-matrix-2026-08-11__18-47-25.10fa16 \
+  --concurrency 2
+```
+
 Run the separately versioned
 [Replaybook Infra](https://github.com/ducks/replaybook-infra) benchmark from
 its executable manifest:

@@ -103,6 +103,20 @@ class ExecutionSnapshot:
     metadata: dict[str, Any]
 
 
+@dataclass(frozen=True)
+class ResumePlan:
+    matrix_dir: Path
+    benchmark: dict[str, Any]
+    snapshot: ExecutionSnapshot
+    all_jobs: list[Job]
+    completed: list[WorkerResult]
+    pending: list[Job]
+    started_at: str
+    agent_timeout_seconds: int
+    agent_name: str | None
+    claux_release: str | None
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
@@ -220,6 +234,43 @@ def stage_execution_snapshot(
     )
 
 
+def load_execution_snapshot(matrix_dir: Path) -> ExecutionSnapshot:
+    snapshot_dir = matrix_dir / "execution-snapshot"
+    manifest_path = snapshot_dir / "manifest.json"
+    benchmark_path = matrix_dir / "benchmark.json"
+    if not manifest_path.is_file() or not benchmark_path.is_file():
+        raise ValueError("resume directory is missing its execution snapshot or benchmark.json")
+    metadata = json.loads(manifest_path.read_text())
+    harness_dir = snapshot_dir / "host-harness"
+    if sha256_tree(harness_dir) != metadata.get("host_harness_sha256"):
+        raise ValueError("saved host harness does not match its recorded hash")
+    pack_dirs = sorted((snapshot_dir / "scenario-packs").iterdir())
+    recorded_packs = metadata.get("scenario_packs") or []
+    if len(pack_dirs) != len(recorded_packs):
+        raise ValueError("saved scenario pack count does not match the snapshot manifest")
+    for path, recorded in zip(pack_dirs, recorded_packs, strict=True):
+        if sha256_tree(path) != recorded.get("sha256"):
+            raise ValueError(f"saved scenario pack changed: {path}")
+
+    def optional_artifact(name: str, hash_name: str) -> Path | None:
+        path = snapshot_dir / "agent" / name
+        expected = metadata.get(hash_name)
+        if expected is None:
+            return None
+        if not path.is_file() or sha256_file(path) != expected:
+            raise ValueError(f"saved agent {name} does not match its recorded hash")
+        return path
+
+    return ExecutionSnapshot(
+        runner=harness_dir / "run-host-native.sh",
+        scenario_pack_dirs=pack_dirs,
+        agent_adapter=optional_artifact("adapter", "agent_adapter_sha256"),
+        agent_payload=optional_artifact("payload", "agent_payload_sha256"),
+        claux_binary=optional_artifact("claux", "claux_binary_sha256"),
+        metadata=metadata,
+    )
+
+
 @contextlib.contextmanager
 def stage_runtime_env(source: Path | None) -> Iterable[Path | None]:
     if source is None:
@@ -318,6 +369,92 @@ def load_result(path: Path) -> tuple[dict[str, Any] | None, str | None]:
     ):
         return None, f"result has invalid required fields: {path}"
     return result, None
+
+
+def completed_worker(job: Job) -> WorkerResult | None:
+    result, error = load_result(job.output_dir / "result.json")
+    expected_model = "oracle" if job.model is None else job.model
+    if result is None or (
+        result["scenario"] != job.scenario
+        or result["model"] != expected_model
+        or result.get("reasoning_effort") != job.reasoning_effort
+    ):
+        return None
+    return WorkerResult(
+        job=job,
+        exit_code=0 if result["reward"] == 1 else 1,
+        result=result,
+        error=error,
+    )
+
+
+def prepare_pending_job(job: Job) -> None:
+    if job.output_dir.exists():
+        shutil.rmtree(job.output_dir)
+
+
+def verify_saved_result_versions(
+    completed: list[WorkerResult], benchmark: dict[str, Any]
+) -> None:
+    expected = {
+        str(item["id"]): int(item["version"])
+        for item in benchmark.get("scenarios") or []
+    }
+    for worker in completed:
+        actual = int(worker.result["scenario_version"])
+        if actual != expected.get(worker.job.scenario):
+            raise ValueError(
+                f"saved result has wrong scenario version: {worker.job.run_id}"
+            )
+
+
+def build_resume_plan(matrix_dir: Path) -> ResumePlan:
+    matrix_dir = matrix_dir.expanduser().resolve()
+    benchmark_path = matrix_dir / "benchmark.json"
+    if not matrix_dir.is_dir() or not benchmark_path.is_file():
+        raise ValueError(f"resume directory is not a host matrix: {matrix_dir}")
+    benchmark = json.loads(benchmark_path.read_text())
+    scenarios = [str(item["id"]) for item in benchmark.get("scenarios") or []]
+    models = [None if model == "oracle" else str(model) for model in benchmark.get("models") or []]
+    efforts = [str(value) for value in benchmark.get("reasoning_efforts") or []] or [None]
+    attempts = int(benchmark.get("attempts") or 0)
+    base_port = int(benchmark.get("base_port") or 22600)
+    if not scenarios or not models or attempts <= 0:
+        raise ValueError("saved benchmark does not contain a complete job plan")
+    jobs = build_jobs(
+        scenarios=scenarios,
+        models=models,
+        attempts=attempts,
+        base_port=base_port,
+        matrix_dir=matrix_dir,
+        reasoning_efforts=efforts,
+    )
+    completed = []
+    pending = []
+    for job in jobs:
+        worker = completed_worker(job)
+        if worker is None:
+            pending.append(job)
+        else:
+            completed.append(worker)
+    snapshot = load_execution_snapshot(matrix_dir)
+    verify_saved_result_versions(completed, benchmark)
+    started_at = str(benchmark.get("started_at") or utc_now())
+    agent = benchmark.get("agent") or {}
+    return ResumePlan(
+        matrix_dir=matrix_dir,
+        benchmark=benchmark,
+        snapshot=snapshot,
+        all_jobs=jobs,
+        completed=completed,
+        pending=pending,
+        started_at=started_at,
+        agent_timeout_seconds=int(
+            benchmark.get("agent_timeout_seconds") or DEFAULT_AGENT_TIMEOUT_SECONDS
+        ),
+        agent_name=agent.get("name") if agent.get("adapter") != "builtin:claux" else None,
+        claux_release=benchmark.get("claux_release"),
+    )
 
 
 async def terminate_process(process: asyncio.subprocess.Process) -> None:
@@ -839,6 +976,54 @@ def print_recording_table(rows: list[dict[str, Any]]) -> None:
         print("  ".join(value.ljust(widths[index]) for index, value in enumerate(row)))
 
 
+def print_summary(summary: dict[str, Any], summary_file: Path) -> None:
+    print()
+    print_table(summary["by_model"])
+    print()
+    print_scenario_table(summary["by_scenario_model"])
+    if summary["totals"]["recording_reported_trials"]:
+        print("\nExecution recording (medians):")
+        print_recording_table(summary["by_model"])
+    if summary["failure_categories"]:
+        print("\nFailure categories:")
+        for row in summary["failure_categories"]:
+            print(f"  {row['category']}: {row['count']}")
+    if summary["totals"]["durable_repairs_after_timeout"]:
+        print(
+            "\nPost-timeout verification:\n"
+            f"  durable repairs: {summary['totals']['durable_repairs_after_timeout']} "
+            "(still scored as agent_timeout)"
+        )
+    if summary["unavailable_categories"]:
+        print("\nUnavailable trial categories:")
+        for row in summary["unavailable_categories"]:
+            print(f"  {row['category']}: {row['count']}")
+    print(f"\n[matrix] summary: {summary_file}")
+
+
+def summary_exit_status(summary: dict[str, Any], expected_trials: int) -> int:
+    infrastructure_errors = summary["infrastructure_errors"]
+    if infrastructure_errors:
+        print(
+            f"[matrix] incomplete: {len(infrastructure_errors)} trials produced "
+            "no valid result",
+            file=sys.stderr,
+        )
+        return 1
+    if summary["totals"]["unavailable"]:
+        print(
+            f"[matrix] incomplete: {summary['totals']['unavailable']} trials "
+            "were unavailable and excluded from pass rates",
+            file=sys.stderr,
+        )
+        return 1
+    print(
+        f"[matrix] all {expected_trials} trials completed; "
+        f"{summary['totals']['failed']} evaluation failures"
+    )
+    return 0
+
+
 def current_commit() -> str | None:
     result = subprocess.run(
         ["git", "-C", str(REPO_DIR), "rev-parse", "HEAD"],
@@ -898,6 +1083,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="first port; each trial uses adjacent SSH and HTTP ports",
     )
     parser.add_argument("--output-dir", type=Path)
+    parser.add_argument(
+        "--resume",
+        type=Path,
+        metavar="MATRIX_DIR",
+        help="resume an interrupted matrix from its immutable execution snapshot",
+    )
     parser.add_argument("--claux-binary", type=Path)
     parser.add_argument("--claux-release")
     parser.add_argument("--agent-adapter", type=Path)
@@ -992,6 +1183,35 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
             raise ValueError(f"unknown host-native scenario: {scenario}")
 
 
+def validate_resume_args(args: argparse.Namespace) -> None:
+    conflicts = []
+    for flag, value in (
+        ("--benchmark", args.benchmark),
+        ("--scenario", args.scenarios),
+        ("--scenario-pack", args.scenario_packs),
+        ("--models", args.models),
+        ("--reasoning-efforts", args.reasoning_efforts),
+        ("--attempts", args.attempts),
+        ("--agent-timeout-seconds", args.agent_timeout_seconds),
+        ("--base-port", args.base_port if args.base_port != 22600 else None),
+        ("--output-dir", args.output_dir),
+        ("--claux-binary", args.claux_binary),
+        ("--claux-release", args.claux_release),
+        ("--agent-adapter", args.agent_adapter),
+        ("--agent-payload", args.agent_payload),
+        ("--agent-name", args.agent_name),
+        ("--oracle", args.oracle),
+        ("--check", args.check),
+        ("--list-scenarios", args.list_scenarios),
+    ):
+        if value:
+            conflicts.append(flag)
+    if conflicts:
+        raise ValueError("--resume cannot be combined with " + ", ".join(conflicts))
+    if args.concurrency <= 0:
+        raise ValueError("--concurrency must be a positive integer")
+
+
 def matrix_directory(supplied: Path | None) -> Path:
     if supplied is not None:
         path = supplied.expanduser()
@@ -1005,8 +1225,83 @@ def matrix_directory(supplied: Path | None) -> Path:
     return path
 
 
+def resume_matrix(args: argparse.Namespace) -> int:
+    try:
+        validate_resume_args(args)
+        plan = build_resume_plan(args.resume)
+        if args.agent_env_file is not None:
+            agent_env_file = args.agent_env_file.expanduser().resolve()
+            if not agent_env_file.is_file():
+                raise ValueError(f"--agent-env-file does not exist: {agent_env_file}")
+            expected_hash = plan.snapshot.metadata.get("agent_env_sha256")
+            if expected_hash is None or sha256_file(agent_env_file) != expected_hash:
+                raise ValueError("--agent-env-file does not match the original matrix")
+        else:
+            agent_env_file = None
+        for job in plan.pending:
+            check_port_available(job.ssh_port)
+            check_port_available(job.http_port)
+        if plan.pending and not any(job.model is None for job in plan.pending):
+            if plan.snapshot.agent_adapter is None and not os.environ.get("OPENROUTER_API_KEY"):
+                raise ValueError("OPENROUTER_API_KEY is required by the saved Claux adapter")
+        for job in plan.pending:
+            prepare_pending_job(job)
+    except (OSError, ValueError, json.JSONDecodeError) as error:
+        print(f"error: could not resume matrix: {error}", file=sys.stderr)
+        return 2
+
+    environment = dict(os.environ)
+    if plan.snapshot.claux_binary:
+        environment["REPLAYBOOK_HOST_CLAUX_BINARY"] = str(plan.snapshot.claux_binary)
+    if plan.claux_release:
+        environment["REPLAYBOOK_HOST_CLAUX_RELEASE"] = plan.claux_release
+
+    print(f"[matrix] resuming: {plan.matrix_dir}")
+    print(
+        "[matrix] execution snapshot: "
+        f"{plan.snapshot.metadata['host_harness_sha256'][:12]} "
+        f"({plan.matrix_dir / 'execution-snapshot'})"
+    )
+    print(
+        f"[matrix] recovered {len(plan.completed)} of {len(plan.all_jobs)} valid results; "
+        f"running {len(plan.pending)} remaining trials with at most {args.concurrency} VMs"
+    )
+    try:
+        with stage_runtime_env(agent_env_file) as runtime_env:
+            resumed = asyncio.run(
+                run_jobs(
+                    plan.pending,
+                    runner=plan.snapshot.runner,
+                    environment=environment,
+                    concurrency=args.concurrency,
+                    agent_timeout_seconds=plan.agent_timeout_seconds,
+                    agent_adapter=plan.snapshot.agent_adapter,
+                    agent_payload=plan.snapshot.agent_payload,
+                    agent_env_file=runtime_env,
+                    agent_name=plan.agent_name,
+                    scenario_pack_dirs=plan.snapshot.scenario_pack_dirs,
+                )
+            )
+    except KeyboardInterrupt:
+        print("\n[matrix] interrupted; active workers terminated", file=sys.stderr)
+        return 130
+
+    worker_results = [*plan.completed, *resumed]
+    summary = build_summary(
+        worker_results,
+        started_at=plan.started_at,
+        benchmark=plan.benchmark,
+    )
+    summary_file = plan.matrix_dir / "summary.json"
+    summary_file.write_text(json.dumps(summary, indent=2) + "\n")
+    print_summary(summary, summary_file)
+    return summary_exit_status(summary, len(plan.all_jobs))
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.resume is not None:
+        return resume_matrix(args)
     try:
         manifest = apply_benchmark_manifest(args)
     except ValueError as error:
@@ -1136,6 +1431,7 @@ def main(argv: list[str] | None = None) -> int:
         "models": ["oracle" if model is None else model for model in models],
         "reasoning_efforts": args.reasoning_efforts or [],
         "attempts": args.attempts,
+        "base_port": args.base_port,
         "concurrency": args.concurrency,
         "agent_timeout_seconds": args.agent_timeout_seconds,
         "agent": {
@@ -1151,8 +1447,9 @@ def main(argv: list[str] | None = None) -> int:
         "claux_release": args.claux_release
         or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260810.0.1"),
     }
+    benchmark["started_at"] = utc_now()
     (matrix_dir / "benchmark.json").write_text(json.dumps(benchmark, indent=2) + "\n")
-    started_at = utc_now()
+    started_at = benchmark["started_at"]
     print(f"[matrix] results: {matrix_dir}")
     print(
         "[matrix] execution snapshot: "
@@ -1193,49 +1490,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     summary_file = matrix_dir / "summary.json"
     summary_file.write_text(json.dumps(summary, indent=2) + "\n")
-    print()
-    print_table(summary["by_model"])
-    print()
-    print_scenario_table(summary["by_scenario_model"])
-    if summary["totals"]["recording_reported_trials"]:
-        print("\nExecution recording (medians):")
-        print_recording_table(summary["by_model"])
-    if summary["failure_categories"]:
-        print("\nFailure categories:")
-        for row in summary["failure_categories"]:
-            print(f"  {row['category']}: {row['count']}")
-    if summary["totals"]["durable_repairs_after_timeout"]:
-        print(
-            "\nPost-timeout verification:\n"
-            f"  durable repairs: {summary['totals']['durable_repairs_after_timeout']} "
-            "(still scored as agent_timeout)"
-        )
-    if summary["unavailable_categories"]:
-        print("\nUnavailable trial categories:")
-        for row in summary["unavailable_categories"]:
-            print(f"  {row['category']}: {row['count']}")
-    print(f"\n[matrix] summary: {summary_file}")
-
-    infrastructure_errors = summary["infrastructure_errors"]
-    if infrastructure_errors:
-        print(
-            f"[matrix] incomplete: {len(infrastructure_errors)} trials produced "
-            "no valid result",
-            file=sys.stderr,
-        )
-        return 1
-    if summary["totals"]["unavailable"]:
-        print(
-            f"[matrix] incomplete: {summary['totals']['unavailable']} trials "
-            "were unavailable and excluded from pass rates",
-            file=sys.stderr,
-        )
-        return 1
-    print(
-        f"[matrix] all {len(jobs)} trials completed; "
-        f"{summary['totals']['failed']} evaluation failures"
-    )
-    return 0
+    print_summary(summary, summary_file)
+    return summary_exit_status(summary, len(jobs))
 
 
 if __name__ == "__main__":
