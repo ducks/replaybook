@@ -197,6 +197,11 @@ Cold VM builds get 300 seconds to expose SSH. The credential proxy and reverse
 tunnel each get 30 seconds. Override those host-side readiness windows with
 `REPLAYBOOK_HOST_VM_READY_TIMEOUT` and `REPLAYBOOK_HOST_PROXY_READY_TIMEOUT`.
 
+Interrupted matrices normally resume through their frozen controller. When a
+controller-only infrastructure fix must apply to pending trials, add
+`--refresh-controller`. Replaybook still uses the frozen scenario packs and
+reports every harness version present in the combined results.
+
 ## Run another harness
 
 Replaybook owns the incident VM, instruction, lifecycle, and verification. An
