@@ -20,6 +20,7 @@ from integrations.host.run_host_matrix import (
     print_scenario_table,
     print_table,
     run_jobs,
+    sha256_tree,
     stage_execution_snapshot,
     slugify,
 )
@@ -148,6 +149,16 @@ class HostMatrixTests(unittest.TestCase):
             jobs[0].run_id,
             "013-sidekiq-wrong-redis-vendor-model-a-1",
         )
+
+    def test_snapshot_hash_ignores_python_bytecode_caches(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "runner.py").write_text("print('ok')\n")
+            before = sha256_tree(root)
+            cache = root / "__pycache__"
+            cache.mkdir()
+            (cache / "runner.cpython-314.pyc").write_bytes(b"runtime cache")
+            self.assertEqual(sha256_tree(root), before)
 
     def test_build_jobs_expands_reasoning_efforts_as_distinct_trials(self) -> None:
         jobs = build_jobs(

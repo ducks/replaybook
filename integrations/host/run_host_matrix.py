@@ -140,7 +140,13 @@ def sha256_file(path: Path) -> str:
 
 def sha256_tree(path: Path) -> str:
     digest = hashlib.sha256()
-    for item in sorted(candidate for candidate in path.rglob("*") if candidate.is_file()):
+    for item in sorted(
+        candidate
+        for candidate in path.rglob("*")
+        if candidate.is_file()
+        and "__pycache__" not in candidate.parts
+        and candidate.suffix != ".pyc"
+    ):
         relative = item.relative_to(path).as_posix().encode()
         digest.update(len(relative).to_bytes(4, "big"))
         digest.update(relative)
