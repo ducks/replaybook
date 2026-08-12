@@ -36,6 +36,10 @@ Environment:
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to bake into the VM.
   REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260810.0.1).
+  REPLAYBOOK_HOST_VM_READY_TIMEOUT
+                                 VM SSH readiness timeout in seconds (default: 300).
+  REPLAYBOOK_HOST_PROXY_READY_TIMEOUT
+                                 Credential proxy/tunnel timeout in seconds (default: 30).
 
 Without --agent-adapter, Replaybook uses its bundled Claux adapter. Custom
 adapters receive the paths and model through REPLAYBOOK_* environment variables
@@ -49,7 +53,9 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260810.0.1}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=16
+HOST_HARNESS_VERSION=17
+VM_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_VM_READY_TIMEOUT:-300}"
+PROXY_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_PROXY_READY_TIMEOUT:-30}"
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
@@ -188,6 +194,13 @@ if [[ -n "$AGENT_ENV_FILE" && ! -f "$AGENT_ENV_FILE" ]]; then
   echo "agent environment file does not exist: ${AGENT_ENV_FILE}" >&2
   exit 2
 fi
+for timeout_setting in VM_READY_TIMEOUT_SECONDS PROXY_READY_TIMEOUT_SECONDS; do
+  timeout_value="${!timeout_setting}"
+  if [[ ! "$timeout_value" =~ ^[1-9][0-9]*$ ]]; then
+    echo "${timeout_setting} must be a positive integer: ${timeout_value}" >&2
+    exit 2
+  fi
+done
 
 acquire_claux() {
   [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]] || return 0
@@ -406,7 +419,7 @@ SCP=(
 )
 
 wait_for_ssh() {
-  local timeout_seconds="${1:-120}"
+  local timeout_seconds="${1:-$VM_READY_TIMEOUT_SECONDS}"
   local deadline="$((SECONDS + timeout_seconds))"
   while (( SECONDS < deadline )); do
     if [[ -n "$VM_PID" ]] && ! kill -0 "$VM_PID" 2>/dev/null; then
@@ -584,7 +597,7 @@ verify_repair_lifecycle() {
     failure_category="host_reboot_failed"
     failure="VM did not shut down for reboot"
     return 1
-  elif ! wait_for_ssh 120; then
+  elif ! wait_for_ssh "$VM_READY_TIMEOUT_SECONDS"; then
     failure_category="host_reboot_failed"
     failure="VM did not return after reboot"
     return 1
@@ -634,7 +647,7 @@ NIX_DISK_IMAGE="${WORK_DIR}/disk.qcow2" \
 VM_PID=$!
 
 wait_for_ssh || {
-  echo "incident VM did not become reachable" >&2
+  echo "incident VM did not become reachable within ${VM_READY_TIMEOUT_SECONDS}s" >&2
   tail -100 "${OUTPUT_DIR}/console.log" >&2
   exit 1
 }
@@ -647,17 +660,19 @@ if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]]; then
       --ready-file "$proxy_ready" \
       >"${WORK_DIR}/openrouter-proxy.log" 2>&1 &
   PROXY_PID=$!
-  for _ in $(seq 1 100); do
+  proxy_deadline="$((SECONDS + PROXY_READY_TIMEOUT_SECONDS))"
+  while (( SECONDS < proxy_deadline )); do
     [[ -s "$proxy_ready" ]] && break
     kill -0 "$PROXY_PID" 2>/dev/null || {
       cat "${WORK_DIR}/openrouter-proxy.log" >&2
       echo "OpenRouter credential proxy exited before becoming ready" >&2
       exit 1
     }
-    sleep 0.05
+    sleep 0.1
   done
   [[ -s "$proxy_ready" ]] || {
-    echo "OpenRouter credential proxy did not become ready" >&2
+    cat "${WORK_DIR}/openrouter-proxy.log" >&2
+    echo "OpenRouter credential proxy did not become ready within ${PROXY_READY_TIMEOUT_SECONDS}s" >&2
     exit 1
   }
   proxy_host_port="$(<"$proxy_ready")"
@@ -674,7 +689,8 @@ if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]]; then
     -R "127.0.0.1:${proxy_vm_port}:127.0.0.1:${proxy_host_port}" \
     root@127.0.0.1 &
   TUNNEL_PID=$!
-  for _ in $(seq 1 100); do
+  tunnel_deadline="$((SECONDS + PROXY_READY_TIMEOUT_SECONDS))"
+  while (( SECONDS < tunnel_deadline )); do
     if "${SSH[@]}" "timeout 1 bash -c '</dev/tcp/127.0.0.1/${proxy_vm_port}'" \
       >/dev/null 2>&1; then
       break
@@ -683,11 +699,11 @@ if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]]; then
       echo "OpenRouter credential tunnel exited before becoming ready" >&2
       exit 1
     }
-    sleep 0.05
+    sleep 0.1
   done
   "${SSH[@]}" "timeout 1 bash -c '</dev/tcp/127.0.0.1/${proxy_vm_port}'" \
     >/dev/null 2>&1 || {
-      echo "OpenRouter credential tunnel did not become ready" >&2
+    echo "OpenRouter credential tunnel did not become ready within ${PROXY_READY_TIMEOUT_SECONDS}s" >&2
       exit 1
     }
 fi
@@ -823,7 +839,7 @@ if (( run_status == 255 )); then
   done
   if [[ "$failure_category" == "agent_rebooted_host" ]]; then
     echo "[host] detected an agent-initiated host reboot" >&2
-    wait_for_ssh 120 || true
+    wait_for_ssh "$VM_READY_TIMEOUT_SECONDS" || true
   fi
 fi
 
