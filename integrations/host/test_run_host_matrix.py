@@ -13,6 +13,7 @@ from integrations.host.run_host_matrix import (
     HOST_RUNNER_FILES,
     WorkerResult,
     build_jobs,
+    build_resume_plan,
     build_summary,
     discover_scenarios,
     main,
@@ -181,6 +182,121 @@ class HostMatrixTests(unittest.TestCase):
                 base_port=23000,
                 matrix_dir=Path("/tmp/matrix"),
             )
+
+    def test_resume_plan_reuses_valid_results_and_retries_missing_runs(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            matrix = root / "matrix"
+            matrix.mkdir()
+            host = root / "host"
+            host.mkdir()
+            for name in HOST_RUNNER_FILES:
+                path = host / name
+                path.write_text(f"saved {name}\n")
+                path.chmod(0o755 if name.endswith(".sh") else 0o644)
+            pack = root / "pack"
+            pack.mkdir()
+            (pack / "replaybook-pack.toml").write_text(
+                '[pack]\nid = "test/resume"\nversion = "20260811.0.0"\n'
+            )
+            scenario = pack / "incident"
+            scenario.mkdir()
+            (scenario / "scenario.toml").write_text("[scenario]\nversion = 1\n")
+            snapshot = stage_execution_snapshot(
+                matrix,
+                packs=[load_pack(pack)],
+                agent_adapter=None,
+                agent_payload=None,
+                agent_env_file=None,
+                claux_binary=None,
+                host_dir=host,
+            )
+            benchmark = {
+                "suite": "replaybook-host-matrix-v1",
+                "scenarios": [{"id": "incident", "version": 1}],
+                "models": ["vendor/model"],
+                "reasoning_efforts": ["high"],
+                "attempts": 2,
+                "base_port": 24000,
+                "agent_timeout_seconds": 900,
+                "started_at": "2026-08-11T00:00:00Z",
+                "agent": {"name": "claux", "adapter": "builtin:claux"},
+                "execution_snapshot": snapshot.metadata,
+            }
+            (matrix / "benchmark.json").write_text(json.dumps(benchmark))
+            jobs = build_jobs(
+                scenarios=["incident"],
+                models=["vendor/model"],
+                reasoning_efforts=["high"],
+                attempts=2,
+                base_port=24000,
+                matrix_dir=matrix,
+            )
+            jobs[0].output_dir.mkdir(parents=True)
+            (jobs[0].output_dir / "result.json").write_text(
+                json.dumps(
+                    {
+                        "harness_version": 15,
+                        "scenario": "incident",
+                        "scenario_version": 1,
+                        "model": "vendor/model",
+                        "reasoning_effort": "high",
+                        "reward": 1,
+                    }
+                )
+            )
+            jobs[1].output_dir.mkdir(parents=True)
+            (jobs[1].output_dir / "partial.txt").write_text("interrupted")
+
+            plan = build_resume_plan(matrix)
+
+        self.assertEqual(len(plan.all_jobs), 2)
+        self.assertEqual([worker.job.run_id for worker in plan.completed], [jobs[0].run_id])
+        self.assertEqual([job.run_id for job in plan.pending], [jobs[1].run_id])
+        self.assertEqual(plan.pending[0].ssh_port, 24002)
+        self.assertEqual(plan.snapshot.metadata, snapshot.metadata)
+
+    def test_resume_rejects_changed_execution_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            matrix = root / "matrix"
+            matrix.mkdir()
+            host = root / "host"
+            host.mkdir()
+            for name in HOST_RUNNER_FILES:
+                path = host / name
+                path.write_text(f"saved {name}\n")
+            pack = root / "pack"
+            pack.mkdir()
+            (pack / "replaybook-pack.toml").write_text(
+                '[pack]\nid = "test/resume"\nversion = "20260811.0.0"\n'
+            )
+            scenario = pack / "incident"
+            scenario.mkdir()
+            (scenario / "scenario.toml").write_text("[scenario]\nversion = 1\n")
+            stage_execution_snapshot(
+                matrix,
+                packs=[load_pack(pack)],
+                agent_adapter=None,
+                agent_payload=None,
+                agent_env_file=None,
+                claux_binary=None,
+                host_dir=host,
+            )
+            (matrix / "benchmark.json").write_text(
+                json.dumps(
+                    {
+                        "scenarios": [{"id": "incident"}],
+                        "models": ["vendor/model"],
+                        "attempts": 1,
+                    }
+                )
+            )
+            (matrix / "execution-snapshot/host-harness/run-host-native.sh").write_text(
+                "changed\n"
+            )
+            with self.assertRaisesRegex(ValueError, "saved host harness"):
+                build_resume_plan(matrix)
 
     def test_empty_summary_tables_still_render_headers(self) -> None:
         output = io.StringIO()
