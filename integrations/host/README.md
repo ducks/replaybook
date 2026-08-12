@@ -193,6 +193,10 @@ once on the host and includes it in the immutable guest closure. Claux receives
 900 seconds by default;
 override it with `--agent-timeout-seconds`.
 
+Cold VM builds get 300 seconds to expose SSH. The credential proxy and reverse
+tunnel each get 30 seconds. Override those host-side readiness windows with
+`REPLAYBOOK_HOST_VM_READY_TIMEOUT` and `REPLAYBOOK_HOST_PROXY_READY_TIMEOUT`.
+
 ## Run another harness
 
 Replaybook owns the incident VM, instruction, lifecycle, and verification. An
