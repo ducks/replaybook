@@ -212,6 +212,26 @@ class PublisherTests(unittest.TestCase):
         self.assertIn("Execution recording", page)
         self.assertIn("First non-read", page)
 
+    def test_publishes_resumed_harness_and_post_timeout_outcomes(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = summary("model/a", reward=0)
+            value["harness_versions"] = [15, 17]
+            run = value["runs"][0]
+            run["failure_category"] = "agent_timeout"
+            run["verification"]["after_agent_timeout"] = {
+                "durable_repair": True,
+            }
+            path = self.write_summary(root, "resumed-matrix", value)
+
+            release = create_release("20260812.0.0", [path], {})
+
+        self.assertEqual(release["compatibility"]["harness_versions"], [15, 17])
+        self.assertEqual(release["totals"]["durable_repairs_after_timeout"], 1)
+        page = html_page(release)
+        self.assertIn("Host harness v15/v17", page)
+        self.assertIn("became durable after the agent deadline", page)
+
     def test_rejects_incompatible_scenario_versions(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

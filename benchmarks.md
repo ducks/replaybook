@@ -9,21 +9,29 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Durable upload recovery on an isolated host
+## Eleven incidents across four infrastructure agents
 
-Four model configurations attempted the same Discourse-shaped shared-upload incident three times each under isolated host harness v15. The verifier required exact pre-existing uploads to survive service restart and host reboot.
+Four model configurations attempted eleven isolated infrastructure incidents three times each. The 132-trial matrix spans Nginx, Rails, Sidekiq, Node, Rust, Python, and Discourse failures, with durable verification after service restart and host reboot.
 
-Benchmark release: `20260811.0.0`
+Benchmark release: `20260812.0.0`
 
-Scenario packs: `ducks/replaybook-infra@20260810.4.0`
+Scenario packs: `ducks/replaybook-infra@20260811.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 3/3 | 100% | 1:57 | $0.0500 | $0.0167 |
-| GLM 5.2 (high) | 3/3 | 100% | 3:15 | $0.2104 | $0.0701 |
-| DeepSeek V4 Flash 0731 (high) | 2/3 | 67% | 11:59 | $0.1013 | $0.0506 |
-| Tencent HY3 Preview (high) | 0/3 | 0% | 15:03 | $0.1034 | n/a |
-| **Total** | **8/12** | **67%** | **5:54** | **$0.4651** | **$0.0581** |
+| DeepSeek V4 Flash 0731 (high) | 33/33 | 100% | 3:26 | $0.4852 | $0.0147 |
+| GLM 5.2 (high) | 33/33 | 100% | 2:14 | $2.7687 | $0.0839 |
+| GPT-5.6 Luna (high) | 30/32 | 94% | 2:10 | $0.4581+ | $0.0153+ |
+| MiniMax M3 (high) | 26/33 | 79% | 4:18 | $2.9650 | $0.1140 |
+| **Total** | **122/131** | **93%** | **3:04** | **$6.6771+** | **$0.0547+** |
+
+### Unavailable trial categories
+
+- `provider_unavailable`: 1
+
+### Post-timeout verification
+
+3 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
 
 ### Execution recording
 
@@ -31,41 +39,56 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 3/3 | 19 | 1:46 | 37 | 0:05 | 0:07 | 1:44 |
-| GLM 5.2 (high) | 3/3 | 18 | 3:02 | 26 | 0:07 | 0:02 | 3:07 |
-| DeepSeek V4 Flash 0731 (high) | 3/3 | 24 | 11:44 | 33 | 0:03 | 0:03 | 11:52 |
-| Tencent HY3 Preview (high) | 3/3 | 49 | 14:35 | 103 | 0:17 | 0:16 | 14:42 |
+| DeepSeek V4 Flash 0731 (high) | 33/33 | 18 | 3:04 | 26 | 0:18 | 0:04 | 3:17 |
+| GLM 5.2 (high) | 33/33 | 17 | 1:29 | 22 | 0:09 | 0:03 | 2:08 |
+| GPT-5.6 Luna (high) | 32/33 | 14.5 | 1:21 | 30 | 0:28 | 0:07 | 1:55 |
+| MiniMax M3 (high) | 33/33 | 29 | 3:21 | 47 | 0:18 | 0:02 | 3:59 |
 
-GPT-5.6 Luna repaired all three hosts with a 1:57 median and $0.0500 total reported cost, about $0.0167 per durable repair. It was both the fastest and least expensive successful configuration in this matrix.
+DeepSeek V4 Flash 0731 and GLM 5.2 each made 33 durable repairs in 33 evaluated attempts. DeepSeek cost $0.4852 in total, about $0.0147 per repair; GLM cost $2.7687, about $0.0839 per repair.
 
-GLM 5.2 also repaired all three hosts. Its 3:15 median was slower than Luna and its $0.2104 total worked out to about $0.0701 per durable repair.
+GPT-5.6 Luna made 30 durable repairs in 32 evaluated attempts, with one provider-unavailable trial. Its 2:10 median was the fastest model-level median, and its $0.4581 known total worked out to about $0.0153 per repair.
 
-DeepSeek V4 Flash 0731 repaired two of three hosts with an 11:59 median. Its $0.1013 total worked out to about $0.0506 per repair after failed-attempt spend was included. The failed attempt copied the accepted uploads, then chose a symlink topology that let the existing ExecStartPre delete shared data during restart.
+MiniMax M3 made 26 durable repairs in 33 attempts. It used the most rounds and tool calls at the median, cost $2.9650 in total, and produced all three post-timeout durable outcomes.
 
-Tencent HY3 Preview repaired none of three hosts. Two attempts timed out and one failed to recover the controller-owned upload IDs. The trajectories used runtime-only overrides, missed accepted state, or recreated a topology that deleted shared uploads during restart.
+The nine scored failures were distributed across six explicit categories: four agent timeouts and one each for accepted uploads, backlog recovery, exports, host reboot, and provider interruption.
 
-The scenario separated immediate health from durable repair: changing where future uploads were written was insufficient unless the exact historical and preflight uploads remained available after restart and reboot.
+This is the broadest Replaybook matrix so far, but three attempts per scenario and configuration remain a small sample. The results describe this frozen benchmark and harness, not universal model quality.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Luna (high) | GLM 5.2 (high) | DeepSeek V4 Flash 0731 (high) | Tencent HY3 Preview (high) |
+| Scenario | Version | DeepSeek V4 Flash 0731 (high) | GLM 5.2 (high) | GPT-5.6 Luna (high) | MiniMax M3 (high) |
 |---|---:|---:|---:|---:|---:|
-| Discourse shared uploads | v1 | 3/3, 1:57 | 3/3, 3:15 | 2/3, 11:59 | 0/3, 15:03 |
+| Nginx 502 | v1 | 3/3, 1:35 | 3/3, 0:44 | 3/3, 1:06 | 3/3, 5:44 |
+| Sidekiq wrong Redis database | v2 | 3/3, 3:16 | 3/3, 1:25 | 3/3, 1:34 | 2/3, 1:10 |
+| Missing Rails migration | v2 | 3/3, 3:06 | 3/3, 2:16 | 3/3, 2:15 | 2/3, 4:31 |
+| Sidekiq poison pill | v1 | 3/3, 6:00 | 3/3, 4:43 | 3/3, 3:52 | 1/3, 15:03 |
+| Rails pool exhaustion | v1 | 3/3, 3:21 | 3/3, 1:33 | 3/3, 1:20 | 3/3, 2:18 |
+| Partial Rails rollout | v1 | 3/3, 4:41 | 3/3, 2:25 | 3/3, 1:31 | 3/3, 4:18 |
+| Node event-loop blocking | v1 | 3/3, 3:50 | 3/3, 1:43 | 3/3, 3:50 | 2/3, 13:13 |
+| Rust file-descriptor leak | v1 | 3/3, 2:59 | 3/3, 3:12 | 0/2, 8:14 | 3/3, 2:55 |
+| Python Gunicorn saturation | v1 | 3/3, 10:22 | 3/3, 3:27 | 3/3, 3:31 | 2/3, 7:38 |
+| Discourse shared uploads | v1 | 3/3, 11:31 | 3/3, 4:27 | 3/3, 3:18 | 2/3, 2:46 |
+| Discourse multisite migration | v1 | 3/3, 3:00 | 3/3, 1:54 | 3/3, 1:12 | 3/3, 9:48 |
 
 ### Failure categories
 
 - `accepted_uploads_not_recovered`: 1
-- `agent_timeout`: 3
+- `agent_timeout`: 4
+- `backlog_not_recovered`: 1
+- `exports_still_timing_out`: 1
+- `host_reboot_failed`: 1
+- `provider_interrupted`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-11__16-35-31.453438`: deepseek/deepseek-v4-flash-0731, openai/gpt-5.6-luna, tencent/hy3-preview, z-ai/glm-5.2; Replaybook `0ced3bf4`; reasoning high
+- `host-matrix-2026-08-11__18-47-25.10fa16`: deepseek/deepseek-v4-flash-0731, openai/gpt-5.6-luna, z-ai/glm-5.2, minimax/minimax-m3; Replaybook `e79af9a8`; reasoning high
 
 ### Run notes
 
-- Host harness v15 gives every VM a dedicated Nix store image. The agent cannot inspect unrelated derivations from the controller's Nix store.
-- All twelve trials were evaluated and reported usage. None of the three timed-out attempts contained a durable repair when the controller ran verification afterward.
-- This is a three-attempt comparison on one stateful scenario, not a general model ranking. Tencent HY3 Preview remains in the historical result but is no longer part of the recommended smoke fleet.
+- The matrix began under host harness v15 and resumed under v17 after disk exhaustion interrupted the original run. The frozen scenario pack, benchmark manifest, models, reasoning effort, attempt count, timeout, adapter, and Claux release remained unchanged; the newer controller baked Claux into the guest and hardened VM and proxy readiness.
+- One GPT-5.6 Luna Rust trial was rejected by the provider before evaluation. It remains provider_unavailable and is excluded from pass rates and repair-cost denominators.
+- Three MiniMax attempts reached a durable state after the 900-second deadline. They remain benchmark failures under agent_timeout, while post-timeout verification preserves the later operational outcome separately.
+- The run was resumed from 87 valid results and completed the remaining 45 planned trials. Resume reused valid trial artifacts instead of rerunning them.
 
 <!-- replaybook:current-benchmark:end -->
 

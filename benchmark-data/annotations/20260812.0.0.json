@@ -1,0 +1,42 @@
+{
+  "description": "Four model configurations attempted eleven isolated infrastructure incidents three times each. The 132-trial matrix spans Nginx, Rails, Sidekiq, Node, Rust, Python, and Discourse failures, with durable verification after service restart and host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "minimax/minimax-m3": "MiniMax M3",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "deepseek/deepseek-v4-flash-0731",
+    "z-ai/glm-5.2",
+    "openai/gpt-5.6-luna",
+    "minimax/minimax-m3"
+  ],
+  "notes": [
+    "The matrix began under host harness v15 and resumed under v17 after disk exhaustion interrupted the original run. The frozen scenario pack, benchmark manifest, models, reasoning effort, attempt count, timeout, adapter, and Claux release remained unchanged; the newer controller baked Claux into the guest and hardened VM and proxy readiness.",
+    "One GPT-5.6 Luna Rust trial was rejected by the provider before evaluation. It remains provider_unavailable and is excluded from pass rates and repair-cost denominators.",
+    "Three MiniMax attempts reached a durable state after the 900-second deadline. They remain benchmark failures under agent_timeout, while post-timeout verification preserves the later operational outcome separately.",
+    "The run was resumed from 87 valid results and completed the remaining 45 planned trials. Resume reused valid trial artifacts instead of rerunning them."
+  ],
+  "observations": [
+    "DeepSeek V4 Flash 0731 and GLM 5.2 each made 33 durable repairs in 33 evaluated attempts. DeepSeek cost $0.4852 in total, about $0.0147 per repair; GLM cost $2.7687, about $0.0839 per repair.",
+    "GPT-5.6 Luna made 30 durable repairs in 32 evaluated attempts, with one provider-unavailable trial. Its 2:10 median was the fastest model-level median, and its $0.4581 known total worked out to about $0.0153 per repair.",
+    "MiniMax M3 made 26 durable repairs in 33 attempts. It used the most rounds and tool calls at the median, cost $2.9650 in total, and produced all three post-timeout durable outcomes.",
+    "The nine scored failures were distributed across six explicit categories: four agent timeouts and one each for accepted uploads, backlog recovery, exports, host reboot, and provider interruption.",
+    "This is the broadest Replaybook matrix so far, but three attempts per scenario and configuration remain a small sample. The results describe this frozen benchmark and harness, not universal model quality."
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502",
+    "013-sidekiq-wrong-redis": "Sidekiq wrong Redis database",
+    "014-missing-rails-migration": "Missing Rails migration",
+    "015-sidekiq-poison-pill": "Sidekiq poison pill",
+    "016-rails-pool-exhaustion": "Rails pool exhaustion",
+    "017-partial-rails-rollout": "Partial Rails rollout",
+    "018-node-event-loop-blocking": "Node event-loop blocking",
+    "019-rust-fd-leak": "Rust file-descriptor leak",
+    "020-python-gunicorn-saturation": "Python Gunicorn saturation",
+    "021-discourse-shared-uploads": "Discourse shared uploads",
+    "022-discourse-multisite-migration": "Discourse multisite migration"
+  },
+  "title": "Eleven incidents across four infrastructure agents"
+}
