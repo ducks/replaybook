@@ -195,6 +195,8 @@ def import_summary(path: Path) -> dict[str, Any]:
         "finished_at": summary.get("finished_at"),
         "suite": summary.get("suite"),
         "harness_version": summary.get("harness_version"),
+        "harness_versions": summary.get("harness_versions")
+        or [summary.get("harness_version")],
         "replaybook_commit": benchmark.get("replaybook_commit"),
         "scenarios": scenarios,
         "scenario_packs": scenario_packs,
@@ -222,6 +224,16 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
     benchmark_manifest = source["benchmark_manifest"]
     execution_snapshot = source["execution_snapshot"]
     attempts = source["attempts"]
+    harness_versions = source["harness_versions"]
+    if (
+        not isinstance(harness_versions, list)
+        or not harness_versions
+        or not all(
+            isinstance(version, int) and not isinstance(version, bool)
+            for version in harness_versions
+        )
+    ):
+        raise PublishError(f"{path}: harness_versions must be an array of integers")
     if (
         not models
         or not all(isinstance(model, str) and model for model in models)
@@ -360,6 +372,7 @@ def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
     return {
         "suite": source["suite"],
         "harness_version": source["harness_version"],
+        "harness_versions": source["harness_versions"],
         "scenarios": source["scenarios"],
         "scenario_packs": source["scenario_packs"],
         "benchmark_manifest": source["benchmark_manifest"],
@@ -439,6 +452,21 @@ def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         for run in evaluated
         if run["reward"] == 0 and run.get("failure_category")
     )
+    unavailable_categories = Counter(
+        run["failure_category"]
+        for run in runs
+        if run["trial_status"] != "evaluated" and run.get("failure_category")
+    )
+    durable_repairs_after_timeout = sum(
+        1
+        for run in evaluated
+        if run["reward"] == 0
+        and isinstance((run.get("verification") or {}).get("after_agent_timeout"), dict)
+        and (run.get("verification") or {})["after_agent_timeout"].get(
+            "durable_repair"
+        )
+        is True
+    )
     result = {
         "trials": len(runs),
         "evaluated": len(evaluated),
@@ -456,6 +484,8 @@ def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         ),
         "usage_reported_trials": len(usages),
         "failure_categories": dict(sorted(failure_categories.items())),
+        "unavailable_categories": dict(sorted(unavailable_categories.items())),
+        "durable_repairs_after_timeout": durable_repairs_after_timeout,
     }
     recordings = [
         run["recording"]
@@ -597,6 +627,10 @@ def money(value: float, incomplete: bool = False) -> str:
     return f"${value:.4f}{suffix}"
 
 
+def trial_noun(count: int) -> str:
+    return "trial" if count == 1 else "trials"
+
+
 def model_sort_key(
     release: dict[str, Any], model: str, reasoning_effort: str | None = None
 ) -> tuple[int, str, str]:
@@ -709,6 +743,24 @@ def html_page(release: dict[str, Any]) -> str:
         f"<li><code>{html.escape(category)}</code>: {count}</li>"
         for category, count in totals["failure_categories"].items()
     ) or "<li>None</li>"
+    unavailable_items = "".join(
+        f"<li><code>{html.escape(category)}</code>: {count}</li>"
+        for category, count in totals["unavailable_categories"].items()
+    )
+    unavailable_section = (
+        f"""
+    <h2>Unavailable trial categories</h2>
+    <ul>{unavailable_items}</ul>"""
+        if unavailable_items
+        else ""
+    )
+    post_timeout = ""
+    if totals["durable_repairs_after_timeout"]:
+        post_timeout = f"""
+    <div class="callout comparison-note">
+      <strong>{totals['durable_repairs_after_timeout']} repairs became durable after the agent deadline.</strong>
+      They remain scored as <code>agent_timeout</code>; post-timeout verification records the later operational outcome separately.
+    </div>"""
     observations = "\n".join(
         f"      <p>{html.escape(str(item))}</p>"
         for item in release.get("observations", [])
@@ -812,7 +864,7 @@ def html_page(release: dict[str, Any]) -> str:
 
     <div class="callout benchmark-status verified-status">
       <strong>{totals['trials']} trials across {source_count} controlled {source_noun}.</strong>
-      {totals['passed']} repairs passed durable verification. {totals['failed']} evaluated attempts failed and {totals['unavailable']} were unavailable.
+      {totals['passed']} repairs passed durable verification. {totals['failed']} evaluated attempts failed and {totals['unavailable']} {trial_noun(totals['unavailable'])} {"was" if totals['unavailable'] == 1 else "were"} unavailable.
     </div>
 
     <h2>Model summary</h2>
@@ -830,10 +882,10 @@ def html_page(release: dict[str, Any]) -> str:
 
     <h2>Failure categories</h2>
     <ul>{failure_items}</ul>
-{corrections}{notes}
+{unavailable_section}{post_timeout}{corrections}{notes}
 
     <h2>Constituent matrices</h2>
-    <p>The publisher validated matching harness, {pack_compatibility}scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>{pack_note}
+    <p>The publisher recorded harness provenance and validated matching {pack_compatibility}scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>{pack_note}
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
 {source_rows}
     </tbody></table></div>
@@ -846,7 +898,7 @@ def html_page(release: dict[str, Any]) -> str:
   --attempts {attempts} \\
   --concurrency 2</code></pre>
 
-    <p class="small muted">Host harness v{release['compatibility']['harness_version']}, Claux <code>{html.escape(str(release['compatibility']['claux_release']))}</code>, {release['compatibility']['agent_timeout_seconds']}-second agent timeout. Usage was reported for {totals['usage_reported_trials']} of {totals['trials']} trials.</p>
+    <p class="small muted">Host harness {html.escape('/'.join('v' + str(version) for version in release['compatibility']['harness_versions']))}, Claux <code>{html.escape(str(release['compatibility']['claux_release']))}</code>, {release['compatibility']['agent_timeout_seconds']}-second agent timeout. Usage was reported for {totals['usage_reported_trials']} of {totals['trials']} trials.</p>
 
     <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
 
@@ -897,6 +949,27 @@ def markdown_section(release: dict[str, Any]) -> str:
             "",
         ]
     )
+    if totals["unavailable_categories"]:
+        lines.extend(
+            [
+                "### Unavailable trial categories",
+                "",
+                *[
+                    f"- `{category}`: {count}"
+                    for category, count in totals["unavailable_categories"].items()
+                ],
+                "",
+            ]
+        )
+    if totals["durable_repairs_after_timeout"]:
+        lines.extend(
+            [
+                "### Post-timeout verification",
+                "",
+                f"{totals['durable_repairs_after_timeout']} repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.",
+                "",
+            ]
+        )
     recording_rows = [row for row in rows if row.get("recording_reported_trials")]
     if recording_rows:
         lines.extend(
