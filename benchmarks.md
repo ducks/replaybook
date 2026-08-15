@@ -9,29 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Eleven incidents across four infrastructure agents
+## Four agents repair an interrupted Discourse deployment
 
-Four model configurations attempted eleven isolated infrastructure incidents three times each. The 132-trial matrix spans Nginx, Rails, Sidekiq, Node, Rust, Python, and Discourse failures, with durable verification after service restart and host reboot.
+Four infrastructure agents attempted the same interrupted Discourse deployment three times each. The scenario requires converging both application instances on the intended release while preserving customer state through service restart and host reboot.
 
-Benchmark release: `20260812.0.0`
+Benchmark release: `20260815.0.0`
 
-Scenario packs: `ducks/replaybook-infra@20260811.0.0`
+Scenario packs: `ducks/replaybook-infra@20260814.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash 0731 (high) | 33/33 | 100% | 3:26 | $0.4852 | $0.0147 |
-| GLM 5.2 (high) | 33/33 | 100% | 2:14 | $2.7687 | $0.0839 |
-| GPT-5.6 Luna (high) | 30/32 | 94% | 2:10 | $0.4581+ | $0.0153+ |
-| MiniMax M3 (high) | 26/33 | 79% | 4:18 | $2.9650 | $0.1140 |
-| **Total** | **122/131** | **93%** | **3:04** | **$6.6771+** | **$0.0547+** |
-
-### Unavailable trial categories
-
-- `provider_unavailable`: 1
-
-### Post-timeout verification
-
-3 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
+| GPT-5.6 Luna (high) | 3/3 | 100% | 1:31 | $0.0551 | $0.0184 |
+| GLM 5.2 (high) | 2/3 | 67% | 2:07 | $0.4908 | $0.2454 |
+| DeepSeek V4 Flash 0731 (high) | 1/3 | 33% | 6:04 | $0.1794 | $0.1794 |
+| MiniMax M3 (high) | 1/3 | 33% | 10:02 | $0.2023 | $0.2023 |
+| **Total** | **7/12** | **58%** | **4:36** | **$0.9276** | **$0.1325** |
 
 ### Execution recording
 
@@ -39,56 +31,39 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash 0731 (high) | 33/33 | 18 | 3:04 | 26 | 0:18 | 0:04 | 3:17 |
-| GLM 5.2 (high) | 33/33 | 17 | 1:29 | 22 | 0:09 | 0:03 | 2:08 |
-| GPT-5.6 Luna (high) | 32/33 | 14.5 | 1:21 | 30 | 0:28 | 0:07 | 1:55 |
-| MiniMax M3 (high) | 33/33 | 29 | 3:21 | 47 | 0:18 | 0:02 | 3:59 |
+| GPT-5.6 Luna (high) | 3/3 | 15 | 1:20 | 32 | 0:09 | 0:07 | 1:18 |
+| GLM 5.2 (high) | 3/3 | 29 | 1:39 | 33 | 0:17 | 0:03 | 2:04 |
+| DeepSeek V4 Flash 0731 (high) | 3/3 | 47 | 5:41 | 91 | 0:21 | 0:06 | 5:56 |
+| MiniMax M3 (high) | 3/3 | 20 | 9:53 | 49 | 0:12 | 0:03 | 9:58 |
 
-DeepSeek V4 Flash 0731 and GLM 5.2 each made 33 durable repairs in 33 evaluated attempts. DeepSeek cost $0.4852 in total, about $0.0147 per repair; GLM cost $2.7687, about $0.0839 per repair.
+GPT-5.6 Luna made three durable repairs in three attempts with a 1:31 median. Its $0.0551 total cost was about $0.0184 per durable repair, making it the fastest, most reliable, and cheapest repair agent in this focused run.
 
-GPT-5.6 Luna made 30 durable repairs in 32 evaluated attempts, with one provider-unavailable trial. Its 2:10 median was the fastest model-level median, and its $0.4581 known total worked out to about $0.0153 per repair.
+GLM 5.2 made two durable repairs in three attempts with a 2:07 median. Its $0.4908 total cost was about $0.2454 per durable repair, roughly 13 times Luna's observed repair cost.
 
-MiniMax M3 made 26 durable repairs in 33 attempts. It used the most rounds and tool calls at the median, cost $2.9650 in total, and produced all three post-timeout durable outcomes.
+DeepSeek V4 Flash 0731 and MiniMax M3 each repaired one of three attempts. DeepSeek had a 6:04 median and spent $0.1794; MiniMax had a 10:02 median and spent $0.2023.
 
-The nine scored failures were distributed across six explicit categories: four agent timeouts and one each for accepted uploads, backlog recovery, exports, host reboot, and provider interruption.
+All five failures were release_not_converged. The endpoint could be healthy while one or more instances still served the wrong release, which is why an HTTP-only verifier would overstate repair quality.
 
-This is the broadest Replaybook matrix so far, but three attempts per scenario and configuration remain a small sample. The results describe this frozen benchmark and harness, not universal model quality.
+This is one difficult scenario with three attempts per model, not a universal model ranking. It is useful evidence about interrupted deployment recovery under this frozen harness and verifier.
 
 ### Scenario breakdown
 
-| Scenario | Version | DeepSeek V4 Flash 0731 (high) | GLM 5.2 (high) | GPT-5.6 Luna (high) | MiniMax M3 (high) |
+| Scenario | Version | GPT-5.6 Luna (high) | GLM 5.2 (high) | DeepSeek V4 Flash 0731 (high) | MiniMax M3 (high) |
 |---|---:|---:|---:|---:|---:|
-| Nginx 502 | v1 | 3/3, 1:35 | 3/3, 0:44 | 3/3, 1:06 | 3/3, 5:44 |
-| Sidekiq wrong Redis database | v2 | 3/3, 3:16 | 3/3, 1:25 | 3/3, 1:34 | 2/3, 1:10 |
-| Missing Rails migration | v2 | 3/3, 3:06 | 3/3, 2:16 | 3/3, 2:15 | 2/3, 4:31 |
-| Sidekiq poison pill | v1 | 3/3, 6:00 | 3/3, 4:43 | 3/3, 3:52 | 1/3, 15:03 |
-| Rails pool exhaustion | v1 | 3/3, 3:21 | 3/3, 1:33 | 3/3, 1:20 | 3/3, 2:18 |
-| Partial Rails rollout | v1 | 3/3, 4:41 | 3/3, 2:25 | 3/3, 1:31 | 3/3, 4:18 |
-| Node event-loop blocking | v1 | 3/3, 3:50 | 3/3, 1:43 | 3/3, 3:50 | 2/3, 13:13 |
-| Rust file-descriptor leak | v1 | 3/3, 2:59 | 3/3, 3:12 | 0/2, 8:14 | 3/3, 2:55 |
-| Python Gunicorn saturation | v1 | 3/3, 10:22 | 3/3, 3:27 | 3/3, 3:31 | 2/3, 7:38 |
-| Discourse shared uploads | v1 | 3/3, 11:31 | 3/3, 4:27 | 3/3, 3:18 | 2/3, 2:46 |
-| Discourse multisite migration | v1 | 3/3, 3:00 | 3/3, 1:54 | 3/3, 1:12 | 3/3, 9:48 |
+| Interrupted Discourse deployment | v1 | 3/3, 1:31 | 2/3, 2:07 | 1/3, 6:04 | 1/3, 10:02 |
 
 ### Failure categories
 
-- `accepted_uploads_not_recovered`: 1
-- `agent_timeout`: 4
-- `backlog_not_recovered`: 1
-- `exports_still_timing_out`: 1
-- `host_reboot_failed`: 1
-- `provider_interrupted`: 1
+- `release_not_converged`: 5
 
 ### Source matrices
 
-- `host-matrix-2026-08-11__18-47-25.10fa16`: deepseek/deepseek-v4-flash-0731, openai/gpt-5.6-luna, z-ai/glm-5.2, minimax/minimax-m3; Replaybook `e79af9a8`; reasoning high
+- `host-matrix-2026-08-15__01-49-58.f174b4`: deepseek/deepseek-v4-flash-0731, openai/gpt-5.6-luna, z-ai/glm-5.2, minimax/minimax-m3; Replaybook `e45d4034`; reasoning high
 
 ### Run notes
 
-- The matrix began under host harness v15 and resumed under v17 after disk exhaustion interrupted the original run. The frozen scenario pack, benchmark manifest, models, reasoning effort, attempt count, timeout, adapter, and Claux release remained unchanged; the newer controller baked Claux into the guest and hardened VM and proxy readiness.
-- One GPT-5.6 Luna Rust trial was rejected by the provider before evaluation. It remains provider_unavailable and is excluded from pass rates and repair-cost denominators.
-- Three MiniMax attempts reached a durable state after the 900-second deadline. They remain benchmark failures under agent_timeout, while post-timeout verification preserves the later operational outcome separately.
-- The run was resumed from 87 valid results and completed the remaining 45 planned trials. Resume reused valid trial artifacts instead of rerunning them.
+- All 12 trials were evaluated under host harness v17 using scenario pack ducks/replaybook-infra 20260814.0.0 and Claux v20260810.0.1. No provider or infrastructure failures were excluded.
+- The previous 132-trial matrix remains in History because it used an older scenario pack and does not contain this incident. Results from different verifier generations are not silently combined.
 
 <!-- replaybook:current-benchmark:end -->
 

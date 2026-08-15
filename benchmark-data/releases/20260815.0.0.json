@@ -1,0 +1,885 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 4136704,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_tokens": 5421824,
+      "known_cost_usd": 0.17939317704,
+      "median_duration_seconds": 364,
+      "median_first_non_read_only_tool_seconds": 6.209,
+      "median_model_duration_seconds": 340.754,
+      "median_model_rounds": 47,
+      "median_post_first_non_read_only_seconds": 356.423,
+      "median_tool_calls": 91,
+      "median_tool_duration_seconds": 20.931,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "output_tokens": 67787,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1180207,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_tokens": 1498873,
+      "known_cost_usd": 0.202331288,
+      "median_duration_seconds": 602,
+      "median_first_non_read_only_tool_seconds": 3.458,
+      "median_model_duration_seconds": 593.489,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 597.5870000000001,
+      "median_tool_calls": 49,
+      "median_tool_duration_seconds": 11.879,
+      "model": "minimax/minimax-m3",
+      "output_tokens": 37879,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1919308,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 2099012,
+      "known_cost_usd": 0.05508862999999999,
+      "median_duration_seconds": 91,
+      "median_first_non_read_only_tool_seconds": 7.119,
+      "median_model_duration_seconds": 80.439,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 77.599,
+      "median_tool_calls": 32,
+      "median_tool_duration_seconds": 9.468,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 22756,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1158912,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 1499821,
+      "known_cost_usd": 0.49075138000000007,
+      "median_duration_seconds": 127,
+      "median_first_non_read_only_tool_seconds": 2.725,
+      "median_model_duration_seconds": 98.769,
+      "median_model_rounds": 29,
+      "median_post_first_non_read_only_seconds": 124.117,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 16.509,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 28683,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 4136704,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_tokens": 5421824,
+      "known_cost_usd": 0.17939317704,
+      "median_duration_seconds": 364,
+      "median_first_non_read_only_tool_seconds": 6.209,
+      "median_model_duration_seconds": 340.754,
+      "median_model_rounds": 47,
+      "median_post_first_non_read_only_seconds": 356.423,
+      "median_tool_calls": 91,
+      "median_tool_duration_seconds": 20.931,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "output_tokens": 67787,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1180207,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_tokens": 1498873,
+      "known_cost_usd": 0.202331288,
+      "median_duration_seconds": 602,
+      "median_first_non_read_only_tool_seconds": 3.458,
+      "median_model_duration_seconds": 593.489,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 597.5870000000001,
+      "median_tool_calls": 49,
+      "median_tool_duration_seconds": 11.879,
+      "model": "minimax/minimax-m3",
+      "output_tokens": 37879,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1919308,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 2099012,
+      "known_cost_usd": 0.05508862999999999,
+      "median_duration_seconds": 91,
+      "median_first_non_read_only_tool_seconds": 7.119,
+      "median_model_duration_seconds": 80.439,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 77.599,
+      "median_tool_calls": 32,
+      "median_tool_duration_seconds": 9.468,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 22756,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1158912,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 1499821,
+      "known_cost_usd": 0.49075138000000007,
+      "median_duration_seconds": 127,
+      "median_first_non_read_only_tool_seconds": 2.725,
+      "median_model_duration_seconds": 98.769,
+      "median_model_rounds": 29,
+      "median_post_first_non_read_only_seconds": 124.117,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 16.509,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 28683,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": null,
+    "claux_release": "v20260810.0.1",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": null,
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "4b8f336a14fcf3414092cba9b4055e8a98225714dfa486b4bce7da0d75684ede",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "sha256": "941f732f364198b5d9eda7fa66cd4e6dfb7d8377b3762c1712c4b87d1035b155",
+          "version": "20260814.0.0"
+        }
+      ],
+      "schema_version": 1
+    },
+    "harness_version": 17,
+    "harness_versions": [
+      17
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260814.0.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260814.0.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Four infrastructure agents attempted the same interrupted Discourse deployment three times each. The scenario requires converging both application instances on the intended release while preserving customer state through service restart and host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "minimax/minimax-m3": "MiniMax M3",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "z-ai/glm-5.2",
+    "deepseek/deepseek-v4-flash-0731",
+    "minimax/minimax-m3"
+  ],
+  "notes": [
+    "All 12 trials were evaluated under host harness v17 using scenario pack ducks/replaybook-infra 20260814.0.0 and Claux v20260810.0.1. No provider or infrastructure failures were excluded.",
+    "The previous 132-trial matrix remains in History because it used an older scenario pack and does not contain this incident. Results from different verifier generations are not silently combined."
+  ],
+  "observations": [
+    "GPT-5.6 Luna made three durable repairs in three attempts with a 1:31 median. Its $0.0551 total cost was about $0.0184 per durable repair, making it the fastest, most reliable, and cheapest repair agent in this focused run.",
+    "GLM 5.2 made two durable repairs in three attempts with a 2:07 median. Its $0.4908 total cost was about $0.2454 per durable repair, roughly 13 times Luna's observed repair cost.",
+    "DeepSeek V4 Flash 0731 and MiniMax M3 each repaired one of three attempts. DeepSeek had a 6:04 median and spent $0.1794; MiniMax had a 10:02 median and spent $0.2023.",
+    "All five failures were release_not_converged. The endpoint could be healthy while one or more instances still served the wrong release, which is why an HTTP-only verifier would overstate repair quality.",
+    "This is one difficult scenario with three attempts per model, not a universal model ranking. It is useful evidence about interrupted deployment recovery under this frozen harness and verifier."
+  ],
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 481,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-08-15T01:59:53Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.785,
+        "model_duration_seconds": 348.181,
+        "model_rounds": 47,
+        "post_first_non_read_only_seconds": 474.544,
+        "tool_calls": 91,
+        "tool_duration_seconds": 131.282,
+        "total_duration_seconds": 480.329
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-deepseek-deepseek-v4-flash-0731-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T01:51:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1262592,
+        "cost_usd": 0.06337320192,
+        "input_tokens": 1744128,
+        "output_tokens": 30048
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 364,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-15T01:57:39Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.329,
+        "model_duration_seconds": 340.754,
+        "model_rounds": 60,
+        "post_first_non_read_only_seconds": 356.423,
+        "tool_calls": 100,
+        "tool_duration_seconds": 20.931,
+        "total_duration_seconds": 362.752
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-deepseek-deepseek-v4-flash-0731-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T01:51:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 2485248,
+        "cost_usd": 0.09183644148,
+        "input_tokens": 3088433,
+        "output_tokens": 25299
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 188,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-08-15T02:02:13Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.209,
+        "model_duration_seconds": 168.232,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 181.43699999999998,
+        "tool_calls": 49,
+        "tool_duration_seconds": 19.264,
+        "total_duration_seconds": 187.646
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-deepseek-deepseek-v4-flash-0731-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T01:58:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 388864,
+        "cost_usd": 0.024183533639999998,
+        "input_tokens": 589263,
+        "output_tokens": 12440
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-15T02:02:37Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 13.056,
+        "model_duration_seconds": 80.439,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 76.932,
+        "tool_calls": 32,
+        "tool_duration_seconds": 9.468,
+        "total_duration_seconds": 89.988
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T02:00:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 35689,
+        "cache_read_tokens": 373180,
+        "cost_usd": 0.011963625,
+        "input_tokens": 408914,
+        "output_tokens": 6277
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 86,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-15T02:05:00Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.119,
+        "model_duration_seconds": 75.911,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 77.599,
+        "tool_calls": 31,
+        "tool_duration_seconds": 8.223,
+        "total_duration_seconds": 84.718
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T02:03:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 65417,
+        "cache_read_tokens": 619073,
+        "cost_usd": 0.019635655,
+        "input_tokens": 693224,
+        "output_tokens": 7324
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 377,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-15T02:10:13Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.525,
+        "model_duration_seconds": 119.2,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 368.463,
+        "tool_calls": 42,
+        "tool_duration_seconds": 255.658,
+        "total_duration_seconds": 374.988
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T02:03:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 69756,
+        "cache_read_tokens": 927055,
+        "cost_usd": 0.023489349999999996,
+        "input_tokens": 996874,
+        "output_tokens": 9155
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 127,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-15T02:08:17Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.118,
+        "model_duration_seconds": 98.769,
+        "model_rounds": 29,
+        "post_first_non_read_only_seconds": 124.117,
+        "tool_calls": 33,
+        "tool_duration_seconds": 27.294,
+        "total_duration_seconds": 126.235
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-z-ai-glm-5-2-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T02:05:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 340032,
+        "cost_usd": 0.15266652,
+        "input_tokens": 451072,
+        "output_tokens": 8542
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 162,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-15T02:12:09Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.629,
+        "model_duration_seconds": 143.121,
+        "model_rounds": 39,
+        "post_first_non_read_only_seconds": 151.029,
+        "tool_calls": 40,
+        "tool_duration_seconds": 16.509,
+        "total_duration_seconds": 160.658
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-z-ai-glm-5-2-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T02:09:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 624576,
+        "cost_usd": 0.23080416000000004,
+        "input_tokens": 776874,
+        "output_tokens": 11412
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 86,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-08-15T02:12:58Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.725,
+        "model_duration_seconds": 74.493,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 82.53500000000001,
+        "tool_calls": 24,
+        "tool_duration_seconds": 10.701,
+        "total_duration_seconds": 85.26
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-z-ai-glm-5-2-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T02:11:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 194304,
+        "cost_usd": 0.1072807,
+        "input_tokens": 271875,
+        "output_tokens": 8729
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 702,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-15T02:24:56Z",
+      "model": "minimax/minimax-m3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.458,
+        "model_duration_seconds": 675.159,
+        "model_rounds": 30,
+        "post_first_non_read_only_seconds": 697.287,
+        "tool_calls": 49,
+        "tool_duration_seconds": 25.358,
+        "total_duration_seconds": 700.745
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-minimax-minimax-m3-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T02:12:59Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 503230,
+        "cost_usd": 0.075493744,
+        "input_tokens": 607318,
+        "output_tokens": 14566
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 553,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-08-15T02:23:27Z",
+      "model": "minimax/minimax-m3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.381,
+        "model_duration_seconds": 540.113,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 544.765,
+        "tool_calls": 41,
+        "tool_duration_seconds": 11.879,
+        "total_duration_seconds": 552.146
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-minimax-minimax-m3-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T02:13:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 271662,
+        "cost_usd": 0.051910988000000005,
+        "input_tokens": 363394,
+        "output_tokens": 8454
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 602,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-08-15T02:34:42Z",
+      "model": "minimax/minimax-m3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.026,
+        "model_duration_seconds": 593.489,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 597.5870000000001,
+        "tool_calls": 49,
+        "tool_duration_seconds": 6.922,
+        "total_duration_seconds": 600.613
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-minimax-minimax-m3-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-15T02:24:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 405315,
+        "cost_usd": 0.07492655599999999,
+        "input_tokens": 528161,
+        "output_tokens": 14859
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    }
+  ],
+  "scenario_labels": {
+    "024-discourse-interrupted-deploy": "Interrupted Discourse deployment"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": null,
+      "claux_release": "v20260810.0.1",
+      "concurrency": 2,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": null,
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "4b8f336a14fcf3414092cba9b4055e8a98225714dfa486b4bce7da0d75684ede",
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra",
+            "sha256": "941f732f364198b5d9eda7fa66cd4e6dfb7d8377b3762c1712c4b87d1035b155",
+            "version": "20260814.0.0"
+          }
+        ],
+        "schema_version": 1
+      },
+      "finished_at": "2026-08-15T02:34:42.379327Z",
+      "harness_version": 17,
+      "harness_versions": [
+        17
+      ],
+      "models": [
+        "deepseek/deepseek-v4-flash-0731",
+        "openai/gpt-5.6-luna",
+        "z-ai/glm-5.2",
+        "minimax/minimax-m3"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "e45d40340ea8c013d60986a4cb0d63a768ac49fa",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260814.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-15__01-49-58.f174b4",
+      "started_at": "2026-08-15T01:49:58.826794Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "title": "Four agents repair an interrupted Discourse deployment",
+  "totals": {
+    "cache_read_tokens": 8395131,
+    "cost_reported_trials": 12,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 12,
+    "failed": 5,
+    "failure_categories": {
+      "release_not_converged": 5
+    },
+    "input_tokens": 10519530,
+    "known_cost_usd": 0.9275644750400001,
+    "median_duration_seconds": 276.0,
+    "median_first_non_read_only_tool_seconds": 6.269,
+    "median_model_duration_seconds": 155.6765,
+    "median_model_rounds": 23.5,
+    "median_post_first_non_read_only_seconds": 268.93,
+    "median_tool_calls": 41.5,
+    "median_tool_duration_seconds": 17.886499999999998,
+    "output_tokens": 157105,
+    "pass_rate": 0.5833333333333334,
+    "passed": 7,
+    "recording_reported_trials": 12,
+    "trials": 12,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 12
+  },
+  "version": "20260815.0.0"
+}
