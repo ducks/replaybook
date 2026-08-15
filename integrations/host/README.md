@@ -346,6 +346,48 @@ the matrix, hashed for compatibility, and deliberately excluded from retained
 artifacts. The benchmark publisher refuses to combine matrices whose execution
 snapshots differ.
 
+## Explore local results
+
+The result catalog turns retained host-matrix summaries into a rebuildable
+SQLite index. The source `summary.json` files remain authoritative; the
+database under `jobs/` is disposable and ignored by Git.
+
+Import every supported host-native result in the local archive:
+
+```sh
+python -m integrations.host.result_catalog import jobs
+```
+
+Compare models on the newest exactly compatible cohort for a scenario:
+
+```sh
+python -m integrations.host.result_catalog compare \
+  --scenario 024-discourse-interrupted-deploy
+```
+
+The comparison reports evaluated and unavailable trials separately, a Wilson
+95 percent confidence interval, known spend, and cost per durable repair. Its
+compatibility identity includes the scenario and pack versions, host harness
+snapshot, benchmark manifest, adapter and payload hashes, Claux release, and
+timeout. When the archive contains multiple cohorts, the command warns and
+uses the newest one. List or select cohorts explicitly when investigating
+historical changes:
+
+```sh
+python -m integrations.host.result_catalog compare \
+  --scenario 024-discourse-interrupted-deploy \
+  --list-cohorts
+
+python -m integrations.host.result_catalog compare \
+  --scenario 024-discourse-interrupted-deploy \
+  --compatibility 3247657883e1
+```
+
+Re-importing a matrix updates its derived rows without duplicating trials.
+Infrastructure failures are retained for audit but excluded from model pass
+rates. Older isolated-container summaries use a different suite and are
+reported as unsupported rather than mixed with host-native evidence.
+
 ## Publish benchmark results
 
 The benchmark publisher imports one or more compatible matrix summaries into a
