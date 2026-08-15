@@ -54,10 +54,10 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=17' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=18' "$script_dir/run-host-native.sh"
 grep -q 'export TMPDIR="${WORK_DIR}/tmp"' "$script_dir/run-host-native.sh"
 grep -q 'USE_TMPDIR=1' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION = 17' "$script_dir/run_host_matrix.py"
+grep -q 'HOST_HARNESS_VERSION = 18' "$script_dir/run_host_matrix.py"
 grep -q 'virtualisation.useNixStoreImage = true' "$script_dir/isolated-vm.nix"
 grep -q 'virtualisation.mountHostNixStore = false' "$script_dir/isolated-vm.nix"
 grep -q 'incident VM unexpectedly exposes the host Nix store' "$script_dir/run-host-native.sh"
@@ -102,6 +102,7 @@ grep -q 'GUEST_CLAUX_BINARY=' "$script_dir/run-host-native.sh"
 grep -q 'flock.*claux_lock_fd' "$script_dir/run-host-native.sh"
 grep -q -- '--retry-all-errors' "$script_dir/run-host-native.sh"
 grep -q 'REPLAYBOOK_HOST_VM_READY_TIMEOUT:-300' "$script_dir/run-host-native.sh"
+grep -q 'REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT:-15' "$script_dir/run-host-native.sh"
 grep -q 'REPLAYBOOK_HOST_PROXY_READY_TIMEOUT:-30' "$script_dir/run-host-native.sh"
 grep -q 'proxy_deadline=' "$script_dir/run-host-native.sh"
 grep -q 'tunnel_deadline=' "$script_dir/run-host-native.sh"
@@ -123,6 +124,8 @@ fi
 grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 grep -q 'capture_agent_results || true' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="host_reboot_failed"' "$script_dir/run-host-native.sh"
+grep -q 'timeout --signal=TERM --kill-after=5s "${REBOOT_COMMAND_TIMEOUT_SECONDS}s"' \
+  "$script_dir/run-host-native.sh"
 grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host-native.sh"
 [[ "$(grep -c 'ssh-probe.sh.*"\${SSH\[@\]}"' "$script_dir/run-host-native.sh")" -eq 3 ]]
 grep -q 'failure_category="services_failed_after_reboot"' "$script_dir/run-host-native.sh"

@@ -194,8 +194,11 @@ once on the host and includes it in the immutable guest closure. Claux receives
 override it with `--agent-timeout-seconds`.
 
 Cold VM builds get 300 seconds to expose SSH. The credential proxy and reverse
-tunnel each get 30 seconds. Override those host-side readiness windows with
-`REPLAYBOOK_HOST_VM_READY_TIMEOUT` and `REPLAYBOOK_HOST_PROXY_READY_TIMEOUT`.
+tunnel each get 30 seconds. The SSH command that requests a host reboot gets 15
+seconds before Replaybook proceeds to its bounded shutdown and readiness
+polls. Override those host-side windows with `REPLAYBOOK_HOST_VM_READY_TIMEOUT`,
+`REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT`, and
+`REPLAYBOOK_HOST_PROXY_READY_TIMEOUT`.
 
 Interrupted matrices normally resume through their frozen controller. When a
 controller-only infrastructure fix must apply to pending trials, add
