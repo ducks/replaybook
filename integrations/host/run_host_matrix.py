@@ -1467,7 +1467,7 @@ def main(argv: list[str] | None = None) -> int:
             else None,
         },
         "claux_release": args.claux_release
-        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260810.0.1"),
+        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260815.0.0"),
     }
     benchmark["started_at"] = utc_now()
     (matrix_dir / "benchmark.json").write_text(json.dumps(benchmark, indent=2) + "\n")
