@@ -14,6 +14,7 @@ bash -n "$script_dir/prepare-codex-env.sh"
 bash -n "$script_dir/oracle.sh"
 bash -n "$script_dir/classify-agent-exit.sh"
 bash -n "$script_dir/classify-agent-outcome.sh"
+bash -n "$script_dir/classify-host-reboot-failure.sh"
 bash -n "$script_dir/ssh-probe.sh"
 find "$script_dir/scenarios" -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
 ruby -c "$script_dir/scenarios/013-sidekiq-wrong-redis/app/jobs.rb" >/dev/null
@@ -54,10 +55,10 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=18' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=19' "$script_dir/run-host-native.sh"
 grep -q 'export TMPDIR="${WORK_DIR}/tmp"' "$script_dir/run-host-native.sh"
 grep -q 'USE_TMPDIR=1' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION = 18' "$script_dir/run_host_matrix.py"
+grep -q 'HOST_HARNESS_VERSION = 19' "$script_dir/run_host_matrix.py"
 grep -q 'virtualisation.useNixStoreImage = true' "$script_dir/isolated-vm.nix"
 grep -q 'virtualisation.mountHostNixStore = false' "$script_dir/isolated-vm.nix"
 grep -q 'incident VM unexpectedly exposes the host Nix store' "$script_dir/run-host-native.sh"
@@ -124,6 +125,8 @@ fi
 grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 grep -q 'capture_agent_results || true' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="host_reboot_failed"' "$script_dir/run-host-native.sh"
+grep -q 'failure_category="$reboot_failure_category"' "$script_dir/run-host-native.sh"
+grep -q 'trial_status="unavailable"' "$script_dir/run-host-native.sh"
 grep -q 'timeout --signal=TERM --kill-after=5s "${REBOOT_COMMAND_TIMEOUT_SECONDS}s"' \
   "$script_dir/run-host-native.sh"
 grep -q 'local deadline="\$((SECONDS + timeout_seconds))"' "$script_dir/run-host-native.sh"
@@ -138,6 +141,15 @@ grep -q 'after_agent_timeout:' "$script_dir/run-host-native.sh"
 [[ "$("$script_dir/classify-agent-run-exit.sh" 255 934 900)" == "agent_timeout" ]]
 [[ -z "$("$script_dir/classify-agent-run-exit.sh" 255 899 900)" ]]
 [[ -z "$("$script_dir/classify-agent-run-exit.sh" 1 934 900)" ]]
+reboot_console="$(mktemp)"
+printf '%s\n' \
+  '[   92.333221] systemd[1]: Timed out waiting for device /dev/disk/by-label/nix-store.' \
+  >"$reboot_console"
+[[ "$("$script_dir/classify-host-reboot-failure.sh" "$reboot_console")" == \
+  "guest_boot_infrastructure_failed" ]]
+printf '%s\n' 'required application service failed during boot' >"$reboot_console"
+[[ -z "$("$script_dir/classify-host-reboot-failure.sh" "$reboot_console")" ]]
+rm -f -- "$reboot_console"
 grep -q 'read -r trial_status agent_outcome_category' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
 grep -q 'v20260815.0.0' "$script_dir/run-host-native.sh"
