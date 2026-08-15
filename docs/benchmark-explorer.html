@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benchmark explorer &middot; replaybook</title>
+  <meta name="description" content="Explore versioned Replaybook infrastructure-agent benchmark evidence.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Current</a>
+      <a href="benchmark-explorer.html" class="active" aria-current="page">Explore</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+    <p class="eyebrow">Versioned evidence</p>
+    <h1>Benchmark explorer</h1>
+    <p class="tagline benchmark-tagline">Compare model behavior, cost per durable repair, and failure modes inside one compatible DateVer release at a time.</p>
+
+    <div class="callout comparison-note">
+      <strong>Release boundaries are comparison boundaries.</strong>
+      The explorer never silently pools results from different harnesses, scenario packs, verifiers, adapters, or Claux releases.
+    </div>
+
+    <div class="catalog-controls" aria-label="Benchmark filters">
+      <label>Release<select id="release-filter"></select></label>
+      <label>Scenario<select id="scenario-filter"></select></label>
+      <label>Model<select id="model-filter"></select></label>
+    </div>
+
+    <div id="release-context" class="small muted"></div>
+    <div class="metric-grid" aria-label="Filtered benchmark results">
+      <div class="metric"><span class="metric-value" id="metric-repairs">0/0</span><span class="metric-label">durable repairs</span></div>
+      <div class="metric"><span class="metric-value" id="metric-cost">$0.0000</span><span class="metric-label">known spend</span></div>
+      <div class="metric"><span class="metric-value" id="metric-repair-cost">n/a</span><span class="metric-label">cost / repair</span></div>
+    </div>
+
+    <h2>Results</h2>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Model</th><th>Trials</th><th>Repairs</th><th>Pass rate</th><th>95% CI</th><th>Median</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody id="catalog-results"></tbody></table></div>
+
+    <h2>Cost per durable repair</h2>
+    <div id="cost-chart" class="cost-chart"></div>
+
+    <div class="catalog-breakdowns">
+      <section><h2>Repair failures</h2><ul id="failure-categories"></ul></section>
+      <section><h2>Unavailable trials</h2><ul id="unavailable-categories"></ul></section>
+    </div>
+
+    <p class="small muted">The path-free source data is available as <a href="benchmark-catalog.json"><code>benchmark-catalog.json</code></a>. Local exploratory runs remain in the rebuildable SQLite catalog and are not published automatically.</p>
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+
+  <script>
+  let catalog;
+  const releaseFilter = document.querySelector("#release-filter");
+  const scenarioFilter = document.querySelector("#scenario-filter");
+  const modelFilter = document.querySelector("#model-filter");
+  const params = new URLSearchParams(window.location.search);
+
+  function option(value, text) {
+    const node = document.createElement("option");
+    node.value = value;
+    node.textContent = text;
+    return node;
+  }
+
+  function duration(seconds) {
+    if (seconds === null || seconds === undefined) return "n/a";
+    const rounded = Math.round(seconds);
+    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
+  }
+
+  function money(value, incomplete = false) {
+    if (value === null || value === undefined) return "n/a";
+    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
+  }
+
+  function percent(value) {
+    return value === null || value === undefined ? "n/a" : `${Math.round(value * 100)}%`;
+  }
+
+  function variant(record) {
+    return record.reasoning_effort ? `${record.model_label} (${record.reasoning_effort})` : record.model_label;
+  }
+
+  function replaceOptions(select, entries, selected, allLabel) {
+    select.replaceChildren();
+    if (allLabel) select.append(option("", allLabel));
+    entries.forEach(([value, text]) => select.append(option(value, text)));
+    if ([...select.options].some(item => item.value === selected)) select.value = selected;
+  }
+
+  function selectedRecords() {
+    return catalog.records.filter(record =>
+      record.release === releaseFilter.value &&
+      (!scenarioFilter.value || record.scenario === scenarioFilter.value) &&
+      (!modelFilter.value || record.model === modelFilter.value)
+    );
+  }
+
+  function categories(records, key) {
+    const counts = new Map();
+    records.forEach(record => Object.entries(record[key]).forEach(([name, count]) =>
+      counts.set(name, (counts.get(name) || 0) + count)
+    ));
+    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  }
+
+  function renderCategories(target, values, empty) {
+    target.replaceChildren();
+    if (!values.length) {
+      const item = document.createElement("li");
+      item.textContent = empty;
+      target.append(item);
+      return;
+    }
+    values.forEach(([name, count]) => {
+      const item = document.createElement("li");
+      const code = document.createElement("code");
+      code.textContent = name;
+      item.append(code, `: ${count}`);
+      target.append(item);
+    });
+  }
+
+  function render() {
+    const records = selectedRecords();
+    const release = catalog.releases.find(item => item.version === releaseFilter.value);
+    document.querySelector("#release-context").textContent = `${release.title} · harness ${release.harness_versions.map(value => `v${value}`).join("/")} · Claux ${release.claux_release} · ${release.agent_timeout_seconds}s timeout`;
+    const evaluated = records.reduce((sum, row) => sum + row.evaluated, 0);
+    const passed = records.reduce((sum, row) => sum + row.passed, 0);
+    const cost = records.reduce((sum, row) => sum + row.known_cost_usd, 0);
+    const incomplete = records.some(row => row.cost_reported_trials < row.trials);
+    document.querySelector("#metric-repairs").textContent = `${passed}/${evaluated}`;
+    document.querySelector("#metric-cost").textContent = money(cost, incomplete);
+    document.querySelector("#metric-repair-cost").textContent = passed ? money(cost / passed, incomplete) : "n/a";
+
+    const body = document.querySelector("#catalog-results");
+    body.replaceChildren();
+    records.forEach(record => {
+      const row = document.createElement("tr");
+      const values = [
+        `${record.scenario_label} · v${record.scenario_version}`, variant(record),
+        String(record.trials), `${record.passed}/${record.evaluated}`, percent(record.pass_rate),
+        record.evaluated ? `${percent(record.pass_rate_95_low)}–${percent(record.pass_rate_95_high)}` : "n/a",
+        duration(record.median_duration_seconds),
+        money(record.known_cost_usd, record.cost_reported_trials < record.trials),
+        money(record.cost_per_repair_usd, record.cost_reported_trials < record.trials)
+      ];
+      values.forEach(value => { const cell = document.createElement("td"); cell.textContent = value; row.append(cell); });
+      body.append(row);
+    });
+
+    const chart = document.querySelector("#cost-chart");
+    chart.replaceChildren();
+    const priced = records.filter(record => record.cost_per_repair_usd !== null);
+    const maximum = Math.max(...priced.map(record => record.cost_per_repair_usd), 0);
+    priced.sort((a, b) => a.cost_per_repair_usd - b.cost_per_repair_usd).forEach(record => {
+      const row = document.createElement("div"); row.className = "cost-row";
+      const name = document.createElement("span"); name.textContent = `${variant(record)} · ${record.scenario_label}`;
+      const track = document.createElement("span"); track.className = "cost-track";
+      const bar = document.createElement("span"); bar.className = "cost-bar";
+      bar.style.width = `${maximum ? Math.max(2, record.cost_per_repair_usd / maximum * 100) : 0}%`;
+      track.append(bar);
+      const value = document.createElement("strong"); value.textContent = money(record.cost_per_repair_usd, record.cost_reported_trials < record.trials);
+      row.append(name, track, value); chart.append(row);
+    });
+    if (!priced.length) chart.textContent = "No durable repairs in this selection.";
+
+    renderCategories(document.querySelector("#failure-categories"), categories(records, "failure_categories"), "None");
+    renderCategories(document.querySelector("#unavailable-categories"), categories(records, "unavailable_categories"), "None");
+    const next = new URLSearchParams();
+    next.set("release", releaseFilter.value);
+    if (scenarioFilter.value) next.set("scenario", scenarioFilter.value);
+    if (modelFilter.value) next.set("model", modelFilter.value);
+    history.replaceState(null, "", `?${next}`);
+  }
+
+  function refreshDimensions() {
+    const records = catalog.records.filter(record => record.release === releaseFilter.value);
+    const scenarios = [...new Map(records.map(record => [record.scenario, record.scenario_label])).entries()].sort((a, b) => a[1].localeCompare(b[1]));
+    const models = [...new Map(records.map(record => [record.model, record.model_label])).entries()].sort((a, b) => a[1].localeCompare(b[1]));
+    replaceOptions(scenarioFilter, scenarios, params.get("scenario") || scenarioFilter.value, "All scenarios");
+    replaceOptions(modelFilter, models, params.get("model") || modelFilter.value, "All models");
+    render();
+  }
+  releaseFilter.addEventListener("change", () => { params.delete("scenario"); params.delete("model"); refreshDimensions(); });
+  scenarioFilter.addEventListener("change", render);
+  modelFilter.addEventListener("change", render);
+
+  async function initialize() {
+    const response = await fetch("benchmark-catalog.json");
+    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
+    catalog = await response.json();
+    catalog.releases.slice().reverse().forEach(release => releaseFilter.append(option(release.version, `${release.version}${release.current ? " · current" : ""}`)));
+    releaseFilter.value = params.get("release") || catalog.current_version;
+    if (!releaseFilter.value) releaseFilter.value = catalog.current_version;
+    refreshDimensions();
+  }
+
+  initialize().catch(error => {
+    document.querySelector("#release-context").textContent = `Could not load benchmark catalog: ${error.message}`;
+  });
+  </script>
+</body>
+</html>

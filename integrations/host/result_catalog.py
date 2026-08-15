@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import math
 import sqlite3
 import statistics
 import sys
@@ -15,6 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
+from integrations.host.benchmark_stats import wilson_interval
 from integrations.host.publish_benchmarks import PublishError, compact_recording
 
 
@@ -506,23 +506,6 @@ def import_paths(connection: sqlite3.Connection, inputs: Iterable[Path]) -> Impo
     return total
 
 
-def wilson_interval(successes: int, trials: int) -> tuple[float, float] | None:
-    if trials == 0:
-        return None
-    z = 1.959963984540054
-    proportion = successes / trials
-    denominator = 1 + z * z / trials
-    center = (proportion + z * z / (2 * trials)) / denominator
-    margin = (
-        z
-        * math.sqrt(
-            proportion * (1 - proportion) / trials + z * z / (4 * trials * trials)
-        )
-        / denominator
-    )
-    return center - margin, center + margin
-
-
 def format_duration(seconds: float | None) -> str:
     if seconds is None:
         return "n/a"
@@ -629,7 +612,11 @@ def aggregate_model_rows(rows: list[sqlite3.Row]) -> list[dict[str, Any]]:
         aggregates,
         key=lambda item: (
             -(item["pass_rate"] if item["pass_rate"] is not None else -1),
-            item["cost_per_repair"] if item["cost_per_repair"] is not None else math.inf,
+            (
+                item["cost_per_repair"]
+                if item["cost_per_repair"] is not None
+                else float("inf")
+            ),
             item["model"],
             item["reasoning"] or "",
         ),

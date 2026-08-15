@@ -364,12 +364,24 @@ class PublisherTests(unittest.TestCase):
             build_outputs(root)
             build_outputs(root, check=True)
             current = (root / "docs/benchmarks.html").read_text()
+            explorer = (root / "docs/benchmark-explorer.html").read_text()
+            catalog = json.loads((root / "benchmark-data/catalog.json").read_text())
             self.assertIn("Current release", current)
             self.assertIn("example/incidents@20260809.0.0", current)
             self.assertIn("scenario pack revisions", current)
             self.assertIn("Run notes", current)
             self.assertIn("infrastructure interruption", current)
             self.assertNotIn("\n+  --scenario", current)
+            self.assertIn("Benchmark explorer", explorer)
+            self.assertIn("cost / repair", explorer)
+            self.assertIn("release-filter", explorer)
+            self.assertEqual(catalog["current_version"], "20260809.0.0")
+            self.assertEqual(len(catalog["records"]), 1)
+            self.assertEqual(catalog["records"][0]["model"], "model/a")
+            self.assertAlmostEqual(
+                catalog["records"][0]["cost_per_repair_usd"], 0.01
+            )
+            self.assertTrue((root / "docs/benchmark-catalog.json").is_file())
 
             (root / "docs/benchmarks.html").write_text("stale")
             with self.assertRaisesRegex(PublishError, "stale"):
