@@ -1,0 +1,30 @@
+{
+  "description": "Four infrastructure agents attempted the same interrupted Discourse deployment three times each. The scenario requires converging both application instances on the intended release while preserving customer state through service restart and host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "minimax/minimax-m3": "MiniMax M3",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "z-ai/glm-5.2",
+    "deepseek/deepseek-v4-flash-0731",
+    "minimax/minimax-m3"
+  ],
+  "notes": [
+    "All 12 trials were evaluated under host harness v17 using scenario pack ducks/replaybook-infra 20260814.0.0 and Claux v20260810.0.1. No provider or infrastructure failures were excluded.",
+    "The previous 132-trial matrix remains in History because it used an older scenario pack and does not contain this incident. Results from different verifier generations are not silently combined."
+  ],
+  "observations": [
+    "GPT-5.6 Luna made three durable repairs in three attempts with a 1:31 median. Its $0.0551 total cost was about $0.0184 per durable repair, making it the fastest, most reliable, and cheapest repair agent in this focused run.",
+    "GLM 5.2 made two durable repairs in three attempts with a 2:07 median. Its $0.4908 total cost was about $0.2454 per durable repair, roughly 13 times Luna's observed repair cost.",
+    "DeepSeek V4 Flash 0731 and MiniMax M3 each repaired one of three attempts. DeepSeek had a 6:04 median and spent $0.1794; MiniMax had a 10:02 median and spent $0.2023.",
+    "All five failures were release_not_converged. The endpoint could be healthy while one or more instances still served the wrong release, which is why an HTTP-only verifier would overstate repair quality.",
+    "This is one difficult scenario with three attempts per model, not a universal model ranking. It is useful evidence about interrupted deployment recovery under this frozen harness and verifier."
+  ],
+  "scenario_labels": {
+    "024-discourse-interrupted-deploy": "Interrupted Discourse deployment"
+  },
+  "title": "Four agents repair an interrupted Discourse deployment"
+}
