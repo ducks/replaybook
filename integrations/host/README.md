@@ -536,6 +536,10 @@ agent remains an `agent_timeout` failure, but is recorded separately under
 Version 15 builds a dedicated Nix store image for every incident VM. Agents
 can inspect only the selected scenario's closure instead of unrelated
 derivations accumulated in the controller host's Nix store.
+Version 19 distinguishes a known harness-device boot failure from a repair that
+does not survive reboot. If the verifier-controlled guest cannot remount the
+harness-provided Nix store image, the trial is unavailable and excluded from
+the model's pass rate.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the
@@ -548,6 +552,9 @@ available even when a broken repair prevents the VM from returning. A VM that
 does not complete the verifier-controlled reboot records
 `failure_category: "host_reboot_failed"`; a host that returns without its
 required services records `failure_category: "services_failed_after_reboot"`.
+If the guest console instead shows that the harness-provided Nix store device
+disappeared during reboot, the result is unavailable with
+`failure_category: "guest_boot_infrastructure_failed"`.
 
 Scenario verifiers may also return a specific failure category. The Sidekiq
 scenario records `failure_category: "backlog_not_recovered"` when the agent

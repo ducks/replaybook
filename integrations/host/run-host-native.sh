@@ -55,7 +55,7 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260815.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=18
+HOST_HARNESS_VERSION=19
 VM_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_VM_READY_TIMEOUT:-300}"
 REBOOT_COMMAND_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT:-15}"
 PROXY_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_PROXY_READY_TIMEOUT:-30}"
@@ -560,6 +560,8 @@ run_verification() {
 }
 
 verify_repair_lifecycle() {
+  local reboot_failure_category=""
+
   if ! run_verification immediate; then
     if [[ "$failure_category" == "backlog_not_recovered" ]]; then
       failure="repair did not recover the pre-existing backlog"
@@ -606,8 +608,16 @@ verify_repair_lifecycle() {
     failure="VM did not shut down for reboot"
     return 1
   elif ! wait_for_ssh "$VM_READY_TIMEOUT_SECONDS"; then
-    failure_category="host_reboot_failed"
-    failure="VM did not return after reboot"
+    reboot_failure_category="$(
+      "$SCRIPT_DIR/classify-host-reboot-failure.sh" "$OUTPUT_DIR/console.log"
+    )"
+    if [[ -n "$reboot_failure_category" ]]; then
+      failure_category="$reboot_failure_category"
+      failure="guest could not boot because a harness-provided device was unavailable"
+    else
+      failure_category="host_reboot_failed"
+      failure="VM did not return after reboot"
+    fi
     return 1
   elif ! wait_for_services; then
     failure_category="services_failed_after_reboot"
@@ -888,6 +898,8 @@ if (( run_status != 0 )); then
   fi
 elif verify_repair_lifecycle; then
   reward=1
+elif [[ "$failure_category" == "guest_boot_infrastructure_failed" ]]; then
+  trial_status="unavailable"
 fi
 
 if [[ "$RUN_ORACLE" == false && ! -f "$agent_result" ]]; then
