@@ -295,6 +295,68 @@ pre code {
   overflow-x: auto;
 }
 
+.catalog-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.catalog-controls label {
+  color: var(--fg-dim);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.catalog-controls select {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.55rem 0.65rem;
+  color: var(--fg);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font: inherit;
+  text-transform: none;
+}
+
+.catalog-breakdowns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.cost-chart {
+  margin-bottom: 2rem;
+}
+
+.cost-row {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(8rem, 2fr) 6rem;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0.55rem 0;
+  font-size: 0.85rem;
+}
+
+.cost-track {
+  height: 0.65rem;
+  overflow: hidden;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.cost-bar {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: inherit;
+}
+
 .small {
   font-size: 0.85rem;
 }
@@ -347,8 +409,19 @@ footer.site a {
 
 @media (max-width: 640px) {
   .metric-grid,
-  .gate-grid {
+  .gate-grid,
+  .catalog-controls,
+  .catalog-breakdowns {
     grid-template-columns: 1fr;
+  }
+
+  .cost-row {
+    grid-template-columns: 1fr 5rem;
+  }
+
+  .cost-track {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 
   nav.site a {

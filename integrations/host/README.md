@@ -416,6 +416,13 @@ Rebuild generated files without the original `jobs/` directories:
 python integrations/host/publish_benchmarks.py build
 ```
 
+The build also creates a sanitized public catalog at
+`benchmark-data/catalog.json`, mirrors it into `docs/`, and generates the
+interactive benchmark explorer. The explorer can drill into one published
+DateVer release, scenario, or model without mixing incompatible releases.
+Local paths, transcripts, credentials, and unpublished SQLite rows never enter
+the public catalog.
+
 CI uses the corresponding `check` command to reject stale generated pages.
 Importing a later DateVer release keeps earlier snapshots in the generated
 history. Optional annotations provide display names, editorial observations,

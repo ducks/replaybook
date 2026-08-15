@@ -55,6 +55,7 @@ class PagesTests(unittest.TestCase):
 
     def test_benchmark_pages_separate_current_history_and_methodology(self) -> None:
         current = (DOCS_DIR / "benchmarks.html").read_text()
+        explorer = (DOCS_DIR / "benchmark-explorer.html").read_text()
         history = (DOCS_DIR / "benchmark-history.html").read_text()
         methodology = (DOCS_DIR / "benchmark-methodology.html").read_text()
 
@@ -74,6 +75,14 @@ class PagesTests(unittest.TestCase):
         for label in release["model_labels"].values():
             self.assertIn(label, current)
         self.assertNotIn('class="badge archived"', current)
+
+        catalog = json.loads((BENCHMARK_DATA_DIR / "catalog.json").read_text())
+        docs_catalog = json.loads((DOCS_DIR / "benchmark-catalog.json").read_text())
+        self.assertEqual(catalog, docs_catalog)
+        self.assertEqual(catalog["current_version"], version)
+        self.assertIn("Release boundaries are comparison boundaries", explorer)
+        self.assertIn("cost_per_repair_usd", explorer)
+        self.assertIn('href="benchmark-catalog.json"', explorer)
 
         self.assertIn("DeepSeek V4 Flash 0731", history)
         self.assertIn("Host harness v2", history)
