@@ -124,6 +124,11 @@ pack contract. The bundled
 agents integrate and verify another harness. The
 [`replaybook-build-scenario`](skills/replaybook-build-scenario/SKILL.md) skill
 guides agents through creating durable, leak-resistant incident scenarios.
+The
+[`replaybook-run-benchmark`](skills/replaybook-run-benchmark/SKILL.md) skill
+plans reproducible matrices, checks host capacity, constructs Nushell-safe
+commands, resumes interrupted runs, interprets artifacts, and publishes only
+compatible result cohorts.
 
 The older Harbor integration below evaluates agents from a privileged Docker
 workstation. It remains available for historical comparisons while scenarios

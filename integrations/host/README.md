@@ -254,6 +254,24 @@ also preserves its partial messages, tool trace, token usage, and known cost.
 
 ## Run a model matrix
 
+Replaybook also ships a
+[`replaybook-run-benchmark`](../../skills/replaybook-run-benchmark/SKILL.md)
+skill for planning a matrix, checking host capacity, generating Bash or
+Nushell-safe commands, resuming interrupted runs, interpreting failures, and
+publishing compatible results. Install it from a clone:
+
+```sh
+mkdir -p ~/.codex/skills
+ln -s "$(pwd)/skills/replaybook-run-benchmark" \
+  ~/.codex/skills/replaybook-run-benchmark
+```
+
+Then ask Codex:
+
+```text
+Use $replaybook-run-benchmark to run and interpret this benchmark.
+```
+
 The Python matrix runner schedules multiple models and attempts while the Bash
 runner remains the single-worker primitive:
 
