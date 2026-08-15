@@ -38,6 +38,8 @@ Environment:
   REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260815.0.0).
   REPLAYBOOK_HOST_VM_READY_TIMEOUT
                                  VM SSH readiness timeout in seconds (default: 300).
+  REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT
+                                 Reboot SSH command timeout in seconds (default: 15).
   REPLAYBOOK_HOST_PROXY_READY_TIMEOUT
                                  Credential proxy/tunnel timeout in seconds (default: 30).
 
@@ -53,8 +55,9 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260815.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=17
+HOST_HARNESS_VERSION=18
 VM_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_VM_READY_TIMEOUT:-300}"
+REBOOT_COMMAND_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT:-15}"
 PROXY_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_PROXY_READY_TIMEOUT:-30}"
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
@@ -194,7 +197,7 @@ if [[ -n "$AGENT_ENV_FILE" && ! -f "$AGENT_ENV_FILE" ]]; then
   echo "agent environment file does not exist: ${AGENT_ENV_FILE}" >&2
   exit 2
 fi
-for timeout_setting in VM_READY_TIMEOUT_SECONDS PROXY_READY_TIMEOUT_SECONDS; do
+for timeout_setting in VM_READY_TIMEOUT_SECONDS REBOOT_COMMAND_TIMEOUT_SECONDS PROXY_READY_TIMEOUT_SECONDS; do
   timeout_value="${!timeout_setting}"
   if [[ ! "$timeout_value" =~ ^[1-9][0-9]*$ ]]; then
     echo "${timeout_setting} must be a positive integer: ${timeout_value}" >&2
@@ -595,7 +598,8 @@ verify_repair_lifecycle() {
   restart_passed=true
   echo "[host] service restart verification passed"
   set +e
-  "${SSH[@]}" "systemctl reboot" >/dev/null 2>&1
+  timeout --signal=TERM --kill-after=5s "${REBOOT_COMMAND_TIMEOUT_SECONDS}s" \
+    "${SSH[@]}" "systemctl reboot" >/dev/null 2>&1
   set -e
   if ! wait_for_ssh_down; then
     failure_category="host_reboot_failed"
