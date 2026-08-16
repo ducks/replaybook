@@ -131,6 +131,15 @@ class PublisherTests(unittest.TestCase):
         path.write_text(json.dumps(value))
         return path
 
+    def rename_scenario(self, value: dict, scenario_id: str) -> dict:
+        value = deepcopy(value)
+        value["benchmark"]["scenarios"][0]["id"] = scenario_id
+        value["runs"][0]["scenario"] = scenario_id
+        value["runs"][0]["run_id"] = (
+            f"{scenario_id}-{value['runs'][0]['model']}-1"
+        )
+        return value
+
     def test_imports_compatible_summaries_without_local_paths(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -142,6 +151,48 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual(len(release["sources"]), 2)
         self.assertNotIn("result_file", release["runs"][0])
         self.assertNotIn("transcript_file", release["runs"][0])
+
+    def test_imports_complete_model_cohort_split_across_scenario_shards(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            paths = [
+                self.write_summary(root, "a-one", summary("model/a")),
+                self.write_summary(
+                    root,
+                    "a-two",
+                    self.rename_scenario(summary("model/a"), "002-redis"),
+                ),
+                self.write_summary(root, "b-one", summary("model/b")),
+                self.write_summary(
+                    root,
+                    "b-two",
+                    self.rename_scenario(summary("model/b"), "002-redis"),
+                ),
+            ]
+
+            release = create_release("20260809.0.0", paths, {})
+
+        self.assertEqual(release["totals"]["passed"], 4)
+        self.assertEqual(
+            [scenario["id"] for scenario in release["compatibility"]["scenarios"]],
+            ["001-nginx", "002-redis"],
+        )
+
+    def test_rejects_incomplete_model_cohort_across_scenario_shards(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            paths = [
+                self.write_summary(root, "a-one", summary("model/a")),
+                self.write_summary(
+                    root,
+                    "a-two",
+                    self.rename_scenario(summary("model/a"), "002-redis"),
+                ),
+                self.write_summary(root, "b-one", summary("model/b")),
+            ]
+
+            with self.assertRaisesRegex(PublishError, "cohort is incomplete"):
+                create_release("20260809.0.0", paths, {})
 
     def test_reasoning_efforts_are_published_as_distinct_model_variants(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -239,7 +290,7 @@ class PublisherTests(unittest.TestCase):
             second = self.write_summary(
                 root, "matrix-two", summary("model/b", scenario_version=2)
             )
-            with self.assertRaisesRegex(PublishError, "scenarios differs"):
+            with self.assertRaisesRegex(PublishError, "scenario 001-nginx differs"):
                 create_release("20260809.0.0", [first, second], {})
 
     def test_rejects_incompatible_scenario_pack_versions(self) -> None:
@@ -251,7 +302,7 @@ class PublisherTests(unittest.TestCase):
                 "matrix-two",
                 summary("model/b", pack_version="20260809.0.1"),
             )
-            with self.assertRaisesRegex(PublishError, "scenarios differs"):
+            with self.assertRaisesRegex(PublishError, "scenario_packs differs"):
                 create_release("20260809.0.0", [first, second], {})
 
     def test_rejects_incompatible_execution_snapshots(self) -> None:

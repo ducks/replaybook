@@ -1,0 +1,31 @@
+{
+  "description": "Five infrastructure agents each attempted 13 host-native incidents once under the same frozen harness and scenario pack. The suite spans Nginx, Ruby, Rails, Sidekiq, Node, Rust, Python, deployment, authentication, and Discourse-shaped failures, with every repair verified immediately, after service restart, and after host reboot.",
+  "model_labels": {
+    "anthropic/claude-sonnet-5": "Claude Sonnet 5",
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "z-ai/glm-5.2",
+    "deepseek/deepseek-v4-flash-0731",
+    "openai/gpt-5.6-luna",
+    "anthropic/claude-sonnet-5",
+    "google/gemini-3.7-flash"
+  ],
+  "notes": [
+    "All 65 trials were evaluated using Replaybook commit 7f4b117, scenario pack ducks/replaybook-infra 20260814.0.0, Claux v20260815.0.0, high reasoning, and a 900-second agent timeout. No unavailable trials were excluded.",
+    "Each model attempted each scenario once. This broad smoke cohort shows where models separated, but it is not enough repetition to establish a universal reliability ranking.",
+    "GPT-5.6 Luna reported usage for 12 of 13 trials, so its known cost and cost per durable repair are lower bounds. The timed-out Python saturation trial reported no usage."
+  ],
+  "observations": [
+    "GLM 5.2 made 13 durable repairs in 13 attempts with a 2:31 median. It was the only model to sweep the suite and spent $0.5196, about $0.0400 per durable repair.",
+    "DeepSeek V4 Flash 0731 made 12 durable repairs in 13 attempts and spent $0.1029, about $0.0086 per repair. It was the least expensive repair agent in this cohort, though its 4:33 median was the slowest among the four non-Sonnet fleet models.",
+    "GPT-5.6 Luna made 12 durable repairs in 13 attempts with the fastest median at 1:56. Its known spend was $0.1929, at least $0.0161 per durable repair; the missing timeout usage means the true value is higher.",
+    "Claude Sonnet 5 made 12 durable repairs in 13 attempts with a 2:03 median. It spent $10.8662, about $0.9055 per durable repair, making its observed repairs roughly 105 times as expensive as DeepSeek's in this cohort.",
+    "Gemini 3.7 Flash made 10 durable repairs in 13 attempts with a 3:09 median and spent $1.7917, about $0.1792 per durable repair. Its three failures were later provider rejections after meaningful inference: one corrupted thought signature and two content-policy responses. Replaybook counts them as evaluated failures while preserving that distinction from verifier failures.",
+    "The remaining failures separated cleanly: DeepSeek did not converge the interrupted deployment, Luna timed out with exports still failing, and Sonnet did not converge the interrupted deployment."
+  ],
+  "title": "Five agents across 13 infrastructure incidents"
+}
