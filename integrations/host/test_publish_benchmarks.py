@@ -221,6 +221,35 @@ class PublisherTests(unittest.TestCase):
         self.assertIn("--reasoning-efforts low high", page)
         self.assertIn("1 controlled matrix.", page)
 
+    def test_annotation_can_override_the_reproduction_command(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.write_summary(root, "matrix", summary("model/a"))
+            command = (
+                "python integrations/host/run_host_matrix.py "
+                "--benchmark ../incidents/benchmark-real.toml --models model/a"
+            )
+            release = create_release(
+                "20260809.0.0",
+                [path],
+                {"reproduction_command": command},
+            )
+
+        page = html_page(release)
+        self.assertIn(command, page)
+        self.assertNotIn("--attempts 1", page)
+
+    def test_rejects_an_empty_reproduction_command(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.write_summary(root, "matrix", summary("model/a"))
+            with self.assertRaisesRegex(PublishError, "reproduction_command"):
+                create_release(
+                    "20260809.0.0",
+                    [path],
+                    {"reproduction_command": "  "},
+                )
+
     def test_publishes_compact_execution_recording_medians(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

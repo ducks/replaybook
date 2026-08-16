@@ -115,9 +115,26 @@
           <tr><td><code>014-missing-rails-migration</code></td><td>v2</td><td>Shipped migration was never applied</td><td>Record the migration and recover retries exactly once</td></tr>
           <tr><td><code>015-sidekiq-poison-pill</code></td><td>v1</td><td>Poison payload blocks the only worker</td><td>Quarantine poison and preserve valid backlog</td></tr>
           <tr><td><code>016-rails-pool-exhaustion</code></td><td>v1</td><td>ActiveRecord pool is smaller than Puma concurrency</td><td>Recover failed checkouts under concurrent load</td></tr>
+          <tr><td><code>017-partial-rails-rollout</code></td><td>v1</td><td>Rails instances run incompatible releases</td><td>Converge the fleet without losing accepted work</td></tr>
+          <tr><td><code>018-node-event-loop-blocking</code></td><td>v1</td><td>Synchronous work blocks the Node event loop</td><td>Restore responsive service under concurrent load</td></tr>
+          <tr><td><code>019-rust-fd-leak</code></td><td>v1</td><td>Rust service leaks file descriptors</td><td>Remove the leak and survive sustained requests</td></tr>
+          <tr><td><code>020-python-gunicorn-saturation</code></td><td>v1</td><td>Gunicorn workers saturate under slow requests</td><td>Recover capacity without dropping accepted work</td></tr>
+          <tr><td><code>021-discourse-shared-uploads</code></td><td>v1</td><td>Discourse web nodes disagree about upload storage</td><td>Recover accepted uploads across restart and reboot</td></tr>
+          <tr><td><code>022-discourse-multisite-migration</code></td><td>v1</td><td>One Discourse tenant missed a migration</td><td>Converge every tenant without damaging migrated state</td></tr>
+          <tr><td><code>023-auth-secret-rollout</code></td><td>v1</td><td>Instances use incompatible signing secrets</td><td>Restore sessions across the rolling deployment</td></tr>
+          <tr><td><code>024-discourse-interrupted-deploy</code></td><td>v1</td><td>Schema and web releases diverged during deployment</td><td>Converge the release and preserve queued work</td></tr>
+          <tr><td><code>025-discourse-bootstrap</code></td><td>v1</td><td>A fresh host needs a real Discourse deployment</td><td>Build persistent Discourse and survive restart and reboot</td></tr>
         </tbody>
       </table>
     </div>
+
+    <p>
+      Scenario <code>025-discourse-bootstrap</code> is kept in a separate
+      30-minute real-application tier. It builds pinned official Discourse
+      Docker assets rather than a synthetic Discourse-shaped service, so it is
+      intentionally slower and more resource intensive than the incident
+      suite.
+    </p>
 
     <p>
       Every repair must pass the user-facing verifier immediately, after the
