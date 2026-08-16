@@ -381,7 +381,6 @@ def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
         "suite": source["suite"],
         "harness_version": source["harness_version"],
         "harness_versions": source["harness_versions"],
-        "scenarios": source["scenarios"],
         "scenario_packs": source["scenario_packs"],
         "benchmark_manifest": source["benchmark_manifest"],
         "execution_snapshot": source["execution_snapshot"],
@@ -402,11 +401,25 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
                     f"incompatible summaries: {key} differs between "
                     f"{sources[0]['source']} and {source['source']}"
                 )
-    identities: set[tuple[str, str, str | None, int]] = set()
+    scenarios_by_id: dict[str, dict[str, Any]] = {}
+    scenario_order: list[str] = []
+    identities: set[tuple[str, int, str, str | None, int]] = set()
     for source in sources:
+        for scenario in source["scenarios"]:
+            scenario_id = scenario["id"]
+            previous = scenarios_by_id.get(scenario_id)
+            if previous is not None and previous != scenario:
+                raise PublishError(
+                    f"incompatible summaries: scenario {scenario_id} differs "
+                    "between source matrices"
+                )
+            if previous is None:
+                scenarios_by_id[scenario_id] = scenario
+                scenario_order.append(scenario_id)
         for run in source["runs"]:
             identity = (
                 run["scenario"],
+                run["scenario_version"],
                 run["model"],
                 run.get("reasoning_effort"),
                 run["attempt"],
@@ -416,6 +429,30 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
                     "duplicate trial across summaries: " + "/".join(map(str, identity))
                 )
             identities.add(identity)
+    scenario_keys = {
+        (scenario["id"], scenario["version"])
+        for scenario in scenarios_by_id.values()
+    }
+    variants = {
+        (run["model"], run.get("reasoning_effort"))
+        for source in sources
+        for run in source["runs"]
+    }
+    attempts = expected["attempts"]
+    complete_cohort = {
+        (scenario, version, model, reasoning, attempt)
+        for scenario, version in scenario_keys
+        for model, reasoning in variants
+        for attempt in range(1, attempts + 1)
+    }
+    if identities != complete_cohort:
+        missing = len(complete_cohort - identities)
+        extra = len(identities - complete_cohort)
+        raise PublishError(
+            "incompatible summaries: combined model/scenario cohort is incomplete "
+            f"({missing} missing, {extra} unexpected trials)"
+        )
+    expected["scenarios"] = [scenarios_by_id[item] for item in scenario_order]
     return expected
 
 

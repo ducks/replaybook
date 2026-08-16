@@ -27,78 +27,109 @@
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Benchmark 20260815.0.0</p>
-    <h1>Four agents repair an interrupted Discourse deployment</h1>
-    <p class="tagline benchmark-tagline">Four infrastructure agents attempted the same interrupted Discourse deployment three times each. The scenario requires converging both application instances on the intended release while preserving customer state through service restart and host reboot.</p>
+    <p class="eyebrow">Benchmark 20260815.0.1</p>
+    <h1>Five agents across 13 infrastructure incidents</h1>
+    <p class="tagline benchmark-tagline">Five infrastructure agents each attempted 13 host-native incidents once under the same frozen harness and scenario pack. The suite spans Nginx, Ruby, Rails, Sidekiq, Node, Rust, Python, deployment, authentication, and Discourse-shaped failures, with every repair verified immediately, after service restart, and after host reboot.</p>
 
     <div class="metric-grid" aria-label="Current benchmark results">
-      <div class="metric"><span class="metric-value">7/12</span><span class="metric-label">durable repairs</span></div>
-      <div class="metric"><span class="metric-value">4:36</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">$0.9276</span><span class="metric-label">known total cost</span></div>
+      <div class="metric"><span class="metric-value">59/65</span><span class="metric-label">durable repairs</span></div>
+      <div class="metric"><span class="metric-value">2:31</span><span class="metric-label">overall median</span></div>
+      <div class="metric"><span class="metric-value">$13.4734+</span><span class="metric-label">known total cost</span></div>
     </div>
 
     <div class="callout benchmark-status verified-status">
-      <strong>12 trials across 1 controlled matrix.</strong>
-      7 repairs passed durable verification. 5 evaluated attempts failed and 0 trials were unavailable.
+      <strong>65 trials across 4 controlled matrices.</strong>
+      59 repairs passed durable verification. 6 evaluated attempts failed and 0 trials were unavailable.
     </div>
 
     <h2>Model summary</h2>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
-          <tr><td>GPT-5.6 Luna (high)</td><td>3/3</td><td>100%</td><td>1:31</td><td>2,099,012</td><td>$0.0551</td><td>$0.0184</td></tr>
-          <tr><td>GLM 5.2 (high)</td><td>2/3</td><td>67%</td><td>2:07</td><td>1,499,821</td><td>$0.4908</td><td>$0.2454</td></tr>
-          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>1/3</td><td>33%</td><td>6:04</td><td>5,421,824</td><td>$0.1794</td><td>$0.1794</td></tr>
-          <tr><td>MiniMax M3 (high)</td><td>1/3</td><td>33%</td><td>10:02</td><td>1,498,873</td><td>$0.2023</td><td>$0.2023</td></tr>
+          <tr><td>GLM 5.2 (high)</td><td>13/13</td><td>100%</td><td>2:31</td><td>2,907,050</td><td>$0.5196</td><td>$0.0400</td></tr>
+          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>12/13</td><td>92%</td><td>4:33</td><td>4,293,355</td><td>$0.1029</td><td>$0.0086</td></tr>
+          <tr><td>GPT-5.6 Luna (high)</td><td>12/13</td><td>92%</td><td>1:56</td><td>7,161,480</td><td>$0.1929+</td><td>$0.0161+</td></tr>
+          <tr><td>Claude Sonnet 5 (high)</td><td>12/13</td><td>92%</td><td>2:03</td><td>4,839,113</td><td>$10.8662</td><td>$0.9055</td></tr>
+          <tr><td>Gemini 3.7 Flash (high)</td><td>10/13</td><td>77%</td><td>3:09</td><td>15,163,587</td><td>$1.7917</td><td>$0.1792</td></tr>
     </tbody></table></div>
 
     <h2>Execution recording</h2>
     <p class="small muted">Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.</p>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Model time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
-          <tr><td>GPT-5.6 Luna (high)</td><td>3/3</td><td>15</td><td>1:20</td><td>32</td><td>0:09</td><td>0:07</td><td>1:18</td></tr>
-          <tr><td>GLM 5.2 (high)</td><td>3/3</td><td>29</td><td>1:39</td><td>33</td><td>0:17</td><td>0:03</td><td>2:04</td></tr>
-          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>3/3</td><td>47</td><td>5:41</td><td>91</td><td>0:21</td><td>0:06</td><td>5:56</td></tr>
-          <tr><td>MiniMax M3 (high)</td><td>3/3</td><td>20</td><td>9:53</td><td>49</td><td>0:12</td><td>0:03</td><td>9:58</td></tr>
+          <tr><td>GLM 5.2 (high)</td><td>13/13</td><td>16</td><td>2:04</td><td>25</td><td>0:10</td><td>0:03</td><td>2:26</td></tr>
+          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>13/13</td><td>17</td><td>3:52</td><td>23</td><td>0:13</td><td>0:07</td><td>4:26</td></tr>
+          <tr><td>GPT-5.6 Luna (high)</td><td>12/13</td><td>17</td><td>1:20</td><td>34</td><td>0:13</td><td>0:06</td><td>1:42</td></tr>
+          <tr><td>Claude Sonnet 5 (high)</td><td>13/13</td><td>17</td><td>1:58</td><td>22</td><td>0:11</td><td>0:05</td><td>1:58</td></tr>
+          <tr><td>Gemini 3.7 Flash (high)</td><td>13/13</td><td>40</td><td>2:36</td><td>39</td><td>0:05</td><td>0:05</td><td>3:03</td></tr>
     </tbody></table></div>
 
 
-      <p>GPT-5.6 Luna made three durable repairs in three attempts with a 1:31 median. Its $0.0551 total cost was about $0.0184 per durable repair, making it the fastest, most reliable, and cheapest repair agent in this focused run.</p>
-      <p>GLM 5.2 made two durable repairs in three attempts with a 2:07 median. Its $0.4908 total cost was about $0.2454 per durable repair, roughly 13 times Luna&#x27;s observed repair cost.</p>
-      <p>DeepSeek V4 Flash 0731 and MiniMax M3 each repaired one of three attempts. DeepSeek had a 6:04 median and spent $0.1794; MiniMax had a 10:02 median and spent $0.2023.</p>
-      <p>All five failures were release_not_converged. The endpoint could be healthy while one or more instances still served the wrong release, which is why an HTTP-only verifier would overstate repair quality.</p>
-      <p>This is one difficult scenario with three attempts per model, not a universal model ranking. It is useful evidence about interrupted deployment recovery under this frozen harness and verifier.</p>
+      <p>GLM 5.2 made 13 durable repairs in 13 attempts with a 2:31 median. It was the only model to sweep the suite and spent $0.5196, about $0.0400 per durable repair.</p>
+      <p>DeepSeek V4 Flash 0731 made 12 durable repairs in 13 attempts and spent $0.1029, about $0.0086 per repair. It was the least expensive repair agent in this cohort, though its 4:33 median was the slowest among the four non-Sonnet fleet models.</p>
+      <p>GPT-5.6 Luna made 12 durable repairs in 13 attempts with the fastest median at 1:56. Its known spend was $0.1929, at least $0.0161 per durable repair; the missing timeout usage means the true value is higher.</p>
+      <p>Claude Sonnet 5 made 12 durable repairs in 13 attempts with a 2:03 median. It spent $10.8662, about $0.9055 per durable repair, making its observed repairs roughly 105 times as expensive as DeepSeek&#x27;s in this cohort.</p>
+      <p>Gemini 3.7 Flash made 10 durable repairs in 13 attempts with a 3:09 median and spent $1.7917, about $0.1792 per durable repair. Its three failures were later provider rejections after meaningful inference: one corrupted thought signature and two content-policy responses. Replaybook counts them as evaluated failures while preserving that distinction from verifier failures.</p>
+      <p>The remaining failures separated cleanly: DeepSeek did not converge the interrupted deployment, Luna timed out with exports still failing, and Sonnet did not converge the interrupted deployment.</p>
 
     <h2>Scenario breakdown</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>GPT-5.6 Luna (high)</th><th>GLM 5.2 (high)</th><th>DeepSeek V4 Flash 0731 (high)</th><th>MiniMax M3 (high)</th></tr></thead><tbody>
-          <tr><td>Interrupted Discourse deployment</td><td>v1</td><td>3/3 &middot; 1:31</td><td>2/3 &middot; 2:07</td><td>1/3 &middot; 6:04</td><td>1/3 &middot; 10:02</td></tr>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>GLM 5.2 (high)</th><th>DeepSeek V4 Flash 0731 (high)</th><th>GPT-5.6 Luna (high)</th><th>Claude Sonnet 5 (high)</th><th>Gemini 3.7 Flash (high)</th></tr></thead><tbody>
+          <tr><td>001-nginx-502-host</td><td>v1</td><td>1/1 &middot; 0:57</td><td>1/1 &middot; 1:57</td><td>1/1 &middot; 3:05</td><td>1/1 &middot; 1:04</td><td>1/1 &middot; 1:34</td></tr>
+          <tr><td>013-sidekiq-wrong-redis</td><td>v2</td><td>1/1 &middot; 1:12</td><td>1/1 &middot; 5:39</td><td>1/1 &middot; 1:24</td><td>1/1 &middot; 1:51</td><td>1/1 &middot; 2:02</td></tr>
+          <tr><td>014-missing-rails-migration</td><td>v2</td><td>1/1 &middot; 2:38</td><td>1/1 &middot; 5:01</td><td>1/1 &middot; 2:06</td><td>1/1 &middot; 1:52</td><td>1/1 &middot; 3:40</td></tr>
+          <tr><td>015-sidekiq-poison-pill</td><td>v1</td><td>1/1 &middot; 3:44</td><td>1/1 &middot; 5:14</td><td>1/1 &middot; 3:29</td><td>1/1 &middot; 4:01</td><td>0/1 &middot; 1:00</td></tr>
+          <tr><td>016-rails-pool-exhaustion</td><td>v1</td><td>1/1 &middot; 1:26</td><td>1/1 &middot; 2:49</td><td>1/1 &middot; 1:23</td><td>1/1 &middot; 1:51</td><td>1/1 &middot; 3:17</td></tr>
+          <tr><td>017-partial-rails-rollout</td><td>v1</td><td>1/1 &middot; 2:31</td><td>1/1 &middot; 4:33</td><td>1/1 &middot; 1:45</td><td>1/1 &middot; 3:53</td><td>0/1 &middot; 1:25</td></tr>
+          <tr><td>018-node-event-loop-blocking</td><td>v1</td><td>1/1 &middot; 2:52</td><td>1/1 &middot; 3:48</td><td>1/1 &middot; 2:16</td><td>1/1 &middot; 2:03</td><td>1/1 &middot; 3:09</td></tr>
+          <tr><td>019-rust-fd-leak</td><td>v1</td><td>1/1 &middot; 2:14</td><td>1/1 &middot; 4:08</td><td>1/1 &middot; 1:33</td><td>1/1 &middot; 2:14</td><td>1/1 &middot; 1:59</td></tr>
+          <tr><td>020-python-gunicorn-saturation</td><td>v1</td><td>1/1 &middot; 4:20</td><td>1/1 &middot; 10:37</td><td>0/1 &middot; 15:31</td><td>1/1 &middot; 2:09</td><td>1/1 &middot; 4:12</td></tr>
+          <tr><td>021-discourse-shared-uploads</td><td>v1</td><td>1/1 &middot; 2:42</td><td>1/1 &middot; 11:19</td><td>1/1 &middot; 2:25</td><td>1/1 &middot; 4:13</td><td>1/1 &middot; 3:56</td></tr>
+          <tr><td>022-discourse-multisite-migration</td><td>v1</td><td>1/1 &middot; 1:19</td><td>1/1 &middot; 3:46</td><td>1/1 &middot; 1:08</td><td>1/1 &middot; 1:51</td><td>0/1 &middot; 1:39</td></tr>
+          <tr><td>023-auth-secret-rollout</td><td>v1</td><td>1/1 &middot; 2:49</td><td>1/1 &middot; 3:17</td><td>1/1 &middot; 1:31</td><td>1/1 &middot; 2:03</td><td>1/1 &middot; 4:39</td></tr>
+          <tr><td>024-discourse-interrupted-deploy</td><td>v1</td><td>1/1 &middot; 1:57</td><td>0/1 &middot; 5:04</td><td>1/1 &middot; 1:56</td><td>0/1 &middot; 5:19</td><td>1/1 &middot; 3:15</td></tr>
     </tbody></table></div>
 
     <h2>Failure categories</h2>
-    <ul><li><code>release_not_converged</code>: 5</li></ul>
+    <ul><li><code>agent_runtime_error</code>: 3</li><li><code>agent_timeout</code>: 1</li><li><code>release_not_converged</code>: 2</li></ul>
 
     <div class="callout comparison-note">
       <strong>Run notes</strong>
-      <ul><li>All 12 trials were evaluated under host harness v17 using scenario pack ducks/replaybook-infra 20260814.0.0 and Claux v20260810.0.1. No provider or infrastructure failures were excluded.</li><li>The previous 132-trial matrix remains in History because it used an older scenario pack and does not contain this incident. Results from different verifier generations are not silently combined.</li></ul>
+      <ul><li>All 65 trials were evaluated using Replaybook commit 7f4b117, scenario pack ducks/replaybook-infra 20260814.0.0, Claux v20260815.0.0, high reasoning, and a 900-second agent timeout. No unavailable trials were excluded.</li><li>Each model attempted each scenario once. This broad smoke cohort shows where models separated, but it is not enough repetition to establish a universal reliability ranking.</li><li>GPT-5.6 Luna reported usage for 12 of 13 trials, so its known cost and cost per durable repair are lower bounds. The timed-out Python saturation trial reported no usage.</li></ul>
     </div>
 
     <h2>Constituent matrices</h2>
     <p>The publisher recorded harness provenance and validated matching scenario pack revisions, scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>
     <p class="small muted">Scenario packs: <code>ducks/replaybook-infra@20260814.0.0</code>.</p>
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
-          <tr><td><code>host-matrix-2026-08-15__01-49-58.f174b4</code></td><td>DeepSeek V4 Flash 0731, GPT-5.6 Luna, GLM 5.2, MiniMax M3 · reasoning high</td><td><code>e45d4034</code></td></tr>
+          <tr><td><code>host-matrix-2026-08-15__21-56-08.20e83f</code></td><td>DeepSeek V4 Flash 0731, Gemini 3.7 Flash, GPT-5.6 Luna, GLM 5.2 · reasoning high</td><td><code>7f4b117a</code></td></tr>
+          <tr><td><code>host-matrix-2026-08-15__21-07-50.e717e8</code></td><td>Claude Sonnet 5 · reasoning high</td><td><code>7f4b117a</code></td></tr>
+          <tr><td><code>host-matrix-2026-08-15__21-28-32.898d2a</code></td><td>Claude Sonnet 5 · reasoning high</td><td><code>7f4b117a</code></td></tr>
+          <tr><td><code>host-matrix-2026-08-15__20-18-41.a9a4e6</code></td><td>Claude Sonnet 5 · reasoning high</td><td><code>7f4b117a</code></td></tr>
     </tbody></table></div>
 
     <h2>Run the matrix</h2>
     <pre><code>python integrations/host/run_host_matrix.py \
+  --scenario 001-nginx-502-host \
+  --scenario 013-sidekiq-wrong-redis \
+  --scenario 014-missing-rails-migration \
+  --scenario 015-sidekiq-poison-pill \
+  --scenario 016-rails-pool-exhaustion \
+  --scenario 017-partial-rails-rollout \
+  --scenario 018-node-event-loop-blocking \
+  --scenario 019-rust-fd-leak \
+  --scenario 020-python-gunicorn-saturation \
+  --scenario 021-discourse-shared-uploads \
+  --scenario 022-discourse-multisite-migration \
+  --scenario 023-auth-secret-rollout \
   --scenario 024-discourse-interrupted-deploy \
   --models \
-    openai/gpt-5.6-luna \
     z-ai/glm-5.2 \
     deepseek/deepseek-v4-flash-0731 \
-    minimax/minimax-m3 \
+    openai/gpt-5.6-luna \
+    anthropic/claude-sonnet-5 \
+    google/gemini-3.7-flash \
   --reasoning-efforts high \
-  --attempts 3 \
+  --attempts 1 \
   --concurrency 2</code></pre>
 
-    <p class="small muted">Host harness v17, Claux <code>v20260810.0.1</code>, 900-second agent timeout. Usage was reported for 12 of 12 trials.</p>
+    <p class="small muted">Host harness v19, Claux <code>v20260815.0.0</code>, 900-second agent timeout. Usage was reported for 64 of 65 trials.</p>
 
     <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
 
