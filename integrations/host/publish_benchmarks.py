@@ -622,6 +622,11 @@ def create_release(
         )
     )
     corrections = apply_corrections(runs, annotations)
+    reproduction_command = annotations.get("reproduction_command")
+    if reproduction_command is not None and (
+        not isinstance(reproduction_command, str) or not reproduction_command.strip()
+    ):
+        raise PublishError("annotations reproduction_command must be a non-empty string")
     return {
         "schema_version": 1,
         "version": version,
@@ -632,6 +637,7 @@ def create_release(
         "scenario_labels": annotations.get("scenario_labels", {}),
         "observations": annotations.get("observations", []),
         "notes": annotations.get("notes", []),
+        "reproduction_command": reproduction_command,
         "compatibility": compatibility,
         "sources": sources,
         "corrections": corrections,
@@ -857,6 +863,17 @@ def html_page(release: dict[str, Any]) -> str:
     command_scenarios = (" " + "\\" + "\n  --scenario ").join(
         scenario for scenario, _ in scenarios
     )
+    generated_command = (
+        "python integrations/host/run_host_matrix.py \\\n"
+        f"  --scenario {command_scenarios} \\\n"
+        "  --models \\\n"
+        f"    {command_models}{command_reasoning} \\\n"
+        f"  --attempts {attempts} \\\n"
+        "  --concurrency 2"
+    )
+    run_command = html.escape(
+        release.get("reproduction_command") or generated_command
+    )
     scenario_packs = release["compatibility"].get("scenario_packs", [])
     pack_note = ""
     pack_compatibility = ""
@@ -937,12 +954,7 @@ def html_page(release: dict[str, Any]) -> str:
     </tbody></table></div>
 
     <h2>Run the matrix</h2>
-    <pre><code>python integrations/host/run_host_matrix.py \\
-  --scenario {command_scenarios} \\
-  --models \\
-    {command_models}{command_reasoning} \\
-  --attempts {attempts} \\
-  --concurrency 2</code></pre>
+    <pre><code>{run_command}</code></pre>
 
     <p class="small muted">Host harness {html.escape('/'.join('v' + str(version) for version in release['compatibility']['harness_versions']))}, Claux <code>{html.escape(str(release['compatibility']['claux_release']))}</code>, {release['compatibility']['agent_timeout_seconds']}-second agent timeout. Usage was reported for {totals['usage_reported_trials']} of {totals['trials']} trials.</p>
 

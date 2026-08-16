@@ -1,0 +1,31 @@
+{
+  "description": "Five infrastructure agents each received a prepared Linux host and attempted one production-style deployment of real Discourse using the pinned official Discourse Docker machinery. Every deployment was verified immediately, after Docker and edge-service restarts, and after a complete host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "z-ai/glm-5.2",
+    "qwen/qwen3.8-2.4t-a95b",
+    "google/gemini-3.7-flash",
+    "deepseek/deepseek-v4-flash-0731"
+  ],
+  "notes": [
+    "All five trials used Replaybook commit 134d662, scenario pack ducks/replaybook-infra 20260815.0.0, Claux v20260815.0.0, high reasoning, and a 1,800-second agent timeout.",
+    "Each model attempted the deployment once. These are controlled smoke results, not established reliability rates.",
+    "Scenario 025 builds a real pinned Discourse application container with PostgreSQL, Redis, uploads, and application state on persistent host storage. Static substitutes and unmanaged temporary servers do not pass verification."
+  ],
+  "observations": [
+    "All five agents produced a durable Discourse deployment that passed immediate, service-restart, and host-reboot verification.",
+    "GPT-5.6 Luna completed first at 10:02 and reported the lowest cost at $0.0270. In this single-attempt cohort it was both the fastest and least expensive durable deployment.",
+    "GLM 5.2 finished in 11:15 for $0.1011, while Qwen3.8 2.4T A95B finished in 11:30 for $0.3100. Qwen used 25 model rounds, the fewest in the cohort, and spent 7:32 in tools.",
+    "Gemini 3.7 Flash completed in 14:25 for $0.3237. It used 84 model rounds and 83 tool calls, substantially more interaction than the other successful deployments.",
+    "DeepSeek V4 Flash 0731 cost only $0.0310 but took 29:12, finishing 48 seconds before the deadline. Its 16:06 of tool time and 53 model rounds distinguish its path from the roughly 7.5-minute tool floor observed for Luna, GLM, and Qwen."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-real.toml --models openai/gpt-5.6-luna z-ai/glm-5.2 qwen/qwen3.8-2.4t-a95b google/gemini-3.7-flash deepseek/deepseek-v4-flash-0731 --reasoning-efforts high --concurrency 1 --base-port 25600",
+  "title": "Five agents deploy real Discourse"
+}

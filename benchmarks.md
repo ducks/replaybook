@@ -9,22 +9,22 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Five agents across 13 infrastructure incidents
+## Five agents deploy real Discourse
 
-Five infrastructure agents each attempted 13 host-native incidents once under the same frozen harness and scenario pack. The suite spans Nginx, Ruby, Rails, Sidekiq, Node, Rust, Python, deployment, authentication, and Discourse-shaped failures, with every repair verified immediately, after service restart, and after host reboot.
+Five infrastructure agents each received a prepared Linux host and attempted one production-style deployment of real Discourse using the pinned official Discourse Docker machinery. Every deployment was verified immediately, after Docker and edge-service restarts, and after a complete host reboot.
 
-Benchmark release: `20260815.0.1`
+Benchmark release: `20260816.0.0`
 
-Scenario packs: `ducks/replaybook-infra@20260814.0.0`
+Scenario packs: `ducks/replaybook-infra@20260815.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GLM 5.2 (high) | 13/13 | 100% | 2:31 | $0.5196 | $0.0400 |
-| DeepSeek V4 Flash 0731 (high) | 12/13 | 92% | 4:33 | $0.1029 | $0.0086 |
-| GPT-5.6 Luna (high) | 12/13 | 92% | 1:56 | $0.1929+ | $0.0161+ |
-| Claude Sonnet 5 (high) | 12/13 | 92% | 2:03 | $10.8662 | $0.9055 |
-| Gemini 3.7 Flash (high) | 10/13 | 77% | 3:09 | $1.7917 | $0.1792 |
-| **Total** | **59/65** | **91%** | **2:31** | **$13.4734+** | **$0.2284+** |
+| GPT-5.6 Luna (high) | 1/1 | 100% | 10:02 | $0.0270 | $0.0270 |
+| GLM 5.2 (high) | 1/1 | 100% | 11:15 | $0.1011 | $0.1011 |
+| Qwen3.8 2.4T A95B (high) | 1/1 | 100% | 11:30 | $0.3100 | $0.3100 |
+| Gemini 3.7 Flash (high) | 1/1 | 100% | 14:25 | $0.3237 | $0.3237 |
+| DeepSeek V4 Flash 0731 (high) | 1/1 | 100% | 29:12 | $0.0310 | $0.0310 |
+| **Total** | **5/5** | **100%** | **11:30** | **$0.7927** | **$0.1585** |
 
 ### Execution recording
 
@@ -32,60 +32,42 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GLM 5.2 (high) | 13/13 | 16 | 2:04 | 25 | 0:10 | 0:03 | 2:26 |
-| DeepSeek V4 Flash 0731 (high) | 13/13 | 17 | 3:52 | 23 | 0:13 | 0:07 | 4:26 |
-| GPT-5.6 Luna (high) | 12/13 | 17 | 1:20 | 34 | 0:13 | 0:06 | 1:42 |
-| Claude Sonnet 5 (high) | 13/13 | 17 | 1:58 | 22 | 0:11 | 0:05 | 1:58 |
-| Gemini 3.7 Flash (high) | 13/13 | 40 | 2:36 | 39 | 0:05 | 0:05 | 3:03 |
+| GPT-5.6 Luna (high) | 1/1 | 32 | 2:17 | 56 | 7:44 | 0:06 | 9:54 |
+| GLM 5.2 (high) | 1/1 | 33 | 3:13 | 39 | 7:24 | 0:01 | 11:12 |
+| Qwen3.8 2.4T A95B (high) | 1/1 | 25 | 3:54 | 35 | 7:32 | 0:31 | 10:58 |
+| Gemini 3.7 Flash (high) | 1/1 | 84 | 4:45 | 83 | 9:33 | 0:09 | 14:16 |
+| DeepSeek V4 Flash 0731 (high) | 1/1 | 53 | 13:02 | 62 | 16:06 | 0:08 | 29:03 |
 
-GLM 5.2 made 13 durable repairs in 13 attempts with a 2:31 median. It was the only model to sweep the suite and spent $0.5196, about $0.0400 per durable repair.
+All five agents produced a durable Discourse deployment that passed immediate, service-restart, and host-reboot verification.
 
-DeepSeek V4 Flash 0731 made 12 durable repairs in 13 attempts and spent $0.1029, about $0.0086 per repair. It was the least expensive repair agent in this cohort, though its 4:33 median was the slowest among the four non-Sonnet fleet models.
+GPT-5.6 Luna completed first at 10:02 and reported the lowest cost at $0.0270. In this single-attempt cohort it was both the fastest and least expensive durable deployment.
 
-GPT-5.6 Luna made 12 durable repairs in 13 attempts with the fastest median at 1:56. Its known spend was $0.1929, at least $0.0161 per durable repair; the missing timeout usage means the true value is higher.
+GLM 5.2 finished in 11:15 for $0.1011, while Qwen3.8 2.4T A95B finished in 11:30 for $0.3100. Qwen used 25 model rounds, the fewest in the cohort, and spent 7:32 in tools.
 
-Claude Sonnet 5 made 12 durable repairs in 13 attempts with a 2:03 median. It spent $10.8662, about $0.9055 per durable repair, making its observed repairs roughly 105 times as expensive as DeepSeek's in this cohort.
+Gemini 3.7 Flash completed in 14:25 for $0.3237. It used 84 model rounds and 83 tool calls, substantially more interaction than the other successful deployments.
 
-Gemini 3.7 Flash made 10 durable repairs in 13 attempts with a 3:09 median and spent $1.7917, about $0.1792 per durable repair. Its three failures were later provider rejections after meaningful inference: one corrupted thought signature and two content-policy responses. Replaybook counts them as evaluated failures while preserving that distinction from verifier failures.
-
-The remaining failures separated cleanly: DeepSeek did not converge the interrupted deployment, Luna timed out with exports still failing, and Sonnet did not converge the interrupted deployment.
+DeepSeek V4 Flash 0731 cost only $0.0310 but took 29:12, finishing 48 seconds before the deadline. Its 16:06 of tool time and 53 model rounds distinguish its path from the roughly 7.5-minute tool floor observed for Luna, GLM, and Qwen.
 
 ### Scenario breakdown
 
-| Scenario | Version | GLM 5.2 (high) | DeepSeek V4 Flash 0731 (high) | GPT-5.6 Luna (high) | Claude Sonnet 5 (high) | Gemini 3.7 Flash (high) |
+| Scenario | Version | GPT-5.6 Luna (high) | GLM 5.2 (high) | Qwen3.8 2.4T A95B (high) | Gemini 3.7 Flash (high) | DeepSeek V4 Flash 0731 (high) |
 |---|---:|---:|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 1/1, 0:57 | 1/1, 1:57 | 1/1, 3:05 | 1/1, 1:04 | 1/1, 1:34 |
-| 013-sidekiq-wrong-redis | v2 | 1/1, 1:12 | 1/1, 5:39 | 1/1, 1:24 | 1/1, 1:51 | 1/1, 2:02 |
-| 014-missing-rails-migration | v2 | 1/1, 2:38 | 1/1, 5:01 | 1/1, 2:06 | 1/1, 1:52 | 1/1, 3:40 |
-| 015-sidekiq-poison-pill | v1 | 1/1, 3:44 | 1/1, 5:14 | 1/1, 3:29 | 1/1, 4:01 | 0/1, 1:00 |
-| 016-rails-pool-exhaustion | v1 | 1/1, 1:26 | 1/1, 2:49 | 1/1, 1:23 | 1/1, 1:51 | 1/1, 3:17 |
-| 017-partial-rails-rollout | v1 | 1/1, 2:31 | 1/1, 4:33 | 1/1, 1:45 | 1/1, 3:53 | 0/1, 1:25 |
-| 018-node-event-loop-blocking | v1 | 1/1, 2:52 | 1/1, 3:48 | 1/1, 2:16 | 1/1, 2:03 | 1/1, 3:09 |
-| 019-rust-fd-leak | v1 | 1/1, 2:14 | 1/1, 4:08 | 1/1, 1:33 | 1/1, 2:14 | 1/1, 1:59 |
-| 020-python-gunicorn-saturation | v1 | 1/1, 4:20 | 1/1, 10:37 | 0/1, 15:31 | 1/1, 2:09 | 1/1, 4:12 |
-| 021-discourse-shared-uploads | v1 | 1/1, 2:42 | 1/1, 11:19 | 1/1, 2:25 | 1/1, 4:13 | 1/1, 3:56 |
-| 022-discourse-multisite-migration | v1 | 1/1, 1:19 | 1/1, 3:46 | 1/1, 1:08 | 1/1, 1:51 | 0/1, 1:39 |
-| 023-auth-secret-rollout | v1 | 1/1, 2:49 | 1/1, 3:17 | 1/1, 1:31 | 1/1, 2:03 | 1/1, 4:39 |
-| 024-discourse-interrupted-deploy | v1 | 1/1, 1:57 | 0/1, 5:04 | 1/1, 1:56 | 0/1, 5:19 | 1/1, 3:15 |
+| 025-discourse-bootstrap | v1 | 1/1, 10:02 | 1/1, 11:15 | 1/1, 11:30 | 1/1, 14:25 | 1/1, 29:12 |
 
 ### Failure categories
 
-- `agent_runtime_error`: 3
-- `agent_timeout`: 1
-- `release_not_converged`: 2
 
 ### Source matrices
 
-- `host-matrix-2026-08-15__21-56-08.20e83f`: deepseek/deepseek-v4-flash-0731, google/gemini-3.7-flash, openai/gpt-5.6-luna, z-ai/glm-5.2; Replaybook `7f4b117a`; reasoning high
-- `host-matrix-2026-08-15__21-07-50.e717e8`: anthropic/claude-sonnet-5; Replaybook `7f4b117a`; reasoning high
-- `host-matrix-2026-08-15__21-28-32.898d2a`: anthropic/claude-sonnet-5; Replaybook `7f4b117a`; reasoning high
-- `host-matrix-2026-08-15__20-18-41.a9a4e6`: anthropic/claude-sonnet-5; Replaybook `7f4b117a`; reasoning high
+- `host-matrix-2026-08-16__01-51-06.aee2b3`: deepseek/deepseek-v4-flash-0731; Replaybook `134d6626`; reasoning high
+- `host-matrix-2026-08-16__03-29-03.e21ae5`: qwen/qwen3.8-2.4t-a95b; Replaybook `134d6626`; reasoning high
+- `host-matrix-2026-08-16__03-45-46.08da95`: openai/gpt-5.6-luna, z-ai/glm-5.2, google/gemini-3.7-flash; Replaybook `134d6626`; reasoning high
 
 ### Run notes
 
-- All 65 trials were evaluated using Replaybook commit 7f4b117, scenario pack ducks/replaybook-infra 20260814.0.0, Claux v20260815.0.0, high reasoning, and a 900-second agent timeout. No unavailable trials were excluded.
-- Each model attempted each scenario once. This broad smoke cohort shows where models separated, but it is not enough repetition to establish a universal reliability ranking.
-- GPT-5.6 Luna reported usage for 12 of 13 trials, so its known cost and cost per durable repair are lower bounds. The timed-out Python saturation trial reported no usage.
+- All five trials used Replaybook commit 134d662, scenario pack ducks/replaybook-infra 20260815.0.0, Claux v20260815.0.0, high reasoning, and a 1,800-second agent timeout.
+- Each model attempted the deployment once. These are controlled smoke results, not established reliability rates.
+- Scenario 025 builds a real pinned Discourse application container with PostgreSQL, Redis, uploads, and application state on persistent host storage. Static substitutes and unmanaged temporary servers do not pass verification.
 
 <!-- replaybook:current-benchmark:end -->
 
