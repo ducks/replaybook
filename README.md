@@ -97,6 +97,12 @@ python integrations/host/run_host_matrix.py \
   --attempts 3
 ```
 
+Retained host-agent trials can be exported as harness-neutral `ATIF-v1.7`
+trajectories for behavioral analysis or training pipelines. The exporter
+preserves observable tool calls and verifier outcomes while excluding private
+assistant reasoning. See
+[`integrations/trajectory`](integrations/trajectory/README.md).
+
 Interrupted matrices resume from their immutable execution snapshot and skip
 trials that already produced valid results:
 
