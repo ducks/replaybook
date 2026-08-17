@@ -360,11 +360,12 @@ local Claux binary into `execution-snapshot/` inside the matrix result
 directory. Every worker executes those immutable copies. Switching branches or
 editing a live scenario while a matrix runs cannot change later workers.
 
-Scenario-pack snapshots exclude Git metadata and Python bytecode caches. Their
-content hashes therefore describe executable pack contents rather than mutable
-branch refs, while the source Git commit is retained separately as provenance.
-Matrices with identical pack contents remain compatible across merge commits;
-different pack contents still produce different hashes.
+Scenario-pack snapshots exclude Git metadata and Python bytecode caches. The
+full pack hash protects frozen execution and resume integrity, while separate
+hashes for each selected scenario define result compatibility. Adding or
+editing an unselected scenario therefore does not split an otherwise identical
+cohort. Changing a selected scenario does. Pack versions and source Git commits
+remain recorded as provenance without overriding those content-scoped hashes.
 
 `benchmark.json` and `execution-snapshot/manifest.json` record SHA-256 hashes
 for the staged harness, packs, and optional agent artifacts. Runtime environment
@@ -394,11 +395,13 @@ python -m integrations.host.result_catalog compare \
 
 The comparison reports evaluated and unavailable trials separately, a Wilson
 95 percent confidence interval, known spend, and cost per durable repair. Its
-compatibility identity includes the scenario and pack versions, host harness
-snapshot, benchmark manifest, adapter and payload hashes, Claux release, and
-timeout. When the archive contains multiple cohorts, the command warns and
-uses the newest one. List or select cohorts explicitly when investigating
-historical changes:
+compatibility identity includes the selected scenario version and content
+hash, host harness snapshot, benchmark manifest, adapter and payload hashes,
+Claux release, and timeout. Full pack revisions remain provenance. Legacy
+matrices without selected-scenario hashes retain whole-pack compatibility.
+When the archive contains multiple cohorts, the command warns and uses the
+newest one. List or select cohorts explicitly when investigating historical
+changes:
 
 ```sh
 python -m integrations.host.result_catalog compare \
@@ -428,11 +431,11 @@ python integrations/host/publish_benchmarks.py import \
   jobs/host-matrix-second/summary.json
 ```
 
-Before combining results it requires the same suite, host harness, scenario
-pack revisions, scenario versions, attempt count, agent timeout, adapter, and
-Claux release. Source matrix names and Replaybook commits remain visible in the
-snapshot. The tracked release contains normalized result data, not local paths,
-transcripts, credentials, or VM logs.
+Before combining results it requires the same suite, host harness, selected
+scenario content, attempt count, agent timeout, adapter, and Claux release.
+Full scenario-pack revisions, source matrix names, and Replaybook commits
+remain visible as provenance. The tracked release contains normalized result
+data, not local paths, transcripts, credentials, or VM logs.
 
 Rebuild generated files without the original `jobs/` directories:
 

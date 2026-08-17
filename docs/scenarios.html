@@ -93,17 +93,19 @@
 
     <p>
       A pack declares a stable ID and version in
-      <code>replaybook-pack.toml</code>. Matrix summaries retain that identity,
-      and the publisher will not combine results produced from different pack
-      revisions. Supplying any explicit pack replaces the bundled default;
-      repeat the option to combine packs with distinct scenario IDs.
+      <code>replaybook-pack.toml</code>. Matrix summaries retain that identity as
+      provenance. Compatibility follows the selected scenario's version and
+      content hash, so unrelated additions to the same pack do not split a
+      cohort. Supplying any explicit pack replaces the bundled default; repeat
+      the option to combine packs with distinct scenario IDs.
     </p>
 
     <p>
       A matrix copies its selected packs and host runner into an immutable
-      execution snapshot before launching workers. Content hashes become part
-      of benchmark compatibility, so edits to a checkout cannot change an
-      active matrix or be silently mixed into another published result.
+      execution snapshot before launching workers. The full pack hash protects
+      execution and resume integrity. Per-scenario hashes protect benchmark
+      compatibility, so edits to selected content cannot be silently mixed
+      while changes to unselected scenarios remain independent.
     </p>
 
     <div class="table-scroll">
