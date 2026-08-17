@@ -30,6 +30,10 @@ body {
   max-width: 980px;
 }
 
+.wrap.coverage-wrap {
+  max-width: 1440px;
+}
+
 header.site {
   display: flex;
   align-items: baseline;
@@ -293,6 +297,99 @@ pre code {
 
 .table-scroll {
   overflow-x: auto;
+}
+
+.coverage-scroll {
+  margin-top: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.coverage-table {
+  min-width: 1050px;
+  margin: 0;
+}
+
+.coverage-table th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 17rem;
+  background: var(--bg);
+}
+
+.coverage-table tbody th {
+  font-weight: 600;
+}
+
+.coverage-table tbody th span,
+.coverage-cell span {
+  display: block;
+  color: var(--fg-dim);
+  font-size: 0.75rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.coverage-cell {
+  min-width: 9.5rem;
+  border-left: 1px solid var(--border);
+}
+
+.coverage-cell a {
+  display: block;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.coverage-cell strong {
+  display: block;
+  color: var(--accent);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+
+.coverage-cell.coverage-partial strong {
+  color: #d29922;
+}
+
+.coverage-cell.coverage-failed strong {
+  color: #f85149;
+}
+
+.coverage-cell.coverage-missing {
+  background: var(--bg-alt);
+}
+
+.coverage-gap {
+  font-style: italic;
+}
+
+.coverage-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 1rem 0 2rem;
+}
+
+.coverage-swatch {
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  margin-right: 0.35rem;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.coverage-swatch.coverage-partial {
+  background: #d29922;
+}
+
+.coverage-swatch.coverage-failed {
+  background: #f85149;
+}
+
+.coverage-swatch.coverage-missing {
+  background: var(--border);
 }
 
 .catalog-controls {

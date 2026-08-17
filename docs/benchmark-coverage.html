@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benchmark coverage &middot; replaybook</title>
+  <meta name="description" content="Latest compatible Replaybook evidence across the current model fleet and scenario corpus.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap coverage-wrap">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Current</a>
+      <a href="benchmark-coverage.html" class="active" aria-current="page">Coverage</a>
+      <a href="benchmark-explorer.html">Explore</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+    <p class="eyebrow">Living evidence map</p>
+    <h1>Benchmark coverage</h1>
+    <p class="tagline benchmark-tagline">The newest published cohort for every scenario, measured against the model lanes in the current benchmark fleet.</p>
+
+    <div class="callout comparison-note">
+      <strong>Rows are comparison boundaries.</strong>
+      Every populated cell comes from the row's exact release, scenario version, harness, and verifier. Missing evidence stays missing.
+    </div>
+
+    <div class="metric-grid" aria-label="Benchmark coverage summary">
+      <div class="metric"><span class="metric-value" id="coverage-scenarios">0</span><span class="metric-label">current scenarios</span></div>
+      <div class="metric"><span class="metric-value" id="coverage-models">0</span><span class="metric-label">model lanes</span></div>
+      <div class="metric"><span class="metric-value" id="coverage-cells">0/0</span><span class="metric-label">covered cells</span></div>
+    </div>
+
+    <div id="coverage-context" class="small muted"></div>
+    <div class="table-scroll coverage-scroll"><table class="coverage-table"><thead id="coverage-head"></thead><tbody id="coverage-body"></tbody></table></div>
+
+    <div class="coverage-legend small muted">
+      <span><i class="coverage-swatch coverage-perfect"></i> all evaluated attempts repaired</span>
+      <span><i class="coverage-swatch coverage-partial"></i> mixed result</span>
+      <span><i class="coverage-swatch coverage-failed"></i> no durable repair</span>
+      <span><i class="coverage-swatch coverage-missing"></i> not run in this cohort</span>
+    </div>
+
+    <p class="small muted">Select any populated cell to inspect its immutable release in the <a href="benchmark-explorer.html">benchmark explorer</a>. The path-free source is <a href="benchmark-catalog.json"><code>benchmark-catalog.json</code></a>.</p>
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+
+  <script>
+  function variantKey(record) {
+    return `${record.model}|||${record.reasoning_effort || ""}`;
+  }
+
+  function variantLabel(record) {
+    return record.reasoning_effort ? `${record.model_label} (${record.reasoning_effort})` : record.model_label;
+  }
+
+  function duration(seconds) {
+    if (seconds === null || seconds === undefined) return "n/a";
+    const rounded = Math.round(seconds);
+    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
+  }
+
+  function money(value, incomplete) {
+    if (value === null || value === undefined) return "n/a";
+    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
+  }
+
+  function cellClass(record) {
+    if (!record || !record.evaluated) return "coverage-missing";
+    if (record.passed === record.evaluated) return "coverage-perfect";
+    if (record.passed === 0) return "coverage-failed";
+    return "coverage-partial";
+  }
+
+  function cell(record, release, scenario) {
+    const node = document.createElement("td");
+    node.className = `coverage-cell ${cellClass(record)}`;
+    if (!record) {
+      node.innerHTML = '<span class="coverage-gap">not run</span>';
+      return node;
+    }
+    const query = new URLSearchParams({release, scenario, model: record.model});
+    const link = document.createElement("a");
+    link.href = `benchmark-explorer.html?${query}`;
+    const incomplete = record.cost_reported_trials < record.trials;
+    link.innerHTML = `<strong>${record.passed}/${record.evaluated}</strong><span>${duration(record.median_duration_seconds)} &middot; ${money(record.known_cost_usd, incomplete)}</span>`;
+    link.title = `${record.scenario_label} · ${variantLabel(record)} · benchmark ${release}`;
+    node.append(link);
+    return node;
+  }
+
+  async function initialize() {
+    const response = await fetch("benchmark-catalog.json");
+    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
+    const catalog = await response.json();
+    const releaseOrder = new Map(catalog.releases.map((release, index) => [release.version, index]));
+    const currentRecords = catalog.records.filter(record => record.release === catalog.current_version);
+    const latestVariant = new Map();
+    catalog.records.forEach(record => latestVariant.set(variantKey(record), record));
+    const configuredFleet = catalog.coverage_fleet || [];
+    const fleet = configuredFleet.length ? configuredFleet.map(item => {
+      const key = `${item.model}|||${item.reasoning_effort || ""}`;
+      return latestVariant.get(key) || {...item, model_label: item.model};
+    }) : [...new Map(currentRecords.map(record => [variantKey(record), record])).values()];
+    const latest = new Map();
+    catalog.records.forEach(record => {
+      const previous = latest.get(record.scenario);
+      if (!previous || releaseOrder.get(record.release) > releaseOrder.get(previous.release)) latest.set(record.scenario, record);
+    });
+    const scenarios = [...latest.values()].sort((a, b) => a.scenario_label.localeCompare(b.scenario_label, undefined, {numeric: true}));
+    const recordsByCell = new Map();
+    catalog.records.forEach(record => {
+      const boundary = latest.get(record.scenario);
+      if (boundary && record.release === boundary.release && record.scenario_version === boundary.scenario_version) {
+        recordsByCell.set(`${record.scenario}|||${variantKey(record)}`, record);
+      }
+    });
+
+    const header = document.querySelector("#coverage-head");
+    const headerRow = document.createElement("tr");
+    const scenarioHeader = document.createElement("th");
+    scenarioHeader.textContent = "Scenario cohort";
+    headerRow.append(scenarioHeader);
+    fleet.forEach(record => {
+      const heading = document.createElement("th");
+      heading.textContent = variantLabel(record);
+      headerRow.append(heading);
+    });
+    header.append(headerRow);
+
+    let covered = 0;
+    const body = document.querySelector("#coverage-body");
+    scenarios.forEach(boundary => {
+      const row = document.createElement("tr");
+      const heading = document.createElement("th");
+      const query = new URLSearchParams({release: boundary.release, scenario: boundary.scenario});
+      const link = document.createElement("a");
+      link.href = `benchmark-explorer.html?${query}`;
+      link.textContent = boundary.scenario_label;
+      const meta = document.createElement("span");
+      meta.textContent = `v${boundary.scenario_version} · ${boundary.release}`;
+      heading.append(link, meta);
+      row.append(heading);
+      fleet.forEach(model => {
+        const record = recordsByCell.get(`${boundary.scenario}|||${variantKey(model)}`);
+        if (record) covered += 1;
+        row.append(cell(record, boundary.release, boundary.scenario));
+      });
+      body.append(row);
+    });
+
+    const possible = scenarios.length * fleet.length;
+    document.querySelector("#coverage-scenarios").textContent = String(scenarios.length);
+    document.querySelector("#coverage-models").textContent = String(fleet.length);
+    document.querySelector("#coverage-cells").textContent = `${covered}/${possible}`;
+    const fleetSource = configuredFleet.length ? "configured canonical fleet" : `fleet from benchmark ${catalog.current_version}`;
+    document.querySelector("#coverage-context").textContent = `Using the ${fleetSource}. Each scenario uses its newest published cohort.`;
+  }
+
+  initialize().catch(error => {
+    document.querySelector("#coverage-context").textContent = `Could not load benchmark catalog: ${error.message}`;
+  });
+  </script>
+</body>
+</html>
