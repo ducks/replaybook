@@ -53,15 +53,11 @@
       <span><i class="coverage-swatch coverage-missing"></i> not run in this cohort</span>
     </div>
 
-    <p class="small muted">Select any populated cell to inspect its immutable release in the <a href="benchmark-explorer.html">benchmark explorer</a>. The path-free source is <a href="benchmark-catalog.json"><code>benchmark-catalog.json</code></a>.</p>
+    <p class="small muted">Select any populated cell to inspect its immutable release in the <a href="benchmark-explorer.html">benchmark explorer</a>. The stable, path-free source is <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a>.</p>
     <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
   </div>
 
   <script>
-  function variantKey(record) {
-    return `${record.model}|||${record.reasoning_effort || ""}`;
-  }
-
   function variantLabel(record) {
     return record.reasoning_effort ? `${record.model_label} (${record.reasoning_effort})` : record.model_label;
   }
@@ -84,49 +80,28 @@
     return "coverage-partial";
   }
 
-  function cell(record, release, scenario) {
+  function cell(record) {
     const node = document.createElement("td");
     node.className = `coverage-cell ${cellClass(record)}`;
-    if (!record) {
+    if (record.status === "missing") {
       node.innerHTML = '<span class="coverage-gap">not run</span>';
       return node;
     }
-    const query = new URLSearchParams({release, scenario, model: record.model});
     const link = document.createElement("a");
-    link.href = `benchmark-explorer.html?${query}`;
+    link.href = record.evidence_url;
     const incomplete = record.cost_reported_trials < record.trials;
     link.innerHTML = `<strong>${record.passed}/${record.evaluated}</strong><span>${duration(record.median_duration_seconds)} &middot; ${money(record.known_cost_usd, incomplete)}</span>`;
-    link.title = `${record.scenario_label} · ${variantLabel(record)} · benchmark ${release}`;
+    link.title = `${record.scenario_label} · ${variantLabel(record)} · benchmark ${record.release}`;
     node.append(link);
     return node;
   }
 
   async function initialize() {
-    const response = await fetch("benchmark-catalog.json");
-    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
-    const catalog = await response.json();
-    const releaseOrder = new Map(catalog.releases.map((release, index) => [release.version, index]));
-    const currentRecords = catalog.records.filter(record => record.release === catalog.current_version);
-    const latestVariant = new Map();
-    catalog.records.forEach(record => latestVariant.set(variantKey(record), record));
-    const configuredFleet = catalog.coverage_fleet || [];
-    const fleet = configuredFleet.length ? configuredFleet.map(item => {
-      const key = `${item.model}|||${item.reasoning_effort || ""}`;
-      return latestVariant.get(key) || {...item, model_label: item.model};
-    }) : [...new Map(currentRecords.map(record => [variantKey(record), record])).values()];
-    const latest = new Map();
-    catalog.records.forEach(record => {
-      const previous = latest.get(record.scenario);
-      if (!previous || releaseOrder.get(record.release) > releaseOrder.get(previous.release)) latest.set(record.scenario, record);
-    });
-    const scenarios = [...latest.values()].sort((a, b) => a.scenario_label.localeCompare(b.scenario_label, undefined, {numeric: true}));
-    const recordsByCell = new Map();
-    catalog.records.forEach(record => {
-      const boundary = latest.get(record.scenario);
-      if (boundary && record.release === boundary.release && record.scenario_version === boundary.scenario_version) {
-        recordsByCell.set(`${record.scenario}|||${variantKey(record)}`, record);
-      }
-    });
+    const response = await fetch("benchmark-coverage.json");
+    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
+    const coverage = await response.json();
+    const fleet = coverage.fleet;
+    const scenarios = coverage.scenarios;
 
     const header = document.querySelector("#coverage-head");
     const headerRow = document.createElement("tr");
@@ -140,33 +115,25 @@
     });
     header.append(headerRow);
 
-    let covered = 0;
     const body = document.querySelector("#coverage-body");
-    scenarios.forEach(boundary => {
+    scenarios.forEach(scenario => {
       const row = document.createElement("tr");
       const heading = document.createElement("th");
-      const query = new URLSearchParams({release: boundary.release, scenario: boundary.scenario});
       const link = document.createElement("a");
-      link.href = `benchmark-explorer.html?${query}`;
-      link.textContent = boundary.scenario_label;
+      link.href = scenario.evidence_url;
+      link.textContent = scenario.scenario_label;
       const meta = document.createElement("span");
-      meta.textContent = `v${boundary.scenario_version} · ${boundary.release}`;
+      meta.textContent = `v${scenario.scenario_version} · ${scenario.release}`;
       heading.append(link, meta);
       row.append(heading);
-      fleet.forEach(model => {
-        const record = recordsByCell.get(`${boundary.scenario}|||${variantKey(model)}`);
-        if (record) covered += 1;
-        row.append(cell(record, boundary.release, boundary.scenario));
-      });
+      scenario.cells.forEach(record => row.append(cell(record)));
       body.append(row);
     });
 
-    const possible = scenarios.length * fleet.length;
-    document.querySelector("#coverage-scenarios").textContent = String(scenarios.length);
-    document.querySelector("#coverage-models").textContent = String(fleet.length);
-    document.querySelector("#coverage-cells").textContent = `${covered}/${possible}`;
-    const fleetSource = configuredFleet.length ? "configured canonical fleet" : `fleet from benchmark ${catalog.current_version}`;
-    document.querySelector("#coverage-context").textContent = `Using the ${fleetSource}. Each scenario uses its newest published cohort.`;
+    document.querySelector("#coverage-scenarios").textContent = String(coverage.totals.scenarios);
+    document.querySelector("#coverage-models").textContent = String(coverage.totals.model_lanes);
+    document.querySelector("#coverage-cells").textContent = `${coverage.totals.covered_cells}/${coverage.totals.possible_cells}`;
+    document.querySelector("#coverage-context").textContent = `Using the configured canonical fleet from benchmark ${coverage.generated_from}. Each scenario uses its newest published cohort.`;
   }
 
   initialize().catch(error => {

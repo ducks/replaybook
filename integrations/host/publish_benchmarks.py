@@ -24,10 +24,12 @@ REPO_DIR = Path(__file__).resolve().parents[2]
 DATA_DIR = Path("benchmark-data")
 INDEX_FILE = DATA_DIR / "index.json"
 CATALOG_FILE = DATA_DIR / "catalog.json"
+COVERAGE_FILE = DATA_DIR / "coverage.json"
 RELEASES_DIR = DATA_DIR / "releases"
 DOCS_CURRENT = Path("docs/benchmarks.html")
 DOCS_CATALOG = Path("docs/benchmark-catalog.json")
 DOCS_COVERAGE = Path("docs/benchmark-coverage.html")
+DOCS_COVERAGE_DATA = Path("docs/benchmark-coverage.json")
 DOCS_EXPLORER = Path("docs/benchmark-explorer.html")
 DOCS_HISTORY = Path("docs/benchmark-history.html")
 MARKDOWN_RECORD = Path("benchmarks.md")
@@ -1371,6 +1373,182 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
     }
 
 
+def public_coverage(
+    index: dict[str, Any], root: Path, catalog: dict[str, Any]
+) -> dict[str, Any]:
+    """Build the stable, path-free coverage matrix consumed by other tools."""
+    release_order = {
+        version: position for position, version in enumerate(index["releases"])
+    }
+    releases = {
+        version: read_json(root / RELEASES_DIR / f"{version}.json")
+        for version in index["releases"]
+    }
+    latest_variant: dict[tuple[str, str | None], dict[str, Any]] = {}
+    latest_scenario: dict[str, dict[str, Any]] = {}
+    for record in catalog["records"]:
+        latest_variant[(record["model"], record.get("reasoning_effort"))] = record
+        previous = latest_scenario.get(record["scenario"])
+        if previous is None or release_order[record["release"]] > release_order[
+            previous["release"]
+        ]:
+            latest_scenario[record["scenario"]] = record
+
+    configured_fleet = index.get("coverage_fleet", [])
+    if configured_fleet:
+        fleet_config = configured_fleet
+    else:
+        fleet_config = [
+            {
+                "model": record["model"],
+                "reasoning_effort": record.get("reasoning_effort"),
+            }
+            for record in catalog["records"]
+            if record["release"] == index["current_version"]
+        ]
+        fleet_config = list(
+            {
+                (item["model"], item.get("reasoning_effort")): item
+                for item in fleet_config
+            }.values()
+        )
+    fleet = []
+    for item in fleet_config:
+        recent = latest_variant.get((item["model"], item.get("reasoning_effort")))
+        fleet.append(
+            {
+                "model": item["model"],
+                "model_label": (
+                    recent["model_label"] if recent is not None else item["model"]
+                ),
+                "reasoning_effort": item.get("reasoning_effort"),
+            }
+        )
+
+    records_by_cell = {
+        (
+            record["scenario"],
+            record["release"],
+            record["scenario_version"],
+            record["model"],
+            record.get("reasoning_effort"),
+        ): record
+        for record in catalog["records"]
+    }
+    scenarios = []
+    covered_cells = 0
+    for boundary in sorted(
+        latest_scenario.values(),
+        key=lambda item: item["scenario_label"],
+    ):
+        release = releases[boundary["release"]]
+        compatibility = release["compatibility"]
+        execution = compatibility.get("execution_snapshot") or {}
+        selected_snapshot = next(
+            (
+                item
+                for item in execution.get("selected_scenarios", [])
+                if item.get("id") == boundary["scenario"]
+                and item.get("version") == boundary["scenario_version"]
+            ),
+            {},
+        )
+        scenario_config = next(
+            (
+                item
+                for item in compatibility["scenarios"]
+                if item["id"] == boundary["scenario"]
+                and item["version"] == boundary["scenario_version"]
+            ),
+            {},
+        )
+        adapter = compatibility.get("agent", {}).get("adapter")
+        cells = []
+        for lane in fleet:
+            record = records_by_cell.get(
+                (
+                    boundary["scenario"],
+                    boundary["release"],
+                    boundary["scenario_version"],
+                    lane["model"],
+                    lane.get("reasoning_effort"),
+                )
+            )
+            if record is None:
+                cells.append({**lane, "status": "missing"})
+                continue
+            covered_cells += 1
+            cells.append(
+                {
+                    **record,
+                    "status": "covered",
+                    "evidence_url": "benchmark-explorer.html?"
+                    + urlencode(
+                        {
+                            "release": boundary["release"],
+                            "scenario": boundary["scenario"],
+                            "model": lane["model"],
+                        }
+                    ),
+                }
+            )
+        scenarios.append(
+            {
+                "scenario": boundary["scenario"],
+                "scenario_label": boundary["scenario_label"],
+                "scenario_version": boundary["scenario_version"],
+                "release": boundary["release"],
+                "evidence_url": "benchmark-explorer.html?"
+                + urlencode(
+                    {
+                        "release": boundary["release"],
+                        "scenario": boundary["scenario"],
+                    }
+                ),
+                "boundary": {
+                    "harness_versions": compatibility.get("harness_versions")
+                    or [compatibility["harness_version"]],
+                    "host_harness_sha256": execution.get("host_harness_sha256"),
+                    "scenario_snapshot_sha256": selected_snapshot.get("sha256"),
+                    "scenario_pack": scenario_config.get("pack"),
+                    "claux_release": compatibility["claux_release"],
+                    "claux_binary_sha256": execution.get("claux_binary_sha256"),
+                    "agent_name": compatibility.get("agent", {}).get("name"),
+                    "agent_adapter": (
+                        adapter
+                        if isinstance(adapter, str) and adapter.startswith("builtin:")
+                        else "external"
+                        if adapter
+                        else None
+                    ),
+                    "agent_adapter_sha256": execution.get(
+                        "agent_adapter_sha256"
+                    ),
+                    "agent_timeout_seconds": compatibility[
+                        "agent_timeout_seconds"
+                    ],
+                    "attempts": compatibility["attempts"],
+                },
+                "cells": cells,
+            }
+        )
+    possible_cells = len(scenarios) * len(fleet)
+    return {
+        "schema_version": 1,
+        "generated_from": index["current_version"],
+        "comparison_policy": "newest_exact_scenario_cohort",
+        "fleet": fleet,
+        "scenarios": scenarios,
+        "totals": {
+            "scenarios": len(scenarios),
+            "model_lanes": len(fleet),
+            "covered_cells": covered_cells,
+            "possible_cells": possible_cells,
+            "missing_cells": possible_cells - covered_cells,
+        },
+    }
+
+
 def explorer_page() -> str:
     return f"""<!doctype html>
 <html lang="en">
@@ -1652,15 +1830,11 @@ def coverage_page() -> str:
       <span><i class="coverage-swatch coverage-missing"></i> not run in this cohort</span>
     </div>
 
-    <p class="small muted">Select any populated cell to inspect its immutable release in the <a href="benchmark-explorer.html">benchmark explorer</a>. The path-free source is <a href="benchmark-catalog.json"><code>benchmark-catalog.json</code></a>.</p>
+    <p class="small muted">Select any populated cell to inspect its immutable release in the <a href="benchmark-explorer.html">benchmark explorer</a>. The stable, path-free source is <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a>.</p>
     <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
   </div>
 
   <script>
-  function variantKey(record) {
-    return `${record.model}|||${record.reasoning_effort || ""}`;
-  }
-
   function variantLabel(record) {
     return record.reasoning_effort ? `${record.model_label} (${record.reasoning_effort})` : record.model_label;
   }
@@ -1683,49 +1857,28 @@ def coverage_page() -> str:
     return "coverage-partial";
   }
 
-  function cell(record, release, scenario) {
+  function cell(record) {
     const node = document.createElement("td");
     node.className = `coverage-cell ${cellClass(record)}`;
-    if (!record) {
+    if (record.status === "missing") {
       node.innerHTML = '<span class="coverage-gap">not run</span>';
       return node;
     }
-    const query = new URLSearchParams({release, scenario, model: record.model});
     const link = document.createElement("a");
-    link.href = `benchmark-explorer.html?${query}`;
+    link.href = record.evidence_url;
     const incomplete = record.cost_reported_trials < record.trials;
     link.innerHTML = `<strong>${record.passed}/${record.evaluated}</strong><span>${duration(record.median_duration_seconds)} &middot; ${money(record.known_cost_usd, incomplete)}</span>`;
-    link.title = `${record.scenario_label} · ${variantLabel(record)} · benchmark ${release}`;
+    link.title = `${record.scenario_label} · ${variantLabel(record)} · benchmark ${record.release}`;
     node.append(link);
     return node;
   }
 
   async function initialize() {
-    const response = await fetch("benchmark-catalog.json");
-    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
-    const catalog = await response.json();
-    const releaseOrder = new Map(catalog.releases.map((release, index) => [release.version, index]));
-    const currentRecords = catalog.records.filter(record => record.release === catalog.current_version);
-    const latestVariant = new Map();
-    catalog.records.forEach(record => latestVariant.set(variantKey(record), record));
-    const configuredFleet = catalog.coverage_fleet || [];
-    const fleet = configuredFleet.length ? configuredFleet.map(item => {
-      const key = `${item.model}|||${item.reasoning_effort || ""}`;
-      return latestVariant.get(key) || {...item, model_label: item.model};
-    }) : [...new Map(currentRecords.map(record => [variantKey(record), record])).values()];
-    const latest = new Map();
-    catalog.records.forEach(record => {
-      const previous = latest.get(record.scenario);
-      if (!previous || releaseOrder.get(record.release) > releaseOrder.get(previous.release)) latest.set(record.scenario, record);
-    });
-    const scenarios = [...latest.values()].sort((a, b) => a.scenario_label.localeCompare(b.scenario_label, undefined, {numeric: true}));
-    const recordsByCell = new Map();
-    catalog.records.forEach(record => {
-      const boundary = latest.get(record.scenario);
-      if (boundary && record.release === boundary.release && record.scenario_version === boundary.scenario_version) {
-        recordsByCell.set(`${record.scenario}|||${variantKey(record)}`, record);
-      }
-    });
+    const response = await fetch("benchmark-coverage.json");
+    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
+    const coverage = await response.json();
+    const fleet = coverage.fleet;
+    const scenarios = coverage.scenarios;
 
     const header = document.querySelector("#coverage-head");
     const headerRow = document.createElement("tr");
@@ -1739,33 +1892,25 @@ def coverage_page() -> str:
     });
     header.append(headerRow);
 
-    let covered = 0;
     const body = document.querySelector("#coverage-body");
-    scenarios.forEach(boundary => {
+    scenarios.forEach(scenario => {
       const row = document.createElement("tr");
       const heading = document.createElement("th");
-      const query = new URLSearchParams({release: boundary.release, scenario: boundary.scenario});
       const link = document.createElement("a");
-      link.href = `benchmark-explorer.html?${query}`;
-      link.textContent = boundary.scenario_label;
+      link.href = scenario.evidence_url;
+      link.textContent = scenario.scenario_label;
       const meta = document.createElement("span");
-      meta.textContent = `v${boundary.scenario_version} · ${boundary.release}`;
+      meta.textContent = `v${scenario.scenario_version} · ${scenario.release}`;
       heading.append(link, meta);
       row.append(heading);
-      fleet.forEach(model => {
-        const record = recordsByCell.get(`${boundary.scenario}|||${variantKey(model)}`);
-        if (record) covered += 1;
-        row.append(cell(record, boundary.release, boundary.scenario));
-      });
+      scenario.cells.forEach(record => row.append(cell(record)));
       body.append(row);
     });
 
-    const possible = scenarios.length * fleet.length;
-    document.querySelector("#coverage-scenarios").textContent = String(scenarios.length);
-    document.querySelector("#coverage-models").textContent = String(fleet.length);
-    document.querySelector("#coverage-cells").textContent = `${covered}/${possible}`;
-    const fleetSource = configuredFleet.length ? "configured canonical fleet" : `fleet from benchmark ${catalog.current_version}`;
-    document.querySelector("#coverage-context").textContent = `Using the ${fleetSource}. Each scenario uses its newest published cohort.`;
+    document.querySelector("#coverage-scenarios").textContent = String(coverage.totals.scenarios);
+    document.querySelector("#coverage-models").textContent = String(coverage.totals.model_lanes);
+    document.querySelector("#coverage-cells").textContent = `${coverage.totals.covered_cells}/${coverage.totals.possible_cells}`;
+    document.querySelector("#coverage-context").textContent = `Using the configured canonical fleet from benchmark ${coverage.generated_from}. Each scenario uses its newest published cohort.`;
   }
 
   initialize().catch(error => {
@@ -1803,9 +1948,15 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
     release = read_json(release_path)
     validate_release(release, release_path)
     catalog = public_catalog(index, root)
+    coverage = public_coverage(index, root, catalog)
     outputs = {
         root / CATALOG_FILE: json.dumps(catalog, indent=2, sort_keys=True) + "\n",
+        root / COVERAGE_FILE: json.dumps(coverage, indent=2, sort_keys=True) + "\n",
         root / DOCS_CATALOG: json.dumps(catalog, indent=2, sort_keys=True) + "\n",
+        root / DOCS_COVERAGE_DATA: json.dumps(
+            coverage, indent=2, sort_keys=True
+        )
+        + "\n",
         root / DOCS_CURRENT: html_page(
             release, recent_scenario_section(index, root)
         ),
