@@ -537,6 +537,9 @@ class PublisherTests(unittest.TestCase):
                 {
                     "schema_version": 1,
                     "current_version": "20260809.0.0",
+                    "coverage_fleet": [
+                        {"model": "model/a", "reasoning_effort": None}
+                    ],
                     "releases": ["20260809.0.0"],
                 },
             )
@@ -552,6 +555,7 @@ class PublisherTests(unittest.TestCase):
             build_outputs(root)
             build_outputs(root, check=True)
             current = (root / "docs/benchmarks.html").read_text()
+            coverage = (root / "docs/benchmark-coverage.html").read_text()
             explorer = (root / "docs/benchmark-explorer.html").read_text()
             catalog = json.loads((root / "benchmark-data/catalog.json").read_text())
             self.assertIn("Current release", current)
@@ -565,7 +569,16 @@ class PublisherTests(unittest.TestCase):
             self.assertIn("Benchmark explorer", explorer)
             self.assertIn("cost / repair", explorer)
             self.assertIn("release-filter", explorer)
+            self.assertIn("Benchmark coverage", coverage)
+            self.assertIn("Rows are comparison boundaries", coverage)
+            self.assertIn("coverage-cells", coverage)
+            self.assertIn("benchmark-catalog.json", coverage)
+            self.assertNotIn("\0", coverage)
             self.assertEqual(catalog["current_version"], "20260809.0.0")
+            self.assertEqual(
+                catalog["coverage_fleet"],
+                [{"model": "model/a", "reasoning_effort": None}],
+            )
             self.assertEqual(len(catalog["records"]), 1)
             self.assertEqual(catalog["records"][0]["model"], "model/a")
             self.assertAlmostEqual(
