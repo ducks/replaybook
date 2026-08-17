@@ -249,6 +249,24 @@ def compatibility_identity(
     snapshot = benchmark.get("execution_snapshot") or {}
     agent = benchmark.get("agent") or {}
     pack_id, pack_version = scenario_pack(run, benchmark)
+    selected_scenarios = snapshot.get("selected_scenarios") or []
+    selected = next(
+        (
+            scenario
+            for scenario in selected_scenarios
+            if scenario.get("id") == run.get("scenario")
+            and scenario.get("pack_id") == pack_id
+        ),
+        None,
+    )
+    if selected is not None:
+        pack_version = None
+    scenario_pack_snapshots = snapshot.get("scenario_packs")
+    if selected is not None:
+        scenario_pack_snapshots = [
+            {"id": pack.get("id")}
+            for pack in scenario_pack_snapshots or []
+        ]
     return {
         "schema_version": 1,
         "suite": summary.get("suite"),
@@ -258,7 +276,8 @@ def compatibility_identity(
         "harness_version": run.get("harness_version")
         or summary.get("harness_version"),
         "host_harness_sha256": snapshot.get("host_harness_sha256"),
-        "scenario_pack_snapshots": snapshot.get("scenario_packs"),
+        "scenario_pack_snapshots": scenario_pack_snapshots,
+        "selected_scenario_snapshot": selected,
         "fallback_replaybook_commit": (
             None
             if snapshot.get("host_harness_sha256")

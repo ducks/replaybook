@@ -25,7 +25,7 @@ from integrations.host.run_host_matrix import (
     stage_execution_snapshot,
     slugify,
 )
-from integrations.host.scenario_pack import load_pack
+from integrations.host.scenario_pack import discover, load_pack
 
 
 class HostMatrixTests(unittest.TestCase):
@@ -229,6 +229,70 @@ class HostMatrixTests(unittest.TestCase):
                 first.metadata["scenario_packs"][0]["git_commit"],
                 second.metadata["scenario_packs"][0]["git_commit"],
             )
+
+    def test_selected_scenario_hash_ignores_unselected_pack_changes(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            host = root / "host"
+            host.mkdir()
+            for name in HOST_RUNNER_FILES:
+                path = host / name
+                path.write_text(f"saved {name}\n")
+            pack = root / "pack"
+            pack.mkdir()
+            manifest = pack / "replaybook-pack.toml"
+            manifest.write_text(
+                '[pack]\nid = "test/selected"\nversion = "20260817.0.0"\n'
+            )
+            selected_dir = pack / "selected"
+            selected_dir.mkdir()
+            (selected_dir / "scenario.toml").write_text(
+                "[scenario]\nversion = 1\n"
+            )
+            unselected_dir = pack / "unselected"
+            unselected_dir.mkdir()
+            (unselected_dir / "scenario.toml").write_text(
+                "[scenario]\nversion = 1\n"
+            )
+
+            def stage(name: str):
+                matrix = root / name
+                matrix.mkdir()
+                packs, scenarios = discover([pack])
+                return stage_execution_snapshot(
+                    matrix,
+                    packs=packs,
+                    selected_scenarios=[scenarios["selected"]],
+                    agent_adapter=None,
+                    agent_payload=None,
+                    agent_env_file=None,
+                    claux_binary=None,
+                    host_dir=host,
+                )
+
+            first = stage("matrix-one")
+            manifest.write_text(
+                '[pack]\nid = "test/selected"\nversion = "20260817.0.1"\n'
+            )
+            (unselected_dir / "noise.txt").write_text("new scenario content\n")
+            second = stage("matrix-two")
+            (selected_dir / "scenario.toml").write_text(
+                "[scenario]\nversion = 1\nchanged = true\n"
+            )
+            third = stage("matrix-three")
+
+        self.assertNotEqual(
+            first.metadata["scenario_packs"][0]["sha256"],
+            second.metadata["scenario_packs"][0]["sha256"],
+        )
+        self.assertEqual(
+            first.metadata["selected_scenarios"][0]["sha256"],
+            second.metadata["selected_scenarios"][0]["sha256"],
+        )
+        self.assertNotEqual(
+            second.metadata["selected_scenarios"][0]["sha256"],
+            third.metadata["selected_scenarios"][0]["sha256"],
+        )
 
     def test_build_jobs_expands_reasoning_efforts_as_distinct_trials(self) -> None:
         jobs = build_jobs(

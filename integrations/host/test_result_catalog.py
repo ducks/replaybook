@@ -25,6 +25,9 @@ def matrix_summary(
     started_at: str = "2026-08-15T00:00:00Z",
     host_harness_sha256: str = "a" * 64,
     claux_release: str = "v20260815.0.0",
+    pack_version: str = "1.0.0",
+    pack_snapshot_hash: str = "d" * 64,
+    scenario_snapshot_hash: str | None = None,
 ) -> dict:
     failure_category = None
     if trial_status != "evaluated":
@@ -46,16 +49,38 @@ def matrix_summary(
                 {
                     "id": "024-discourse-interrupted-deploy",
                     "version": 1,
-                    "pack": {"id": "ducks/replaybook-infra", "version": "1.0.0"},
+                    "pack": {
+                        "id": "ducks/replaybook-infra",
+                        "version": pack_version,
+                    },
                 }
             ],
             "scenario_packs": [
-                {"id": "ducks/replaybook-infra", "version": "1.0.0"}
+                {"id": "ducks/replaybook-infra", "version": pack_version}
             ],
             "execution_snapshot": {
                 "host_harness_sha256": host_harness_sha256,
                 "agent_adapter_sha256": "b" * 64,
                 "agent_payload_sha256": "c" * 64,
+                "scenario_packs": [
+                    {
+                        "id": "ducks/replaybook-infra",
+                        "version": pack_version,
+                        "sha256": pack_snapshot_hash,
+                    }
+                ],
+                "selected_scenarios": (
+                    [
+                        {
+                            "id": "024-discourse-interrupted-deploy",
+                            "version": 1,
+                            "pack_id": "ducks/replaybook-infra",
+                            "sha256": scenario_snapshot_hash,
+                        }
+                    ]
+                    if scenario_snapshot_hash is not None
+                    else []
+                ),
             },
             "benchmark_manifest": {
                 "id": "infra-core",
@@ -172,6 +197,52 @@ class ResultCatalogTests(unittest.TestCase):
         output = compare(self.connection, "024-discourse-interrupted-deploy")
         self.assertIn("cohorts: using newest of 2", output)
         self.assertIn("v20260815.0.1", output)
+
+    def test_selected_scenario_hash_ignores_pack_drift_for_cohorts(self) -> None:
+        first = self.write_summary(
+            "first",
+            matrix_summary(scenario_snapshot_hash="e" * 64),
+        )
+        second = self.write_summary(
+            "second",
+            matrix_summary(
+                model="model/other",
+                run_id="024-deploy-model-other-1",
+                started_at="2026-08-15T01:00:00Z",
+                pack_version="1.0.1",
+                pack_snapshot_hash="f" * 64,
+                scenario_snapshot_hash="e" * 64,
+            ),
+        )
+        import_paths(self.connection, [first, second])
+
+        cohorts = compatibility_cohorts(
+            self.connection, "024-discourse-interrupted-deploy"
+        )
+        self.assertEqual(len(cohorts), 1)
+
+    def test_selected_scenario_hash_splits_changed_scenario_cohorts(self) -> None:
+        first = self.write_summary(
+            "first",
+            matrix_summary(scenario_snapshot_hash="e" * 64),
+        )
+        second = self.write_summary(
+            "second",
+            matrix_summary(
+                model="model/other",
+                run_id="024-deploy-model-other-1",
+                started_at="2026-08-15T01:00:00Z",
+                pack_version="1.0.1",
+                pack_snapshot_hash="f" * 64,
+                scenario_snapshot_hash="f" * 64,
+            ),
+        )
+        import_paths(self.connection, [first, second])
+
+        cohorts = compatibility_cohorts(
+            self.connection, "024-discourse-interrupted-deploy"
+        )
+        self.assertEqual(len(cohorts), 2)
 
     def test_compare_separates_unavailable_and_prices_reliability(self) -> None:
         passed = self.write_summary("passed", matrix_summary(cost=0.03))

@@ -26,10 +26,10 @@ from typing import Any, Iterable
 
 try:
     from .benchmark_manifest import BenchmarkManifest, load_benchmark_manifest
-    from .scenario_pack import ScenarioPack, discover
+    from .scenario_pack import Scenario, ScenarioPack, discover
 except ImportError:
     from benchmark_manifest import BenchmarkManifest, load_benchmark_manifest
-    from scenario_pack import ScenarioPack, discover
+    from scenario_pack import Scenario, ScenarioPack, discover
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -186,6 +186,7 @@ def stage_execution_snapshot(
     matrix_dir: Path,
     *,
     packs: list[ScenarioPack],
+    selected_scenarios: list[Scenario] | None = None,
     agent_adapter: Path | None,
     agent_payload: Path | None,
     agent_env_file: Path | None,
@@ -206,6 +207,7 @@ def stage_execution_snapshot(
     pack_metadata = []
     packs_dir = snapshot_dir / "scenario-packs"
     packs_dir.mkdir()
+    snapshot_pack_dirs: dict[str, Path] = {}
     for index, pack in enumerate(packs, start=1):
         destination = packs_dir / f"{index:02d}-{slugify(pack.id)}"
         shutil.copytree(
@@ -215,11 +217,31 @@ def stage_execution_snapshot(
             ignore=snapshot_ignore,
         )
         pack_dirs.append(destination)
+        snapshot_pack_dirs[pack.id] = destination
         pack_metadata.append(
             {
                 **pack.metadata(),
                 "sha256": sha256_tree(destination),
                 "git_commit": git_commit(pack.path),
+            }
+        )
+
+    selected_metadata = []
+    for scenario in selected_scenarios or []:
+        destination = snapshot_pack_dirs.get(scenario.pack.id)
+        if destination is None:
+            raise ValueError(
+                f"selected scenario references an unstaged pack: {scenario.id}"
+            )
+        scenario_dir = destination / scenario.path.relative_to(scenario.pack.path)
+        if not scenario_dir.is_dir():
+            raise ValueError(f"selected scenario is missing from snapshot: {scenario.id}")
+        selected_metadata.append(
+            {
+                "id": scenario.id,
+                "version": scenario.version,
+                "pack_id": scenario.pack.id,
+                "sha256": sha256_tree(scenario_dir),
             }
         )
 
@@ -243,6 +265,7 @@ def stage_execution_snapshot(
         "schema_version": 1,
         "host_harness_sha256": sha256_tree(harness_dir),
         "scenario_packs": pack_metadata,
+        "selected_scenarios": selected_metadata,
         "agent_adapter_sha256": adapter_hash,
         "agent_payload_sha256": payload_hash,
         "agent_env_sha256": sha256_file(agent_env_file)
@@ -281,6 +304,17 @@ def load_execution_snapshot(matrix_dir: Path) -> ExecutionSnapshot:
     for path, recorded in zip(pack_dirs, recorded_packs, strict=True):
         if sha256_tree(path) != recorded.get("sha256"):
             raise ValueError(f"saved scenario pack changed: {path}")
+    pack_dirs_by_id = {
+        recorded["id"]: path
+        for path, recorded in zip(pack_dirs, recorded_packs, strict=True)
+    }
+    for scenario in metadata.get("selected_scenarios") or []:
+        pack_dir = pack_dirs_by_id.get(scenario.get("pack_id"))
+        scenario_dir = pack_dir / scenario["id"] if pack_dir is not None else None
+        if scenario_dir is None or sha256_tree(scenario_dir) != scenario.get("sha256"):
+            raise ValueError(
+                f"saved selected scenario changed: {scenario.get('id', 'unknown')}"
+            )
 
     def optional_artifact(name: str, hash_name: str) -> Path | None:
         path = snapshot_dir / "agent" / name
@@ -1430,6 +1464,7 @@ def main(argv: list[str] | None = None) -> int:
         snapshot = stage_execution_snapshot(
             matrix_dir,
             packs=packs,
+            selected_scenarios=[discovered[scenario] for scenario in scenarios],
             agent_adapter=args.agent_adapter.expanduser().resolve()
             if args.agent_adapter
             else None,

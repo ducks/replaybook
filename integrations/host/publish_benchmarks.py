@@ -196,6 +196,7 @@ def import_summary(path: Path) -> dict[str, Any]:
     execution_snapshot = benchmark.get("execution_snapshot")
     if isinstance(execution_snapshot, dict):
         execution_snapshot = dict(execution_snapshot)
+        execution_snapshot.setdefault("selected_scenarios", [])
         for key in OPTIONAL_SNAPSHOT_HASHES:
             execution_snapshot.setdefault(key, None)
     source = {
@@ -315,6 +316,32 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
             raise PublishError(
                 f"{path}: execution snapshot does not match declared scenario packs"
             )
+        selected_snapshots = execution_snapshot.get("selected_scenarios")
+        if not isinstance(selected_snapshots, list):
+            raise PublishError(
+                f"{path}: execution snapshot selected scenarios are invalid"
+            )
+        selected_keys = set()
+        for scenario in selected_snapshots:
+            if (
+                not isinstance(scenario, dict)
+                or not isinstance(scenario.get("id"), str)
+                or not isinstance(scenario.get("version"), int)
+                or isinstance(scenario.get("version"), bool)
+                or not isinstance(scenario.get("pack_id"), str)
+                or not isinstance(scenario.get("sha256"), str)
+                or not SHA256_PATTERN.fullmatch(scenario["sha256"])
+            ):
+                raise PublishError(
+                    f"{path}: execution snapshot selected scenario is invalid"
+                )
+            selected_keys.add(
+                (scenario["id"], scenario["version"], scenario["pack_id"])
+            )
+        if len(selected_keys) != len(selected_snapshots):
+            raise PublishError(
+                f"{path}: execution snapshot selected scenarios must be unique"
+            )
         for key in OPTIONAL_SNAPSHOT_HASHES:
             value = execution_snapshot.get(key)
             if value is not None and (
@@ -349,6 +376,19 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
         scenario_keys.append((scenario["id"], scenario["version"]))
     if not scenario_keys or len(scenario_keys) != len(set(scenario_keys)):
         raise PublishError(f"{path}: benchmark scenarios must be unique")
+    if execution_snapshot is not None and execution_snapshot["selected_scenarios"]:
+        declared_selected = {
+            (
+                scenario["id"],
+                scenario["version"],
+                scenario.get("pack", {}).get("id"),
+            )
+            for scenario in scenarios
+        }
+        if selected_keys != declared_selected:
+            raise PublishError(
+                f"{path}: selected scenario snapshots do not match the matrix"
+            )
     if not isinstance(attempts, int) or isinstance(attempts, bool) or attempts <= 0:
         raise PublishError(f"{path}: benchmark attempts must be a positive integer")
 
@@ -389,19 +429,49 @@ def compatibility_snapshot(snapshot: dict[str, Any] | None) -> dict[str, Any] | 
     if snapshot is None:
         return None
     value = dict(snapshot)
-    value["scenario_packs"] = [
-        {key: item for key, item in pack.items() if key != "git_commit"}
-        for pack in snapshot["scenario_packs"]
-    ]
+    if snapshot.get("selected_scenarios"):
+        value["scenario_packs"] = [
+            {"id": pack["id"]} for pack in snapshot["scenario_packs"]
+        ]
+        value["selected_scenarios"] = sorted(
+            snapshot["selected_scenarios"],
+            key=lambda item: (item["pack_id"], item["id"]),
+        )
+    else:
+        value["scenario_packs"] = [
+            {key: item for key, item in pack.items() if key != "git_commit"}
+            for pack in snapshot["scenario_packs"]
+        ]
     return value
 
 
+def uses_selected_scenario_compatibility(source: dict[str, Any]) -> bool:
+    snapshot = source.get("execution_snapshot") or {}
+    return bool(snapshot.get("selected_scenarios"))
+
+
+def compatibility_scenario(
+    source: dict[str, Any], scenario: dict[str, Any]
+) -> dict[str, Any]:
+    if not uses_selected_scenario_compatibility(source):
+        return scenario
+    pack = scenario.get("pack") or {}
+    return {
+        "id": scenario["id"],
+        "version": scenario["version"],
+        "pack": {"id": pack.get("id")},
+    }
+
+
 def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
+    scenario_packs = source["scenario_packs"]
+    if uses_selected_scenario_compatibility(source):
+        scenario_packs = [{"id": pack["id"]} for pack in scenario_packs]
     return {
         "suite": source["suite"],
         "harness_version": source["harness_version"],
         "harness_versions": source["harness_versions"],
-        "scenario_packs": source["scenario_packs"],
+        "scenario_packs": scenario_packs,
         "benchmark_manifest": source["benchmark_manifest"],
         "execution_snapshot": compatibility_snapshot(source["execution_snapshot"]),
         "attempts": source["attempts"],
@@ -428,7 +498,9 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
         for scenario in source["scenarios"]:
             scenario_id = scenario["id"]
             previous = scenarios_by_id.get(scenario_id)
-            if previous is not None and previous != scenario:
+            if previous is not None and compatibility_scenario(
+                source, previous
+            ) != compatibility_scenario(source, scenario):
                 raise PublishError(
                     f"incompatible summaries: scenario {scenario_id} differs "
                     "between source matrices"
@@ -472,6 +544,10 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
             "incompatible summaries: combined model/scenario cohort is incomplete "
             f"({missing} missing, {extra} unexpected trials)"
         )
+    # Compatibility comparisons above intentionally scope scenario content to
+    # the selected hashes. Retain the first source's pack revision in the
+    # published cohort as provenance for display and reproduction.
+    expected["scenario_packs"] = sources[0]["scenario_packs"]
     expected["scenarios"] = [scenarios_by_id[item] for item in scenario_order]
     return expected
 

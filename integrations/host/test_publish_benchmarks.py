@@ -27,6 +27,8 @@ def summary(
     pack_version: str = "20260809.0.0",
     reward: int = 1,
     snapshot_hash: str | None = None,
+    scenario_snapshot_hash: str | None = None,
+    pack_snapshot_hash: str = "b" * 64,
     benchmark_hash: str | None = None,
 ) -> dict:
     run_id = f"001-nginx-{model}-1"
@@ -57,9 +59,21 @@ def summary(
                         {
                             "id": "example/incidents",
                             "version": pack_version,
-                            "sha256": "b" * 64,
+                            "sha256": pack_snapshot_hash,
                         }
                     ],
+                    "selected_scenarios": (
+                        [
+                            {
+                                "id": "001-nginx",
+                                "version": scenario_version,
+                                "pack_id": "example/incidents",
+                                "sha256": scenario_snapshot_hash,
+                            }
+                        ]
+                        if scenario_snapshot_hash is not None
+                        else []
+                    ),
                     "agent_adapter_sha256": None,
                     "agent_payload_sha256": None,
                     "agent_env_sha256": None,
@@ -333,6 +347,72 @@ class PublisherTests(unittest.TestCase):
             )
             with self.assertRaisesRegex(PublishError, "scenario_packs differs"):
                 create_release("20260809.0.0", [first, second], {})
+
+    def test_selected_scenario_compatibility_ignores_pack_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = self.write_summary(
+                root,
+                "matrix-one",
+                summary(
+                    "model/a",
+                    snapshot_hash="a" * 64,
+                    scenario_snapshot_hash="e" * 64,
+                    pack_snapshot_hash="b" * 64,
+                    pack_version="20260817.0.0",
+                ),
+            )
+            second = self.write_summary(
+                root,
+                "matrix-two",
+                summary(
+                    "model/b",
+                    snapshot_hash="a" * 64,
+                    scenario_snapshot_hash="e" * 64,
+                    pack_snapshot_hash="c" * 64,
+                    pack_version="20260817.0.1",
+                ),
+            )
+
+            release = create_release("20260817.0.0", [first, second], {})
+
+        self.assertEqual(release["totals"]["passed"], 2)
+        self.assertEqual(
+            [source["scenario_packs"][0]["version"] for source in release["sources"]],
+            ["20260817.0.0", "20260817.0.1"],
+        )
+        self.assertEqual(
+            release["compatibility"]["scenario_packs"],
+            [{"id": "example/incidents", "version": "20260817.0.0"}],
+        )
+        snapshot = release["compatibility"]["execution_snapshot"]
+        self.assertEqual(snapshot["scenario_packs"], [{"id": "example/incidents"}])
+        self.assertEqual(snapshot["selected_scenarios"][0]["sha256"], "e" * 64)
+
+    def test_selected_scenario_compatibility_rejects_selected_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = self.write_summary(
+                root,
+                "matrix-one",
+                summary(
+                    "model/a",
+                    snapshot_hash="a" * 64,
+                    scenario_snapshot_hash="e" * 64,
+                ),
+            )
+            second = self.write_summary(
+                root,
+                "matrix-two",
+                summary(
+                    "model/b",
+                    snapshot_hash="a" * 64,
+                    scenario_snapshot_hash="f" * 64,
+                ),
+            )
+
+            with self.assertRaisesRegex(PublishError, "execution_snapshot differs"):
+                create_release("20260817.0.0", [first, second], {})
 
     def test_rejects_incompatible_execution_snapshots(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
