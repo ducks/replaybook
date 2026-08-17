@@ -521,8 +521,12 @@ Evaluation failures are valid matrix results. Authentication failures and
 provider or harness errors that occur before meaningful inference are recorded
 as unavailable attempts and excluded from pass-rate denominators. Once an
 agent has completed a model round or invoked a tool, later provider
-interruptions and runtime errors are evaluated failures. Exhausting a model
-response's output-token limit is also an evaluated failure. The command exits
+interruptions and runtime errors are evaluated failures. Provider-side content
+policy rejections and malformed protocol responses, including corrupted
+reasoning signatures, retain distinct `provider_policy_rejection` and
+`provider_protocol_error` categories instead of being collapsed into
+`agent_runtime_error`. Exhausting a model response's output-token limit is also
+an evaluated failure. The command exits
 nonzero when a worker produces no valid result or a requested attempt is
 unavailable, because that matrix is incomplete rather than evidence of model
 failure.
@@ -563,7 +567,11 @@ derivations accumulated in the controller host's Nix store.
 Version 19 distinguishes a known harness-device boot failure from a repair that
 does not survive reboot. If the verifier-controlled guest cannot remount the
 harness-provided Nix store image, the trial is unavailable and excluded from
-the model's pass rate.
+the model's pass rate. Version 20 distinguishes provider policy rejections and
+provider protocol failures from agent runtime errors. Their trial status still
+depends on whether meaningful inference began: failures before progress are
+unavailable, while failures after progress are evaluated execution-lane
+failures.
 
 The controller owns reboot verification. Agents are instructed not to reboot
 the host during their session. If an SSH session ends with status 255 and the

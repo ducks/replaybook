@@ -17,7 +17,19 @@ made_progress="$(jq -r '
   end
 ' "$result_file" 2>/dev/null || printf '%s\n' false)"
 
-if [[ "$message" =~ 401|403|authentication|unauthorized|api[[:space:]_-]*key ]]; then
+if [[ "$message" =~ content_policy_violation|prohibited_content|content[[:space:]_-]*policy|safety[[:space:]_-]*(filter|policy)|blocked[[:space:]]+by[[:space:]]+(content|safety) ]]; then
+  if [[ "$made_progress" == true ]]; then
+    printf '%s\t%s\n' evaluated provider_policy_rejection
+  else
+    printf '%s\t%s\n' unavailable provider_policy_rejection
+  fi
+elif [[ "$message" =~ corrupted[[:space:]]+thought[[:space:]]+signature|thought[[:space:]_-]*signature|malformed[[:space:]]+(response|tool|message)|provider[[:space:]_-]*protocol[[:space:]_-]*error ]]; then
+  if [[ "$made_progress" == true ]]; then
+    printf '%s\t%s\n' evaluated provider_protocol_error
+  else
+    printf '%s\t%s\n' unavailable provider_protocol_error
+  fi
+elif [[ "$message" =~ 401|authentication[[:space:]_-]*failed|unauthorized|invalid[[:space:]_-]*api[[:space:]_-]*key|api[[:space:]_-]*key.*(missing|invalid|expired) ]]; then
   printf '%s\t%s\n' unavailable authentication_failed
 elif [[ "$message" =~ output[[:space:]_-]*token[[:space:]_-]*limit|maximum[[:space:]_-]*output[[:space:]_-]*tokens ]]; then
   printf '%s\t%s\n' evaluated agent_output_limit

@@ -55,10 +55,10 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=19' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=20' "$script_dir/run-host-native.sh"
 grep -q 'export TMPDIR="${WORK_DIR}/tmp"' "$script_dir/run-host-native.sh"
 grep -q 'USE_TMPDIR=1' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION = 19' "$script_dir/run_host_matrix.py"
+grep -q 'HOST_HARNESS_VERSION = 20' "$script_dir/run_host_matrix.py"
 grep -q 'virtualisation.useNixStoreImage = true' "$script_dir/isolated-vm.nix"
 grep -q 'virtualisation.mountHostNixStore = false' "$script_dir/isolated-vm.nix"
 grep -q 'incident VM unexpectedly exposes the host Nix store' "$script_dir/run-host-native.sh"
@@ -165,6 +165,14 @@ printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (502
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tprovider_interrupted' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"authentication failed: invalid API key"}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tauthentication_failed' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (400 Bad Request) [content_policy_violation]: PROHIBITED_CONTENT"}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_policy_rejection' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (403 Forbidden) [content_policy_violation]: PROHIBITED_CONTENT"},"recording":{"model_rounds":[{"status":"completed"}],"tools":[{"name":"Bash"}]}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tprovider_policy_rejection' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (400 Bad Request) [invalid_request]: Corrupted thought signature."}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_protocol_error' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (400 Bad Request) [invalid_request]: Corrupted thought signature."},"recording":{"model_rounds":[{"status":"completed"}],"tools":[]}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tprovider_protocol_error' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"adapter exited unexpectedly"}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tagent_runtime_error' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"adapter exited unexpectedly"},"recording":{"model_rounds":[],"tools":[{"name":"Bash"}]}}' >"$agent_error"
