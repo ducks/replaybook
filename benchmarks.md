@@ -9,22 +9,22 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Five agents face a Discourse plugin boot loop
+## Five agents complete a partial service rollout
 
-Five infrastructure-agent lanes each attempted the Discourse plugin boot-loop incident three times. A durable repair had to preserve the installed plugin, opaque topics, uploads, plugin-owned data, and exactly-once background work while keeping the deployed core API and surviving service restarts and a host reboot.
+Five infrastructure-agent lanes each attempted a load-balanced partial service rollout three times. A durable repair had to preserve opaque pre-existing orders, apply the deployed PostgreSQL migration, converge both application instances, keep both backends in rotation, and survive service restarts and a host reboot.
 
-Benchmark release: `20260817.0.0`
+Benchmark release: `20260817.0.1`
 
-Scenario packs: `ducks/replaybook-infra@20260816.0.0`
+Scenario packs: `ducks/replaybook-infra@20260817.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 3/3 | 100% | 1:09 | $0.0367 | $0.0122 |
-| DeepSeek V4 Flash 0731 (high) | 3/3 | 100% | 2:06 | $0.0272 | $0.0091 |
-| Qwen3.8 2.4T A95B (high) | 3/3 | 100% | 1:46 | $0.3862 | $0.1287 |
-| GLM 5.2 (high) | 2/3 | 67% | 3:57 | $0.1152 | $0.0576 |
-| Gemini 3.7 Flash (high) | 1/3 | 33% | 1:32 | $0.1646 | $0.1646 |
-| **Total** | **12/15** | **80%** | **1:46** | **$0.7299** | **$0.0608** |
+| GPT-5.6 Luna (high) | 3/3 | 100% | 2:00 | $0.0531 | $0.0177 |
+| DeepSeek V4 Flash 0731 (high) | 3/3 | 100% | 3:17 | $0.0266 | $0.0089 |
+| GLM 5.2 (high) | 3/3 | 100% | 2:24 | $0.1961 | $0.0654 |
+| Gemini 3.7 Flash (high) | 3/3 | 100% | 2:52 | $0.4685 | $0.1562 |
+| Qwen3.8 2.4T A95B (high) | 3/3 | 100% | 2:00 | $0.5749 | $0.1916 |
+| **Total** | **15/15** | **100%** | **2:37** | **$1.3191** | **$0.0879** |
 
 ### Execution recording
 
@@ -32,41 +32,39 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 3/3 | 12 | 0:57 | 33 | 0:06 | 0:07 | 0:59 |
-| DeepSeek V4 Flash 0731 (high) | 3/3 | 14 | 1:58 | 19 | 0:11 | 0:04 | 2:02 |
-| Qwen3.8 2.4T A95B (high) | 3/3 | 15 | 1:33 | 18 | 0:12 | 0:03 | 1:42 |
-| GLM 5.2 (high) | 3/3 | 17 | 3:48 | 25 | 0:08 | 0:03 | 3:47 |
-| Gemini 3.7 Flash (high) | 3/3 | 26 | 1:28 | 25 | 0:01 | 0:07 | 1:44 |
+| GPT-5.6 Luna (high) | 3/3 | 18 | 1:50 | 41 | 0:08 | 0:08 | 1:50 |
+| DeepSeek V4 Flash 0731 (high) | 3/3 | 17 | 3:01 | 25 | 0:06 | 0:05 | 3:11 |
+| GLM 5.2 (high) | 3/3 | 21 | 2:20 | 27 | 0:06 | 0:05 | 2:19 |
+| Gemini 3.7 Flash (high) | 3/3 | 46 | 2:46 | 45 | 0:04 | 0:07 | 2:44 |
+| Qwen3.8 2.4T A95B (high) | 3/3 | 15 | 1:49 | 20 | 0:10 | 0:04 | 1:56 |
 
-GPT-5.6 Luna and DeepSeek V4 Flash 0731 each completed three durable repairs. Luna was fastest at a 1:09 median, while DeepSeek had the lowest observed cost per durable repair at about $0.0091.
+GPT-5.6 Luna and Qwen3.8 2.4T A95B shared the fastest median at 2:00. Luna cost about $0.0177 per durable repair, while Qwen cost about $0.1916 per repair.
 
-Qwen3.8 2.4T A95B also completed all three repairs with a 1:46 median, but its $0.3862 total spend was roughly fourteen times DeepSeek's for the same three durable outcomes.
+DeepSeek V4 Flash 0731 had the lowest observed cost at about $0.0089 per durable repair, though its 3:17 median was the slowest in this cohort.
 
-GLM 5.2 completed two of three repairs. In the failed trial it correctly diagnosed the incompatibility but explicitly rolled the deployed core plugin API from version 2 back to version 1, violating the instruction to preserve the deployed interface; the verifier reported core_api_rolled_back.
+GLM 5.2 completed the scenario with a 2:24 median at about $0.0654 per durable repair.
 
-Gemini 3.7 Flash completed one durable repair. Its other two attempts terminated at the API layer, making the displayed 33 percent pass rate a measure of the complete execution lane rather than direct evidence that two attempted repairs were technically wrong.
+Gemini 3.7 Flash completed all three repairs with a 2:52 median, but consumed 4.4 million input tokens and cost about $0.1562 per durable repair. DeepSeek used about 681 thousand input tokens for the same three verified outcomes.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Luna (high) | DeepSeek V4 Flash 0731 (high) | Qwen3.8 2.4T A95B (high) | GLM 5.2 (high) | Gemini 3.7 Flash (high) |
+| Scenario | Version | GPT-5.6 Luna (high) | DeepSeek V4 Flash 0731 (high) | GLM 5.2 (high) | Gemini 3.7 Flash (high) | Qwen3.8 2.4T A95B (high) |
 |---|---:|---:|---:|---:|---:|---:|
-| 026-discourse-plugin-boot-loop | v1 | 3/3, 1:09 | 3/3, 2:06 | 3/3, 1:46 | 2/3, 3:57 | 1/3, 1:32 |
+| 027-partial-service-rollout | v1 | 3/3, 2:00 | 3/3, 3:17 | 3/3, 2:24 | 3/3, 2:52 | 3/3, 2:00 |
 
 ### Failure categories
 
-- `agent_runtime_error`: 2
-- `core_api_rolled_back`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-17__02-06-29.7fe13c`: deepseek/deepseek-v4-flash-0731, openai/gpt-5.6-luna, z-ai/glm-5.2, google/gemini-3.7-flash, qwen/qwen3.8-2.4t-a95b; Replaybook `283326ea`; reasoning high
+- `host-matrix-2026-08-17__13-52-01.53fb75`: deepseek/deepseek-v4-flash-0731, google/gemini-3.7-flash, openai/gpt-5.6-luna, qwen/qwen3.8-2.4t-a95b, z-ai/glm-5.2; Replaybook `3b984814`; reasoning high
 
 ### Run notes
 
-- All 15 trials used Replaybook commit 283326e, scenario 026 v1 from ducks/replaybook-infra 20260816.0.0, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.
-- Scenario 026 is a Discourse-shaped stateful incident using Nginx, PostgreSQL, systemd-managed web and background services, and a mutable installed plugin. Scenario 025 remains the separate real Discourse Docker deployment benchmark.
-- Gemini's two failed trials ended in OpenRouter API errors: one corrupted thought signature and one content-policy rejection. The policy rejection followed ordinary inspection of systemd, PostgreSQL, Nginx, and base64-encoded Ruby source; OpenRouter returned PROHIBITED_CONTENT without identifying an offending span. Replaybook reports both as agent_runtime_error for the complete Gemini, Claux, and provider lane; they were not verifier-rejected repairs.
-- Three attempts per model expose useful variation but remain a small sample. These results characterize this exact agent, provider, harness, reasoning, and scenario configuration rather than a model in every setting.
+- All 15 trials used Replaybook commit 3b98481, host harness v20, scenario 027 v1 from ducks/replaybook-infra 20260817.0.0 at commit f6b8049, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.
+- Scenario 027 runs two systemd-managed Python application generations behind Nginx with shared PostgreSQL state. The newer generation is deployed before its required migration while the older generation remains in rotation, producing intermittent write failures despite green health checks.
+- Every lane completed all three durable repairs. This release therefore adds operational coverage and cost data, but does not establish reliability separation among the five lanes.
+- Three attempts per model remain a small sample. These results characterize this exact model, provider, harness, reasoning, and scenario configuration rather than a model in every setting.
 
 <!-- replaybook:current-benchmark:end -->
 
