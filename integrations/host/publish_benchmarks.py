@@ -12,6 +12,7 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlencode
 
 if __package__:
     from integrations.host.benchmark_stats import wilson_interval
@@ -816,7 +817,66 @@ def cost_per_repair(row: dict[str, Any]) -> float | None:
     return row["known_cost_usd"] / row["passed"] if row["passed"] else None
 
 
-def html_page(release: dict[str, Any]) -> str:
+def recent_scenario_section(
+    index: dict[str, Any], root: Path, *, limit: int = 8
+) -> str:
+    """Render the newest published cohort for each recently seen scenario."""
+    seen: set[str] = set()
+    rows = []
+    for release_version in reversed(index["releases"]):
+        release = read_json(root / RELEASES_DIR / f"{release_version}.json")
+        for scenario in release["compatibility"]["scenarios"]:
+            scenario_id = scenario["id"]
+            scenario_version = scenario["version"]
+            if scenario_id in seen:
+                continue
+            aggregates = [
+                row
+                for row in release["by_scenario_model"]
+                if row["scenario"] == scenario_id
+                and row["scenario_version"] == scenario_version
+            ]
+            if not aggregates:
+                continue
+            seen.add(scenario_id)
+            variants = {
+                (row["model"], row.get("reasoning_effort")) for row in aggregates
+            }
+            evaluated = sum(row["evaluated"] for row in aggregates)
+            passed = sum(row["passed"] for row in aggregates)
+            trials = sum(row["trials"] for row in aggregates)
+            known_cost = sum(row["known_cost_usd"] for row in aggregates)
+            cost_reported = sum(row["cost_reported_trials"] for row in aggregates)
+            query = urlencode(
+                {"release": release_version, "scenario": scenario_id}
+            )
+            rows.append(
+                "          <tr>"
+                f"<td><a href=\"benchmark-explorer.html?{html.escape(query)}\">"
+                f"{html.escape(label(release, 'scenario', scenario_id))}</a></td>"
+                f"<td>v{scenario_version}</td>"
+                f"<td><code>{html.escape(release_version)}</code></td>"
+                f"<td>{len(variants)}</td>"
+                f"<td>{passed}/{evaluated}</td>"
+                f"<td>{money(known_cost, cost_reported < trials)}</td>"
+                "</tr>"
+            )
+            if len(rows) >= limit:
+                break
+        if len(rows) >= limit:
+            break
+    if not rows:
+        return ""
+    return f"""
+    <h2>Recent scenario cohorts</h2>
+    <p class="small muted">The newest published cohort for each recent scenario. Each row keeps its original benchmark release and comparison boundary.</p>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Benchmark</th><th>Model lanes</th><th>Repairs</th><th>Known cost</th></tr></thead><tbody>
+{chr(10).join(rows)}
+    </tbody></table></div>
+"""
+
+
+def html_page(release: dict[str, Any], recent_scenarios: str = "") -> str:
     totals = release["totals"]
     cost_incomplete = totals["cost_reported_trials"] < totals["trials"]
     rows = model_rows(release)
@@ -1025,6 +1085,7 @@ def html_page(release: dict[str, Any]) -> str:
       <strong>{totals['trials']} trials across {source_count} controlled {source_noun}.</strong>
       {totals['passed']} repairs passed durable verification. {totals['failed']} evaluated attempts failed and {totals['unavailable']} {trial_noun(totals['unavailable'])} {"was" if totals['unavailable'] == 1 else "were"} unavailable.
     </div>
+{recent_scenarios}
 
     <h2>Model summary</h2>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
@@ -1544,7 +1605,9 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
     outputs = {
         root / CATALOG_FILE: json.dumps(catalog, indent=2, sort_keys=True) + "\n",
         root / DOCS_CATALOG: json.dumps(catalog, indent=2, sort_keys=True) + "\n",
-        root / DOCS_CURRENT: html_page(release),
+        root / DOCS_CURRENT: html_page(
+            release, recent_scenario_section(index, root)
+        ),
         root / DOCS_EXPLORER: explorer_page(),
         root / MARKDOWN_RECORD: replace_managed(
             (root / MARKDOWN_RECORD).read_text(),

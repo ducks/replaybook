@@ -555,6 +555,8 @@ class PublisherTests(unittest.TestCase):
             explorer = (root / "docs/benchmark-explorer.html").read_text()
             catalog = json.loads((root / "benchmark-data/catalog.json").read_text())
             self.assertIn("Current release", current)
+            self.assertIn("Recent scenario cohorts", current)
+            self.assertIn("001-nginx", current)
             self.assertIn("example/incidents@20260809.0.0", current)
             self.assertIn("scenario pack revisions", current)
             self.assertIn("Run notes", current)
@@ -574,6 +576,48 @@ class PublisherTests(unittest.TestCase):
             (root / "docs/benchmarks.html").write_text("stale")
             with self.assertRaisesRegex(PublishError, "stale"):
                 build_outputs(root, check=True)
+
+    def test_homepage_lists_recent_distinct_scenarios(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            nginx_path = self.write_summary(root, "nginx", summary("model/a"))
+            redis_path = self.write_summary(
+                root,
+                "redis",
+                self.rename_scenario(summary("model/a"), "002-redis"),
+            )
+            nginx = create_release(
+                "20260809.0.0", [nginx_path], {"title": "Current Nginx"}
+            )
+            redis = create_release(
+                "20260808.0.0", [redis_path], {"title": "Earlier Redis"}
+            )
+            write_json(
+                root / "benchmark-data/index.json",
+                {
+                    "schema_version": 1,
+                    "current_version": "20260809.0.0",
+                    "releases": ["20260808.0.0", "20260809.0.0"],
+                },
+            )
+            write_json(root / "benchmark-data/releases/20260808.0.0.json", redis)
+            write_json(root / "benchmark-data/releases/20260809.0.0.json", nginx)
+            (root / "docs").mkdir()
+            (root / "docs/benchmark-history.html").write_text(
+                f"{HISTORY_START}\n{HISTORY_END}\n"
+            )
+            (root / "benchmarks.md").write_text(
+                f"{MARKDOWN_START}\n{MARKDOWN_END}\n"
+            )
+
+            build_outputs(root)
+
+            current = (root / "docs/benchmarks.html").read_text()
+            self.assertIn("001-nginx", current)
+            self.assertIn("002-redis", current)
+            self.assertIn(
+                "release=20260808.0.0&amp;scenario=002-redis", current
+            )
 
     def test_history_retains_superseded_generated_releases(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
