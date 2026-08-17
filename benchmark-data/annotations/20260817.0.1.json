@@ -1,0 +1,31 @@
+{
+  "description": "Five infrastructure-agent lanes each attempted a load-balanced partial service rollout three times. A durable repair had to preserve opaque pre-existing orders, apply the deployed PostgreSQL migration, converge both application instances, keep both backends in rotation, and survive service restarts and a host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "deepseek/deepseek-v4-flash-0731",
+    "z-ai/glm-5.2",
+    "google/gemini-3.7-flash",
+    "qwen/qwen3.8-2.4t-a95b"
+  ],
+  "notes": [
+    "All 15 trials used Replaybook commit 3b98481, host harness v20, scenario 027 v1 from ducks/replaybook-infra 20260817.0.0 at commit f6b8049, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.",
+    "Scenario 027 runs two systemd-managed Python application generations behind Nginx with shared PostgreSQL state. The newer generation is deployed before its required migration while the older generation remains in rotation, producing intermittent write failures despite green health checks.",
+    "Every lane completed all three durable repairs. This release therefore adds operational coverage and cost data, but does not establish reliability separation among the five lanes.",
+    "Three attempts per model remain a small sample. These results characterize this exact model, provider, harness, reasoning, and scenario configuration rather than a model in every setting."
+  ],
+  "observations": [
+    "GPT-5.6 Luna and Qwen3.8 2.4T A95B shared the fastest median at 2:00. Luna cost about $0.0177 per durable repair, while Qwen cost about $0.1916 per repair.",
+    "DeepSeek V4 Flash 0731 had the lowest observed cost at about $0.0089 per durable repair, though its 3:17 median was the slowest in this cohort.",
+    "GLM 5.2 completed the scenario with a 2:24 median at about $0.0654 per durable repair.",
+    "Gemini 3.7 Flash completed all three repairs with a 2:52 median, but consumed 4.4 million input tokens and cost about $0.1562 per durable repair. DeepSeek used about 681 thousand input tokens for the same three verified outcomes."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 027-partial-service-rollout --models deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash openai/gpt-5.6-luna qwen/qwen3.8-2.4t-a95b z-ai/glm-5.2 --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 25330",
+  "title": "Five agents complete a partial service rollout"
+}
