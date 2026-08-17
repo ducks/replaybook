@@ -1,5 +1,5 @@
 {
-  "current_version": "20260816.0.0",
+  "current_version": "20260817.0.0",
   "records": [
     {
       "cost_per_repair_usd": 0.005838324660000001,
@@ -7543,6 +7543,135 @@
       "trials": 1,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.009075485766666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 993875,
+      "known_cost_usd": 0.027226457300000003,
+      "median_duration_seconds": 126,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 27907,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_label": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.16461847500000001,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_runtime_error": 2
+      },
+      "input_tokens": 990793,
+      "known_cost_usd": 0.16461847500000001,
+      "median_duration_seconds": 92,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 15891,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_label": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.012229783333333332,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1128799,
+      "known_cost_usd": 0.036689349999999996,
+      "median_duration_seconds": 69,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 17650,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_label": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.128724,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 649200,
+      "known_cost_usd": 0.386172,
+      "median_duration_seconds": 106,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "model_label": "Qwen3.8 2.4T A95B",
+      "output_tokens": 24242,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_label": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.057617688040000004,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "core_api_rolled_back": 1
+      },
+      "input_tokens": 911707,
+      "known_cost_usd": 0.11523537608000001,
+      "median_duration_seconds": 237,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 33880,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_label": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -7987,7 +8116,7 @@
       "agent_timeout_seconds": 1800,
       "attempts": 1,
       "claux_release": "v20260815.0.0",
-      "current": true,
+      "current": false,
       "description": "Five infrastructure agents each received a prepared Linux host and attempted one production-style deployment of real Discourse using the pinned official Discourse Docker machinery. Every deployment was verified immediately, after Docker and edge-service restarts, and after a complete host reboot.",
       "harness_versions": [
         19
@@ -8025,6 +8154,52 @@
         "usage_reported_trials": 5
       },
       "version": "20260816.0.0"
+    },
+    {
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": "v20260815.0.0",
+      "current": true,
+      "description": "Five infrastructure-agent lanes each attempted the Discourse plugin boot-loop incident three times. A durable repair had to preserve the installed plugin, opaque topics, uploads, plugin-owned data, and exactly-once background work while keeping the deployed core API and surviving service restarts and a host reboot.",
+      "harness_versions": [
+        19
+      ],
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260816.0.0"
+        }
+      ],
+      "title": "Five agents face a Discourse plugin boot loop",
+      "totals": {
+        "cache_read_tokens": 4007709,
+        "cost_reported_trials": 15,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 15,
+        "failed": 3,
+        "failure_categories": {
+          "agent_runtime_error": 2,
+          "core_api_rolled_back": 1
+        },
+        "input_tokens": 4674374,
+        "known_cost_usd": 0.72994165838,
+        "median_duration_seconds": 106,
+        "median_first_non_read_only_tool_seconds": 4.99,
+        "median_model_duration_seconds": 92.922,
+        "median_model_rounds": 15,
+        "median_post_first_non_read_only_seconds": 106.814,
+        "median_tool_calls": 25,
+        "median_tool_duration_seconds": 8.16,
+        "output_tokens": 119570,
+        "pass_rate": 0.8,
+        "passed": 12,
+        "recording_reported_trials": 15,
+        "trials": 15,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 15
+      },
+      "version": "20260817.0.0"
     }
   ],
   "schema_version": 1

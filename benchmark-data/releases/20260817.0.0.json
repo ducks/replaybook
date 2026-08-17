@@ -1,0 +1,1058 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 886784,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 993875,
+      "known_cost_usd": 0.027226457300000003,
+      "median_duration_seconds": 126,
+      "median_first_non_read_only_tool_seconds": 3.68,
+      "median_model_duration_seconds": 118.376,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 122.108,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 11.107,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "output_tokens": 27907,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 701406,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_runtime_error": 2
+      },
+      "input_tokens": 990793,
+      "known_cost_usd": 0.16461847500000001,
+      "median_duration_seconds": 92,
+      "median_first_non_read_only_tool_seconds": 7.308999999999999,
+      "median_model_duration_seconds": 88.058,
+      "median_model_rounds": 26,
+      "median_post_first_non_read_only_seconds": 103.81450000000001,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 1.11,
+      "model": "google/gemini-3.7-flash",
+      "output_tokens": 15891,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 999215,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1128799,
+      "known_cost_usd": 0.036689349999999996,
+      "median_duration_seconds": 69,
+      "median_first_non_read_only_tool_seconds": 6.918,
+      "median_model_duration_seconds": 56.508,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 58.650999999999996,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 5.685,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 17650,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 587600,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 649200,
+      "known_cost_usd": 0.386172,
+      "median_duration_seconds": 106,
+      "median_first_non_read_only_tool_seconds": 3.215,
+      "median_model_duration_seconds": 92.922,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 101.536,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 11.772,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 24242,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 832704,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "core_api_rolled_back": 1
+      },
+      "input_tokens": 911707,
+      "known_cost_usd": 0.11523537608000001,
+      "median_duration_seconds": 237,
+      "median_first_non_read_only_tool_seconds": 3.249,
+      "median_model_duration_seconds": 228.231,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 227.18800000000002,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 8.16,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 33880,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 886784,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 993875,
+      "known_cost_usd": 0.027226457300000003,
+      "median_duration_seconds": 126,
+      "median_first_non_read_only_tool_seconds": 3.68,
+      "median_model_duration_seconds": 118.376,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 122.108,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 11.107,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "output_tokens": 27907,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 701406,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_runtime_error": 2
+      },
+      "input_tokens": 990793,
+      "known_cost_usd": 0.16461847500000001,
+      "median_duration_seconds": 92,
+      "median_first_non_read_only_tool_seconds": 7.308999999999999,
+      "median_model_duration_seconds": 88.058,
+      "median_model_rounds": 26,
+      "median_post_first_non_read_only_seconds": 103.81450000000001,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 1.11,
+      "model": "google/gemini-3.7-flash",
+      "output_tokens": 15891,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 999215,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1128799,
+      "known_cost_usd": 0.036689349999999996,
+      "median_duration_seconds": 69,
+      "median_first_non_read_only_tool_seconds": 6.918,
+      "median_model_duration_seconds": 56.508,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 58.650999999999996,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 5.685,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 17650,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 587600,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 649200,
+      "known_cost_usd": 0.386172,
+      "median_duration_seconds": 106,
+      "median_first_non_read_only_tool_seconds": 3.215,
+      "median_model_duration_seconds": 92.922,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 101.536,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 11.772,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 24242,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 832704,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "core_api_rolled_back": 1
+      },
+      "input_tokens": 911707,
+      "known_cost_usd": 0.11523537608000001,
+      "median_duration_seconds": 237,
+      "median_first_non_read_only_tool_seconds": 3.249,
+      "median_model_duration_seconds": 228.231,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 227.18800000000002,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 8.16,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 33880,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": null,
+    "claux_release": "v20260815.0.0",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": null,
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "b937dcc748a811bb06e00a494ca63874ff9008d8409a33a151122d20de8cfe70",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "sha256": "af8c2fd76de5fb45554ac4a0887209d10a013a0f84cb7e56c8086c7ff448c434",
+          "version": "20260816.0.0"
+        }
+      ],
+      "schema_version": 1
+    },
+    "harness_version": 19,
+    "harness_versions": [
+      19
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260816.0.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "026-discourse-plugin-boot-loop",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260816.0.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Five infrastructure-agent lanes each attempted the Discourse plugin boot-loop incident three times. A durable repair had to preserve the installed plugin, opaque topics, uploads, plugin-owned data, and exactly-once background work while keeping the deployed core API and surviving service restarts and a host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "deepseek/deepseek-v4-flash-0731",
+    "qwen/qwen3.8-2.4t-a95b",
+    "z-ai/glm-5.2",
+    "google/gemini-3.7-flash"
+  ],
+  "notes": [
+    "All 15 trials used Replaybook commit 283326e, scenario 026 v1 from ducks/replaybook-infra 20260816.0.0, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.",
+    "Scenario 026 is a Discourse-shaped stateful incident using Nginx, PostgreSQL, systemd-managed web and background services, and a mutable installed plugin. Scenario 025 remains the separate real Discourse Docker deployment benchmark.",
+    "Gemini's two failed trials ended in OpenRouter API errors: one corrupted thought signature and one content-policy rejection. The policy rejection followed ordinary inspection of systemd, PostgreSQL, Nginx, and base64-encoded Ruby source; OpenRouter returned PROHIBITED_CONTENT without identifying an offending span. Replaybook reports both as agent_runtime_error for the complete Gemini, Claux, and provider lane; they were not verifier-rejected repairs.",
+    "Three attempts per model expose useful variation but remain a small sample. These results characterize this exact agent, provider, harness, reasoning, and scenario configuration rather than a model in every setting."
+  ],
+  "observations": [
+    "GPT-5.6 Luna and DeepSeek V4 Flash 0731 each completed three durable repairs. Luna was fastest at a 1:09 median, while DeepSeek had the lowest observed cost per durable repair at about $0.0091.",
+    "Qwen3.8 2.4T A95B also completed all three repairs with a 1:46 median, but its $0.3862 total spend was roughly fourteen times DeepSeek's for the same three durable outcomes.",
+    "GLM 5.2 completed two of three repairs. In the failed trial it correctly diagnosed the incompatibility but explicitly rolled the deployed core plugin API from version 2 back to version 1, violating the instruction to preserve the deployed interface; the verifier reported core_api_rolled_back.",
+    "Gemini 3.7 Flash completed one durable repair. Its other two attempts terminated at the API layer, making the displayed 33 percent pass rate a measure of the complete execution lane rather than direct evidence that two attempted repairs were technically wrong."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 026-discourse-plugin-boot-loop --models deepseek/deepseek-v4-flash-0731 openai/gpt-5.6-luna z-ai/glm-5.2 google/gemini-3.7-flash qwen/qwen3.8-2.4t-a95b --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 25420",
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 249,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:12:05Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 14.447,
+        "model_duration_seconds": 237.496,
+        "model_rounds": 28,
+        "post_first_non_read_only_seconds": 234.242,
+        "tool_calls": 28,
+        "tool_duration_seconds": 11.107,
+        "total_duration_seconds": 248.689
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-deepseek-deepseek-v4-flash-0731-reasoning-high-1",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:07:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 504320,
+        "cost_usd": 0.012998560000000001,
+        "input_tokens": 534978,
+        "output_tokens": 13760
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 126,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:10:13Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.957,
+        "model_duration_seconds": 118.376,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 122.108,
+        "tool_calls": 19,
+        "tool_duration_seconds": 6.641,
+        "total_duration_seconds": 125.065
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-deepseek-deepseek-v4-flash-0731-reasoning-high-2",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:07:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 187392,
+        "cost_usd": 0.006079132,
+        "input_tokens": 208328,
+        "output_tokens": 7811
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 101,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:13:04Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.68,
+        "model_duration_seconds": 88.259,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 96.294,
+        "tool_calls": 15,
+        "tool_duration_seconds": 11.672,
+        "total_duration_seconds": 99.974
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-deepseek-deepseek-v4-flash-0731-reasoning-high-3",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:11:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 195072,
+        "cost_usd": 0.008148765300000001,
+        "input_tokens": 250569,
+        "output_tokens": 6336
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 60,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:14:22Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.918,
+        "model_duration_seconds": 53.919,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 52.738,
+        "tool_calls": 39,
+        "tool_duration_seconds": 5.685,
+        "total_duration_seconds": 59.656
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:12:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 35735,
+        "cache_read_tokens": 240265,
+        "cost_usd": 0.010413325000000001,
+        "input_tokens": 279548,
+        "output_tokens": 5315
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 69,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:15:32Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.3,
+        "model_duration_seconds": 56.508,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 58.650999999999996,
+        "tool_calls": 33,
+        "tool_duration_seconds": 8.191,
+        "total_duration_seconds": 64.951
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:14:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 49309,
+        "cache_read_tokens": 352724,
+        "cost_usd": 0.013165465000000001,
+        "input_tokens": 402069,
+        "output_tokens": 5785
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 76,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:16:57Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.183,
+        "model_duration_seconds": 68.671,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 68.007,
+        "tool_calls": 32,
+        "tool_duration_seconds": 4.356,
+        "total_duration_seconds": 75.19
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:15:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 40908,
+        "cache_read_tokens": 406226,
+        "cost_usd": 0.013110559999999997,
+        "input_tokens": 447182,
+        "output_tokens": 6550
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 146,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:19:12Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.233,
+        "model_duration_seconds": 139.406,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 140.928,
+        "tool_calls": 25,
+        "tool_duration_seconds": 4.701,
+        "total_duration_seconds": 144.161
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-z-ai-glm-5-2-reasoning-high-1",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:16:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 218048,
+        "cost_usd": 0.02870702736,
+        "input_tokens": 241344,
+        "output_tokens": 6663
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 237,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:22:09Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.307,
+        "model_duration_seconds": 228.231,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 227.18800000000002,
+        "tool_calls": 24,
+        "tool_duration_seconds": 8.16,
+        "total_duration_seconds": 236.495
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-z-ai-glm-5-2-reasoning-high-2",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:17:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 299584,
+        "cost_usd": 0.039858232480000005,
+        "input_tokens": 324384,
+        "output_tokens": 11839
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 292,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "core_api_rolled_back",
+      "finished_at": "2026-08-17T02:25:00Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.249,
+        "model_duration_seconds": 279.568,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 288.21099999999996,
+        "tool_calls": 30,
+        "tool_duration_seconds": 11.754,
+        "total_duration_seconds": 291.46
+      },
+      "reward": 0,
+      "run_id": "026-discourse-plugin-boot-loop-z-ai-glm-5-2-reasoning-high-3",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:19:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 315072,
+        "cost_usd": 0.046670116240000004,
+        "input_tokens": 345979,
+        "output_tokens": 15378
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 133,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:25:39Z",
+      "model": "google/gemini-3.7-flash",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.547,
+        "model_duration_seconds": 126.523,
+        "model_rounds": 33,
+        "post_first_non_read_only_seconds": 125.107,
+        "tool_calls": 32,
+        "tool_duration_seconds": 4.975,
+        "total_duration_seconds": 131.654
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-google-gemini-3-7-flash-reasoning-high-1",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:22:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 436471,
+        "cost_usd": 0.09621528750000001,
+        "input_tokens": 594803,
+        "output_tokens": 10919
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 22,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.7-flash' [invalid_request]: Corrupted thought signature.",
+      "failure_category": "agent_runtime_error",
+      "finished_at": "2026-08-17T02:26:10Z",
+      "model": "google/gemini-3.7-flash",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": null,
+        "model_duration_seconds": 19.711,
+        "model_rounds": 2,
+        "post_first_non_read_only_seconds": null,
+        "tool_calls": 1,
+        "tool_duration_seconds": 0.0,
+        "total_duration_seconds": 19.729
+      },
+      "reward": 0,
+      "run_id": "026-discourse-plugin-boot-loop-google-gemini-3-7-flash-reasoning-high-2",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:25:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_usd": 0.00154875,
+        "input_tokens": 2265,
+        "output_tokens": 373
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 92,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.7-flash' [content_policy_violation]: PROHIBITED_CONTENT",
+      "failure_category": "agent_runtime_error",
+      "finished_at": "2026-08-17T02:28:07Z",
+      "model": "google/gemini-3.7-flash",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.071,
+        "model_duration_seconds": 88.058,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 82.522,
+        "tool_calls": 25,
+        "tool_duration_seconds": 1.11,
+        "total_duration_seconds": 90.593
+      },
+      "reward": 0,
+      "run_id": "026-discourse-plugin-boot-loop-google-gemini-3-7-flash-reasoning-high-3",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:26:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 264935,
+        "cost_usd": 0.0668544375,
+        "input_tokens": 393725,
+        "output_tokens": 4599
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 116,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:29:24Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.416,
+        "model_duration_seconds": 105.086,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 112.092,
+        "tool_calls": 18,
+        "tool_duration_seconds": 10.367,
+        "total_duration_seconds": 115.508
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:27:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 195520,
+        "cost_usd": 0.13517400000000002,
+        "input_tokens": 215979,
+        "output_tokens": 9192
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 100,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:30:49Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.04,
+        "model_duration_seconds": 81.519,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 95.568,
+        "tool_calls": 19,
+        "tool_duration_seconds": 17.008,
+        "total_duration_seconds": 98.608
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:28:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 209040,
+        "cost_usd": 0.12741,
+        "input_tokens": 231135,
+        "output_tokens": 6902
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 106,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T02:32:12Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.215,
+        "model_duration_seconds": 92.922,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 101.536,
+        "tool_calls": 17,
+        "tool_duration_seconds": 11.772,
+        "total_duration_seconds": 104.751
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T02:30:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 183040,
+        "cost_usd": 0.123588,
+        "input_tokens": 202086,
+        "output_tokens": 8148
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": null,
+      "claux_release": "v20260815.0.0",
+      "concurrency": 2,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": null,
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "b937dcc748a811bb06e00a494ca63874ff9008d8409a33a151122d20de8cfe70",
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra",
+            "sha256": "af8c2fd76de5fb45554ac4a0887209d10a013a0f84cb7e56c8086c7ff448c434",
+            "version": "20260816.0.0"
+          }
+        ],
+        "schema_version": 1
+      },
+      "finished_at": "2026-08-17T02:32:12.879791Z",
+      "harness_version": 19,
+      "harness_versions": [
+        19
+      ],
+      "models": [
+        "deepseek/deepseek-v4-flash-0731",
+        "openai/gpt-5.6-luna",
+        "z-ai/glm-5.2",
+        "google/gemini-3.7-flash",
+        "qwen/qwen3.8-2.4t-a95b"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "283326eabf0b0ae2df2b0603443dd186bb22976c",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260816.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "026-discourse-plugin-boot-loop",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260816.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-17__02-06-29.7fe13c",
+      "started_at": "2026-08-17T02:06:30.027052Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "title": "Five agents face a Discourse plugin boot loop",
+  "totals": {
+    "cache_read_tokens": 4007709,
+    "cost_reported_trials": 15,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 15,
+    "failed": 3,
+    "failure_categories": {
+      "agent_runtime_error": 2,
+      "core_api_rolled_back": 1
+    },
+    "input_tokens": 4674374,
+    "known_cost_usd": 0.72994165838,
+    "median_duration_seconds": 106,
+    "median_first_non_read_only_tool_seconds": 4.99,
+    "median_model_duration_seconds": 92.922,
+    "median_model_rounds": 15,
+    "median_post_first_non_read_only_seconds": 106.814,
+    "median_tool_calls": 25,
+    "median_tool_duration_seconds": 8.16,
+    "output_tokens": 119570,
+    "pass_rate": 0.8,
+    "passed": 12,
+    "recording_reported_trials": 15,
+    "trials": 15,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 15
+  },
+  "version": "20260817.0.0"
+}
