@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model evidence &middot; replaybook</title>
+  <meta name="description" content="Shareable evidence profiles for Replaybook's canonical infrastructure-agent fleet.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Current</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
+      <a href="benchmark-explorer.html">Explore</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+    <p class="eyebrow">Canonical fleet</p>
+    <h1>Model evidence</h1>
+    <p class="tagline benchmark-tagline">Shareable profiles across the newest exact cohort for each current scenario.</p>
+
+    <div class="callout comparison-note">
+      <strong>This is evidence coverage, not one pooled leaderboard.</strong>
+      Totals below describe independently versioned scenario cohorts. Open a profile to inspect every underlying comparison boundary.
+    </div>
+
+    <div id="models-context" class="small muted"></div>
+    <div id="model-grid" class="model-grid"></div>
+
+    <p class="small muted">Profiles consume the stable <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a> API.</p>
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+
+  <script>
+  function laneKey(item) {
+    return `${item.model}|||${item.reasoning_effort || ""}`;
+  }
+
+  function laneLabel(item) {
+    return item.reasoning_effort ? `${item.model_label} (${item.reasoning_effort})` : item.model_label;
+  }
+
+  function profileUrl(lane) {
+    const query = new URLSearchParams({model: lane.model});
+    if (lane.reasoning_effort) query.set("reasoning", lane.reasoning_effort);
+    return `benchmark-model.html?${query}`;
+  }
+
+  function money(value, incomplete) {
+    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
+  }
+
+  async function initialize() {
+    const response = await fetch("benchmark-coverage.json");
+    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
+    const coverage = await response.json();
+    document.querySelector("#models-context").textContent = `${coverage.fleet.length} model lanes across ${coverage.scenarios.length} current scenarios · generated from benchmark ${coverage.generated_from}`;
+    const grid = document.querySelector("#model-grid");
+    coverage.fleet.forEach(lane => {
+      const key = laneKey(lane);
+      const cells = coverage.scenarios.flatMap(scenario => scenario.cells.filter(cell => laneKey(cell) === key && cell.status === "covered"));
+      const evaluated = cells.reduce((sum, cell) => sum + cell.evaluated, 0);
+      const passed = cells.reduce((sum, cell) => sum + cell.passed, 0);
+      const perfect = cells.filter(cell => cell.evaluated && cell.passed === cell.evaluated).length;
+      const cost = cells.reduce((sum, cell) => sum + cell.known_cost_usd, 0);
+      const incomplete = cells.some(cell => cell.cost_reported_trials < cell.trials);
+      const card = document.createElement("article");
+      card.className = "model-card";
+      const title = document.createElement("h2");
+      const link = document.createElement("a");
+      link.href = profileUrl(lane);
+      link.textContent = laneLabel(lane);
+      title.append(link);
+      const identity = document.createElement("code");
+      identity.textContent = lane.model;
+      const stats = document.createElement("div");
+      stats.className = "model-card-stats";
+      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${money(cost, incomplete)}</strong> known spend</span>`;
+      const open = document.createElement("a");
+      open.className = "model-card-link";
+      open.href = profileUrl(lane);
+      open.textContent = "View evidence →";
+      card.append(title, identity, stats, open);
+      grid.append(card);
+    });
+  }
+
+  initialize().catch(error => {
+    document.querySelector("#models-context").textContent = `Could not load model evidence: ${error.message}`;
+  });
+  </script>
+</body>
+</html>

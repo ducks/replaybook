@@ -557,6 +557,8 @@ class PublisherTests(unittest.TestCase):
             current = (root / "docs/benchmarks.html").read_text()
             coverage = (root / "docs/benchmark-coverage.html").read_text()
             explorer = (root / "docs/benchmark-explorer.html").read_text()
+            model_page = (root / "docs/benchmark-model.html").read_text()
+            models_page = (root / "docs/benchmark-models.html").read_text()
             catalog = json.loads((root / "benchmark-data/catalog.json").read_text())
             coverage_data = json.loads(
                 (root / "benchmark-data/coverage.json").read_text()
@@ -577,6 +579,12 @@ class PublisherTests(unittest.TestCase):
             self.assertIn("coverage-cells", coverage)
             self.assertIn("benchmark-coverage.json", coverage)
             self.assertNotIn("\0", coverage)
+            self.assertIn("Model evidence", models_page)
+            self.assertIn("not one pooled leaderboard", models_page)
+            self.assertIn("model-grid", models_page)
+            self.assertIn("Scenario evidence", model_page)
+            self.assertIn("profile-results", model_page)
+            self.assertIn("benchmark-coverage.json", model_page)
             self.assertEqual(catalog["current_version"], "20260809.0.0")
             self.assertEqual(
                 catalog["coverage_fleet"],

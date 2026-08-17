@@ -392,6 +392,61 @@ pre code {
   background: var(--border);
 }
 
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.model-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.25rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.model-card h2 {
+  margin: 0 0 0.35rem;
+  padding: 0;
+  border: 0;
+}
+
+.model-card > code {
+  align-self: flex-start;
+  overflow-wrap: anywhere;
+}
+
+.model-card-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.model-card-stats span,
+.profile-cohort {
+  display: block;
+  color: var(--fg-dim);
+  font-size: 0.78rem;
+}
+
+.model-card-stats strong {
+  display: block;
+  color: var(--fg);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1rem;
+}
+
+.model-card-link {
+  margin-top: auto;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 .catalog-controls {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -508,7 +563,8 @@ footer.site a {
   .metric-grid,
   .gate-grid,
   .catalog-controls,
-  .catalog-breakdowns {
+  .catalog-breakdowns,
+  .model-grid {
     grid-template-columns: 1fr;
   }
 

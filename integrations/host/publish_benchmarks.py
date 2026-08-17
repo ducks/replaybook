@@ -32,6 +32,8 @@ DOCS_COVERAGE = Path("docs/benchmark-coverage.html")
 DOCS_COVERAGE_DATA = Path("docs/benchmark-coverage.json")
 DOCS_EXPLORER = Path("docs/benchmark-explorer.html")
 DOCS_HISTORY = Path("docs/benchmark-history.html")
+DOCS_MODEL = Path("docs/benchmark-model.html")
+DOCS_MODELS = Path("docs/benchmark-models.html")
 MARKDOWN_RECORD = Path("benchmarks.md")
 VERSION_PATTERN = re.compile(r"^[0-9]{8}\.[0-9]+\.[0-9]+$")
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
@@ -1070,6 +1072,7 @@ def html_page(release: dict[str, Any], recent_scenarios: str = "") -> str:
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html" class="active" aria-current="page">Current</a>
       <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-models.html">Models</a>
       <a href="benchmark-explorer.html">Explore</a>
       <a href="benchmark-history.html">History</a>
       <a href="benchmark-methodology.html">Methodology</a>
@@ -1575,6 +1578,7 @@ def explorer_page() -> str:
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html">Current</a>
       <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-models.html">Models</a>
       <a href="benchmark-explorer.html" class="active" aria-current="page">Explore</a>
       <a href="benchmark-history.html">History</a>
       <a href="benchmark-methodology.html">Methodology</a>
@@ -1800,6 +1804,7 @@ def coverage_page() -> str:
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html">Current</a>
       <a href="benchmark-coverage.html" class="active" aria-current="page">Coverage</a>
+      <a href="benchmark-models.html">Models</a>
       <a href="benchmark-explorer.html">Explore</a>
       <a href="benchmark-history.html">History</a>
       <a href="benchmark-methodology.html">Methodology</a>
@@ -1887,7 +1892,12 @@ def coverage_page() -> str:
     headerRow.append(scenarioHeader);
     fleet.forEach(record => {
       const heading = document.createElement("th");
-      heading.textContent = variantLabel(record);
+      const link = document.createElement("a");
+      const query = new URLSearchParams({model: record.model});
+      if (record.reasoning_effort) query.set("reasoning", record.reasoning_effort);
+      link.href = `benchmark-model.html?${query}`;
+      link.textContent = variantLabel(record);
+      heading.append(link);
       headerRow.append(heading);
     });
     header.append(headerRow);
@@ -1915,6 +1925,290 @@ def coverage_page() -> str:
 
   initialize().catch(error => {
     document.querySelector("#coverage-context").textContent = `Could not load benchmark catalog: ${error.message}`;
+  });
+  </script>
+</body>
+</html>
+"""
+
+
+def models_page() -> str:
+    return """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model evidence &middot; replaybook</title>
+  <meta name="description" content="Shareable evidence profiles for Replaybook's canonical infrastructure-agent fleet.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Current</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
+      <a href="benchmark-explorer.html">Explore</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+    <p class="eyebrow">Canonical fleet</p>
+    <h1>Model evidence</h1>
+    <p class="tagline benchmark-tagline">Shareable profiles across the newest exact cohort for each current scenario.</p>
+
+    <div class="callout comparison-note">
+      <strong>This is evidence coverage, not one pooled leaderboard.</strong>
+      Totals below describe independently versioned scenario cohorts. Open a profile to inspect every underlying comparison boundary.
+    </div>
+
+    <div id="models-context" class="small muted"></div>
+    <div id="model-grid" class="model-grid"></div>
+
+    <p class="small muted">Profiles consume the stable <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a> API.</p>
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+
+  <script>
+  function laneKey(item) {
+    return `${item.model}|||${item.reasoning_effort || ""}`;
+  }
+
+  function laneLabel(item) {
+    return item.reasoning_effort ? `${item.model_label} (${item.reasoning_effort})` : item.model_label;
+  }
+
+  function profileUrl(lane) {
+    const query = new URLSearchParams({model: lane.model});
+    if (lane.reasoning_effort) query.set("reasoning", lane.reasoning_effort);
+    return `benchmark-model.html?${query}`;
+  }
+
+  function money(value, incomplete) {
+    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
+  }
+
+  async function initialize() {
+    const response = await fetch("benchmark-coverage.json");
+    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
+    const coverage = await response.json();
+    document.querySelector("#models-context").textContent = `${coverage.fleet.length} model lanes across ${coverage.scenarios.length} current scenarios · generated from benchmark ${coverage.generated_from}`;
+    const grid = document.querySelector("#model-grid");
+    coverage.fleet.forEach(lane => {
+      const key = laneKey(lane);
+      const cells = coverage.scenarios.flatMap(scenario => scenario.cells.filter(cell => laneKey(cell) === key && cell.status === "covered"));
+      const evaluated = cells.reduce((sum, cell) => sum + cell.evaluated, 0);
+      const passed = cells.reduce((sum, cell) => sum + cell.passed, 0);
+      const perfect = cells.filter(cell => cell.evaluated && cell.passed === cell.evaluated).length;
+      const cost = cells.reduce((sum, cell) => sum + cell.known_cost_usd, 0);
+      const incomplete = cells.some(cell => cell.cost_reported_trials < cell.trials);
+      const card = document.createElement("article");
+      card.className = "model-card";
+      const title = document.createElement("h2");
+      const link = document.createElement("a");
+      link.href = profileUrl(lane);
+      link.textContent = laneLabel(lane);
+      title.append(link);
+      const identity = document.createElement("code");
+      identity.textContent = lane.model;
+      const stats = document.createElement("div");
+      stats.className = "model-card-stats";
+      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${money(cost, incomplete)}</strong> known spend</span>`;
+      const open = document.createElement("a");
+      open.className = "model-card-link";
+      open.href = profileUrl(lane);
+      open.textContent = "View evidence →";
+      card.append(title, identity, stats, open);
+      grid.append(card);
+    });
+  }
+
+  initialize().catch(error => {
+    document.querySelector("#models-context").textContent = `Could not load model evidence: ${error.message}`;
+  });
+  </script>
+</body>
+</html>
+"""
+
+
+def model_page() -> str:
+    return """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model profile &middot; replaybook</title>
+  <meta name="description" content="Scenario-level Replaybook evidence for one infrastructure-agent model lane.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="scenarios.html">Scenarios</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Current</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
+      <a href="benchmark-explorer.html">Explore</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+    <p class="eyebrow" id="profile-effort">Model evidence</p>
+    <h1 id="profile-title">Loading model profile…</h1>
+    <p class="tagline benchmark-tagline" id="profile-identity"></p>
+
+    <div class="callout comparison-note">
+      <strong>Scenario rows remain independent cohorts.</strong>
+      Summary totals describe available evidence. They do not erase differences in harness, verifier, attempt count, or release.
+    </div>
+
+    <div class="metric-grid" aria-label="Model evidence summary">
+      <div class="metric"><span class="metric-value" id="profile-coverage">0/0</span><span class="metric-label">scenarios covered</span></div>
+      <div class="metric"><span class="metric-value" id="profile-perfect">0</span><span class="metric-label">perfect cohorts</span></div>
+      <div class="metric"><span class="metric-value" id="profile-cost">$0.0000</span><span class="metric-label">known evidence spend</span></div>
+    </div>
+
+    <h2>Scenario evidence</h2>
+    <div class="table-scroll"><table><thead><tr><th>Scenario cohort</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Known cost</th><th>Cost / repair</th><th>Failures</th></tr></thead><tbody id="profile-results"></tbody></table></div>
+
+    <h2>Observed failure categories</h2>
+    <ul id="profile-failures"></ul>
+
+    <p><a href="benchmark-models.html">← All canonical model profiles</a></p>
+    <p class="small muted">This profile is generated from <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a>.</p>
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+
+  <script>
+  function laneKey(item) {
+    return `${item.model}|||${item.reasoning_effort || ""}`;
+  }
+
+  function duration(seconds) {
+    if (seconds === null || seconds === undefined) return "n/a";
+    const rounded = Math.round(seconds);
+    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
+  }
+
+  function money(value, incomplete) {
+    if (value === null || value === undefined) return "n/a";
+    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
+  }
+
+  function percent(value) {
+    return value === null || value === undefined ? "n/a" : `${Math.round(value * 100)}%`;
+  }
+
+  async function initialize() {
+    const response = await fetch("benchmark-coverage.json");
+    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
+    const coverage = await response.json();
+    const params = new URLSearchParams(window.location.search);
+    const requested = `${params.get("model") || ""}|||${params.get("reasoning") || ""}`;
+    const lane = coverage.fleet.find(item => laneKey(item) === requested);
+    if (!lane) throw new Error("select a canonical model from the model evidence page");
+    document.title = `${lane.model_label} · Replaybook model evidence`;
+    document.querySelector("#profile-title").textContent = lane.model_label;
+    document.querySelector("#profile-effort").textContent = lane.reasoning_effort ? `Reasoning ${lane.reasoning_effort}` : "Default reasoning";
+    document.querySelector("#profile-identity").textContent = lane.model;
+
+    const key = laneKey(lane);
+    const entries = coverage.scenarios.map(scenario => ({
+      scenario,
+      cell: scenario.cells.find(cell => laneKey(cell) === key)
+    }));
+    const covered = entries.filter(entry => entry.cell && entry.cell.status === "covered");
+    const perfect = covered.filter(entry => entry.cell.evaluated && entry.cell.passed === entry.cell.evaluated).length;
+    const cost = covered.reduce((sum, entry) => sum + entry.cell.known_cost_usd, 0);
+    const incomplete = covered.some(entry => entry.cell.cost_reported_trials < entry.cell.trials);
+    document.querySelector("#profile-coverage").textContent = `${covered.length}/${entries.length}`;
+    document.querySelector("#profile-perfect").textContent = String(perfect);
+    document.querySelector("#profile-cost").textContent = money(cost, incomplete);
+
+    const failures = new Map();
+    const body = document.querySelector("#profile-results");
+    entries.forEach(({scenario, cell}) => {
+      const row = document.createElement("tr");
+      const scenarioCell = document.createElement("td");
+      const scenarioLink = document.createElement("a");
+      scenarioLink.href = scenario.evidence_url;
+      scenarioLink.textContent = scenario.scenario_label;
+      const meta = document.createElement("span");
+      meta.className = "profile-cohort";
+      meta.textContent = `v${scenario.scenario_version} · ${scenario.release}`;
+      scenarioCell.append(scenarioLink, meta);
+      row.append(scenarioCell);
+      if (!cell || cell.status === "missing") {
+        const missing = document.createElement("td");
+        missing.colSpan = 6;
+        missing.className = "muted";
+        missing.textContent = "Not run in this cohort";
+        row.append(missing);
+      } else {
+        const incompleteCost = cell.cost_reported_trials < cell.trials;
+        const categories = Object.entries(cell.failure_categories);
+        categories.forEach(([name, count]) => failures.set(name, (failures.get(name) || 0) + count));
+        const values = [
+          `${cell.passed}/${cell.evaluated}`,
+          percent(cell.pass_rate),
+          duration(cell.median_duration_seconds),
+          money(cell.known_cost_usd, incompleteCost),
+          money(cell.cost_per_repair_usd, incompleteCost),
+          categories.length ? categories.map(([name, count]) => `${name} (${count})`).join(", ") : "None"
+        ];
+        values.forEach((value, index) => {
+          const result = document.createElement("td");
+          if (index === 0) {
+            const link = document.createElement("a");
+            link.href = cell.evidence_url;
+            link.textContent = value;
+            result.append(link);
+          } else result.textContent = value;
+          row.append(result);
+        });
+      }
+      body.append(row);
+    });
+
+    const list = document.querySelector("#profile-failures");
+    if (!failures.size) {
+      const item = document.createElement("li");
+      item.textContent = "None in the current evidence set.";
+      list.append(item);
+    } else [...failures.entries()].sort((a, b) => b[1] - a[1]).forEach(([name, count]) => {
+      const item = document.createElement("li");
+      const code = document.createElement("code");
+      code.textContent = name;
+      item.append(code, `: ${count}`);
+      list.append(item);
+    });
+  }
+
+  initialize().catch(error => {
+    document.querySelector("#profile-title").textContent = "Model profile unavailable";
+    document.querySelector("#profile-identity").textContent = error.message;
   });
   </script>
 </body>
@@ -1962,6 +2256,8 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
         ),
         root / DOCS_COVERAGE: coverage_page(),
         root / DOCS_EXPLORER: explorer_page(),
+        root / DOCS_MODEL: model_page(),
+        root / DOCS_MODELS: models_page(),
         root / MARKDOWN_RECORD: replace_managed(
             (root / MARKDOWN_RECORD).read_text(),
             MARKDOWN_START,
