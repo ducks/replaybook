@@ -27,70 +27,70 @@
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Benchmark 20260817.0.1</p>
-    <h1>Five agents complete a partial service rollout</h1>
-    <p class="tagline benchmark-tagline">Five infrastructure-agent lanes each attempted a load-balanced partial service rollout three times. A durable repair had to preserve opaque pre-existing orders, apply the deployed PostgreSQL migration, converge both application instances, keep both backends in rotation, and survive service restarts and a host reboot.</p>
+    <p class="eyebrow">Benchmark 20260817.0.2</p>
+    <h1>Five agents repair Nix store disk pressure</h1>
+    <p class="tagline benchmark-tagline">Five infrastructure-agent lanes each attempted a NixOS root-filesystem exhaustion repair three times. A durable repair had to restore writable capacity without weakening the safety threshold, preserve the protected accounting archive and opaque historical receipts, accept and recover concurrent new receipts, and survive service restarts and a host reboot.</p>
 
     <div class="metric-grid" aria-label="Current benchmark results">
-      <div class="metric"><span class="metric-value">15/15</span><span class="metric-label">durable repairs</span></div>
-      <div class="metric"><span class="metric-value">2:37</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">$1.3191</span><span class="metric-label">known total cost</span></div>
+      <div class="metric"><span class="metric-value">14/15</span><span class="metric-label">durable repairs</span></div>
+      <div class="metric"><span class="metric-value">3:46</span><span class="metric-label">overall median</span></div>
+      <div class="metric"><span class="metric-value">$2.3316+</span><span class="metric-label">known total cost</span></div>
     </div>
 
     <div class="callout benchmark-status verified-status">
       <strong>15 trials across 1 controlled matrix.</strong>
-      15 repairs passed durable verification. 0 evaluated attempts failed and 0 trials were unavailable.
+      14 repairs passed durable verification. 1 evaluated attempts failed and 0 trials were unavailable.
     </div>
 
     <h2>Model summary</h2>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
-          <tr><td>GPT-5.6 Luna (high)</td><td>3/3</td><td>100%</td><td>2:00</td><td>2,049,259</td><td>$0.0531</td><td>$0.0177</td></tr>
-          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>3/3</td><td>100%</td><td>3:17</td><td>680,648</td><td>$0.0266</td><td>$0.0089</td></tr>
-          <tr><td>GLM 5.2 (high)</td><td>3/3</td><td>100%</td><td>2:24</td><td>719,719</td><td>$0.1961</td><td>$0.0654</td></tr>
-          <tr><td>Gemini 3.7 Flash (high)</td><td>3/3</td><td>100%</td><td>2:52</td><td>4,434,029</td><td>$0.4685</td><td>$0.1562</td></tr>
-          <tr><td>Qwen3.8 2.4T A95B (high)</td><td>3/3</td><td>100%</td><td>2:00</td><td>779,860</td><td>$0.5749</td><td>$0.1916</td></tr>
+          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>3/3</td><td>100%</td><td>4:14</td><td>1,117,253</td><td>$0.0425</td><td>$0.0142</td></tr>
+          <tr><td>GPT-5.6 Luna (high)</td><td>2/3</td><td>67%</td><td>5:19</td><td>2,797,135</td><td>$0.1446+</td><td>$0.0723+</td></tr>
+          <tr><td>Gemini 3.7 Flash (high)</td><td>3/3</td><td>100%</td><td>3:37</td><td>4,932,988</td><td>$0.5332</td><td>$0.1777</td></tr>
+          <tr><td>GLM 5.2 (high)</td><td>3/3</td><td>100%</td><td>3:59</td><td>961,173</td><td>$0.5497</td><td>$0.1832</td></tr>
+          <tr><td>Qwen3.8 2.4T A95B (high)</td><td>3/3</td><td>100%</td><td>3:46</td><td>1,673,385</td><td>$1.0616</td><td>$0.3539</td></tr>
     </tbody></table></div>
 
     <h2>Execution recording</h2>
     <p class="small muted">Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.</p>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Model time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
-          <tr><td>GPT-5.6 Luna (high)</td><td>3/3</td><td>18</td><td>1:50</td><td>41</td><td>0:08</td><td>0:08</td><td>1:50</td></tr>
-          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>3/3</td><td>17</td><td>3:01</td><td>25</td><td>0:06</td><td>0:05</td><td>3:11</td></tr>
-          <tr><td>GLM 5.2 (high)</td><td>3/3</td><td>21</td><td>2:20</td><td>27</td><td>0:06</td><td>0:05</td><td>2:19</td></tr>
-          <tr><td>Gemini 3.7 Flash (high)</td><td>3/3</td><td>46</td><td>2:46</td><td>45</td><td>0:04</td><td>0:07</td><td>2:44</td></tr>
-          <tr><td>Qwen3.8 2.4T A95B (high)</td><td>3/3</td><td>15</td><td>1:49</td><td>20</td><td>0:10</td><td>0:04</td><td>1:56</td></tr>
+          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>3/3</td><td>20</td><td>4:10</td><td>29</td><td>0:09</td><td>0:06</td><td>4:05</td></tr>
+          <tr><td>GPT-5.6 Luna (high)</td><td>2/3</td><td>29.5</td><td>4:00</td><td>61</td><td>0:22</td><td>0:08</td><td>4:14</td></tr>
+          <tr><td>Gemini 3.7 Flash (high)</td><td>3/3</td><td>51</td><td>3:26</td><td>50</td><td>0:10</td><td>0:08</td><td>3:29</td></tr>
+          <tr><td>GLM 5.2 (high)</td><td>3/3</td><td>17</td><td>3:41</td><td>24</td><td>0:10</td><td>0:06</td><td>3:48</td></tr>
+          <tr><td>Qwen3.8 2.4T A95B (high)</td><td>3/3</td><td>21</td><td>3:35</td><td>31</td><td>0:10</td><td>0:06</td><td>3:37</td></tr>
     </tbody></table></div>
 
 
-      <p>GPT-5.6 Luna and Qwen3.8 2.4T A95B shared the fastest median at 2:00. Luna cost about $0.0177 per durable repair, while Qwen cost about $0.1916 per repair.</p>
-      <p>DeepSeek V4 Flash 0731 had the lowest observed cost at about $0.0089 per durable repair, though its 3:17 median was the slowest in this cohort.</p>
-      <p>GLM 5.2 completed the scenario with a 2:24 median at about $0.0654 per durable repair.</p>
-      <p>Gemini 3.7 Flash completed all three repairs with a 2:52 median, but consumed 4.4 million input tokens and cost about $0.1562 per durable repair. DeepSeek used about 681 thousand input tokens for the same three verified outcomes.</p>
+      <p>DeepSeek V4 Flash 0731 completed all three repairs at about $0.0142 per durable repair, the lowest observed cost in this cohort.</p>
+      <p>Gemini 3.7 Flash had the fastest median at 3:37 and cost about $0.1777 per durable repair.</p>
+      <p>GLM 5.2 completed all three repairs with a 3:59 median at about $0.1832 per repair. Qwen3.8 2.4T A95B was slightly faster at 3:46 but cost about $0.3539 per repair.</p>
+      <p>GPT-5.6 Luna was the only lane with an evaluated failure. Its two durable repairs and incomplete failed-trial telemetry imply a cost of at least $0.0723 per repair.</p>
 
     <h2>Scenario breakdown</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>GPT-5.6 Luna (high)</th><th>DeepSeek V4 Flash 0731 (high)</th><th>GLM 5.2 (high)</th><th>Gemini 3.7 Flash (high)</th><th>Qwen3.8 2.4T A95B (high)</th></tr></thead><tbody>
-          <tr><td>027-partial-service-rollout</td><td>v1</td><td>3/3 &middot; 2:00</td><td>3/3 &middot; 3:17</td><td>3/3 &middot; 2:24</td><td>3/3 &middot; 2:52</td><td>3/3 &middot; 2:00</td></tr>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>DeepSeek V4 Flash 0731 (high)</th><th>GPT-5.6 Luna (high)</th><th>Gemini 3.7 Flash (high)</th><th>GLM 5.2 (high)</th><th>Qwen3.8 2.4T A95B (high)</th></tr></thead><tbody>
+          <tr><td>028-nix-store-disk-pressure</td><td>v1</td><td>3/3 &middot; 4:14</td><td>2/3 &middot; 5:19</td><td>3/3 &middot; 3:37</td><td>3/3 &middot; 3:59</td><td>3/3 &middot; 3:46</td></tr>
     </tbody></table></div>
 
     <h2>Failure categories</h2>
-    <ul><li>None</li></ul>
+    <ul><li><code>agent_timeout</code>: 1</li></ul>
 
     <div class="callout comparison-note">
       <strong>Run notes</strong>
-      <ul><li>All 15 trials used Replaybook commit 3b98481, host harness v20, scenario 027 v1 from ducks/replaybook-infra 20260817.0.0 at commit f6b8049, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.</li><li>Scenario 027 runs two systemd-managed Python application generations behind Nginx with shared PostgreSQL state. The newer generation is deployed before its required migration while the older generation remains in rotation, producing intermittent write failures despite green health checks.</li><li>Every lane completed all three durable repairs. This release therefore adds operational coverage and cost data, but does not establish reliability separation among the five lanes.</li><li>Three attempts per model remain a small sample. These results characterize this exact model, provider, harness, reasoning, and scenario configuration rather than a model in every setting.</li></ul>
+      <ul><li>All 15 trials used Replaybook commit 7595d9c, host harness v20, scenario 028 v1 from ducks/replaybook-infra 20260817.1.0 at commit 705829c, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.</li><li>Scenario 028 fills the writable Nix store overlay until a billing ledger enters low-disk protection. The repair must reclaim capacity durably while preserving historical state and forbidden operational safeguards.</li><li>Four lanes completed all three repairs. GPT-5.6 Luna completed two of three; its timed-out trial still returned HTTP 507 low_disk during post-timeout verification and was not a late durable repair.</li><li>The timed-out Luna trial produced neither final usage nor a partial execution recording before termination. Its published cost is therefore a lower bound, and the artifact cannot distinguish a reasoning loop from a blocked tool call.</li><li>Three attempts per model remain a small sample. These results characterize this exact model, provider, harness, reasoning, and scenario configuration rather than a model in every setting.</li></ul>
     </div>
 
     <h2>Constituent matrices</h2>
     <p>The publisher recorded harness provenance and validated matching scenario pack revisions, scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>
-    <p class="small muted">Scenario packs: <code>ducks/replaybook-infra@20260817.0.0</code>.</p>
+    <p class="small muted">Scenario packs: <code>ducks/replaybook-infra@20260817.1.0</code>.</p>
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
-          <tr><td><code>host-matrix-2026-08-17__13-52-01.53fb75</code></td><td>DeepSeek V4 Flash 0731, Gemini 3.7 Flash, GPT-5.6 Luna, Qwen3.8 2.4T A95B, GLM 5.2 · reasoning high</td><td><code>3b984814</code></td></tr>
+          <tr><td><code>host-matrix-2026-08-17__19-52-36.a0a077</code></td><td>DeepSeek V4 Flash 0731, Gemini 3.7 Flash, GPT-5.6 Luna, Qwen3.8 2.4T A95B, GLM 5.2 · reasoning high</td><td><code>7595d9c9</code></td></tr>
     </tbody></table></div>
 
     <h2>Run the matrix</h2>
-    <pre><code>python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 027-partial-service-rollout --models deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash openai/gpt-5.6-luna qwen/qwen3.8-2.4t-a95b z-ai/glm-5.2 --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 25330</code></pre>
+    <pre><code>python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 028-nix-store-disk-pressure --models deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash openai/gpt-5.6-luna qwen/qwen3.8-2.4t-a95b z-ai/glm-5.2 --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 25200</code></pre>
 
-    <p class="small muted">Host harness v20, Claux <code>v20260815.0.0</code>, 900-second agent timeout. Usage was reported for 15 of 15 trials.</p>
+    <p class="small muted">Host harness v20, Claux <code>v20260815.0.0</code>, 900-second agent timeout. Usage was reported for 14 of 15 trials.</p>
 
     <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
 

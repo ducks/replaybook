@@ -1,0 +1,1058 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 890496,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1117253,
+      "known_cost_usd": 0.042481787879999997,
+      "median_duration_seconds": 254,
+      "median_first_non_read_only_tool_seconds": 6.065,
+      "median_model_duration_seconds": 250.137,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 245.01399999999998,
+      "median_tool_calls": 29,
+      "median_tool_duration_seconds": 9.25,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "output_tokens": 64101,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 4109822,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 4932988,
+      "known_cost_usd": 0.5332362,
+      "median_duration_seconds": 217,
+      "median_first_non_read_only_tool_seconds": 7.604,
+      "median_model_duration_seconds": 206.273,
+      "median_model_rounds": 51,
+      "median_post_first_non_read_only_seconds": 209.324,
+      "median_tool_calls": 50,
+      "median_tool_duration_seconds": 9.679,
+      "model": "google/gemini-3.7-flash",
+      "output_tokens": 37563,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 2654698,
+      "cost_reported_trials": 2,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 2797135,
+      "known_cost_usd": 0.14455795999999999,
+      "median_duration_seconds": 319,
+      "median_first_non_read_only_tool_seconds": 8.252,
+      "median_model_duration_seconds": 239.6325,
+      "median_model_rounds": 29.5,
+      "median_post_first_non_read_only_seconds": 253.8925,
+      "median_tool_calls": 61.0,
+      "median_tool_duration_seconds": 22.299500000000002,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 46553,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 2,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 2
+    },
+    {
+      "cache_read_tokens": 1488240,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1673385,
+      "known_cost_usd": 1.061586,
+      "median_duration_seconds": 226,
+      "median_first_non_read_only_tool_seconds": 6.459,
+      "median_model_duration_seconds": 214.762,
+      "median_model_rounds": 21,
+      "median_post_first_non_read_only_seconds": 217.11700000000002,
+      "median_tool_calls": 31,
+      "median_tool_duration_seconds": 9.63,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 65608,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 760050,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 961173,
+      "known_cost_usd": 0.5497089391999999,
+      "median_duration_seconds": 239,
+      "median_first_non_read_only_tool_seconds": 5.926,
+      "median_model_duration_seconds": 220.55,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 227.824,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 9.791,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 34534,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 890496,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1117253,
+      "known_cost_usd": 0.042481787879999997,
+      "median_duration_seconds": 254,
+      "median_first_non_read_only_tool_seconds": 6.065,
+      "median_model_duration_seconds": 250.137,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 245.01399999999998,
+      "median_tool_calls": 29,
+      "median_tool_duration_seconds": 9.25,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "output_tokens": 64101,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 4109822,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 4932988,
+      "known_cost_usd": 0.5332362,
+      "median_duration_seconds": 217,
+      "median_first_non_read_only_tool_seconds": 7.604,
+      "median_model_duration_seconds": 206.273,
+      "median_model_rounds": 51,
+      "median_post_first_non_read_only_seconds": 209.324,
+      "median_tool_calls": 50,
+      "median_tool_duration_seconds": 9.679,
+      "model": "google/gemini-3.7-flash",
+      "output_tokens": 37563,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 2654698,
+      "cost_reported_trials": 2,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 2797135,
+      "known_cost_usd": 0.14455795999999999,
+      "median_duration_seconds": 319,
+      "median_first_non_read_only_tool_seconds": 8.252,
+      "median_model_duration_seconds": 239.6325,
+      "median_model_rounds": 29.5,
+      "median_post_first_non_read_only_seconds": 253.8925,
+      "median_tool_calls": 61.0,
+      "median_tool_duration_seconds": 22.299500000000002,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 46553,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 2,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 2
+    },
+    {
+      "cache_read_tokens": 1488240,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1673385,
+      "known_cost_usd": 1.061586,
+      "median_duration_seconds": 226,
+      "median_first_non_read_only_tool_seconds": 6.459,
+      "median_model_duration_seconds": 214.762,
+      "median_model_rounds": 21,
+      "median_post_first_non_read_only_seconds": 217.11700000000002,
+      "median_tool_calls": 31,
+      "median_tool_duration_seconds": 9.63,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 65608,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 760050,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 961173,
+      "known_cost_usd": 0.5497089391999999,
+      "median_duration_seconds": 239,
+      "median_first_non_read_only_tool_seconds": 5.926,
+      "median_model_duration_seconds": 220.55,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 227.824,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 9.791,
+      "model": "z-ai/glm-5.2",
+      "output_tokens": 34534,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": null,
+    "claux_release": "v20260815.0.0",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": null,
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "8ec56d29401716656217f3185732b41fca040615235aac3bd45ec493da89291b",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        }
+      ]
+    },
+    "harness_version": 20,
+    "harness_versions": [
+      20
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260817.1.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Five infrastructure-agent lanes each attempted a NixOS root-filesystem exhaustion repair three times. A durable repair had to restore writable capacity without weakening the safety threshold, preserve the protected accounting archive and opaque historical receipts, accept and recover concurrent new receipts, and survive service restarts and a host reboot.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "deepseek/deepseek-v4-flash-0731",
+    "openai/gpt-5.6-luna",
+    "google/gemini-3.7-flash",
+    "z-ai/glm-5.2",
+    "qwen/qwen3.8-2.4t-a95b"
+  ],
+  "notes": [
+    "All 15 trials used Replaybook commit 7595d9c, host harness v20, scenario 028 v1 from ducks/replaybook-infra 20260817.1.0 at commit 705829c, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.",
+    "Scenario 028 fills the writable Nix store overlay until a billing ledger enters low-disk protection. The repair must reclaim capacity durably while preserving historical state and forbidden operational safeguards.",
+    "Four lanes completed all three repairs. GPT-5.6 Luna completed two of three; its timed-out trial still returned HTTP 507 low_disk during post-timeout verification and was not a late durable repair.",
+    "The timed-out Luna trial produced neither final usage nor a partial execution recording before termination. Its published cost is therefore a lower bound, and the artifact cannot distinguish a reasoning loop from a blocked tool call.",
+    "Three attempts per model remain a small sample. These results characterize this exact model, provider, harness, reasoning, and scenario configuration rather than a model in every setting."
+  ],
+  "observations": [
+    "DeepSeek V4 Flash 0731 completed all three repairs at about $0.0142 per durable repair, the lowest observed cost in this cohort.",
+    "Gemini 3.7 Flash had the fastest median at 3:37 and cost about $0.1777 per durable repair.",
+    "GLM 5.2 completed all three repairs with a 3:59 median at about $0.1832 per repair. Qwen3.8 2.4T A95B was slightly faster at 3:46 but cost about $0.3539 per repair.",
+    "GPT-5.6 Luna was the only lane with an evaluated failure. Its two durable repairs and incomplete failed-trial telemetry imply a cost of at least $0.0723 per repair."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 028-nix-store-disk-pressure --models deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash openai/gpt-5.6-luna qwen/qwen3.8-2.4t-a95b z-ai/glm-5.2 --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 25200",
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 254,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:00:04Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.669,
+        "model_duration_seconds": 250.137,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 245.01399999999998,
+        "tool_calls": 20,
+        "tool_duration_seconds": 2.477,
+        "total_duration_seconds": 252.683
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-deepseek-deepseek-v4-flash-0731-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T19:55:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 199168,
+        "cost_usd": 0.013099414999999998,
+        "input_tokens": 269585,
+        "output_tokens": 27685
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 273,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:00:24Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.214,
+        "model_duration_seconds": 262.921,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 267.07,
+        "tool_calls": 31,
+        "tool_duration_seconds": 9.25,
+        "total_duration_seconds": 272.284
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-deepseek-deepseek-v4-flash-0731-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T19:55:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 319232,
+        "cost_usd": 0.01572362764,
+        "input_tokens": 423303,
+        "output_tokens": 14310
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 205,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:06:17Z",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.065,
+        "model_duration_seconds": 191.14,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 197.95,
+        "tool_calls": 29,
+        "tool_duration_seconds": 12.773,
+        "total_duration_seconds": 204.015
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-deepseek-deepseek-v4-flash-0731-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:02:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 372096,
+        "cost_usd": 0.01365874524,
+        "input_tokens": 424365,
+        "output_tokens": 22106
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 225,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:06:37Z",
+      "model": "google/gemini-3.7-flash",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.604,
+        "model_duration_seconds": 218.497,
+        "model_rounds": 51,
+        "post_first_non_read_only_seconds": 216.259,
+        "tool_calls": 50,
+        "tool_duration_seconds": 5.081,
+        "total_duration_seconds": 223.863
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-3-7-flash-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:02:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1450417,
+        "cost_usd": 0.17587488749999994,
+        "input_tokens": 1713075,
+        "output_tokens": 12260
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 217,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:12:36Z",
+      "model": "google/gemini-3.7-flash",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.041,
+        "model_duration_seconds": 206.273,
+        "model_rounds": 64,
+        "post_first_non_read_only_seconds": 209.324,
+        "tool_calls": 63,
+        "tool_duration_seconds": 9.679,
+        "total_duration_seconds": 216.365
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-3-7-flash-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:08:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1237224,
+        "cost_usd": 0.18184027500000005,
+        "input_tokens": 1529709,
+        "output_tokens": 13740
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 193,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:12:12Z",
+      "model": "google/gemini-3.7-flash",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.864,
+        "model_duration_seconds": 168.148,
+        "model_rounds": 48,
+        "post_first_non_read_only_seconds": 184.52599999999998,
+        "tool_calls": 47,
+        "tool_duration_seconds": 23.932,
+        "total_duration_seconds": 192.39
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-3-7-flash-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:08:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1422181,
+        "cost_usd": 0.17552103750000003,
+        "input_tokens": 1690204,
+        "output_tokens": 11563
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 208,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:18:18Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.099,
+        "model_duration_seconds": 179.443,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 197.877,
+        "tool_calls": 52,
+        "tool_duration_seconds": 27.304,
+        "total_duration_seconds": 206.976
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:14:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 67572,
+        "cache_read_tokens": 1080580,
+        "cost_usd": 0.0594026,
+        "input_tokens": 1148230,
+        "output_tokens": 17402
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 931,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-08-17T20:31:18Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:14:35Z",
+      "trial_status": "evaluated",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "writable_capacity_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 319,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:25:18Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.405,
+        "model_duration_seconds": 299.822,
+        "model_rounds": 33,
+        "post_first_non_read_only_seconds": 309.908,
+        "tool_calls": 70,
+        "tool_duration_seconds": 17.295,
+        "total_duration_seconds": 317.313
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:19:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 74688,
+        "cache_read_tokens": 1574118,
+        "cost_usd": 0.08515536,
+        "input_tokens": 1648905,
+        "output_tokens": 29151
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 226,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:30:38Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.332,
+        "model_duration_seconds": 214.762,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 217.11700000000002,
+        "tool_calls": 32,
+        "tool_duration_seconds": 9.63,
+        "total_duration_seconds": 224.449
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:26:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 468000,
+        "cost_usd": 0.30205,
+        "input_tokens": 513236,
+        "output_tokens": 19663
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 411,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:38:58Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.459,
+        "model_duration_seconds": 388.294,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 402.11899999999997,
+        "tool_calls": 31,
+        "tool_duration_seconds": 20.149,
+        "total_duration_seconds": 408.578
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:31:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 699920,
+        "cost_usd": 0.510452,
+        "input_tokens": 784156,
+        "output_tokens": 33666
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 161,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:36:10Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.416,
+        "model_duration_seconds": 154.289,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 155.1,
+        "tool_calls": 28,
+        "tool_duration_seconds": 5.118,
+        "total_duration_seconds": 159.516
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:33:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 320320,
+        "cost_usd": 0.249084,
+        "input_tokens": 375993,
+        "output_tokens": 12279
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 239,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:41:58Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.809,
+        "model_duration_seconds": 220.55,
+        "model_rounds": 30,
+        "post_first_non_read_only_seconds": 227.824,
+        "tool_calls": 29,
+        "tool_duration_seconds": 15.787,
+        "total_duration_seconds": 237.633
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-z-ai-glm-5-2-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:37:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 415201,
+        "cost_usd": 0.22153325399999993,
+        "input_tokens": 478684,
+        "output_tokens": 11209
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 335,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:46:15Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.926,
+        "model_duration_seconds": 323.646,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 327.56800000000004,
+        "tool_calls": 24,
+        "tool_duration_seconds": 9.791,
+        "total_duration_seconds": 333.494
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-z-ai-glm-5-2-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:40:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 213674,
+        "cost_usd": 0.21346691599999998,
+        "input_tokens": 294219,
+        "output_tokens": 15432
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 160,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-17T20:46:19Z",
+      "model": "z-ai/glm-5.2",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.739,
+        "model_duration_seconds": 151.098,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 155.08599999999998,
+        "tool_calls": 19,
+        "tool_duration_seconds": 7.667,
+        "total_duration_seconds": 158.825
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-z-ai-glm-5-2-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-17T20:43:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 131175,
+        "cost_usd": 0.11470876919999999,
+        "input_tokens": 188270,
+        "output_tokens": 7893
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": null,
+      "claux_release": "v20260815.0.0",
+      "concurrency": 2,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": null,
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "8ec56d29401716656217f3185732b41fca040615235aac3bd45ec493da89291b",
+        "scenario_packs": [
+          {
+            "git_commit": "705829cc1b8098dc66b4d7eda4365965d99d2432",
+            "id": "ducks/replaybook-infra",
+            "sha256": "9c1f89c03aa0b96e96e8a9f801b256c6ea05f60cac597c2c614a95e57bffd1d3",
+            "version": "20260817.1.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-08-17T20:46:20.136808Z",
+      "harness_version": 20,
+      "harness_versions": [
+        20
+      ],
+      "models": [
+        "deepseek/deepseek-v4-flash-0731",
+        "google/gemini-3.7-flash",
+        "openai/gpt-5.6-luna",
+        "qwen/qwen3.8-2.4t-a95b",
+        "z-ai/glm-5.2"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "7595d9c9d7eeac0a3ffb8d8ecf200620077522bb",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-17__19-52-36.a0a077",
+      "started_at": "2026-08-17T19:52:36.592722Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "title": "Five agents repair Nix store disk pressure",
+  "totals": {
+    "cache_read_tokens": 9903306,
+    "cost_reported_trials": 14,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 15,
+    "failed": 1,
+    "failure_categories": {
+      "agent_timeout": 1
+    },
+    "input_tokens": 11481934,
+    "known_cost_usd": 2.33157088708,
+    "median_duration_seconds": 226,
+    "median_first_non_read_only_tool_seconds": 7.1865000000000006,
+    "median_model_duration_seconds": 216.6295,
+    "median_model_rounds": 23.5,
+    "median_post_first_non_read_only_seconds": 216.688,
+    "median_tool_calls": 31.0,
+    "median_tool_duration_seconds": 9.735,
+    "output_tokens": 248359,
+    "pass_rate": 0.9333333333333333,
+    "passed": 14,
+    "recording_reported_trials": 14,
+    "trials": 15,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 14
+  },
+  "version": "20260817.0.2"
+}
