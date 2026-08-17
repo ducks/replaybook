@@ -558,6 +558,9 @@ class PublisherTests(unittest.TestCase):
             coverage = (root / "docs/benchmark-coverage.html").read_text()
             explorer = (root / "docs/benchmark-explorer.html").read_text()
             catalog = json.loads((root / "benchmark-data/catalog.json").read_text())
+            coverage_data = json.loads(
+                (root / "benchmark-data/coverage.json").read_text()
+            )
             self.assertIn("Current release", current)
             self.assertIn("Recent scenario cohorts", current)
             self.assertIn("001-nginx", current)
@@ -572,7 +575,7 @@ class PublisherTests(unittest.TestCase):
             self.assertIn("Benchmark coverage", coverage)
             self.assertIn("Rows are comparison boundaries", coverage)
             self.assertIn("coverage-cells", coverage)
-            self.assertIn("benchmark-catalog.json", coverage)
+            self.assertIn("benchmark-coverage.json", coverage)
             self.assertNotIn("\0", coverage)
             self.assertEqual(catalog["current_version"], "20260809.0.0")
             self.assertEqual(
@@ -584,6 +587,30 @@ class PublisherTests(unittest.TestCase):
             self.assertAlmostEqual(
                 catalog["records"][0]["cost_per_repair_usd"], 0.01
             )
+            self.assertEqual(coverage_data["schema_version"], 1)
+            self.assertEqual(
+                coverage_data["comparison_policy"],
+                "newest_exact_scenario_cohort",
+            )
+            self.assertEqual(
+                coverage_data["totals"],
+                {
+                    "scenarios": 1,
+                    "model_lanes": 1,
+                    "covered_cells": 1,
+                    "possible_cells": 1,
+                    "missing_cells": 0,
+                },
+            )
+            self.assertEqual(
+                coverage_data["scenarios"][0]["cells"][0]["status"],
+                "covered",
+            )
+            self.assertEqual(
+                coverage_data["scenarios"][0]["boundary"]["harness_versions"],
+                [5],
+            )
+            self.assertTrue((root / "docs/benchmark-coverage.json").is_file())
             self.assertTrue((root / "docs/benchmark-catalog.json").is_file())
 
             (root / "docs/benchmarks.html").write_text("stale")
