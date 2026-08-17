@@ -9,22 +9,22 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Five agents complete a partial service rollout
+## Five agents repair Nix store disk pressure
 
-Five infrastructure-agent lanes each attempted a load-balanced partial service rollout three times. A durable repair had to preserve opaque pre-existing orders, apply the deployed PostgreSQL migration, converge both application instances, keep both backends in rotation, and survive service restarts and a host reboot.
+Five infrastructure-agent lanes each attempted a NixOS root-filesystem exhaustion repair three times. A durable repair had to restore writable capacity without weakening the safety threshold, preserve the protected accounting archive and opaque historical receipts, accept and recover concurrent new receipts, and survive service restarts and a host reboot.
 
-Benchmark release: `20260817.0.1`
+Benchmark release: `20260817.0.2`
 
-Scenario packs: `ducks/replaybook-infra@20260817.0.0`
+Scenario packs: `ducks/replaybook-infra@20260817.1.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 3/3 | 100% | 2:00 | $0.0531 | $0.0177 |
-| DeepSeek V4 Flash 0731 (high) | 3/3 | 100% | 3:17 | $0.0266 | $0.0089 |
-| GLM 5.2 (high) | 3/3 | 100% | 2:24 | $0.1961 | $0.0654 |
-| Gemini 3.7 Flash (high) | 3/3 | 100% | 2:52 | $0.4685 | $0.1562 |
-| Qwen3.8 2.4T A95B (high) | 3/3 | 100% | 2:00 | $0.5749 | $0.1916 |
-| **Total** | **15/15** | **100%** | **2:37** | **$1.3191** | **$0.0879** |
+| DeepSeek V4 Flash 0731 (high) | 3/3 | 100% | 4:14 | $0.0425 | $0.0142 |
+| GPT-5.6 Luna (high) | 2/3 | 67% | 5:19 | $0.1446+ | $0.0723+ |
+| Gemini 3.7 Flash (high) | 3/3 | 100% | 3:37 | $0.5332 | $0.1777 |
+| GLM 5.2 (high) | 3/3 | 100% | 3:59 | $0.5497 | $0.1832 |
+| Qwen3.8 2.4T A95B (high) | 3/3 | 100% | 3:46 | $1.0616 | $0.3539 |
+| **Total** | **14/15** | **93%** | **3:46** | **$2.3316+** | **$0.1665+** |
 
 ### Execution recording
 
@@ -32,38 +32,40 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 3/3 | 18 | 1:50 | 41 | 0:08 | 0:08 | 1:50 |
-| DeepSeek V4 Flash 0731 (high) | 3/3 | 17 | 3:01 | 25 | 0:06 | 0:05 | 3:11 |
-| GLM 5.2 (high) | 3/3 | 21 | 2:20 | 27 | 0:06 | 0:05 | 2:19 |
-| Gemini 3.7 Flash (high) | 3/3 | 46 | 2:46 | 45 | 0:04 | 0:07 | 2:44 |
-| Qwen3.8 2.4T A95B (high) | 3/3 | 15 | 1:49 | 20 | 0:10 | 0:04 | 1:56 |
+| DeepSeek V4 Flash 0731 (high) | 3/3 | 20 | 4:10 | 29 | 0:09 | 0:06 | 4:05 |
+| GPT-5.6 Luna (high) | 2/3 | 29.5 | 4:00 | 61 | 0:22 | 0:08 | 4:14 |
+| Gemini 3.7 Flash (high) | 3/3 | 51 | 3:26 | 50 | 0:10 | 0:08 | 3:29 |
+| GLM 5.2 (high) | 3/3 | 17 | 3:41 | 24 | 0:10 | 0:06 | 3:48 |
+| Qwen3.8 2.4T A95B (high) | 3/3 | 21 | 3:35 | 31 | 0:10 | 0:06 | 3:37 |
 
-GPT-5.6 Luna and Qwen3.8 2.4T A95B shared the fastest median at 2:00. Luna cost about $0.0177 per durable repair, while Qwen cost about $0.1916 per repair.
+DeepSeek V4 Flash 0731 completed all three repairs at about $0.0142 per durable repair, the lowest observed cost in this cohort.
 
-DeepSeek V4 Flash 0731 had the lowest observed cost at about $0.0089 per durable repair, though its 3:17 median was the slowest in this cohort.
+Gemini 3.7 Flash had the fastest median at 3:37 and cost about $0.1777 per durable repair.
 
-GLM 5.2 completed the scenario with a 2:24 median at about $0.0654 per durable repair.
+GLM 5.2 completed all three repairs with a 3:59 median at about $0.1832 per repair. Qwen3.8 2.4T A95B was slightly faster at 3:46 but cost about $0.3539 per repair.
 
-Gemini 3.7 Flash completed all three repairs with a 2:52 median, but consumed 4.4 million input tokens and cost about $0.1562 per durable repair. DeepSeek used about 681 thousand input tokens for the same three verified outcomes.
+GPT-5.6 Luna was the only lane with an evaluated failure. Its two durable repairs and incomplete failed-trial telemetry imply a cost of at least $0.0723 per repair.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Luna (high) | DeepSeek V4 Flash 0731 (high) | GLM 5.2 (high) | Gemini 3.7 Flash (high) | Qwen3.8 2.4T A95B (high) |
+| Scenario | Version | DeepSeek V4 Flash 0731 (high) | GPT-5.6 Luna (high) | Gemini 3.7 Flash (high) | GLM 5.2 (high) | Qwen3.8 2.4T A95B (high) |
 |---|---:|---:|---:|---:|---:|---:|
-| 027-partial-service-rollout | v1 | 3/3, 2:00 | 3/3, 3:17 | 3/3, 2:24 | 3/3, 2:52 | 3/3, 2:00 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 4:14 | 2/3, 5:19 | 3/3, 3:37 | 3/3, 3:59 | 3/3, 3:46 |
 
 ### Failure categories
 
+- `agent_timeout`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-17__13-52-01.53fb75`: deepseek/deepseek-v4-flash-0731, google/gemini-3.7-flash, openai/gpt-5.6-luna, qwen/qwen3.8-2.4t-a95b, z-ai/glm-5.2; Replaybook `3b984814`; reasoning high
+- `host-matrix-2026-08-17__19-52-36.a0a077`: deepseek/deepseek-v4-flash-0731, google/gemini-3.7-flash, openai/gpt-5.6-luna, qwen/qwen3.8-2.4t-a95b, z-ai/glm-5.2; Replaybook `7595d9c9`; reasoning high
 
 ### Run notes
 
-- All 15 trials used Replaybook commit 3b98481, host harness v20, scenario 027 v1 from ducks/replaybook-infra 20260817.0.0 at commit f6b8049, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.
-- Scenario 027 runs two systemd-managed Python application generations behind Nginx with shared PostgreSQL state. The newer generation is deployed before its required migration while the older generation remains in rotation, producing intermittent write failures despite green health checks.
-- Every lane completed all three durable repairs. This release therefore adds operational coverage and cost data, but does not establish reliability separation among the five lanes.
+- All 15 trials used Replaybook commit 7595d9c, host harness v20, scenario 028 v1 from ducks/replaybook-infra 20260817.1.0 at commit 705829c, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.
+- Scenario 028 fills the writable Nix store overlay until a billing ledger enters low-disk protection. The repair must reclaim capacity durably while preserving historical state and forbidden operational safeguards.
+- Four lanes completed all three repairs. GPT-5.6 Luna completed two of three; its timed-out trial still returned HTTP 507 low_disk during post-timeout verification and was not a late durable repair.
+- The timed-out Luna trial produced neither final usage nor a partial execution recording before termination. Its published cost is therefore a lower bound, and the artifact cannot distinguish a reasoning loop from a blocked tool call.
 - Three attempts per model remain a small sample. These results characterize this exact model, provider, harness, reasoning, and scenario configuration rather than a model in every setting.
 
 <!-- replaybook:current-benchmark:end -->
