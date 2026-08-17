@@ -83,10 +83,14 @@
     </p>
 
     <p>
-      Provider HTTP errors, authentication failures, and harness runtime errors
-      are unavailable attempts. They remain visible in trial and cost totals,
-      but are excluded from the model's pass-rate denominator. A provider
-      refusing a request is not evidence that the model failed a repair.
+      Authentication failures and provider or harness errors before meaningful
+      inference are unavailable attempts. They remain visible in trial and cost
+      totals, but are excluded from the model's pass-rate denominator. After an
+      agent has begun work, provider interruptions, content-policy rejections,
+      protocol errors, and runtime errors are evaluated execution-lane failures
+      with distinct categories. They are not verifier-rejected repairs, but
+      they do measure whether that complete model, harness, and provider lane
+      delivered one.
     </p>
 
     <h2>Price per durable repair</h2>
@@ -143,6 +147,7 @@
           <tr><td>v9</td><td>Recorded Claux reasoning effort as a distinct matrix dimension.</td></tr>
           <tr><td>v10</td><td>Kept provider credentials outside incident VMs behind a host-side forwarding proxy.</td></tr>
           <tr><td>v11</td><td>Recorded provider-round and tool-call timings for adapters that expose them.</td></tr>
+          <tr><td>v20</td><td>Separated provider policy and protocol failures from agent runtime errors.</td></tr>
         </tbody>
       </table>
     </div>
