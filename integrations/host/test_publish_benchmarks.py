@@ -350,6 +350,34 @@ class PublisherTests(unittest.TestCase):
             with self.assertRaisesRegex(PublishError, "execution_snapshot differs"):
                 create_release("20260809.0.0", [first, second], {})
 
+    def test_pack_commits_are_provenance_not_compatibility(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first_value = summary("model/a", snapshot_hash="a" * 64)
+            second_value = summary("model/b", snapshot_hash="a" * 64)
+            first_value["benchmark"]["execution_snapshot"]["scenario_packs"][0][
+                "git_commit"
+            ] = "1" * 40
+            second_value["benchmark"]["execution_snapshot"]["scenario_packs"][0][
+                "git_commit"
+            ] = "2" * 40
+            first = self.write_summary(root, "matrix-one", first_value)
+            second = self.write_summary(root, "matrix-two", second_value)
+
+            release = create_release("20260817.0.0", [first, second], {})
+
+        self.assertEqual(release["totals"]["passed"], 2)
+        self.assertEqual(
+            release["sources"][0]["execution_snapshot"]["scenario_packs"][0][
+                "git_commit"
+            ],
+            "1" * 40,
+        )
+        self.assertNotIn(
+            "git_commit",
+            release["compatibility"]["execution_snapshot"]["scenario_packs"][0],
+        )
+
     def test_normalizes_missing_optional_execution_snapshot_hashes(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

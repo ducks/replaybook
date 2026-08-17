@@ -360,6 +360,12 @@ local Claux binary into `execution-snapshot/` inside the matrix result
 directory. Every worker executes those immutable copies. Switching branches or
 editing a live scenario while a matrix runs cannot change later workers.
 
+Scenario-pack snapshots exclude Git metadata and Python bytecode caches. Their
+content hashes therefore describe executable pack contents rather than mutable
+branch refs, while the source Git commit is retained separately as provenance.
+Matrices with identical pack contents remain compatible across merge commits;
+different pack contents still produce different hashes.
+
 `benchmark.json` and `execution-snapshot/manifest.json` record SHA-256 hashes
 for the staged harness, packs, and optional agent artifacts. Runtime environment
 files are copied once into a temporary mode-0600 directory for the duration of

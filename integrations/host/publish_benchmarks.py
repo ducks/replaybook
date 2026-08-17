@@ -31,6 +31,7 @@ DOCS_HISTORY = Path("docs/benchmark-history.html")
 MARKDOWN_RECORD = Path("benchmarks.md")
 VERSION_PATTERN = re.compile(r"^[0-9]{8}\.[0-9]+\.[0-9]+$")
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
+GIT_COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40,64}$")
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 OPTIONAL_SNAPSHOT_HASHES = (
     "agent_adapter_sha256",
@@ -301,6 +302,14 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
                 raise PublishError(
                     f"{path}: execution snapshot scenario pack is invalid"
                 )
+            git_commit = pack.get("git_commit")
+            if git_commit is not None and (
+                not isinstance(git_commit, str)
+                or not GIT_COMMIT_PATTERN.fullmatch(git_commit)
+            ):
+                raise PublishError(
+                    f"{path}: execution snapshot scenario pack commit is invalid"
+                )
             snapshot_packs.add((pack["id"], pack["version"]))
         if snapshot_packs != set(pack_keys):
             raise PublishError(
@@ -376,6 +385,17 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
             raise PublishError(f"{path}: {run['run_id']} reports a different timeout")
 
 
+def compatibility_snapshot(snapshot: dict[str, Any] | None) -> dict[str, Any] | None:
+    if snapshot is None:
+        return None
+    value = dict(snapshot)
+    value["scenario_packs"] = [
+        {key: item for key, item in pack.items() if key != "git_commit"}
+        for pack in snapshot["scenario_packs"]
+    ]
+    return value
+
+
 def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
     return {
         "suite": source["suite"],
@@ -383,7 +403,7 @@ def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
         "harness_versions": source["harness_versions"],
         "scenario_packs": source["scenario_packs"],
         "benchmark_manifest": source["benchmark_manifest"],
-        "execution_snapshot": source["execution_snapshot"],
+        "execution_snapshot": compatibility_snapshot(source["execution_snapshot"]),
         "attempts": source["attempts"],
         "agent_timeout_seconds": source["agent_timeout_seconds"],
         "agent": source["agent"],
