@@ -4,6 +4,7 @@ import asyncio
 import contextlib
 import io
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -159,6 +160,75 @@ class HostMatrixTests(unittest.TestCase):
             cache.mkdir()
             (cache / "runner.cpython-314.pyc").write_bytes(b"runtime cache")
             self.assertEqual(sha256_tree(root), before)
+
+    def test_execution_snapshot_excludes_git_metadata_and_records_commit(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            host = root / "host"
+            host.mkdir()
+            for name in HOST_RUNNER_FILES:
+                path = host / name
+                path.write_text(f"saved {name}\n")
+                path.chmod(0o755 if name.endswith(".sh") else 0o644)
+            pack = root / "pack"
+            pack.mkdir()
+            (pack / "replaybook-pack.toml").write_text(
+                '[pack]\nid = "test/stable"\nversion = "20260817.0.0"\n'
+            )
+            scenario = pack / "incident"
+            scenario.mkdir()
+            (scenario / "scenario.toml").write_text("[scenario]\nversion = 1\n")
+            subprocess.run(["git", "-C", str(pack), "init", "-q"], check=True)
+            subprocess.run(
+                ["git", "-C", str(pack), "config", "user.name", "Replaybook"],
+                check=True,
+            )
+            subprocess.run(
+                ["git", "-C", str(pack), "config", "user.email", "test@localhost"],
+                check=True,
+            )
+            subprocess.run(["git", "-C", str(pack), "add", "."], check=True)
+            subprocess.run(
+                ["git", "-C", str(pack), "commit", "-qm", "initial"],
+                check=True,
+            )
+
+            first_matrix = root / "matrix-one"
+            first_matrix.mkdir()
+            first = stage_execution_snapshot(
+                first_matrix,
+                packs=[load_pack(pack)],
+                agent_adapter=None,
+                agent_payload=None,
+                agent_env_file=None,
+                claux_binary=None,
+                host_dir=host,
+            )
+            subprocess.run(
+                ["git", "-C", str(pack), "commit", "--allow-empty", "-qm", "refs changed"],
+                check=True,
+            )
+            second_matrix = root / "matrix-two"
+            second_matrix.mkdir()
+            second = stage_execution_snapshot(
+                second_matrix,
+                packs=[load_pack(pack)],
+                agent_adapter=None,
+                agent_payload=None,
+                agent_env_file=None,
+                claux_binary=None,
+                host_dir=host,
+            )
+
+            self.assertFalse((first.scenario_pack_dirs[0] / ".git").exists())
+            self.assertEqual(
+                first.metadata["scenario_packs"][0]["sha256"],
+                second.metadata["scenario_packs"][0]["sha256"],
+            )
+            self.assertNotEqual(
+                first.metadata["scenario_packs"][0]["git_commit"],
+                second.metadata["scenario_packs"][0]["git_commit"],
+            )
 
     def test_build_jobs_expands_reasoning_efforts_as_distinct_trials(self) -> None:
         jobs = build_jobs(

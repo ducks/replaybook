@@ -156,6 +156,24 @@ def sha256_tree(path: Path) -> str:
     return digest.hexdigest()
 
 
+def git_commit(path: Path) -> str | None:
+    result = subprocess.run(
+        ["git", "-C", str(path), "rev-parse", "HEAD"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    return result.stdout.strip() if result.returncode == 0 else None
+
+
+def snapshot_ignore(_: str, names: list[str]) -> set[str]:
+    return {
+        name
+        for name in names
+        if name in {".git", "__pycache__"} or name.endswith(".pyc")
+    }
+
+
 def copy_artifact(source: Path | None, destination: Path) -> tuple[Path | None, str | None]:
     if source is None:
         return None, None
@@ -190,12 +208,18 @@ def stage_execution_snapshot(
     packs_dir.mkdir()
     for index, pack in enumerate(packs, start=1):
         destination = packs_dir / f"{index:02d}-{slugify(pack.id)}"
-        shutil.copytree(pack.path, destination, symlinks=False)
+        shutil.copytree(
+            pack.path,
+            destination,
+            symlinks=False,
+            ignore=snapshot_ignore,
+        )
         pack_dirs.append(destination)
         pack_metadata.append(
             {
                 **pack.metadata(),
                 "sha256": sha256_tree(destination),
+                "git_commit": git_commit(pack.path),
             }
         )
 
@@ -1030,13 +1054,7 @@ def summary_exit_status(summary: dict[str, Any], expected_trials: int) -> int:
 
 
 def current_commit() -> str | None:
-    result = subprocess.run(
-        ["git", "-C", str(REPO_DIR), "rev-parse", "HEAD"],
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    return result.stdout.strip() if result.returncode == 0 else None
+    return git_commit(REPO_DIR)
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
