@@ -1,0 +1,34 @@
+{
+  "description": "Five infrastructure-agent lanes each attempted the same 13-scenario cross-stack repair sweep once. Every trial ran under one compatible Replaybook, scenario-pack, Claux, reasoning, timeout, and verifier boundary.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.2": "GLM 5.2"
+  },
+  "model_order": [
+    "deepseek/deepseek-v4-flash-0731",
+    "openai/gpt-5.6-luna",
+    "google/gemini-3.7-flash",
+    "z-ai/glm-5.2",
+    "qwen/qwen3.8-2.4t-a95b"
+  ],
+  "notes": [
+    "All 65 trials used Replaybook commit d89f739, host harness v20, 13 selected scenarios from ducks/replaybook-infra 20260817.1.0 at commit 705829c, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.",
+    "This is a broad one-attempt-per-scenario coverage cohort. It compares behavior across a shared boundary but is not a repeated-trial reliability estimate.",
+    "Qwen3.8 2.4T A95B and GLM 5.2 completed all 13 durable repairs. DeepSeek completed 12, GPT-5.6 Luna completed 11, and Gemini completed 10.",
+    "Gemini's three losses included a provider protocol error, a provider policy rejection, and one repair that failed reboot verification. Provider failures remain execution-lane failures, but they are not evidence that the verifier rejected a completed repair.",
+    "GPT-5.6 Luna timed out on the Node.js event-loop incident and did not converge the interrupted Discourse release. DeepSeek's only loss was also a non-converged interrupted Discourse release.",
+    "GPT-5.6 Luna reported usage for 12 of 13 trials, so its published total cost and cost per durable repair are lower bounds. The other four lanes reported usage for every trial."
+  ],
+  "observations": [
+    "Qwen3.8 2.4T A95B was the fastest perfect lane with a 1:51 median and cost about $0.1800 per durable repair.",
+    "GLM 5.2 also completed all 13 repairs, with a 2:55 median and about $0.1110 per durable repair.",
+    "DeepSeek V4 Flash 0731 completed 12 of 13 repairs at about $0.0152 per durable repair, by far the lowest observed repair cost in this cohort.",
+    "GPT-5.6 Luna had the fastest overall median at 1:43 and cost at least $0.0329 per durable repair, but completed 11 of 13 trials.",
+    "Gemini 3.7 Flash used the most input tokens, completed 10 of 13 trials, and cost about $0.1952 per durable repair across the full agent-provider lane."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 014-missing-rails-migration --scenario 015-sidekiq-poison-pill --scenario 016-rails-pool-exhaustion --scenario 017-partial-rails-rollout --scenario 018-node-event-loop-blocking --scenario 019-rust-fd-leak --scenario 020-python-gunicorn-saturation --scenario 021-discourse-shared-uploads --scenario 022-discourse-multisite-migration --scenario 023-auth-secret-rollout --scenario 024-discourse-interrupted-deploy --models deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash openai/gpt-5.6-luna qwen/qwen3.8-2.4t-a95b z-ai/glm-5.2 --reasoning-efforts high --attempts 1 --concurrency 2 --base-port 26200",
+  "title": "Five agents across thirteen infrastructure incidents"
+}
