@@ -108,6 +108,8 @@ grep -q 'REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT:-15' "$script_dir/run-host-nativ
 grep -q 'REPLAYBOOK_HOST_PROXY_READY_TIMEOUT:-30' "$script_dir/run-host-native.sh"
 grep -q 'proxy_deadline=' "$script_dir/run-host-native.sh"
 grep -q 'tunnel_deadline=' "$script_dir/run-host-native.sh"
+grep -q 'credential tunnel disconnected; retrying' "$script_dir/run-host-native.sh"
+grep -q 'ServerAliveInterval=2' "$script_dir/run-host-native.sh"
 grep -q 'rm -f -- "$runtime_env"' "$script_dir/run-agent-adapter.sh"
 grep -q 'OPENROUTER_API_KEY=replaybook-proxy' "$script_dir/run-host-native.sh"
 grep -q 'REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091/api/v1' \

@@ -702,32 +702,40 @@ if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]]; then
   }
   proxy_host_port="$(<"$proxy_ready")"
   proxy_vm_port=19091
-  ssh \
-    -i "$SSH_KEY" \
-    -p "$SSH_PORT" \
-    -o BatchMode=yes \
-    -o ExitOnForwardFailure=yes \
-    -o LogLevel=ERROR \
-    -o StrictHostKeyChecking=no \
-    -o UserKnownHostsFile=/dev/null \
-    -N \
-    -R "127.0.0.1:${proxy_vm_port}:127.0.0.1:${proxy_host_port}" \
-    root@127.0.0.1 &
-  TUNNEL_PID=$!
+  tunnel_log="${WORK_DIR}/openrouter-tunnel.log"
   tunnel_deadline="$((SECONDS + PROXY_READY_TIMEOUT_SECONDS))"
   while (( SECONDS < tunnel_deadline )); do
+    if [[ -z "$TUNNEL_PID" ]] || ! kill -0 "$TUNNEL_PID" 2>/dev/null; then
+      if [[ -n "$TUNNEL_PID" ]]; then
+        wait "$TUNNEL_PID" 2>/dev/null || true
+        echo "OpenRouter credential tunnel disconnected; retrying" >&2
+      fi
+      : >"$tunnel_log"
+      ssh \
+        -i "$SSH_KEY" \
+        -p "$SSH_PORT" \
+        -o BatchMode=yes \
+        -o ExitOnForwardFailure=yes \
+        -o LogLevel=ERROR \
+        -o ServerAliveCountMax=2 \
+        -o ServerAliveInterval=2 \
+        -o StrictHostKeyChecking=no \
+        -o UserKnownHostsFile=/dev/null \
+        -N \
+        -R "127.0.0.1:${proxy_vm_port}:127.0.0.1:${proxy_host_port}" \
+        root@127.0.0.1 \
+        2>>"$tunnel_log" &
+      TUNNEL_PID=$!
+    fi
     if "${SSH[@]}" "timeout 1 bash -c '</dev/tcp/127.0.0.1/${proxy_vm_port}'" \
       >/dev/null 2>&1; then
       break
     fi
-    kill -0 "$TUNNEL_PID" 2>/dev/null || {
-      echo "OpenRouter credential tunnel exited before becoming ready" >&2
-      exit 1
-    }
     sleep 0.1
   done
   "${SSH[@]}" "timeout 1 bash -c '</dev/tcp/127.0.0.1/${proxy_vm_port}'" \
     >/dev/null 2>&1 || {
+    cat "$tunnel_log" >&2
     echo "OpenRouter credential tunnel did not become ready within ${PROXY_READY_TIMEOUT_SECONDS}s" >&2
       exit 1
     }
