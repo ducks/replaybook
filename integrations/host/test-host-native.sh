@@ -127,6 +127,9 @@ fi
 
 grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 grep -q 'capture_agent_results || true' "$script_dir/run-host-native.sh"
+grep -q 'agent result capture attempt.*failed; retrying' "$script_dir/run-host-native.sh"
+grep -q 'completed agent result could not be captured from the incident host' \
+  "$script_dir/run-host-native.sh"
 grep -q 'failure_category="host_reboot_failed"' "$script_dir/run-host-native.sh"
 grep -q 'failure_category="$reboot_failure_category"' "$script_dir/run-host-native.sh"
 grep -q 'trial_status="unavailable"' "$script_dir/run-host-native.sh"

@@ -535,17 +535,22 @@ run_preflight() {
 
 capture_agent_results() {
   local archive="${WORK_DIR}/agent-results.tar.gz"
+  local attempt
 
   [[ "$RUN_ORACLE" == false ]] || return 0
-  if ! "${SSH[@]}" "tar -C /root/replaybook-eval -czf - results" >"$archive"; then
+  for attempt in $(seq 1 5); do
     rm -f -- "$archive"
-    return 1
-  fi
-  if ! tar -tzf "$archive" >/dev/null 2>&1; then
-    rm -f -- "$archive"
-    return 1
-  fi
-  tar -xzf "$archive" -C "$OUTPUT_DIR"
+    if "${SSH[@]}" "tar -C /root/replaybook-eval -czf - results" >"$archive" \
+      && tar -tzf "$archive" >/dev/null 2>&1; then
+      tar -xzf "$archive" -C "$OUTPUT_DIR"
+      return 0
+    fi
+    echo "agent result capture attempt ${attempt}/5 failed; retrying" >&2
+    sleep 1
+  done
+  rm -f -- "$archive"
+  echo "agent result capture failed after 5 attempts" >&2
+  return 1
 }
 
 run_verification() {
@@ -828,8 +833,13 @@ fi
 
 # Preserve usage and transcript data while the repaired host is still
 # reachable. Verification deliberately restarts and reboots that host, and a
-# broken repair may prevent it from ever returning.
-capture_agent_results || true
+# broken repair may prevent it from ever returning. A completed adapter whose
+# result cannot be transported is controller infrastructure failure, not an
+# invalid agent result.
+if ! capture_agent_results && (( run_status == 0 )); then
+  echo "completed agent result could not be captured from the incident host" >&2
+  exit 1
+fi
 
 agent_result="${OUTPUT_DIR}/results/agent.json"
 agent_result_invalid=false
