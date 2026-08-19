@@ -29,91 +29,99 @@
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Benchmark 20260818.0.0</p>
-    <h1>GLM 5.3 across the full infrastructure suite</h1>
-    <p class="tagline benchmark-tagline">GLM 5.3 attempted the complete 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook, scenario-pack, Claux, reasoning, timeout, and verifier boundary.</p>
+    <p class="eyebrow">Benchmark 20260819.0.0</p>
+    <h1>Five models across the full infrastructure suite</h1>
+    <p class="tagline benchmark-tagline">Five agent models attempted the same 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook v21 harness boundary.</p>
 
     <div class="metric-grid" aria-label="Current benchmark results">
-      <div class="metric"><span class="metric-value">47/48</span><span class="metric-label">durable repairs</span></div>
-      <div class="metric"><span class="metric-value">1:38</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">$4.8792</span><span class="metric-label">known total cost</span></div>
+      <div class="metric"><span class="metric-value">214/240</span><span class="metric-label">durable repairs</span></div>
+      <div class="metric"><span class="metric-value">2:34</span><span class="metric-label">overall median</span></div>
+      <div class="metric"><span class="metric-value">$22.4110+</span><span class="metric-label">known total cost</span></div>
     </div>
 
     <div class="callout benchmark-status verified-status">
-      <strong>48 trials across 1 controlled matrix.</strong>
-      47 repairs passed durable verification. 1 evaluated attempts failed and 0 trials were unavailable.
+      <strong>240 trials across 1 controlled matrix.</strong>
+      214 repairs passed durable verification. 26 evaluated attempts failed and 0 trials were unavailable.
     </div>
 
     <h2>Recent scenario cohorts</h2>
     <p class="small muted">The newest published cohort for each recent scenario. Each row keeps its original benchmark release and comparison boundary.</p>
     <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Benchmark</th><th>Model lanes</th><th>Repairs</th><th>Known cost</th></tr></thead><tbody>
-          <tr><td><a href="benchmark-explorer.html?release=20260818.0.0&amp;scenario=001-nginx-502-host">001-nginx-502-host</a></td><td>v1</td><td><code>20260818.0.0</code></td><td>1</td><td>3/3</td><td>$0.1735</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260818.0.0&amp;scenario=013-sidekiq-wrong-redis">013-sidekiq-wrong-redis</a></td><td>v2</td><td><code>20260818.0.0</code></td><td>1</td><td>3/3</td><td>$0.1910</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260818.0.0&amp;scenario=014-missing-rails-migration">014-missing-rails-migration</a></td><td>v2</td><td><code>20260818.0.0</code></td><td>1</td><td>3/3</td><td>$0.2840</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260818.0.0&amp;scenario=015-sidekiq-poison-pill">015-sidekiq-poison-pill</a></td><td>v1</td><td><code>20260818.0.0</code></td><td>1</td><td>3/3</td><td>$0.3348</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260818.0.0&amp;scenario=016-rails-pool-exhaustion">016-rails-pool-exhaustion</a></td><td>v1</td><td><code>20260818.0.0</code></td><td>1</td><td>2/3</td><td>$0.1982</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260818.0.0&amp;scenario=017-partial-rails-rollout">017-partial-rails-rollout</a></td><td>v1</td><td><code>20260818.0.0</code></td><td>1</td><td>3/3</td><td>$0.4608</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260818.0.0&amp;scenario=018-node-event-loop-blocking">018-node-event-loop-blocking</a></td><td>v1</td><td><code>20260818.0.0</code></td><td>1</td><td>3/3</td><td>$0.2404</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260818.0.0&amp;scenario=019-rust-fd-leak">019-rust-fd-leak</a></td><td>v1</td><td><code>20260818.0.0</code></td><td>1</td><td>3/3</td><td>$0.2308</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260819.0.0&amp;scenario=001-nginx-502-host">001-nginx-502-host</a></td><td>v1</td><td><code>20260819.0.0</code></td><td>5</td><td>14/15</td><td>$0.6410</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260819.0.0&amp;scenario=013-sidekiq-wrong-redis">013-sidekiq-wrong-redis</a></td><td>v2</td><td><code>20260819.0.0</code></td><td>5</td><td>15/15</td><td>$0.8799</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260819.0.0&amp;scenario=014-missing-rails-migration">014-missing-rails-migration</a></td><td>v2</td><td><code>20260819.0.0</code></td><td>5</td><td>15/15</td><td>$1.3242</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260819.0.0&amp;scenario=015-sidekiq-poison-pill">015-sidekiq-poison-pill</a></td><td>v1</td><td><code>20260819.0.0</code></td><td>5</td><td>15/15</td><td>$1.9527</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260819.0.0&amp;scenario=016-rails-pool-exhaustion">016-rails-pool-exhaustion</a></td><td>v1</td><td><code>20260819.0.0</code></td><td>5</td><td>15/15</td><td>$1.1727</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260819.0.0&amp;scenario=017-partial-rails-rollout">017-partial-rails-rollout</a></td><td>v1</td><td><code>20260819.0.0</code></td><td>5</td><td>13/15</td><td>$1.4976</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260819.0.0&amp;scenario=018-node-event-loop-blocking">018-node-event-loop-blocking</a></td><td>v1</td><td><code>20260819.0.0</code></td><td>5</td><td>14/15</td><td>$1.3056</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260819.0.0&amp;scenario=019-rust-fd-leak">019-rust-fd-leak</a></td><td>v1</td><td><code>20260819.0.0</code></td><td>5</td><td>12/15</td><td>$0.9145</td></tr>
     </tbody></table></div>
 
 
     <h2>Model summary</h2>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
-          <tr><td>GLM 5.3 (high)</td><td>47/48</td><td>98%</td><td>1:38</td><td>10,417,704</td><td>$4.8792</td><td>$0.1038</td></tr>
+          <tr><td>Qwen3.8 2.4T A95B (high)</td><td>46/48</td><td>96%</td><td>2:02</td><td>14,218,146</td><td>$8.9756</td><td>$0.1951</td></tr>
+          <tr><td>GLM 5.3 (high)</td><td>45/48</td><td>94%</td><td>2:19</td><td>9,041,290</td><td>$4.4098</td><td>$0.0980</td></tr>
+          <tr><td>GPT-5.6 Luna (high)</td><td>44/48</td><td>92%</td><td>2:06</td><td>24,876,005</td><td>$1.3877+</td><td>$0.0315+</td></tr>
+          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>42/48</td><td>88%</td><td>3:47</td><td>12,581,189</td><td>$0.6133</td><td>$0.0146</td></tr>
+          <tr><td>Gemini 3.7 Flash (high)</td><td>37/48</td><td>77%</td><td>3:12</td><td>61,225,227</td><td>$7.0245</td><td>$0.1899</td></tr>
     </tbody></table></div>
 
     <h2>Execution recording</h2>
     <p class="small muted">Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.</p>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Model time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
-          <tr><td>GLM 5.3 (high)</td><td>48/48</td><td>15</td><td>1:24</td><td>21</td><td>0:12</td><td>0:04</td><td>1:31</td></tr>
+          <tr><td>Qwen3.8 2.4T A95B (high)</td><td>48/48</td><td>15</td><td>1:47</td><td>20</td><td>0:11</td><td>0:04</td><td>1:59</td></tr>
+          <tr><td>GLM 5.3 (high)</td><td>48/48</td><td>13.5</td><td>2:01</td><td>19</td><td>0:09</td><td>0:07</td><td>2:10</td></tr>
+          <tr><td>GPT-5.6 Luna (high)</td><td>46/48</td><td>16</td><td>1:33</td><td>33</td><td>0:12</td><td>0:07</td><td>1:56</td></tr>
+          <tr><td>DeepSeek V4 Flash 0731 (high)</td><td>48/48</td><td>16</td><td>3:26</td><td>23</td><td>0:11</td><td>0:05</td><td>3:38</td></tr>
+          <tr><td>Gemini 3.7 Flash (high)</td><td>48/48</td><td>45</td><td>2:58</td><td>44</td><td>0:10</td><td>0:06</td><td>3:05</td></tr>
     </tbody></table></div>
 
 
-      <p>GLM 5.3 completed 47 durable repairs for about $0.1038 per durable repair and about $0.1017 per attempted trial.</p>
-      <p>The cohort used 10,417,704 input tokens and 289,971 output tokens at a total metered cost of $4.8792.</p>
-      <p>Fifteen of sixteen scenarios were clean 3-for-3 sweeps. Rails pool exhaustion was 2-for-3 because one otherwise correct repair corrupted its own recovered state during cleanup.</p>
-      <p>This is a repeated full-suite reliability cohort for one model lane, not a direct head-to-head model comparison.</p>
+      <p>Qwen led reliability at 96% and had the fastest overall median at 2:02, but also had the highest fully recorded spend at $8.9756.</p>
+      <p>GLM 5.3 reached 94% at a 2:19 median and $4.4098, giving it the strongest balance of reliability and speed among the fully metered non-Luna lanes.</p>
+      <p>DeepSeek was cheapest at $0.6133 total and about $0.0146 per durable repair, but its 87% pass rate and 3:47 median show the reliability and latency tradeoff.</p>
+      <p>Across the complete cohort, the agents produced 214 durable repairs from 240 attempts with $22.4110 in known spend.</p>
 
     <h2>Scenario breakdown</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>GLM 5.3 (high)</th></tr></thead><tbody>
-          <tr><td>001-nginx-502-host</td><td>v1</td><td>3/3 &middot; 1:09</td></tr>
-          <tr><td>013-sidekiq-wrong-redis</td><td>v2</td><td>3/3 &middot; 1:19</td></tr>
-          <tr><td>014-missing-rails-migration</td><td>v2</td><td>3/3 &middot; 2:01</td></tr>
-          <tr><td>015-sidekiq-poison-pill</td><td>v1</td><td>3/3 &middot; 2:57</td></tr>
-          <tr><td>016-rails-pool-exhaustion</td><td>v1</td><td>2/3 &middot; 1:33</td></tr>
-          <tr><td>017-partial-rails-rollout</td><td>v1</td><td>3/3 &middot; 2:35</td></tr>
-          <tr><td>018-node-event-loop-blocking</td><td>v1</td><td>3/3 &middot; 1:41</td></tr>
-          <tr><td>019-rust-fd-leak</td><td>v1</td><td>3/3 &middot; 1:32</td></tr>
-          <tr><td>020-python-gunicorn-saturation</td><td>v1</td><td>3/3 &middot; 1:50</td></tr>
-          <tr><td>021-discourse-shared-uploads</td><td>v1</td><td>3/3 &middot; 3:44</td></tr>
-          <tr><td>022-discourse-multisite-migration</td><td>v1</td><td>3/3 &middot; 1:13</td></tr>
-          <tr><td>023-auth-secret-rollout</td><td>v1</td><td>3/3 &middot; 1:28</td></tr>
-          <tr><td>024-discourse-interrupted-deploy</td><td>v1</td><td>3/3 &middot; 1:55</td></tr>
-          <tr><td>026-discourse-plugin-boot-loop</td><td>v1</td><td>3/3 &middot; 1:28</td></tr>
-          <tr><td>027-partial-service-rollout</td><td>v1</td><td>3/3 &middot; 1:18</td></tr>
-          <tr><td>028-nix-store-disk-pressure</td><td>v1</td><td>3/3 &middot; 2:16</td></tr>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Qwen3.8 2.4T A95B (high)</th><th>GLM 5.3 (high)</th><th>GPT-5.6 Luna (high)</th><th>DeepSeek V4 Flash 0731 (high)</th><th>Gemini 3.7 Flash (high)</th></tr></thead><tbody>
+          <tr><td>001-nginx-502-host</td><td>v1</td><td>3/3 &middot; 0:59</td><td>3/3 &middot; 1:48</td><td>3/3 &middot; 1:08</td><td>3/3 &middot; 0:53</td><td>2/3 &middot; 1:42</td></tr>
+          <tr><td>013-sidekiq-wrong-redis</td><td>v2</td><td>3/3 &middot; 1:33</td><td>3/3 &middot; 1:51</td><td>3/3 &middot; 1:30</td><td>3/3 &middot; 2:01</td><td>3/3 &middot; 2:30</td></tr>
+          <tr><td>014-missing-rails-migration</td><td>v2</td><td>3/3 &middot; 2:02</td><td>3/3 &middot; 3:09</td><td>3/3 &middot; 2:02</td><td>3/3 &middot; 2:45</td><td>3/3 &middot; 3:05</td></tr>
+          <tr><td>015-sidekiq-poison-pill</td><td>v1</td><td>3/3 &middot; 3:53</td><td>3/3 &middot; 4:14</td><td>3/3 &middot; 3:28</td><td>3/3 &middot; 4:39</td><td>3/3 &middot; 5:18</td></tr>
+          <tr><td>016-rails-pool-exhaustion</td><td>v1</td><td>3/3 &middot; 1:36</td><td>3/3 &middot; 1:49</td><td>3/3 &middot; 1:23</td><td>3/3 &middot; 3:49</td><td>3/3 &middot; 4:12</td></tr>
+          <tr><td>017-partial-rails-rollout</td><td>v1</td><td>3/3 &middot; 2:41</td><td>3/3 &middot; 2:58</td><td>3/3 &middot; 1:40</td><td>1/3 &middot; 4:43</td><td>3/3 &middot; 4:50</td></tr>
+          <tr><td>018-node-event-loop-blocking</td><td>v1</td><td>3/3 &middot; 1:34</td><td>2/3 &middot; 1:58</td><td>3/3 &middot; 4:00</td><td>3/3 &middot; 5:48</td><td>3/3 &middot; 4:17</td></tr>
+          <tr><td>019-rust-fd-leak</td><td>v1</td><td>3/3 &middot; 1:53</td><td>2/3 &middot; 2:03</td><td>3/3 &middot; 2:05</td><td>3/3 &middot; 4:44</td><td>1/3 &middot; 2:20</td></tr>
+          <tr><td>020-python-gunicorn-saturation</td><td>v1</td><td>3/3 &middot; 1:56</td><td>2/3 &middot; 2:34</td><td>2/3 &middot; 8:18</td><td>3/3 &middot; 4:04</td><td>2/3 &middot; 8:23</td></tr>
+          <tr><td>021-discourse-shared-uploads</td><td>v1</td><td>2/3 &middot; 3:58</td><td>3/3 &middot; 5:09</td><td>3/3 &middot; 2:42</td><td>3/3 &middot; 9:21</td><td>1/3 &middot; 2:01</td></tr>
+          <tr><td>022-discourse-multisite-migration</td><td>v1</td><td>3/3 &middot; 1:52</td><td>3/3 &middot; 1:59</td><td>3/3 &middot; 1:36</td><td>3/3 &middot; 1:52</td><td>3/3 &middot; 3:02</td></tr>
+          <tr><td>023-auth-secret-rollout</td><td>v1</td><td>3/3 &middot; 2:23</td><td>3/3 &middot; 2:03</td><td>3/3 &middot; 2:10</td><td>3/3 &middot; 2:45</td><td>2/3 &middot; 2:58</td></tr>
+          <tr><td>024-discourse-interrupted-deploy</td><td>v1</td><td>2/3 &middot; 2:11</td><td>3/3 &middot; 2:42</td><td>1/3 &middot; 2:22</td><td>0/3 &middot; 3:38</td><td>3/3 &middot; 3:34</td></tr>
+          <tr><td>026-discourse-plugin-boot-loop</td><td>v1</td><td>3/3 &middot; 2:27</td><td>3/3 &middot; 2:06</td><td>2/3 &middot; 1:41</td><td>2/3 &middot; 2:29</td><td>3/3 &middot; 3:08</td></tr>
+          <tr><td>027-partial-service-rollout</td><td>v1</td><td>3/3 &middot; 1:49</td><td>3/3 &middot; 2:07</td><td>3/3 &middot; 2:15</td><td>3/3 &middot; 3:48</td><td>1/3 &middot; 1:25</td></tr>
+          <tr><td>028-nix-store-disk-pressure</td><td>v1</td><td>3/3 &middot; 5:07</td><td>3/3 &middot; 2:46</td><td>3/3 &middot; 3:20</td><td>3/3 &middot; 6:14</td><td>1/3 &middot; 3:20</td></tr>
     </tbody></table></div>
 
     <h2>Failure categories</h2>
-    <ul><li><code>database_pool_exhausted</code>: 1</li></ul>
+    <ul><li><code>accepted_uploads_not_recovered</code>: 1</li><li><code>agent_runtime_error</code>: 2</li><li><code>agent_timeout</code>: 2</li><li><code>core_api_rolled_back</code>: 1</li><li><code>current_sessions_unavailable</code>: 1</li><li><code>host_reboot_failed</code>: 2</li><li><code>new_receipts_not_writable</code>: 1</li><li><code>provider_interrupted</code>: 2</li><li><code>provider_policy_rejection</code>: 4</li><li><code>provider_protocol_error</code>: 4</li><li><code>release_not_converged</code>: 6</li></ul>
 
     <div class="callout comparison-note">
       <strong>Run notes</strong>
-      <ul><li>All 48 trials used Replaybook commit 5062560, host harness v20, 16 scenarios from ducks/replaybook-infra 20260817.1.0 at commit 705829c, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.</li><li>GLM 5.3 completed 47 of 48 durable repairs for a 98% pass rate, with a 1:38 median and complete usage recording across all trials.</li><li>The only failure was a Rails connection-pool repair that passed immediate verification but failed the service-restart phase. The agent correctly raised DB_POOL from 1 to 5 and recovered the original failed requests, then deleted one of its own successful verification rows during cleanup. The external verifier subsequently observed only four of eight concurrent successes.</li><li>That failure remains part of the result. It was a repair-integrity mistake after a correct diagnosis, not a provider interruption or unavailable trial.</li></ul>
+      <ul><li>All 240 trials used Replaybook commit aff5c9b, host harness v21, 16 scenarios from ducks/replaybook-infra 20260817.1.0 at commit faeda72, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.</li><li>Qwen completed 46 of 48 durable repairs, GLM 5.3 completed 45, Luna completed 44, DeepSeek completed 42, and Gemini completed 37.</li><li>The matrix was resumed after infrastructure interruptions. All 240 planned trials ultimately produced valid evaluated results under the frozen execution snapshot.</li><li>Luna reported usage and cost for 46 of 48 trials, so its published $1.3877 cost remains a lower bound. The other four model lanes have complete usage recording.</li></ul>
     </div>
 
     <h2>Constituent matrices</h2>
     <p>The publisher recorded harness provenance and validated matching scenario pack revisions, scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>
     <p class="small muted">Scenario packs: <code>ducks/replaybook-infra@20260817.1.0</code>.</p>
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
-          <tr><td><code>host-matrix-2026-08-18__22-13-27.a40a2c</code></td><td>GLM 5.3 · reasoning high</td><td><code>5062560b</code></td></tr>
+          <tr><td><code>host-matrix-2026-08-19__00-45-15.d5ec3f</code></td><td>DeepSeek V4 Flash 0731, Gemini 3.7 Flash, GPT-5.6 Luna, Qwen3.8 2.4T A95B, GLM 5.3 · reasoning high</td><td><code>aff5c9bd</code></td></tr>
     </tbody></table></div>
 
     <h2>Run the matrix</h2>
-    <pre><code>python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark.toml --models z-ai/glm-5.3 --reasoning-efforts high --concurrency 2 --base-port 25600</code></pre>
+    <pre><code>python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark.toml --models deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash openai/gpt-5.6-luna qwen/qwen3.8-2.4t-a95b z-ai/glm-5.3 --reasoning-efforts high --concurrency 2 --base-port 26000</code></pre>
 
-    <p class="small muted">Host harness v20, Claux <code>v20260815.0.0</code>, 900-second agent timeout. Usage was reported for 48 of 48 trials.</p>
+    <p class="small muted">Host harness v21, Claux <code>v20260815.0.0</code>, 900-second agent timeout. Usage was reported for 238 of 240 trials.</p>
 
     <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
 

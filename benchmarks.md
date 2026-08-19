@@ -9,18 +9,22 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## GLM 5.3 across the full infrastructure suite
+## Five models across the full infrastructure suite
 
-GLM 5.3 attempted the complete 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook, scenario-pack, Claux, reasoning, timeout, and verifier boundary.
+Five agent models attempted the same 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook v21 harness boundary.
 
-Benchmark release: `20260818.0.0`
+Benchmark release: `20260819.0.0`
 
 Scenario packs: `ducks/replaybook-infra@20260817.1.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GLM 5.3 (high) | 47/48 | 98% | 1:38 | $4.8792 | $0.1038 |
-| **Total** | **47/48** | **98%** | **1:38** | **$4.8792** | **$0.1038** |
+| Qwen3.8 2.4T A95B (high) | 46/48 | 96% | 2:02 | $8.9756 | $0.1951 |
+| GLM 5.3 (high) | 45/48 | 94% | 2:19 | $4.4098 | $0.0980 |
+| GPT-5.6 Luna (high) | 44/48 | 92% | 2:06 | $1.3877+ | $0.0315+ |
+| DeepSeek V4 Flash 0731 (high) | 42/48 | 88% | 3:47 | $0.6133 | $0.0146 |
+| Gemini 3.7 Flash (high) | 37/48 | 77% | 3:12 | $7.0245 | $0.1899 |
+| **Total** | **214/240** | **89%** | **2:34** | **$22.4110+** | **$0.1047+** |
 
 ### Execution recording
 
@@ -28,51 +32,65 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GLM 5.3 (high) | 48/48 | 15 | 1:24 | 21 | 0:12 | 0:04 | 1:31 |
+| Qwen3.8 2.4T A95B (high) | 48/48 | 15 | 1:47 | 20 | 0:11 | 0:04 | 1:59 |
+| GLM 5.3 (high) | 48/48 | 13.5 | 2:01 | 19 | 0:09 | 0:07 | 2:10 |
+| GPT-5.6 Luna (high) | 46/48 | 16 | 1:33 | 33 | 0:12 | 0:07 | 1:56 |
+| DeepSeek V4 Flash 0731 (high) | 48/48 | 16 | 3:26 | 23 | 0:11 | 0:05 | 3:38 |
+| Gemini 3.7 Flash (high) | 48/48 | 45 | 2:58 | 44 | 0:10 | 0:06 | 3:05 |
 
-GLM 5.3 completed 47 durable repairs for about $0.1038 per durable repair and about $0.1017 per attempted trial.
+Qwen led reliability at 96% and had the fastest overall median at 2:02, but also had the highest fully recorded spend at $8.9756.
 
-The cohort used 10,417,704 input tokens and 289,971 output tokens at a total metered cost of $4.8792.
+GLM 5.3 reached 94% at a 2:19 median and $4.4098, giving it the strongest balance of reliability and speed among the fully metered non-Luna lanes.
 
-Fifteen of sixteen scenarios were clean 3-for-3 sweeps. Rails pool exhaustion was 2-for-3 because one otherwise correct repair corrupted its own recovered state during cleanup.
+DeepSeek was cheapest at $0.6133 total and about $0.0146 per durable repair, but its 87% pass rate and 3:47 median show the reliability and latency tradeoff.
 
-This is a repeated full-suite reliability cohort for one model lane, not a direct head-to-head model comparison.
+Across the complete cohort, the agents produced 214 durable repairs from 240 attempts with $22.4110 in known spend.
 
 ### Scenario breakdown
 
-| Scenario | Version | GLM 5.3 (high) |
-|---|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 1:09 |
-| 013-sidekiq-wrong-redis | v2 | 3/3, 1:19 |
-| 014-missing-rails-migration | v2 | 3/3, 2:01 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 2:57 |
-| 016-rails-pool-exhaustion | v1 | 2/3, 1:33 |
-| 017-partial-rails-rollout | v1 | 3/3, 2:35 |
-| 018-node-event-loop-blocking | v1 | 3/3, 1:41 |
-| 019-rust-fd-leak | v1 | 3/3, 1:32 |
-| 020-python-gunicorn-saturation | v1 | 3/3, 1:50 |
-| 021-discourse-shared-uploads | v1 | 3/3, 3:44 |
-| 022-discourse-multisite-migration | v1 | 3/3, 1:13 |
-| 023-auth-secret-rollout | v1 | 3/3, 1:28 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 1:55 |
-| 026-discourse-plugin-boot-loop | v1 | 3/3, 1:28 |
-| 027-partial-service-rollout | v1 | 3/3, 1:18 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 2:16 |
+| Scenario | Version | Qwen3.8 2.4T A95B (high) | GLM 5.3 (high) | GPT-5.6 Luna (high) | DeepSeek V4 Flash 0731 (high) | Gemini 3.7 Flash (high) |
+|---|---:|---:|---:|---:|---:|---:|
+| 001-nginx-502-host | v1 | 3/3, 0:59 | 3/3, 1:48 | 3/3, 1:08 | 3/3, 0:53 | 2/3, 1:42 |
+| 013-sidekiq-wrong-redis | v2 | 3/3, 1:33 | 3/3, 1:51 | 3/3, 1:30 | 3/3, 2:01 | 3/3, 2:30 |
+| 014-missing-rails-migration | v2 | 3/3, 2:02 | 3/3, 3:09 | 3/3, 2:02 | 3/3, 2:45 | 3/3, 3:05 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 3:53 | 3/3, 4:14 | 3/3, 3:28 | 3/3, 4:39 | 3/3, 5:18 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 1:36 | 3/3, 1:49 | 3/3, 1:23 | 3/3, 3:49 | 3/3, 4:12 |
+| 017-partial-rails-rollout | v1 | 3/3, 2:41 | 3/3, 2:58 | 3/3, 1:40 | 1/3, 4:43 | 3/3, 4:50 |
+| 018-node-event-loop-blocking | v1 | 3/3, 1:34 | 2/3, 1:58 | 3/3, 4:00 | 3/3, 5:48 | 3/3, 4:17 |
+| 019-rust-fd-leak | v1 | 3/3, 1:53 | 2/3, 2:03 | 3/3, 2:05 | 3/3, 4:44 | 1/3, 2:20 |
+| 020-python-gunicorn-saturation | v1 | 3/3, 1:56 | 2/3, 2:34 | 2/3, 8:18 | 3/3, 4:04 | 2/3, 8:23 |
+| 021-discourse-shared-uploads | v1 | 2/3, 3:58 | 3/3, 5:09 | 3/3, 2:42 | 3/3, 9:21 | 1/3, 2:01 |
+| 022-discourse-multisite-migration | v1 | 3/3, 1:52 | 3/3, 1:59 | 3/3, 1:36 | 3/3, 1:52 | 3/3, 3:02 |
+| 023-auth-secret-rollout | v1 | 3/3, 2:23 | 3/3, 2:03 | 3/3, 2:10 | 3/3, 2:45 | 2/3, 2:58 |
+| 024-discourse-interrupted-deploy | v1 | 2/3, 2:11 | 3/3, 2:42 | 1/3, 2:22 | 0/3, 3:38 | 3/3, 3:34 |
+| 026-discourse-plugin-boot-loop | v1 | 3/3, 2:27 | 3/3, 2:06 | 2/3, 1:41 | 2/3, 2:29 | 3/3, 3:08 |
+| 027-partial-service-rollout | v1 | 3/3, 1:49 | 3/3, 2:07 | 3/3, 2:15 | 3/3, 3:48 | 1/3, 1:25 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 5:07 | 3/3, 2:46 | 3/3, 3:20 | 3/3, 6:14 | 1/3, 3:20 |
 
 ### Failure categories
 
-- `database_pool_exhausted`: 1
+- `accepted_uploads_not_recovered`: 1
+- `agent_runtime_error`: 2
+- `agent_timeout`: 2
+- `core_api_rolled_back`: 1
+- `current_sessions_unavailable`: 1
+- `host_reboot_failed`: 2
+- `new_receipts_not_writable`: 1
+- `provider_interrupted`: 2
+- `provider_policy_rejection`: 4
+- `provider_protocol_error`: 4
+- `release_not_converged`: 6
 
 ### Source matrices
 
-- `host-matrix-2026-08-18__22-13-27.a40a2c`: z-ai/glm-5.3; Replaybook `5062560b`; reasoning high
+- `host-matrix-2026-08-19__00-45-15.d5ec3f`: deepseek/deepseek-v4-flash-0731, google/gemini-3.7-flash, openai/gpt-5.6-luna, qwen/qwen3.8-2.4t-a95b, z-ai/glm-5.3; Replaybook `aff5c9bd`; reasoning high
 
 ### Run notes
 
-- All 48 trials used Replaybook commit 5062560, host harness v20, 16 scenarios from ducks/replaybook-infra 20260817.1.0 at commit 705829c, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.
-- GLM 5.3 completed 47 of 48 durable repairs for a 98% pass rate, with a 1:38 median and complete usage recording across all trials.
-- The only failure was a Rails connection-pool repair that passed immediate verification but failed the service-restart phase. The agent correctly raised DB_POOL from 1 to 5 and recovered the original failed requests, then deleted one of its own successful verification rows during cleanup. The external verifier subsequently observed only four of eight concurrent successes.
-- That failure remains part of the result. It was a repair-integrity mistake after a correct diagnosis, not a provider interruption or unavailable trial.
+- All 240 trials used Replaybook commit aff5c9b, host harness v21, 16 scenarios from ducks/replaybook-infra 20260817.1.0 at commit faeda72, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.
+- Qwen completed 46 of 48 durable repairs, GLM 5.3 completed 45, Luna completed 44, DeepSeek completed 42, and Gemini completed 37.
+- The matrix was resumed after infrastructure interruptions. All 240 planned trials ultimately produced valid evaluated results under the frozen execution snapshot.
+- Luna reported usage and cost for 46 of 48 trials, so its published $1.3877 cost remains a lower bound. The other four model lanes have complete usage recording.
 
 <!-- replaybook:current-benchmark:end -->
 
