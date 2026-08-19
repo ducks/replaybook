@@ -428,13 +428,20 @@ SCP=(
 wait_for_ssh() {
   local timeout_seconds="${1:-$VM_READY_TIMEOUT_SECONDS}"
   local deadline="$((SECONDS + timeout_seconds))"
+  local consecutive_successes=0
   while (( SECONDS < deadline )); do
     if [[ -n "$VM_PID" ]] && ! kill -0 "$VM_PID" 2>/dev/null; then
       return 1
     fi
     if "$SCRIPT_DIR/ssh-probe.sh" 5 "${SSH[@]}" true >/dev/null 2>&1; then
-      return 0
+      consecutive_successes="$((consecutive_successes + 1))"
+      if (( consecutive_successes >= 3 )); then
+        return 0
+      fi
+      sleep 1
+      continue
     fi
+    consecutive_successes=0
     sleep 2
   done
   return 1
