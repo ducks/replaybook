@@ -455,6 +455,61 @@ Importing a later DateVer release keeps earlier snapshots in the generated
 history. Optional annotations provide display names, editorial observations,
 and explicit post-run corrections with their original values and reasons.
 
+## Submit benchmark evidence
+
+Completed matrices can be submitted without sharing the original `jobs/`
+directory. Create a portable bundle from one or more compatible summaries:
+
+```sh
+python integrations/host/benchmark_submission.py bundle \
+  --submitter your-github-name \
+  --output /tmp/replaybook-benchmark.json \
+  jobs/host-matrix-first/summary.json \
+  jobs/host-matrix-second/summary.json
+```
+
+Bundle creation applies the publisher's matrix and compatibility checks,
+normalizes each run, removes private artifact fields, redacts absolute paths in
+diagnostic text, and hashes the complete evidence payload. Verify a bundle
+without making external changes:
+
+```sh
+python integrations/host/benchmark_submission.py validate \
+  /tmp/replaybook-benchmark.json
+```
+
+Submit it with an authenticated GitHub CLI:
+
+```sh
+gh auth login
+python integrations/host/benchmark_submission.py submit \
+  /tmp/replaybook-benchmark.json
+```
+
+`submit` requires a clean Replaybook checkout on the target base branch. It creates a
+`benchmark-submission/<digest>` branch, commits the bundle under
+`benchmark-submissions/`, uses the contributor's fork when they do not own the
+target repository, pushes the branch, and opens a pull request against
+`ducks/replaybook`. It does not upload transcripts, credentials, VM images, or
+the original result directory.
+
+The pull-request workflow independently verifies the content digest, every
+matrix's completeness, frozen execution metadata, cross-matrix compatibility,
+computed totals, and absence of absolute local paths. A valid PR is evidence,
+not automatic publication. After provenance review, a maintainer can promote
+the exact bundle into a DateVer release:
+
+```sh
+python integrations/host/benchmark_submission.py accept \
+  benchmark-submissions/<digest>.json \
+  --version 20260819.0.0 \
+  --annotations benchmark-data/annotations/20260819.0.0.json
+```
+
+Acceptance records the submission digest in the release and rebuilds the
+benchmark site through the existing publisher. This keeps community evidence,
+maintainer review, and public promotion as separate auditable steps.
+
 ## Run Codex
 
 The bundled Codex adapter uses `codex exec` and captures its JSON event stream,

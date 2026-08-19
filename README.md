@@ -189,6 +189,24 @@ combining summaries and retains every source matrix and Replaybook commit. See
 the [host integration guide](integrations/host/README.md#publish-benchmark-results)
 for the import and rebuild commands.
 
+Benchmark contributors can package completed matrices without publishing local
+paths, credentials, transcripts, or VM artifacts:
+
+```sh
+python integrations/host/benchmark_submission.py bundle \
+  --output /tmp/replaybook-benchmark.json \
+  jobs/host-matrix-example/summary.json
+python integrations/host/benchmark_submission.py submit \
+  /tmp/replaybook-benchmark.json
+```
+
+The content-addressed bundle carries normalized trials plus the frozen harness
+and scenario compatibility boundary. `submit` creates a dedicated Git branch,
+pushes through the contributor's fork when needed, and opens a pull request.
+GitHub Actions validates the evidence before review. See the
+[submission guide](integrations/host/README.md#submit-benchmark-evidence) for
+the complete review and promotion workflow.
+
 For a deeper dive into why the restart check matters, see [Evaluating
 Infrastructure Agents in Running Systems](https://jakegoldsborough.com/blog/2026/evaluating-infrastructure-agents-in-running-systems/).
 

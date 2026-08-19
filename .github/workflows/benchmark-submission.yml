@@ -1,0 +1,20 @@
+name: Benchmark submission
+
+on:
+  pull_request:
+    paths:
+      - "benchmark-submissions/**"
+      - "integrations/host/benchmark_submission.py"
+      - "integrations/host/publish_benchmarks.py"
+      - ".github/workflows/benchmark-submission.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate evidence bundles
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: python integrations/host/benchmark_submission.py validate-all benchmark-submissions
