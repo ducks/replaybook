@@ -142,7 +142,7 @@
   function render() {
     const records = selectedRecords();
     const release = catalog.releases.find(item => item.version === releaseFilter.value);
-    document.querySelector("#release-context").textContent = `${release.title} · harness ${release.harness_versions.map(value => `v${value}`).join("/")} · Claux ${release.claux_release} · ${release.agent_timeout_seconds}s timeout`;
+    document.querySelector("#release-context").textContent = `${release.title} · ${release.tier} tier · harness ${release.harness_versions.map(value => `v${value}`).join("/")} · Claux ${release.claux_release} · ${release.agent_timeout_seconds}s timeout`;
     const evaluated = records.reduce((sum, row) => sum + row.evaluated, 0);
     const passed = records.reduce((sum, row) => sum + row.passed, 0);
     const cost = records.reduce((sum, row) => sum + row.known_cost_usd, 0);
@@ -208,7 +208,7 @@
     const response = await fetch("benchmark-catalog.json");
     if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
     catalog = await response.json();
-    catalog.releases.slice().reverse().forEach(release => releaseFilter.append(option(release.version, `${release.version}${release.current ? " · current" : ""}`)));
+    catalog.releases.slice().reverse().forEach(release => releaseFilter.append(option(release.version, `${release.version} · ${release.tier}${release.current ? " · current" : ""}`)));
     releaseFilter.value = params.get("release") || catalog.current_version;
     if (!releaseFilter.value) releaseFilter.value = catalog.current_version;
     refreshDimensions();

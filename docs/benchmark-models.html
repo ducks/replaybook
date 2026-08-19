@@ -89,7 +89,7 @@
       identity.textContent = lane.model;
       const stats = document.createElement("div");
       stats.className = "model-card-stats";
-      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${money(cost, incomplete)}</strong> known spend</span>`;
+      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${money(cost, incomplete)}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
       const open = document.createElement("a");
       open.className = "model-card-link";
       open.href = profileUrl(lane);

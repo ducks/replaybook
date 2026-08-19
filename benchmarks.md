@@ -14,6 +14,7 @@ counts should not be compared as if they were one controlled experiment.
 Five agent models attempted the same 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook v21 harness boundary.
 
 Benchmark release: `20260819.0.0`
+Benchmark tier: `full`
 
 Scenario packs: `ducks/replaybook-infra@20260817.1.0`
 

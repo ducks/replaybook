@@ -40,6 +40,7 @@ VERSION_PATTERN = re.compile(r"^[0-9]{8}\.[0-9]+\.[0-9]+$")
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 GIT_COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40,64}$")
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
+BENCHMARK_TIERS = {"smoke", "core", "full", "frontier"}
 OPTIONAL_SNAPSHOT_HASHES = (
     "agent_adapter_sha256",
     "agent_payload_sha256",
@@ -201,6 +202,10 @@ def import_summary(path: Path) -> dict[str, Any]:
     if not isinstance(agent, dict):
         raise PublishError(f"{path}: benchmark agent must be an object")
     execution_snapshot = benchmark.get("execution_snapshot")
+    benchmark_manifest = benchmark.get("benchmark_manifest")
+    benchmark_tier = benchmark.get("tier")
+    if benchmark_tier is None and isinstance(benchmark_manifest, dict):
+        benchmark_tier = benchmark_manifest.get("tier")
     if isinstance(execution_snapshot, dict):
         execution_snapshot = dict(execution_snapshot)
         execution_snapshot.setdefault("selected_scenarios", [])
@@ -217,7 +222,8 @@ def import_summary(path: Path) -> dict[str, Any]:
         "replaybook_commit": benchmark.get("replaybook_commit"),
         "scenarios": scenarios,
         "scenario_packs": scenario_packs,
-        "benchmark_manifest": benchmark.get("benchmark_manifest"),
+        "benchmark_manifest": benchmark_manifest,
+        "benchmark_tier": benchmark_tier,
         "execution_snapshot": execution_snapshot,
         "models": models,
         "reasoning_efforts": reasoning_efforts,
@@ -239,6 +245,7 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
     scenarios = source["scenarios"]
     scenario_packs = source["scenario_packs"]
     benchmark_manifest = source["benchmark_manifest"]
+    benchmark_tier = source.get("benchmark_tier")
     execution_snapshot = source["execution_snapshot"]
     attempts = source["attempts"]
     harness_versions = source["harness_versions"]
@@ -286,6 +293,14 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
         or not SHA256_PATTERN.fullmatch(benchmark_manifest["sha256"])
     ):
         raise PublishError(f"{path}: benchmark manifest metadata is invalid")
+    if benchmark_tier is not None and benchmark_tier not in BENCHMARK_TIERS:
+        raise PublishError(f"{path}: benchmark tier is invalid")
+    if (
+        isinstance(benchmark_manifest, dict)
+        and benchmark_manifest.get("tier") is not None
+        and benchmark_manifest.get("tier") != benchmark_tier
+    ):
+        raise PublishError(f"{path}: benchmark tier does not match its manifest")
     declared_packs = {
         pack_id: version for pack_id, version in pack_keys
     }
@@ -480,6 +495,7 @@ def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
         "harness_versions": source["harness_versions"],
         "scenario_packs": scenario_packs,
         "benchmark_manifest": source["benchmark_manifest"],
+        "benchmark_tier": source.get("benchmark_tier"),
         "execution_snapshot": compatibility_snapshot(source["execution_snapshot"]),
         "attempts": source["attempts"],
         "agent_timeout_seconds": source["agent_timeout_seconds"],
@@ -745,6 +761,7 @@ def create_release_from_sources(
     return {
         "schema_version": 1,
         "version": version,
+        "tier": compatibility.get("benchmark_tier") or "unclassified",
         "title": annotations.get("title", f"Benchmark {version}"),
         "description": annotations.get("description", ""),
         "model_labels": annotations.get("model_labels", {}),
@@ -764,6 +781,9 @@ def create_release_from_sources(
 
 
 def validate_release(release: dict[str, Any], source: Path) -> None:
+    tier = release.get("tier", "unclassified")
+    if tier not in BENCHMARK_TIERS | {"unclassified"}:
+        raise PublishError(f"{source}: release has an invalid benchmark tier")
     runs = release.get("runs")
     if not isinstance(runs, list) or not runs:
         raise PublishError(f"{source}: release contains no normalized runs")
@@ -810,6 +830,24 @@ def model_sort_key(
 def label(release: dict[str, Any], kind: str, value: str) -> str:
     labels = release.get(f"{kind}_labels", {})
     return str(labels.get(value, value))
+
+
+def tier_value(release: dict[str, Any]) -> str:
+    tier = release.get("tier")
+    if tier in BENCHMARK_TIERS:
+        return str(tier)
+    manifest = release.get("compatibility", {}).get("benchmark_manifest") or {}
+    return {
+        "replaybook-infra-smoke": "smoke",
+        "replaybook-infra-core": "core",
+        "replaybook-infra": "full",
+        "replaybook-infra-real": "frontier",
+    }.get(manifest.get("id"), "unclassified")
+
+
+def tier_label(release: dict[str, Any]) -> str:
+    tier = tier_value(release)
+    return "Unclassified" if tier == "unclassified" else str(tier).title()
 
 
 def model_rows(release: dict[str, Any]) -> list[dict[str, Any]]:
@@ -873,7 +911,8 @@ def recent_scenario_section(
                 f"<td><a href=\"benchmark-explorer.html?{html.escape(query)}\">"
                 f"{html.escape(label(release, 'scenario', scenario_id))}</a></td>"
                 f"<td>v{scenario_version}</td>"
-                f"<td><code>{html.escape(release_version)}</code></td>"
+                f"<td><code>{html.escape(release_version)}</code>"
+                f" · {html.escape(tier_label(release))}</td>"
                 f"<td>{len(variants)}</td>"
                 f"<td>{passed}/{evaluated}</td>"
                 f"<td>{money(known_cost, cost_reported < trials)}</td>"
@@ -1091,7 +1130,7 @@ def html_page(release: dict[str, Any], recent_scenarios: str = "") -> str:
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Benchmark {html.escape(release['version'])}</p>
+    <p class="eyebrow">Benchmark {html.escape(release['version'])} · {html.escape(tier_label(release))} tier</p>
     <h1>{html.escape(release['title'])}</h1>
     <p class="tagline benchmark-tagline">{html.escape(release['description'])}</p>
 
@@ -1155,6 +1194,7 @@ def markdown_section(release: dict[str, Any]) -> str:
         release["description"],
         "",
         f"Benchmark release: `{release['version']}`",
+        f"Benchmark tier: `{tier_value(release)}`",
         "",
         "| Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |",
         "|---|---:|---:|---:|---:|---:|",
@@ -1164,7 +1204,7 @@ def markdown_section(release: dict[str, Any]) -> str:
         pack_names = ", ".join(
             f"`{pack['id']}@{pack['version']}`" for pack in scenario_packs
         )
-        lines[7:7] = [f"Scenario packs: {pack_names}", ""]
+        lines[8:8] = [f"Scenario packs: {pack_names}", ""]
     for row in rows:
         row_incomplete = row["cost_reported_trials"] < row["trials"]
         repair_cost = cost_per_repair(row)
@@ -1316,7 +1356,7 @@ def history_cards(index: dict[str, Any], root: Path) -> str:
         totals = release["totals"]
         cards.append(
             f"""    <div class="section-heading">
-      <div><h3>{html.escape(release['title'])}</h3><p class="muted">Benchmark {html.escape(version)}</p></div>
+      <div><h3>{html.escape(release['title'])}</h3><p class="muted">Benchmark {html.escape(version)} · {html.escape(tier_label(release))} tier</p></div>
       <span class="badge archived">Superseded</span>
     </div>
     <p>{totals['passed']}/{totals['evaluated']} durable repairs, {format_duration(totals['median_duration_seconds'])} median, {money(totals['known_cost_usd'], totals['cost_reported_trials'] < totals['trials'])} known cost.</p>"""
@@ -1340,6 +1380,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                 "title": release["title"],
                 "description": release["description"],
                 "current": version == index["current_version"],
+                "tier": tier_value(release),
                 "harness_versions": compatibility.get("harness_versions")
                 or [compatibility["harness_version"]],
                 "scenario_packs": compatibility.get("scenario_packs", []),
@@ -1354,6 +1395,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
             records.append(
                 {
                     "release": version,
+                    "tier": tier_value(release),
                     "scenario": aggregate["scenario"],
                     "scenario_label": label(release, "scenario", aggregate["scenario"]),
                     "scenario_version": aggregate["scenario_version"],
@@ -1431,6 +1473,12 @@ def public_coverage(
     fleet = []
     for item in fleet_config:
         recent = latest_variant.get((item["model"], item.get("reasoning_effort")))
+        tiers = {
+            record["tier"]
+            for record in catalog["records"]
+            if record["model"] == item["model"]
+            and record.get("reasoning_effort") == item.get("reasoning_effort")
+        }
         fleet.append(
             {
                 "model": item["model"],
@@ -1438,6 +1486,17 @@ def public_coverage(
                     recent["model_label"] if recent is not None else item["model"]
                 ),
                 "reasoning_effort": item.get("reasoning_effort"),
+                "tiers": [
+                    tier
+                    for tier in (
+                        "smoke",
+                        "core",
+                        "full",
+                        "frontier",
+                        "unclassified",
+                    )
+                    if tier in tiers
+                ],
             }
         )
 
@@ -1522,6 +1581,7 @@ def public_coverage(
                     }
                 ),
                 "boundary": {
+                    "tier": tier_value(release),
                     "harness_versions": compatibility.get("harness_versions")
                     or [compatibility["harness_version"]],
                     "host_harness_sha256": execution.get("host_harness_sha256"),
@@ -1710,7 +1770,7 @@ def explorer_page() -> str:
   function render() {{
     const records = selectedRecords();
     const release = catalog.releases.find(item => item.version === releaseFilter.value);
-    document.querySelector("#release-context").textContent = `${{release.title}} · harness ${{release.harness_versions.map(value => `v${{value}}`).join("/")}} · Claux ${{release.claux_release}} · ${{release.agent_timeout_seconds}}s timeout`;
+    document.querySelector("#release-context").textContent = `${{release.title}} · ${{release.tier}} tier · harness ${{release.harness_versions.map(value => `v${{value}}`).join("/")}} · Claux ${{release.claux_release}} · ${{release.agent_timeout_seconds}}s timeout`;
     const evaluated = records.reduce((sum, row) => sum + row.evaluated, 0);
     const passed = records.reduce((sum, row) => sum + row.passed, 0);
     const cost = records.reduce((sum, row) => sum + row.known_cost_usd, 0);
@@ -1776,7 +1836,7 @@ def explorer_page() -> str:
     const response = await fetch("benchmark-catalog.json");
     if (!response.ok) throw new Error(`catalog request failed: ${{response.status}}`);
     catalog = await response.json();
-    catalog.releases.slice().reverse().forEach(release => releaseFilter.append(option(release.version, `${{release.version}}${{release.current ? " · current" : ""}}`)));
+    catalog.releases.slice().reverse().forEach(release => releaseFilter.append(option(release.version, `${{release.version}} · ${{release.tier}}${{release.current ? " · current" : ""}}`)));
     releaseFilter.value = params.get("release") || catalog.current_version;
     if (!releaseFilter.value) releaseFilter.value = catalog.current_version;
     refreshDimensions();
@@ -1923,7 +1983,7 @@ def coverage_page() -> str:
       link.href = scenario.evidence_url;
       link.textContent = scenario.scenario_label;
       const meta = document.createElement("span");
-      meta.textContent = `v${scenario.scenario_version} · ${scenario.release}`;
+      meta.textContent = `v${scenario.scenario_version} · ${scenario.boundary.tier} · ${scenario.release}`;
       heading.append(link, meta);
       row.append(heading);
       scenario.cells.forEach(record => row.append(cell(record)));
@@ -2037,7 +2097,7 @@ def models_page() -> str:
       identity.textContent = lane.model;
       const stats = document.createElement("div");
       stats.className = "model-card-stats";
-      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${money(cost, incomplete)}</strong> known spend</span>`;
+      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${money(cost, incomplete)}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
       const open = document.createElement("a");
       open.className = "model-card-link";
       open.href = profileUrl(lane);
@@ -2145,7 +2205,7 @@ def model_page() -> str:
     document.title = `${lane.model_label} · Replaybook model evidence`;
     document.querySelector("#profile-title").textContent = lane.model_label;
     document.querySelector("#profile-effort").textContent = lane.reasoning_effort ? `Reasoning ${lane.reasoning_effort}` : "Default reasoning";
-    document.querySelector("#profile-identity").textContent = lane.model;
+    document.querySelector("#profile-identity").textContent = `${lane.model} · evidence tiers: ${lane.tiers.join(", ") || "none"}`;
 
     const key = laneKey(lane);
     const entries = coverage.scenarios.map(scenario => ({
@@ -2170,7 +2230,7 @@ def model_page() -> str:
       scenarioLink.textContent = scenario.scenario_label;
       const meta = document.createElement("span");
       meta.className = "profile-cohort";
-      meta.textContent = `v${scenario.scenario_version} · ${scenario.release}`;
+      meta.textContent = `v${scenario.scenario_version} · ${scenario.boundary.tier} · ${scenario.release}`;
       scenarioCell.append(scenarioLink, meta);
       row.append(scenarioCell);
       if (!cell || cell.status === "missing") {
