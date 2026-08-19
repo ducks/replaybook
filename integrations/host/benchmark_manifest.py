@@ -17,6 +17,7 @@ except ImportError:
 
 
 IDENTIFIER_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._/-]*$")
+BENCHMARK_TIERS = {"smoke", "core", "full", "frontier"}
 
 
 @dataclass(frozen=True)
@@ -31,6 +32,7 @@ class BenchmarkManifest:
     id: str
     version: str
     status: str | None
+    tier: str | None
     pack_path: Path
     pack_id: str
     pack_version: str
@@ -46,6 +48,7 @@ class BenchmarkManifest:
             "id": self.id,
             "version": self.version,
             "status": self.status,
+            "tier": self.tier,
             "sha256": self.sha256,
         }
 
@@ -156,11 +159,18 @@ def load_benchmark_manifest(path: Path) -> BenchmarkManifest:
     status = benchmark.get("status")
     if status is not None and (not isinstance(status, str) or not status.strip()):
         raise ValueError(f"{source}: benchmark.status must be a non-empty string")
+    tier = benchmark.get("tier")
+    if tier is not None and tier not in BENCHMARK_TIERS:
+        raise ValueError(
+            f"{source}: benchmark.tier must be one of "
+            + ", ".join(sorted(BENCHMARK_TIERS))
+        )
     return BenchmarkManifest(
         path=source,
         id=benchmark_id,
         version=string_field(benchmark, "version", source),
         status=status,
+        tier=tier,
         pack_path=pack_path,
         pack_id=pack_id,
         pack_version=string_field(pack, "version", source),

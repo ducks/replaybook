@@ -129,7 +129,7 @@
       link.href = scenario.evidence_url;
       link.textContent = scenario.scenario_label;
       const meta = document.createElement("span");
-      meta.textContent = `v${scenario.scenario_version} · ${scenario.release}`;
+      meta.textContent = `v${scenario.scenario_version} · ${scenario.boundary.tier} · ${scenario.release}`;
       heading.append(link, meta);
       row.append(heading);
       scenario.cells.forEach(record => row.append(cell(record)));

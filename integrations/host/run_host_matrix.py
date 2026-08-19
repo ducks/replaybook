@@ -37,7 +37,7 @@ REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 21
+HOST_HARNESS_VERSION = 22
 TRIAL_STATUSES = {"evaluated", "unavailable"}
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -1414,6 +1414,8 @@ def main(argv: list[str] | None = None) -> int:
             if manifest is None:
                 raise ValueError("--check requires --benchmark")
             print(f"[benchmark] {manifest.id}@{manifest.version} is valid")
+            if manifest.tier:
+                print(f"[benchmark] tier: {manifest.tier}")
             print(f"[benchmark] pack: {manifest.pack_id}@{manifest.pack_version}")
             print(
                 f"[benchmark] {len(scenarios)} scenarios, "
@@ -1497,6 +1499,7 @@ def main(argv: list[str] | None = None) -> int:
         "suite": "replaybook-host-matrix-v1",
         "replaybook_commit": current_commit(),
         "benchmark_manifest": manifest.metadata() if manifest else None,
+        "tier": manifest.tier if manifest else None,
         "scenarios": [
             discovered[scenario].metadata()
             for scenario in scenarios

@@ -31,6 +31,7 @@ def write_benchmark(root: Path, *, scenario_version: int = 2) -> Path:
 id = "test-infra"
 version = "20260810.0.0"
 status = "preview"
+tier = "core"
 attempts = 3
 agent_timeout_seconds = 600
 required_host_harness_version = {HOST_HARNESS_VERSION}
@@ -64,6 +65,8 @@ class BenchmarkManifestTests(unittest.TestCase):
             manifest.validate_environment(packs, scenarios, HOST_HARNESS_VERSION)
 
         self.assertEqual(manifest.id, "test-infra")
+        self.assertEqual(manifest.tier, "core")
+        self.assertEqual(manifest.metadata()["tier"], "core")
         self.assertEqual(manifest.attempts, 3)
         self.assertEqual(manifest.agent_timeout_seconds, 600)
         self.assertEqual(manifest.scenarios[0].id, "database-incident")
@@ -80,6 +83,13 @@ class BenchmarkManifestTests(unittest.TestCase):
                 manifest.validate_environment(
                     packs, scenarios, HOST_HARNESS_VERSION
                 )
+
+    def test_rejects_unknown_benchmark_tier(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = write_benchmark(Path(temporary))
+            path.write_text(path.read_text().replace('tier = "core"', 'tier = "huge"'))
+            with self.assertRaisesRegex(ValueError, "benchmark.tier"):
+                load_benchmark_manifest(path)
 
     def test_benchmark_supplies_matrix_dimensions(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

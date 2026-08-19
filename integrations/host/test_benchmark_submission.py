@@ -41,6 +41,16 @@ class BenchmarkSubmissionTests(unittest.TestCase):
         self.assertNotIn("/tmp/private", encoded)
         self.assertEqual(bundle["evidence"]["sources"][0]["source"], "matrix-001")
 
+    def test_bundle_preserves_benchmark_tier(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            bundle = create_bundle(
+                [self.write_summary(root, summary("model/a", tier="core"))]
+            )
+
+        self.assertEqual(bundle["evidence"]["compatibility"]["benchmark_tier"], "core")
+        self.assertEqual(bundle["evidence"]["sources"][0]["benchmark_tier"], "core")
+
     def test_bundle_redacts_absolute_paths_in_failure_text(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

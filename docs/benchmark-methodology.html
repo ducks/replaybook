@@ -119,6 +119,7 @@
       <li>the same frozen scenario and verifier versions;</li>
       <li>the same host harness version and agent timeout;</li>
       <li>the same agent harness, prompt, tools, and permissions;</li>
+      <li>the same smoke, core, full, or frontier benchmark tier;</li>
       <li>at least three attempts per model and scenario;</li>
       <li>complete cost, duration, and failure provenance;</li>
       <li>sanitized artifacts suitable for independent inspection.</li>
@@ -129,6 +130,17 @@
       do not establish reliability. Results from different verifier versions
       belong in <a href="benchmark-history.html">History</a>, not in the same
       pass-rate table.
+    </p>
+
+    <h2>Benchmark tiers</h2>
+
+    <p>
+      Smoke qualifies a new model or harness with minimal spend. Core provides
+      a representative repeated comparison. Full covers every stable incident
+      scenario, while frontier contains unusually expensive real-system tasks
+      with separate deadlines. Tier identity is recorded in matrix summaries,
+      submission bundles, public APIs, and release pages. Cross-tier results
+      are never silently pooled.
     </p>
 
     <h2>Harness versions</h2>
@@ -150,6 +162,8 @@
           <tr><td>v10</td><td>Kept provider credentials outside incident VMs behind a host-side forwarding proxy.</td></tr>
           <tr><td>v11</td><td>Recorded provider-round and tool-call timings for adapters that expose them.</td></tr>
           <tr><td>v20</td><td>Separated provider policy and protocol failures from agent runtime errors.</td></tr>
+          <tr><td>v21</td><td>Hardened SSH readiness, credential-tunnel recovery, and result capture for resumable matrices.</td></tr>
+          <tr><td>v22</td><td>Made smoke, core, full, and frontier tiers part of matrix provenance and compatibility.</td></tr>
         </tbody>
       </table>
     </div>
@@ -159,8 +173,8 @@
     <p>
       The <a href="benchmark-coverage.json">Coverage API</a> publishes the
       canonical model fleet, newest exact cohort for each scenario, explicit
-      missing cells, aggregate outcomes, and path-free harness and verifier
-      provenance. Its <code>schema_version</code> changes when consumers must
+      missing cells, benchmark tiers, aggregate outcomes, and path-free harness
+      and verifier provenance. Its <code>schema_version</code> changes when consumers must
       update their parser. The broader immutable release catalog remains
       available as <a href="benchmark-catalog.json">benchmark-catalog.json</a>.
     </p>

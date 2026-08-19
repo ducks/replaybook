@@ -4,27 +4,50 @@
     {
       "model": "deepseek/deepseek-v4-flash-0731",
       "model_label": "DeepSeek V4 Flash 0731",
-      "reasoning_effort": "high"
+      "reasoning_effort": "high",
+      "tiers": [
+        "full",
+        "frontier",
+        "unclassified"
+      ]
     },
     {
       "model": "google/gemini-3.7-flash",
       "model_label": "Gemini 3.7 Flash",
-      "reasoning_effort": "high"
+      "reasoning_effort": "high",
+      "tiers": [
+        "full",
+        "frontier",
+        "unclassified"
+      ]
     },
     {
       "model": "openai/gpt-5.6-luna",
       "model_label": "GPT-5.6 Luna",
-      "reasoning_effort": "high"
+      "reasoning_effort": "high",
+      "tiers": [
+        "full",
+        "frontier",
+        "unclassified"
+      ]
     },
     {
       "model": "qwen/qwen3.8-2.4t-a95b",
       "model_label": "Qwen3.8 2.4T A95B",
-      "reasoning_effort": "high"
+      "reasoning_effort": "high",
+      "tiers": [
+        "full",
+        "frontier",
+        "unclassified"
+      ]
     },
     {
       "model": "z-ai/glm-5.3",
       "model_label": "GLM 5.3",
-      "reasoning_effort": "high"
+      "reasoning_effort": "high",
+      "tiers": [
+        "full"
+      ]
     }
   ],
   "generated_from": "20260819.0.0",
@@ -46,7 +69,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721"
+        "scenario_snapshot_sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+        "tier": "full"
       },
       "cells": [
         {
@@ -72,6 +96,7 @@
           "scenario_label": "001-nginx-502-host",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -101,6 +126,7 @@
           "scenario_label": "001-nginx-502-host",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -128,6 +154,7 @@
           "scenario_label": "001-nginx-502-host",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -155,6 +182,7 @@
           "scenario_label": "001-nginx-502-host",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -182,6 +210,7 @@
           "scenario_label": "001-nginx-502-host",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -210,7 +239,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6"
+        "scenario_snapshot_sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+        "tier": "full"
       },
       "cells": [
         {
@@ -236,6 +266,7 @@
           "scenario_label": "013-sidekiq-wrong-redis",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -263,6 +294,7 @@
           "scenario_label": "013-sidekiq-wrong-redis",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -290,6 +322,7 @@
           "scenario_label": "013-sidekiq-wrong-redis",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -317,6 +350,7 @@
           "scenario_label": "013-sidekiq-wrong-redis",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -344,6 +378,7 @@
           "scenario_label": "013-sidekiq-wrong-redis",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -372,7 +407,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "3f717ba6ce09a00943eb32d6ae18fc0b63588b53703cdcdce2b249e1d63e8f6d"
+        "scenario_snapshot_sha256": "3f717ba6ce09a00943eb32d6ae18fc0b63588b53703cdcdce2b249e1d63e8f6d",
+        "tier": "full"
       },
       "cells": [
         {
@@ -398,6 +434,7 @@
           "scenario_label": "014-missing-rails-migration",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -425,6 +462,7 @@
           "scenario_label": "014-missing-rails-migration",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -452,6 +490,7 @@
           "scenario_label": "014-missing-rails-migration",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -479,6 +518,7 @@
           "scenario_label": "014-missing-rails-migration",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -506,6 +546,7 @@
           "scenario_label": "014-missing-rails-migration",
           "scenario_version": 2,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -534,7 +575,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b"
+        "scenario_snapshot_sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+        "tier": "full"
       },
       "cells": [
         {
@@ -560,6 +602,7 @@
           "scenario_label": "015-sidekiq-poison-pill",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -587,6 +630,7 @@
           "scenario_label": "015-sidekiq-poison-pill",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -614,6 +658,7 @@
           "scenario_label": "015-sidekiq-poison-pill",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -641,6 +686,7 @@
           "scenario_label": "015-sidekiq-poison-pill",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -668,6 +714,7 @@
           "scenario_label": "015-sidekiq-poison-pill",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -696,7 +743,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256"
+        "scenario_snapshot_sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+        "tier": "full"
       },
       "cells": [
         {
@@ -722,6 +770,7 @@
           "scenario_label": "016-rails-pool-exhaustion",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -749,6 +798,7 @@
           "scenario_label": "016-rails-pool-exhaustion",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -776,6 +826,7 @@
           "scenario_label": "016-rails-pool-exhaustion",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -803,6 +854,7 @@
           "scenario_label": "016-rails-pool-exhaustion",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -830,6 +882,7 @@
           "scenario_label": "016-rails-pool-exhaustion",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -858,7 +911,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce"
+        "scenario_snapshot_sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+        "tier": "full"
       },
       "cells": [
         {
@@ -886,6 +940,7 @@
           "scenario_label": "017-partial-rails-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -913,6 +968,7 @@
           "scenario_label": "017-partial-rails-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -940,6 +996,7 @@
           "scenario_label": "017-partial-rails-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -967,6 +1024,7 @@
           "scenario_label": "017-partial-rails-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -994,6 +1052,7 @@
           "scenario_label": "017-partial-rails-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1022,7 +1081,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "deadd0eaaa1d86754f5109eabe17287a6ed9f0cd19b659170859e36c20d48d78"
+        "scenario_snapshot_sha256": "deadd0eaaa1d86754f5109eabe17287a6ed9f0cd19b659170859e36c20d48d78",
+        "tier": "full"
       },
       "cells": [
         {
@@ -1048,6 +1108,7 @@
           "scenario_label": "018-node-event-loop-blocking",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1075,6 +1136,7 @@
           "scenario_label": "018-node-event-loop-blocking",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1102,6 +1164,7 @@
           "scenario_label": "018-node-event-loop-blocking",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1129,6 +1192,7 @@
           "scenario_label": "018-node-event-loop-blocking",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1158,6 +1222,7 @@
           "scenario_label": "018-node-event-loop-blocking",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1186,7 +1251,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee"
+        "scenario_snapshot_sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+        "tier": "full"
       },
       "cells": [
         {
@@ -1212,6 +1278,7 @@
           "scenario_label": "019-rust-fd-leak",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1241,6 +1308,7 @@
           "scenario_label": "019-rust-fd-leak",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1268,6 +1336,7 @@
           "scenario_label": "019-rust-fd-leak",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1295,6 +1364,7 @@
           "scenario_label": "019-rust-fd-leak",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1324,6 +1394,7 @@
           "scenario_label": "019-rust-fd-leak",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1352,7 +1423,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "e4818d58a594382f0dfa4b334e319f8ede2a27867b20d97f0af128e1d6a127aa"
+        "scenario_snapshot_sha256": "e4818d58a594382f0dfa4b334e319f8ede2a27867b20d97f0af128e1d6a127aa",
+        "tier": "full"
       },
       "cells": [
         {
@@ -1378,6 +1450,7 @@
           "scenario_label": "020-python-gunicorn-saturation",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1407,6 +1480,7 @@
           "scenario_label": "020-python-gunicorn-saturation",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1436,6 +1510,7 @@
           "scenario_label": "020-python-gunicorn-saturation",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1463,6 +1538,7 @@
           "scenario_label": "020-python-gunicorn-saturation",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1492,6 +1568,7 @@
           "scenario_label": "020-python-gunicorn-saturation",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1520,7 +1597,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f"
+        "scenario_snapshot_sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+        "tier": "full"
       },
       "cells": [
         {
@@ -1546,6 +1624,7 @@
           "scenario_label": "021-discourse-shared-uploads",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1576,6 +1655,7 @@
           "scenario_label": "021-discourse-shared-uploads",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1603,6 +1683,7 @@
           "scenario_label": "021-discourse-shared-uploads",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1632,6 +1713,7 @@
           "scenario_label": "021-discourse-shared-uploads",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1659,6 +1741,7 @@
           "scenario_label": "021-discourse-shared-uploads",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1687,7 +1770,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "a64858520a1751f5f71bb40a7660c68af760a631d9e4f27a8ef239916d68d732"
+        "scenario_snapshot_sha256": "a64858520a1751f5f71bb40a7660c68af760a631d9e4f27a8ef239916d68d732",
+        "tier": "full"
       },
       "cells": [
         {
@@ -1713,6 +1797,7 @@
           "scenario_label": "022-discourse-multisite-migration",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1740,6 +1825,7 @@
           "scenario_label": "022-discourse-multisite-migration",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1767,6 +1853,7 @@
           "scenario_label": "022-discourse-multisite-migration",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1794,6 +1881,7 @@
           "scenario_label": "022-discourse-multisite-migration",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1821,6 +1909,7 @@
           "scenario_label": "022-discourse-multisite-migration",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1849,7 +1938,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169"
+        "scenario_snapshot_sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+        "tier": "full"
       },
       "cells": [
         {
@@ -1875,6 +1965,7 @@
           "scenario_label": "023-auth-secret-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1904,6 +1995,7 @@
           "scenario_label": "023-auth-secret-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1931,6 +2023,7 @@
           "scenario_label": "023-auth-secret-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1958,6 +2051,7 @@
           "scenario_label": "023-auth-secret-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1985,6 +2079,7 @@
           "scenario_label": "023-auth-secret-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2013,7 +2108,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b"
+        "scenario_snapshot_sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+        "tier": "full"
       },
       "cells": [
         {
@@ -2041,6 +2137,7 @@
           "scenario_label": "024-discourse-interrupted-deploy",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2068,6 +2165,7 @@
           "scenario_label": "024-discourse-interrupted-deploy",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2097,6 +2195,7 @@
           "scenario_label": "024-discourse-interrupted-deploy",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2126,6 +2225,7 @@
           "scenario_label": "024-discourse-interrupted-deploy",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2153,6 +2253,7 @@
           "scenario_label": "024-discourse-interrupted-deploy",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2181,7 +2282,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260815.0.0"
         },
-        "scenario_snapshot_sha256": null
+        "scenario_snapshot_sha256": null,
+        "tier": "frontier"
       },
       "cells": [
         {
@@ -2207,6 +2309,7 @@
           "scenario_label": "025-discourse-bootstrap",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "frontier",
           "trials": 1,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2234,6 +2337,7 @@
           "scenario_label": "025-discourse-bootstrap",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "frontier",
           "trials": 1,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2261,6 +2365,7 @@
           "scenario_label": "025-discourse-bootstrap",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "frontier",
           "trials": 1,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2288,6 +2393,7 @@
           "scenario_label": "025-discourse-bootstrap",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "frontier",
           "trials": 1,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2296,7 +2402,10 @@
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "reasoning_effort": "high",
-          "status": "missing"
+          "status": "missing",
+          "tiers": [
+            "full"
+          ]
         }
       ],
       "evidence_url": "benchmark-explorer.html?release=20260816.0.0&scenario=025-discourse-bootstrap",
@@ -2322,7 +2431,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "7bceaaf21df61d7a8a8b05c6ee77478ace16b1a86ce1d14707a2f897c278b8aa"
+        "scenario_snapshot_sha256": "7bceaaf21df61d7a8a8b05c6ee77478ace16b1a86ce1d14707a2f897c278b8aa",
+        "tier": "full"
       },
       "cells": [
         {
@@ -2350,6 +2460,7 @@
           "scenario_label": "026-discourse-plugin-boot-loop",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2377,6 +2488,7 @@
           "scenario_label": "026-discourse-plugin-boot-loop",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2406,6 +2518,7 @@
           "scenario_label": "026-discourse-plugin-boot-loop",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2433,6 +2546,7 @@
           "scenario_label": "026-discourse-plugin-boot-loop",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2460,6 +2574,7 @@
           "scenario_label": "026-discourse-plugin-boot-loop",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2488,7 +2603,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "0389d64b69ed2dba434edad67282a29c3484792fd4f2e6dd1b09a7b3a1b499b9"
+        "scenario_snapshot_sha256": "0389d64b69ed2dba434edad67282a29c3484792fd4f2e6dd1b09a7b3a1b499b9",
+        "tier": "full"
       },
       "cells": [
         {
@@ -2514,6 +2630,7 @@
           "scenario_label": "027-partial-service-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2543,6 +2660,7 @@
           "scenario_label": "027-partial-service-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2570,6 +2688,7 @@
           "scenario_label": "027-partial-service-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2597,6 +2716,7 @@
           "scenario_label": "027-partial-service-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2624,6 +2744,7 @@
           "scenario_label": "027-partial-service-rollout",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2652,7 +2773,8 @@
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
-        "scenario_snapshot_sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7"
+        "scenario_snapshot_sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+        "tier": "full"
       },
       "cells": [
         {
@@ -2678,6 +2800,7 @@
           "scenario_label": "028-nix-store-disk-pressure",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2708,6 +2831,7 @@
           "scenario_label": "028-nix-store-disk-pressure",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2735,6 +2859,7 @@
           "scenario_label": "028-nix-store-disk-pressure",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2762,6 +2887,7 @@
           "scenario_label": "028-nix-store-disk-pressure",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -2789,6 +2915,7 @@
           "scenario_label": "028-nix-store-disk-pressure",
           "scenario_version": 1,
           "status": "covered",
+          "tier": "full",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}

@@ -316,10 +316,11 @@ its hash without retaining the secret-bearing file.
 
 ## Run an executable benchmark manifest
 
-A benchmark repository can freeze its scenario pack, scenario versions,
+A benchmark repository can freeze its tier, scenario pack, scenario versions,
 attempt count, timeout, verification policy, and required host harness in a
-`benchmark.toml`. Run that controlled experiment without repeating its matrix
-dimensions on the command line:
+`benchmark.toml`. Supported tiers are `smoke`, `core`, `full`, and `frontier`.
+Run that controlled experiment without repeating its matrix dimensions on the
+command line:
 
 ```sh
 python integrations/host/run_host_matrix.py \
@@ -350,9 +351,11 @@ python integrations/host/run_host_matrix.py \
   --oracle
 ```
 
-Every generated matrix records the benchmark ID, version, and manifest hash.
-The publisher treats that identity as part of benchmark compatibility, so
-results from modified manifests cannot be silently combined.
+Every generated matrix records the benchmark ID, version, tier, and manifest
+hash. The publisher treats the tier and manifest identity as part of benchmark
+compatibility, so cross-tier results and results from modified manifests cannot
+be silently combined. Older manifests without a tier remain readable as
+unclassified historical evidence.
 
 Before launching its first worker, the matrix runner copies the host runner,
 helper scripts, selected scenario packs, custom adapter, custom payload, and

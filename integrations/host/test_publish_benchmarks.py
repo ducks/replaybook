@@ -30,6 +30,7 @@ def summary(
     scenario_snapshot_hash: str | None = None,
     pack_snapshot_hash: str = "b" * 64,
     benchmark_hash: str | None = None,
+    tier: str | None = None,
 ) -> dict:
     run_id = f"001-nginx-{model}-1"
     return {
@@ -88,11 +89,13 @@ def summary(
                     "id": "replaybook-infra",
                     "version": "20260810.0.0",
                     "status": "preview",
+                    "tier": tier,
                     "sha256": benchmark_hash,
                 }
                 if benchmark_hash is not None
                 else None
             ),
+            "tier": tier,
             "models": [model],
             "attempts": 1,
             "concurrency": 1,
@@ -165,6 +168,29 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual(len(release["sources"]), 2)
         self.assertNotIn("result_file", release["runs"][0])
         self.assertNotIn("transcript_file", release["runs"][0])
+
+    def test_propagates_tier_into_release_and_catalog(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = summary(
+                "model/a",
+                tier="core",
+                benchmark_hash="d" * 64,
+            )
+            path = self.write_summary(root, "matrix", value)
+            release = create_release("20260819.0.0", [path], {})
+
+        self.assertEqual(release["tier"], "core")
+        self.assertEqual(release["compatibility"]["benchmark_tier"], "core")
+        self.assertIn("Core tier", html_page(release))
+
+    def test_rejects_cross_tier_aggregation(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = self.write_summary(root, "smoke", summary("model/a", tier="smoke"))
+            second = self.write_summary(root, "core", summary("model/b", tier="core"))
+            with self.assertRaisesRegex(PublishError, "benchmark_tier differs"):
+                create_release("20260819.0.0", [first, second], {})
 
     def test_imports_complete_model_cohort_split_across_scenario_shards(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -114,7 +114,8 @@ python integrations/host/run_host_matrix.py \
 
 Run the separately versioned
 [Replaybook Infra](https://github.com/ducks/replaybook-infra) benchmark from
-its executable manifest:
+its executable manifest. Replaybook Infra provides smoke, core, full, and
+frontier tiers; `benchmark.toml` is the full publication suite:
 
 ```sh
 python integrations/host/run_host_matrix.py \

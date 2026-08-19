@@ -86,7 +86,7 @@
     document.title = `${lane.model_label} · Replaybook model evidence`;
     document.querySelector("#profile-title").textContent = lane.model_label;
     document.querySelector("#profile-effort").textContent = lane.reasoning_effort ? `Reasoning ${lane.reasoning_effort}` : "Default reasoning";
-    document.querySelector("#profile-identity").textContent = lane.model;
+    document.querySelector("#profile-identity").textContent = `${lane.model} · evidence tiers: ${lane.tiers.join(", ") || "none"}`;
 
     const key = laneKey(lane);
     const entries = coverage.scenarios.map(scenario => ({
@@ -111,7 +111,7 @@
       scenarioLink.textContent = scenario.scenario_label;
       const meta = document.createElement("span");
       meta.className = "profile-cohort";
-      meta.textContent = `v${scenario.scenario_version} · ${scenario.release}`;
+      meta.textContent = `v${scenario.scenario_version} · ${scenario.boundary.tier} · ${scenario.release}`;
       scenarioCell.append(scenarioLink, meta);
       row.append(scenarioCell);
       if (!cell || cell.status === "missing") {
