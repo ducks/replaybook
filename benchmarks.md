@@ -9,22 +9,18 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Five agents across thirteen infrastructure incidents
+## GLM 5.3 across the full infrastructure suite
 
-Five infrastructure-agent lanes each attempted the same 13-scenario cross-stack repair sweep once. Every trial ran under one compatible Replaybook, scenario-pack, Claux, reasoning, timeout, and verifier boundary.
+GLM 5.3 attempted the complete 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook, scenario-pack, Claux, reasoning, timeout, and verifier boundary.
 
-Benchmark release: `20260817.0.3`
+Benchmark release: `20260818.0.0`
 
 Scenario packs: `ducks/replaybook-infra@20260817.1.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash 0731 (high) | 12/13 | 92% | 2:41 | $0.1823 | $0.0152 |
-| GPT-5.6 Luna (high) | 11/13 | 85% | 1:43 | $0.3620+ | $0.0329+ |
-| Gemini 3.7 Flash (high) | 10/13 | 77% | 3:42 | $1.9518 | $0.1952 |
-| GLM 5.2 (high) | 13/13 | 100% | 2:55 | $1.4433 | $0.1110 |
-| Qwen3.8 2.4T A95B (high) | 13/13 | 100% | 1:51 | $2.3405 | $0.1800 |
-| **Total** | **59/65** | **91%** | **2:43** | **$6.2799+** | **$0.1064+** |
+| GLM 5.3 (high) | 47/48 | 98% | 1:38 | $4.8792 | $0.1038 |
+| **Total** | **47/48** | **98%** | **1:38** | **$4.8792** | **$0.1038** |
 
 ### Execution recording
 
@@ -32,60 +28,51 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash 0731 (high) | 13/13 | 17 | 2:17 | 23 | 0:12 | 0:05 | 2:35 |
-| GPT-5.6 Luna (high) | 12/13 | 16 | 1:22 | 34.5 | 0:18 | 0:07 | 1:30 |
-| Gemini 3.7 Flash (high) | 13/13 | 48 | 3:21 | 47 | 0:18 | 0:06 | 3:33 |
-| GLM 5.2 (high) | 13/13 | 17 | 2:47 | 21 | 0:11 | 0:05 | 2:52 |
-| Qwen3.8 2.4T A95B (high) | 13/13 | 15 | 1:43 | 20 | 0:11 | 0:04 | 1:43 |
+| GLM 5.3 (high) | 48/48 | 15 | 1:24 | 21 | 0:12 | 0:04 | 1:31 |
 
-Qwen3.8 2.4T A95B was the fastest perfect lane with a 1:51 median and cost about $0.1800 per durable repair.
+GLM 5.3 completed 47 durable repairs for about $0.1038 per durable repair and about $0.1017 per attempted trial.
 
-GLM 5.2 also completed all 13 repairs, with a 2:55 median and about $0.1110 per durable repair.
+The cohort used 10,417,704 input tokens and 289,971 output tokens at a total metered cost of $4.8792.
 
-DeepSeek V4 Flash 0731 completed 12 of 13 repairs at about $0.0152 per durable repair, by far the lowest observed repair cost in this cohort.
+Fifteen of sixteen scenarios were clean 3-for-3 sweeps. Rails pool exhaustion was 2-for-3 because one otherwise correct repair corrupted its own recovered state during cleanup.
 
-GPT-5.6 Luna had the fastest overall median at 1:43 and cost at least $0.0329 per durable repair, but completed 11 of 13 trials.
-
-Gemini 3.7 Flash used the most input tokens, completed 10 of 13 trials, and cost about $0.1952 per durable repair across the full agent-provider lane.
+This is a repeated full-suite reliability cohort for one model lane, not a direct head-to-head model comparison.
 
 ### Scenario breakdown
 
-| Scenario | Version | DeepSeek V4 Flash 0731 (high) | GPT-5.6 Luna (high) | Gemini 3.7 Flash (high) | GLM 5.2 (high) | Qwen3.8 2.4T A95B (high) |
-|---|---:|---:|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 1/1, 1:16 | 1/1, 1:27 | 1/1, 2:21 | 1/1, 2:04 | 1/1, 1:22 |
-| 013-sidekiq-wrong-redis | v2 | 1/1, 1:25 | 1/1, 1:43 | 0/1, 2:37 | 1/1, 1:23 | 1/1, 1:14 |
-| 014-missing-rails-migration | v2 | 1/1, 7:28 | 1/1, 2:21 | 1/1, 4:05 | 1/1, 2:53 | 1/1, 3:25 |
-| 015-sidekiq-poison-pill | v1 | 1/1, 5:51 | 1/1, 2:46 | 0/1, 1:23 | 1/1, 10:57 | 1/1, 3:31 |
-| 016-rails-pool-exhaustion | v1 | 1/1, 2:12 | 1/1, 1:25 | 0/1, 3:49 | 1/1, 1:16 | 1/1, 1:40 |
-| 017-partial-rails-rollout | v1 | 1/1, 2:41 | 1/1, 2:38 | 1/1, 5:10 | 1/1, 10:54 | 1/1, 3:48 |
-| 018-node-event-loop-blocking | v1 | 1/1, 3:43 | 0/1, 15:31 | 1/1, 4:09 | 1/1, 1:36 | 1/1, 1:33 |
-| 019-rust-fd-leak | v1 | 1/1, 2:06 | 1/1, 1:36 | 1/1, 3:30 | 1/1, 3:15 | 1/1, 1:51 |
-| 020-python-gunicorn-saturation | v1 | 1/1, 7:28 | 1/1, 1:31 | 1/1, 7:08 | 1/1, 6:08 | 1/1, 2:16 |
-| 021-discourse-shared-uploads | v1 | 1/1, 8:36 | 1/1, 4:14 | 1/1, 3:52 | 1/1, 3:22 | 1/1, 3:57 |
-| 022-discourse-multisite-migration | v1 | 1/1, 1:54 | 1/1, 1:17 | 1/1, 3:22 | 1/1, 2:06 | 1/1, 1:47 |
-| 023-auth-secret-rollout | v1 | 1/1, 3:30 | 1/1, 5:38 | 1/1, 3:42 | 1/1, 3:17 | 1/1, 2:43 |
-| 024-discourse-interrupted-deploy | v1 | 0/1, 2:25 | 0/1, 1:32 | 1/1, 3:31 | 1/1, 2:55 | 1/1, 1:25 |
+| Scenario | Version | GLM 5.3 (high) |
+|---|---:|---:|
+| 001-nginx-502-host | v1 | 3/3, 1:09 |
+| 013-sidekiq-wrong-redis | v2 | 3/3, 1:19 |
+| 014-missing-rails-migration | v2 | 3/3, 2:01 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 2:57 |
+| 016-rails-pool-exhaustion | v1 | 2/3, 1:33 |
+| 017-partial-rails-rollout | v1 | 3/3, 2:35 |
+| 018-node-event-loop-blocking | v1 | 3/3, 1:41 |
+| 019-rust-fd-leak | v1 | 3/3, 1:32 |
+| 020-python-gunicorn-saturation | v1 | 3/3, 1:50 |
+| 021-discourse-shared-uploads | v1 | 3/3, 3:44 |
+| 022-discourse-multisite-migration | v1 | 3/3, 1:13 |
+| 023-auth-secret-rollout | v1 | 3/3, 1:28 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 1:55 |
+| 026-discourse-plugin-boot-loop | v1 | 3/3, 1:28 |
+| 027-partial-service-rollout | v1 | 3/3, 1:18 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 2:16 |
 
 ### Failure categories
 
-- `agent_timeout`: 1
 - `database_pool_exhausted`: 1
-- `provider_policy_rejection`: 1
-- `provider_protocol_error`: 1
-- `release_not_converged`: 2
 
 ### Source matrices
 
-- `host-matrix-2026-08-17__23-40-19.08b196`: deepseek/deepseek-v4-flash-0731, google/gemini-3.7-flash, openai/gpt-5.6-luna, qwen/qwen3.8-2.4t-a95b, z-ai/glm-5.2; Replaybook `d89f739a`; reasoning high
+- `host-matrix-2026-08-18__22-13-27.a40a2c`: z-ai/glm-5.3; Replaybook `5062560b`; reasoning high
 
 ### Run notes
 
-- All 65 trials used Replaybook commit d89f739, host harness v20, 13 selected scenarios from ducks/replaybook-infra 20260817.1.0 at commit 705829c, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.
-- This is a broad one-attempt-per-scenario coverage cohort. It compares behavior across a shared boundary but is not a repeated-trial reliability estimate.
-- Qwen3.8 2.4T A95B and GLM 5.2 completed all 13 durable repairs. DeepSeek completed 12, GPT-5.6 Luna completed 11, and Gemini completed 10.
-- Gemini's three losses included a provider protocol error, a provider policy rejection, and one repair that failed reboot verification. Provider failures remain execution-lane failures, but they are not evidence that the verifier rejected a completed repair.
-- GPT-5.6 Luna timed out on the Node.js event-loop incident and did not converge the interrupted Discourse release. DeepSeek's only loss was also a non-converged interrupted Discourse release.
-- GPT-5.6 Luna reported usage for 12 of 13 trials, so its published total cost and cost per durable repair are lower bounds. The other four lanes reported usage for every trial.
+- All 48 trials used Replaybook commit 5062560, host harness v20, 16 scenarios from ducks/replaybook-infra 20260817.1.0 at commit 705829c, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.
+- GLM 5.3 completed 47 of 48 durable repairs for a 98% pass rate, with a 1:38 median and complete usage recording across all trials.
+- The only failure was a Rails connection-pool repair that passed immediate verification but failed the service-restart phase. The agent correctly raised DB_POOL from 1 to 5 and recovered the original failed requests, then deleted one of its own successful verification rows during cleanup. The external verifier subsequently observed only four of eight concurrent successes.
+- That failure remains part of the result. It was a repair-integrity mistake after a correct diagnosis, not a provider interruption or unavailable trial.
 
 <!-- replaybook:current-benchmark:end -->
 

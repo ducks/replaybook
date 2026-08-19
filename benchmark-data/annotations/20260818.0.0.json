@@ -1,0 +1,23 @@
+{
+  "description": "GLM 5.3 attempted the complete 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook, scenario-pack, Claux, reasoning, timeout, and verifier boundary.",
+  "model_labels": {
+    "z-ai/glm-5.3": "GLM 5.3"
+  },
+  "model_order": [
+    "z-ai/glm-5.3"
+  ],
+  "notes": [
+    "All 48 trials used Replaybook commit 5062560, host harness v20, 16 scenarios from ducks/replaybook-infra 20260817.1.0 at commit 705829c, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.",
+    "GLM 5.3 completed 47 of 48 durable repairs for a 98% pass rate, with a 1:38 median and complete usage recording across all trials.",
+    "The only failure was a Rails connection-pool repair that passed immediate verification but failed the service-restart phase. The agent correctly raised DB_POOL from 1 to 5 and recovered the original failed requests, then deleted one of its own successful verification rows during cleanup. The external verifier subsequently observed only four of eight concurrent successes.",
+    "That failure remains part of the result. It was a repair-integrity mistake after a correct diagnosis, not a provider interruption or unavailable trial."
+  ],
+  "observations": [
+    "GLM 5.3 completed 47 durable repairs for about $0.1038 per durable repair and about $0.1017 per attempted trial.",
+    "The cohort used 10,417,704 input tokens and 289,971 output tokens at a total metered cost of $4.8792.",
+    "Fifteen of sixteen scenarios were clean 3-for-3 sweeps. Rails pool exhaustion was 2-for-3 because one otherwise correct repair corrupted its own recovered state during cleanup.",
+    "This is a repeated full-suite reliability cohort for one model lane, not a direct head-to-head model comparison."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --models z-ai/glm-5.3 --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 25600",
+  "title": "GLM 5.3 across the full infrastructure suite"
+}
