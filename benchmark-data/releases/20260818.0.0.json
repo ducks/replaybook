@@ -791,7 +791,7 @@
     "Fifteen of sixteen scenarios were clean 3-for-3 sweeps. Rails pool exhaustion was 2-for-3 because one otherwise correct repair corrupted its own recovered state during cleanup.",
     "This is a repeated full-suite reliability cohort for one model lane, not a direct head-to-head model comparison."
   ],
-  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --models z-ai/glm-5.3 --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 25600",
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark.toml --models z-ai/glm-5.3 --reasoning-efforts high --concurrency 2 --base-port 25600",
   "runs": [
     {
       "agent": "claux",
