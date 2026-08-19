@@ -101,6 +101,7 @@ host-check:
 	@python -m unittest integrations.host.test_guest_leak_audit
 	@python -m unittest integrations.host.test_scenario_phase
 	@python -m unittest integrations.host.test_publish_benchmarks
+	@python -m unittest integrations.host.test_benchmark_submission
 	@python -m unittest integrations.host.test_result_catalog
 	@python integrations/host/publish_benchmarks.py check
 

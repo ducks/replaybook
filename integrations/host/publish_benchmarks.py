@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import html
 import json
 import re
@@ -714,6 +715,18 @@ def create_release(
     if not source_paths:
         raise PublishError("at least one summary is required")
     sources = [import_summary(path) for path in source_paths]
+    return create_release_from_sources(version, sources, annotations)
+
+
+def create_release_from_sources(
+    version: str, source_matrices: list[dict[str, Any]], annotations: dict[str, Any]
+) -> dict[str, Any]:
+    """Create a release from already normalized, validated source matrices."""
+    if not VERSION_PATTERN.fullmatch(version):
+        raise PublishError("benchmark version must use YYYYMMDD.MAJOR.PATCH DateVer")
+    if not source_matrices:
+        raise PublishError("at least one source matrix is required")
+    sources = copy.deepcopy(source_matrices)
     compatibility = validate_compatible(sources)
     runs = [run for source in sources for run in source.pop("runs")]
     compatibility["reasoning_efforts"] = list(
@@ -2285,16 +2298,25 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
 def import_release(args: argparse.Namespace, root: Path) -> None:
     annotations = read_json(args.annotations) if args.annotations else {}
     release = create_release(args.version, args.summaries, annotations)
+    store_release(root, release)
+
+
+def store_release(root: Path, release: dict[str, Any]) -> None:
+    """Store a validated release and rebuild generated benchmark outputs."""
+    version = release.get("version")
+    if not isinstance(version, str) or not VERSION_PATTERN.fullmatch(version):
+        raise PublishError("benchmark version must use YYYYMMDD.MAJOR.PATCH DateVer")
+    validate_release(release, Path(f"release-{version}"))
     index_path = root / INDEX_FILE
     if index_path.is_file():
         index = read_json(index_path)
     else:
-        index = {"schema_version": 1, "current_version": args.version, "releases": []}
+        index = {"schema_version": 1, "current_version": version, "releases": []}
     releases = index.setdefault("releases", [])
-    if args.version not in releases:
-        releases.append(args.version)
-    index["current_version"] = args.version
-    write_json(root / RELEASES_DIR / f"{args.version}.json", release)
+    if version not in releases:
+        releases.append(version)
+    index["current_version"] = version
+    write_json(root / RELEASES_DIR / f"{version}.json", release)
     write_json(index_path, index)
     build_outputs(root)
 
