@@ -1,0 +1,31 @@
+{
+  "description": "Five agent models attempted the same 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook v21 harness boundary.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.3": "GLM 5.3"
+  },
+  "model_order": [
+    "qwen/qwen3.8-2.4t-a95b",
+    "z-ai/glm-5.3",
+    "openai/gpt-5.6-luna",
+    "deepseek/deepseek-v4-flash-0731",
+    "google/gemini-3.7-flash"
+  ],
+  "notes": [
+    "All 240 trials used Replaybook commit aff5c9b, host harness v21, 16 scenarios from ducks/replaybook-infra 20260817.1.0 at commit faeda72, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.",
+    "Qwen completed 46 of 48 durable repairs, GLM 5.3 completed 45, Luna completed 44, DeepSeek completed 42, and Gemini completed 37.",
+    "The matrix was resumed after infrastructure interruptions. All 240 planned trials ultimately produced valid evaluated results under the frozen execution snapshot.",
+    "Luna reported usage and cost for 46 of 48 trials, so its published $1.3877 cost remains a lower bound. The other four model lanes have complete usage recording."
+  ],
+  "observations": [
+    "Qwen led reliability at 96% and had the fastest overall median at 2:02, but also had the highest fully recorded spend at $8.9756.",
+    "GLM 5.3 reached 94% at a 2:19 median and $4.4098, giving it the strongest balance of reliability and speed among the fully metered non-Luna lanes.",
+    "DeepSeek was cheapest at $0.6133 total and about $0.0146 per durable repair, but its 87% pass rate and 3:47 median show the reliability and latency tradeoff.",
+    "Across the complete cohort, the agents produced 214 durable repairs from 240 attempts with $22.4110 in known spend."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark.toml --models deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash openai/gpt-5.6-luna qwen/qwen3.8-2.4t-a95b z-ai/glm-5.3 --reasoning-efforts high --concurrency 2 --base-port 26000",
+  "title": "Five models across the full infrastructure suite"
+}
