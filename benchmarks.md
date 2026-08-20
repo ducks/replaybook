@@ -9,23 +9,28 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Five models across the full infrastructure suite
+## OpenCode Go five-scenario infrastructure cohort
 
-Five agent models attempted the same 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook v21 harness boundary.
+Six models ran three attempts across five externally verified infrastructure incidents through OpenCode 1.18.18 and the OpenCode Go subscription.
 
-Benchmark release: `20260819.0.0`
-Benchmark tier: `full`
+Benchmark release: `20260820.0.1`
+Benchmark tier: `unclassified`
 
 Scenario packs: `ducks/replaybook-infra@20260817.1.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Qwen3.8 2.4T A95B (high) | 46/48 | 96% | 2:02 | $8.9756 | $0.1951 |
-| GLM 5.3 (high) | 45/48 | 94% | 2:19 | $4.4098 | $0.0980 |
-| GPT-5.6 Luna (high) | 44/48 | 92% | 2:06 | $1.3877+ | $0.0315+ |
-| DeepSeek V4 Flash 0731 (high) | 42/48 | 88% | 3:47 | $0.6133 | $0.0146 |
-| Gemini 3.7 Flash (high) | 37/48 | 77% | 3:12 | $7.0245 | $0.1899 |
-| **Total** | **214/240** | **89%** | **2:34** | **$22.4110+** | **$0.1047+** |
+| DeepSeek V4 Flash (high) | 15/15 | 100% | 2:19 | n/a | n/a |
+| Qwen3.8 Max (high) | 14/15 | 93% | 2:58 | n/a | n/a |
+| GPT-5.6 Luna (high) | 14/15 | 93% | 2:19 | n/a | n/a |
+| Kimi K2.7 Code (high) | 14/15 | 93% | 4:58 | n/a | n/a |
+| MiniMax M3 (high) | 12/15 | 80% | 3:28 | n/a | n/a |
+| GLM 5.3 (high) | 11/11 | 100% | 4:08 | n/a | n/a |
+| **Total** | **80/86** | **93%** | **3:22** | **n/a** | **n/a** |
+
+### Unavailable trial categories
+
+- `provider_unavailable`: 4
 
 ### Execution recording
 
@@ -33,65 +38,50 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Qwen3.8 2.4T A95B (high) | 48/48 | 15 | 1:47 | 20 | 0:11 | 0:04 | 1:59 |
-| GLM 5.3 (high) | 48/48 | 13.5 | 2:01 | 19 | 0:09 | 0:07 | 2:10 |
-| GPT-5.6 Luna (high) | 46/48 | 16 | 1:33 | 33 | 0:12 | 0:07 | 1:56 |
-| DeepSeek V4 Flash 0731 (high) | 48/48 | 16 | 3:26 | 23 | 0:11 | 0:05 | 3:38 |
-| Gemini 3.7 Flash (high) | 48/48 | 45 | 2:58 | 44 | 0:10 | 0:06 | 3:05 |
+| DeepSeek V4 Flash (high) | 15/15 | 20 | 1:42 | 30 | 0:00 | 0:02 | 2:09 |
+| Qwen3.8 Max (high) | 15/15 | 15 | 2:16 | 19 | 0:00 | 0:04 | 2:46 |
+| GPT-5.6 Luna (high) | 15/15 | 17 | 1:31 | 48 | 0:04 | 0:03 | 1:58 |
+| Kimi K2.7 Code (high) | 15/15 | 29 | 3:06 | 43 | 0:00 | 0:03 | 4:41 |
+| MiniMax M3 (high) | 15/15 | 43 | 2:02 | 43 | 0:00 | 0:01 | 3:04 |
+| GLM 5.3 (high) | 15/15 | 14 | 1:08 | 18 | 0:00 | 0:03 | 3:57 |
 
-Qwen led reliability at 96% and had the fastest overall median at 2:02, but also had the highest fully recorded spend at $8.9756.
+DeepSeek was the only lane to complete every scheduled repair and paired that reliability with a 2:19 median.
 
-GLM 5.3 reached 94% at a 2:19 median and $4.4098, giving it the strongest balance of reliability and speed among the fully metered non-Luna lanes.
+GLM's result separates conditional repair reliability from operational availability: 11 of 11 evaluated repairs passed, but only 11 of 15 scheduled trials reached inference.
 
-DeepSeek was cheapest at $0.6133 total and about $0.0146 per durable repair, but its 87% pass rate and 3:47 median show the reliability and latency tradeoff.
+The Nix store pressure and shared-uploads incidents produced most of the durable-repair separation, while every model completed all three partial-rollout repairs that reached evaluation.
 
-Across the complete cohort, the agents produced 214 durable repairs from 240 attempts with $22.4110 in known spend.
+The cohort demonstrates why Replaybook publishes model, harness, provider, scenario selection, and verifier boundary together instead of presenting a context-free model leaderboard.
 
 ### Scenario breakdown
 
-| Scenario | Version | Qwen3.8 2.4T A95B (high) | GLM 5.3 (high) | GPT-5.6 Luna (high) | DeepSeek V4 Flash 0731 (high) | Gemini 3.7 Flash (high) |
-|---|---:|---:|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 0:59 | 3/3, 1:48 | 3/3, 1:08 | 3/3, 0:53 | 2/3, 1:42 |
-| 013-sidekiq-wrong-redis | v2 | 3/3, 1:33 | 3/3, 1:51 | 3/3, 1:30 | 3/3, 2:01 | 3/3, 2:30 |
-| 014-missing-rails-migration | v2 | 3/3, 2:02 | 3/3, 3:09 | 3/3, 2:02 | 3/3, 2:45 | 3/3, 3:05 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 3:53 | 3/3, 4:14 | 3/3, 3:28 | 3/3, 4:39 | 3/3, 5:18 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 1:36 | 3/3, 1:49 | 3/3, 1:23 | 3/3, 3:49 | 3/3, 4:12 |
-| 017-partial-rails-rollout | v1 | 3/3, 2:41 | 3/3, 2:58 | 3/3, 1:40 | 1/3, 4:43 | 3/3, 4:50 |
-| 018-node-event-loop-blocking | v1 | 3/3, 1:34 | 2/3, 1:58 | 3/3, 4:00 | 3/3, 5:48 | 3/3, 4:17 |
-| 019-rust-fd-leak | v1 | 3/3, 1:53 | 2/3, 2:03 | 3/3, 2:05 | 3/3, 4:44 | 1/3, 2:20 |
-| 020-python-gunicorn-saturation | v1 | 3/3, 1:56 | 2/3, 2:34 | 2/3, 8:18 | 3/3, 4:04 | 2/3, 8:23 |
-| 021-discourse-shared-uploads | v1 | 2/3, 3:58 | 3/3, 5:09 | 3/3, 2:42 | 3/3, 9:21 | 1/3, 2:01 |
-| 022-discourse-multisite-migration | v1 | 3/3, 1:52 | 3/3, 1:59 | 3/3, 1:36 | 3/3, 1:52 | 3/3, 3:02 |
-| 023-auth-secret-rollout | v1 | 3/3, 2:23 | 3/3, 2:03 | 3/3, 2:10 | 3/3, 2:45 | 2/3, 2:58 |
-| 024-discourse-interrupted-deploy | v1 | 2/3, 2:11 | 3/3, 2:42 | 1/3, 2:22 | 0/3, 3:38 | 3/3, 3:34 |
-| 026-discourse-plugin-boot-loop | v1 | 3/3, 2:27 | 3/3, 2:06 | 2/3, 1:41 | 2/3, 2:29 | 3/3, 3:08 |
-| 027-partial-service-rollout | v1 | 3/3, 1:49 | 3/3, 2:07 | 3/3, 2:15 | 3/3, 3:48 | 1/3, 1:25 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 5:07 | 3/3, 2:46 | 3/3, 3:20 | 3/3, 6:14 | 1/3, 3:20 |
+| Scenario | Version | DeepSeek V4 Flash (high) | Qwen3.8 Max (high) | GPT-5.6 Luna (high) | Kimi K2.7 Code (high) | MiniMax M3 (high) | GLM 5.3 (high) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 013-sidekiq-wrong-redis | v2 | 3/3, 1:28 | 3/3, 1:50 | 3/3, 1:53 | 3/3, 2:19 | 2/3, 4:20 | 3/3, 4:26 |
+| 017-partial-rails-rollout | v1 | 3/3, 2:11 | 3/3, 5:09 | 3/3, 2:34 | 3/3, 5:34 | 3/3, 3:28 | 2/2, 4:29 |
+| 019-rust-fd-leak | v1 | 3/3, 1:24 | 3/3, 2:33 | 3/3, 2:08 | 2/3, 3:44 | 3/3, 2:23 | 3/3, 1:29 |
+| 021-discourse-shared-uploads | v1 | 3/3, 4:37 | 2/3, 6:00 | 3/3, 3:12 | 3/3, 5:31 | 2/3, 2:39 | 2/2, 5:21 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 3:22 | 3/3, 2:58 | 2/3, 4:46 | 3/3, 7:39 | 2/3, 7:37 | 1/1, 3:02 |
 
 ### Failure categories
 
 - `accepted_uploads_not_recovered`: 1
-- `agent_runtime_error`: 2
-- `agent_timeout`: 2
-- `core_api_rolled_back`: 1
-- `current_sessions_unavailable`: 1
-- `host_reboot_failed`: 2
+- `host_reboot_failed`: 3
 - `new_receipts_not_writable`: 1
-- `provider_interrupted`: 2
-- `provider_policy_rejection`: 4
-- `provider_protocol_error`: 4
-- `release_not_converged`: 6
+- `writable_capacity_not_recovered`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-19__00-45-15.d5ec3f`: deepseek/deepseek-v4-flash-0731, google/gemini-3.7-flash, openai/gpt-5.6-luna, qwen/qwen3.8-2.4t-a95b, z-ai/glm-5.3; Replaybook `aff5c9bd`; reasoning high
+- `host-matrix-2026-08-20__15-55-33.730754`: opencode-go/deepseek-v4-flash, opencode-go/glm-5.3, opencode-go/gpt-5.6-luna, opencode-go/kimi-k2.7-code, opencode-go/minimax-m3, opencode-go/qwen3.8-max; Replaybook `ae7b4f19`; reasoning high
 
 ### Run notes
 
-- All 240 trials used Replaybook commit aff5c9b, host harness v21, 16 scenarios from ducks/replaybook-infra 20260817.1.0 at commit faeda72, Claux v20260815.0.0, high reasoning, and a 900-second agent deadline.
-- Qwen completed 46 of 48 durable repairs, GLM 5.3 completed 45, Luna completed 44, DeepSeek completed 42, and Gemini completed 37.
-- The matrix was resumed after infrastructure interruptions. All 240 planned trials ultimately produced valid evaluated results under the frozen execution snapshot.
-- Luna reported usage and cost for 46 of 48 trials, so its published $1.3877 cost remains a lower bound. The other four model lanes have complete usage recording.
+- This is an independent OpenCode/OpenCode Go harness cohort. Its aggregates are not pooled with Claux/OpenRouter results.
+- The matrix scheduled 90 trials: six models, five scenarios, and three attempts. It retained 86 evaluated repairs and four provider-unavailable trials, with no missing infrastructure results after recovery.
+- All trials used Replaybook commit ae7b4f1, host harness v22, OpenCode 1.18.18, high reasoning, a 900-second deadline, and scenarios 013, 017, 019, 021, and 028 from ducks/replaybook-infra 20260817.1.0.
+- DeepSeek completed all 15 repairs. Luna, Kimi, and Qwen completed 14 of 15; MiniMax completed 12 of 15.
+- GLM completed all 11 trials that reached evaluation, while four additional requests failed before inference because the OpenCode Go catalog reported that GLM 5.3 was unavailable. Those trials remain provider failures rather than model repair failures.
+- OpenCode Go reported subscription usage rather than metered API cost, so public cost remains unavailable rather than zero. Provider token fields are preserved as reported but should not be compared directly with Claux cohorts; Luna's input accounting in particular is not comparable.
 
 <!-- replaybook:current-benchmark:end -->
 

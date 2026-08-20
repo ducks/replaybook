@@ -50,7 +50,7 @@
       ]
     }
   ],
-  "generated_from": "20260819.0.0",
+  "generated_from": "20260820.0.1",
   "scenarios": [
     {
       "boundary": {
@@ -231,175 +231,88 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "c45a8bc72c9da014daaa3087836bdad8188713fc54bdc0eadfd5502c9943196f",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260815.0.0"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": "v20260815.0.0",
+        "claux_release": null,
         "harness_versions": [
-          21
+          22
         ],
-        "host_harness_sha256": "743399d5f68dd981161d0cf49b95569caf9e38d162a84eb39033cc49ae584d7e",
+        "host_harness_sha256": "c2c83d13b6bc12b1d76b970c49580814528235c806361d2479b26fbf884325d7",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
         "scenario_snapshot_sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
-        "tier": "full"
+        "tier": "unclassified"
       },
       "cells": [
         {
-          "cost_per_repair_usd": 0.004893361831466666,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=013-sidekiq-wrong-redis&model=deepseek%2Fdeepseek-v4-flash-0731",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 341910,
-          "known_cost_usd": 0.014680085494399999,
-          "median_duration_seconds": 121,
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash 0731",
-          "output_tokens": 12629,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "013-sidekiq-wrong-redis",
-          "scenario_label": "013-sidekiq-wrong-redis",
-          "scenario_version": 2,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.10726142500000001,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=013-sidekiq-wrong-redis&model=google%2Fgemini-3.7-flash",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 2101349,
-          "known_cost_usd": 0.321784275,
-          "median_duration_seconds": 150,
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "output_tokens": 22134,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "013-sidekiq-wrong-redis",
-          "scenario_label": "013-sidekiq-wrong-redis",
-          "scenario_version": 2,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.02068254333333333,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=013-sidekiq-wrong-redis&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 1006987,
-          "known_cost_usd": 0.06204762999999999,
-          "median_duration_seconds": 90,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 14732,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "013-sidekiq-wrong-redis",
-          "scenario_label": "013-sidekiq-wrong-redis",
-          "scenario_version": 2,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.09926,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=013-sidekiq-wrong-redis&model=qwen%2Fqwen3.8-2.4t-a95b",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 452034,
-          "known_cost_usd": 0.29778,
-          "median_duration_seconds": 93,
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
-          "output_tokens": 19696,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "013-sidekiq-wrong-redis",
-          "scenario_label": "013-sidekiq-wrong-redis",
-          "scenario_version": 2,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.06121928000000001,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=013-sidekiq-wrong-redis&model=z-ai%2Fglm-5.3",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 382022,
-          "known_cost_usd": 0.18365784000000002,
-          "median_duration_seconds": 111,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
-          "output_tokens": 10078,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "013-sidekiq-wrong-redis",
-          "scenario_label": "013-sidekiq-wrong-redis",
-          "scenario_version": 2,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full"
+          ]
         }
       ],
-      "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=013-sidekiq-wrong-redis",
-      "release": "20260819.0.0",
+      "evidence_url": "benchmark-explorer.html?release=20260820.0.1&scenario=013-sidekiq-wrong-redis",
+      "release": "20260820.0.1",
       "scenario": "013-sidekiq-wrong-redis",
       "scenario_label": "013-sidekiq-wrong-redis",
       "scenario_version": 2
@@ -931,177 +844,88 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "c45a8bc72c9da014daaa3087836bdad8188713fc54bdc0eadfd5502c9943196f",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260815.0.0"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": "v20260815.0.0",
+        "claux_release": null,
         "harness_versions": [
-          21
+          22
         ],
-        "host_harness_sha256": "743399d5f68dd981161d0cf49b95569caf9e38d162a84eb39033cc49ae584d7e",
+        "host_harness_sha256": "c2c83d13b6bc12b1d76b970c49580814528235c806361d2479b26fbf884325d7",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
         "scenario_snapshot_sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
-        "tier": "full"
+        "tier": "unclassified"
       },
       "cells": [
         {
-          "cost_per_repair_usd": 0.05965986400000001,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=017-partial-rails-rollout&model=deepseek%2Fdeepseek-v4-flash-0731",
-          "failed": 2,
-          "failure_categories": {
-            "agent_runtime_error": 2
-          },
-          "input_tokens": 498927,
-          "known_cost_usd": 0.05965986400000001,
-          "median_duration_seconds": 283,
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash 0731",
-          "output_tokens": 16213,
-          "pass_rate": 0.3333333333333333,
-          "pass_rate_95_high": 0.7923403991979522,
-          "pass_rate_95_low": 0.06149194472039621,
-          "passed": 1,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "017-partial-rails-rollout",
-          "scenario_label": "017-partial-rails-rollout",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.1727413875,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=017-partial-rails-rollout&model=google%2Fgemini-3.7-flash",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 4591841,
-          "known_cost_usd": 0.5182241625,
-          "median_duration_seconds": 290,
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "output_tokens": 33614,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "017-partial-rails-rollout",
-          "scenario_label": "017-partial-rails-rollout",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.02714388333333333,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=017-partial-rails-rollout&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 1441992,
-          "known_cost_usd": 0.08143165,
-          "median_duration_seconds": 100,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 16318,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "017-partial-rails-rollout",
-          "scenario_label": "017-partial-rails-rollout",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.18141,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=017-partial-rails-rollout&model=qwen%2Fqwen3.8-2.4t-a95b",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 656673,
-          "known_cost_usd": 0.54423,
-          "median_duration_seconds": 161,
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
-          "output_tokens": 27502,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "017-partial-rails-rollout",
-          "scenario_label": "017-partial-rails-rollout",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.09801129333333332,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=017-partial-rails-rollout&model=z-ai%2Fglm-5.3",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 621161,
-          "known_cost_usd": 0.29403387999999997,
-          "median_duration_seconds": 178,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
-          "output_tokens": 15054,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "017-partial-rails-rollout",
-          "scenario_label": "017-partial-rails-rollout",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full"
+          ]
         }
       ],
-      "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=017-partial-rails-rollout",
-      "release": "20260819.0.0",
+      "evidence_url": "benchmark-explorer.html?release=20260820.0.1&scenario=017-partial-rails-rollout",
+      "release": "20260820.0.1",
       "scenario": "017-partial-rails-rollout",
       "scenario_label": "017-partial-rails-rollout",
       "scenario_version": 1
@@ -1285,179 +1109,88 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "c45a8bc72c9da014daaa3087836bdad8188713fc54bdc0eadfd5502c9943196f",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260815.0.0"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": "v20260815.0.0",
+        "claux_release": null,
         "harness_versions": [
-          21
+          22
         ],
-        "host_harness_sha256": "743399d5f68dd981161d0cf49b95569caf9e38d162a84eb39033cc49ae584d7e",
+        "host_harness_sha256": "c2c83d13b6bc12b1d76b970c49580814528235c806361d2479b26fbf884325d7",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
         "scenario_snapshot_sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
-        "tier": "full"
+        "tier": "unclassified"
       },
       "cells": [
         {
-          "cost_per_repair_usd": 0.006900638215733334,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=019-rust-fd-leak&model=deepseek%2Fdeepseek-v4-flash-0731",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 554806,
-          "known_cost_usd": 0.0207019146472,
-          "median_duration_seconds": 284,
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash 0731",
-          "output_tokens": 23602,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "019-rust-fd-leak",
-          "scenario_label": "019-rust-fd-leak",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.24983197499999998,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=019-rust-fd-leak&model=google%2Fgemini-3.7-flash",
-          "failed": 2,
-          "failure_categories": {
-            "provider_policy_rejection": 2
-          },
-          "input_tokens": 1752549,
-          "known_cost_usd": 0.24983197499999998,
-          "median_duration_seconds": 140,
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "output_tokens": 26671,
-          "pass_rate": 0.3333333333333333,
-          "pass_rate_95_high": 0.7923403991979522,
-          "pass_rate_95_low": 0.06149194472039621,
-          "passed": 1,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "019-rust-fd-leak",
-          "scenario_label": "019-rust-fd-leak",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.02683346,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=019-rust-fd-leak&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 1309193,
-          "known_cost_usd": 0.08050038,
-          "median_duration_seconds": 125,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 22832,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "019-rust-fd-leak",
-          "scenario_label": "019-rust-fd-leak",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.11266799999999999,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=019-rust-fd-leak&model=qwen%2Fqwen3.8-2.4t-a95b",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 410211,
-          "known_cost_usd": 0.33800399999999997,
-          "median_duration_seconds": 113,
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
-          "output_tokens": 20061,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "019-rust-fd-leak",
-          "scenario_label": "019-rust-fd-leak",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.11274568,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=019-rust-fd-leak&model=z-ai%2Fglm-5.3",
-          "failed": 1,
-          "failure_categories": {
-            "host_reboot_failed": 1
-          },
-          "input_tokens": 456166,
-          "known_cost_usd": 0.22549136,
-          "median_duration_seconds": 123,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
-          "output_tokens": 15279,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "019-rust-fd-leak",
-          "scenario_label": "019-rust-fd-leak",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full"
+          ]
         }
       ],
-      "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=019-rust-fd-leak",
-      "release": "20260819.0.0",
+      "evidence_url": "benchmark-explorer.html?release=20260820.0.1&scenario=019-rust-fd-leak",
+      "release": "20260820.0.1",
       "scenario": "019-rust-fd-leak",
       "scenario_label": "019-rust-fd-leak",
       "scenario_version": 1
@@ -1645,180 +1378,88 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "c45a8bc72c9da014daaa3087836bdad8188713fc54bdc0eadfd5502c9943196f",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260815.0.0"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": "v20260815.0.0",
+        "claux_release": null,
         "harness_versions": [
-          21
+          22
         ],
-        "host_harness_sha256": "743399d5f68dd981161d0cf49b95569caf9e38d162a84eb39033cc49ae584d7e",
+        "host_harness_sha256": "c2c83d13b6bc12b1d76b970c49580814528235c806361d2479b26fbf884325d7",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
         "scenario_snapshot_sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
-        "tier": "full"
+        "tier": "unclassified"
       },
       "cells": [
         {
-          "cost_per_repair_usd": 0.033869233602133335,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=021-discourse-shared-uploads&model=deepseek%2Fdeepseek-v4-flash-0731",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 1891484,
-          "known_cost_usd": 0.1016077008064,
-          "median_duration_seconds": 561,
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash 0731",
-          "output_tokens": 74137,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "021-discourse-shared-uploads",
-          "scenario_label": "021-discourse-shared-uploads",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.35763045000000004,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=021-discourse-shared-uploads&model=google%2Fgemini-3.7-flash",
-          "failed": 2,
-          "failure_categories": {
-            "provider_policy_rejection": 1,
-            "provider_protocol_error": 1
-          },
-          "input_tokens": 3098303,
-          "known_cost_usd": 0.35763045000000004,
-          "median_duration_seconds": 121,
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "output_tokens": 31696,
-          "pass_rate": 0.3333333333333333,
-          "pass_rate_95_high": 0.7923403991979522,
-          "pass_rate_95_low": 0.06149194472039621,
-          "passed": 1,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "021-discourse-shared-uploads",
-          "scenario_label": "021-discourse-shared-uploads",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.03753575333333333,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=021-discourse-shared-uploads&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 2099856,
-          "known_cost_usd": 0.11260726,
-          "median_duration_seconds": 162,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 30840,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "021-discourse-shared-uploads",
-          "scenario_label": "021-discourse-shared-uploads",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.40235099999999996,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=021-discourse-shared-uploads&model=qwen%2Fqwen3.8-2.4t-a95b",
-          "failed": 1,
-          "failure_categories": {
-            "accepted_uploads_not_recovered": 1
-          },
-          "input_tokens": 1375878,
-          "known_cost_usd": 0.8047019999999999,
-          "median_duration_seconds": 238,
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
-          "output_tokens": 56131,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "021-discourse-shared-uploads",
-          "scenario_label": "021-discourse-shared-uploads",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.19416951999999998,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=021-discourse-shared-uploads&model=z-ai%2Fglm-5.3",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 1147194,
-          "known_cost_usd": 0.58250856,
-          "median_duration_seconds": 309,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
-          "output_tokens": 45018,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "021-discourse-shared-uploads",
-          "scenario_label": "021-discourse-shared-uploads",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full"
+          ]
         }
       ],
-      "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=021-discourse-shared-uploads",
-      "release": "20260819.0.0",
+      "evidence_url": "benchmark-explorer.html?release=20260820.0.1&scenario=021-discourse-shared-uploads",
+      "release": "20260820.0.1",
       "scenario": "021-discourse-shared-uploads",
       "scenario_label": "021-discourse-shared-uploads",
       "scenario_version": 1
@@ -2870,178 +2511,88 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "c45a8bc72c9da014daaa3087836bdad8188713fc54bdc0eadfd5502c9943196f",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260815.0.0"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": "v20260815.0.0",
+        "claux_release": null,
         "harness_versions": [
-          21
+          22
         ],
-        "host_harness_sha256": "743399d5f68dd981161d0cf49b95569caf9e38d162a84eb39033cc49ae584d7e",
+        "host_harness_sha256": "c2c83d13b6bc12b1d76b970c49580814528235c806361d2479b26fbf884325d7",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
         },
         "scenario_snapshot_sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
-        "tier": "full"
+        "tier": "unclassified"
       },
       "cells": [
         {
-          "cost_per_repair_usd": 0.015696368,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=028-nix-store-disk-pressure&model=deepseek%2Fdeepseek-v4-flash-0731",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 1605945,
-          "known_cost_usd": 0.047089104,
-          "median_duration_seconds": 374,
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash 0731",
-          "output_tokens": 34753,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "028-nix-store-disk-pressure",
-          "scenario_label": "028-nix-store-disk-pressure",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.43254416249999994,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=028-nix-store-disk-pressure&model=google%2Fgemini-3.7-flash",
-          "failed": 2,
-          "failure_categories": {
-            "new_receipts_not_writable": 1,
-            "provider_policy_rejection": 1
-          },
-          "input_tokens": 3690432,
-          "known_cost_usd": 0.43254416249999994,
-          "median_duration_seconds": 200,
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "output_tokens": 35853,
-          "pass_rate": 0.3333333333333333,
-          "pass_rate_95_high": 0.7923403991979522,
-          "pass_rate_95_low": 0.06149194472039621,
-          "passed": 1,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "028-nix-store-disk-pressure",
-          "scenario_label": "028-nix-store-disk-pressure",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.028764720000000004,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=028-nix-store-disk-pressure&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 1379559,
-          "known_cost_usd": 0.08629416000000001,
-          "median_duration_seconds": 200,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 25070,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "028-nix-store-disk-pressure",
-          "scenario_label": "028-nix-store-disk-pressure",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.42954933333333334,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=028-nix-store-disk-pressure&model=qwen%2Fqwen3.8-2.4t-a95b",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 1808534,
-          "known_cost_usd": 1.288648,
-          "median_duration_seconds": 307,
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
-          "output_tokens": 71818,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "028-nix-store-disk-pressure",
-          "scenario_label": "028-nix-store-disk-pressure",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.08700332,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=028-nix-store-disk-pressure&model=z-ai%2Fglm-5.3",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 494513,
-          "known_cost_usd": 0.26100996,
-          "median_duration_seconds": 166,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
-          "output_tokens": 16705,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
-          "scenario": "028-nix-store-disk-pressure",
-          "scenario_label": "028-nix-store-disk-pressure",
-          "scenario_version": 1,
-          "status": "covered",
-          "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "full"
+          ]
         }
       ],
-      "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=028-nix-store-disk-pressure",
-      "release": "20260819.0.0",
+      "evidence_url": "benchmark-explorer.html?release=20260820.0.1&scenario=028-nix-store-disk-pressure",
+      "release": "20260820.0.1",
       "scenario": "028-nix-store-disk-pressure",
       "scenario_label": "028-nix-store-disk-pressure",
       "scenario_version": 1
@@ -3049,8 +2600,8 @@
   ],
   "schema_version": 1,
   "totals": {
-    "covered_cells": 84,
-    "missing_cells": 1,
+    "covered_cells": 59,
+    "missing_cells": 26,
     "model_lanes": 5,
     "possible_cells": 85,
     "scenarios": 17

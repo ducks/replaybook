@@ -96,10 +96,11 @@
     const covered = entries.filter(entry => entry.cell && entry.cell.status === "covered");
     const perfect = covered.filter(entry => entry.cell.evaluated && entry.cell.passed === entry.cell.evaluated).length;
     const cost = covered.reduce((sum, entry) => sum + entry.cell.known_cost_usd, 0);
+    const costReported = covered.reduce((sum, entry) => sum + entry.cell.cost_reported_trials, 0);
     const incomplete = covered.some(entry => entry.cell.cost_reported_trials < entry.cell.trials);
     document.querySelector("#profile-coverage").textContent = `${covered.length}/${entries.length}`;
     document.querySelector("#profile-perfect").textContent = String(perfect);
-    document.querySelector("#profile-cost").textContent = money(cost, incomplete);
+    document.querySelector("#profile-cost").textContent = costReported ? money(cost, incomplete) : "n/a";
 
     const failures = new Map();
     const body = document.querySelector("#profile-results");
@@ -128,7 +129,7 @@
           `${cell.passed}/${cell.evaluated}`,
           percent(cell.pass_rate),
           duration(cell.median_duration_seconds),
-          money(cell.known_cost_usd, incompleteCost),
+          cell.cost_reported_trials ? money(cell.known_cost_usd, incompleteCost) : "n/a",
           money(cell.cost_per_repair_usd, incompleteCost),
           categories.length ? categories.map(([name, count]) => `${name} (${count})`).join(", ") : "None"
         ];

@@ -13,6 +13,7 @@ from integrations.host.publish_benchmarks import (
     MARKDOWN_START,
     PublishError,
     build_outputs,
+    cost_per_repair,
     create_release,
     html_page,
     normalized_agent_harness,
@@ -204,6 +205,8 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual(release["totals"]["cost_reported_trials"], 0)
         self.assertEqual(release["totals"]["known_cost_usd"], 0)
         self.assertEqual(release["totals"]["input_tokens"], 100)
+        self.assertIsNone(cost_per_repair(release["totals"]))
+        self.assertNotIn("$0.0000+", html_page(release))
 
     def test_propagates_tier_into_release_and_catalog(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
