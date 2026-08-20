@@ -15,6 +15,7 @@ config_home="${eval_root}/opencode-config"
 data_home="${eval_root}/opencode-data"
 cache_home="${eval_root}/opencode-cache"
 events="${eval_root}/results/opencode-events.jsonl"
+stderr_log="${eval_root}/results/opencode-stderr.log"
 reasoning_effort="${REPLAYBOOK_REASONING_EFFORT:-}"
 scheduled_model="$REPLAYBOOK_MODEL"
 provider_model="$scheduled_model"
@@ -54,11 +55,12 @@ forward_termination() {
 trap forward_termination TERM INT
 
 set +e
-"$opencode" "${args[@]}" >"$events" &
+"$opencode" "${args[@]}" >"$events" 2>"$stderr_log" &
 child_pid=$!
 wait "$child_pid"
 status=$?
 set -e
+cat "$stderr_log" >&2
 
 if [[ -s "$events" ]]; then
   jq -s . "$events" >"${REPLAYBOOK_TRANSCRIPT_FILE}.partial"
@@ -137,6 +139,13 @@ outcome_message="$(
     last // ""
   ' "$events" 2>/dev/null || true
 )"
+provider_model_error="$(
+  grep -aoE 'ProviderModelNotFoundError: Model not found: [^\"]+' \
+    "$stderr_log" 2>/dev/null | tail -n 1 || true
+)"
+if [[ -n "$provider_model_error" ]]; then
+  outcome_message="$provider_model_error"
+fi
 jq -n \
   --arg model "$scheduled_model" \
   --arg reasoning_effort "$reasoning_effort" \
