@@ -91,21 +91,31 @@ result="$(
 )"
 [[ -n "$result" ]] || result=null
 
-recording="$(
-  jq -sc '
+if ! recording="$(
+  jq '
+    def elapsed($start; $end):
+      (($end - $start) | if . < 0 then 0 else . end);
+    def read_only_tool($name):
+      ($name | ascii_downcase) as $normalized |
+      ["read", "grep", "glob", "list", "webfetch", "web_fetch"] |
+      index($normalized) != null;
+
     if length == 0 then null else
       . as $events |
-      ($events[0].timestamp // 0) as $origin |
-      reduce $events[] as $event (
+      ([$events[].timestamp? // empty] | min // 0) as $origin |
+      (reduce $events[] as $event (
         {started_at: null, rounds: []};
         if $event.type == "step_start" then
           .started_at = ($event.timestamp // $origin)
         elif $event.type == "step_finish" then
+          ($event.timestamp // $origin) as $finished_at |
+          (.started_at // $finished_at) as $started_at |
           .rounds += [{
             index: ((.rounds | length) + 1),
-            started_after_ms: ((.started_at // ($event.timestamp // $origin)) - $origin),
-            duration_ms: (($event.timestamp // $origin) - (.started_at // ($event.timestamp // $origin))),
-            status: ($event.part.reason // "completed"),
+            started_after_ms: elapsed($origin; $started_at),
+            duration_ms: elapsed($started_at; $finished_at),
+            status: "completed",
+            finish_reason: ($event.part.reason // null),
             usage: {
               input_tokens: ($event.part.tokens.input // 0),
               output_tokens: ($event.part.tokens.output // 0),
@@ -118,16 +128,41 @@ recording="$(
           }] |
           .started_at = null
         else . end
-      ) as $recording |
+      )) as $recording |
+      ([
+        $events[] |
+        select(.type == "tool_use") |
+        . as $event |
+        .part as $part |
+        ($part.state.time.start // $event.timestamp // $origin) as $started_at |
+        ($part.state.time.end // $event.timestamp // $started_at) as $finished_at |
+        {
+          name: ($part.tool // "unknown"),
+          is_error: (
+            ($part.state.status // "completed") != "completed" or
+            (($part.state.metadata.exit? // 0) != 0)
+          ),
+          read_only: read_only_tool($part.tool // "unknown"),
+          started_after_ms: elapsed($origin; $started_at),
+          duration_ms: elapsed($started_at; $finished_at)
+        }
+      ]) as $tools |
+      ([
+        ($events[] | .timestamp? // empty),
+        ($events[] | select(.type == "tool_use") | .part.state.time.end? // empty)
+      ] | max // $origin) as $finished_at |
       {
         transcript_schema_version: 1,
-        total_duration_ms: ((($events[-1].timestamp // $origin) - $origin) | if . < 0 then 0 else . end),
+        total_duration_ms: elapsed($origin; $finished_at),
         model_rounds: $recording.rounds,
-        tools: []
+        tools: $tools
       }
     end
-  ' "$events" 2>/dev/null || printf 'null'
-)"
+  ' "$REPLAYBOOK_TRANSCRIPT_FILE"
+)"; then
+  printf '%s\n' 'warning: failed to normalize OpenCode execution recording' >&2
+  recording=null
+fi
 [[ -n "$recording" ]] || recording=null
 
 outcome_status="error"
