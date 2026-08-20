@@ -181,6 +181,17 @@ def compact_run(run: dict[str, Any], source: Path) -> dict[str, Any]:
     return compact
 
 
+def compact_agent(agent: dict[str, Any]) -> dict[str, Any]:
+    """Keep harness identity while removing machine-local artifact paths."""
+    adapter = agent.get("adapter")
+    payload = agent.get("payload")
+    if isinstance(adapter, str) and not adapter.startswith("builtin:"):
+        adapter = f"external:{Path(adapter).name}"
+    if isinstance(payload, str):
+        payload = f"external:{Path(payload).name}"
+    return {"name": agent.get("name"), "adapter": adapter, "payload": payload}
+
+
 def import_summary(path: Path) -> dict[str, Any]:
     summary = read_json(path)
     benchmark = required_object(summary, "benchmark", path)
@@ -230,7 +241,7 @@ def import_summary(path: Path) -> dict[str, Any]:
         "attempts": benchmark.get("attempts"),
         "concurrency": benchmark.get("concurrency"),
         "agent_timeout_seconds": benchmark.get("agent_timeout_seconds"),
-        "agent": agent,
+        "agent": compact_agent(agent),
         "claux_release": benchmark.get("claux_release"),
         "runs": runs,
     }
@@ -611,6 +622,7 @@ def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
     passed = [run for run in evaluated if run["reward"] == 1]
     durations = [run["agent_duration_seconds"] for run in evaluated]
     usages = [run["usage"] for run in runs if isinstance(run.get("usage"), dict)]
+    cost_usages = [usage for usage in usages if usage.get("cost_usd") is not None]
     failure_categories = Counter(
         run["failure_category"]
         for run in evaluated
@@ -639,8 +651,8 @@ def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         "failed": len(evaluated) - len(passed),
         "pass_rate": len(passed) / len(evaluated) if evaluated else None,
         "median_duration_seconds": statistics.median(durations) if durations else None,
-        "known_cost_usd": sum(float(usage.get("cost_usd", 0)) for usage in usages),
-        "cost_reported_trials": len(usages),
+        "known_cost_usd": sum(float(usage["cost_usd"]) for usage in cost_usages),
+        "cost_reported_trials": len(cost_usages),
         "input_tokens": sum(int(usage.get("input_tokens", 0)) for usage in usages),
         "output_tokens": sum(int(usage.get("output_tokens", 0)) for usage in usages),
         "cache_read_tokens": sum(
@@ -933,7 +945,48 @@ def recent_scenario_section(
 """
 
 
-def html_page(release: dict[str, Any], recent_scenarios: str = "") -> str:
+def companion_release_section(index: dict[str, Any], root: Path) -> str:
+    """Render independent harness cohorts beside the primary benchmark."""
+    versions = index.get("companion_versions", [])
+    if not versions:
+        return ""
+    cards = []
+    for version in reversed(versions):
+        release = read_json(root / RELEASES_DIR / f"{version}.json")
+        totals = release["totals"]
+        agent = release["compatibility"].get("agent", {})
+        query = urlencode({"release": version})
+        cost = (
+            "n/a"
+            if totals["cost_reported_trials"] == 0
+            else money(
+                totals["known_cost_usd"],
+                totals["cost_reported_trials"] < totals["trials"],
+            )
+        )
+        cards.append(
+            "    <div class=\"callout comparison-note\">"
+            f"<strong>{html.escape(release['title'])}</strong>"
+            f"<p>{html.escape(release['description'])}</p>"
+            f"<p><code>{html.escape(version)}</code> · "
+            f"{html.escape(str(agent.get('name', 'external')))} harness · "
+            f"{totals['passed']}/{totals['evaluated']} durable repairs · "
+            f"{format_duration(totals['median_duration_seconds'])} median · "
+            f"{cost} known cost.</p>"
+            f"<a href=\"benchmark-explorer.html?{html.escape(query)}\">"
+            "Inspect this cohort →</a></div>"
+        )
+    return """
+    <h2>Companion harness cohorts</h2>
+    <p class="small muted">These cohorts use the same external verifiers but a different agent harness or provider lane. Their aggregates remain independent from the primary Claux/OpenRouter results.</p>
+""" + "\n".join(cards)
+
+
+def html_page(
+    release: dict[str, Any],
+    recent_scenarios: str = "",
+    companion_releases: str = "",
+) -> str:
     totals = release["totals"]
     cost_incomplete = totals["cost_reported_trials"] < totals["trials"]
     rows = model_rows(release)
@@ -1145,6 +1198,7 @@ def html_page(release: dict[str, Any], recent_scenarios: str = "") -> str:
       {totals['passed']} repairs passed durable verification. {totals['failed']} evaluated attempts failed and {totals['unavailable']} {trial_noun(totals['unavailable'])} {"was" if totals['unavailable'] == 1 else "were"} unavailable.
     </div>
 {recent_scenarios}
+{companion_releases}
 
     <h2>Model summary</h2>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
@@ -1348,6 +1402,7 @@ def replace_managed(text: str, start: str, end: str, content: str) -> str:
 
 def history_cards(index: dict[str, Any], root: Path) -> str:
     current = index["current_version"]
+    companions = set(index.get("companion_versions", []))
     cards = []
     for version in reversed(index["releases"]):
         if version == current:
@@ -1357,7 +1412,7 @@ def history_cards(index: dict[str, Any], root: Path) -> str:
         cards.append(
             f"""    <div class="section-heading">
       <div><h3>{html.escape(release['title'])}</h3><p class="muted">Benchmark {html.escape(version)} · {html.escape(tier_label(release))} tier</p></div>
-      <span class="badge archived">Superseded</span>
+      <span class="badge archived">{"Companion cohort" if version in companions else "Superseded"}</span>
     </div>
     <p>{totals['passed']}/{totals['evaluated']} durable repairs, {format_duration(totals['median_duration_seconds'])} median, {money(totals['known_cost_usd'], totals['cost_reported_trials'] < totals['trials'])} known cost.</p>"""
         )
@@ -1444,7 +1499,13 @@ def public_coverage(
     }
     latest_variant: dict[tuple[str, str | None], dict[str, Any]] = {}
     latest_scenario: dict[str, dict[str, Any]] = {}
-    for record in catalog["records"]:
+    companion_versions = set(index.get("companion_versions", []))
+    primary_records = [
+        record
+        for record in catalog["records"]
+        if record["release"] not in companion_versions
+    ]
+    for record in primary_records:
         latest_variant[(record["model"], record.get("reasoning_effort"))] = record
         previous = latest_scenario.get(record["scenario"])
         if previous is None or release_order[record["release"]] > release_order[
@@ -1461,7 +1522,7 @@ def public_coverage(
                 "model": record["model"],
                 "reasoning_effort": record.get("reasoning_effort"),
             }
-            for record in catalog["records"]
+            for record in primary_records
             if record["release"] == index["current_version"]
         ]
         fleet_config = list(
@@ -1475,7 +1536,7 @@ def public_coverage(
         recent = latest_variant.get((item["model"], item.get("reasoning_effort")))
         tiers = {
             record["tier"]
-            for record in catalog["records"]
+            for record in primary_records
             if record["model"] == item["model"]
             and record.get("reasoning_effort") == item.get("reasoning_effort")
         }
@@ -1508,7 +1569,7 @@ def public_coverage(
             record["model"],
             record.get("reasoning_effort"),
         ): record
-        for record in catalog["records"]
+        for record in primary_records
     }
     scenarios = []
     covered_cells = 0
@@ -2311,6 +2372,17 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
     }
     if len(fleet_keys) != len(coverage_fleet):
         raise PublishError("benchmark-data/index.json has duplicate coverage lanes")
+    companion_versions = index.get("companion_versions", [])
+    if (
+        not isinstance(companion_versions, list)
+        or any(
+            not isinstance(version, str) or version not in releases
+            for version in companion_versions
+        )
+        or len(companion_versions) != len(set(companion_versions))
+        or current in companion_versions
+    ):
+        raise PublishError("benchmark-data/index.json has invalid companion releases")
     release_path = root / RELEASES_DIR / f"{current}.json"
     release = read_json(release_path)
     validate_release(release, release_path)
@@ -2325,7 +2397,9 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
         )
         + "\n",
         root / DOCS_CURRENT: html_page(
-            release, recent_scenario_section(index, root)
+            release,
+            recent_scenario_section(index, root),
+            companion_release_section(index, root),
         ),
         root / DOCS_COVERAGE: coverage_page(),
         root / DOCS_EXPLORER: explorer_page(),

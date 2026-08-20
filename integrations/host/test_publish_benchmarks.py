@@ -169,6 +169,41 @@ class PublisherTests(unittest.TestCase):
         self.assertNotIn("result_file", release["runs"][0])
         self.assertNotIn("transcript_file", release["runs"][0])
 
+    def test_external_agent_identity_does_not_publish_local_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = summary("model/a")
+            value["benchmark"]["agent"] = {
+                "name": "opencode",
+                "adapter": "/home/user/replaybook/adapters/opencode.sh",
+                "payload": "/home/user/.opencode/bin/opencode",
+            }
+            value["runs"][0]["agent"] = "opencode"
+            path = self.write_summary(root, "matrix", value)
+            release = create_release("20260820.0.0", [path], {})
+
+        self.assertEqual(
+            release["compatibility"]["agent"],
+            {
+                "name": "opencode",
+                "adapter": "external:opencode.sh",
+                "payload": "external:opencode",
+            },
+        )
+
+    def test_preserves_usage_when_cost_is_unavailable(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = summary("subscription/model")
+            value["runs"][0]["usage"]["cost_usd"] = None
+            path = self.write_summary(root, "matrix", value)
+            release = create_release("20260820.0.0", [path], {})
+
+        self.assertEqual(release["totals"]["usage_reported_trials"], 1)
+        self.assertEqual(release["totals"]["cost_reported_trials"], 0)
+        self.assertEqual(release["totals"]["known_cost_usd"], 0)
+        self.assertEqual(release["totals"]["input_tokens"], 100)
+
     def test_propagates_tier_into_release_and_catalog(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -650,6 +685,60 @@ class PublisherTests(unittest.TestCase):
             (root / "docs/benchmarks.html").write_text("stale")
             with self.assertRaisesRegex(PublishError, "stale"):
                 build_outputs(root, check=True)
+
+    def test_companion_harness_is_visible_but_does_not_replace_coverage(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            primary_path = self.write_summary(root, "primary", summary("model/a"))
+            companion_value = summary("subscription/model")
+            companion_value["benchmark"]["agent"] = {
+                "name": "other-harness",
+                "adapter": "/tmp/other.sh",
+                "payload": "/tmp/other",
+            }
+            companion_value["runs"][0]["agent"] = "other-harness"
+            companion_path = self.write_summary(root, "companion", companion_value)
+            primary = create_release(
+                "20260819.0.0", [primary_path], {"title": "Primary cohort"}
+            )
+            companion = create_release(
+                "20260820.0.0", [companion_path], {"title": "Other harness"}
+            )
+            write_json(
+                root / "benchmark-data/index.json",
+                {
+                    "schema_version": 1,
+                    "current_version": "20260819.0.0",
+                    "companion_versions": ["20260820.0.0"],
+                    "coverage_fleet": [
+                        {"model": "model/a", "reasoning_effort": None}
+                    ],
+                    "releases": ["20260819.0.0", "20260820.0.0"],
+                },
+            )
+            write_json(root / "benchmark-data/releases/20260819.0.0.json", primary)
+            write_json(
+                root / "benchmark-data/releases/20260820.0.0.json", companion
+            )
+            (root / "docs").mkdir()
+            (root / "docs/benchmark-history.html").write_text(
+                f"before\n{HISTORY_START}\n{HISTORY_END}\nafter\n"
+            )
+            (root / "benchmarks.md").write_text(
+                f"before\n{MARKDOWN_START}\n{MARKDOWN_END}\nafter\n"
+            )
+
+            build_outputs(root)
+            current = (root / "docs/benchmarks.html").read_text()
+            coverage = json.loads(
+                (root / "benchmark-data/coverage.json").read_text()
+            )
+
+        self.assertIn("Primary cohort", current)
+        self.assertIn("Companion harness cohorts", current)
+        self.assertIn("Other harness", current)
+        self.assertEqual(coverage["scenarios"][0]["release"], "20260819.0.0")
+        self.assertEqual(coverage["scenarios"][0]["cells"][0]["model"], "model/a")
 
     def test_homepage_lists_recent_distinct_scenarios(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -1,0 +1,42 @@
+{
+  "title": "OpenCode Go infrastructure smoke cohort",
+  "description": "Six models ran through the OpenCode harness and OpenCode Go subscription across the same three externally verified infrastructure incidents.",
+  "model_labels": {
+    "opencode-go/deepseek-v4-flash": "DeepSeek V4 Flash",
+    "opencode-go/glm-5.3": "GLM 5.3",
+    "opencode-go/gpt-5.6-luna": "GPT-5.6 Luna",
+    "opencode-go/kimi-k2.7-code": "Kimi K2.7 Code",
+    "opencode-go/minimax-m3": "MiniMax M3",
+    "opencode-go/qwen3.8-max": "Qwen3.8 Max"
+  },
+  "model_order": [
+    "opencode-go/minimax-m3",
+    "opencode-go/qwen3.8-max",
+    "opencode-go/deepseek-v4-flash",
+    "opencode-go/glm-5.3",
+    "opencode-go/gpt-5.6-luna",
+    "opencode-go/kimi-k2.7-code"
+  ],
+  "corrections": [
+    {
+      "run_id": "001-nginx-502-host-opencode-go-glm-5-3-reasoning-high-1",
+      "changes": {
+        "failure_category": "provider_interrupted",
+        "failure": "OpenCode Go endpoint became unavailable after the agent began work"
+      },
+      "reason": "The retained OpenCode stderr records repeated upstream endpoint-unavailable errors after six completed model rounds and ten tool calls. The original generic Service Unavailable message did not match Replaybook's provider-interruption classifier."
+    }
+  ],
+  "notes": [
+    "This is an independent OpenCode/OpenCode Go harness cohort. Its aggregates are not pooled with Claux/OpenRouter results.",
+    "All 18 trials used Replaybook commit 1355764, host harness v22, high reasoning, a 900-second deadline, and scenarios 001, 015, and 024 from ducks/replaybook-infra 20260817.1.0.",
+    "MiniMax M3 and Qwen3.8 Max completed all three repairs. The other four lanes completed two of three.",
+    "DeepSeek, Luna, and Kimi applied the missing database migration in scenario 024 but left the green application instance on the previous release, so the verifier correctly recorded release_not_converged.",
+    "OpenCode Go reported subscription usage estimates, but not metered API cost, so public cost remains unavailable rather than zero."
+  ],
+  "observations": [
+    "The Discourse interrupted-deploy scenario produced the clearest separation: MiniMax, Qwen, and GLM converged the rollout; DeepSeek, Luna, and Kimi repaired the schema without finishing the green instance rollout.",
+    "The cohort demonstrates why harness and provider identity belong in the benchmark boundary. These are complete model-plus-OpenCode results, not interchangeable measurements of the same models through Claux."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 001-nginx-502-host --scenario 015-sidekiq-poison-pill --scenario 024-discourse-interrupted-deploy --models opencode-go/deepseek-v4-flash opencode-go/glm-5.3 opencode-go/gpt-5.6-luna opencode-go/kimi-k2.7-code opencode-go/minimax-m3 opencode-go/qwen3.8-max --reasoning-efforts high --attempts 1 --concurrency 2 --agent-adapter integrations/host/adapters/opencode.sh --agent-payload ~/.opencode/bin/opencode --agent-env-file ~/.config/replaybook/opencode.env --agent-name opencode"
+}
