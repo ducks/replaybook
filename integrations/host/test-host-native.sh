@@ -167,6 +167,8 @@ agent_error="$(mktemp)"
 trap 'rm -f -- "$agent_error"' EXIT
 printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (429 Too Many Requests): Provider returned error"}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_unavailable' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"ProviderModelNotFoundError: Model not found: opencode-go/glm-5.3"}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_unavailable' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"API error: response reached its output token limit"},"recording":{"model_rounds":[{"status":"completed"}],"tools":[]}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tagent_output_limit' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (502 Bad Gateway): upstream request failed"},"recording":{"model_rounds":[{"status":"completed"}],"tools":[{"name":"Bash"}]}}' >"$agent_error"
@@ -504,6 +506,49 @@ EOF
   ' "$eval_root/results/agent.json" >/dev/null
   jq -e 'length == 3 and .[2].type == "step_finish"' \
     "$eval_root/results/transcript.json" >/dev/null
+)
+
+(
+  smoke_root="$(mktemp -d)"
+  trap 'rm -rf -- "$smoke_root"' EXIT
+  eval_root="$smoke_root/eval"
+  mkdir -p "$eval_root/results" "$smoke_root/workspace"
+  printf '%s\n' 'repair the deployed service' >"$eval_root/instruction.md"
+  cat >"$eval_root/payload" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+printf '%s\n' '{"type":"error","timestamp":1000,"error":{"name":"UnknownError","data":{"message":"Unexpected server error. Check server logs for details.","ref":"err_test"}}}'
+printf '%s\n' 'timestamp=test level=ERROR error="ProviderModelNotFoundError: Model not found: opencode-go/glm-5.3. Did you mean: glm-5.1, glm-5.2?"' >&2
+exit 1
+EOF
+  chmod 0755 "$eval_root/payload"
+  auth_b64="$(
+    printf '%s\n' '{"opencode-go":{"type":"api","key":"go-secret"}}' \
+      | base64 --wrap=0
+  )"
+
+  set +e
+  REPLAYBOOK_EVAL_ROOT="$eval_root" \
+    REPLAYBOOK_AGENT_PAYLOAD="$eval_root/payload" \
+    OPENCODE_AUTH_JSON_B64="$auth_b64" \
+    REPLAYBOOK_INSTRUCTION_FILE="$eval_root/instruction.md" \
+    REPLAYBOOK_MODEL="opencode-go/glm-5.3" \
+    REPLAYBOOK_REASONING_EFFORT="high" \
+    REPLAYBOOK_RESULT_FILE="$eval_root/results/agent.json" \
+    REPLAYBOOK_TRANSCRIPT_FILE="$eval_root/results/transcript.json" \
+    REPLAYBOOK_WORKSPACE="$smoke_root/workspace" \
+    bash "$script_dir/adapters/opencode.sh" >"$smoke_root/stdout" 2>"$smoke_root/stderr"
+  adapter_status=$?
+  set -e
+
+  [[ "$adapter_status" -eq 1 ]]
+  jq -e '
+    .outcome.status == "error" and
+    (.outcome.message | startswith("ProviderModelNotFoundError: Model not found:"))
+  ' "$eval_root/results/agent.json" >/dev/null
+  grep -q 'ProviderModelNotFoundError' "$eval_root/results/opencode-stderr.log"
+  [[ "$("$script_dir/classify-agent-outcome.sh" "$eval_root/results/agent.json")" == \
+    $'unavailable\tprovider_unavailable' ]]
 )
 
 (
