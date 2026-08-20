@@ -35,7 +35,7 @@
 
     <div class="callout comparison-note">
       <strong>Release boundaries are comparison boundaries.</strong>
-      The explorer never silently pools results from different harnesses, scenario packs, verifiers, adapters, or Claux releases.
+      The explorer never silently pools results from different host harnesses, agent harnesses, providers, scenario packs, verifiers, or adapter versions.
     </div>
 
     <div class="catalog-controls" aria-label="Benchmark filters">
@@ -142,7 +142,11 @@
   function render() {
     const records = selectedRecords();
     const release = catalog.releases.find(item => item.version === releaseFilter.value);
-    document.querySelector("#release-context").textContent = `${release.title} · ${release.tier} tier · harness ${release.harness_versions.map(value => `v${value}`).join("/")} · Claux ${release.claux_release} · ${release.agent_timeout_seconds}s timeout`;
+    const harness = release.agent_harness;
+    const harnessVersion = harness.version ? ` ${harness.version}` : "";
+    const role = release.role === "companion" ? "companion cohort" : `${release.tier} tier`;
+    const provider = harness.provider ? ` · ${harness.provider}` : "";
+    document.querySelector("#release-context").textContent = `${release.title} · ${role} · ${harness.label}${harnessVersion} agent harness${provider} · host harness ${release.harness_versions.map(value => `v${value}`).join("/")} · ${release.agent_timeout_seconds}s timeout`;
     const evaluated = records.reduce((sum, row) => sum + row.evaluated, 0);
     const passed = records.reduce((sum, row) => sum + row.passed, 0);
     const cost = records.reduce((sum, row) => sum + row.known_cost_usd, 0);

@@ -277,6 +277,75 @@ pre code {
   border-color: var(--accent);
 }
 
+.badge.companion {
+  color: #58a6ff;
+  border-color: #1f6feb;
+}
+
+.cohort-identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  margin: 1.25rem 0;
+  color: var(--fg-dim);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+}
+
+.cohort-identity span:not(.badge)::before {
+  content: "·";
+  margin-right: 0.9rem;
+  color: var(--border);
+}
+
+.cohort-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.cohort-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.1rem;
+  background: var(--bg-alt);
+}
+
+.cohort-card h3 {
+  margin: 0.8rem 0 0.35rem;
+}
+
+.cohort-card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cohort-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem 1rem;
+  margin: 1rem 0;
+}
+
+.cohort-facts div {
+  min-width: 0;
+}
+
+.cohort-facts dt {
+  color: var(--fg-dim);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.cohort-facts dd {
+  margin: 0.15rem 0 0;
+  overflow-wrap: anywhere;
+}
+
 .verified-status {
   border-left-color: var(--accent);
 }
@@ -288,6 +357,17 @@ pre code {
 .comparison-note strong {
   display: block;
   margin-bottom: 0.25rem;
+}
+
+@media (max-width: 600px) {
+  .cohort-identity span:not(.badge)::before {
+    content: none;
+    margin: 0;
+  }
+
+  .cohort-facts {
+    grid-template-columns: 1fr;
+  }
 }
 
 .total-row td {

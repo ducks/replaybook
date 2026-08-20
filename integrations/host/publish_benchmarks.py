@@ -222,6 +222,7 @@ def import_summary(path: Path) -> dict[str, Any]:
         execution_snapshot.setdefault("selected_scenarios", [])
         for key in OPTIONAL_SNAPSHOT_HASHES:
             execution_snapshot.setdefault(key, None)
+    compacted_agent = compact_agent(agent)
     source = {
         "source": path.parent.name,
         "started_at": summary.get("started_at"),
@@ -241,8 +242,14 @@ def import_summary(path: Path) -> dict[str, Any]:
         "attempts": benchmark.get("attempts"),
         "concurrency": benchmark.get("concurrency"),
         "agent_timeout_seconds": benchmark.get("agent_timeout_seconds"),
-        "agent": compact_agent(agent),
-        "claux_release": benchmark.get("claux_release"),
+        "agent": compacted_agent,
+        # Older matrix summaries always populated this field, including custom
+        # adapters. Preserve it only when Claux was actually the agent harness.
+        "claux_release": (
+            benchmark.get("claux_release")
+            if compacted_agent.get("name") == "claux"
+            else None
+        ),
         "runs": runs,
     }
     validate_source_matrix(source, path)
@@ -764,6 +771,9 @@ def create_release_from_sources(
             if run.get("reasoning_effort") is not None
         )
     )
+    compatibility["agent_harness"] = release_agent_harness(
+        compatibility, runs, annotations.get("agent_harness")
+    )
     corrections = apply_corrections(runs, annotations)
     reproduction_command = annotations.get("reproduction_command")
     if reproduction_command is not None and (
@@ -862,6 +872,99 @@ def tier_label(release: dict[str, Any]) -> str:
     return "Unclassified" if tier == "unclassified" else str(tier).title()
 
 
+def normalized_agent_harness(release: dict[str, Any]) -> dict[str, Any]:
+    """Describe the agent harness without assuming every release used Claux.
+
+    Older release files predate explicit harness metadata. Keep them readable by
+    deriving a conservative display identity from the compatibility boundary.
+    New releases persist this same shape in ``compatibility.agent_harness``.
+    """
+    compatibility = release.get("compatibility", {})
+    explicit = compatibility.get("agent_harness")
+    if isinstance(explicit, dict):
+        return {
+            "id": explicit.get("id") or "external",
+            "label": explicit.get("label") or explicit.get("id") or "External",
+            "version": explicit.get("version"),
+            "provider": explicit.get("provider"),
+            "billing": explicit.get("billing") or "unknown",
+        }
+
+    agent = compatibility.get("agent") or {}
+    harness_id = str(agent.get("name") or "external")
+    models = {
+        str(run.get("model"))
+        for run in release.get("runs", [])
+        if isinstance(run, dict) and run.get("model")
+    }
+    namespaces = {model.split("/", 1)[0] for model in models if "/" in model}
+    if harness_id == "claux":
+        return {
+            "id": "claux",
+            "label": "Claux",
+            "version": compatibility.get("claux_release"),
+            "provider": "OpenRouter",
+            "billing": "provider-reported",
+        }
+    if harness_id == "opencode":
+        return {
+            "id": "opencode",
+            "label": "OpenCode",
+            "version": None,
+            "provider": "OpenCode Go" if namespaces == {"opencode-go"} else None,
+            "billing": "subscription",
+        }
+    return {
+        "id": harness_id,
+        "label": harness_id.replace("-", " ").title(),
+        "version": None,
+        "provider": next(iter(namespaces)) if len(namespaces) == 1 else None,
+        "billing": "unknown",
+    }
+
+
+def release_agent_harness(
+    compatibility: dict[str, Any],
+    runs: list[dict[str, Any]],
+    annotation: Any,
+) -> dict[str, Any]:
+    """Validate an explicit release identity or derive a legacy-compatible one."""
+    if annotation is None:
+        return normalized_agent_harness(
+            {"compatibility": compatibility, "runs": runs}
+        )
+    if not isinstance(annotation, dict):
+        raise PublishError("annotations agent_harness must be an object")
+    required = ("id", "label", "billing")
+    if any(
+        not isinstance(annotation.get(key), str) or not annotation[key].strip()
+        for key in required
+    ):
+        raise PublishError(
+            "annotations agent_harness requires non-empty id, label, and billing"
+        )
+    for key in ("version", "provider"):
+        value = annotation.get(key)
+        if value is not None and (not isinstance(value, str) or not value.strip()):
+            raise PublishError(
+                f"annotations agent_harness {key} must be a non-empty string or null"
+            )
+    return {
+        "id": annotation["id"],
+        "label": annotation["label"],
+        "version": annotation.get("version"),
+        "provider": annotation.get("provider"),
+        "billing": annotation["billing"],
+    }
+
+
+def harness_label(harness: dict[str, Any]) -> str:
+    value = str(harness.get("label") or harness.get("id") or "External")
+    if harness.get("version"):
+        value += f" {harness['version']}"
+    return value
+
+
 def model_rows(release: dict[str, Any]) -> list[dict[str, Any]]:
     return sorted(
         release["by_model"],
@@ -954,7 +1057,14 @@ def companion_release_section(index: dict[str, Any], root: Path) -> str:
     for version in reversed(versions):
         release = read_json(root / RELEASES_DIR / f"{version}.json")
         totals = release["totals"]
-        agent = release["compatibility"].get("agent", {})
+        harness = normalized_agent_harness(release)
+        host_versions = "/".join(
+            "v" + str(item)
+            for item in release["compatibility"]["harness_versions"]
+        )
+        scenario_count = len(
+            {(run["scenario"], run["scenario_version"]) for run in release["runs"]}
+        )
         query = urlencode({"release": version})
         cost = (
             "n/a"
@@ -965,21 +1075,28 @@ def companion_release_section(index: dict[str, Any], root: Path) -> str:
             )
         )
         cards.append(
-            "    <div class=\"callout comparison-note\">"
-            f"<strong>{html.escape(release['title'])}</strong>"
+            "    <article class=\"cohort-card companion-cohort\">"
+            "<div class=\"cohort-card-heading\">"
+            f"<span class=\"badge companion\">Companion</span>"
+            f"<code>{html.escape(version)}</code></div>"
+            f"<h3>{html.escape(release['title'])}</h3>"
             f"<p>{html.escape(release['description'])}</p>"
-            f"<p><code>{html.escape(version)}</code> · "
-            f"{html.escape(str(agent.get('name', 'external')))} harness · "
-            f"{totals['passed']}/{totals['evaluated']} durable repairs · "
-            f"{format_duration(totals['median_duration_seconds'])} median · "
-            f"{cost} known cost.</p>"
+            "<dl class=\"cohort-facts\">"
+            f"<div><dt>Agent harness</dt><dd>{html.escape(harness_label(harness))}</dd></div>"
+            f"<div><dt>Provider lane</dt><dd>{html.escape(str(harness.get('provider') or 'Not reported'))}</dd></div>"
+            f"<div><dt>Billing</dt><dd>{html.escape(str(harness.get('billing') or 'unknown'))}</dd></div>"
+            f"<div><dt>Host harness</dt><dd>{html.escape(host_versions)}</dd></div>"
+            f"<div><dt>Coverage</dt><dd>{scenario_count} scenarios · {totals['trials']} trials</dd></div>"
+            f"<div><dt>Outcome</dt><dd>{totals['passed']}/{totals['evaluated']} repairs · {format_duration(totals['median_duration_seconds'])} median · {cost}</dd></div>"
+            "</dl>"
             f"<a href=\"benchmark-explorer.html?{html.escape(query)}\">"
-            "Inspect this cohort →</a></div>"
+            "Inspect this cohort →</a></article>"
         )
     return """
     <h2>Companion harness cohorts</h2>
-    <p class="small muted">These cohorts use the same external verifiers but a different agent harness or provider lane. Their aggregates remain independent from the primary Claux/OpenRouter results.</p>
-""" + "\n".join(cards)
+    <p class="small muted">Same external verification, different agent harness or provider lane. Companion results remain independent from the canonical cohort and are never pooled into its model table.</p>
+    <div class="cohort-grid">
+""" + "\n".join(cards) + "\n    </div>"
 
 
 def html_page(
@@ -988,6 +1105,14 @@ def html_page(
     companion_releases: str = "",
 ) -> str:
     totals = release["totals"]
+    harness = normalized_agent_harness(release)
+    host_versions = "/".join(
+        "v" + str(version)
+        for version in release["compatibility"]["harness_versions"]
+    )
+    scenario_count = len(
+        {(run["scenario"], run["scenario_version"]) for run in release["runs"]}
+    )
     cost_incomplete = totals["cost_reported_trials"] < totals["trials"]
     rows = model_rows(release)
     model_cells = []
@@ -1183,9 +1308,18 @@ def html_page(
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Benchmark {html.escape(release['version'])} · {html.escape(tier_label(release))} tier</p>
+    <p class="eyebrow">Canonical cohort · Benchmark {html.escape(release['version'])}</p>
     <h1>{html.escape(release['title'])}</h1>
     <p class="tagline benchmark-tagline">{html.escape(release['description'])}</p>
+
+    <div class="cohort-identity" aria-label="Canonical cohort identity">
+      <span class="badge verified">Canonical</span>
+      <span>{html.escape(tier_label(release))} tier</span>
+      <span>{html.escape(harness_label(harness))} agent harness</span>
+      <span>{html.escape(str(harness.get('provider') or 'Provider not reported'))}</span>
+      <span>Host harness {html.escape(host_versions)}</span>
+      <span>{release['compatibility']['agent_timeout_seconds']}s timeout</span>
+    </div>
 
     <div class="metric-grid" aria-label="Current benchmark results">
       <div class="metric"><span class="metric-value">{totals['passed']}/{totals['evaluated']}</span><span class="metric-label">durable repairs</span></div>
@@ -1195,12 +1329,13 @@ def html_page(
 
     <div class="callout benchmark-status verified-status">
       <strong>{totals['trials']} trials across {source_count} controlled {source_noun}.</strong>
-      {totals['passed']} repairs passed durable verification. {totals['failed']} evaluated attempts failed and {totals['unavailable']} {trial_noun(totals['unavailable'])} {"was" if totals['unavailable'] == 1 else "were"} unavailable.
+      {scenario_count} scenarios were evaluated through the {html.escape(harness_label(harness))} agent harness. {totals['passed']} repairs passed durable verification. {totals['failed']} evaluated attempts failed and {totals['unavailable']} {trial_noun(totals['unavailable'])} {"was" if totals['unavailable'] == 1 else "were"} unavailable.
     </div>
-{recent_scenarios}
 {companion_releases}
+{recent_scenarios}
 
-    <h2>Model summary</h2>
+    <h2>Canonical model summary</h2>
+    <p class="small muted">Only model lanes inside benchmark <code>{html.escape(release['version'])}</code> appear here. Companion harness cohorts stay in their own comparison boundary above.</p>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
 {chr(10).join(model_cells)}
     </tbody></table></div>
@@ -1218,7 +1353,7 @@ def html_page(
 {unavailable_section}{post_timeout}{corrections}{notes}
 
     <h2>Constituent matrices</h2>
-    <p>The publisher recorded harness provenance and validated matching {pack_compatibility}scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>{pack_note}
+    <p>The publisher recorded harness provenance and validated matching {pack_compatibility}scenario versions, attempts, timeout, and agent adapter before combining these summaries.</p>{pack_note}
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
 {source_rows}
     </tbody></table></div>
@@ -1226,7 +1361,7 @@ def html_page(
     <h2>Run the matrix</h2>
     <pre><code>{run_command}</code></pre>
 
-    <p class="small muted">Host harness {html.escape('/'.join('v' + str(version) for version in release['compatibility']['harness_versions']))}, Claux <code>{html.escape(str(release['compatibility']['claux_release']))}</code>, {release['compatibility']['agent_timeout_seconds']}-second agent timeout. Usage was reported for {totals['usage_reported_trials']} of {totals['trials']} trials.</p>
+    <p class="small muted">Agent harness: {html.escape(harness_label(harness))}. Provider lane: {html.escape(str(harness.get('provider') or 'not reported'))}. Billing: {html.escape(str(harness.get('billing') or 'unknown'))}. Host harness: {html.escape(host_versions)}. Agent timeout: {release['compatibility']['agent_timeout_seconds']} seconds. Usage was reported for {totals['usage_reported_trials']} of {totals['trials']} trials.</p>
 
     <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
 
@@ -1423,23 +1558,37 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
     """Build the path-free catalog consumed by the static benchmark explorer."""
     releases = []
     records = []
+    companions = set(index.get("companion_versions", []))
     for version in index["releases"]:
         path = root / RELEASES_DIR / f"{version}.json"
         release = read_json(path)
         if version == index["current_version"]:
             validate_release(release, path)
         compatibility = release["compatibility"]
+        agent_harness = normalized_agent_harness(release)
         releases.append(
             {
                 "version": version,
                 "title": release["title"],
                 "description": release["description"],
                 "current": version == index["current_version"],
+                "role": (
+                    "canonical"
+                    if version == index["current_version"]
+                    else "companion"
+                    if version in companions
+                    else "historical"
+                ),
                 "tier": tier_value(release),
+                "agent_harness": agent_harness,
                 "harness_versions": compatibility.get("harness_versions")
                 or [compatibility["harness_version"]],
                 "scenario_packs": compatibility.get("scenario_packs", []),
-                "claux_release": compatibility["claux_release"],
+                "claux_release": (
+                    compatibility.get("claux_release")
+                    if agent_harness["id"] == "claux"
+                    else None
+                ),
                 "agent_timeout_seconds": compatibility["agent_timeout_seconds"],
                 "attempts": compatibility["attempts"],
                 "totals": release["totals"],
@@ -1643,6 +1792,7 @@ def public_coverage(
                 ),
                 "boundary": {
                     "tier": tier_value(release),
+                    "agent_harness": normalized_agent_harness(release),
                     "harness_versions": compatibility.get("harness_versions")
                     or [compatibility["harness_version"]],
                     "host_harness_sha256": execution.get("host_harness_sha256"),
@@ -1724,7 +1874,7 @@ def explorer_page() -> str:
 
     <div class="callout comparison-note">
       <strong>Release boundaries are comparison boundaries.</strong>
-      The explorer never silently pools results from different harnesses, scenario packs, verifiers, adapters, or Claux releases.
+      The explorer never silently pools results from different host harnesses, agent harnesses, providers, scenario packs, verifiers, or adapter versions.
     </div>
 
     <div class="catalog-controls" aria-label="Benchmark filters">
@@ -1831,7 +1981,11 @@ def explorer_page() -> str:
   function render() {{
     const records = selectedRecords();
     const release = catalog.releases.find(item => item.version === releaseFilter.value);
-    document.querySelector("#release-context").textContent = `${{release.title}} · ${{release.tier}} tier · harness ${{release.harness_versions.map(value => `v${{value}}`).join("/")}} · Claux ${{release.claux_release}} · ${{release.agent_timeout_seconds}}s timeout`;
+    const harness = release.agent_harness;
+    const harnessVersion = harness.version ? ` ${{harness.version}}` : "";
+    const role = release.role === "companion" ? "companion cohort" : `${{release.tier}} tier`;
+    const provider = harness.provider ? ` · ${{harness.provider}}` : "";
+    document.querySelector("#release-context").textContent = `${{release.title}} · ${{role}} · ${{harness.label}}${{harnessVersion}} agent harness${{provider}} · host harness ${{release.harness_versions.map(value => `v${{value}}`).join("/")}} · ${{release.agent_timeout_seconds}}s timeout`;
     const evaluated = records.reduce((sum, row) => sum + row.evaluated, 0);
     const passed = records.reduce((sum, row) => sum + row.passed, 0);
     const cost = records.reduce((sum, row) => sum + row.known_cost_usd, 0);

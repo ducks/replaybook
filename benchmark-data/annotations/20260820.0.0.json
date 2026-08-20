@@ -1,6 +1,13 @@
 {
   "title": "OpenCode Go infrastructure smoke cohort",
   "description": "Six models ran through the OpenCode harness and OpenCode Go subscription across the same three externally verified infrastructure incidents.",
+  "agent_harness": {
+    "id": "opencode",
+    "label": "OpenCode",
+    "version": null,
+    "provider": "OpenCode Go",
+    "billing": "subscription"
+  },
   "model_labels": {
     "opencode-go/deepseek-v4-flash": "DeepSeek V4 Flash",
     "opencode-go/glm-5.3": "GLM 5.3",
