@@ -709,11 +709,18 @@
       "name": "opencode",
       "payload": "external:opencode"
     },
+    "agent_harness": {
+      "billing": "subscription",
+      "id": "opencode",
+      "label": "OpenCode",
+      "provider": "OpenCode Go",
+      "version": null
+    },
     "agent_timeout_seconds": 900,
     "attempts": 1,
     "benchmark_manifest": null,
     "benchmark_tier": null,
-    "claux_release": "v20260815.0.0",
+    "claux_release": null,
     "execution_snapshot": {
       "agent_adapter_sha256": "c45a8bc72c9da014daaa3087836bdad8188713fc54bdc0eadfd5502c9943196f",
       "agent_env_sha256": "8bf04194fb9d73e845f72b9ad0daaec32b9247d68b0cf1ca9cb3c60f6d7f453d",
@@ -1585,7 +1592,7 @@
       "attempts": 1,
       "benchmark_manifest": null,
       "benchmark_tier": null,
-      "claux_release": "v20260815.0.0",
+      "claux_release": null,
       "concurrency": 2,
       "execution_snapshot": {
         "agent_adapter_sha256": "c45a8bc72c9da014daaa3087836bdad8188713fc54bdc0eadfd5502c9943196f",

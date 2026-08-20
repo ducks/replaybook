@@ -29,9 +29,18 @@
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Benchmark 20260819.0.0 · Full tier</p>
+    <p class="eyebrow">Canonical cohort · Benchmark 20260819.0.0</p>
     <h1>Five models across the full infrastructure suite</h1>
     <p class="tagline benchmark-tagline">Five agent models attempted the same 16-scenario infrastructure repair suite three times per scenario under one compatible Replaybook v21 harness boundary.</p>
+
+    <div class="cohort-identity" aria-label="Canonical cohort identity">
+      <span class="badge verified">Canonical</span>
+      <span>Full tier</span>
+      <span>Claux v20260815.0.0 agent harness</span>
+      <span>OpenRouter</span>
+      <span>Host harness v21</span>
+      <span>900s timeout</span>
+    </div>
 
     <div class="metric-grid" aria-label="Current benchmark results">
       <div class="metric"><span class="metric-value">214/240</span><span class="metric-label">durable repairs</span></div>
@@ -41,7 +50,13 @@
 
     <div class="callout benchmark-status verified-status">
       <strong>240 trials across 1 controlled matrix.</strong>
-      214 repairs passed durable verification. 26 evaluated attempts failed and 0 trials were unavailable.
+      16 scenarios were evaluated through the Claux v20260815.0.0 agent harness. 214 repairs passed durable verification. 26 evaluated attempts failed and 0 trials were unavailable.
+    </div>
+
+    <h2>Companion harness cohorts</h2>
+    <p class="small muted">Same external verification, different agent harness or provider lane. Companion results remain independent from the canonical cohort and are never pooled into its model table.</p>
+    <div class="cohort-grid">
+    <article class="cohort-card companion-cohort"><div class="cohort-card-heading"><span class="badge companion">Companion</span><code>20260820.0.0</code></div><h3>OpenCode Go infrastructure smoke cohort</h3><p>Six models ran through the OpenCode harness and OpenCode Go subscription across the same three externally verified infrastructure incidents.</p><dl class="cohort-facts"><div><dt>Agent harness</dt><dd>OpenCode</dd></div><div><dt>Provider lane</dt><dd>OpenCode Go</dd></div><div><dt>Billing</dt><dd>subscription</dd></div><div><dt>Host harness</dt><dd>v22</dd></div><div><dt>Coverage</dt><dd>3 scenarios · 18 trials</dd></div><div><dt>Outcome</dt><dd>14/18 repairs · 3:32 median · n/a</dd></div></dl><a href="benchmark-explorer.html?release=20260820.0.0">Inspect this cohort →</a></article>
     </div>
 
     <h2>Recent scenario cohorts</h2>
@@ -58,11 +73,8 @@
     </tbody></table></div>
 
 
-    <h2>Companion harness cohorts</h2>
-    <p class="small muted">These cohorts use the same external verifiers but a different agent harness or provider lane. Their aggregates remain independent from the primary Claux/OpenRouter results.</p>
-    <div class="callout comparison-note"><strong>OpenCode Go infrastructure smoke cohort</strong><p>Six models ran through the OpenCode harness and OpenCode Go subscription across the same three externally verified infrastructure incidents.</p><p><code>20260820.0.0</code> · opencode harness · 14/18 durable repairs · 3:32 median · n/a known cost.</p><a href="benchmark-explorer.html?release=20260820.0.0">Inspect this cohort →</a></div>
-
-    <h2>Model summary</h2>
+    <h2>Canonical model summary</h2>
+    <p class="small muted">Only model lanes inside benchmark <code>20260819.0.0</code> appear here. Companion harness cohorts stay in their own comparison boundary above.</p>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
           <tr><td>Qwen3.8 2.4T A95B (high)</td><td>46/48</td><td>96%</td><td>2:02</td><td>14,218,146</td><td>$8.9756</td><td>$0.1951</td></tr>
           <tr><td>GLM 5.3 (high)</td><td>45/48</td><td>94%</td><td>2:19</td><td>9,041,290</td><td>$4.4098</td><td>$0.0980</td></tr>
@@ -116,7 +128,7 @@
     </div>
 
     <h2>Constituent matrices</h2>
-    <p>The publisher recorded harness provenance and validated matching scenario pack revisions, scenario versions, attempts, timeout, agent adapter, and Claux release before combining these summaries.</p>
+    <p>The publisher recorded harness provenance and validated matching scenario pack revisions, scenario versions, attempts, timeout, and agent adapter before combining these summaries.</p>
     <p class="small muted">Scenario packs: <code>ducks/replaybook-infra@20260817.1.0</code>.</p>
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
           <tr><td><code>host-matrix-2026-08-19__00-45-15.d5ec3f</code></td><td>DeepSeek V4 Flash 0731, Gemini 3.7 Flash, GPT-5.6 Luna, Qwen3.8 2.4T A95B, GLM 5.3 · reasoning high</td><td><code>aff5c9bd</code></td></tr>
@@ -125,7 +137,7 @@
     <h2>Run the matrix</h2>
     <pre><code>python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark.toml --models deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash openai/gpt-5.6-luna qwen/qwen3.8-2.4t-a95b z-ai/glm-5.3 --reasoning-efforts high --concurrency 2 --base-port 26000</code></pre>
 
-    <p class="small muted">Host harness v21, Claux <code>v20260815.0.0</code>, 900-second agent timeout. Usage was reported for 238 of 240 trials.</p>
+    <p class="small muted">Agent harness: Claux v20260815.0.0. Provider lane: OpenRouter. Billing: provider-reported. Host harness: v21. Agent timeout: 900 seconds. Usage was reported for 238 of 240 trials.</p>
 
     <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
 

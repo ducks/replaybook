@@ -467,7 +467,9 @@ python integrations/host/publish_benchmarks.py import \
 ```
 
 Before combining results it requires the same suite, host harness, selected
-scenario content, attempt count, agent timeout, adapter, and Claux release.
+scenario content, attempt count, agent timeout, and agent adapter. Claux
+releases are part of that boundary only when Claux is the selected agent
+harness.
 Full scenario-pack revisions, source matrix names, and Replaybook commits
 remain visible as provenance. The tracked release contains normalized result
 data, not local paths, transcripts, credentials, or VM logs.
@@ -488,7 +490,24 @@ the public catalog.
 CI uses the corresponding `check` command to reject stale generated pages.
 Importing a later DateVer release keeps earlier snapshots in the generated
 history. Optional annotations provide display names, editorial observations,
-and explicit post-run corrections with their original values and reasons.
+and explicit post-run corrections with their original values and reasons. A
+custom or subscription-backed cohort can also declare its public identity:
+
+```json
+{
+  "agent_harness": {
+    "id": "opencode",
+    "label": "OpenCode",
+    "version": null,
+    "provider": "OpenCode Go",
+    "billing": "subscription"
+  }
+}
+```
+
+The generated catalog exposes this object for every release. Legacy release
+files are normalized at build time, so older Claux and custom-adapter evidence
+remains readable without rewriting its results.
 
 ## Submit benchmark evidence
 

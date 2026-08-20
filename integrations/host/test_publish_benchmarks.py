@@ -15,6 +15,7 @@ from integrations.host.publish_benchmarks import (
     build_outputs,
     create_release,
     html_page,
+    normalized_agent_harness,
     validate_release,
     write_json,
 )
@@ -704,6 +705,17 @@ class PublisherTests(unittest.TestCase):
             companion = create_release(
                 "20260820.0.0", [companion_path], {"title": "Other harness"}
             )
+            self.assertIsNone(companion["compatibility"]["claux_release"])
+            self.assertEqual(
+                companion["compatibility"]["agent_harness"],
+                {
+                    "id": "other-harness",
+                    "label": "Other Harness",
+                    "version": None,
+                    "provider": "subscription",
+                    "billing": "unknown",
+                },
+            )
             write_json(
                 root / "benchmark-data/index.json",
                 {
@@ -733,12 +745,78 @@ class PublisherTests(unittest.TestCase):
             coverage = json.loads(
                 (root / "benchmark-data/coverage.json").read_text()
             )
+            catalog = json.loads(
+                (root / "benchmark-data/catalog.json").read_text()
+            )
 
         self.assertIn("Primary cohort", current)
         self.assertIn("Companion harness cohorts", current)
         self.assertIn("Other harness", current)
+        self.assertIn("Agent harness", current)
+        self.assertEqual(catalog["releases"][1]["role"], "companion")
+        self.assertEqual(
+            catalog["releases"][1]["agent_harness"]["id"], "other-harness"
+        )
         self.assertEqual(coverage["scenarios"][0]["release"], "20260819.0.0")
         self.assertEqual(coverage["scenarios"][0]["cells"][0]["model"], "model/a")
+
+    def test_legacy_custom_adapter_does_not_render_as_claux(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = summary("opencode-go/glm-5.3")
+            value["benchmark"]["agent"] = {
+                "name": "opencode",
+                "adapter": "/tmp/opencode.sh",
+                "payload": "/tmp/opencode",
+            }
+            value["runs"][0]["agent"] = "opencode"
+            path = self.write_summary(root, "legacy-opencode", value)
+            release = create_release("20260820.0.0", [path], {})
+            release["compatibility"].pop("agent_harness")
+            release["compatibility"]["claux_release"] = "v20990101.0.0"
+
+        harness = normalized_agent_harness(release)
+        page = html_page(release)
+        self.assertEqual(harness["label"], "OpenCode")
+        self.assertEqual(harness["provider"], "OpenCode Go")
+        self.assertEqual(harness["billing"], "subscription")
+        self.assertIn("OpenCode agent harness", page)
+        self.assertNotIn("Claux v20990101.0.0", page)
+
+    def test_annotation_can_define_agent_harness_identity(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.write_summary(root, "matrix", summary("provider/model"))
+            release = create_release(
+                "20260820.0.0",
+                [path],
+                {
+                    "agent_harness": {
+                        "id": "custom",
+                        "label": "Custom Harness",
+                        "version": "v2",
+                        "provider": "Example Provider",
+                        "billing": "subscription",
+                    }
+                },
+            )
+
+        self.assertEqual(
+            release["compatibility"]["agent_harness"]["label"],
+            "Custom Harness",
+        )
+        self.assertIn("Custom Harness v2 agent harness", html_page(release))
+
+    def test_rejects_invalid_agent_harness_annotation(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.write_summary(root, "matrix", summary("provider/model"))
+            with self.assertRaisesRegex(PublishError, "agent_harness"):
+                create_release(
+                    "20260820.0.0",
+                    [path],
+                    {"agent_harness": {"id": "custom"}},
+                )
 
     def test_homepage_lists_recent_distinct_scenarios(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

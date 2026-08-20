@@ -70,6 +70,16 @@
     </p>
 
     <p>
+      Published results name these layers separately. The <strong>host
+      harness</strong> is Replaybook's controller and verifier boundary. The
+      <strong>agent harness</strong> is the tool that drives the model, such as
+      Claux or OpenCode. Provider lane and billing mode are recorded alongside
+      the agent harness when known. A legacy Claux field in an old artifact is
+      retained for compatibility, but does not imply that Claux executed a
+      custom-adapter cohort.
+    </p>
+
+    <p>
       The oracle and verifier remain outside the model VM. Replaybook checks for
       answer-key leaks before starting the agent and preserves the complete tool
       transcript for later inspection.
