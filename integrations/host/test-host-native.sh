@@ -469,6 +469,7 @@ done
 [[ "$workspace" == */workspace ]]
 [[ "$prompt" == "repair the deployed service" ]]
 printf '%s\n' '{"type":"step_start","timestamp":1000,"part":{"type":"step-start"}}'
+printf '%s\n' '{"type":"tool_use","timestamp":1300,"part":{"type":"tool","tool":"bash","callID":"call-1","state":{"status":"completed","input":{"command":"systemctl restart example"},"output":"","metadata":{"exit":0},"time":{"start":1200,"end":1250}}}}'
 printf '%s\n' '{"type":"text","timestamp":1300,"part":{"type":"text","text":"repair complete"}}'
 printf '%s\n' '{"type":"step_finish","timestamp":1500,"part":{"type":"step-finish","reason":"stop","tokens":{"total":165,"input":100,"output":20,"reasoning":5,"cache":{"read":40,"write":0}},"cost":0.0125}}'
 EOF
@@ -502,9 +503,19 @@ EOF
     .usage.cost_usd == null and
     .usage.subscription_usage_usd == 0.0125 and
     .recording.total_duration_ms == 500 and
-    .recording.model_rounds[0].duration_ms == 500
+    .recording.model_rounds[0].duration_ms == 500 and
+    .recording.model_rounds[0].status == "completed" and
+    .recording.model_rounds[0].finish_reason == "stop" and
+    (.recording.tools | length) == 1 and
+    .recording.tools[0].name == "bash" and
+    .recording.tools[0].is_error == false and
+    .recording.tools[0].read_only == false and
+    .recording.tools[0].started_after_ms == 200 and
+    .recording.tools[0].duration_ms == 50 and
+    (.recording.tools[0] | has("input") | not) and
+    (.recording.tools[0] | has("output") | not)
   ' "$eval_root/results/agent.json" >/dev/null
-  jq -e 'length == 3 and .[2].type == "step_finish"' \
+  jq -e 'length == 4 and .[3].type == "step_finish"' \
     "$eval_root/results/transcript.json" >/dev/null
 )
 
