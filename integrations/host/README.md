@@ -247,6 +247,38 @@ Replaybook does not require an OpenRouter key for custom adapters. The bundled
 Claux adapter instead uses the host-side credential proxy and remains the
 default when `--agent-adapter` is omitted.
 
+### OpenCode
+
+The bundled OpenCode adapter runs an installed OpenCode CLI in pure JSON mode,
+isolates its configuration and data inside the disposable evaluation root, and
+normalizes text, token classes, subscription quota usage, outcome, transcript,
+and model-round timing. It never copies unrelated OpenCode provider credentials.
+
+Authenticate OpenCode Go locally, then prepare a scoped mode-0600 environment
+file and stage the OpenCode binary as the harness payload:
+
+```sh
+opencode auth login
+opencode_env="$(integrations/host/prepare-opencode-env.sh)"
+python integrations/host/run_host_matrix.py \
+  --scenario 001-nginx-502-host \
+  --models opencode-go/glm-5.3 \
+  --reasoning-efforts high \
+  --agent-adapter integrations/host/adapters/opencode.sh \
+  --agent-payload "$(command -v opencode)" \
+  --agent-env-file "$opencode_env" \
+  --agent-name opencode \
+  --attempts 1 \
+  --concurrency 1
+```
+
+OpenCode Go reports a dollar-denominated quota value for each request. The
+adapter preserves that as `subscription_usage_usd` while deliberately leaving
+`cost_usd` unavailable: a subscription-backed run did not incur that amount as
+an incremental cash charge. Benchmark compatibility already includes the agent
+adapter and harness identity, so OpenCode results cannot silently aggregate
+with Claux results for the same scenario.
+
 Host boot, reboot, and service-readiness checks use wall-clock deadlines, so
 repeated SSH connection attempts cannot extend a failed trial indefinitely.
 When Claux supports graceful one-shot signal cancellation, an agent timeout

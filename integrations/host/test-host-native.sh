@@ -9,8 +9,10 @@ bash -n "$script_dir/run-claux.sh"
 python -m py_compile "$script_dir/openrouter_proxy.py"
 python -m py_compile "$script_dir/guest_leak_audit.py"
 bash -n "$script_dir/adapters/codex.sh"
+bash -n "$script_dir/adapters/opencode.sh"
 bash -n "$script_dir/find-codex-binary.sh"
 bash -n "$script_dir/prepare-codex-env.sh"
+bash -n "$script_dir/prepare-opencode-env.sh"
 bash -n "$script_dir/oracle.sh"
 bash -n "$script_dir/classify-agent-exit.sh"
 bash -n "$script_dir/classify-agent-outcome.sh"
@@ -408,6 +410,100 @@ EOF
         .tokens.refresh_token == "replaybook-disabled"
       ' >/dev/null
   ! grep -q 'local-refresh' "$smoke_root/codex.env"
+)
+
+(
+  smoke_root="$(mktemp -d)"
+  trap 'rm -rf -- "$smoke_root"' EXIT
+  data_home="$smoke_root/opencode-data"
+  mkdir -p "$data_home/opencode"
+  printf '%s\n' \
+    '{"opencode-go":{"type":"api","key":"go-secret"},"openrouter":{"type":"api","key":"other-secret"}}' \
+    >"$data_home/opencode/auth.json"
+  XDG_DATA_HOME="$data_home" \
+    "$script_dir/prepare-opencode-env.sh" "$smoke_root/opencode.env" \
+    >"$smoke_root/output"
+  [[ "$(< "$smoke_root/output")" == "$smoke_root/opencode.env" ]]
+  [[ "$(stat -c '%a' "$smoke_root/opencode.env")" == "600" ]]
+  # shellcheck source=/dev/null
+  source "$smoke_root/opencode.env"
+  printf '%s' "$OPENCODE_AUTH_JSON_B64" | base64 --decode \
+    | jq -e '
+        keys == ["opencode-go"] and
+        .["opencode-go"].key == "go-secret"
+      ' >/dev/null
+  ! grep -q 'other-secret' "$smoke_root/opencode.env"
+)
+
+(
+  smoke_root="$(mktemp -d)"
+  trap 'rm -rf -- "$smoke_root"' EXIT
+  eval_root="$smoke_root/eval"
+  mkdir -p "$eval_root/results" "$smoke_root/workspace"
+  printf '%s\n' 'repair the deployed service' >"$eval_root/instruction.md"
+  cat >"$eval_root/payload" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+jq -e 'keys == ["opencode-go"] and .["opencode-go"].key == "go-secret"' \
+  "$XDG_DATA_HOME/opencode/auth.json" >/dev/null
+[[ "$1" == "run" ]]
+shift
+model=""
+variant=""
+workspace=""
+prompt=""
+while (( $# > 0 )); do
+  case "$1" in
+    --pure|--auto) shift ;;
+    --dir) workspace="$2"; shift 2 ;;
+    --model) model="$2"; shift 2 ;;
+    --format) [[ "$2" == "json" ]]; shift 2 ;;
+    --variant) variant="$2"; shift 2 ;;
+    *) prompt="$1"; shift ;;
+  esac
+done
+[[ "$model" == "opencode-go/test-model" ]]
+[[ "$variant" == "high" ]]
+[[ "$workspace" == */workspace ]]
+[[ "$prompt" == "repair the deployed service" ]]
+printf '%s\n' '{"type":"step_start","timestamp":1000,"part":{"type":"step-start"}}'
+printf '%s\n' '{"type":"text","timestamp":1300,"part":{"type":"text","text":"repair complete"}}'
+printf '%s\n' '{"type":"step_finish","timestamp":1500,"part":{"type":"step-finish","reason":"stop","tokens":{"total":165,"input":100,"output":20,"reasoning":5,"cache":{"read":40,"write":0}},"cost":0.0125}}'
+EOF
+  chmod 0755 "$eval_root/payload"
+  auth_b64="$(
+    printf '%s\n' '{"opencode-go":{"type":"api","key":"go-secret"}}' \
+      | base64 --wrap=0
+  )"
+
+  REPLAYBOOK_EVAL_ROOT="$eval_root" \
+    REPLAYBOOK_AGENT_PAYLOAD="$eval_root/payload" \
+    OPENCODE_AUTH_JSON_B64="$auth_b64" \
+    REPLAYBOOK_INSTRUCTION_FILE="$eval_root/instruction.md" \
+    REPLAYBOOK_MODEL="test-model" \
+    REPLAYBOOK_REASONING_EFFORT="high" \
+    REPLAYBOOK_RESULT_FILE="$eval_root/results/agent.json" \
+    REPLAYBOOK_TRANSCRIPT_FILE="$eval_root/results/transcript.json" \
+    REPLAYBOOK_WORKSPACE="$smoke_root/workspace" \
+    bash "$script_dir/adapters/opencode.sh" >"$smoke_root/stdout"
+
+  jq -e '
+    .harness == "opencode" and
+    .model == "test-model" and
+    .reasoning_effort == "high" and
+    .result == "repair complete" and
+    .outcome.status == "success" and
+    .usage.input_tokens == 100 and
+    .usage.output_tokens == 20 and
+    .usage.reasoning_tokens == 5 and
+    .usage.cache_read_tokens == 40 and
+    .usage.cost_usd == null and
+    .usage.subscription_usage_usd == 0.0125 and
+    .recording.total_duration_ms == 500 and
+    .recording.model_rounds[0].duration_ms == 500
+  ' "$eval_root/results/agent.json" >/dev/null
+  jq -e 'length == 3 and .[2].type == "step_finish"' \
+    "$eval_root/results/transcript.json" >/dev/null
 )
 
 (

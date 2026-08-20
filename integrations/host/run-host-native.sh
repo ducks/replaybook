@@ -15,7 +15,7 @@ Options:
                       Defaults to the pack bundled with Replaybook.
   --model MODEL       Model identifier passed to the agent adapter.
   --reasoning-effort EFFORT
-                      Claux reasoning effort for this trial.
+                      Reasoning variant exported to the agent adapter.
   --agent-adapter FILE
                       Adapter executable to run inside the VM.
   --agent-payload FILE
@@ -165,10 +165,6 @@ if [[ -n "$REASONING_EFFORT" \
 fi
 if [[ -n "$AGENT_ADAPTER" ]]; then
   CUSTOM_AGENT_ADAPTER=true
-  if [[ -n "$REASONING_EFFORT" ]]; then
-    echo "--reasoning-effort is supported only by the built-in Claux adapter" >&2
-    exit 2
-  fi
   [[ -f "$AGENT_ADAPTER" ]] || {
     echo "agent adapter does not exist: ${AGENT_ADAPTER}" >&2
     exit 2
