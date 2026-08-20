@@ -173,6 +173,10 @@ printf '%s\n' '{"outcome":{"status":"error","message":"API error: response reach
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tagent_output_limit' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (502 Bad Gateway): upstream request failed"},"recording":{"model_rounds":[{"status":"completed"}],"tools":[{"name":"Bash"}]}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tprovider_interrupted' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"Service Unavailable"},"recording":{"model_rounds":[{"status":"completed"}],"tools":[{"name":"bash"}]}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tprovider_interrupted' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"Endpoint is unavailable."}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_unavailable' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"authentication failed: invalid API key"}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tauthentication_failed' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (400 Bad Request) [content_policy_violation]: PROHIBITED_CONTENT"}}' >"$agent_error"
