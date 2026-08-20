@@ -57,10 +57,10 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=22' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=23' "$script_dir/run-host-native.sh"
 grep -q 'export TMPDIR="${WORK_DIR}/tmp"' "$script_dir/run-host-native.sh"
 grep -q 'USE_TMPDIR=1' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION = 22' "$script_dir/run_host_matrix.py"
+grep -q 'HOST_HARNESS_VERSION = 23' "$script_dir/run_host_matrix.py"
 grep -q 'virtualisation.useNixStoreImage = true' "$script_dir/isolated-vm.nix"
 grep -q 'virtualisation.mountHostNixStore = false' "$script_dir/isolated-vm.nix"
 grep -q 'incident VM unexpectedly exposes the host Nix store' "$script_dir/run-host-native.sh"
@@ -114,7 +114,7 @@ grep -q 'credential tunnel disconnected; retrying' "$script_dir/run-host-native.
 grep -q 'ServerAliveInterval=2' "$script_dir/run-host-native.sh"
 grep -q 'rm -f -- "$runtime_env"' "$script_dir/run-agent-adapter.sh"
 grep -q 'OPENROUTER_API_KEY=replaybook-proxy' "$script_dir/run-host-native.sh"
-grep -q 'REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091/api/v1' \
+grep -Fq 'REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091${OPENAI_PROXY_PATH}' \
   "$script_dir/run-host-native.sh"
 if grep -q "printf .*OPENROUTER_API_KEY.*\$OPENROUTER_API_KEY" \
   "$script_dir/run-host-native.sh"; then

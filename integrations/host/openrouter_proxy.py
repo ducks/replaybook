@@ -101,16 +101,23 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--ready-file", type=Path)
     parser.add_argument(
         "--upstream",
-        default=os.environ.get("REPLAYBOOK_OPENROUTER_UPSTREAM", "https://openrouter.ai"),
+        default=os.environ.get(
+            "REPLAYBOOK_OPENAI_UPSTREAM",
+            os.environ.get("REPLAYBOOK_OPENROUTER_UPSTREAM", "https://openrouter.ai"),
+        ),
     )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    api_key = os.environ.get("OPENROUTER_API_KEY", "")
+    api_key = os.environ.get("REPLAYBOOK_OPENAI_API_KEY") or os.environ.get(
+        "OPENROUTER_API_KEY", ""
+    )
     if not api_key:
-        raise SystemExit("OPENROUTER_API_KEY is required")
+        raise SystemExit(
+            "REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY is required"
+        )
     server = OpenRouterProxy((args.listen, args.port), api_key, args.upstream)
     port = server.server_address[1]
     if args.ready_file:

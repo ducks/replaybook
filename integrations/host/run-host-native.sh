@@ -31,7 +31,10 @@ Options:
   -h, --help          Show this help.
 
 Environment:
-  OPENROUTER_API_KEY             Required by the default Claux adapter.
+  REPLAYBOOK_OPENAI_API_KEY      API key for the default Claux upstream.
+                                 Falls back to OPENROUTER_API_KEY.
+  REPLAYBOOK_OPENAI_UPSTREAM     Credential-proxy upstream (default: https://openrouter.ai).
+  REPLAYBOOK_OPENAI_PROXY_PATH   Guest-visible API path (default: /api/v1).
   REPLAYBOOK_HOST_SSH_KEY        SSH key (default: ~/.ssh/id_ed25519).
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to bake into the VM.
@@ -55,10 +58,12 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260815.0.0}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
-HOST_HARNESS_VERSION=22
+HOST_HARNESS_VERSION=23
 VM_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_VM_READY_TIMEOUT:-300}"
 REBOOT_COMMAND_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT:-15}"
 PROXY_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_PROXY_READY_TIMEOUT:-30}"
+OPENAI_API_KEY="${REPLAYBOOK_OPENAI_API_KEY:-${OPENROUTER_API_KEY:-}}"
+OPENAI_PROXY_PATH="${REPLAYBOOK_OPENAI_PROXY_PATH:-/api/v1}"
 MODEL="deepseek/deepseek-v4-flash"
 REASONING_EFFORT=""
 SCENARIO_ID="001-nginx-502-host"
@@ -332,6 +337,10 @@ if [[ ! "$AGENT_TIMEOUT_SECONDS" =~ ^[0-9]+$ ]] || (( AGENT_TIMEOUT_SECONDS <= 0
   echo "--agent-timeout-seconds must be a positive integer" >&2
   exit 2
 fi
+if [[ ! "$OPENAI_PROXY_PATH" =~ ^/[A-Za-z0-9._~/-]*$ ]]; then
+  echo "REPLAYBOOK_OPENAI_PROXY_PATH must be an absolute URL path" >&2
+  exit 2
+fi
 
 for port in "$SSH_PORT" "$HTTP_PORT"; do
   if ss -ltn "sport = :${port}" | tail -n +2 | grep -q .; then
@@ -349,8 +358,8 @@ done
   exit 1
 }
 if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false \
-  && -z "${OPENROUTER_API_KEY:-}" ]]; then
-  echo "OPENROUTER_API_KEY is required by the default Claux adapter" >&2
+  && -z "$OPENAI_API_KEY" ]]; then
+  echo "REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY is required by the default Claux adapter" >&2
   exit 1
 fi
 if [[ "$CUSTOM_AGENT_ADAPTER" == false \
@@ -680,7 +689,7 @@ wait_for_ssh || {
 
 if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]]; then
   proxy_ready="${WORK_DIR}/openrouter-proxy.port"
-  OPENROUTER_API_KEY="$OPENROUTER_API_KEY" \
+  REPLAYBOOK_OPENAI_API_KEY="$OPENAI_API_KEY" \
     python "${SCRIPT_DIR}/openrouter_proxy.py" \
       --port 0 \
       --ready-file "$proxy_ready" \
@@ -795,7 +804,7 @@ else
       AGENT_ENV_FILE="${WORK_DIR}/runtime.env"
       printf '%s\n' \
         'export OPENROUTER_API_KEY=replaybook-proxy' \
-        'export REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091/api/v1' \
+        "export REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091${OPENAI_PROXY_PATH}" \
         >"$AGENT_ENV_FILE"
       chmod 0600 "$AGENT_ENV_FILE"
     fi

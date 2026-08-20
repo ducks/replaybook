@@ -37,7 +37,7 @@ REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
 DEFAULT_AGENT_TIMEOUT_SECONDS = 900
-HOST_HARNESS_VERSION = 22
+HOST_HARNESS_VERSION = 23
 TRIAL_STATUSES = {"evaluated", "unavailable"}
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -1305,8 +1305,14 @@ def resume_matrix(args: argparse.Namespace) -> int:
             check_port_available(job.ssh_port)
             check_port_available(job.http_port)
         if plan.pending and not any(job.model is None for job in plan.pending):
-            if plan.snapshot.agent_adapter is None and not os.environ.get("OPENROUTER_API_KEY"):
-                raise ValueError("OPENROUTER_API_KEY is required by the saved Claux adapter")
+            if plan.snapshot.agent_adapter is None and not (
+                os.environ.get("REPLAYBOOK_OPENAI_API_KEY")
+                or os.environ.get("OPENROUTER_API_KEY")
+            ):
+                raise ValueError(
+                    "REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY is required "
+                    "by the saved Claux adapter"
+                )
         for job in plan.pending:
             prepare_pending_job(job)
     except (OSError, ValueError, json.JSONDecodeError) as error:
@@ -1442,9 +1448,15 @@ def main(argv: list[str] | None = None) -> int:
         if (
             not args.oracle
             and args.agent_adapter is None
-            and not os.environ.get("OPENROUTER_API_KEY")
+            and not (
+                os.environ.get("REPLAYBOOK_OPENAI_API_KEY")
+                or os.environ.get("OPENROUTER_API_KEY")
+            )
         ):
-            raise ValueError("OPENROUTER_API_KEY is required by the default Claux adapter")
+            raise ValueError(
+                "REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY is required "
+                "by the default Claux adapter"
+            )
         if args.claux_binary and not args.claux_binary.expanduser().is_file():
             raise ValueError(f"Claux binary does not exist: {args.claux_binary}")
         for option, supplied in (
