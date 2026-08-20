@@ -150,10 +150,11 @@
     const evaluated = records.reduce((sum, row) => sum + row.evaluated, 0);
     const passed = records.reduce((sum, row) => sum + row.passed, 0);
     const cost = records.reduce((sum, row) => sum + row.known_cost_usd, 0);
+    const costReported = records.reduce((sum, row) => sum + row.cost_reported_trials, 0);
     const incomplete = records.some(row => row.cost_reported_trials < row.trials);
     document.querySelector("#metric-repairs").textContent = `${passed}/${evaluated}`;
-    document.querySelector("#metric-cost").textContent = money(cost, incomplete);
-    document.querySelector("#metric-repair-cost").textContent = passed ? money(cost / passed, incomplete) : "n/a";
+    document.querySelector("#metric-cost").textContent = costReported ? money(cost, incomplete) : "n/a";
+    document.querySelector("#metric-repair-cost").textContent = costReported && passed ? money(cost / passed, incomplete) : "n/a";
 
     const body = document.querySelector("#catalog-results");
     body.replaceChildren();
@@ -164,7 +165,7 @@
         String(record.trials), `${record.passed}/${record.evaluated}`, percent(record.pass_rate),
         record.evaluated ? `${percent(record.pass_rate_95_low)}–${percent(record.pass_rate_95_high)}` : "n/a",
         duration(record.median_duration_seconds),
-        money(record.known_cost_usd, record.cost_reported_trials < record.trials),
+        record.cost_reported_trials ? money(record.known_cost_usd, record.cost_reported_trials < record.trials) : "n/a",
         money(record.cost_per_repair_usd, record.cost_reported_trials < record.trials)
       ];
       values.forEach(value => { const cell = document.createElement("td"); cell.textContent = value; row.append(cell); });

@@ -835,6 +835,12 @@ def money(value: float, incomplete: bool = False) -> str:
     return f"${value:.4f}{suffix}"
 
 
+def reported_money(value: float, reported: int, total: int) -> str:
+    if reported == 0:
+        return "n/a"
+    return money(value, reported < total)
+
+
 def trial_noun(count: int) -> str:
     return "trial" if count == 1 else "trials"
 
@@ -985,7 +991,9 @@ def variant_key(row: dict[str, Any]) -> tuple[str, str | None]:
 
 
 def cost_per_repair(row: dict[str, Any]) -> float | None:
-    return row["known_cost_usd"] / row["passed"] if row["passed"] else None
+    if not row["cost_reported_trials"] or not row["passed"]:
+        return None
+    return row["known_cost_usd"] / row["passed"]
 
 
 def recent_scenario_section(
@@ -1030,7 +1038,7 @@ def recent_scenario_section(
                 f" · {html.escape(tier_label(release))}</td>"
                 f"<td>{len(variants)}</td>"
                 f"<td>{passed}/{evaluated}</td>"
-                f"<td>{money(known_cost, cost_reported < trials)}</td>"
+                f"<td>{reported_money(known_cost, cost_reported, trials)}</td>"
                 "</tr>"
             )
             if len(rows) >= limit:
@@ -1126,7 +1134,7 @@ def html_page(
             f"<td>{format_rate(row['pass_rate'])}</td>"
             f"<td>{format_duration(row['median_duration_seconds'])}</td>"
             f"<td>{row['input_tokens']:,}</td>"
-            f"<td>{money(row['known_cost_usd'], incomplete)}</td>"
+            f"<td>{reported_money(row['known_cost_usd'], row['cost_reported_trials'], row['trials'])}</td>"
             f"<td>{money(repair_cost, incomplete) if repair_cost is not None else 'n/a'}</td>"
             "</tr>"
         )
@@ -1324,7 +1332,7 @@ def html_page(
     <div class="metric-grid" aria-label="Current benchmark results">
       <div class="metric"><span class="metric-value">{totals['passed']}/{totals['evaluated']}</span><span class="metric-label">durable repairs</span></div>
       <div class="metric"><span class="metric-value">{format_duration(totals['median_duration_seconds'])}</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">{money(totals['known_cost_usd'], cost_incomplete)}</span><span class="metric-label">known total cost</span></div>
+      <div class="metric"><span class="metric-value">{reported_money(totals['known_cost_usd'], totals['cost_reported_trials'], totals['trials'])}</span><span class="metric-label">known total cost</span></div>
     </div>
 
     <div class="callout benchmark-status verified-status">
@@ -1400,7 +1408,7 @@ def markdown_section(release: dict[str, Any]) -> str:
         lines.append(
             f"| {model_variant_label(release, row)} | {row['passed']}/{row['evaluated']} "
             f"| {format_rate(row['pass_rate'])} | {format_duration(row['median_duration_seconds'])} "
-            f"| {money(row['known_cost_usd'], row_incomplete)} | "
+            f"| {reported_money(row['known_cost_usd'], row['cost_reported_trials'], row['trials'])} | "
             f"{money(repair_cost, row_incomplete) if repair_cost is not None else 'n/a'} |"
         )
     lines.extend(
@@ -1408,8 +1416,8 @@ def markdown_section(release: dict[str, Any]) -> str:
             f"| **Total** | **{totals['passed']}/{totals['evaluated']}** | "
             f"**{format_rate(totals['pass_rate'])}** | "
             f"**{format_duration(totals['median_duration_seconds'])}** | "
-            f"**{money(totals['known_cost_usd'], incomplete)}** | "
-            f"**{money(cost_per_repair(totals), incomplete)}** |",
+            f"**{reported_money(totals['known_cost_usd'], totals['cost_reported_trials'], totals['trials'])}** | "
+            f"**{money(cost_per_repair(totals), incomplete) if cost_per_repair(totals) is not None else 'n/a'}** |",
             "",
         ]
     )
@@ -1549,7 +1557,7 @@ def history_cards(index: dict[str, Any], root: Path) -> str:
       <div><h3>{html.escape(release['title'])}</h3><p class="muted">Benchmark {html.escape(version)} · {html.escape(tier_label(release))} tier</p></div>
       <span class="badge archived">{"Companion cohort" if version in companions else "Superseded"}</span>
     </div>
-    <p>{totals['passed']}/{totals['evaluated']} durable repairs, {format_duration(totals['median_duration_seconds'])} median, {money(totals['known_cost_usd'], totals['cost_reported_trials'] < totals['trials'])} known cost.</p>"""
+    <p>{totals['passed']}/{totals['evaluated']} durable repairs, {format_duration(totals['median_duration_seconds'])} median, {reported_money(totals['known_cost_usd'], totals['cost_reported_trials'], totals['trials'])} known cost.</p>"""
         )
     return HISTORY_START + "\n" + "\n".join(cards) + "\n    " + HISTORY_END
 
@@ -1989,10 +1997,11 @@ def explorer_page() -> str:
     const evaluated = records.reduce((sum, row) => sum + row.evaluated, 0);
     const passed = records.reduce((sum, row) => sum + row.passed, 0);
     const cost = records.reduce((sum, row) => sum + row.known_cost_usd, 0);
+    const costReported = records.reduce((sum, row) => sum + row.cost_reported_trials, 0);
     const incomplete = records.some(row => row.cost_reported_trials < row.trials);
     document.querySelector("#metric-repairs").textContent = `${{passed}}/${{evaluated}}`;
-    document.querySelector("#metric-cost").textContent = money(cost, incomplete);
-    document.querySelector("#metric-repair-cost").textContent = passed ? money(cost / passed, incomplete) : "n/a";
+    document.querySelector("#metric-cost").textContent = costReported ? money(cost, incomplete) : "n/a";
+    document.querySelector("#metric-repair-cost").textContent = costReported && passed ? money(cost / passed, incomplete) : "n/a";
 
     const body = document.querySelector("#catalog-results");
     body.replaceChildren();
@@ -2003,7 +2012,7 @@ def explorer_page() -> str:
         String(record.trials), `${{record.passed}}/${{record.evaluated}}`, percent(record.pass_rate),
         record.evaluated ? `${{percent(record.pass_rate_95_low)}}–${{percent(record.pass_rate_95_high)}}` : "n/a",
         duration(record.median_duration_seconds),
-        money(record.known_cost_usd, record.cost_reported_trials < record.trials),
+        record.cost_reported_trials ? money(record.known_cost_usd, record.cost_reported_trials < record.trials) : "n/a",
         money(record.cost_per_repair_usd, record.cost_reported_trials < record.trials)
       ];
       values.forEach(value => {{ const cell = document.createElement("td"); cell.textContent = value; row.append(cell); }});
@@ -2160,7 +2169,7 @@ def coverage_page() -> str:
     const link = document.createElement("a");
     link.href = record.evidence_url;
     const incomplete = record.cost_reported_trials < record.trials;
-    link.innerHTML = `<strong>${record.passed}/${record.evaluated}</strong><span>${duration(record.median_duration_seconds)} &middot; ${money(record.known_cost_usd, incomplete)}</span>`;
+    link.innerHTML = `<strong>${record.passed}/${record.evaluated}</strong><span>${duration(record.median_duration_seconds)} &middot; ${record.cost_reported_trials ? money(record.known_cost_usd, incomplete) : "n/a"}</span>`;
     link.title = `${record.scenario_label} · ${variantLabel(record)} · benchmark ${record.release}`;
     node.append(link);
     return node;
@@ -2300,6 +2309,7 @@ def models_page() -> str:
       const passed = cells.reduce((sum, cell) => sum + cell.passed, 0);
       const perfect = cells.filter(cell => cell.evaluated && cell.passed === cell.evaluated).length;
       const cost = cells.reduce((sum, cell) => sum + cell.known_cost_usd, 0);
+      const costReported = cells.reduce((sum, cell) => sum + cell.cost_reported_trials, 0);
       const incomplete = cells.some(cell => cell.cost_reported_trials < cell.trials);
       const card = document.createElement("article");
       card.className = "model-card";
@@ -2312,7 +2322,7 @@ def models_page() -> str:
       identity.textContent = lane.model;
       const stats = document.createElement("div");
       stats.className = "model-card-stats";
-      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${money(cost, incomplete)}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
+      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${costReported ? money(cost, incomplete) : "n/a"}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
       const open = document.createElement("a");
       open.className = "model-card-link";
       open.href = profileUrl(lane);
@@ -2430,10 +2440,11 @@ def model_page() -> str:
     const covered = entries.filter(entry => entry.cell && entry.cell.status === "covered");
     const perfect = covered.filter(entry => entry.cell.evaluated && entry.cell.passed === entry.cell.evaluated).length;
     const cost = covered.reduce((sum, entry) => sum + entry.cell.known_cost_usd, 0);
+    const costReported = covered.reduce((sum, entry) => sum + entry.cell.cost_reported_trials, 0);
     const incomplete = covered.some(entry => entry.cell.cost_reported_trials < entry.cell.trials);
     document.querySelector("#profile-coverage").textContent = `${covered.length}/${entries.length}`;
     document.querySelector("#profile-perfect").textContent = String(perfect);
-    document.querySelector("#profile-cost").textContent = money(cost, incomplete);
+    document.querySelector("#profile-cost").textContent = costReported ? money(cost, incomplete) : "n/a";
 
     const failures = new Map();
     const body = document.querySelector("#profile-results");
@@ -2462,7 +2473,7 @@ def model_page() -> str:
           `${cell.passed}/${cell.evaluated}`,
           percent(cell.pass_rate),
           duration(cell.median_duration_seconds),
-          money(cell.known_cost_usd, incompleteCost),
+          cell.cost_reported_trials ? money(cell.known_cost_usd, incompleteCost) : "n/a",
           money(cell.cost_per_repair_usd, incompleteCost),
           categories.length ? categories.map(([name, count]) => `${name} (${count})`).join(", ") : "None"
         ];

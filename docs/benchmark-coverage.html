@@ -91,7 +91,7 @@
     const link = document.createElement("a");
     link.href = record.evidence_url;
     const incomplete = record.cost_reported_trials < record.trials;
-    link.innerHTML = `<strong>${record.passed}/${record.evaluated}</strong><span>${duration(record.median_duration_seconds)} &middot; ${money(record.known_cost_usd, incomplete)}</span>`;
+    link.innerHTML = `<strong>${record.passed}/${record.evaluated}</strong><span>${duration(record.median_duration_seconds)} &middot; ${record.cost_reported_trials ? money(record.known_cost_usd, incomplete) : "n/a"}</span>`;
     link.title = `${record.scenario_label} · ${variantLabel(record)} · benchmark ${record.release}`;
     node.append(link);
     return node;

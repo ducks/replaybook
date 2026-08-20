@@ -77,6 +77,7 @@
       const passed = cells.reduce((sum, cell) => sum + cell.passed, 0);
       const perfect = cells.filter(cell => cell.evaluated && cell.passed === cell.evaluated).length;
       const cost = cells.reduce((sum, cell) => sum + cell.known_cost_usd, 0);
+      const costReported = cells.reduce((sum, cell) => sum + cell.cost_reported_trials, 0);
       const incomplete = cells.some(cell => cell.cost_reported_trials < cell.trials);
       const card = document.createElement("article");
       card.className = "model-card";
@@ -89,7 +90,7 @@
       identity.textContent = lane.model;
       const stats = document.createElement("div");
       stats.className = "model-card-stats";
-      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${money(cost, incomplete)}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
+      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${costReported ? money(cost, incomplete) : "n/a"}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
       const open = document.createElement("a");
       open.className = "model-card-link";
       open.href = profileUrl(lane);
