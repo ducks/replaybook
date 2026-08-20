@@ -1123,7 +1123,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--reasoning-efforts",
         nargs="+",
-        help="Claux reasoning efforts to compare, such as low high",
+        help="agent reasoning variants to compare, such as low high",
     )
     parser.add_argument("--attempts", type=int)
     parser.add_argument("--concurrency", type=int, default=2)
@@ -1225,8 +1225,6 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
         (args.agent_payload, args.agent_env_file, args.agent_name)
     ):
         raise ValueError("custom agent options require --agent-adapter")
-    if args.agent_adapter is not None and args.reasoning_efforts:
-        raise ValueError("--reasoning-efforts is supported only by the built-in Claux adapter")
     if args.reasoning_efforts:
         invalid = set(args.reasoning_efforts) - REASONING_EFFORTS
         if invalid:

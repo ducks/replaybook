@@ -25,7 +25,7 @@ The evaluation stack is deliberately composable:
 - [Harbor](https://github.com/laude-institute/harbor) runs agents and records
   rewards, tokens, and costs.
 - Nix provides isolated, reproducible workers with a fresh Docker environment.
-- Harness adapters run Claux, Codex, or another agent behind one normalized
+- Harness adapters run Claux, Codex, OpenCode, or another agent behind one normalized
   result and transcript contract.
 
 The result is a small harness for comparing agents on diagnosis, remediation,
