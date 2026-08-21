@@ -1179,8 +1179,6 @@ def apply_benchmark_manifest(args: argparse.Namespace) -> BenchmarkManifest | No
         return None
     manifest = load_benchmark_manifest(args.benchmark)
     conflicts = []
-    if args.scenarios:
-        conflicts.append("--scenario")
     if args.scenario_packs:
         conflicts.append("--scenario-pack")
     if args.attempts is not None:
@@ -1192,8 +1190,15 @@ def apply_benchmark_manifest(args: argparse.Namespace) -> BenchmarkManifest | No
             "--benchmark defines scenarios, packs, attempts, and timeout; remove "
             + ", ".join(conflicts)
         )
+    selected = args.scenarios or [scenario.id for scenario in manifest.scenarios]
+    declared = {scenario.id for scenario in manifest.scenarios}
+    unknown = sorted(set(selected) - declared)
+    if unknown:
+        raise ValueError(
+            "--scenario is not declared by the benchmark: " + ", ".join(unknown)
+        )
     args.scenario_packs = [manifest.pack_path]
-    args.scenarios = [scenario.id for scenario in manifest.scenarios]
+    args.scenarios = selected
     args.attempts = 1 if args.oracle else manifest.attempts
     args.agent_timeout_seconds = manifest.agent_timeout_seconds
     return manifest

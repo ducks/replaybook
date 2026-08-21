@@ -220,6 +220,19 @@ GitHub Actions validates the evidence before review. See the
 [submission guide](integrations/host/README.md#submit-benchmark-evidence) for
 the complete review and promotion workflow.
 
+Plan only the coverage that a pinned benchmark still needs:
+
+```sh
+python -m integrations.host.benchmark_plan \
+  --benchmark ../replaybook-infra/benchmark.toml
+```
+
+The planner consumes the stable published coverage API, reports stale or
+incomplete model/scenario cells, estimates work where prior usage exists, and
+prints runnable matrix commands. See the
+[host integration guide](integrations/host/README.md#plan-missing-coverage) for
+fleet selection and machine-readable output.
+
 For a deeper dive into why the restart check matters, see [Evaluating
 Infrastructure Agents in Running Systems](https://jakegoldsborough.com/blog/2026/evaluating-infrastructure-agents-in-running-systems/).
 

@@ -397,9 +397,11 @@ python integrations/host/run_host_matrix.py \
 ```
 
 The submitting user still chooses the model, reasoning effort, adapter,
-credentials, concurrency, and output directory. Replaybook rejects
-`--scenario`, `--scenario-pack`, `--attempts`, or `--agent-timeout-seconds`
-overrides when `--benchmark` is present.
+credentials, concurrency, and output directory. `--scenario` may select a
+declared subset without losing the benchmark identity, tier, or pinned attempt
+count. Replaybook rejects undeclared scenarios and rejects `--scenario-pack`,
+`--attempts`, or `--agent-timeout-seconds` overrides when `--benchmark` is
+present.
 
 Validate the manifest, pack identity, scenario versions, and required harness
 without starting a VM:
@@ -423,6 +425,52 @@ hash. The publisher treats the tier and manifest identity as part of benchmark
 compatibility, so cross-tier results and results from modified manifests cannot
 be silently combined. Older manifests without a tier remain readable as
 unclassified historical evidence.
+
+### Plan missing coverage
+
+Generate the smallest set of rectangular matrices needed to fill the current
+published coverage fleet for a benchmark:
+
+```sh
+python -m integrations.host.benchmark_plan \
+  --benchmark ../replaybook-infra/benchmark.toml \
+  --concurrency 2 \
+  --base-port 28000
+```
+
+The planner compares each model, reasoning effort, scenario version, tier,
+attempt count, timeout, host harness, and scenario-pack identity against the
+stable `benchmark-data/coverage.json` API. Evaluated failures count as evidence;
+unavailable trials do not. An incomplete cell is scheduled as a fresh pinned
+cohort rather than being mixed into a statistically different attempt count.
+Models with identical gaps are grouped into one matrix, and separate commands
+receive non-overlapping port ranges.
+
+Limit planning to an incoming model or temporary fleet:
+
+```sh
+python -m integrations.host.benchmark_plan \
+  --benchmark ../replaybook-infra/benchmark-core.toml \
+  --models z-ai/glm-5.3 stealth/ox-alpha \
+  --reasoning-efforts high
+```
+
+Use `--format shell` for commands only or `--format json` for automation. The
+generated commands use `--benchmark` plus its declared `--scenario` subset,
+preserving the benchmark boundary while avoiding covered cells.
+
+Include completed local work that has not been published yet:
+
+```sh
+python -m integrations.host.benchmark_plan \
+  --benchmark ../replaybook-infra/benchmark.toml \
+  --results jobs
+```
+
+`--results` accepts a matrix `summary.json`, a portable benchmark submission
+bundle, or a directory containing summaries. It can be repeated. Replaybook
+uses the largest complete compatible local cohort for each cell and does not
+double-count evidence that has also been published.
 
 Before launching its first worker, the matrix runner copies the host runner,
 helper scripts, selected scenario packs, custom adapter, custom payload, and
