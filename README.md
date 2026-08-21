@@ -112,6 +112,18 @@ python integrations/host/run_host_matrix.py \
   --concurrency 2
 ```
 
+Inspect every scored failure in a completed matrix without manually opening
+each result and transcript. The report combines verifier evidence, the agent's
+final claim, recent commands, and direct artifact paths:
+
+```sh
+python integrations/host/report_failures.py \
+  jobs/host-matrix-2026-08-11__18-47-25.10fa16
+```
+
+Use `--format json` for machine-readable analysis or `--output report.md` to
+retain a Markdown report.
+
 Run the separately versioned
 [Replaybook Infra](https://github.com/ducks/replaybook-infra) benchmark from
 its executable manifest. Replaybook Infra provides smoke, core, full, and
