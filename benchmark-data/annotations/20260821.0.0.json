@@ -1,0 +1,25 @@
+{
+  "title": "Ox Alpha full infrastructure cohort",
+  "description": "The anonymous Ox Alpha preview ran three attempts across all 16 full-tier infrastructure incidents through Claux and OpenRouter.",
+  "model_labels": {
+    "stealth/ox-alpha": "Ox Alpha"
+  },
+  "model_order": [
+    "stealth/ox-alpha"
+  ],
+  "notes": [
+    "Ox Alpha was published by OpenRouter under the temporary anonymous identifier stealth/ox-alpha. This release preserves that identifier and does not speculate about the underlying model.",
+    "The matrix scheduled and evaluated all 48 trials: one model, 16 scenarios, and three attempts. Forty-two repairs passed and six failed, for an 88% pass rate with no unavailable or missing trials.",
+    "All trials used Replaybook commit 7235305, host harness v23, Claux v20260821.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.",
+    "OpenRouter reported zero cost for the preview cohort. The published $0.0000 reflects the provider's metered result while Ox Alpha was offered free, not an estimate of future pricing.",
+    "The six scored failures were backlog_not_recovered, resource_growth_unbounded, exports_still_timing_out, two historical_uploads_not_recovered outcomes, and writable_capacity_not_recovered. No failure was classified as infrastructure or provider unavailability.",
+    "Three failed trials ended with an empty final response. They remain scored because Replaybook evaluates the resulting host state independently of the agent's narrative response."
+  ],
+  "observations": [
+    "Ox Alpha completed every attempt in ten of the 16 scenarios and produced a 2:50 overall median at zero reported cost.",
+    "The failed wrong-Redis repair damaged the controller-owned backlog during migration, demonstrating why successful health checks alone are insufficient evidence of incident recovery.",
+    "The Gunicorn repair passed immediate verification but failed after a service restart, while the Nix pressure repair survived a service restart and failed only after host reboot. These outcomes show the additional separation created by durability verification.",
+    "The model struggled most consistently on shared-upload recovery, completing one of three attempts and leaving historical uploads missing in two runs."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-real.toml --models stealth/ox-alpha --reasoning-efforts high --concurrency 2 --base-port 28000"
+}

@@ -1135,7 +1135,7 @@ def html_page(
     subscription_usage_metric = ""
     if totals.get("subscription_usage_reported_trials", 0):
         subscription_usage_metric = (
-            '<div class="metric"><span class="metric-value">'
+            '\n      <div class="metric"><span class="metric-value">'
             f'{money(totals["subscription_usage_usd"])}</span>'
             '<span class="metric-label">provider usage value</span></div>'
         )
@@ -1349,8 +1349,7 @@ def html_page(
     <div class="metric-grid" aria-label="Current benchmark results">
       <div class="metric"><span class="metric-value">{totals['passed']}/{totals['evaluated']}</span><span class="metric-label">durable repairs</span></div>
       <div class="metric"><span class="metric-value">{format_duration(totals['median_duration_seconds'])}</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">{reported_money(totals['known_cost_usd'], totals['cost_reported_trials'], totals['trials'])}</span><span class="metric-label">known total cost</span></div>
-      {subscription_usage_metric}
+      <div class="metric"><span class="metric-value">{reported_money(totals['known_cost_usd'], totals['cost_reported_trials'], totals['trials'])}</span><span class="metric-label">known total cost</span></div>{subscription_usage_metric}
     </div>
 
     <div class="callout benchmark-status verified-status">

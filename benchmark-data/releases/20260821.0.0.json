@@ -1,0 +1,3052 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 5685056,
+      "cost_reported_trials": 48,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 48,
+      "failed": 6,
+      "failure_categories": {
+        "backlog_not_recovered": 1,
+        "exports_still_timing_out": 1,
+        "historical_uploads_not_recovered": 2,
+        "resource_growth_unbounded": 1,
+        "writable_capacity_not_recovered": 1
+      },
+      "input_tokens": 1355680,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 169.5,
+      "median_first_non_read_only_tool_seconds": 7.5425,
+      "median_model_duration_seconds": 157.14999999999998,
+      "median_model_rounds": 14.0,
+      "median_post_first_non_read_only_seconds": 162.4775,
+      "median_tool_calls": 17.0,
+      "median_tool_duration_seconds": 7.7075,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 168788,
+      "pass_rate": 0.875,
+      "passed": 42,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 48,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 48,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 48
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 292992,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 77397,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 285,
+      "median_first_non_read_only_tool_seconds": 23.862,
+      "median_model_duration_seconds": 280.89,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 243.149,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 2.961,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 10913,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 301888,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "backlog_not_recovered": 1
+      },
+      "input_tokens": 74384,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 145,
+      "median_first_non_read_only_tool_seconds": 5.677,
+      "median_model_duration_seconds": 136.507,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 138.723,
+      "median_tool_calls": 16,
+      "median_tool_duration_seconds": 7.236,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 9439,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 683520,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 140557,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 238,
+      "median_first_non_read_only_tool_seconds": 12.819,
+      "median_model_duration_seconds": 199.916,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 219.865,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 47.017,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 14486,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 743232,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 106410,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 452,
+      "median_first_non_read_only_tool_seconds": 6.327,
+      "median_model_duration_seconds": 364.647,
+      "median_model_rounds": 28,
+      "median_post_first_non_read_only_seconds": 444.526,
+      "median_tool_calls": 28,
+      "median_tool_duration_seconds": 41.621,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 20846,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 187328,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 47516,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 147,
+      "median_first_non_read_only_tool_seconds": 8.887,
+      "median_model_duration_seconds": 129.017,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 126.82600000000001,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 16.712,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 6507,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 470016,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 94835,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 165,
+      "median_first_non_read_only_tool_seconds": 8.442,
+      "median_model_duration_seconds": 152.874,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 159.20999999999998,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 43.214,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 11313,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 242304,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 78096,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 211,
+      "median_first_non_read_only_tool_seconds": 21.421,
+      "median_model_duration_seconds": 204.645,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 188.263,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 4.88,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 9876,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "018-node-event-loop-blocking",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 274048,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "resource_growth_unbounded": 1
+      },
+      "input_tokens": 73087,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 159,
+      "median_first_non_read_only_tool_seconds": 7.388,
+      "median_model_duration_seconds": 150.766,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 154.672,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 6.948,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 10266,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 299712,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "exports_still_timing_out": 1
+      },
+      "input_tokens": 65463,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 159,
+      "median_first_non_read_only_tool_seconds": 11.576,
+      "median_model_duration_seconds": 144.158,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 145.86200000000002,
+      "median_tool_calls": 16,
+      "median_tool_duration_seconds": 9.959,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 7331,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "020-python-gunicorn-saturation",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 158784,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "historical_uploads_not_recovered": 2
+      },
+      "input_tokens": 62200,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 131,
+      "median_first_non_read_only_tool_seconds": 10.391,
+      "median_model_duration_seconds": 130.219,
+      "median_model_rounds": 6,
+      "median_post_first_non_read_only_seconds": 120.01799999999999,
+      "median_tool_calls": 8,
+      "median_tool_duration_seconds": 0.173,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 8342,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 306816,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 94840,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 197,
+      "median_first_non_read_only_tool_seconds": 8.58,
+      "median_model_duration_seconds": 188.699,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 184.152,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 6.57,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 10202,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "022-discourse-multisite-migration",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 319296,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 84277,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 151,
+      "median_first_non_read_only_tool_seconds": 6.998,
+      "median_model_duration_seconds": 146.692,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 145.78799999999998,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 2.932,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 9506,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 476096,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 115364,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 146,
+      "median_first_non_read_only_tool_seconds": 4.682,
+      "median_model_duration_seconds": 135.008,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 140.089,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 9.604,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 10815,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 326144,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 77809,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 141,
+      "median_first_non_read_only_tool_seconds": 7.128,
+      "median_model_duration_seconds": 129.581,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 132.715,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 11.28,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 9408,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 297920,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 83293,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 128,
+      "median_first_non_read_only_tool_seconds": 7.605,
+      "median_model_duration_seconds": 122.444,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 119.46799999999999,
+      "median_tool_calls": 14,
+      "median_tool_duration_seconds": 3.221,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 9339,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "027-partial-service-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 304960,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "writable_capacity_not_recovered": 1
+      },
+      "input_tokens": 80152,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 173,
+      "median_first_non_read_only_tool_seconds": 6.464,
+      "median_model_duration_seconds": 161.426,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 168.192,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 2.61,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 10199,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "v20260821.0.0"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra",
+      "schema_version": 1,
+      "sha256": "0fa5539bec0d9ec3ae69b5c6a74725c3c78151a9750171e534a03a0ebc25329b",
+      "status": "preview",
+      "tier": "full",
+      "version": "20260821.0.0"
+    },
+    "benchmark_tier": "full",
+    "claux_release": "v20260821.0.0",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "0fa5539bec0d9ec3ae69b5c6a74725c3c78151a9750171e534a03a0ebc25329b",
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "920d6f594c715f6412ce67ae299a12fa5d9a679ae35ccea9adf167beeca267c8",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "3f717ba6ce09a00943eb32d6ae18fc0b63588b53703cdcdce2b249e1d63e8f6d",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "018-node-event-loop-blocking",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "deadd0eaaa1d86754f5109eabe17287a6ed9f0cd19b659170859e36c20d48d78",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "020-python-gunicorn-saturation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "e4818d58a594382f0dfa4b334e319f8ede2a27867b20d97f0af128e1d6a127aa",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "022-discourse-multisite-migration",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "a64858520a1751f5f71bb40a7660c68af760a631d9e4f27a8ef239916d68d732",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "026-discourse-plugin-boot-loop",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "7bceaaf21df61d7a8a8b05c6ee77478ace16b1a86ce1d14707a2f897c278b8aa",
+          "version": 1
+        },
+        {
+          "id": "027-partial-service-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "0389d64b69ed2dba434edad67282a29c3484792fd4f2e6dd1b09a7b3a1b499b9",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260817.1.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 2
+      },
+      {
+        "id": "014-missing-rails-migration",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 2
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "018-node-event-loop-blocking",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "020-python-gunicorn-saturation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "022-discourse-multisite-migration",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "026-discourse-plugin-boot-loop",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "027-partial-service-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "The anonymous Ox Alpha preview ran three attempts across all 16 full-tier infrastructure incidents through Claux and OpenRouter.",
+  "model_labels": {
+    "stealth/ox-alpha": "Ox Alpha"
+  },
+  "model_order": [
+    "stealth/ox-alpha"
+  ],
+  "notes": [
+    "Ox Alpha was published by OpenRouter under the temporary anonymous identifier stealth/ox-alpha. This release preserves that identifier and does not speculate about the underlying model.",
+    "The matrix scheduled and evaluated all 48 trials: one model, 16 scenarios, and three attempts. Forty-two repairs passed and six failed, for an 88% pass rate with no unavailable or missing trials.",
+    "All trials used Replaybook commit 7235305, host harness v23, Claux v20260821.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.",
+    "OpenRouter reported zero cost for the preview cohort. The published $0.0000 reflects the provider's metered result while Ox Alpha was offered free, not an estimate of future pricing.",
+    "The six scored failures were backlog_not_recovered, resource_growth_unbounded, exports_still_timing_out, two historical_uploads_not_recovered outcomes, and writable_capacity_not_recovered. No failure was classified as infrastructure or provider unavailability.",
+    "Three failed trials ended with an empty final response. They remain scored because Replaybook evaluates the resulting host state independently of the agent's narrative response."
+  ],
+  "observations": [
+    "Ox Alpha completed every attempt in ten of the 16 scenarios and produced a 2:50 overall median at zero reported cost.",
+    "The failed wrong-Redis repair damaged the controller-owned backlog during migration, demonstrating why successful health checks alone are insufficient evidence of incident recovery.",
+    "The Gunicorn repair passed immediate verification but failed after a service restart, while the Nix pressure repair survived a service restart and failed only after host reboot. These outcomes show the additional separation created by durability verification.",
+    "The model struggled most consistently on shared-upload recovery, completing one of three attempts and leaving historical uploads missing in two runs."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-real.toml --models stealth/ox-alpha --reasoning-efforts high --concurrency 2 --base-port 28000",
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 314,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T17:47:44Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 23.862,
+        "model_duration_seconds": 308.991,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 289.325,
+        "tool_calls": 20,
+        "tool_duration_seconds": 3.961,
+        "total_duration_seconds": 313.187
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T17:42:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 133376,
+        "cost_usd": 0.0,
+        "input_tokens": 27393,
+        "output_tokens": 4488
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 285,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T17:47:28Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 40.931,
+        "model_duration_seconds": 280.89,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 243.149,
+        "tool_calls": 15,
+        "tool_duration_seconds": 2.961,
+        "total_duration_seconds": 284.08
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T17:42:30Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 97088,
+        "cost_usd": 0.0,
+        "input_tokens": 31887,
+        "output_tokens": 3332
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 198,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T17:51:50Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 15.457,
+        "model_duration_seconds": 182.933,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 181.703,
+        "tool_calls": 11,
+        "tool_duration_seconds": 1.619,
+        "total_duration_seconds": 197.16
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T17:48:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 62528,
+        "cost_usd": 0.0,
+        "input_tokens": 18117,
+        "output_tokens": 3093
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 193,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "repair did not recover the pre-existing backlog",
+      "failure_category": "backlog_not_recovered",
+      "finished_at": "2026-08-21T17:52:58Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.322,
+        "model_duration_seconds": 183.358,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 185.46099999999998,
+        "tool_calls": 15,
+        "tool_duration_seconds": 7.236,
+        "total_duration_seconds": 190.783
+      },
+      "reward": 0,
+      "run_id": "013-sidekiq-wrong-redis-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T17:49:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 98944,
+        "cost_usd": 0.0,
+        "input_tokens": 38895,
+        "output_tokens": 3868
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 144,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T17:55:32Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.136,
+        "model_duration_seconds": 135.696,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 135.93200000000002,
+        "tool_calls": 19,
+        "tool_duration_seconds": 6.761,
+        "total_duration_seconds": 143.068
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T17:52:51Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 114368,
+        "cost_usd": 0.0,
+        "input_tokens": 20562,
+        "output_tokens": 2614
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 145,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T17:56:41Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.677,
+        "model_duration_seconds": 136.507,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 138.723,
+        "tool_calls": 16,
+        "tool_duration_seconds": 7.7,
+        "total_duration_seconds": 144.4
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T17:53:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 88576,
+        "cost_usd": 0.0,
+        "input_tokens": 14927,
+        "output_tokens": 2957
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 431,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:04:04Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 12.819,
+        "model_duration_seconds": 375.3,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 416.89,
+        "tool_calls": 28,
+        "tool_duration_seconds": 53.99,
+        "total_duration_seconds": 429.709
+      },
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T17:56:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 403648,
+        "cost_usd": 0.0,
+        "input_tokens": 56807,
+        "output_tokens": 8521
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 224,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:01:39Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.718,
+        "model_duration_seconds": 174.827,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 216.36700000000002,
+        "tool_calls": 15,
+        "tool_duration_seconds": 47.017,
+        "total_duration_seconds": 222.085
+      },
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T17:57:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 130752,
+        "cost_usd": 0.0,
+        "input_tokens": 28645,
+        "output_tokens": 2813
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 238,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:06:43Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 16.589,
+        "model_duration_seconds": 199.916,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 219.865,
+        "tool_calls": 17,
+        "tool_duration_seconds": 36.333,
+        "total_duration_seconds": 236.454
+      },
+      "reward": 1,
+      "run_id": "014-missing-rails-migration-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "014-missing-rails-migration",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T18:02:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 149120,
+        "cost_usd": 0.0,
+        "input_tokens": 55105,
+        "output_tokens": 3152
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 283,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:10:12Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.719,
+        "model_duration_seconds": 242.076,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 278.419,
+        "tool_calls": 19,
+        "tool_duration_seconds": 39.881,
+        "total_duration_seconds": 282.138
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:05:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 115136,
+        "cost_usd": 0.0,
+        "input_tokens": 29438,
+        "output_tokens": 3848
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 506,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:16:22Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.044,
+        "model_duration_seconds": 462.111,
+        "model_rounds": 28,
+        "post_first_non_read_only_seconds": 496.963,
+        "tool_calls": 31,
+        "tool_duration_seconds": 41.621,
+        "total_duration_seconds": 504.007
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:07:38Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 315072,
+        "cost_usd": 0.0,
+        "input_tokens": 43631,
+        "output_tokens": 9034
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 452,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:18:58Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.327,
+        "model_duration_seconds": 364.647,
+        "model_rounds": 29,
+        "post_first_non_read_only_seconds": 444.526,
+        "tool_calls": 28,
+        "tool_duration_seconds": 85.913,
+        "total_duration_seconds": 450.853
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:11:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 313024,
+        "cost_usd": 0.0,
+        "input_tokens": 33341,
+        "output_tokens": 7964
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 147,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:20:33Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 19.128,
+        "model_duration_seconds": 129.017,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 126.82600000000001,
+        "tool_calls": 11,
+        "tool_duration_seconds": 16.712,
+        "total_duration_seconds": 145.954
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:17:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 60224,
+        "cost_usd": 0.0,
+        "input_tokens": 22768,
+        "output_tokens": 1958
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 119,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:22:28Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.887,
+        "model_duration_seconds": 100.148,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 109.033,
+        "tool_calls": 13,
+        "tool_duration_seconds": 17.592,
+        "total_duration_seconds": 117.92
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:20:00Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 50048,
+        "cost_usd": 0.0,
+        "input_tokens": 14020,
+        "output_tokens": 2170
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 163,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:24:54Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.174,
+        "model_duration_seconds": 150.677,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 154.964,
+        "tool_calls": 11,
+        "tool_duration_seconds": 10.282,
+        "total_duration_seconds": 161.138
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:21:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 77056,
+        "cost_usd": 0.0,
+        "input_tokens": 10728,
+        "output_tokens": 2379
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 151,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:26:42Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.959,
+        "model_duration_seconds": 106.237,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 140.721,
+        "tool_calls": 15,
+        "tool_duration_seconds": 43.214,
+        "total_duration_seconds": 149.68
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:23:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 160576,
+        "cost_usd": 0.0,
+        "input_tokens": 39249,
+        "output_tokens": 2792
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 320,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:31:50Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.442,
+        "model_duration_seconds": 190.748,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 310.233,
+        "tool_calls": 20,
+        "tool_duration_seconds": 127.702,
+        "total_duration_seconds": 318.675
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:26:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 161600,
+        "cost_usd": 0.0,
+        "input_tokens": 25473,
+        "output_tokens": 4440
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 165,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:30:59Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.335,
+        "model_duration_seconds": 152.874,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 159.20999999999998,
+        "tool_calls": 18,
+        "tool_duration_seconds": 10.489,
+        "total_duration_seconds": 163.545
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:27:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 147840,
+        "cost_usd": 0.0,
+        "input_tokens": 30113,
+        "output_tokens": 4081
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 238,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:36:29Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 36.622,
+        "model_duration_seconds": 230.146,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 199.067,
+        "tool_calls": 18,
+        "tool_duration_seconds": 3.812,
+        "total_duration_seconds": 235.689
+      },
+      "reward": 1,
+      "run_id": "018-node-event-loop-blocking-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "018-node-event-loop-blocking",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:32:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 72768,
+        "cost_usd": 0.0,
+        "input_tokens": 20122,
+        "output_tokens": 3444
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 211,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:36:55Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 21.421,
+        "model_duration_seconds": 204.645,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 188.263,
+        "tool_calls": 17,
+        "tool_duration_seconds": 4.88,
+        "total_duration_seconds": 209.684
+      },
+      "reward": 1,
+      "run_id": "018-node-event-loop-blocking-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "018-node-event-loop-blocking",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:33:05Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 66816,
+        "cost_usd": 0.0,
+        "input_tokens": 32969,
+        "output_tokens": 2680
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 175,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:40:49Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.014,
+        "model_duration_seconds": 162.978,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 164.62699999999998,
+        "tool_calls": 18,
+        "tool_duration_seconds": 7.715,
+        "total_duration_seconds": 172.641
+      },
+      "reward": 1,
+      "run_id": "018-node-event-loop-blocking-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "018-node-event-loop-blocking",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:37:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 102720,
+        "cost_usd": 0.0,
+        "input_tokens": 25005,
+        "output_tokens": 3752
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 159,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:42:58Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.267,
+        "model_duration_seconds": 150.766,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 154.672,
+        "tool_calls": 19,
+        "tool_duration_seconds": 6.948,
+        "total_duration_seconds": 157.939
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:39:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 116608,
+        "cost_usd": 0.0,
+        "input_tokens": 18219,
+        "output_tokens": 3717
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 157,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "resource_growth_unbounded",
+      "finished_at": "2026-08-21T18:46:03Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.388,
+        "model_duration_seconds": 148.009,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 147.49599999999998,
+        "tool_calls": 16,
+        "tool_duration_seconds": 6.673,
+        "total_duration_seconds": 154.884
+      },
+      "reward": 0,
+      "run_id": "019-rust-fd-leak-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:43:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 71104,
+        "cost_usd": 0.0,
+        "input_tokens": 34652,
+        "output_tokens": 3242
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 204,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:49:39Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 10.503,
+        "model_duration_seconds": 194.934,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 191.577,
+        "tool_calls": 17,
+        "tool_duration_seconds": 6.961,
+        "total_duration_seconds": 202.08
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:45:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 86336,
+        "cost_usd": 0.0,
+        "input_tokens": 20216,
+        "output_tokens": 3307
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 165,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:50:53Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.439,
+        "model_duration_seconds": 147.465,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 160.328,
+        "tool_calls": 20,
+        "tool_duration_seconds": 9.959,
+        "total_duration_seconds": 163.767
+      },
+      "reward": 1,
+      "run_id": "020-python-gunicorn-saturation-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "020-python-gunicorn-saturation",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:47:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 98944,
+        "cost_usd": 0.0,
+        "input_tokens": 30055,
+        "output_tokens": 2660
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 159,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T18:53:48Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 12.361,
+        "model_duration_seconds": 144.158,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 145.86200000000002,
+        "tool_calls": 16,
+        "tool_duration_seconds": 13.812,
+        "total_duration_seconds": 158.223
+      },
+      "reward": 1,
+      "run_id": "020-python-gunicorn-saturation-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "020-python-gunicorn-saturation",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:50:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 104256,
+        "cost_usd": 0.0,
+        "input_tokens": 20543,
+        "output_tokens": 2667
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 127,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "repair did not survive service restarts",
+      "failure_category": "exports_still_timing_out",
+      "finished_at": "2026-08-21T18:54:28Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 11.576,
+        "model_duration_seconds": 114.259,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 109.418,
+        "tool_calls": 14,
+        "tool_duration_seconds": 6.56,
+        "total_duration_seconds": 120.994
+      },
+      "reward": 0,
+      "run_id": "020-python-gunicorn-saturation-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "020-python-gunicorn-saturation",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:52:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 96512,
+        "cost_usd": 0.0,
+        "input_tokens": 14865,
+        "output_tokens": 2004
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 131,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "historical_uploads_not_recovered",
+      "finished_at": "2026-08-21T18:57:11Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 10.391,
+        "model_duration_seconds": 130.219,
+        "model_rounds": 2,
+        "post_first_non_read_only_seconds": 120.01799999999999,
+        "tool_calls": 2,
+        "tool_duration_seconds": 0.042,
+        "total_duration_seconds": 130.409
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:54:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_usd": 0.0,
+        "input_tokens": 2755,
+        "output_tokens": 114
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 97,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "historical_uploads_not_recovered",
+      "finished_at": "2026-08-21T18:57:16Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 32.211,
+        "model_duration_seconds": 94.104,
+        "model_rounds": 6,
+        "post_first_non_read_only_seconds": 62.236999999999995,
+        "tool_calls": 8,
+        "tool_duration_seconds": 0.173,
+        "total_duration_seconds": 94.448
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:55:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 15360,
+        "cost_usd": 0.0,
+        "input_tokens": 7483,
+        "output_tokens": 1075
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 403,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:05:01Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.662,
+        "model_duration_seconds": 388.821,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 390.20000000000005,
+        "tool_calls": 20,
+        "tool_duration_seconds": 9.257,
+        "total_duration_seconds": 398.862
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:58:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 143424,
+        "cost_usd": 0.0,
+        "input_tokens": 51962,
+        "output_tokens": 7153
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 199,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:02:27Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.58,
+        "model_duration_seconds": 192.543,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 188.98,
+        "tool_calls": 14,
+        "tool_duration_seconds": 4.901,
+        "total_duration_seconds": 197.56
+      },
+      "reward": 1,
+      "run_id": "022-discourse-multisite-migration-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "022-discourse-multisite-migration",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T18:58:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 49152,
+        "cost_usd": 0.0,
+        "input_tokens": 30085,
+        "output_tokens": 3113
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 197,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:07:07Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 11.954,
+        "model_duration_seconds": 188.699,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 183.546,
+        "tool_calls": 21,
+        "tool_duration_seconds": 6.57,
+        "total_duration_seconds": 195.5
+      },
+      "reward": 1,
+      "run_id": "022-discourse-multisite-migration-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "022-discourse-multisite-migration",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:03:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 158912,
+        "cost_usd": 0.0,
+        "input_tokens": 31971,
+        "output_tokens": 3605
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 189,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:09:37Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.526,
+        "model_duration_seconds": 178.21,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 184.152,
+        "tool_calls": 17,
+        "tool_duration_seconds": 9.278,
+        "total_duration_seconds": 187.678
+      },
+      "reward": 1,
+      "run_id": "022-discourse-multisite-migration-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "022-discourse-multisite-migration",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:06:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 98752,
+        "cost_usd": 0.0,
+        "input_tokens": 32784,
+        "output_tokens": 3484
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 178,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:11:30Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.998,
+        "model_duration_seconds": 172.224,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 170.4,
+        "tool_calls": 18,
+        "tool_duration_seconds": 4.946,
+        "total_duration_seconds": 177.398
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:08:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 128768,
+        "cost_usd": 0.0,
+        "input_tokens": 31451,
+        "output_tokens": 3281
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 151,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:13:02Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.973,
+        "model_duration_seconds": 146.692,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 145.78799999999998,
+        "tool_calls": 18,
+        "tool_duration_seconds": 2.932,
+        "total_duration_seconds": 149.761
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:10:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 96064,
+        "cost_usd": 0.0,
+        "input_tokens": 33484,
+        "output_tokens": 3187
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 122,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:14:47Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.252,
+        "model_duration_seconds": 118.927,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 113.495,
+        "tool_calls": 17,
+        "tool_duration_seconds": 1.664,
+        "total_duration_seconds": 120.747
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:12:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 94464,
+        "cost_usd": 0.0,
+        "input_tokens": 19342,
+        "output_tokens": 3038
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 206,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:17:41Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.48,
+        "model_duration_seconds": 184.428,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 197.648,
+        "tool_calls": 22,
+        "tool_duration_seconds": 20.444,
+        "total_duration_seconds": 205.128
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:13:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 218816,
+        "cost_usd": 0.0,
+        "input_tokens": 39950,
+        "output_tokens": 4452
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 133,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:18:23Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.591,
+        "model_duration_seconds": 122.972,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 128.141,
+        "tool_calls": 21,
+        "tool_duration_seconds": 8.572,
+        "total_duration_seconds": 131.732
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:15:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 139520,
+        "cost_usd": 0.0,
+        "input_tokens": 27666,
+        "output_tokens": 2978
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 146,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:21:10Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.682,
+        "model_duration_seconds": 135.008,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 140.089,
+        "tool_calls": 21,
+        "tool_duration_seconds": 9.604,
+        "total_duration_seconds": 144.771
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:18:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 117760,
+        "cost_usd": 0.0,
+        "input_tokens": 47748,
+        "output_tokens": 3385
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 141,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:22:09Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.938,
+        "model_duration_seconds": 129.581,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 132.715,
+        "tool_calls": 17,
+        "tool_duration_seconds": 9.929,
+        "total_duration_seconds": 139.653
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:19:27Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 122752,
+        "cost_usd": 0.0,
+        "input_tokens": 28396,
+        "output_tokens": 3612
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 121,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:24:18Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.128,
+        "model_duration_seconds": 109.28,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 113.553,
+        "tool_calls": 13,
+        "tool_duration_seconds": 11.28,
+        "total_duration_seconds": 120.681
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:21:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 92800,
+        "cost_usd": 0.0,
+        "input_tokens": 22773,
+        "output_tokens": 2990
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 313,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:28:45Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.1,
+        "model_duration_seconds": 295.094,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 301.01099999999997,
+        "tool_calls": 15,
+        "tool_duration_seconds": 13.515,
+        "total_duration_seconds": 310.111
+      },
+      "reward": 1,
+      "run_id": "026-discourse-plugin-boot-loop-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "026-discourse-plugin-boot-loop",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:23:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 110592,
+        "cost_usd": 0.0,
+        "input_tokens": 26640,
+        "output_tokens": 2806
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 128,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:27:46Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.605,
+        "model_duration_seconds": 122.444,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 119.46799999999999,
+        "tool_calls": 14,
+        "tool_duration_seconds": 4.403,
+        "total_duration_seconds": 127.073
+      },
+      "reward": 1,
+      "run_id": "027-partial-service-rollout-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "027-partial-service-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:25:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 96384,
+        "cost_usd": 0.0,
+        "input_tokens": 28931,
+        "output_tokens": 3178
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 131,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:31:02Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.535,
+        "model_duration_seconds": 126.684,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 120.52700000000002,
+        "tool_calls": 14,
+        "tool_duration_seconds": 3.221,
+        "total_duration_seconds": 130.062
+      },
+      "reward": 1,
+      "run_id": "027-partial-service-rollout-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "027-partial-service-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:28:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 81856,
+        "cost_usd": 0.0,
+        "input_tokens": 24632,
+        "output_tokens": 2598
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 125,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:32:35Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.86,
+        "model_duration_seconds": 120.901,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 117.931,
+        "tool_calls": 17,
+        "tool_duration_seconds": 2.756,
+        "total_duration_seconds": 123.791
+      },
+      "reward": 1,
+      "run_id": "027-partial-service-rollout-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "027-partial-service-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:29:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 119680,
+        "cost_usd": 0.0,
+        "input_tokens": 29730,
+        "output_tokens": 3563
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 173,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:35:49Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.821,
+        "model_duration_seconds": 151.25,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 168.192,
+        "tool_calls": 17,
+        "tool_duration_seconds": 20.595,
+        "total_duration_seconds": 172.013
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:32:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 100416,
+        "cost_usd": 0.0,
+        "input_tokens": 44618,
+        "output_tokens": 3869
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 328,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "repair did not survive host reboot",
+      "failure_category": "writable_capacity_not_recovered",
+      "finished_at": "2026-08-21T19:41:04Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 14.87,
+        "model_duration_seconds": 325.871,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 311.815,
+        "tool_calls": 13,
+        "tool_duration_seconds": 0.696,
+        "total_duration_seconds": 326.685
+      },
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:34:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 59200,
+        "cost_usd": 0.0,
+        "input_tokens": 12720,
+        "output_tokens": 2480
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 166,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T19:40:50Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.464,
+        "model_duration_seconds": 161.426,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 157.738,
+        "tool_calls": 20,
+        "tool_duration_seconds": 2.61,
+        "total_duration_seconds": 164.202
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T19:37:45Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 145344,
+        "cost_usd": 0.0,
+        "input_tokens": 22814,
+        "output_tokens": 3850
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra",
+        "schema_version": 1,
+        "sha256": "0fa5539bec0d9ec3ae69b5c6a74725c3c78151a9750171e534a03a0ebc25329b",
+        "status": "preview",
+        "tier": "full",
+        "version": "20260821.0.0"
+      },
+      "benchmark_tier": "full",
+      "claux_release": "v20260821.0.0",
+      "concurrency": 2,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "0fa5539bec0d9ec3ae69b5c6a74725c3c78151a9750171e534a03a0ebc25329b",
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "920d6f594c715f6412ce67ae299a12fa5d9a679ae35ccea9adf167beeca267c8",
+        "scenario_packs": [
+          {
+            "git_commit": "436c92ee73aa5d7ad7abed0efe3d428f5e8a63b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "702159909beafeafc44534a5398bbc0537df829034796437caa3b81aad9140fc",
+            "version": "20260817.1.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+            "version": 2
+          },
+          {
+            "id": "014-missing-rails-migration",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "3f717ba6ce09a00943eb32d6ae18fc0b63588b53703cdcdce2b249e1d63e8f6d",
+            "version": 2
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "018-node-event-loop-blocking",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "deadd0eaaa1d86754f5109eabe17287a6ed9f0cd19b659170859e36c20d48d78",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "020-python-gunicorn-saturation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "e4818d58a594382f0dfa4b334e319f8ede2a27867b20d97f0af128e1d6a127aa",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "022-discourse-multisite-migration",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "a64858520a1751f5f71bb40a7660c68af760a631d9e4f27a8ef239916d68d732",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "026-discourse-plugin-boot-loop",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "7bceaaf21df61d7a8a8b05c6ee77478ace16b1a86ce1d14707a2f897c278b8aa",
+            "version": 1
+          },
+          {
+            "id": "027-partial-service-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "0389d64b69ed2dba434edad67282a29c3484792fd4f2e6dd1b09a7b3a1b499b9",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-08-21T19:41:04.599037Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "stealth/ox-alpha"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "7235305c702b34a24140043627673f15527e0124",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "018-node-event-loop-blocking",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "020-python-gunicorn-saturation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "022-discourse-multisite-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "026-discourse-plugin-boot-loop",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "027-partial-service-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-21__17-40-40.9edde1",
+      "started_at": "2026-08-21T17:40:40.432369Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "tier": "full",
+  "title": "Ox Alpha full infrastructure cohort",
+  "totals": {
+    "cache_read_tokens": 5685056,
+    "cost_reported_trials": 48,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 48,
+    "failed": 6,
+    "failure_categories": {
+      "backlog_not_recovered": 1,
+      "exports_still_timing_out": 1,
+      "historical_uploads_not_recovered": 2,
+      "resource_growth_unbounded": 1,
+      "writable_capacity_not_recovered": 1
+    },
+    "input_tokens": 1355680,
+    "known_cost_usd": 0.0,
+    "median_duration_seconds": 169.5,
+    "median_first_non_read_only_tool_seconds": 7.5425,
+    "median_model_duration_seconds": 157.14999999999998,
+    "median_model_rounds": 14.0,
+    "median_post_first_non_read_only_seconds": 162.4775,
+    "median_tool_calls": 17.0,
+    "median_tool_duration_seconds": 7.7075,
+    "output_tokens": 168788,
+    "pass_rate": 0.875,
+    "passed": 42,
+    "recording_reported_trials": 48,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 48,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 48
+  },
+  "version": "20260821.0.0"
+}

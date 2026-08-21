@@ -9,30 +9,19 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## OpenCode Go five-scenario infrastructure cohort
+## Ox Alpha full infrastructure cohort
 
-Six models ran three attempts across five externally verified infrastructure incidents through OpenCode 1.18.18 and the OpenCode Go subscription.
+The anonymous Ox Alpha preview ran three attempts across all 16 full-tier infrastructure incidents through Claux and OpenRouter.
 
-Benchmark release: `20260820.0.1`
-Benchmark tier: `unclassified`
-
-Provider-reported subscription usage value: **$9.8218** across 86 trials. This is a catalog-priced usage estimate, not metered spend.
+Benchmark release: `20260821.0.0`
+Benchmark tier: `full`
 
 Scenario packs: `ducks/replaybook-infra@20260817.1.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash (high) | 15/15 | 100% | 2:19 | n/a | n/a |
-| Qwen3.8 Max (high) | 14/15 | 93% | 2:58 | n/a | n/a |
-| GPT-5.6 Luna (high) | 14/15 | 93% | 2:19 | n/a | n/a |
-| Kimi K2.7 Code (high) | 14/15 | 93% | 4:58 | n/a | n/a |
-| MiniMax M3 (high) | 12/15 | 80% | 3:28 | n/a | n/a |
-| GLM 5.3 (high) | 11/11 | 100% | 4:08 | n/a | n/a |
-| **Total** | **80/86** | **93%** | **3:22** | **n/a** | **n/a** |
-
-### Unavailable trial categories
-
-- `provider_unavailable`: 4
+| Ox Alpha (high) | 42/48 | 88% | 2:50 | $0.0000 | $0.0000 |
+| **Total** | **42/48** | **88%** | **2:50** | **$0.0000** | **$0.0000** |
 
 ### Execution recording
 
@@ -40,50 +29,57 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash (high) | 15/15 | 20 | 1:42 | 30 | 0:00 | 0:02 | 2:09 |
-| Qwen3.8 Max (high) | 15/15 | 15 | 2:16 | 19 | 0:00 | 0:04 | 2:46 |
-| GPT-5.6 Luna (high) | 15/15 | 17 | 1:31 | 48 | 0:04 | 0:03 | 1:58 |
-| Kimi K2.7 Code (high) | 15/15 | 29 | 3:06 | 43 | 0:00 | 0:03 | 4:41 |
-| MiniMax M3 (high) | 15/15 | 43 | 2:02 | 43 | 0:00 | 0:01 | 3:04 |
-| GLM 5.3 (high) | 15/15 | 14 | 1:08 | 18 | 0:00 | 0:03 | 3:57 |
+| Ox Alpha (high) | 48/48 | 14 | 2:37 | 17 | 0:08 | 0:08 | 2:42 |
 
-DeepSeek was the only lane to complete every scheduled repair and paired that reliability with a 2:19 median.
+Ox Alpha completed every attempt in ten of the 16 scenarios and produced a 2:50 overall median at zero reported cost.
 
-GLM's result separates conditional repair reliability from operational availability: 11 of 11 evaluated repairs passed, but only 11 of 15 scheduled trials reached inference.
+The failed wrong-Redis repair damaged the controller-owned backlog during migration, demonstrating why successful health checks alone are insufficient evidence of incident recovery.
 
-The Nix store pressure and shared-uploads incidents produced most of the durable-repair separation, while every model completed all three partial-rollout repairs that reached evaluation.
+The Gunicorn repair passed immediate verification but failed after a service restart, while the Nix pressure repair survived a service restart and failed only after host reboot. These outcomes show the additional separation created by durability verification.
 
-The cohort demonstrates why Replaybook publishes model, harness, provider, scenario selection, and verifier boundary together instead of presenting a context-free model leaderboard.
+The model struggled most consistently on shared-upload recovery, completing one of three attempts and leaving historical uploads missing in two runs.
 
 ### Scenario breakdown
 
-| Scenario | Version | DeepSeek V4 Flash (high) | Qwen3.8 Max (high) | GPT-5.6 Luna (high) | Kimi K2.7 Code (high) | MiniMax M3 (high) | GLM 5.3 (high) |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 013-sidekiq-wrong-redis | v2 | 3/3, 1:28 | 3/3, 1:50 | 3/3, 1:53 | 3/3, 2:19 | 2/3, 4:20 | 3/3, 4:26 |
-| 017-partial-rails-rollout | v1 | 3/3, 2:11 | 3/3, 5:09 | 3/3, 2:34 | 3/3, 5:34 | 3/3, 3:28 | 2/2, 4:29 |
-| 019-rust-fd-leak | v1 | 3/3, 1:24 | 3/3, 2:33 | 3/3, 2:08 | 2/3, 3:44 | 3/3, 2:23 | 3/3, 1:29 |
-| 021-discourse-shared-uploads | v1 | 3/3, 4:37 | 2/3, 6:00 | 3/3, 3:12 | 3/3, 5:31 | 2/3, 2:39 | 2/2, 5:21 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 3:22 | 3/3, 2:58 | 2/3, 4:46 | 3/3, 7:39 | 2/3, 7:37 | 1/1, 3:02 |
+| Scenario | Version | Ox Alpha (high) |
+|---|---:|---:|
+| 001-nginx-502-host | v1 | 3/3, 4:45 |
+| 013-sidekiq-wrong-redis | v2 | 2/3, 2:25 |
+| 014-missing-rails-migration | v2 | 3/3, 3:58 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 7:32 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 2:27 |
+| 017-partial-rails-rollout | v1 | 3/3, 2:45 |
+| 018-node-event-loop-blocking | v1 | 3/3, 3:31 |
+| 019-rust-fd-leak | v1 | 2/3, 2:39 |
+| 020-python-gunicorn-saturation | v1 | 2/3, 2:39 |
+| 021-discourse-shared-uploads | v1 | 1/3, 2:11 |
+| 022-discourse-multisite-migration | v1 | 3/3, 3:17 |
+| 023-auth-secret-rollout | v1 | 3/3, 2:31 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 2:26 |
+| 026-discourse-plugin-boot-loop | v1 | 3/3, 2:21 |
+| 027-partial-service-rollout | v1 | 3/3, 2:08 |
+| 028-nix-store-disk-pressure | v1 | 2/3, 2:53 |
 
 ### Failure categories
 
-- `accepted_uploads_not_recovered`: 1
-- `host_reboot_failed`: 3
-- `new_receipts_not_writable`: 1
+- `backlog_not_recovered`: 1
+- `exports_still_timing_out`: 1
+- `historical_uploads_not_recovered`: 2
+- `resource_growth_unbounded`: 1
 - `writable_capacity_not_recovered`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-20__15-55-33.730754`: opencode-go/deepseek-v4-flash, opencode-go/glm-5.3, opencode-go/gpt-5.6-luna, opencode-go/kimi-k2.7-code, opencode-go/minimax-m3, opencode-go/qwen3.8-max; Replaybook `ae7b4f19`; reasoning high
+- `host-matrix-2026-08-21__17-40-40.9edde1`: stealth/ox-alpha; Replaybook `7235305c`; reasoning high
 
 ### Run notes
 
-- This is an independent OpenCode/OpenCode Go harness cohort. Its aggregates are not pooled with Claux/OpenRouter results.
-- The matrix scheduled 90 trials: six models, five scenarios, and three attempts. It retained 86 evaluated repairs and four provider-unavailable trials, with no missing infrastructure results after recovery.
-- All trials used Replaybook commit ae7b4f1, host harness v22, OpenCode 1.18.18, high reasoning, a 900-second deadline, and scenarios 013, 017, 019, 021, and 028 from ducks/replaybook-infra 20260817.1.0.
-- DeepSeek completed all 15 repairs. Luna, Kimi, and Qwen completed 14 of 15; MiniMax completed 12 of 15.
-- GLM completed all 11 trials that reached evaluation, while four additional requests failed before inference because the OpenCode Go catalog reported that GLM 5.3 was unavailable. Those trials remain provider failures rather than model repair failures.
-- OpenCode reported $9.8218 in catalog-priced subscription usage across 86 evaluated trials. OpenCode calculates this value from token usage and catalog model rates; it is not the metered amount billed to the $5 subscription, so actual API cost remains unavailable rather than zero. Provider token fields are preserved as reported but should not be compared directly with Claux cohorts; Luna's input accounting in particular is not comparable.
+- Ox Alpha was published by OpenRouter under the temporary anonymous identifier stealth/ox-alpha. This release preserves that identifier and does not speculate about the underlying model.
+- The matrix scheduled and evaluated all 48 trials: one model, 16 scenarios, and three attempts. Forty-two repairs passed and six failed, for an 88% pass rate with no unavailable or missing trials.
+- All trials used Replaybook commit 7235305, host harness v23, Claux v20260821.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.
+- OpenRouter reported zero cost for the preview cohort. The published $0.0000 reflects the provider's metered result while Ox Alpha was offered free, not an estimate of future pricing.
+- The six scored failures were backlog_not_recovered, resource_growth_unbounded, exports_still_timing_out, two historical_uploads_not_recovered outcomes, and writable_capacity_not_recovered. No failure was classified as infrastructure or provider unavailability.
+- Three failed trials ended with an empty final response. They remain scored because Replaybook evaluates the resulting host state independently of the agent's narrative response.
 
 <!-- replaybook:current-benchmark:end -->
 
