@@ -24,6 +24,7 @@
       <a href="benchmarks.html">Current</a>
       <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
+      <a href="benchmark-compare.html">Compare</a>
       <a href="benchmark-explorer.html">Explore</a>
       <a href="benchmark-history.html">History</a>
       <a href="benchmark-methodology.html">Methodology</a>
@@ -50,6 +51,7 @@
     <h2>Observed failure categories</h2>
     <ul id="profile-failures"></ul>
 
+    <p><a id="profile-compare" href="benchmark-compare.html">Compare latest cohort →</a></p>
     <p><a href="benchmark-models.html">← All canonical model profiles</a></p>
     <p class="small muted">This profile is generated from <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a>.</p>
     <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
@@ -94,6 +96,12 @@
       cell: scenario.cells.find(cell => laneKey(cell) === key)
     }));
     const covered = entries.filter(entry => entry.cell && entry.cell.status === "covered");
+    const newest = covered.map(entry => entry.cell).sort((a, b) => b.release.localeCompare(a.release))[0];
+    if (newest) {
+      const compareQuery = new URLSearchParams();
+      compareQuery.append("lane", `${newest.release}|||${newest.model}|||${newest.reasoning_effort || ""}`);
+      document.querySelector("#profile-compare").href = `benchmark-compare.html?${compareQuery}`;
+    }
     const perfect = covered.filter(entry => entry.cell.evaluated && entry.cell.passed === entry.cell.evaluated).length;
     const cost = covered.reduce((sum, entry) => sum + entry.cell.known_cost_usd, 0);
     const costReported = covered.reduce((sum, entry) => sum + entry.cell.cost_reported_trials, 0);

@@ -22,6 +22,2557 @@
     }
   ],
   "current_version": "20260821.0.0",
+  "lanes": [
+    {
+      "cost_per_repair_usd": 0.012245537769230767,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "backlog_not_recovered": 1
+      },
+      "input_tokens": 6817848,
+      "known_cost_usd": 0.15919199099999998,
+      "median_duration_seconds": 267,
+      "model": "deepseek/deepseek-v4-pro",
+      "model_label": "DeepSeek V4 Pro",
+      "output_tokens": 178475,
+      "pass_rate": 0.8666666666666667,
+      "pass_rate_95_high": 0.9626387408969346,
+      "pass_rate_95_low": 0.6211801716767764,
+      "passed": 13,
+      "reasoning_effort": null,
+      "release": "20260809.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.09909917742857142,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 18004306,
+      "known_cost_usd": 1.387388484,
+      "median_duration_seconds": 226,
+      "model": "minimax/minimax-m3",
+      "model_label": "MiniMax M3",
+      "output_tokens": 145144,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260809.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.22155135466666664,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 3011128,
+      "known_cost_usd": 3.3232703199999998,
+      "median_duration_seconds": 148,
+      "model": "moonshotai/kimi-k3",
+      "model_label": "Kimi K3",
+      "output_tokens": 76221,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7961166989641515,
+      "passed": 15,
+      "reasoning_effort": null,
+      "release": "20260809.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.007683199666666666,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 3785434,
+      "known_cost_usd": 0.11524799499999999,
+      "median_duration_seconds": 70,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 54101,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7961166989641515,
+      "passed": 15,
+      "reasoning_effort": null,
+      "release": "20260809.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.020662967454545454,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 4,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "backlog_not_recovered": 1,
+        "poison_not_quarantined": 1
+      },
+      "input_tokens": 14766245,
+      "known_cost_usd": 0.227292642,
+      "median_duration_seconds": 179,
+      "model": "poolside/laguna-s-2.1",
+      "model_label": "Laguna S 2.1",
+      "output_tokens": 177224,
+      "pass_rate": 0.7333333333333333,
+      "pass_rate_95_high": 0.8910254667430761,
+      "pass_rate_95_low": 0.4804956594401943,
+      "passed": 11,
+      "reasoning_effort": null,
+      "release": "20260809.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0084482685,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "backlog_not_recovered": 2
+      },
+      "input_tokens": 2840832,
+      "known_cost_usd": 0.10137922199999999,
+      "median_duration_seconds": 183,
+      "model": "tencent/hy3-preview",
+      "model_label": "Tencent HY3 Preview",
+      "output_tokens": 115283,
+      "pass_rate": 0.8,
+      "pass_rate_95_high": 0.9295245065301844,
+      "pass_rate_95_low": 0.5481455128483065,
+      "passed": 12,
+      "reasoning_effort": null,
+      "release": "20260809.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.013182331885714285,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "backlog_not_recovered": 1
+      },
+      "input_tokens": 4276902,
+      "known_cost_usd": 0.1845526464,
+      "median_duration_seconds": 95,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 81361,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260809.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.012245537769230767,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "backlog_not_recovered": 1
+      },
+      "input_tokens": 6817848,
+      "known_cost_usd": 0.15919199099999998,
+      "median_duration_seconds": 267,
+      "model": "deepseek/deepseek-v4-pro",
+      "model_label": "DeepSeek V4 Pro",
+      "output_tokens": 178475,
+      "pass_rate": 0.8666666666666667,
+      "pass_rate_95_high": 0.9626387408969346,
+      "pass_rate_95_low": 0.6211801716767764,
+      "passed": 13,
+      "reasoning_effort": null,
+      "release": "20260809.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.09909917742857142,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 18004306,
+      "known_cost_usd": 1.387388484,
+      "median_duration_seconds": 226,
+      "model": "minimax/minimax-m3",
+      "model_label": "MiniMax M3",
+      "output_tokens": 145144,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260809.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.22155135466666664,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 3011128,
+      "known_cost_usd": 3.3232703199999998,
+      "median_duration_seconds": 148,
+      "model": "moonshotai/kimi-k3",
+      "model_label": "Kimi K3",
+      "output_tokens": 76221,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7961166989641515,
+      "passed": 15,
+      "reasoning_effort": null,
+      "release": "20260809.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.007683199666666666,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 3785434,
+      "known_cost_usd": 0.11524799499999999,
+      "median_duration_seconds": 70,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 54101,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7961166989641515,
+      "passed": 15,
+      "reasoning_effort": null,
+      "release": "20260809.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.4491158333333333,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 4720299,
+      "known_cost_usd": 6.7367375,
+      "median_duration_seconds": 106,
+      "model": "openai/gpt-5.6-sol",
+      "model_label": "GPT-5.6 Sol",
+      "output_tokens": 67592,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7961166989641515,
+      "passed": 15,
+      "reasoning_effort": null,
+      "release": "20260809.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.020662967454545454,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 4,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "backlog_not_recovered": 1,
+        "poison_not_quarantined": 1
+      },
+      "input_tokens": 14766245,
+      "known_cost_usd": 0.227292642,
+      "median_duration_seconds": 179,
+      "model": "poolside/laguna-s-2.1",
+      "model_label": "Laguna S 2.1",
+      "output_tokens": 177224,
+      "pass_rate": 0.7333333333333333,
+      "pass_rate_95_high": 0.8910254667430761,
+      "pass_rate_95_low": 0.4804956594401943,
+      "passed": 11,
+      "reasoning_effort": null,
+      "release": "20260809.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0084482685,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "backlog_not_recovered": 2
+      },
+      "input_tokens": 2840832,
+      "known_cost_usd": 0.10137922199999999,
+      "median_duration_seconds": 183,
+      "model": "tencent/hy3-preview",
+      "model_label": "Tencent HY3 Preview",
+      "output_tokens": 115283,
+      "pass_rate": 0.8,
+      "pass_rate_95_high": 0.9295245065301844,
+      "pass_rate_95_low": 0.5481455128483065,
+      "passed": 12,
+      "reasoning_effort": null,
+      "release": "20260809.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.013182331885714285,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "backlog_not_recovered": 1
+      },
+      "input_tokens": 4276902,
+      "known_cost_usd": 0.1845526464,
+      "median_duration_seconds": 95,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 81361,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260809.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.022365828713846157,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_tokens": 9247252,
+      "known_cost_usd": 0.29075577328,
+      "median_duration_seconds": 148,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 279390,
+      "pass_rate": 0.8666666666666667,
+      "pass_rate_95_high": 0.9626387408969346,
+      "pass_rate_95_low": 0.6211801716767764,
+      "passed": 13,
+      "reasoning_effort": null,
+      "release": "20260809.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.022365828713846157,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_tokens": 9247252,
+      "known_cost_usd": 0.29075577328,
+      "median_duration_seconds": 148,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 279390,
+      "pass_rate": 0.8666666666666667,
+      "pass_rate_95_high": 0.9626387408969346,
+      "pass_rate_95_low": 0.6211801716767764,
+      "passed": 13,
+      "reasoning_effort": null,
+      "release": "20260809.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.007584623846153846,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "backlog_not_recovered": 1
+      },
+      "input_tokens": 3008606,
+      "known_cost_usd": 0.09860011,
+      "median_duration_seconds": 70,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 49703,
+      "pass_rate": 0.8666666666666667,
+      "pass_rate_95_high": 0.9626387408969346,
+      "pass_rate_95_low": 0.6211801716767764,
+      "passed": 13,
+      "reasoning_effort": null,
+      "release": "20260809.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.008748465249999999,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 3,
+      "failure_categories": {
+        "backlog_not_recovered": 2,
+        "poison_not_quarantined": 1
+      },
+      "input_tokens": 3074037,
+      "known_cost_usd": 0.10498158299999999,
+      "median_duration_seconds": 134,
+      "model": "tencent/hy3-preview",
+      "model_label": "Tencent HY3 Preview",
+      "output_tokens": 117490,
+      "pass_rate": 0.8,
+      "pass_rate_95_high": 0.9295245065301844,
+      "pass_rate_95_low": 0.5481455128483065,
+      "passed": 12,
+      "reasoning_effort": null,
+      "release": "20260809.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.02013838293333333,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 6490561,
+      "known_cost_usd": 0.302075744,
+      "median_duration_seconds": 94,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 107386,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7961166989641515,
+      "passed": 15,
+      "reasoning_effort": null,
+      "release": "20260809.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.00903610857142857,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 4619774,
+      "known_cost_usd": 0.12650551999999998,
+      "median_duration_seconds": 146,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 59722,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260810.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.009406026,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 4,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "backlog_not_recovered": 2
+      },
+      "input_tokens": 2787310,
+      "known_cost_usd": 0.10346628599999999,
+      "median_duration_seconds": 256,
+      "model": "tencent/hy3-preview",
+      "model_label": "Tencent HY3 Preview",
+      "output_tokens": 120926,
+      "pass_rate": 0.7333333333333333,
+      "pass_rate_95_high": 0.8910254667430761,
+      "pass_rate_95_low": 0.4804956594401943,
+      "passed": 11,
+      "reasoning_effort": null,
+      "release": "20260810.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.15966147711428572,
+      "cost_reported_trials": 15,
+      "evaluated": 14,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 5850351,
+      "known_cost_usd": 2.2352606796,
+      "median_duration_seconds": 125.5,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 116077,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7846891972623643,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260810.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 1,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.018917201445066666,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 9300040,
+      "known_cost_usd": 0.283758021676,
+      "median_duration_seconds": 253,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 240320,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7961166989641515,
+      "passed": 15,
+      "reasoning_effort": "high",
+      "release": "20260810.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.01016023736,
+      "cost_reported_trials": 15,
+      "evaluated": 14,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 4176823,
+      "known_cost_usd": 0.14224332303999998,
+      "median_duration_seconds": 252.0,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 119980,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7846891972623643,
+      "passed": 14,
+      "reasoning_effort": "low",
+      "release": "20260810.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 1,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.020826339488,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 9168527,
+      "known_cost_usd": 0.291568752832,
+      "median_duration_seconds": 241,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 268940,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": "xhigh",
+      "release": "20260810.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.00903610857142857,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 4619774,
+      "known_cost_usd": 0.12650551999999998,
+      "median_duration_seconds": 146,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 59722,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260810.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.009406026,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 4,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "backlog_not_recovered": 2
+      },
+      "input_tokens": 2787310,
+      "known_cost_usd": 0.10346628599999999,
+      "median_duration_seconds": 256,
+      "model": "tencent/hy3-preview",
+      "model_label": "Tencent HY3 Preview",
+      "output_tokens": 120926,
+      "pass_rate": 0.7333333333333333,
+      "pass_rate_95_high": 0.8910254667430761,
+      "pass_rate_95_low": 0.4804956594401943,
+      "passed": 11,
+      "reasoning_effort": null,
+      "release": "20260810.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.15966147711428572,
+      "cost_reported_trials": 15,
+      "evaluated": 14,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 5850351,
+      "known_cost_usd": 2.2352606796,
+      "median_duration_seconds": 125.5,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 116077,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7846891972623643,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260810.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 1,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.018917201445066666,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 9300040,
+      "known_cost_usd": 0.283758021676,
+      "median_duration_seconds": 253,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 240320,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7961166989641515,
+      "passed": 15,
+      "reasoning_effort": "high",
+      "release": "20260810.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.01016023736,
+      "cost_reported_trials": 15,
+      "evaluated": 14,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 4176823,
+      "known_cost_usd": 0.14224332303999998,
+      "median_duration_seconds": 252.0,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 119980,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7846891972623643,
+      "passed": 14,
+      "reasoning_effort": "low",
+      "release": "20260810.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 1,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.020826339488,
+      "cost_reported_trials": 15,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 9168527,
+      "known_cost_usd": 0.291568752832,
+      "median_duration_seconds": 241,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 268940,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": "xhigh",
+      "release": "20260810.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.00903610857142857,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 4619774,
+      "known_cost_usd": 0.12650551999999998,
+      "median_duration_seconds": 146,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 59722,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260810.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.009406026,
+      "cost_reported_trials": 14,
+      "evaluated": 15,
+      "failed": 4,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "backlog_not_recovered": 2
+      },
+      "input_tokens": 2787310,
+      "known_cost_usd": 0.10346628599999999,
+      "median_duration_seconds": 256,
+      "model": "tencent/hy3-preview",
+      "model_label": "Tencent HY3 Preview",
+      "output_tokens": 120926,
+      "pass_rate": 0.7333333333333333,
+      "pass_rate_95_high": 0.8910254667430761,
+      "pass_rate_95_low": 0.4804956594401943,
+      "passed": 11,
+      "reasoning_effort": null,
+      "release": "20260810.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.15966147711428572,
+      "cost_reported_trials": 15,
+      "evaluated": 14,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 5850351,
+      "known_cost_usd": 2.2352606796,
+      "median_duration_seconds": 125.5,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 116077,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7846891972623643,
+      "passed": 14,
+      "reasoning_effort": null,
+      "release": "20260810.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 1,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.05062984874000001,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 2811641,
+      "known_cost_usd": 0.10125969748000002,
+      "median_duration_seconds": 719,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 117521,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260811.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.016681575,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1799632,
+      "known_cost_usd": 0.050044725,
+      "median_duration_seconds": 117,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 27546,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260811.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1,
+        "agent_timeout": 2
+      },
+      "input_tokens": 3133749,
+      "known_cost_usd": 0.10341246300000001,
+      "median_duration_seconds": 903,
+      "model": "tencent/hy3-preview",
+      "model_label": "Tencent HY3 Preview",
+      "output_tokens": 95714,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.5614970317550454,
+      "pass_rate_95_low": 5.551115123125783e-17,
+      "passed": 0,
+      "reasoning_effort": "high",
+      "release": "20260811.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07012261566666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 870346,
+      "known_cost_usd": 0.210367847,
+      "median_duration_seconds": 195,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 38292,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260811.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.014704181726060606,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 13921632,
+      "known_cost_usd": 0.48523799696,
+      "median_duration_seconds": 206,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 438497,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.895730002457548,
+      "passed": 33,
+      "reasoning_effort": "high",
+      "release": "20260812.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.11403720430769229,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 7,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1,
+        "agent_timeout": 3,
+        "backlog_not_recovered": 1,
+        "exports_still_timing_out": 1,
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 29610847,
+      "known_cost_usd": 2.9649673119999997,
+      "median_duration_seconds": 258,
+      "model": "minimax/minimax-m3",
+      "model_label": "MiniMax M3",
+      "output_tokens": 603355,
+      "pass_rate": 0.7878787878787878,
+      "pass_rate_95_high": 0.8932397846697919,
+      "pass_rate_95_low": 0.6224835500784931,
+      "passed": 26,
+      "reasoning_effort": "high",
+      "release": "20260812.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.015270841833333331,
+      "cost_reported_trials": 32,
+      "evaluated": 32,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "provider_interrupted": 1
+      },
+      "input_tokens": 16391864,
+      "known_cost_usd": 0.45812525499999995,
+      "median_duration_seconds": 129.5,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 228277,
+      "pass_rate": 0.9375,
+      "pass_rate_95_high": 0.982689432968359,
+      "pass_rate_95_low": 0.7985287685584542,
+      "passed": 30,
+      "reasoning_effort": "high",
+      "release": "20260812.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 33,
+      "unavailable": 1,
+      "unavailable_categories": {
+        "provider_unavailable": 1
+      }
+    },
+    {
+      "cost_per_repair_usd": 0.08390115126060606,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 8777551,
+      "known_cost_usd": 2.7687379916,
+      "median_duration_seconds": 134,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 235253,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.895730002457548,
+      "passed": 33,
+      "reasoning_effort": "high",
+      "release": "20260812.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.17939317704,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_tokens": 5421824,
+      "known_cost_usd": 0.17939317704,
+      "median_duration_seconds": 364,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 67787,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "release": "20260815.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.202331288,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_tokens": 1498873,
+      "known_cost_usd": 0.202331288,
+      "median_duration_seconds": 602,
+      "model": "minimax/minimax-m3",
+      "model_label": "MiniMax M3",
+      "output_tokens": 37879,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "release": "20260815.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.018362876666666663,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 2099012,
+      "known_cost_usd": 0.05508862999999999,
+      "median_duration_seconds": 91,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 22756,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260815.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.24537569000000004,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 1499821,
+      "known_cost_usd": 0.49075138000000007,
+      "median_duration_seconds": 127,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 28683,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260815.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.9055171666666667,
+      "cost_reported_trials": 13,
+      "evaluated": 13,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 4839113,
+      "known_cost_usd": 10.866206,
+      "median_duration_seconds": 123,
+      "model": "anthropic/claude-sonnet-5",
+      "model_label": "Claude Sonnet 5",
+      "output_tokens": 118798,
+      "pass_rate": 0.9230769230769231,
+      "pass_rate_95_high": 0.9862895787574435,
+      "pass_rate_95_low": 0.6668604907890041,
+      "passed": 12,
+      "reasoning_effort": "high",
+      "release": "20260815.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.008579136182333332,
+      "cost_reported_trials": 13,
+      "evaluated": 13,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 4293355,
+      "known_cost_usd": 0.10294963418799999,
+      "median_duration_seconds": 273,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 131619,
+      "pass_rate": 0.9230769230769231,
+      "pass_rate_95_high": 0.9862895787574435,
+      "pass_rate_95_low": 0.6668604907890041,
+      "passed": 12,
+      "reasoning_effort": "high",
+      "release": "20260815.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.17917023375000002,
+      "cost_reported_trials": 13,
+      "evaluated": 13,
+      "failed": 3,
+      "failure_categories": {
+        "agent_runtime_error": 3
+      },
+      "input_tokens": 15163587,
+      "known_cost_usd": 1.7917023375,
+      "median_duration_seconds": 189,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 160167,
+      "pass_rate": 0.7692307692307693,
+      "pass_rate_95_high": 0.9182047128150143,
+      "pass_rate_95_low": 0.49743624053272495,
+      "passed": 10,
+      "reasoning_effort": "high",
+      "release": "20260815.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.016077222083333332,
+      "cost_reported_trials": 12,
+      "evaluated": 13,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 7161480,
+      "known_cost_usd": 0.192926665,
+      "median_duration_seconds": 116,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 96800,
+      "pass_rate": 0.9230769230769231,
+      "pass_rate_95_high": 0.9862895787574435,
+      "pass_rate_95_low": 0.6668604907890041,
+      "passed": 12,
+      "reasoning_effort": "high",
+      "release": "20260815.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.03996963910461538,
+      "cost_reported_trials": 13,
+      "evaluated": 13,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 2907050,
+      "known_cost_usd": 0.51960530836,
+      "median_duration_seconds": 151,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 93239,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 0.9999999999999999,
+      "pass_rate_95_low": 0.7719046276458016,
+      "passed": 13,
+      "reasoning_effort": "high",
+      "release": "20260815.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.030954798000000002,
+      "cost_reported_trials": 1,
+      "evaluated": 1,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1751314,
+      "known_cost_usd": 0.030954798000000002,
+      "median_duration_seconds": 1752,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 27737,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.20654931437723745,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "release": "20260816.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 1,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.323668725,
+      "cost_reported_trials": 1,
+      "evaluated": 1,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 3871305,
+      "known_cost_usd": 0.323668725,
+      "median_duration_seconds": 865,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 18440,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.20654931437723745,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "release": "20260816.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 1,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.026975900000000008,
+      "cost_reported_trials": 1,
+      "evaluated": 1,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1275087,
+      "known_cost_usd": 0.026975900000000008,
+      "median_duration_seconds": 602,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 10901,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.20654931437723745,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "release": "20260816.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 1,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.309992,
+      "cost_reported_trials": 1,
+      "evaluated": 1,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 677161,
+      "known_cost_usd": 0.309992,
+      "median_duration_seconds": 690,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "model_label": "Qwen3.8 2.4T A95B",
+      "output_tokens": 20321,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.20654931437723745,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "release": "20260816.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 1,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.10113179179999998,
+      "cost_reported_trials": 1,
+      "evaluated": 1,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 643888,
+      "known_cost_usd": 0.10113179179999998,
+      "median_duration_seconds": 675,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 9697,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.20654931437723745,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "release": "20260816.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 1,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.009075485766666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 993875,
+      "known_cost_usd": 0.027226457300000003,
+      "median_duration_seconds": 126,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 27907,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.16461847500000001,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_runtime_error": 2
+      },
+      "input_tokens": 990793,
+      "known_cost_usd": 0.16461847500000001,
+      "median_duration_seconds": 92,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 15891,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.012229783333333332,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1128799,
+      "known_cost_usd": 0.036689349999999996,
+      "median_duration_seconds": 69,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 17650,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.128724,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 649200,
+      "known_cost_usd": 0.386172,
+      "median_duration_seconds": 106,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "model_label": "Qwen3.8 2.4T A95B",
+      "output_tokens": 24242,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.057617688040000004,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "core_api_rolled_back": 1
+      },
+      "input_tokens": 911707,
+      "known_cost_usd": 0.11523537608000001,
+      "median_duration_seconds": 237,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 33880,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260817.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0088503416,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 680648,
+      "known_cost_usd": 0.0265510248,
+      "median_duration_seconds": 197,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 23946,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.156174,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 4434029,
+      "known_cost_usd": 0.468522,
+      "median_duration_seconds": 172,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 39446,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.017684361666666665,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 2049259,
+      "known_cost_usd": 0.05305308499999999,
+      "median_duration_seconds": 120,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 25122,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1916266666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 779860,
+      "known_cost_usd": 0.5748800000000001,
+      "median_duration_seconds": 120,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "model_label": "Qwen3.8 2.4T A95B",
+      "output_tokens": 27740,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.06536537048,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 719719,
+      "known_cost_usd": 0.19609611144,
+      "median_duration_seconds": 144,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 19060,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.01416059596,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1117253,
+      "known_cost_usd": 0.042481787879999997,
+      "median_duration_seconds": 254,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 64101,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.17774540000000003,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 4932988,
+      "known_cost_usd": 0.5332362,
+      "median_duration_seconds": 217,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 37563,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07227897999999999,
+      "cost_reported_trials": 2,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 2797135,
+      "known_cost_usd": 0.14455795999999999,
+      "median_duration_seconds": 319,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 46553,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260817.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.35386199999999995,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1673385,
+      "known_cost_usd": 1.061586,
+      "median_duration_seconds": 226,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "model_label": "Qwen3.8 2.4T A95B",
+      "output_tokens": 65608,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.18323631306666663,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 961173,
+      "known_cost_usd": 0.5497089391999999,
+      "median_duration_seconds": 239,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 34534,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260817.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.015188039311866667,
+      "cost_reported_trials": 13,
+      "evaluated": 13,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 5067162,
+      "known_cost_usd": 0.1822564717424,
+      "median_duration_seconds": 161,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 170887,
+      "pass_rate": 0.9230769230769231,
+      "pass_rate_95_high": 0.9862895787574435,
+      "pass_rate_95_low": 0.6668604907890041,
+      "passed": 12,
+      "reasoning_effort": "high",
+      "release": "20260817.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.19518489749999998,
+      "cost_reported_trials": 13,
+      "evaluated": 13,
+      "failed": 3,
+      "failure_categories": {
+        "database_pool_exhausted": 1,
+        "provider_policy_rejection": 1,
+        "provider_protocol_error": 1
+      },
+      "input_tokens": 15710951,
+      "known_cost_usd": 1.9518489749999999,
+      "median_duration_seconds": 222,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 164466,
+      "pass_rate": 0.7692307692307693,
+      "pass_rate_95_high": 0.9182047128150143,
+      "pass_rate_95_low": 0.49743624053272495,
+      "passed": 10,
+      "reasoning_effort": "high",
+      "release": "20260817.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.03290876636363637,
+      "cost_reported_trials": 12,
+      "evaluated": 13,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "release_not_converged": 1
+      },
+      "input_tokens": 6432150,
+      "known_cost_usd": 0.36199643000000004,
+      "median_duration_seconds": 103,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 88071,
+      "pass_rate": 0.8461538461538461,
+      "pass_rate_95_high": 0.9567418216419186,
+      "pass_rate_95_low": 0.5776536898051745,
+      "passed": 11,
+      "reasoning_effort": "high",
+      "release": "20260817.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1800393846153846,
+      "cost_reported_trials": 13,
+      "evaluated": 13,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 3483157,
+      "known_cost_usd": 2.340512,
+      "median_duration_seconds": 111,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "model_label": "Qwen3.8 2.4T A95B",
+      "output_tokens": 141321,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 0.9999999999999999,
+      "pass_rate_95_low": 0.7719046276458016,
+      "passed": 13,
+      "reasoning_effort": "high",
+      "release": "20260817.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1110207797323077,
+      "cost_reported_trials": 13,
+      "evaluated": 13,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 3643809,
+      "known_cost_usd": 1.44327013652,
+      "median_duration_seconds": 175,
+      "model": "z-ai/glm-5.2",
+      "model_label": "GLM 5.2",
+      "output_tokens": 121992,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 0.9999999999999999,
+      "pass_rate_95_low": 0.7719046276458016,
+      "passed": 13,
+      "reasoning_effort": "high",
+      "release": "20260817.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 13,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.10381339404255319,
+      "cost_reported_trials": 48,
+      "evaluated": 48,
+      "failed": 1,
+      "failure_categories": {
+        "database_pool_exhausted": 1
+      },
+      "input_tokens": 10417704,
+      "known_cost_usd": 4.87922952,
+      "median_duration_seconds": 97.5,
+      "model": "z-ai/glm-5.3",
+      "model_label": "GLM 5.3",
+      "output_tokens": 289971,
+      "pass_rate": 0.9791666666666666,
+      "pass_rate_95_high": 0.9963128890224893,
+      "pass_rate_95_low": 0.8910078200474814,
+      "passed": 47,
+      "reasoning_effort": "high",
+      "release": "20260818.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 48,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.01460313007384762,
+      "cost_reported_trials": 48,
+      "evaluated": 48,
+      "failed": 6,
+      "failure_categories": {
+        "agent_runtime_error": 2,
+        "core_api_rolled_back": 1,
+        "release_not_converged": 3
+      },
+      "input_tokens": 12581189,
+      "known_cost_usd": 0.6133314631016,
+      "median_duration_seconds": 227.0,
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "model_label": "DeepSeek V4 Flash 0731",
+      "output_tokens": 423578,
+      "pass_rate": 0.875,
+      "pass_rate_95_high": 0.9414294856142802,
+      "pass_rate_95_low": 0.7529954171361317,
+      "passed": 42,
+      "reasoning_effort": "high",
+      "release": "20260819.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 48,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.18985165743243243,
+      "cost_reported_trials": 48,
+      "evaluated": 48,
+      "failed": 11,
+      "failure_categories": {
+        "current_sessions_unavailable": 1,
+        "new_receipts_not_writable": 1,
+        "provider_interrupted": 1,
+        "provider_policy_rejection": 4,
+        "provider_protocol_error": 4
+      },
+      "input_tokens": 61225227,
+      "known_cost_usd": 7.024511325,
+      "median_duration_seconds": 192.0,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 593908,
+      "pass_rate": 0.7708333333333334,
+      "pass_rate_95_high": 0.8669217373308877,
+      "pass_rate_95_low": 0.6346073590999655,
+      "passed": 37,
+      "reasoning_effort": "high",
+      "release": "20260819.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 48,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.03153865,
+      "cost_reported_trials": 46,
+      "evaluated": 48,
+      "failed": 4,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "release_not_converged": 2
+      },
+      "input_tokens": 24876005,
+      "known_cost_usd": 1.3877006,
+      "median_duration_seconds": 126.0,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 348800,
+      "pass_rate": 0.9166666666666666,
+      "pass_rate_95_high": 0.9671162431819081,
+      "pass_rate_95_low": 0.8044669820963272,
+      "passed": 44,
+      "reasoning_effort": "high",
+      "release": "20260819.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 48,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.19512260869565218,
+      "cost_reported_trials": 48,
+      "evaluated": 48,
+      "failed": 2,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1,
+        "release_not_converged": 1
+      },
+      "input_tokens": 14218146,
+      "known_cost_usd": 8.97564,
+      "median_duration_seconds": 122.5,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "model_label": "Qwen3.8 2.4T A95B",
+      "output_tokens": 493382,
+      "pass_rate": 0.9583333333333334,
+      "pass_rate_95_high": 0.9884981065106133,
+      "pass_rate_95_low": 0.8602434412954456,
+      "passed": 46,
+      "reasoning_effort": "high",
+      "release": "20260819.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 48,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.097995952,
+      "cost_reported_trials": 48,
+      "evaluated": 48,
+      "failed": 3,
+      "failure_categories": {
+        "host_reboot_failed": 2,
+        "provider_interrupted": 1
+      },
+      "input_tokens": 9041290,
+      "known_cost_usd": 4.40981784,
+      "median_duration_seconds": 139.0,
+      "model": "z-ai/glm-5.3",
+      "model_label": "GLM 5.3",
+      "output_tokens": 269420,
+      "pass_rate": 0.9375,
+      "pass_rate_95_high": 0.9785167670916107,
+      "pass_rate_95_low": 0.8316456194505365,
+      "passed": 45,
+      "reasoning_effort": "high",
+      "release": "20260819.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 48,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 108221,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 157,
+      "model": "opencode-go/deepseek-v4-flash",
+      "model_label": "DeepSeek V4 Flash",
+      "output_tokens": 23002,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260820.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "provider_interrupted": 1
+      },
+      "input_tokens": 106543,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 435,
+      "model": "opencode-go/glm-5.3",
+      "model_label": "GLM 5.3",
+      "output_tokens": 7515,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260820.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 174,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 138,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 13584,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260820.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 125587,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 389,
+      "model": "opencode-go/kimi-k2.7-code",
+      "model_label": "Kimi K2.7 Code",
+      "output_tokens": 12360,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260820.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 122134,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 270,
+      "model": "opencode-go/minimax-m3",
+      "model_label": "MiniMax M3",
+      "output_tokens": 36188,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260820.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 57767,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 158,
+      "model": "opencode-go/qwen3.8-max",
+      "model_label": "Qwen3.8 Max",
+      "output_tokens": 6700,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260820.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 15,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 717319,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 139,
+      "model": "opencode-go/deepseek-v4-flash",
+      "model_label": "DeepSeek V4 Flash",
+      "output_tokens": 162654,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7961166989641515,
+      "passed": 15,
+      "reasoning_effort": "high",
+      "release": "20260820.0.1",
+      "subscription_usage_reported_trials": 15,
+      "subscription_usage_usd": 0.18332484,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 11,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 304641,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 248,
+      "model": "opencode-go/glm-5.3",
+      "model_label": "GLM 5.3",
+      "output_tokens": 24967,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7411670330319684,
+      "passed": 11,
+      "reasoning_effort": "high",
+      "release": "20260820.0.1",
+      "subscription_usage_reported_trials": 11,
+      "subscription_usage_usd": 1.45099116,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 4,
+      "unavailable_categories": {
+        "provider_unavailable": 4
+      }
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "writable_capacity_not_recovered": 1
+      },
+      "input_tokens": 897,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 139,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 71563,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": "high",
+      "release": "20260820.0.1",
+      "subscription_usage_reported_trials": 15,
+      "subscription_usage_usd": 0.52757228,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 496498,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 298,
+      "model": "opencode-go/kimi-k2.7-code",
+      "model_label": "Kimi K2.7 Code",
+      "output_tokens": 52865,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": "high",
+      "release": "20260820.0.1",
+      "subscription_usage_reported_trials": 15,
+      "subscription_usage_usd": 3.18344012,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 15,
+      "failed": 3,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1,
+        "host_reboot_failed": 1,
+        "new_receipts_not_writable": 1
+      },
+      "input_tokens": 487501,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 208,
+      "model": "opencode-go/minimax-m3",
+      "model_label": "MiniMax M3",
+      "output_tokens": 188892,
+      "pass_rate": 0.8,
+      "pass_rate_95_high": 0.9295245065301844,
+      "pass_rate_95_low": 0.5481455128483065,
+      "passed": 12,
+      "reasoning_effort": "high",
+      "release": "20260820.0.1",
+      "subscription_usage_reported_trials": 15,
+      "subscription_usage_usd": 1.6751276999999998,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 15,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 302704,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 178,
+      "model": "opencode-go/qwen3.8-max",
+      "model_label": "Qwen3.8 Max",
+      "output_tokens": 61055,
+      "pass_rate": 0.9333333333333333,
+      "pass_rate_95_high": 0.9881331045067315,
+      "pass_rate_95_low": 0.7018347012621998,
+      "passed": 14,
+      "reasoning_effort": "high",
+      "release": "20260820.0.1",
+      "subscription_usage_reported_trials": 15,
+      "subscription_usage_usd": 2.8013299999999997,
+      "tier": "unclassified",
+      "trials": 15,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 48,
+      "evaluated": 48,
+      "failed": 6,
+      "failure_categories": {
+        "backlog_not_recovered": 1,
+        "exports_still_timing_out": 1,
+        "historical_uploads_not_recovered": 2,
+        "resource_growth_unbounded": 1,
+        "writable_capacity_not_recovered": 1
+      },
+      "input_tokens": 1355680,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 169.5,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 168788,
+      "pass_rate": 0.875,
+      "pass_rate_95_high": 0.9414294856142802,
+      "pass_rate_95_low": 0.7529954171361317,
+      "passed": 42,
+      "reasoning_effort": "high",
+      "release": "20260821.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "full",
+      "trials": 48,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    }
+  ],
   "records": [
     {
       "cost_per_repair_usd": 0.005838324660000001,
@@ -15291,6 +17842,28 @@
       ],
       "role": "historical",
       "scenario_packs": [],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "version": 1
+        }
+      ],
       "tier": "unclassified",
       "title": "Seven models across five stateful incidents",
       "totals": {
@@ -15333,6 +17906,28 @@
       ],
       "role": "historical",
       "scenario_packs": [],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "version": 1
+        }
+      ],
       "tier": "unclassified",
       "title": "Eight models across five stateful incidents",
       "totals": {
@@ -15375,6 +17970,28 @@
       ],
       "role": "historical",
       "scenario_packs": [],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "version": 1
+        }
+      ],
       "tier": "unclassified",
       "title": "DeepSeek on the declarative host suite",
       "totals": {
@@ -15415,6 +18032,28 @@
       ],
       "role": "historical",
       "scenario_packs": [],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "version": 1
+        }
+      ],
       "tier": "unclassified",
       "title": "Four models on the declarative host suite",
       "totals": {
@@ -15460,6 +18099,48 @@
         {
           "id": "ducks/replaybook-host-scenarios",
           "version": "20260809.0.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
         }
       ],
       "tier": "unclassified",
@@ -15508,6 +18189,48 @@
           "version": "20260809.0.1"
         }
       ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        }
+      ],
       "tier": "unclassified",
       "title": "Six agent configurations with execution recording",
       "totals": {
@@ -15552,6 +18275,48 @@
         {
           "id": "ducks/replaybook-host-scenarios",
           "version": "20260809.0.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-host-scenarios",
+            "version": "20260809.0.1"
+          },
+          "version": 1
         }
       ],
       "tier": "unclassified",
@@ -15607,6 +18372,16 @@
           "version": "20260810.4.0"
         }
       ],
+      "scenarios": [
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260810.4.0"
+          },
+          "version": 1
+        }
+      ],
       "tier": "unclassified",
       "title": "Durable upload recovery on an isolated host",
       "totals": {
@@ -15659,6 +18434,96 @@
         {
           "id": "ducks/replaybook-infra",
           "version": "20260811.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "018-node-event-loop-blocking",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "020-python-gunicorn-saturation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "022-discourse-multisite-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260811.0.0"
+          },
+          "version": 1
         }
       ],
       "tier": "full",
@@ -15722,6 +18587,16 @@
           "version": "20260814.0.0"
         }
       ],
+      "scenarios": [
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        }
+      ],
       "tier": "unclassified",
       "title": "Four agents repair an interrupted Discourse deployment",
       "totals": {
@@ -15774,6 +18649,112 @@
         {
           "id": "ducks/replaybook-infra",
           "version": "20260814.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "018-node-event-loop-blocking",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "020-python-gunicorn-saturation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "022-discourse-multisite-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260814.0.0"
+          },
+          "version": 1
         }
       ],
       "tier": "unclassified",
@@ -15832,6 +18813,16 @@
           "version": "20260815.0.0"
         }
       ],
+      "scenarios": [
+        {
+          "id": "025-discourse-bootstrap",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260815.0.0"
+          },
+          "version": 1
+        }
+      ],
       "tier": "frontier",
       "title": "Five agents deploy real Discourse",
       "totals": {
@@ -15882,6 +18873,16 @@
         {
           "id": "ducks/replaybook-infra",
           "version": "20260816.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "026-discourse-plugin-boot-loop",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260816.0.0"
+          },
+          "version": 1
         }
       ],
       "tier": "unclassified",
@@ -15939,6 +18940,16 @@
           "version": "20260817.0.0"
         }
       ],
+      "scenarios": [
+        {
+          "id": "027-partial-service-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.0.0"
+          },
+          "version": 1
+        }
+      ],
       "tier": "unclassified",
       "title": "Five agents complete a partial service rollout",
       "totals": {
@@ -15989,6 +19000,16 @@
         {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
         }
       ],
       "tier": "unclassified",
@@ -16043,6 +19064,112 @@
         {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "018-node-event-loop-blocking",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "020-python-gunicorn-saturation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "022-discourse-multisite-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
         }
       ],
       "tier": "unclassified",
@@ -16103,6 +19230,136 @@
           "version": "20260817.1.0"
         }
       ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "018-node-event-loop-blocking",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "020-python-gunicorn-saturation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "022-discourse-multisite-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "026-discourse-plugin-boot-loop",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "027-partial-service-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        }
+      ],
       "tier": "full",
       "title": "GLM 5.3 across the full infrastructure suite",
       "totals": {
@@ -16155,6 +19412,136 @@
         {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "018-node-event-loop-blocking",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "020-python-gunicorn-saturation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "022-discourse-multisite-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "026-discourse-plugin-boot-loop",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "027-partial-service-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
         }
       ],
       "tier": "full",
@@ -16221,6 +19608,32 @@
           "version": "20260817.1.0"
         }
       ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        }
+      ],
       "tier": "unclassified",
       "title": "OpenCode Go infrastructure smoke cohort",
       "totals": {
@@ -16274,6 +19687,48 @@
         {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
         }
       ],
       "tier": "unclassified",
@@ -16335,6 +19790,136 @@
         {
           "id": "ducks/replaybook-infra",
           "version": "20260817.1.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "014-missing-rails-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "018-node-event-loop-blocking",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "020-python-gunicorn-saturation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "022-discourse-multisite-migration",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "026-discourse-plugin-boot-loop",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "027-partial-service-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
         }
       ],
       "tier": "full",

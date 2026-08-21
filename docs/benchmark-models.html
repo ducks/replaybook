@@ -24,6 +24,7 @@
       <a href="benchmarks.html">Current</a>
       <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
+      <a href="benchmark-compare.html">Compare</a>
       <a href="benchmark-explorer.html">Explore</a>
       <a href="benchmark-history.html">History</a>
       <a href="benchmark-methodology.html">Methodology</a>
@@ -58,6 +59,12 @@
     const query = new URLSearchParams({model: lane.model});
     if (lane.reasoning_effort) query.set("reasoning", lane.reasoning_effort);
     return `benchmark-model.html?${query}`;
+  }
+
+  function compareUrl(cell) {
+    const query = new URLSearchParams();
+    query.append("lane", `${cell.release}|||${cell.model}|||${cell.reasoning_effort || ""}`);
+    return `benchmark-compare.html?${query}`;
   }
 
   function money(value, incomplete) {
@@ -95,7 +102,12 @@
       open.className = "model-card-link";
       open.href = profileUrl(lane);
       open.textContent = "View evidence →";
-      card.append(title, identity, stats, open);
+      const compare = document.createElement("a");
+      compare.className = "model-card-link";
+      const newest = [...cells].sort((a, b) => b.release.localeCompare(a.release))[0];
+      compare.href = newest ? compareUrl(newest) : "benchmark-compare.html";
+      compare.textContent = "Compare latest cohort →";
+      card.append(title, identity, stats, open, compare);
       grid.append(card);
     });
   }

@@ -629,6 +629,7 @@ class PublisherTests(unittest.TestCase):
             build_outputs(root, check=True)
             current = (root / "docs/benchmarks.html").read_text()
             coverage = (root / "docs/benchmark-coverage.html").read_text()
+            compare = (root / "docs/benchmark-compare.html").read_text()
             explorer = (root / "docs/benchmark-explorer.html").read_text()
             model_page = (root / "docs/benchmark-model.html").read_text()
             models_page = (root / "docs/benchmark-models.html").read_text()
@@ -643,6 +644,7 @@ class PublisherTests(unittest.TestCase):
             self.assertIn("scenario pack revisions", current)
             self.assertIn("Run notes", current)
             self.assertIn("infrastructure interruption", current)
+            self.assertIn("Compare this cohort", current)
             self.assertNotIn("\n+  --scenario", current)
             self.assertIn("Benchmark explorer", explorer)
             self.assertIn("cost / repair", explorer)
@@ -652,12 +654,18 @@ class PublisherTests(unittest.TestCase):
             self.assertIn("coverage-cells", coverage)
             self.assertIn("benchmark-coverage.json", coverage)
             self.assertNotIn("\0", coverage)
+            self.assertIn("Compare benchmark lanes", compare)
+            self.assertIn("compatibility-status", compare)
+            self.assertIn("Scenario head-to-head", compare)
+            self.assertIn("benchmark-catalog.json", compare)
             self.assertIn("Model evidence", models_page)
             self.assertIn("not one pooled leaderboard", models_page)
             self.assertIn("model-grid", models_page)
+            self.assertIn("Compare latest cohort", models_page)
             self.assertIn("Scenario evidence", model_page)
             self.assertIn("profile-results", model_page)
             self.assertIn("benchmark-coverage.json", model_page)
+            self.assertIn("profile-compare", model_page)
             self.assertEqual(catalog["current_version"], "20260809.0.0")
             self.assertEqual(
                 catalog["coverage_fleet"],
@@ -665,6 +673,13 @@ class PublisherTests(unittest.TestCase):
             )
             self.assertEqual(len(catalog["records"]), 1)
             self.assertEqual(catalog["records"][0]["model"], "model/a")
+            self.assertEqual(len(catalog["lanes"]), 1)
+            self.assertEqual(catalog["lanes"][0]["model"], "model/a")
+            self.assertEqual(catalog["lanes"][0]["passed"], 1)
+            self.assertEqual(
+                catalog["releases"][0]["scenarios"][0]["id"], "001-nginx"
+            )
+            self.assertEqual(catalog["releases"][0]["scenarios"][0]["version"], 1)
             self.assertAlmostEqual(
                 catalog["records"][0]["cost_per_repair_usd"], 0.01
             )
