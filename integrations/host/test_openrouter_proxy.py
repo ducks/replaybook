@@ -17,6 +17,7 @@ SCRIPT = Path(__file__).with_name("openrouter_proxy.py")
 
 class UpstreamHandler(http.server.BaseHTTPRequestHandler):
     authorization = ""
+    api_key = ""
     request_path = ""
 
     def log_message(self, format: str, *args: object) -> None:
@@ -24,6 +25,7 @@ class UpstreamHandler(http.server.BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         type(self).authorization = self.headers.get("Authorization", "")
+        type(self).api_key = self.headers.get("X-Api-Key", "")
         type(self).request_path = self.path
         length = int(self.headers.get("content-length", "0"))
         self.rfile.read(length)
@@ -43,7 +45,10 @@ class ProxyTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             ready = Path(temporary) / "ready"
             environment = dict(os.environ)
-            environment["OPENROUTER_API_KEY"] = "host-secret"
+            environment["REPLAYBOOK_OPENAI_API_KEY"] = "host-secret"
+            environment["REPLAYBOOK_OPENAI_UPSTREAM"] = (
+                f"http://127.0.0.1:{upstream.server_address[1]}/zen/go"
+            )
             process = subprocess.Popen(
                 [
                     "python",
@@ -52,8 +57,6 @@ class ProxyTests(unittest.TestCase):
                     "0",
                     "--ready-file",
                     str(ready),
-                    "--upstream",
-                    f"http://127.0.0.1:{upstream.server_address[1]}",
                 ],
                 env=environment,
                 stdout=subprocess.PIPE,
@@ -68,15 +71,16 @@ class ProxyTests(unittest.TestCase):
                     time.sleep(0.02)
                 port = int(ready.read_text())
                 request = urllib.request.Request(
-                    f"http://127.0.0.1:{port}/api/v1/chat/completions",
+                    f"http://127.0.0.1:{port}/v1/chat/completions",
                     data=json.dumps({"model": "test"}).encode(),
                     headers={"Authorization": "Bearer vm-placeholder"},
                 )
                 with urllib.request.urlopen(request) as response:
                     self.assertEqual(json.load(response), {"ok": True})
                 self.assertEqual(UpstreamHandler.authorization, "Bearer host-secret")
+                self.assertEqual(UpstreamHandler.api_key, "host-secret")
                 self.assertEqual(
-                    UpstreamHandler.request_path, "/api/v1/chat/completions"
+                    UpstreamHandler.request_path, "/zen/go/v1/chat/completions"
                 )
             finally:
                 process.terminate()

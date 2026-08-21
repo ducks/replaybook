@@ -144,13 +144,16 @@ filesystem. The controller remains outside the incident host and verifies the
 HTTP endpoint after the repair, after restarting both services, and after
 rebooting the entire VM. The VM itself is the disposable security boundary.
 
-The bundled Claux adapter does not receive the real OpenRouter credential.
-Replaybook keeps that key in a host-side forwarding proxy and exposes only a
+The bundled Claux adapter does not receive the real provider credential.
+Replaybook keeps the key in a host-side forwarding proxy and exposes only a
 localhost endpoint plus a non-secret placeholder token inside the VM. The
 proxy replaces the placeholder authorization header before forwarding each
-request. This prevents an agent running as root from recovering the credential
-from files, child-process environments, or `/proc`. Raw provider credentials
-never enter retained execution snapshots or transcripts.
+request. OpenRouter remains the default, while
+`REPLAYBOOK_OPENAI_UPSTREAM` and `REPLAYBOOK_OPENAI_PROXY_PATH` select another
+OpenAI-compatible endpoint. This prevents an agent running as root from
+recovering the credential from files, child-process environments, or `/proc`.
+Raw provider credentials never enter retained execution snapshots or
+transcripts.
 
 ## Reference smoke test
 
@@ -184,6 +187,38 @@ With `OPENROUTER_API_KEY` set:
 integrations/host/run-host-native.sh \
   --scenario 013-sidekiq-wrong-redis \
   --model deepseek/deepseek-v4-flash
+```
+
+For another OpenAI-compatible provider, set the generic credential, upstream,
+and guest-visible API path. For example, an endpoint rooted at
+`https://provider.example/agent/v1` uses:
+
+```sh
+REPLAYBOOK_OPENAI_API_KEY="$PROVIDER_API_KEY" \
+REPLAYBOOK_OPENAI_UPSTREAM="https://provider.example/agent" \
+REPLAYBOOK_OPENAI_PROXY_PATH="/v1" \
+integrations/host/run-host-native.sh \
+  --scenario 013-sidekiq-wrong-redis \
+  --model provider-model-id
+```
+
+Gateways that expose different wire protocols per model can declare those
+routes as a JSON object. Unlisted models continue to use Chat Completions; the
+other supported values are `responses` and `anthropic`. This keeps endpoint
+routing in benchmark configuration rather than model-specific engine code:
+
+```sh
+REPLAYBOOK_CLAUX_PROVIDER_ROUTES='{
+  "gpt-5.6-luna": "responses",
+  "minimax-m3": "anthropic",
+  "qwen3.8-max": "anthropic"
+}' \
+REPLAYBOOK_OPENAI_API_KEY="$PROVIDER_API_KEY" \
+REPLAYBOOK_OPENAI_UPSTREAM="https://provider.example/agent" \
+REPLAYBOOK_OPENAI_PROXY_PATH="/v1" \
+integrations/host/run-host-native.sh \
+  --scenario 013-sidekiq-wrong-redis \
+  --model gpt-5.6-luna
 ```
 
 Use `--ssh-port` and `--http-port` when running workers concurrently. Set

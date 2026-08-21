@@ -57,10 +57,10 @@ if grep -q 'ADD COLUMN IF NOT EXISTS' \
   exit 1
 fi
 grep -q 'scenario_version: $scenario_version' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION=22' "$script_dir/run-host-native.sh"
+grep -q 'HOST_HARNESS_VERSION=23' "$script_dir/run-host-native.sh"
 grep -q 'export TMPDIR="${WORK_DIR}/tmp"' "$script_dir/run-host-native.sh"
 grep -q 'USE_TMPDIR=1' "$script_dir/run-host-native.sh"
-grep -q 'HOST_HARNESS_VERSION = 22' "$script_dir/run_host_matrix.py"
+grep -q 'HOST_HARNESS_VERSION = 23' "$script_dir/run_host_matrix.py"
 grep -q 'virtualisation.useNixStoreImage = true' "$script_dir/isolated-vm.nix"
 grep -q 'virtualisation.mountHostNixStore = false' "$script_dir/isolated-vm.nix"
 grep -q 'incident VM unexpectedly exposes the host Nix store' "$script_dir/run-host-native.sh"
@@ -114,8 +114,10 @@ grep -q 'credential tunnel disconnected; retrying' "$script_dir/run-host-native.
 grep -q 'ServerAliveInterval=2' "$script_dir/run-host-native.sh"
 grep -q 'rm -f -- "$runtime_env"' "$script_dir/run-agent-adapter.sh"
 grep -q 'OPENROUTER_API_KEY=replaybook-proxy' "$script_dir/run-host-native.sh"
-grep -q 'REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091/api/v1' \
+grep -Fq 'REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091${OPENAI_PROXY_PATH}' \
   "$script_dir/run-host-native.sh"
+grep -q 'REPLAYBOOK_CLAUX_PROVIDER_ROUTES' "$script_dir/run-host-native.sh"
+grep -q 'chat_completions.*responses.*anthropic' "$script_dir/run-claux.sh"
 if grep -q "printf .*OPENROUTER_API_KEY.*\$OPENROUTER_API_KEY" \
   "$script_dir/run-host-native.sh"; then
   echo "host-native runner writes the real OpenRouter key into the VM" >&2
@@ -595,4 +597,70 @@ EOF
   jq -e '.harness == "custom-agent" and .model == "vendor/model"' \
     "$eval_root/results/agent.json" >/dev/null
   jq -e '.events == []' "$eval_root/results/transcript.json" >/dev/null
+)
+
+# Claux provider routing is declarative per model and defaults to Chat
+# Completions when a model is absent from the route map.
+(
+  smoke_root="$(mktemp -d)"
+  trap 'rm -rf -- "$smoke_root"' EXIT
+  eval_root="$smoke_root/eval"
+  home="$smoke_root/home"
+  mkdir -p "$eval_root/results" "$home"
+  printf '%s\n' 'repair it' >"$eval_root/instruction.md"
+  cat >"$eval_root/fake-claux" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+config="$HOME/.config/claux/config.toml"
+if [[ "${1:-}" == "config" ]]; then
+  mkdir -p "$(dirname "$config")"
+  cat >"$config" <<'TOML'
+default_profile = "test"
+native_tool_filesystem_policy = "workspace_only"
+bash_filesystem_policy = "auto"
+
+[providers.openrouter]
+type = "openai"
+base_url = "https://openrouter.ai/api/v1"
+protocol = "chat_completions"
+
+[model_profiles.test]
+provider = "openrouter"
+model = "test"
+TOML
+  exit 0
+fi
+case "$EXPECTED_ROUTE" in
+  chat_completions) grep -qx 'protocol = "chat_completions"' "$config" ;;
+  responses) grep -qx 'protocol = "responses"' "$config" ;;
+  anthropic) grep -qx 'type = "anthropic"' "$config" ;;
+esac
+transcript=""
+while (( $# > 0 )); do
+  case "$1" in
+    --transcript) transcript="$2"; shift 2 ;;
+    *) shift ;;
+  esac
+done
+printf '%s\n' '{"schema_version":2,"model":"test","usage":null,"outcome":{"status":"completed"},"timing":{"total_duration_ms":1,"model_rounds":[]},"tool_trace":[]}' >"$transcript"
+printf '%s\n' '{"schema_version":1,"model":"test","result":"ok","usage":null,"outcome":{"status":"completed"}}'
+EOF
+  chmod 0755 "$eval_root/fake-claux"
+
+  routes='{"luna":"responses","qwen":"anthropic"}'
+  for specification in \
+    'default chat_completions' \
+    'luna responses' \
+    'qwen anthropic'; do
+    read -r model route <<<"$specification"
+    rm -rf -- "$home/.config"
+    HOME="$home" \
+      EXPECTED_ROUTE="$route" \
+      REPLAYBOOK_EVAL_ROOT="$eval_root" \
+      REPLAYBOOK_AGENT_PAYLOAD="$eval_root/fake-claux" \
+      REPLAYBOOK_MODEL="$model" \
+      REPLAYBOOK_CLAUX_PROVIDER_ROUTES="$routes" \
+      REPLAYBOOK_OPENAI_BASE_URL="http://127.0.0.1:19091/v1" \
+      bash "$script_dir/run-claux.sh" >/dev/null
+  done
 )
