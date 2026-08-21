@@ -630,6 +630,11 @@ def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
     durations = [run["agent_duration_seconds"] for run in evaluated]
     usages = [run["usage"] for run in runs if isinstance(run.get("usage"), dict)]
     cost_usages = [usage for usage in usages if usage.get("cost_usd") is not None]
+    subscription_usages = [
+        usage
+        for usage in usages
+        if usage.get("subscription_usage_usd") is not None
+    ]
     failure_categories = Counter(
         run["failure_category"]
         for run in evaluated
@@ -660,6 +665,11 @@ def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         "median_duration_seconds": statistics.median(durations) if durations else None,
         "known_cost_usd": sum(float(usage["cost_usd"]) for usage in cost_usages),
         "cost_reported_trials": len(cost_usages),
+        "subscription_usage_usd": sum(
+            float(usage["subscription_usage_usd"])
+            for usage in subscription_usages
+        ),
+        "subscription_usage_reported_trials": len(subscription_usages),
         "input_tokens": sum(int(usage.get("input_tokens", 0)) for usage in usages),
         "output_tokens": sum(int(usage.get("output_tokens", 0)) for usage in usages),
         "cache_read_tokens": sum(
@@ -1122,6 +1132,13 @@ def html_page(
         {(run["scenario"], run["scenario_version"]) for run in release["runs"]}
     )
     cost_incomplete = totals["cost_reported_trials"] < totals["trials"]
+    subscription_usage_metric = ""
+    if totals.get("subscription_usage_reported_trials", 0):
+        subscription_usage_metric = (
+            '<div class="metric"><span class="metric-value">'
+            f'{money(totals["subscription_usage_usd"])}</span>'
+            '<span class="metric-label">provider usage value</span></div>'
+        )
     rows = model_rows(release)
     model_cells = []
     for row in rows:
@@ -1333,6 +1350,7 @@ def html_page(
       <div class="metric"><span class="metric-value">{totals['passed']}/{totals['evaluated']}</span><span class="metric-label">durable repairs</span></div>
       <div class="metric"><span class="metric-value">{format_duration(totals['median_duration_seconds'])}</span><span class="metric-label">overall median</span></div>
       <div class="metric"><span class="metric-value">{reported_money(totals['known_cost_usd'], totals['cost_reported_trials'], totals['trials'])}</span><span class="metric-label">known total cost</span></div>
+      {subscription_usage_metric}
     </div>
 
     <div class="callout benchmark-status verified-status">
@@ -1402,6 +1420,14 @@ def markdown_section(release: dict[str, Any]) -> str:
             f"`{pack['id']}@{pack['version']}`" for pack in scenario_packs
         )
         lines[8:8] = [f"Scenario packs: {pack_names}", ""]
+    if totals.get("subscription_usage_reported_trials", 0):
+        lines[8:8] = [
+            "Provider-reported subscription usage value: "
+            f"**{money(totals['subscription_usage_usd'])}** across "
+            f"{totals['subscription_usage_reported_trials']} trials. This is a "
+            "catalog-priced usage estimate, not metered spend.",
+            "",
+        ]
     for row in rows:
         row_incomplete = row["cost_reported_trials"] < row["trials"]
         repair_cost = cost_per_repair(row)
@@ -1627,6 +1653,12 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                     "output_tokens": aggregate["output_tokens"],
                     "known_cost_usd": aggregate["known_cost_usd"],
                     "cost_reported_trials": aggregate["cost_reported_trials"],
+                    "subscription_usage_usd": aggregate.get(
+                        "subscription_usage_usd", 0
+                    ),
+                    "subscription_usage_reported_trials": aggregate.get(
+                        "subscription_usage_reported_trials", 0
+                    ),
                     "cost_per_repair_usd": cost_per_repair(aggregate),
                     "failure_categories": aggregate["failure_categories"],
                     "unavailable_categories": aggregate.get(

@@ -198,15 +198,23 @@ class PublisherTests(unittest.TestCase):
             root = Path(directory)
             value = summary("subscription/model")
             value["runs"][0]["usage"]["cost_usd"] = None
+            value["runs"][0]["usage"]["subscription_usage_usd"] = 0.25
             path = self.write_summary(root, "matrix", value)
             release = create_release("20260820.0.0", [path], {})
 
         self.assertEqual(release["totals"]["usage_reported_trials"], 1)
         self.assertEqual(release["totals"]["cost_reported_trials"], 0)
         self.assertEqual(release["totals"]["known_cost_usd"], 0)
+        self.assertEqual(release["totals"]["subscription_usage_usd"], 0.25)
+        self.assertEqual(
+            release["totals"]["subscription_usage_reported_trials"], 1
+        )
         self.assertEqual(release["totals"]["input_tokens"], 100)
         self.assertIsNone(cost_per_repair(release["totals"]))
-        self.assertNotIn("$0.0000+", html_page(release))
+        page = html_page(release)
+        self.assertNotIn("$0.0000+", page)
+        self.assertIn("$0.2500", page)
+        self.assertIn("provider usage value", page)
 
     def test_propagates_tier_into_release_and_catalog(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

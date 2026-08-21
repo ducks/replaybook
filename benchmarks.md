@@ -16,6 +16,8 @@ Six models ran three attempts across five externally verified infrastructure inc
 Benchmark release: `20260820.0.1`
 Benchmark tier: `unclassified`
 
+Provider-reported subscription usage value: **$9.8218** across 86 trials. This is a catalog-priced usage estimate, not metered spend.
+
 Scenario packs: `ducks/replaybook-infra@20260817.1.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
@@ -81,7 +83,7 @@ The cohort demonstrates why Replaybook publishes model, harness, provider, scena
 - All trials used Replaybook commit ae7b4f1, host harness v22, OpenCode 1.18.18, high reasoning, a 900-second deadline, and scenarios 013, 017, 019, 021, and 028 from ducks/replaybook-infra 20260817.1.0.
 - DeepSeek completed all 15 repairs. Luna, Kimi, and Qwen completed 14 of 15; MiniMax completed 12 of 15.
 - GLM completed all 11 trials that reached evaluation, while four additional requests failed before inference because the OpenCode Go catalog reported that GLM 5.3 was unavailable. Those trials remain provider failures rather than model repair failures.
-- OpenCode Go reported subscription usage rather than metered API cost, so public cost remains unavailable rather than zero. Provider token fields are preserved as reported but should not be compared directly with Claux cohorts; Luna's input accounting in particular is not comparable.
+- OpenCode reported $9.8218 in catalog-priced subscription usage across 86 evaluated trials. OpenCode calculates this value from token usage and catalog model rates; it is not the metered amount billed to the $5 subscription, so actual API cost remains unavailable rather than zero. Provider token fields are preserved as reported but should not be compared directly with Claux cohorts; Luna's input accounting in particular is not comparable.
 
 <!-- replaybook:current-benchmark:end -->
 
