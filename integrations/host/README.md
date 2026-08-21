@@ -668,7 +668,10 @@ Evaluation failures are valid matrix results. Authentication failures and
 provider or harness errors that occur before meaningful inference are recorded
 as unavailable attempts and excluded from pass-rate denominators. Once an
 agent has completed a model round or invoked a tool, later provider
-interruptions and runtime errors are evaluated failures. Provider-side content
+interruptions and runtime errors are evaluated failures. Premature SSE endings
+before an Anthropic `message_stop`, an OpenAI finish reason, or a complete SSE
+frame are classified as provider interruptions rather than agent runtime
+errors. Provider-side content
 policy rejections and malformed protocol responses, including corrupted
 reasoning signatures, retain distinct `provider_policy_rejection` and
 `provider_protocol_error` categories instead of being collapsed into
