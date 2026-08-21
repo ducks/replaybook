@@ -119,6 +119,40 @@ class BenchmarkManifestTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "remove --attempts"):
                 apply_benchmark_manifest(args)
 
+    def test_benchmark_allows_declared_scenario_subset(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = write_benchmark(Path(temporary))
+            args = parse_args(
+                [
+                    "--benchmark",
+                    str(path),
+                    "--scenario",
+                    "database-incident",
+                    "--models",
+                    "test/model",
+                ]
+            )
+            apply_benchmark_manifest(args)
+
+        self.assertEqual(args.scenarios, ["database-incident"])
+        self.assertEqual(args.attempts, 3)
+
+    def test_benchmark_rejects_undeclared_scenario_subset(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = write_benchmark(Path(temporary))
+            args = parse_args(
+                [
+                    "--benchmark",
+                    str(path),
+                    "--scenario",
+                    "not-in-benchmark",
+                    "--models",
+                    "test/model",
+                ]
+            )
+            with self.assertRaisesRegex(ValueError, "not declared"):
+                apply_benchmark_manifest(args)
+
     def test_check_validates_without_model_credentials_or_vms(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             path = write_benchmark(Path(temporary))
