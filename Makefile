@@ -103,6 +103,7 @@ host-check:
 	@python -m unittest integrations.host.test_publish_benchmarks
 	@python -m unittest integrations.host.test_benchmark_submission
 	@python -m unittest integrations.host.test_result_catalog
+	@python -m unittest integrations.host.test_report_failures
 	@python integrations/host/publish_benchmarks.py check
 
 skills-check:
