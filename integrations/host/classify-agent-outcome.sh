@@ -33,7 +33,7 @@ elif [[ "$message" =~ 401|authentication[[:space:]_-]*failed|unauthorized|invali
   printf '%s\t%s\n' unavailable authentication_failed
 elif [[ "$message" =~ output[[:space:]_-]*token[[:space:]_-]*limit|maximum[[:space:]_-]*output[[:space:]_-]*tokens ]]; then
   printf '%s\t%s\n' evaluated agent_output_limit
-elif [[ "$message" =~ 429|too[[:space:]]+many[[:space:]]+requests|provider[[:space:]]+returned[[:space:]]+error|provider[[:space:]]+unavailable|service[[:space:]]+unavailable|endpoint[[:space:]]+is[[:space:]]+unavailable|provider_model_not_found|model[[:space:]_-]*not[[:space:]_-]*found|bad[[:space:]]+gateway|upstream[[:space:]]+request[[:space:]]+failed ]]; then
+elif [[ "$message" =~ 429|too[[:space:]]+many[[:space:]]+requests|provider[[:space:]]+returned[[:space:]]+error|provider[[:space:]]+unavailable|service[[:space:]]+unavailable|endpoint[[:space:]]+is[[:space:]]+unavailable|provider_model_not_found|model[[:space:]_-]*not[[:space:]_-]*found|bad[[:space:]]+gateway|upstream[[:space:]]+request[[:space:]]+failed|stream[[:space:]]+ended[[:space:]]+before[[:space:]]+(message_stop|a[[:space:]]+finish[[:space:]]+reason)|stream[[:space:]]+ended[[:space:]]+in[[:space:]]+the[[:space:]]+middle[[:space:]]+of[[:space:]]+an[[:space:]]+sse[[:space:]]+frame ]]; then
   if [[ "$made_progress" == true ]]; then
     printf '%s\t%s\n' evaluated provider_interrupted
   else

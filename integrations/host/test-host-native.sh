@@ -179,6 +179,10 @@ printf '%s\n' '{"outcome":{"status":"error","message":"Service Unavailable"},"re
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tprovider_interrupted' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"Endpoint is unavailable."}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_unavailable' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"API error: SSE stream error: stream ended before message_stop"},"recording":{"model_rounds":[{"status":"completed"}],"tools":[{"name":"Bash"}]}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tprovider_interrupted' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"API error: SSE stream error: stream ended before a finish reason or [DONE] marker"}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_unavailable' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"authentication failed: invalid API key"}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tauthentication_failed' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (400 Bad Request) [content_policy_violation]: PROHIBITED_CONTENT"}}' >"$agent_error"
