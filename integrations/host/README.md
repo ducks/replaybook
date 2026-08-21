@@ -202,6 +202,25 @@ integrations/host/run-host-native.sh \
   --model provider-model-id
 ```
 
+Gateways that expose different wire protocols per model can declare those
+routes as a JSON object. Unlisted models continue to use Chat Completions; the
+other supported values are `responses` and `anthropic`. This keeps endpoint
+routing in benchmark configuration rather than model-specific engine code:
+
+```sh
+REPLAYBOOK_CLAUX_PROVIDER_ROUTES='{
+  "gpt-5.6-luna": "responses",
+  "minimax-m3": "anthropic",
+  "qwen3.8-max": "anthropic"
+}' \
+REPLAYBOOK_OPENAI_API_KEY="$PROVIDER_API_KEY" \
+REPLAYBOOK_OPENAI_UPSTREAM="https://provider.example/agent" \
+REPLAYBOOK_OPENAI_PROXY_PATH="/v1" \
+integrations/host/run-host-native.sh \
+  --scenario 013-sidekiq-wrong-redis \
+  --model gpt-5.6-luna
+```
+
 Use `--ssh-port` and `--http-port` when running workers concurrently. Set
 `REPLAYBOOK_HOST_CLAUX_BINARY` to bake a local binary into the guest instead of
 using the cached default release. Replaybook downloads each pinned Claux release

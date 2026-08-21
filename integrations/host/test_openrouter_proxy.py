@@ -17,6 +17,7 @@ SCRIPT = Path(__file__).with_name("openrouter_proxy.py")
 
 class UpstreamHandler(http.server.BaseHTTPRequestHandler):
     authorization = ""
+    api_key = ""
     request_path = ""
 
     def log_message(self, format: str, *args: object) -> None:
@@ -24,6 +25,7 @@ class UpstreamHandler(http.server.BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         type(self).authorization = self.headers.get("Authorization", "")
+        type(self).api_key = self.headers.get("X-Api-Key", "")
         type(self).request_path = self.path
         length = int(self.headers.get("content-length", "0"))
         self.rfile.read(length)
@@ -76,6 +78,7 @@ class ProxyTests(unittest.TestCase):
                 with urllib.request.urlopen(request) as response:
                     self.assertEqual(json.load(response), {"ok": True})
                 self.assertEqual(UpstreamHandler.authorization, "Bearer host-secret")
+                self.assertEqual(UpstreamHandler.api_key, "host-secret")
                 self.assertEqual(
                     UpstreamHandler.request_path, "/zen/go/v1/chat/completions"
                 )

@@ -11,6 +11,21 @@ transcript="${REPLAYBOOK_TRANSCRIPT_FILE:-$eval_root/results/transcript.json}"
 native_output="${output}.native"
 reasoning_effort="${REPLAYBOOK_REASONING_EFFORT:-}"
 base_url="${REPLAYBOOK_OPENAI_BASE_URL:-}"
+provider_routes="${REPLAYBOOK_CLAUX_PROVIDER_ROUTES:-}"
+if [[ -z "$provider_routes" ]]; then
+  provider_routes='{}'
+fi
+
+route="$(
+  printf '%s' "$provider_routes" | jq -er --arg model "$model" '
+    (.[$model] // "chat_completions") as $route
+    | select($route == "chat_completions" or $route == "responses" or $route == "anthropic")
+    | $route
+  '
+)" || {
+  echo "REPLAYBOOK_CLAUX_PROVIDER_ROUTES must be a JSON object whose values are chat_completions, responses, or anthropic" >&2
+  exit 2
+}
 
 "$claux" config init --provider openrouter --model "$model" >/dev/null
 config="$HOME/.config/claux/config.toml"
@@ -18,6 +33,17 @@ if [[ -n "$base_url" ]]; then
   sed -i "s#^base_url = .*#base_url = \"${base_url}\"#" "$config"
   grep -qx "base_url = \"${base_url}\"" "$config"
 fi
+case "$route" in
+  chat_completions)
+    sed -i 's/^protocol = .*/protocol = "chat_completions"/' "$config"
+    ;;
+  responses)
+    sed -i 's/^protocol = .*/protocol = "responses"/' "$config"
+    ;;
+  anthropic)
+    sed -i 's/^type = "openai"/type = "anthropic"/' "$config"
+    ;;
+esac
 if [[ -n "$reasoning_effort" ]]; then
   profile="$(sed -n 's/^default_profile = "\([^"]*\)"/\1/p' "$config")"
   [[ -n "$profile" ]] || {

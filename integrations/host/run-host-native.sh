@@ -806,6 +806,10 @@ else
         'export OPENROUTER_API_KEY=replaybook-proxy' \
         "export REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091${OPENAI_PROXY_PATH}" \
         >"$AGENT_ENV_FILE"
+      if [[ -n "${REPLAYBOOK_CLAUX_PROVIDER_ROUTES:-}" ]]; then
+        printf 'export REPLAYBOOK_CLAUX_PROVIDER_ROUTES=%q\n' \
+          "$REPLAYBOOK_CLAUX_PROVIDER_ROUTES" >>"$AGENT_ENV_FILE"
+      fi
       chmod 0600 "$AGENT_ENV_FILE"
     fi
   fi

@@ -53,9 +53,14 @@ class ProxyHandler(BaseHTTPRequestHandler):
             name: value
             for name, value in self.headers.items()
             if name.lower() not in HOP_BY_HOP_HEADERS
-            and name.lower() != "authorization"
+            and name.lower() not in {"authorization", "x-api-key"}
         }
         headers["Authorization"] = f"Bearer {server.api_key}"
+        # OpenAI-compatible gateways conventionally use Bearer auth, while
+        # Anthropic-compatible Messages endpoints conventionally use
+        # x-api-key. Supplying the host credential in both forms lets one
+        # isolated proxy serve either protocol without exposing it to the VM.
+        headers["X-Api-Key"] = server.api_key
 
         upstream = server.upstream
         if upstream.scheme == "https":
