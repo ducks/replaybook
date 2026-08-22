@@ -44,6 +44,9 @@ macos-x86_64, and macos-arm64 are on the
 ## Getting started
 
 ```bash
+# verify Docker and the local scenario setup
+replaybook doctor
+
 # add the official scenario pack
 replaybook add ducks/replaybook-scenarios
 
@@ -53,6 +56,17 @@ replaybook list
 # run your first scenario
 replaybook run 001-nginx-502
 ```
+
+Before launching host-native agent benchmarks, check the full NixOS VM stack,
+capacity, SSH key, agent harnesses, provider configuration, and the exact port
+range required by the intended concurrency:
+
+```bash
+replaybook doctor --host --base-port 26000 --concurrency 2
+```
+
+Use `--json` to retain or share a machine-readable diagnostic report. The
+doctor never prints credential values and does not contact a model provider.
 
 Both `replaybook` and `replay` are installed - use whichever you prefer.
 

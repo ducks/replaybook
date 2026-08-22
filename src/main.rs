@@ -1,6 +1,7 @@
 mod author;
 mod backend;
 mod control;
+mod doctor;
 mod hosted;
 mod recorder;
 mod runner;
@@ -27,6 +28,24 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
+    /// Diagnose local Replaybook and optional host-benchmark prerequisites
+    Doctor {
+        /// Include the NixOS VM host benchmark stack
+        #[arg(long)]
+        host: bool,
+        /// First host port reserved by a matrix
+        #[arg(long, default_value_t = 26000, requires = "host")]
+        base_port: u16,
+        /// Concurrent VMs whose adjacent SSH/HTTP ports should be checked
+        #[arg(long, default_value_t = 2, requires = "host")]
+        concurrency: u16,
+        /// Emit a stable JSON diagnostic report
+        #[arg(long)]
+        json: bool,
+        /// Scenario pack to check instead of the installed default
+        #[arg(long)]
+        scenarios_dir: Option<PathBuf>,
+    },
     /// Create a runnable starter scenario in a pack directory
     New {
         /// Scenario ID (lowercase letters, digits, and hyphens)
@@ -328,6 +347,28 @@ async fn main() -> Result<()> {
     let cli = Cli::parse();
 
     match cli.command {
+        Commands::Doctor {
+            host,
+            base_port,
+            concurrency,
+            json,
+            scenarios_dir,
+        } => {
+            let report = doctor::inspect(&doctor::Config {
+                host,
+                base_port,
+                concurrency,
+                scenarios_dir: resolve_scenarios_dir(scenarios_dir),
+            });
+            if json {
+                println!("{}", serde_json::to_string_pretty(&report)?);
+            } else {
+                doctor::print_human(&report);
+            }
+            if !report.healthy() {
+                anyhow::bail!("Replaybook prerequisites are not ready");
+            }
+        }
         Commands::New { id, pack } => {
             let stdin = std::io::stdin();
             let mut input = stdin.lock();
@@ -604,6 +645,26 @@ mod tests {
             Cli::command().get_version(),
             Some(env!("CARGO_PKG_VERSION"))
         );
+    }
+
+    #[test]
+    fn doctor_defaults_to_core_checks() {
+        let cli = Cli::try_parse_from(["replaybook", "doctor"]).unwrap();
+        match cli.command {
+            Commands::Doctor {
+                host,
+                base_port,
+                concurrency,
+                json,
+                ..
+            } => {
+                assert!(!host);
+                assert_eq!(base_port, 26000);
+                assert_eq!(concurrency, 2);
+                assert!(!json);
+            }
+            _ => panic!("expected doctor"),
+        }
     }
 
     #[test]
