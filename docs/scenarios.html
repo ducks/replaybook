@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Scenarios &middot; replaybook</title>
-  <meta name="description" content="Docker training scenarios and host-native agent evaluation scenarios for Replaybook.">
+  <meta name="description" content="Replaybook's infrastructure benchmark scenarios, durable requirements, and latest published evidence.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,10 +20,15 @@
       </nav>
     </header>
 
-    <nav class="benchmark-tabs" aria-label="Scenario sections">
-      <a href="#docker">Docker packs</a>
-      <a href="#host-native">Host-native</a>
-      <a href="#build">Build your own</a>
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Current</a>
+      <a href="scenarios.html" class="active" aria-current="page">Scenarios</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-models.html">Models</a>
+      <a href="benchmark-compare.html">Compare</a>
+      <a href="benchmark-explorer.html">Explore</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
     <h1>Scenarios</h1>
@@ -31,6 +36,7 @@
       Replaybook has two scenario formats: playable Docker incidents and
       host-native NixOS evaluations with external durability verification.
     </p>
+    <p class="small muted"><a href="#host-native">Benchmark scenarios</a> &middot; <a href="#docker">Docker training packs</a> &middot; <a href="#build">Build your own</a></p>
 
     <h2 id="docker">Docker scenario packs</h2>
 
@@ -112,23 +118,32 @@
       <table>
         <thead><tr><th>ID</th><th>Version</th><th>Incident</th><th>Durable requirement</th></tr></thead>
         <tbody>
-          <tr><td><code>001-nginx-502-host</code></td><td>v1</td><td>Wrong Nginx upstream port</td><td>Repair the deployed proxy configuration</td></tr>
-          <tr><td><code>013-sidekiq-wrong-redis</code></td><td>v2</td><td>Web and Sidekiq use different Redis databases</td><td>Recover exact queued jobs and future work</td></tr>
-          <tr><td><code>014-missing-rails-migration</code></td><td>v2</td><td>Shipped migration was never applied</td><td>Record the migration and recover retries exactly once</td></tr>
-          <tr><td><code>015-sidekiq-poison-pill</code></td><td>v1</td><td>Poison payload blocks the only worker</td><td>Quarantine poison and preserve valid backlog</td></tr>
-          <tr><td><code>016-rails-pool-exhaustion</code></td><td>v1</td><td>ActiveRecord pool is smaller than Puma concurrency</td><td>Recover failed checkouts under concurrent load</td></tr>
-          <tr><td><code>017-partial-rails-rollout</code></td><td>v1</td><td>Rails instances run incompatible releases</td><td>Converge the fleet without losing accepted work</td></tr>
-          <tr><td><code>018-node-event-loop-blocking</code></td><td>v1</td><td>Synchronous work blocks the Node event loop</td><td>Restore responsive service under concurrent load</td></tr>
-          <tr><td><code>019-rust-fd-leak</code></td><td>v1</td><td>Rust service leaks file descriptors</td><td>Remove the leak and survive sustained requests</td></tr>
-          <tr><td><code>020-python-gunicorn-saturation</code></td><td>v1</td><td>Gunicorn workers saturate under slow requests</td><td>Recover capacity without dropping accepted work</td></tr>
-          <tr><td><code>021-discourse-shared-uploads</code></td><td>v1</td><td>Discourse web nodes disagree about upload storage</td><td>Recover accepted uploads across restart and reboot</td></tr>
-          <tr><td><code>022-discourse-multisite-migration</code></td><td>v1</td><td>One Discourse tenant missed a migration</td><td>Converge every tenant without damaging migrated state</td></tr>
-          <tr><td><code>023-auth-secret-rollout</code></td><td>v1</td><td>Instances use incompatible signing secrets</td><td>Restore sessions across the rolling deployment</td></tr>
-          <tr><td><code>024-discourse-interrupted-deploy</code></td><td>v1</td><td>Schema and web releases diverged during deployment</td><td>Converge the release and preserve queued work</td></tr>
-          <tr><td><code>025-discourse-bootstrap</code></td><td>v1</td><td>A fresh host needs a real Discourse deployment</td><td>Build persistent Discourse and survive restart and reboot</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=001-nginx-502-host"><code>001-nginx-502-host</code></a></td><td>v1</td><td>Wrong Nginx upstream port</td><td>Repair the deployed proxy configuration</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=013-sidekiq-wrong-redis"><code>013-sidekiq-wrong-redis</code></a></td><td>v2</td><td>Web and Sidekiq use different Redis databases</td><td>Recover exact queued jobs and future work</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=014-missing-rails-migration"><code>014-missing-rails-migration</code></a></td><td>v2</td><td>Shipped migration was never applied</td><td>Record the migration and recover retries exactly once</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=015-sidekiq-poison-pill"><code>015-sidekiq-poison-pill</code></a></td><td>v1</td><td>Poison payload blocks the only worker</td><td>Quarantine poison and preserve valid backlog</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=016-rails-pool-exhaustion"><code>016-rails-pool-exhaustion</code></a></td><td>v1</td><td>Active Record pool is smaller than Puma concurrency</td><td>Recover failed checkouts under concurrent load</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=017-partial-rails-rollout"><code>017-partial-rails-rollout</code></a></td><td>v1</td><td>Rails instances run incompatible releases</td><td>Converge the fleet without losing accepted work</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=018-node-event-loop-blocking"><code>018-node-event-loop-blocking</code></a></td><td>v1</td><td>Synchronous subprocess work blocks the Node event loop</td><td>Restore responsive service under concurrent load</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=019-rust-fd-leak"><code>019-rust-fd-leak</code></a></td><td>v1</td><td>Rust service retains file descriptors after requests</td><td>Remove the leak and survive sustained requests</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=020-python-gunicorn-saturation"><code>020-python-gunicorn-saturation</code></a></td><td>v1</td><td>Gunicorn kills undersized workers during slow exports</td><td>Recover capacity without dropping accepted work</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=021-discourse-shared-uploads"><code>021-discourse-shared-uploads</code></a></td><td>v1</td><td>Discourse web nodes disagree about upload storage</td><td>Recover accepted uploads across restart and reboot</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=022-discourse-multisite-migration"><code>022-discourse-multisite-migration</code></a></td><td>v1</td><td>One Discourse tenant missed a migration</td><td>Converge every tenant without damaging migrated state</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=023-auth-secret-rollout"><code>023-auth-secret-rollout</code></a></td><td>v1</td><td>Instances use incompatible signing secrets</td><td>Restore existing and new sessions across the rollout</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=024-discourse-interrupted-deploy"><code>024-discourse-interrupted-deploy</code></a></td><td>v1</td><td>Schema and web releases diverged during deployment</td><td>Converge the release and preserve queued work</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=025-discourse-bootstrap"><code>025-discourse-bootstrap</code></a></td><td>v1</td><td>A fresh host needs a real Discourse deployment</td><td>Build persistent Discourse and survive restart and reboot</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=026-discourse-plugin-boot-loop"><code>026-discourse-plugin-boot-loop</code></a></td><td>v1</td><td>An incompatible plugin crashes Discourse web and Sidekiq</td><td>Restore core service without rolling back its deployed API</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=027-partial-service-rollout"><code>027-partial-service-rollout</code></a></td><td>v1</td><td>Order API generations disagree during a partial rollout</td><td>Converge code and schema while preserving accepted orders</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=028-nix-store-disk-pressure"><code>028-nix-store-disk-pressure</code></a></td><td>v1</td><td>Nix cache growth exhausts disk and makes a ledger read-only</td><td>Recover writable capacity without losing receipts</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=029-visual-topology-drift"><code>029-visual-topology-drift</code></a></td><td>v1</td><td>Edge routing and queue consumption drift from the production diagram</td><td>Recover accepted reservations using an image artifact as the authoritative topology</td></tr>
         </tbody>
       </table>
     </div>
+
+    <figure class="scenario-diagram">
+      <a href="assets/scenarios/029-visual-topology-drift.png"><img src="assets/scenarios/029-visual-topology-drift.png" alt="Reservation service production topology showing clients, Nginx, the reservation API, PostgreSQL, a queue worker, and Redis."></a>
+      <figcaption><strong>Scenario 029: visual topology drift.</strong> This diagram is delivered to the agent as the authoritative production architecture. The prompt describes symptoms and preservation requirements without translating the image into text.</figcaption>
+    </figure>
 
     <p>
       Scenario <code>025-discourse-bootstrap</code> is kept in a separate
