@@ -38,7 +38,7 @@ Environment:
   REPLAYBOOK_HOST_SSH_KEY        SSH key (default: ~/.ssh/id_ed25519).
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to bake into the VM.
-  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260815.0.0).
+  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260821.0.2).
   REPLAYBOOK_HOST_VM_READY_TIMEOUT
                                  VM SSH readiness timeout in seconds (default: 300).
   REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT
@@ -56,7 +56,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
-CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260815.0.0}"
+CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260821.0.2}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
 HOST_HARNESS_VERSION=23
 VM_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_VM_READY_TIMEOUT:-300}"
@@ -261,6 +261,7 @@ LEGACY_SCENARIO_MANIFEST="${SCENARIO_DIR}/scenario.conf"
 DECLARATIVE_SCENARIO=false
 GUEST_LEAK_AUDIT_ENABLED=false
 GUEST_LEAK_SCAN_PATHS=()
+SCENARIO_IMAGE_ARTIFACTS_JSON='[]'
 if [[ -f "$TYPED_SCENARIO_MANIFEST" ]]; then
   DECLARATIVE_SCENARIO=true
   SCENARIO_MANIFEST="$TYPED_SCENARIO_MANIFEST"
@@ -271,6 +272,7 @@ if [[ -f "$TYPED_SCENARIO_MANIFEST" ]]; then
   ORACLE="$(jq -r '.oracle' <<<"$scenario_description")"
   REQUIRED_SERVICES="$(jq -r '.required_services | join(" ")' <<<"$scenario_description")"
   RESTART_SERVICES="$(jq -r '.restart_services | join(" ")' <<<"$scenario_description")"
+  SCENARIO_IMAGE_ARTIFACTS_JSON="$(jq -c '.image_artifacts' <<<"$scenario_description")"
   if (( $(jq -r '.guest_leak_audit.forbidden_strings | length' <<<"$scenario_description") > 0 )); then
     GUEST_LEAK_AUDIT_ENABLED=true
     mapfile -t GUEST_LEAK_SCAN_PATHS < <(
@@ -779,12 +781,53 @@ echo "[host] preflight confirmed ${SCENARIO_ID}"
 RUNTIME_INSTRUCTION="${WORK_DIR}/instruction.md"
 {
   cat "$INSTRUCTION"
+  if (( $(jq 'length' <<<"$SCENARIO_IMAGE_ARTIFACTS_JSON") > 0 )); then
+    printf '\nScenario evidence is attached as image input:\n'
+    jq -r '.[] | "- " + .' <<<"$SCENARIO_IMAGE_ARTIFACTS_JSON"
+  fi
   printf '\n%s\n' \
     "You have a hard limit of ${AGENT_TIMEOUT_SECONDS} seconds for this task." \
     "Budget the investigation accordingly. Once you have applied and verified a durable repair, stop investigating and return your final report before the deadline."
 } >"$RUNTIME_INSTRUCTION"
 "${SCP[@]}" "$RUNTIME_INSTRUCTION" root@127.0.0.1:/root/replaybook-eval/instruction.md
 "${SCP[@]}" "${SCRIPT_DIR}/run-agent-adapter.sh" root@127.0.0.1:/root/replaybook-eval/launcher
+
+IMAGE_ARTIFACT_NAMES_JSON='[]'
+if [[ "$RUN_ORACLE" == false ]] && (( $(jq 'length' <<<"$SCENARIO_IMAGE_ARTIFACTS_JSON") > 0 )); then
+  "${SSH[@]}" "install -d -m 700 /root/replaybook-eval/images"
+  image_manifest="${WORK_DIR}/image-artifacts.json"
+  printf '%s\n' '[]' >"$image_manifest"
+  scenario_real="$(realpath -e "$SCENARIO_DIR")"
+  image_index=0
+  while IFS= read -r relative_image; do
+    image_index=$((image_index + 1))
+    source_image="${SCENARIO_DIR}/${relative_image}"
+    [[ -f "$source_image" && ! -L "$source_image" ]] || {
+      echo "scenario image artifact is missing or is a symlink: ${relative_image}" >&2
+      exit 2
+    }
+    source_real="$(realpath -e "$source_image")"
+    [[ "$source_real" == "$scenario_real/"* ]] || {
+      echo "scenario image artifact escapes its scenario directory: ${relative_image}" >&2
+      exit 2
+    }
+    image_bytes="$(stat -c '%s' "$source_real")"
+    if (( image_bytes > 10 * 1024 * 1024 )); then
+      echo "scenario image artifact exceeds the 10 MiB harness limit: ${relative_image}" >&2
+      exit 2
+    fi
+    guest_name="$(printf '%02d-%s' "$image_index" "$(basename "$relative_image")")"
+    guest_path="/root/replaybook-eval/images/${guest_name}"
+    "${SCP[@]}" "$source_real" "root@127.0.0.1:${guest_path}"
+    jq --arg path "$guest_path" --arg name "$relative_image" \
+      '. + [{path: $path, name: $name}]' "$image_manifest" >"${image_manifest}.partial"
+    mv "${image_manifest}.partial" "$image_manifest"
+  done < <(jq -r '.[]' <<<"$SCENARIO_IMAGE_ARTIFACTS_JSON")
+  chmod 0600 "$image_manifest"
+  "${SCP[@]}" "$image_manifest" root@127.0.0.1:/root/replaybook-eval/image-artifacts.json
+  "${SSH[@]}" "chmod 0600 /root/replaybook-eval/image-artifacts.json /root/replaybook-eval/images/*"
+  IMAGE_ARTIFACT_NAMES_JSON="$(jq -c 'map(.name)' "$image_manifest")"
+fi
 
 agent="$AGENT_NAME"
 run_status=0
@@ -964,6 +1007,7 @@ jq -n \
   --argjson harness_version "$HOST_HARNESS_VERSION" \
   --arg scenario "$SCENARIO_ID" \
   --argjson scenario_version "$SCENARIO_VERSION" \
+  --argjson image_artifacts "$IMAGE_ARTIFACT_NAMES_JSON" \
   --arg scenario_pack_id "$SCENARIO_PACK_ID" \
   --arg scenario_pack_version "$SCENARIO_PACK_VERSION" \
   --arg agent "$agent" \
@@ -992,6 +1036,7 @@ jq -n \
     harness_version: $harness_version,
     scenario: $scenario,
     scenario_version: $scenario_version,
+    image_artifacts: $image_artifacts,
     scenario_pack: {
       id: $scenario_pack_id,
       version: $scenario_pack_version

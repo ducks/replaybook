@@ -15,6 +15,7 @@ def fixture() -> tuple[dict, dict]:
         "scenario": "001-nginx-502-host",
         "scenario_version": 1,
         "scenario_pack": {"id": "ducks/replaybook-infra", "version": "20260816.0.0"},
+        "image_artifacts": ["evidence/topology.png"],
         "agent": "claux",
         "harness_version": 20,
         "model": "test/model",
@@ -119,6 +120,28 @@ class ExportAtifTests(unittest.TestCase):
             self.assertEqual(len(written), 1)
             value = json.loads(written[0].read_text())
             self.assertEqual(value["session_id"], "nginx-model-1")
+
+    def test_exports_text_from_a_multimodal_user_message(self) -> None:
+        result, transcript = fixture()
+        transcript["messages"][0]["content"] = [
+            {"type": "text", "text": "repair from the diagram"},
+            {
+                "type": "image",
+                "source": {
+                    "type": "base64",
+                    "media_type": "image/png",
+                    "data": "large-binary-data-must-not-export",
+                },
+            },
+        ]
+
+        trajectory = to_atif(result, transcript, Path("transcript.json"))
+        self.assertEqual(trajectory["steps"][0]["message"], "repair from the diagram")
+        evaluation = trajectory["final_metrics"]["extra"]["infrastructure_evaluation"]
+        self.assertEqual(
+            evaluation["task"]["image_artifacts"], ["evidence/topology.png"]
+        )
+        self.assertNotIn("large-binary-data", json.dumps(trajectory))
 
 
 if __name__ == "__main__":

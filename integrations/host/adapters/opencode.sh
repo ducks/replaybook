@@ -41,6 +41,21 @@ args=(
   --format json
   --auto
 )
+if [[ -n "${REPLAYBOOK_IMAGE_ARTIFACTS_FILE:-}" ]]; then
+  jq -e 'type == "array" and all(.[]; type == "object" and (.path | type == "string"))' \
+    "$REPLAYBOOK_IMAGE_ARTIFACTS_FILE" >/dev/null || {
+    echo "invalid image artifact manifest" >&2
+    exit 2
+  }
+  while IFS= read -r image_path; do
+    [[ -f "$image_path" && ! -L "$image_path" ]] || {
+      echo "image artifact is missing or unsafe: ${image_path}" >&2
+      exit 2
+    }
+    args+=(--file "$image_path")
+  done < <(jq -r '.[].path' \
+    "$REPLAYBOOK_IMAGE_ARTIFACTS_FILE")
+fi
 if [[ -n "$reasoning_effort" ]]; then
   args+=(--variant "$reasoning_effort")
 fi

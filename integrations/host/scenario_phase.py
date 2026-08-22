@@ -23,6 +23,8 @@ SUPPORTED_STEPS = {"wait_http", "concurrent_http", "replay_http"}
 SCENARIO_FILE_FIELDS = ("nixos_config", "instruction", "oracle")
 SCENARIO_SERVICE_FIELDS = ("required_services", "restart_services")
 LEAK_AUDIT_TABLE = "guest_leak_audit"
+IMAGE_ARTIFACTS_FIELD = "image_artifacts"
+SUPPORTED_IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".webp"}
 
 
 @dataclass(frozen=True)
@@ -62,6 +64,7 @@ def describe_manifest(manifest_path: Path) -> dict[str, Any]:
         ):
             raise ValueError(f"scenario.{field} must be a non-empty string array")
         description[field] = services
+    description[IMAGE_ARTIFACTS_FIELD] = image_artifacts_config(scenario)
     for phase in ("preflight", "verify"):
         phase_config = manifest.get(phase)
         if not isinstance(phase_config, dict) or not isinstance(phase_config.get("steps"), list):
@@ -69,6 +72,34 @@ def describe_manifest(manifest_path: Path) -> dict[str, Any]:
         description[f"{phase}_steps"] = len(phase_config["steps"])
     description[LEAK_AUDIT_TABLE] = leak_audit_config(manifest)
     return description
+
+
+def image_artifacts_config(scenario: dict[str, Any]) -> list[str]:
+    artifacts = scenario.get(IMAGE_ARTIFACTS_FIELD, [])
+    if not isinstance(artifacts, list) or not all(
+        isinstance(path, str) and path for path in artifacts
+    ):
+        raise ValueError(f"scenario.{IMAGE_ARTIFACTS_FIELD} must be a string array")
+    if len(artifacts) > 8:
+        raise ValueError(f"scenario.{IMAGE_ARTIFACTS_FIELD} supports at most 8 files")
+    if len(artifacts) != len(set(artifacts)):
+        raise ValueError(f"scenario.{IMAGE_ARTIFACTS_FIELD} contains duplicates")
+    for path in artifacts:
+        candidate = Path(path)
+        if (
+            candidate.is_absolute()
+            or not candidate.parts
+            or any(part in {"", ".", ".."} for part in candidate.parts)
+            or any(not (character.isalnum() or character in "._-/") for character in path)
+        ):
+            raise ValueError(
+                f"scenario.{IMAGE_ARTIFACTS_FIELD} must contain safe relative paths"
+            )
+        if candidate.suffix.lower() not in SUPPORTED_IMAGE_SUFFIXES:
+            raise ValueError(
+                f"scenario.{IMAGE_ARTIFACTS_FIELD} supports PNG, JPEG, GIF, and WebP"
+            )
+    return artifacts
 
 
 def leak_audit_config(manifest: dict[str, Any]) -> dict[str, list[str]]:
