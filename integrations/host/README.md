@@ -766,8 +766,10 @@ errors. Provider-side content
 policy rejections and malformed protocol responses, including corrupted
 reasoning signatures, retain distinct `provider_policy_rejection` and
 `provider_protocol_error` categories instead of being collapsed into
-`agent_runtime_error`. Exhausting a model response's output-token limit is also
-an evaluated failure. The command exits
+`agent_runtime_error`. A harness process killed by the guest kernel's OOM
+killer after inference began is retained as an evaluated
+`guest_out_of_memory` failure. Exhausting a model response's output-token limit
+is also an evaluated failure. The command exits
 nonzero when a worker produces no valid result or a requested attempt is
 unavailable, because that matrix is incomplete rather than evidence of model
 failure.
