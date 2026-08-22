@@ -1,0 +1,32 @@
+{
+  "title": "Five-model core infrastructure cohort",
+  "description": "DeepSeek V4 Flash, Gemini 3.7 Flash, GPT-5.6 Luna, Qwen3.8 2.4T A95B, and GLM 5.3 each ran three attempts across the same eight core-tier infrastructure incidents through Claux and OpenRouter.",
+  "model_labels": {
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash",
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.3": "GLM 5.3"
+  },
+  "model_order": [
+    "qwen/qwen3.8-2.4t-a95b",
+    "openai/gpt-5.6-luna",
+    "z-ai/glm-5.3",
+    "deepseek/deepseek-v4-flash-0731",
+    "google/gemini-3.7-flash"
+  ],
+  "notes": [
+    "The two compatible matrices scheduled and evaluated all 120 trials: five models, eight core-tier scenarios, and three attempts. One hundred ten repairs passed durable verification and ten failed, for a 92% aggregate pass rate with no unavailable or missing trials.",
+    "Qwen completed all 24 repairs. GPT-5.6 Luna and GLM 5.3 each completed 23 of 24. DeepSeek V4 Flash and Gemini 3.7 Flash each completed 20 of 24.",
+    "Both matrices used the same pinned host harness v23 execution snapshot, Claux v20260815.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0. The separate controller commits did not alter the shared host-harness or scenario-pack hashes.",
+    "OpenRouter reported $12.1587 in total model cost across the 120 evaluated trials.",
+    "One Gemini harness process was killed by the guest OOM killer after meaningful model progress and remains an evaluated failure under the published methodology. Another Gemini trial ended with a provider protocol error after meaningful progress."
+  ],
+  "observations": [
+    "Qwen led reliability at 24 of 24. GPT-5.6 Luna matched GLM's 23 of 24 while posting the fastest median at 2:03 and a substantially lower reported cost of $0.8003.",
+    "DeepSeek's four failures were concentrated: all three interrupted-deploy attempts failed to converge the green release, and one disk-pressure attempt timed out.",
+    "Gemini's four failures spanned poison-pill execution, a provider protocol error, shared-upload recovery, and concurrent writes under disk pressure.",
+    "The cohort keeps provider and harness failures visible after meaningful inference instead of removing them from model pass-rate denominators."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 015-sidekiq-poison-pill --scenario 017-partial-rails-rollout --scenario 019-rust-fd-leak --scenario 021-discourse-shared-uploads --scenario 024-discourse-interrupted-deploy --scenario 028-nix-store-disk-pressure --models qwen/qwen3.8-2.4t-a95b openai/gpt-5.6-luna z-ai/glm-5.3 deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash --reasoning-efforts high --concurrency 2 --base-port 28000"
+}
