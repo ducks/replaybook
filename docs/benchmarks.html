@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Current benchmarks &middot; replaybook</title>
-  <meta name="description" content="Current Replaybook infrastructure-agent benchmark results.">
+  <title>Text infrastructure benchmarks &middot; replaybook</title>
+  <meta name="description" content="Replaybook text-input infrastructure-agent benchmark evidence.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,128 +19,135 @@
       </nav>
     </header>
 
+    <nav class="benchmark-modality-tabs" aria-label="Benchmark input modality">
+      <a href="benchmarks.html" class="active" aria-current="page"><span aria-hidden="true">T</span> Text</a>
+      <a href="benchmark-visual.html"><span aria-hidden="true">▧</span> Visual</a>
+    </nav>
+
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
-      <a href="benchmarks.html" class="active" aria-current="page">Current</a>
+      <a href="benchmarks.html" class="active" aria-current="page">Overview</a>
       <a href="scenarios.html">Scenarios</a>
-      <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-models.html">Models</a>
       <a href="benchmark-compare.html">Compare</a>
       <a href="benchmark-explorer.html">Explore</a>
+      <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-history.html">History</a>
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Visual infrastructure · Benchmark 20260822.0.3</p>
-    <h1>Four-model visual infrastructure cohort</h1>
-    <p class="tagline benchmark-tagline">GPT-5.6 Luna, GPT-5.6 Sol, Ox Alpha, and MiMo V2.5 each ran three attempts against the same topology-drift incident through Claux and OpenRouter.</p>
-
-    <h2>Benchmark input lanes</h2>
-    <p class="small muted">Text and visual incidents remain separate evidence lanes. They use the same durable verifier, but they do not ask the agent to perceive the incident in the same way.</p>
-<div class="cohort-grid input-lane-grid"><article class="cohort-card input-lane-card input-text"><span class="badge">Text input</span><h3>Text infrastructure</h3><p>Incidents described through prompts, services, logs, and the shell.</p><p><strong>22/24</strong> durable repairs · 4:06 median · <code>20260822.0.1</code></p><p class="small muted">Recent cohorts</p><ul class="input-lane-releases"><li><a href="benchmark-explorer.html?release=20260822.0.1">Ox Alpha core infrastructure cohort</a> <code>20260822.0.1</code></li><li><a href="benchmark-explorer.html?release=20260822.0.0">Five-model core infrastructure cohort</a> <code>20260822.0.0</code></li><li><a href="benchmark-explorer.html?release=20260821.0.1">Qwen 3.8 and GLM 5.3 core infrastructure cohort</a> <code>20260821.0.1</code></li></ul><a href="benchmark-explorer.html?release=20260822.0.1">Inspect latest text cohort →</a></article>
-<article class="cohort-card input-lane-card input-visual"><span class="badge">Visual input</span><h3>Visual infrastructure</h3><p>Incidents where an image is authoritative evidence the agent must inspect.</p><p><strong>12/12</strong> durable repairs · 2:20 median · <code>20260822.0.3</code></p><p class="small muted">Recent cohorts</p><ul class="input-lane-releases"><li><a href="benchmark-explorer.html?release=20260822.0.3">Four-model visual infrastructure cohort</a> <code>20260822.0.3</code></li><li><a href="benchmark-explorer.html?release=20260822.0.2">Kimi and Gemini visual infrastructure cohort</a> <code>20260822.0.2</code></li></ul><a href="benchmark-explorer.html?release=20260822.0.3">Inspect latest visual cohort →</a></article></div>
-
-    <div class="cohort-identity" aria-label="Canonical cohort identity">
-      <span class="badge verified">Canonical</span>
-      <span>Unclassified tier</span>
-      <span>Claux v20260821.0.2 agent harness</span>
-      <span>OpenRouter</span>
-      <span>Host harness v23</span>
-      <span>900s timeout</span>
-    </div>
-
-    <div class="metric-grid" aria-label="Current benchmark results">
-      <div class="metric"><span class="metric-value">12/12</span><span class="metric-label">durable repairs</span></div>
-      <div class="metric"><span class="metric-value">2:20</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">$0.7839</span><span class="metric-label">known total cost</span></div>
-    </div>
-
-    <div class="callout benchmark-status verified-status">
-      <strong>12 trials across 2 controlled matrices.</strong>
-      1 scenarios were evaluated through the Claux v20260821.0.2 agent harness. 12 repairs passed durable verification. 0 evaluated attempts failed and 0 trials were unavailable.
-    </div>
-
-    <h2>Companion harness cohorts</h2>
-    <p class="small muted">Same external verification, different agent harness or provider lane. Companion results remain independent from the canonical cohort and are never pooled into its model table.</p>
-    <div class="cohort-grid">
-    <article class="cohort-card companion-cohort"><div class="cohort-card-heading"><span class="badge companion">Companion</span><code>20260820.0.0</code></div><h3>OpenCode Go infrastructure smoke cohort</h3><p>Six models ran through the OpenCode harness and OpenCode Go subscription across the same three externally verified infrastructure incidents.</p><dl class="cohort-facts"><div><dt>Agent harness</dt><dd>OpenCode</dd></div><div><dt>Provider lane</dt><dd>OpenCode Go</dd></div><div><dt>Billing</dt><dd>subscription</dd></div><div><dt>Host harness</dt><dd>v22</dd></div><div><dt>Coverage</dt><dd>3 scenarios · 18 trials</dd></div><div><dt>Outcome</dt><dd>14/18 repairs · 3:32 median · n/a</dd></div></dl><a href="benchmark-explorer.html?release=20260820.0.0">Inspect this cohort →</a></article>
-    </div>
-    <h2>Current evidence by input</h2>
-
-    <section class="benchmark-input-section">
     <p class="eyebrow">Text infrastructure</p>
-    <h2>Text infrastructure cohorts</h2>
-    <p class="small muted">The newest published cohort for each text-input scenario. Each row keeps its original benchmark release and comparison boundary.</p>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Benchmark</th><th>Model lanes</th><th>Repairs</th><th>Known cost</th></tr></thead><tbody>
-          <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=001-nginx-502-host">001-nginx-502-host</a></td><td>v1</td><td><code>20260822.0.1</code> · Core</td><td>1</td><td>2/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=013-sidekiq-wrong-redis">013-sidekiq-wrong-redis</a></td><td>v2</td><td><code>20260822.0.1</code> · Core</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=015-sidekiq-poison-pill">015-sidekiq-poison-pill</a></td><td>v1</td><td><code>20260822.0.1</code> · Core</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=017-partial-rails-rollout">017-partial-rails-rollout</a></td><td>v1</td><td><code>20260822.0.1</code> · Core</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=019-rust-fd-leak">019-rust-fd-leak</a></td><td>v1</td><td><code>20260822.0.1</code> · Core</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=021-discourse-shared-uploads">021-discourse-shared-uploads</a></td><td>v1</td><td><code>20260822.0.1</code> · Core</td><td>1</td><td>2/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=024-discourse-interrupted-deploy">024-discourse-interrupted-deploy</a></td><td>v1</td><td><code>20260822.0.1</code> · Core</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-    </tbody></table></div>
-    </section>
+    <h1>Infrastructure agents under pressure</h1>
+    <p class="tagline benchmark-tagline">Agents diagnose and repair running systems from incident reports, logs, services, configuration, and shell evidence.</p>
 
-    <section class="benchmark-input-section">
-    <p class="eyebrow">Visual infrastructure</p>
-    <h2>Visual infrastructure cohorts</h2>
-    <p class="small muted">The newest published cohort for each visual-input scenario. Each row keeps its original benchmark release and comparison boundary.</p>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Benchmark</th><th>Model lanes</th><th>Repairs</th><th>Known cost</th></tr></thead><tbody>
-          <tr><td><a href="benchmark-explorer.html?release=20260822.0.3&amp;scenario=029-visual-topology-drift">Visual topology drift</a></td><td>v1</td><td><code>20260822.0.3</code> · Unclassified</td><td>4</td><td>12/12</td><td>$0.7839</td></tr>
-    </tbody></table></div>
-    </section>
-
-    <h2>Canonical model summary</h2>
-    <p class="small muted">Only model lanes inside benchmark <code>20260822.0.3</code> appear here. Companion harness cohorts stay in their own comparison boundary above. <a href="benchmark-compare.html?lane=20260822.0.3%7C%7C%7Copenai%2Fgpt-5.6-luna%7C%7C%7Chigh&amp;lane=20260822.0.3%7C%7C%7Copenai%2Fgpt-5.6-sol%7C%7C%7Chigh&amp;lane=20260822.0.3%7C%7C%7Cstealth%2Fox-alpha%7C%7C%7Chigh&amp;lane=20260822.0.3%7C%7C%7Cxiaomi%2Fmimo-v2.5%7C%7C%7Chigh">Compare this cohort →</a></p>
-    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
-          <tr><td>GPT-5.6 Luna (high)</td><td>3/3</td><td>100%</td><td>1:14</td><td>9,769</td><td>$0.0580</td><td>$0.0193</td></tr>
-          <tr><td>GPT-5.6 Sol (high)</td><td>3/3</td><td>100%</td><td>2:06</td><td>156</td><td>$0.7111</td><td>$0.2370</td></tr>
-          <tr><td>Ox Alpha (high)</td><td>3/3</td><td>100%</td><td>3:25</td><td>69,092</td><td>$0.0000</td><td>$0.0000</td></tr>
-          <tr><td>MiMo V2.5 (high)</td><td>3/3</td><td>100%</td><td>4:09</td><td>39,693</td><td>$0.0148</td><td>$0.0049</td></tr>
-    </tbody></table></div>
-
-    <h2>Execution recording</h2>
-    <p class="small muted">Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.</p>
-    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Model time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
-          <tr><td>GPT-5.6 Luna (high)</td><td>3/3</td><td>16</td><td>1:11</td><td>30</td><td>0:02</td><td>0:07</td><td>1:06</td></tr>
-          <tr><td>GPT-5.6 Sol (high)</td><td>3/3</td><td>17</td><td>2:01</td><td>32</td><td>0:05</td><td>0:10</td><td>1:54</td></tr>
-          <tr><td>Ox Alpha (high)</td><td>3/3</td><td>11</td><td>3:16</td><td>15</td><td>0:09</td><td>0:06</td><td>3:19</td></tr>
-          <tr><td>MiMo V2.5 (high)</td><td>3/3</td><td>20</td><td>4:02</td><td>39</td><td>0:05</td><td>0:27</td><td>3:40</td></tr>
-    </tbody></table></div>
-
-
-      <p>All four models completed all twelve durable repairs, leaving speed and cost as the differentiators in this cohort.</p>
-      <p>GPT-5.6 Luna was fastest at a 1:14 median and cost $0.0580 across three attempts.</p>
-      <p>GPT-5.6 Sol reached the same repair rate at a 2:06 median and $0.7111, roughly twelve times Luna&#x27;s known spend.</p>
-      <p>Ox Alpha completed the cohort at no reported model cost; MiMo V2.5 completed it for $0.0148.</p>
-
-    <h2>Scenario breakdown</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>GPT-5.6 Luna (high)</th><th>GPT-5.6 Sol (high)</th><th>Ox Alpha (high)</th><th>MiMo V2.5 (high)</th></tr></thead><tbody>
-          <tr><td>Visual topology drift</td><td>v1</td><td>3/3 &middot; 1:14</td><td>3/3 &middot; 2:06</td><td>3/3 &middot; 3:25</td><td>3/3 &middot; 4:09</td></tr>
-    </tbody></table></div>
-
-    <h2>Failure categories</h2>
-    <ul><li>None</li></ul>
+    <div class="metric-grid overview-metrics" aria-label="Published text benchmark evidence">
+      <div class="metric"><span class="metric-value">24</span><span class="metric-label">published cohorts</span></div>
+      <div class="metric"><span class="metric-value">27</span><span class="metric-label">model lanes</span></div>
+      <div class="metric"><span class="metric-value">17</span><span class="metric-label">scenarios</span></div>
+    </div>
 
     <div class="callout comparison-note">
-      <strong>Run notes</strong>
-      <ul><li>This is a visual-input cohort. The topology image was authoritative evidence and was not translated into the prompt.</li><li>The Kimi and Gemini visual cohort remains a separate release because its execution snapshot recorded a different Claux binary provenance boundary.</li></ul>
+      <strong>Cohorts are evidence, not one pooled ranking.</strong>
+      Results stay attached to their harness, scenario version, attempt count, deadline, and provider boundary.
     </div>
 
-    <h2>Constituent matrices</h2>
-    <p>The publisher recorded harness provenance and validated matching scenario pack revisions, scenario versions, attempts, timeout, and agent adapter before combining these summaries.</p>
-    <p class="small muted">Scenario packs: <code>ducks/replaybook-infra@20260822.0.0</code>.</p>
-    <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
-          <tr><td><code>host-matrix-2026-08-22__19-50-14.282ed1</code></td><td>GPT-5.6 Luna, Ox Alpha, MiMo V2.5 · reasoning high</td><td><code>af0381ab</code></td></tr>
-          <tr><td><code>host-matrix-2026-08-22__20-16-26.778d06</code></td><td>GPT-5.6 Sol · reasoning high</td><td><code>af0381ab</code></td></tr>
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Recent cohorts</h2><p class="small muted">Newest text-input comparisons, each kept inside its original boundary.</p></div>
+      <a href="benchmark-history.html">View history →</a>
+    </div>
+    <div class="cohort-grid overview-cohort-grid">
+      <article class="cohort-card overview-cohort-card">
+        <div class="cohort-card-heading"><span class="badge">Text input</span><code>20260822.0.1</code></div>
+        <h3>Ox Alpha core infrastructure cohort</h3>
+        <p>Ox Alpha ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter on the current harness generation.</p>
+        <dl class="cohort-facts">
+          <div><dt>Models</dt><dd>1</dd></div>
+          <div><dt>Scenarios</dt><dd>8</dd></div>
+          <div><dt>Repairs</dt><dd>22/24</dd></div>
+          <div><dt>Median</dt><dd>4:06</dd></div>
+          <div><dt>Known cost</dt><dd>$0.0000</dd></div>
+          <div><dt>Harness</dt><dd>Claux v20260821.0.2</dd></div>
+        </dl>
+        <a href="benchmark-explorer.html?release=20260822.0.1">Inspect cohort →</a>
+      </article>
+      <article class="cohort-card overview-cohort-card">
+        <div class="cohort-card-heading"><span class="badge">Text input</span><code>20260822.0.0</code></div>
+        <h3>Five-model core infrastructure cohort</h3>
+        <p>DeepSeek V4 Flash, Gemini 3.7 Flash, GPT-5.6 Luna, Qwen3.8 2.4T A95B, and GLM 5.3 each ran three attempts across the same eight core-tier infrastructure incidents through Claux and OpenRouter.</p>
+        <dl class="cohort-facts">
+          <div><dt>Models</dt><dd>5</dd></div>
+          <div><dt>Scenarios</dt><dd>8</dd></div>
+          <div><dt>Repairs</dt><dd>110/120</dd></div>
+          <div><dt>Median</dt><dd>2:42</dd></div>
+          <div><dt>Known cost</dt><dd>$12.1587</dd></div>
+          <div><dt>Harness</dt><dd>Claux v20260815.0.0</dd></div>
+        </dl>
+        <a href="benchmark-explorer.html?release=20260822.0.0">Inspect cohort →</a>
+      </article>
+      <article class="cohort-card overview-cohort-card">
+        <div class="cohort-card-heading"><span class="badge">Text input</span><code>20260821.0.1</code></div>
+        <h3>Qwen 3.8 and GLM 5.3 core infrastructure cohort</h3>
+        <p>Qwen3.8 2.4T A95B and GLM 5.3 ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter.</p>
+        <dl class="cohort-facts">
+          <div><dt>Models</dt><dd>2</dd></div>
+          <div><dt>Scenarios</dt><dd>8</dd></div>
+          <div><dt>Repairs</dt><dd>47/48</dd></div>
+          <div><dt>Median</dt><dd>2:19</dd></div>
+          <div><dt>Known cost</dt><dd>$7.5341</dd></div>
+          <div><dt>Harness</dt><dd>Claux v20260815.0.0</dd></div>
+        </dl>
+        <a href="benchmark-explorer.html?release=20260821.0.1">Inspect cohort →</a>
+      </article>
+      <article class="cohort-card overview-cohort-card">
+        <div class="cohort-card-heading"><span class="badge">Text input</span><code>20260821.0.0</code></div>
+        <h3>Ox Alpha full infrastructure cohort</h3>
+        <p>The anonymous Ox Alpha preview ran three attempts across all 16 full-tier infrastructure incidents through Claux and OpenRouter.</p>
+        <dl class="cohort-facts">
+          <div><dt>Models</dt><dd>1</dd></div>
+          <div><dt>Scenarios</dt><dd>16</dd></div>
+          <div><dt>Repairs</dt><dd>42/48</dd></div>
+          <div><dt>Median</dt><dd>2:50</dd></div>
+          <div><dt>Known cost</dt><dd>$0.0000</dd></div>
+          <div><dt>Harness</dt><dd>Claux v20260821.0.0</dd></div>
+        </dl>
+        <a href="benchmark-explorer.html?release=20260821.0.0">Inspect cohort →</a>
+      </article>
+    </div>
+
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Latest model evidence</h2><p class="small muted">Each model row comes from its newest published text cohort.</p></div>
+      <a href="benchmark-models.html">Model profiles →</a>
+    </div>
+    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Cohort</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Known cost</th></tr></thead><tbody>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;model=stealth%2Fox-alpha"><strong>Ox Alpha (high)</strong></a><span class="profile-cohort"><code>stealth/ox-alpha</code></span></td><td><code>20260822.0.1</code></td><td>22/24</td><td>92%</td><td>4:06</td><td>$0.0000</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;model=qwen%2Fqwen3.8-2.4t-a95b"><strong>Qwen3.8 2.4T A95B (high)</strong></a><span class="profile-cohort"><code>qwen/qwen3.8-2.4t-a95b</code></span></td><td><code>20260822.0.0</code></td><td>24/24</td><td>100%</td><td>2:24</td><td>$4.1613</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;model=openai%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna (high)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-luna</code></span></td><td><code>20260822.0.0</code></td><td>23/24</td><td>96%</td><td>2:03</td><td>$0.8003</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;model=z-ai%2Fglm-5.3"><strong>GLM 5.3 (high)</strong></a><span class="profile-cohort"><code>z-ai/glm-5.3</code></span></td><td><code>20260822.0.0</code></td><td>23/24</td><td>96%</td><td>2:16</td><td>$3.3727</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;model=deepseek%2Fdeepseek-v4-flash-0731"><strong>DeepSeek V4 Flash (high)</strong></a><span class="profile-cohort"><code>deepseek/deepseek-v4-flash-0731</code></span></td><td><code>20260822.0.0</code></td><td>20/24</td><td>83%</td><td>4:00</td><td>$0.3566</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;model=google%2Fgemini-3.7-flash"><strong>Gemini 3.7 Flash (high)</strong></a><span class="profile-cohort"><code>google/gemini-3.7-flash</code></span></td><td><code>20260822.0.0</code></td><td>20/24</td><td>83%</td><td>3:20</td><td>$3.4677</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fdeepseek-v4-flash"><strong>DeepSeek V4 Flash (high)</strong></a><span class="profile-cohort"><code>opencode-go/deepseek-v4-flash</code></span></td><td><code>20260820.0.1</code></td><td>15/15</td><td>100%</td><td>2:19</td><td>n/a</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fqwen3.8-max"><strong>Qwen3.8 Max (high)</strong></a><span class="profile-cohort"><code>opencode-go/qwen3.8-max</code></span></td><td><code>20260820.0.1</code></td><td>14/15</td><td>93%</td><td>2:58</td><td>n/a</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna (high)</strong></a><span class="profile-cohort"><code>opencode-go/gpt-5.6-luna</code></span></td><td><code>20260820.0.1</code></td><td>14/15</td><td>93%</td><td>2:19</td><td>n/a</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fkimi-k2.7-code"><strong>Kimi K2.7 Code (high)</strong></a><span class="profile-cohort"><code>opencode-go/kimi-k2.7-code</code></span></td><td><code>20260820.0.1</code></td><td>14/15</td><td>93%</td><td>4:58</td><td>n/a</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fminimax-m3"><strong>MiniMax M3 (high)</strong></a><span class="profile-cohort"><code>opencode-go/minimax-m3</code></span></td><td><code>20260820.0.1</code></td><td>12/15</td><td>80%</td><td>3:28</td><td>n/a</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fglm-5.3"><strong>GLM 5.3 (high)</strong></a><span class="profile-cohort"><code>opencode-go/glm-5.3</code></span></td><td><code>20260820.0.1</code></td><td>11/11</td><td>100%</td><td>4:08</td><td>n/a</td></tr>
     </tbody></table></div>
 
-    <h2>Run the matrix</h2>
-    <pre><code>python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 029-visual-topology-drift --models openai/gpt-5.6-luna openai/gpt-5.6-sol stealth/ox-alpha xiaomi/mimo-v2.5 --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 28800 --claux-binary ../claux/target/release/claux</code></pre>
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Scenario evidence</h2><p class="small muted">Newest exact cohort for each text-input incident.</p></div>
+      <a href="scenarios.html">Scenario guide →</a>
+    </div>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Cohort</th><th>Models</th><th>Repairs</th></tr></thead><tbody>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=001-nginx-502-host">001-nginx-502-host</a></td><td>v1</td><td><code>20260822.0.1</code></td><td>1</td><td>2/3</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=013-sidekiq-wrong-redis">013-sidekiq-wrong-redis</a></td><td>v2</td><td><code>20260822.0.1</code></td><td>1</td><td>3/3</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=015-sidekiq-poison-pill">015-sidekiq-poison-pill</a></td><td>v1</td><td><code>20260822.0.1</code></td><td>1</td><td>3/3</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=017-partial-rails-rollout">017-partial-rails-rollout</a></td><td>v1</td><td><code>20260822.0.1</code></td><td>1</td><td>3/3</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=019-rust-fd-leak">019-rust-fd-leak</a></td><td>v1</td><td><code>20260822.0.1</code></td><td>1</td><td>3/3</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=021-discourse-shared-uploads">021-discourse-shared-uploads</a></td><td>v1</td><td><code>20260822.0.1</code></td><td>1</td><td>2/3</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=024-discourse-interrupted-deploy">024-discourse-interrupted-deploy</a></td><td>v1</td><td><code>20260822.0.1</code></td><td>1</td><td>3/3</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;scenario=028-nix-store-disk-pressure">028-nix-store-disk-pressure</a></td><td>v1</td><td><code>20260822.0.1</code></td><td>1</td><td>3/3</td></tr>
+    </tbody></table></div>
 
-    <p class="small muted">Agent harness: Claux v20260821.0.2. Provider lane: OpenRouter. Billing: provider-reported. Host harness: v23. Agent timeout: 900 seconds. Usage was reported for 12 of 12 trials.</p>
-
-    <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
+    <p class="small muted overview-footnote">Need the full audit trail? Use the <a href="benchmark-explorer.html">Explorer</a> for failures and filtered records, or read the <a href="benchmark-methodology.html">methodology</a>.</p>
 
     <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
   </div>

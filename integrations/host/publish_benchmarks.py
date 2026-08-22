@@ -28,6 +28,7 @@ CATALOG_FILE = DATA_DIR / "catalog.json"
 COVERAGE_FILE = DATA_DIR / "coverage.json"
 RELEASES_DIR = DATA_DIR / "releases"
 DOCS_CURRENT = Path("docs/benchmarks.html")
+DOCS_VISUAL = Path("docs/benchmark-visual.html")
 DOCS_CATALOG = Path("docs/benchmark-catalog.json")
 DOCS_COVERAGE = Path("docs/benchmark-coverage.html")
 DOCS_COVERAGE_DATA = Path("docs/benchmark-coverage.json")
@@ -1991,6 +1992,142 @@ def model_page() -> str:
     return render_site_template("benchmark-model.html")
 
 
+def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -> str:
+    if input_mode not in INPUT_MODES:
+        raise PublishError(f"unsupported benchmark input mode: {input_mode}")
+    releases = []
+    for version in index["releases"]:
+        release = read_json(root / RELEASES_DIR / f"{version}.json")
+        if release.get("input_mode", "text") == input_mode:
+            releases.append((version, release))
+    unique_models: set[tuple[str, str | None]] = set()
+    unique_scenarios: set[tuple[str, int]] = set()
+    for _, release in releases:
+        unique_models.update(variant_key(row) for row in release["by_model"])
+        unique_scenarios.update(
+            (item["id"], item["version"])
+            for item in release["compatibility"]["scenarios"]
+        )
+
+    cohort_cards = []
+    for version, release in reversed(releases[-4:]):
+        totals = release["totals"]
+        harness = normalized_agent_harness(release)
+        cohort_cards.append(
+            {
+                "version": version,
+                "title": release["title"],
+                "description": release["description"],
+                "tier": tier_label(release),
+                "harness": harness_label(harness),
+                "models": len(release["by_model"]),
+                "scenarios": len(release["compatibility"]["scenarios"]),
+                "repairs": f'{totals["passed"]}/{totals["evaluated"]}',
+                "median": format_duration(totals["median_duration_seconds"]),
+                "cost": reported_money(
+                    totals["known_cost_usd"],
+                    totals["cost_reported_trials"],
+                    totals["trials"],
+                ),
+                "url": "benchmark-explorer.html?" + urlencode({"release": version}),
+            }
+        )
+
+    seen_models: set[tuple[str, str | None]] = set()
+    model_evidence = []
+    for version, release in reversed(releases):
+        for row in model_rows(release):
+            key = variant_key(row)
+            if key in seen_models:
+                continue
+            seen_models.add(key)
+            model_evidence.append(
+                {
+                    "label": model_variant_label(release, row),
+                    "model": row["model"],
+                    "release": version,
+                    "repairs": f'{row["passed"]}/{row["evaluated"]}',
+                    "rate": format_rate(row["pass_rate"]),
+                    "median": format_duration(row["median_duration_seconds"]),
+                    "cost": reported_money(
+                        row["known_cost_usd"],
+                        row["cost_reported_trials"],
+                        row["trials"],
+                    ),
+                    "url": "benchmark-explorer.html?"
+                    + urlencode(
+                        {
+                            "release": version,
+                            "model": row["model"],
+                        }
+                    ),
+                }
+            )
+            if len(model_evidence) >= 12:
+                break
+        if len(model_evidence) >= 12:
+            break
+
+    seen_scenarios: set[str] = set()
+    scenario_evidence = []
+    for version, release in reversed(releases):
+        for scenario in release["compatibility"]["scenarios"]:
+            scenario_id = scenario["id"]
+            if scenario_id in seen_scenarios:
+                continue
+            rows = [
+                row
+                for row in release["by_scenario_model"]
+                if row["scenario"] == scenario_id
+                and row["scenario_version"] == scenario["version"]
+            ]
+            if not rows:
+                continue
+            seen_scenarios.add(scenario_id)
+            scenario_evidence.append(
+                {
+                    "label": label(release, "scenario", scenario_id),
+                    "version": scenario["version"],
+                    "release": version,
+                    "models": len(rows),
+                    "repairs": f'{sum(row["passed"] for row in rows)}/{sum(row["evaluated"] for row in rows)}',
+                    "url": "benchmark-explorer.html?"
+                    + urlencode({"release": version, "scenario": scenario_id}),
+                }
+            )
+            if len(scenario_evidence) >= 8:
+                break
+        if len(scenario_evidence) >= 8:
+            break
+
+    copy = {
+        "text": {
+            "eyebrow": "Text infrastructure",
+            "title": "Infrastructure agents under pressure",
+            "description": "Agents diagnose and repair running systems from incident reports, logs, services, configuration, and shell evidence.",
+        },
+        "visual": {
+            "eyebrow": "Visual infrastructure",
+            "title": "Infrastructure agents that can see",
+            "description": "Agents must inspect diagrams or images as authoritative operational evidence, then repair and durably verify the running system.",
+        },
+    }[input_mode]
+    return render_site_template(
+        "benchmark-overview.html",
+        active_mode=input_mode,
+        input_mode=input_mode,
+        copy=copy,
+        cohort_cards=cohort_cards,
+        model_evidence=model_evidence,
+        scenario_evidence=scenario_evidence,
+        counts={
+            "cohorts": len(releases),
+            "models": len(unique_models),
+            "scenarios": len(unique_scenarios),
+        },
+    )
+
+
 def build_outputs(root: Path, *, check: bool = False) -> None:
     index = read_json(root / INDEX_FILE)
     current = index.get("current_version")
@@ -2037,12 +2174,8 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
             coverage, indent=2, sort_keys=True
         )
         + "\n",
-        root / DOCS_CURRENT: html_page(
-            release,
-            recent_scenario_section(index, root),
-            companion_release_section(index, root),
-            input_lane_section(index, root),
-        ),
+        root / DOCS_CURRENT: modality_overview_page(index, root, "text"),
+        root / DOCS_VISUAL: modality_overview_page(index, root, "visual"),
         root / DOCS_COVERAGE: coverage_page(),
         root / DOCS_COMPARE: compare_page(),
         root / DOCS_EXPLORER: explorer_page(),
