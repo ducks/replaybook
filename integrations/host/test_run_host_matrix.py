@@ -13,6 +13,7 @@ from integrations.host.run_host_matrix import (
     Job,
     HOST_RUNNER_FILES,
     WorkerResult,
+    archive_unavailable_retry,
     build_jobs,
     build_resume_plan,
     build_summary,
@@ -361,7 +362,7 @@ class HostMatrixTests(unittest.TestCase):
                 "scenarios": [{"id": "incident", "version": 1}],
                 "models": ["vendor/model"],
                 "reasoning_efforts": ["high"],
-                "attempts": 2,
+                "attempts": 3,
                 "base_port": 24000,
                 "agent_timeout_seconds": 900,
                 "started_at": "2026-08-11T00:00:00Z",
@@ -373,7 +374,7 @@ class HostMatrixTests(unittest.TestCase):
                 scenarios=["incident"],
                 models=["vendor/model"],
                 reasoning_efforts=["high"],
-                attempts=2,
+                attempts=3,
                 base_port=24000,
                 matrix_dir=matrix,
             )
@@ -392,14 +393,67 @@ class HostMatrixTests(unittest.TestCase):
             )
             jobs[1].output_dir.mkdir(parents=True)
             (jobs[1].output_dir / "partial.txt").write_text("interrupted")
+            jobs[2].output_dir.mkdir(parents=True)
+            (jobs[2].output_dir / "result.json").write_text(
+                json.dumps(
+                    {
+                        "harness_version": 15,
+                        "scenario": "incident",
+                        "scenario_version": 1,
+                        "model": "vendor/model",
+                        "reasoning_effort": "high",
+                        "reward": 0,
+                        "trial_status": "unavailable",
+                        "failure_category": "provider_unavailable",
+                    }
+                )
+            )
 
             plan = build_resume_plan(matrix)
+            retry_plan = build_resume_plan(matrix, retry_unavailable=True)
 
-        self.assertEqual(len(plan.all_jobs), 2)
-        self.assertEqual([worker.job.run_id for worker in plan.completed], [jobs[0].run_id])
+        self.assertEqual(len(plan.all_jobs), 3)
+        self.assertEqual(
+            [worker.job.run_id for worker in plan.completed],
+            [jobs[0].run_id, jobs[2].run_id],
+        )
         self.assertEqual([job.run_id for job in plan.pending], [jobs[1].run_id])
         self.assertEqual(plan.pending[0].ssh_port, 24002)
         self.assertEqual(plan.snapshot.metadata, snapshot.metadata)
+        self.assertEqual(
+            [worker.job.run_id for worker in retry_plan.completed],
+            [jobs[0].run_id],
+        )
+        self.assertEqual(
+            [job.run_id for job in retry_plan.pending],
+            [jobs[1].run_id, jobs[2].run_id],
+        )
+        self.assertEqual(
+            [job.run_id for job in retry_plan.unavailable_retries],
+            [jobs[2].run_id],
+        )
+
+    def test_archive_unavailable_retry_preserves_run_and_log(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            matrix = Path(temporary) / "matrix"
+            job = build_jobs(
+                scenarios=["incident"],
+                models=["vendor/model"],
+                attempts=1,
+                base_port=24000,
+                matrix_dir=matrix,
+            )[0]
+            job.output_dir.mkdir(parents=True)
+            job.log_file.parent.mkdir(parents=True)
+            (job.output_dir / "result.json").write_text("old result\n")
+            job.log_file.write_text("old log\n")
+
+            archive = archive_unavailable_retry(job, matrix)
+
+            self.assertEqual((archive / "run/result.json").read_text(), "old result\n")
+            self.assertEqual((archive / "run.log").read_text(), "old log\n")
+            self.assertFalse(job.output_dir.exists())
+            self.assertFalse(job.log_file.exists())
 
     def test_resume_rejects_changed_execution_snapshot(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

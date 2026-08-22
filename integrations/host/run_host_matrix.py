@@ -111,6 +111,7 @@ class ResumePlan:
     all_jobs: list[Job]
     completed: list[WorkerResult]
     pending: list[Job]
+    unavailable_retries: list[Job]
     started_at: str
     agent_timeout_seconds: int
     agent_name: str | None
@@ -472,7 +473,9 @@ def verify_saved_result_versions(
             )
 
 
-def build_resume_plan(matrix_dir: Path) -> ResumePlan:
+def build_resume_plan(
+    matrix_dir: Path, *, retry_unavailable: bool = False
+) -> ResumePlan:
     matrix_dir = matrix_dir.expanduser().resolve()
     benchmark_path = matrix_dir / "benchmark.json"
     if not matrix_dir.is_dir() or not benchmark_path.is_file():
@@ -495,10 +498,14 @@ def build_resume_plan(matrix_dir: Path) -> ResumePlan:
     )
     completed = []
     pending = []
+    unavailable_retries = []
     for job in jobs:
         worker = completed_worker(job)
         if worker is None:
             pending.append(job)
+        elif retry_unavailable and worker.result.get("trial_status") == "unavailable":
+            pending.append(job)
+            unavailable_retries.append(job)
         else:
             completed.append(worker)
     snapshot = load_execution_snapshot(matrix_dir)
@@ -512,6 +519,7 @@ def build_resume_plan(matrix_dir: Path) -> ResumePlan:
         all_jobs=jobs,
         completed=completed,
         pending=pending,
+        unavailable_retries=unavailable_retries,
         started_at=started_at,
         agent_timeout_seconds=int(
             benchmark.get("agent_timeout_seconds") or DEFAULT_AGENT_TIMEOUT_SECONDS
@@ -519,6 +527,17 @@ def build_resume_plan(matrix_dir: Path) -> ResumePlan:
         agent_name=agent.get("name") if agent.get("adapter") != "builtin:claux" else None,
         claux_release=benchmark.get("claux_release"),
     )
+
+
+def archive_unavailable_retry(job: Job, matrix_dir: Path) -> Path:
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    archive = matrix_dir / "retries" / f"{timestamp}-{job.run_id}"
+    archive.mkdir(parents=True)
+    if job.output_dir.exists():
+        shutil.move(str(job.output_dir), archive / "run")
+    if job.log_file.exists():
+        shutil.move(str(job.log_file), archive / "run.log")
+    return archive
 
 
 async def terminate_process(process: asyncio.subprocess.Process) -> None:
@@ -1152,6 +1171,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="with --resume, run pending trials through the current host controller "
         "while retaining the frozen scenario packs",
     )
+    parser.add_argument(
+        "--retry-unavailable",
+        action="store_true",
+        help="with --resume, archive and retry unavailable trials",
+    )
     parser.add_argument("--claux-binary", type=Path)
     parser.add_argument("--claux-release")
     parser.add_argument("--agent-adapter", type=Path)
@@ -1252,6 +1276,8 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
 def validate_resume_args(args: argparse.Namespace) -> None:
     if args.refresh_controller and args.resume is None:
         raise ValueError("--refresh-controller requires --resume")
+    if args.retry_unavailable and args.resume is None:
+        raise ValueError("--retry-unavailable requires --resume")
     conflicts = []
     for flag, value in (
         ("--benchmark", args.benchmark),
@@ -1296,7 +1322,9 @@ def matrix_directory(supplied: Path | None) -> Path:
 def resume_matrix(args: argparse.Namespace) -> int:
     try:
         validate_resume_args(args)
-        plan = build_resume_plan(args.resume)
+        plan = build_resume_plan(
+            args.resume, retry_unavailable=args.retry_unavailable
+        )
         if args.agent_env_file is not None:
             agent_env_file = args.agent_env_file.expanduser().resolve()
             if not agent_env_file.is_file():
@@ -1318,6 +1346,9 @@ def resume_matrix(args: argparse.Namespace) -> int:
                     "REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY is required "
                     "by the saved Claux adapter"
                 )
+        for job in plan.unavailable_retries:
+            archive = archive_unavailable_retry(job, plan.matrix_dir)
+            print(f"[matrix] archived unavailable {job.run_id}: {archive}")
         for job in plan.pending:
             prepare_pending_job(job)
     except (OSError, ValueError, json.JSONDecodeError) as error:
@@ -1382,6 +1413,9 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     if args.refresh_controller and args.resume is None:
         print("error: --refresh-controller requires --resume", file=sys.stderr)
+        return 2
+    if args.retry_unavailable and args.resume is None:
+        print("error: --retry-unavailable requires --resume", file=sys.stderr)
         return 2
     if args.resume is not None:
         return resume_matrix(args)
