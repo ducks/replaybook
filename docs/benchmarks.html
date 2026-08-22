@@ -30,9 +30,9 @@
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Canonical cohort · Benchmark 20260821.0.1</p>
-    <h1>Qwen 3.8 and GLM 5.3 core infrastructure cohort</h1>
-    <p class="tagline benchmark-tagline">Qwen3.8 2.4T A95B and GLM 5.3 ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter.</p>
+    <p class="eyebrow">Canonical cohort · Benchmark 20260822.0.0</p>
+    <h1>Five-model core infrastructure cohort</h1>
+    <p class="tagline benchmark-tagline">DeepSeek V4 Flash, Gemini 3.7 Flash, GPT-5.6 Luna, Qwen3.8 2.4T A95B, and GLM 5.3 each ran three attempts across the same eight core-tier infrastructure incidents through Claux and OpenRouter.</p>
 
     <div class="cohort-identity" aria-label="Canonical cohort identity">
       <span class="badge verified">Canonical</span>
@@ -44,14 +44,14 @@
     </div>
 
     <div class="metric-grid" aria-label="Current benchmark results">
-      <div class="metric"><span class="metric-value">47/48</span><span class="metric-label">durable repairs</span></div>
-      <div class="metric"><span class="metric-value">2:19</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">$7.5341</span><span class="metric-label">known total cost</span></div>
+      <div class="metric"><span class="metric-value">110/120</span><span class="metric-label">durable repairs</span></div>
+      <div class="metric"><span class="metric-value">2:42</span><span class="metric-label">overall median</span></div>
+      <div class="metric"><span class="metric-value">$12.1587</span><span class="metric-label">known total cost</span></div>
     </div>
 
     <div class="callout benchmark-status verified-status">
-      <strong>48 trials across 1 controlled matrix.</strong>
-      8 scenarios were evaluated through the Claux v20260815.0.0 agent harness. 47 repairs passed durable verification. 1 evaluated attempts failed and 0 trials were unavailable.
+      <strong>120 trials across 2 controlled matrices.</strong>
+      8 scenarios were evaluated through the Claux v20260815.0.0 agent harness. 110 repairs passed durable verification. 10 evaluated attempts failed and 0 trials were unavailable.
     </div>
 
     <h2>Companion harness cohorts</h2>
@@ -63,54 +63,61 @@
     <h2>Recent scenario cohorts</h2>
     <p class="small muted">The newest published cohort for each recent scenario. Each row keeps its original benchmark release and comparison boundary.</p>
     <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Benchmark</th><th>Model lanes</th><th>Repairs</th><th>Known cost</th></tr></thead><tbody>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=001-nginx-502-host">001-nginx-502-host</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$0.4458</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=013-sidekiq-wrong-redis">013-sidekiq-wrong-redis</a></td><td>v2</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$0.5106</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=015-sidekiq-poison-pill">015-sidekiq-poison-pill</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$1.2024</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=017-partial-rails-rollout">017-partial-rails-rollout</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$1.0174</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=019-rust-fd-leak">019-rust-fd-leak</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$0.6006</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=021-discourse-shared-uploads">021-discourse-shared-uploads</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>5/6</td><td>$1.7754</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=024-discourse-interrupted-deploy">024-discourse-interrupted-deploy</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$0.9326</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=028-nix-store-disk-pressure">028-nix-store-disk-pressure</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$1.0492</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;scenario=001-nginx-502-host">001-nginx-502-host</a></td><td>v1</td><td><code>20260822.0.0</code> · Core</td><td>5</td><td>15/15</td><td>$0.8281</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;scenario=013-sidekiq-wrong-redis">013-sidekiq-wrong-redis</a></td><td>v2</td><td><code>20260822.0.0</code> · Core</td><td>5</td><td>15/15</td><td>$1.0218</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;scenario=015-sidekiq-poison-pill">015-sidekiq-poison-pill</a></td><td>v1</td><td><code>20260822.0.0</code> · Core</td><td>5</td><td>14/15</td><td>$1.8637</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;scenario=017-partial-rails-rollout">017-partial-rails-rollout</a></td><td>v1</td><td><code>20260822.0.0</code> · Core</td><td>5</td><td>14/15</td><td>$1.5338</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;scenario=019-rust-fd-leak">019-rust-fd-leak</a></td><td>v1</td><td><code>20260822.0.0</code> · Core</td><td>5</td><td>15/15</td><td>$1.0510</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;scenario=021-discourse-shared-uploads">021-discourse-shared-uploads</a></td><td>v1</td><td><code>20260822.0.0</code> · Core</td><td>5</td><td>13/15</td><td>$2.5717</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;scenario=024-discourse-interrupted-deploy">024-discourse-interrupted-deploy</a></td><td>v1</td><td><code>20260822.0.0</code> · Core</td><td>5</td><td>12/15</td><td>$1.6646</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;scenario=028-nix-store-disk-pressure">028-nix-store-disk-pressure</a></td><td>v1</td><td><code>20260822.0.0</code> · Core</td><td>5</td><td>12/15</td><td>$1.6239</td></tr>
     </tbody></table></div>
 
 
     <h2>Canonical model summary</h2>
-    <p class="small muted">Only model lanes inside benchmark <code>20260821.0.1</code> appear here. Companion harness cohorts stay in their own comparison boundary above. <a href="benchmark-compare.html?lane=20260821.0.1%7C%7C%7Cqwen%2Fqwen3.8-2.4t-a95b%7C%7C%7Chigh&amp;lane=20260821.0.1%7C%7C%7Cz-ai%2Fglm-5.3%7C%7C%7Chigh">Compare this cohort →</a></p>
+    <p class="small muted">Only model lanes inside benchmark <code>20260822.0.0</code> appear here. Companion harness cohorts stay in their own comparison boundary above. <a href="benchmark-compare.html?lane=20260822.0.0%7C%7C%7Cqwen%2Fqwen3.8-2.4t-a95b%7C%7C%7Chigh&amp;lane=20260822.0.0%7C%7C%7Copenai%2Fgpt-5.6-luna%7C%7C%7Chigh&amp;lane=20260822.0.0%7C%7C%7Cz-ai%2Fglm-5.3%7C%7C%7Chigh&amp;lane=20260822.0.0%7C%7C%7Cdeepseek%2Fdeepseek-v4-flash-0731%7C%7C%7Chigh&amp;lane=20260822.0.0%7C%7C%7Cgoogle%2Fgemini-3.7-flash%7C%7C%7Chigh">Compare this cohort →</a></p>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
           <tr><td>Qwen3.8 2.4T A95B (high)</td><td>24/24</td><td>100%</td><td>2:24</td><td>6,056,007</td><td>$4.1613</td><td>$0.1734</td></tr>
+          <tr><td>GPT-5.6 Luna (high)</td><td>23/24</td><td>96%</td><td>2:03</td><td>14,874,656</td><td>$0.8003</td><td>$0.0348</td></tr>
           <tr><td>GLM 5.3 (high)</td><td>23/24</td><td>96%</td><td>2:16</td><td>7,077,999</td><td>$3.3727</td><td>$0.1466</td></tr>
+          <tr><td>DeepSeek V4 Flash (high)</td><td>20/24</td><td>83%</td><td>4:00</td><td>12,276,983</td><td>$0.3566</td><td>$0.0178</td></tr>
+          <tr><td>Gemini 3.7 Flash (high)</td><td>20/24</td><td>83%</td><td>3:20</td><td>29,829,617</td><td>$3.4677</td><td>$0.1734</td></tr>
     </tbody></table></div>
 
     <h2>Execution recording</h2>
     <p class="small muted">Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.</p>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Model time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
           <tr><td>Qwen3.8 2.4T A95B (high)</td><td>24/24</td><td>16</td><td>2:05</td><td>21</td><td>0:11</td><td>0:04</td><td>2:20</td></tr>
+          <tr><td>GPT-5.6 Luna (high)</td><td>24/24</td><td>17</td><td>1:21</td><td>34.5</td><td>0:20</td><td>0:06</td><td>1:55</td></tr>
           <tr><td>GLM 5.3 (high)</td><td>24/24</td><td>19</td><td>1:52</td><td>25.5</td><td>0:10</td><td>0:05</td><td>2:11</td></tr>
+          <tr><td>DeepSeek V4 Flash (high)</td><td>24/24</td><td>19.5</td><td>3:20</td><td>25</td><td>0:12</td><td>0:06</td><td>3:53</td></tr>
+          <tr><td>Gemini 3.7 Flash (high)</td><td>24/24</td><td>41</td><td>2:47</td><td>40</td><td>0:08</td><td>0:06</td><td>3:12</td></tr>
     </tbody></table></div>
 
 
-      <p>Qwen completed the core cohort at 100% with a 2:24 median; GLM reached 96% with a 2:17 median.</p>
-      <p>GLM&#x27;s single failure appeared only after host reboot, when historical uploads were not recovered despite the immediate repair.</p>
-      <p>This release adds current core-tier evidence without mixing older full-tier results or results produced through a different harness.</p>
+      <p>Qwen led reliability at 24 of 24. GPT-5.6 Luna matched GLM&#x27;s 23 of 24 while posting the fastest median at 2:03 and a substantially lower reported cost of $0.8003.</p>
+      <p>DeepSeek&#x27;s four failures were concentrated: all three interrupted-deploy attempts failed to converge the green release, and one disk-pressure attempt timed out.</p>
+      <p>Gemini&#x27;s four failures spanned poison-pill execution, a provider protocol error, shared-upload recovery, and concurrent writes under disk pressure.</p>
+      <p>The cohort keeps provider and harness failures visible after meaningful inference instead of removing them from model pass-rate denominators.</p>
 
     <h2>Scenario breakdown</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Qwen3.8 2.4T A95B (high)</th><th>GLM 5.3 (high)</th></tr></thead><tbody>
-          <tr><td>001-nginx-502-host</td><td>v1</td><td>3/3 &middot; 1:23</td><td>3/3 &middot; 1:08</td></tr>
-          <tr><td>013-sidekiq-wrong-redis</td><td>v2</td><td>3/3 &middot; 1:30</td><td>3/3 &middot; 1:18</td></tr>
-          <tr><td>015-sidekiq-poison-pill</td><td>v1</td><td>3/3 &middot; 3:38</td><td>3/3 &middot; 4:03</td></tr>
-          <tr><td>017-partial-rails-rollout</td><td>v1</td><td>3/3 &middot; 5:09</td><td>3/3 &middot; 2:35</td></tr>
-          <tr><td>019-rust-fd-leak</td><td>v1</td><td>3/3 &middot; 1:42</td><td>3/3 &middot; 1:31</td></tr>
-          <tr><td>021-discourse-shared-uploads</td><td>v1</td><td>3/3 &middot; 3:14</td><td>2/3 &middot; 7:10</td></tr>
-          <tr><td>024-discourse-interrupted-deploy</td><td>v1</td><td>3/3 &middot; 1:57</td><td>3/3 &middot; 2:01</td></tr>
-          <tr><td>028-nix-store-disk-pressure</td><td>v1</td><td>3/3 &middot; 3:54</td><td>3/3 &middot; 2:21</td></tr>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Qwen3.8 2.4T A95B (high)</th><th>GPT-5.6 Luna (high)</th><th>GLM 5.3 (high)</th><th>DeepSeek V4 Flash (high)</th><th>Gemini 3.7 Flash (high)</th></tr></thead><tbody>
+          <tr><td>001-nginx-502-host</td><td>v1</td><td>3/3 &middot; 1:23</td><td>3/3 &middot; 1:09</td><td>3/3 &middot; 1:08</td><td>3/3 &middot; 2:24</td><td>3/3 &middot; 1:48</td></tr>
+          <tr><td>013-sidekiq-wrong-redis</td><td>v2</td><td>3/3 &middot; 1:30</td><td>3/3 &middot; 1:34</td><td>3/3 &middot; 1:18</td><td>3/3 &middot; 2:18</td><td>3/3 &middot; 3:12</td></tr>
+          <tr><td>015-sidekiq-poison-pill</td><td>v1</td><td>3/3 &middot; 3:38</td><td>3/3 &middot; 2:32</td><td>3/3 &middot; 4:03</td><td>3/3 &middot; 3:55</td><td>2/3 &middot; 4:59</td></tr>
+          <tr><td>017-partial-rails-rollout</td><td>v1</td><td>3/3 &middot; 5:09</td><td>3/3 &middot; 2:00</td><td>3/3 &middot; 2:35</td><td>3/3 &middot; 5:03</td><td>2/3 &middot; 4:21</td></tr>
+          <tr><td>019-rust-fd-leak</td><td>v1</td><td>3/3 &middot; 1:42</td><td>3/3 &middot; 3:17</td><td>3/3 &middot; 1:31</td><td>3/3 &middot; 3:08</td><td>3/3 &middot; 2:19</td></tr>
+          <tr><td>021-discourse-shared-uploads</td><td>v1</td><td>3/3 &middot; 3:14</td><td>3/3 &middot; 3:01</td><td>2/3 &middot; 7:10</td><td>3/3 &middot; 7:58</td><td>2/3 &middot; 3:50</td></tr>
+          <tr><td>024-discourse-interrupted-deploy</td><td>v1</td><td>3/3 &middot; 1:57</td><td>3/3 &middot; 1:34</td><td>3/3 &middot; 2:01</td><td>0/3 &middot; 6:13</td><td>3/3 &middot; 3:38</td></tr>
+          <tr><td>028-nix-store-disk-pressure</td><td>v1</td><td>3/3 &middot; 3:54</td><td>2/3 &middot; 2:06</td><td>3/3 &middot; 2:21</td><td>2/3 &middot; 3:45</td><td>2/3 &middot; 3:24</td></tr>
     </tbody></table></div>
 
     <h2>Failure categories</h2>
-    <ul><li><code>historical_uploads_not_recovered</code>: 1</li></ul>
+    <ul><li><code>accepted_uploads_not_recovered</code>: 1</li><li><code>agent_timeout</code>: 1</li><li><code>historical_uploads_not_recovered</code>: 1</li><li><code>new_receipts_not_writable</code>: 2</li><li><code>provider_protocol_error</code>: 1</li><li><code>release_not_converged</code>: 3</li></ul>
 
     <div class="callout comparison-note">
       <strong>Run notes</strong>
-      <ul><li>The matrix scheduled and evaluated all 48 trials: two models, eight core-tier scenarios, and three attempts. Forty-seven repairs passed and one failed, for a 98% aggregate pass rate with no unavailable or missing trials.</li><li>Qwen completed all 24 repairs. GLM completed 23 of 24; its only failure was historical_uploads_not_recovered in one shared-uploads attempt.</li><li>All trials used Replaybook commit 5fce479, host harness v23, Claux v20260815.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.</li><li>OpenRouter reported $7.5341 in total model cost across the 48 evaluated trials.</li></ul>
+      <ul><li>The two compatible matrices scheduled and evaluated all 120 trials: five models, eight core-tier scenarios, and three attempts. One hundred ten repairs passed durable verification and ten failed, for a 92% aggregate pass rate with no unavailable or missing trials.</li><li>Qwen completed all 24 repairs. GPT-5.6 Luna and GLM 5.3 each completed 23 of 24. DeepSeek V4 Flash and Gemini 3.7 Flash each completed 20 of 24.</li><li>Both matrices used the same pinned host harness v23 execution snapshot, Claux v20260815.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0. The separate controller commits did not alter the shared host-harness or scenario-pack hashes.</li><li>OpenRouter reported $12.1587 in total model cost across the 120 evaluated trials.</li><li>One Gemini harness process was killed by the guest OOM killer after meaningful model progress and remains an evaluated failure under the published methodology. Another Gemini trial ended with a provider protocol error after meaningful progress.</li></ul>
     </div>
 
     <h2>Constituent matrices</h2>
@@ -118,12 +125,13 @@
     <p class="small muted">Scenario packs: <code>ducks/replaybook-infra@20260817.1.0</code>.</p>
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
           <tr><td><code>host-matrix-2026-08-21__23-32-25.b9b509</code></td><td>Qwen3.8 2.4T A95B, GLM 5.3 · reasoning high</td><td><code>5fce4797</code></td></tr>
+          <tr><td><code>host-matrix-2026-08-22__02-52-18.a78a4f</code></td><td>DeepSeek V4 Flash, Gemini 3.7 Flash, GPT-5.6 Luna · reasoning high</td><td><code>6db3314e</code></td></tr>
     </tbody></table></div>
 
     <h2>Run the matrix</h2>
-    <pre><code>python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 015-sidekiq-poison-pill --scenario 017-partial-rails-rollout --scenario 019-rust-fd-leak --scenario 021-discourse-shared-uploads --scenario 024-discourse-interrupted-deploy --scenario 028-nix-store-disk-pressure --models qwen/qwen3.8-2.4t-a95b z-ai/glm-5.3 --reasoning-efforts high --concurrency 2 --base-port 28000</code></pre>
+    <pre><code>python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 015-sidekiq-poison-pill --scenario 017-partial-rails-rollout --scenario 019-rust-fd-leak --scenario 021-discourse-shared-uploads --scenario 024-discourse-interrupted-deploy --scenario 028-nix-store-disk-pressure --models qwen/qwen3.8-2.4t-a95b openai/gpt-5.6-luna z-ai/glm-5.3 deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash --reasoning-efforts high --concurrency 2 --base-port 28000</code></pre>
 
-    <p class="small muted">Agent harness: Claux v20260815.0.0. Provider lane: OpenRouter. Billing: provider-reported. Host harness: v23. Agent timeout: 900 seconds. Usage was reported for 48 of 48 trials.</p>
+    <p class="small muted">Agent harness: Claux v20260815.0.0. Provider lane: OpenRouter. Billing: provider-reported. Host harness: v23. Agent timeout: 900 seconds. Usage was reported for 120 of 120 trials.</p>
 
     <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
 
