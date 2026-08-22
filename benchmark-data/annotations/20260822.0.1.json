@@ -1,0 +1,23 @@
+{
+  "title": "Ox Alpha core infrastructure cohort",
+  "description": "Ox Alpha ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter on the current harness generation.",
+  "model_labels": {
+    "stealth/ox-alpha": "Ox Alpha"
+  },
+  "model_order": [
+    "stealth/ox-alpha"
+  ],
+  "notes": [
+    "The matrix scheduled and evaluated all 24 trials: one model, eight core-tier scenarios, and three attempts. Twenty-two repairs passed durable verification and two failed, for a 92% pass rate with no unavailable or missing trials.",
+    "Ox completed all attempts in six scenarios. One nginx attempt ended after diagnosis without a repair, and one shared-uploads attempt restored the shared path but did not recover three controller-owned uploads accepted before the repair.",
+    "All trials used Replaybook commit b393fda, host harness v23, Claux v20260821.0.2, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.",
+    "OpenRouter reported $0.0000 in model cost across all 24 evaluated trials."
+  ],
+  "observations": [
+    "Ox reached 22 of 24 durable repairs with a 4:06 median and complete token, cost, and execution recordings.",
+    "The nginx failure was an empty completion after six diagnostic tool calls; the agent never attempted a write-capable repair.",
+    "The shared-uploads failure shows a narrower verification gap: Ox repaired persistent storage for historical and future objects but validated its own new object instead of recovering already-accepted production IDs.",
+    "This release remains separate from the five-model core cohort because it uses a newer Claux release."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 015-sidekiq-poison-pill --scenario 017-partial-rails-rollout --scenario 019-rust-fd-leak --scenario 021-discourse-shared-uploads --scenario 024-discourse-interrupted-deploy --scenario 028-nix-store-disk-pressure --models stealth/ox-alpha --reasoning-efforts high --concurrency 2 --base-port 28200"
+}

@@ -9,23 +9,19 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Five-model core infrastructure cohort
+## Ox Alpha core infrastructure cohort
 
-DeepSeek V4 Flash, Gemini 3.7 Flash, GPT-5.6 Luna, Qwen3.8 2.4T A95B, and GLM 5.3 each ran three attempts across the same eight core-tier infrastructure incidents through Claux and OpenRouter.
+Ox Alpha ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter on the current harness generation.
 
-Benchmark release: `20260822.0.0`
+Benchmark release: `20260822.0.1`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20260817.1.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Qwen3.8 2.4T A95B (high) | 24/24 | 100% | 2:24 | $4.1613 | $0.1734 |
-| GPT-5.6 Luna (high) | 23/24 | 96% | 2:03 | $0.8003 | $0.0348 |
-| GLM 5.3 (high) | 23/24 | 96% | 2:16 | $3.3727 | $0.1466 |
-| DeepSeek V4 Flash (high) | 20/24 | 83% | 4:00 | $0.3566 | $0.0178 |
-| Gemini 3.7 Flash (high) | 20/24 | 83% | 3:20 | $3.4677 | $0.1734 |
-| **Total** | **110/120** | **92%** | **2:42** | **$12.1587** | **$0.1105** |
+| Ox Alpha (high) | 22/24 | 92% | 4:06 | $0.0000 | $0.0000 |
+| **Total** | **22/24** | **92%** | **4:06** | **$0.0000** | **$0.0000** |
 
 ### Execution recording
 
@@ -33,54 +29,44 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Qwen3.8 2.4T A95B (high) | 24/24 | 16 | 2:05 | 21 | 0:11 | 0:04 | 2:20 |
-| GPT-5.6 Luna (high) | 24/24 | 17 | 1:21 | 34.5 | 0:20 | 0:06 | 1:55 |
-| GLM 5.3 (high) | 24/24 | 19 | 1:52 | 25.5 | 0:10 | 0:05 | 2:11 |
-| DeepSeek V4 Flash (high) | 24/24 | 19.5 | 3:20 | 25 | 0:12 | 0:06 | 3:53 |
-| Gemini 3.7 Flash (high) | 24/24 | 41 | 2:47 | 40 | 0:08 | 0:06 | 3:12 |
+| Ox Alpha (high) | 24/24 | 15 | 3:29 | 17 | 0:12 | 0:08 | 3:52 |
 
-Qwen led reliability at 24 of 24. GPT-5.6 Luna matched GLM's 23 of 24 while posting the fastest median at 2:03 and a substantially lower reported cost of $0.8003.
+Ox reached 22 of 24 durable repairs with a 4:06 median and complete token, cost, and execution recordings.
 
-DeepSeek's four failures were concentrated: all three interrupted-deploy attempts failed to converge the green release, and one disk-pressure attempt timed out.
+The nginx failure was an empty completion after six diagnostic tool calls; the agent never attempted a write-capable repair.
 
-Gemini's four failures spanned poison-pill execution, a provider protocol error, shared-upload recovery, and concurrent writes under disk pressure.
+The shared-uploads failure shows a narrower verification gap: Ox repaired persistent storage for historical and future objects but validated its own new object instead of recovering already-accepted production IDs.
 
-The cohort keeps provider and harness failures visible after meaningful inference instead of removing them from model pass-rate denominators.
+This release remains separate from the five-model core cohort because it uses a newer Claux release.
 
 ### Scenario breakdown
 
-| Scenario | Version | Qwen3.8 2.4T A95B (high) | GPT-5.6 Luna (high) | GLM 5.3 (high) | DeepSeek V4 Flash (high) | Gemini 3.7 Flash (high) |
-|---|---:|---:|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 1:23 | 3/3, 1:09 | 3/3, 1:08 | 3/3, 2:24 | 3/3, 1:48 |
-| 013-sidekiq-wrong-redis | v2 | 3/3, 1:30 | 3/3, 1:34 | 3/3, 1:18 | 3/3, 2:18 | 3/3, 3:12 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 3:38 | 3/3, 2:32 | 3/3, 4:03 | 3/3, 3:55 | 2/3, 4:59 |
-| 017-partial-rails-rollout | v1 | 3/3, 5:09 | 3/3, 2:00 | 3/3, 2:35 | 3/3, 5:03 | 2/3, 4:21 |
-| 019-rust-fd-leak | v1 | 3/3, 1:42 | 3/3, 3:17 | 3/3, 1:31 | 3/3, 3:08 | 3/3, 2:19 |
-| 021-discourse-shared-uploads | v1 | 3/3, 3:14 | 3/3, 3:01 | 2/3, 7:10 | 3/3, 7:58 | 2/3, 3:50 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 1:57 | 3/3, 1:34 | 3/3, 2:01 | 0/3, 6:13 | 3/3, 3:38 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 3:54 | 2/3, 2:06 | 3/3, 2:21 | 2/3, 3:45 | 2/3, 3:24 |
+| Scenario | Version | Ox Alpha (high) |
+|---|---:|---:|
+| 001-nginx-502-host | v1 | 2/3, 3:26 |
+| 013-sidekiq-wrong-redis | v2 | 3/3, 3:00 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 7:10 |
+| 017-partial-rails-rollout | v1 | 3/3, 4:37 |
+| 019-rust-fd-leak | v1 | 3/3, 2:29 |
+| 021-discourse-shared-uploads | v1 | 2/3, 4:08 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 3:57 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 4:21 |
 
 ### Failure categories
 
 - `accepted_uploads_not_recovered`: 1
-- `agent_timeout`: 1
-- `historical_uploads_not_recovered`: 1
-- `new_receipts_not_writable`: 2
-- `provider_protocol_error`: 1
-- `release_not_converged`: 3
+- `verification_failed`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-21__23-32-25.b9b509`: qwen/qwen3.8-2.4t-a95b, z-ai/glm-5.3; Replaybook `5fce4797`; reasoning high
-- `host-matrix-2026-08-22__02-52-18.a78a4f`: deepseek/deepseek-v4-flash-0731, google/gemini-3.7-flash, openai/gpt-5.6-luna; Replaybook `6db3314e`; reasoning high
+- `host-matrix-2026-08-22__06-27-28.d8d78e`: stealth/ox-alpha; Replaybook `b393fda7`; reasoning high
 
 ### Run notes
 
-- The two compatible matrices scheduled and evaluated all 120 trials: five models, eight core-tier scenarios, and three attempts. One hundred ten repairs passed durable verification and ten failed, for a 92% aggregate pass rate with no unavailable or missing trials.
-- Qwen completed all 24 repairs. GPT-5.6 Luna and GLM 5.3 each completed 23 of 24. DeepSeek V4 Flash and Gemini 3.7 Flash each completed 20 of 24.
-- Both matrices used the same pinned host harness v23 execution snapshot, Claux v20260815.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0. The separate controller commits did not alter the shared host-harness or scenario-pack hashes.
-- OpenRouter reported $12.1587 in total model cost across the 120 evaluated trials.
-- One Gemini harness process was killed by the guest OOM killer after meaningful model progress and remains an evaluated failure under the published methodology. Another Gemini trial ended with a provider protocol error after meaningful progress.
+- The matrix scheduled and evaluated all 24 trials: one model, eight core-tier scenarios, and three attempts. Twenty-two repairs passed durable verification and two failed, for a 92% pass rate with no unavailable or missing trials.
+- Ox completed all attempts in six scenarios. One nginx attempt ended after diagnosis without a repair, and one shared-uploads attempt restored the shared path but did not recover three controller-owned uploads accepted before the repair.
+- All trials used Replaybook commit b393fda, host harness v23, Claux v20260821.0.2, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.
+- OpenRouter reported $0.0000 in model cost across all 24 evaluated trials.
 
 <!-- replaybook:current-benchmark:end -->
 
