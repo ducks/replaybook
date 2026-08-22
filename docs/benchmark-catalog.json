@@ -21,7 +21,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20260822.0.0",
+  "current_version": "20260822.0.1",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -2753,6 +2753,34 @@
       "passed": 23,
       "reasoning_effort": "high",
       "release": "20260822.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 24,
+      "evaluated": 24,
+      "failed": 2,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1,
+        "verification_failed": 1
+      },
+      "input_tokens": 603398,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 246.0,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 95003,
+      "pass_rate": 0.9166666666666666,
+      "pass_rate_95_high": 0.9768411847029567,
+      "pass_rate_95_low": 0.741511978067893,
+      "passed": 22,
+      "reasoning_effort": "high",
+      "release": "20260822.0.1",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
       "tier": "core",
@@ -19593,6 +19621,234 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "verification_failed": 1
+      },
+      "input_tokens": 36678,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 206,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 5270,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260822.0.1",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 48877,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 180,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 6760,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 103239,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 430,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 18626,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 93298,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 277,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 10387,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 59800,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 149,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 9761,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1
+      },
+      "input_tokens": 85639,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 248,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 18210,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260822.0.1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 87858,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 237,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 11565,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 88009,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 261,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 14424,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -21864,12 +22120,12 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": "v20260815.0.0",
-      "current": true,
+      "current": false,
       "description": "DeepSeek V4 Flash, Gemini 3.7 Flash, GPT-5.6 Luna, Qwen3.8 2.4T A95B, and GLM 5.3 each ran three attempts across the same eight core-tier infrastructure incidents through Claux and OpenRouter.",
       "harness_versions": [
         23
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -21979,6 +22235,129 @@
         "usage_reported_trials": 120
       },
       "version": "20260822.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "v20260821.0.2"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": "v20260821.0.2",
+      "current": true,
+      "description": "Ox Alpha ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter on the current harness generation.",
+      "harness_versions": [
+        23
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        }
+      ],
+      "tier": "core",
+      "title": "Ox Alpha core infrastructure cohort",
+      "totals": {
+        "cache_read_tokens": 3641024,
+        "cost_reported_trials": 24,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 24,
+        "failed": 2,
+        "failure_categories": {
+          "accepted_uploads_not_recovered": 1,
+          "verification_failed": 1
+        },
+        "input_tokens": 603398,
+        "known_cost_usd": 0.0,
+        "median_duration_seconds": 246.0,
+        "median_first_non_read_only_tool_seconds": 7.5695,
+        "median_model_duration_seconds": 209.1895,
+        "median_model_rounds": 15.0,
+        "median_post_first_non_read_only_seconds": 232.438,
+        "median_tool_calls": 17.0,
+        "median_tool_duration_seconds": 11.744,
+        "output_tokens": 95003,
+        "pass_rate": 0.9166666666666666,
+        "passed": 22,
+        "recording_reported_trials": 24,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 24,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 24
+      },
+      "version": "20260822.0.1"
     }
   ],
   "schema_version": 1
