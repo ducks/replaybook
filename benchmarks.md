@@ -9,19 +9,22 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Ox Alpha core infrastructure cohort
+## Four-model visual infrastructure cohort
 
-Ox Alpha ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter on the current harness generation.
+GPT-5.6 Luna, GPT-5.6 Sol, Ox Alpha, and MiMo V2.5 each ran three attempts against the same topology-drift incident through Claux and OpenRouter.
 
-Benchmark release: `20260822.0.1`
-Benchmark tier: `core`
+Benchmark release: `20260822.0.3`
+Benchmark tier: `unclassified`
 
-Scenario packs: `ducks/replaybook-infra@20260817.1.0`
+Scenario packs: `ducks/replaybook-infra@20260822.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Ox Alpha (high) | 22/24 | 92% | 4:06 | $0.0000 | $0.0000 |
-| **Total** | **22/24** | **92%** | **4:06** | **$0.0000** | **$0.0000** |
+| GPT-5.6 Luna (high) | 3/3 | 100% | 1:14 | $0.0580 | $0.0193 |
+| GPT-5.6 Sol (high) | 3/3 | 100% | 2:06 | $0.7111 | $0.2370 |
+| Ox Alpha (high) | 3/3 | 100% | 3:25 | $0.0000 | $0.0000 |
+| MiMo V2.5 (high) | 3/3 | 100% | 4:09 | $0.0148 | $0.0049 |
+| **Total** | **12/12** | **100%** | **2:20** | **$0.7839** | **$0.0653** |
 
 ### Execution recording
 
@@ -29,44 +32,37 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Ox Alpha (high) | 24/24 | 15 | 3:29 | 17 | 0:12 | 0:08 | 3:52 |
+| GPT-5.6 Luna (high) | 3/3 | 16 | 1:11 | 30 | 0:02 | 0:07 | 1:06 |
+| GPT-5.6 Sol (high) | 3/3 | 17 | 2:01 | 32 | 0:05 | 0:10 | 1:54 |
+| Ox Alpha (high) | 3/3 | 11 | 3:16 | 15 | 0:09 | 0:06 | 3:19 |
+| MiMo V2.5 (high) | 3/3 | 20 | 4:02 | 39 | 0:05 | 0:27 | 3:40 |
 
-Ox reached 22 of 24 durable repairs with a 4:06 median and complete token, cost, and execution recordings.
+All four models completed all twelve durable repairs, leaving speed and cost as the differentiators in this cohort.
 
-The nginx failure was an empty completion after six diagnostic tool calls; the agent never attempted a write-capable repair.
+GPT-5.6 Luna was fastest at a 1:14 median and cost $0.0580 across three attempts.
 
-The shared-uploads failure shows a narrower verification gap: Ox repaired persistent storage for historical and future objects but validated its own new object instead of recovering already-accepted production IDs.
+GPT-5.6 Sol reached the same repair rate at a 2:06 median and $0.7111, roughly twelve times Luna's known spend.
 
-This release remains separate from the five-model core cohort because it uses a newer Claux release.
+Ox Alpha completed the cohort at no reported model cost; MiMo V2.5 completed it for $0.0148.
 
 ### Scenario breakdown
 
-| Scenario | Version | Ox Alpha (high) |
-|---|---:|---:|
-| 001-nginx-502-host | v1 | 2/3, 3:26 |
-| 013-sidekiq-wrong-redis | v2 | 3/3, 3:00 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 7:10 |
-| 017-partial-rails-rollout | v1 | 3/3, 4:37 |
-| 019-rust-fd-leak | v1 | 3/3, 2:29 |
-| 021-discourse-shared-uploads | v1 | 2/3, 4:08 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 3:57 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 4:21 |
+| Scenario | Version | GPT-5.6 Luna (high) | GPT-5.6 Sol (high) | Ox Alpha (high) | MiMo V2.5 (high) |
+|---|---:|---:|---:|---:|---:|
+| Visual topology drift | v1 | 3/3, 1:14 | 3/3, 2:06 | 3/3, 3:25 | 3/3, 4:09 |
 
 ### Failure categories
 
-- `accepted_uploads_not_recovered`: 1
-- `verification_failed`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-22__06-27-28.d8d78e`: stealth/ox-alpha; Replaybook `b393fda7`; reasoning high
+- `host-matrix-2026-08-22__19-50-14.282ed1`: openai/gpt-5.6-luna, stealth/ox-alpha, xiaomi/mimo-v2.5; Replaybook `af0381ab`; reasoning high
+- `host-matrix-2026-08-22__20-16-26.778d06`: openai/gpt-5.6-sol; Replaybook `af0381ab`; reasoning high
 
 ### Run notes
 
-- The matrix scheduled and evaluated all 24 trials: one model, eight core-tier scenarios, and three attempts. Twenty-two repairs passed durable verification and two failed, for a 92% pass rate with no unavailable or missing trials.
-- Ox completed all attempts in six scenarios. One nginx attempt ended after diagnosis without a repair, and one shared-uploads attempt restored the shared path but did not recover three controller-owned uploads accepted before the repair.
-- All trials used Replaybook commit b393fda, host harness v23, Claux v20260821.0.2, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.
-- OpenRouter reported $0.0000 in model cost across all 24 evaluated trials.
+- This is a visual-input cohort. The topology image was authoritative evidence and was not translated into the prompt.
+- The Kimi and Gemini visual cohort remains a separate release because its execution snapshot recorded a different Claux binary provenance boundary.
 
 <!-- replaybook:current-benchmark:end -->
 

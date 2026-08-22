@@ -1,0 +1,28 @@
+{
+  "input_mode": "visual",
+  "title": "Kimi and Gemini visual infrastructure cohort",
+  "description": "Kimi K3, Gemini 3.7 Flash, and Qwen3.8 2.4T A95B each received three attempts at a topology-drift incident where the production diagram was authoritative evidence.",
+  "model_labels": {
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "moonshotai/kimi-k3": "Kimi K3",
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B"
+  },
+  "model_order": [
+    "moonshotai/kimi-k3",
+    "google/gemini-3.7-flash",
+    "qwen/qwen3.8-2.4t-a95b"
+  ],
+  "scenario_labels": {
+    "029-visual-topology-drift": "Visual topology drift"
+  },
+  "observations": [
+    "Kimi K3 and Gemini 3.7 Flash each completed three of three durable repairs.",
+    "Kimi K3 posted the faster median at 1:41; Gemini 3.7 Flash recorded a 2:28 median.",
+    "Qwen3.8 2.4T A95B produced no meaningful inference because its available endpoint rejected image input, so all three attempts remain unavailable rather than failed."
+  ],
+  "notes": [
+    "This is a visual-input cohort. The prompt did not translate the authoritative topology diagram into text.",
+    "Unavailable Qwen attempts are retained for endpoint-capability audit and excluded from pass rates."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 029-visual-topology-drift --models moonshotai/kimi-k3 google/gemini-3.7-flash qwen/qwen3.8-2.4t-a95b --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 28600 --claux-binary ../claux/target/release/claux"
+}

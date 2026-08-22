@@ -3,9 +3,13 @@
 {% block title %}Current benchmarks{% endblock %}
 {% block description %}Current Replaybook infrastructure-agent benchmark results.{% endblock %}
 {% block content %}
-    <p class="eyebrow">Canonical cohort · Benchmark {{ release.version }}</p>
+    <p class="eyebrow">{{ input_mode|title }} infrastructure · Benchmark {{ release.version }}</p>
     <h1>{{ release.title }}</h1>
     <p class="tagline benchmark-tagline">{{ release.description }}</p>
+
+    <h2>Benchmark input lanes</h2>
+    <p class="small muted">Text and visual incidents remain separate evidence lanes. They use the same durable verifier, but they do not ask the agent to perceive the incident in the same way.</p>
+{{ input_lanes }}
 
     <div class="cohort-identity" aria-label="Canonical cohort identity">
       <span class="badge verified">Canonical</span>
@@ -27,6 +31,7 @@
       {{ scenario_count }} scenarios were evaluated through the {{ harness_name }} agent harness. {{ totals.passed }} repairs passed durable verification. {{ totals.failed }} evaluated attempts failed and {{ totals.unavailable }} {{ unavailable_noun }} {{ unavailable_verb }} unavailable.
     </div>
 {{ companion_releases }}
+    <h2>Current evidence by input</h2>
 {{ recent_scenarios }}
 
     <h2>Canonical model summary</h2>

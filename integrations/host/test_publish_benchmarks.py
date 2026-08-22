@@ -231,6 +231,26 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual(release["compatibility"]["benchmark_tier"], "core")
         self.assertIn("Core tier", html_page(release))
 
+    def test_publishes_visual_input_mode(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.write_summary(root, "matrix", summary("model/a"))
+            release = create_release(
+                "20260822.0.0", [path], {"input_mode": "visual"}
+            )
+
+        self.assertEqual(release["input_mode"], "visual")
+        self.assertIn("Visual infrastructure", html_page(release))
+
+    def test_rejects_unknown_input_mode(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.write_summary(root, "matrix", summary("model/a"))
+            with self.assertRaisesRegex(PublishError, "input_mode"):
+                create_release(
+                    "20260822.0.0", [path], {"input_mode": "audio"}
+                )
+
     def test_rejects_cross_tier_aggregation(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -638,7 +658,8 @@ class PublisherTests(unittest.TestCase):
                 (root / "benchmark-data/coverage.json").read_text()
             )
             self.assertIn("Current release", current)
-            self.assertIn("Recent scenario cohorts", current)
+            self.assertIn("Current evidence by input", current)
+            self.assertIn("Text infrastructure cohorts", current)
             self.assertIn("001-nginx", current)
             self.assertIn("example/incidents@20260809.0.0", current)
             self.assertIn("scenario pack revisions", current)

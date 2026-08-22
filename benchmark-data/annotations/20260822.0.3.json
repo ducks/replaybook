@@ -1,0 +1,31 @@
+{
+  "input_mode": "visual",
+  "title": "Four-model visual infrastructure cohort",
+  "description": "GPT-5.6 Luna, GPT-5.6 Sol, Ox Alpha, and MiMo V2.5 each ran three attempts against the same topology-drift incident through Claux and OpenRouter.",
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "openai/gpt-5.6-sol": "GPT-5.6 Sol",
+    "stealth/ox-alpha": "Ox Alpha",
+    "xiaomi/mimo-v2.5": "MiMo V2.5"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "openai/gpt-5.6-sol",
+    "stealth/ox-alpha",
+    "xiaomi/mimo-v2.5"
+  ],
+  "scenario_labels": {
+    "029-visual-topology-drift": "Visual topology drift"
+  },
+  "observations": [
+    "All four models completed all twelve durable repairs, leaving speed and cost as the differentiators in this cohort.",
+    "GPT-5.6 Luna was fastest at a 1:14 median and cost $0.0580 across three attempts.",
+    "GPT-5.6 Sol reached the same repair rate at a 2:06 median and $0.7111, roughly twelve times Luna's known spend.",
+    "Ox Alpha completed the cohort at no reported model cost; MiMo V2.5 completed it for $0.0148."
+  ],
+  "notes": [
+    "This is a visual-input cohort. The topology image was authoritative evidence and was not translated into the prompt.",
+    "The Kimi and Gemini visual cohort remains a separate release because its execution snapshot recorded a different Claux binary provenance boundary."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 029-visual-topology-drift --models openai/gpt-5.6-luna openai/gpt-5.6-sol stealth/ox-alpha xiaomi/mimo-v2.5 --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 28800 --claux-binary ../claux/target/release/claux"
+}
