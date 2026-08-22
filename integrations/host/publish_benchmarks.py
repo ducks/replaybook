@@ -45,6 +45,7 @@ SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 GIT_COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40,64}$")
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 BENCHMARK_TIERS = {"smoke", "core", "full", "frontier"}
+INPUT_MODES = {"text", "visual"}
 OPTIONAL_SNAPSHOT_HASHES = (
     "agent_adapter_sha256",
     "agent_payload_sha256",
@@ -833,10 +834,14 @@ def create_release_from_sources(
         not isinstance(reproduction_command, str) or not reproduction_command.strip()
     ):
         raise PublishError("annotations reproduction_command must be a non-empty string")
+    input_mode = annotations.get("input_mode", "text")
+    if input_mode not in INPUT_MODES:
+        raise PublishError("annotations input_mode must be text or visual")
     return {
         "schema_version": 1,
         "version": version,
         "tier": compatibility.get("benchmark_tier") or "unclassified",
+        "input_mode": input_mode,
         "title": annotations.get("title", f"Benchmark {version}"),
         "description": annotations.get("description", ""),
         "model_labels": annotations.get("model_labels", {}),
@@ -859,6 +864,8 @@ def validate_release(release: dict[str, Any], source: Path) -> None:
     tier = release.get("tier", "unclassified")
     if tier not in BENCHMARK_TIERS | {"unclassified"}:
         raise PublishError(f"{source}: release has an invalid benchmark tier")
+    if release.get("input_mode", "text") not in INPUT_MODES:
+        raise PublishError(f"{source}: release has an invalid input mode")
     runs = release.get("runs")
     if not isinstance(runs, list) or not runs:
         raise PublishError(f"{source}: release contains no normalized runs")
@@ -1054,7 +1061,7 @@ def recent_scenario_section(
 ) -> str:
     """Render the newest published cohort for each recently seen scenario."""
     seen: set[str] = set()
-    rows = []
+    rows: dict[str, list[str]] = {"text": [], "visual": []}
     for release_version in reversed(index["releases"]):
         release = read_json(root / RELEASES_DIR / f"{release_version}.json")
         for scenario in release["compatibility"]["scenarios"]:
@@ -1082,7 +1089,8 @@ def recent_scenario_section(
             query = urlencode(
                 {"release": release_version, "scenario": scenario_id}
             )
-            rows.append(
+            input_mode = release.get("input_mode", "text")
+            rows[input_mode].append(
                 "          <tr>"
                 f"<td><a href=\"benchmark-explorer.html?{html.escape(query)}\">"
                 f"{html.escape(label(release, 'scenario', scenario_id))}</a></td>"
@@ -1094,19 +1102,67 @@ def recent_scenario_section(
                 f"<td>{reported_money(known_cost, cost_reported, trials)}</td>"
                 "</tr>"
             )
-            if len(rows) >= limit:
+            if sum(len(group) for group in rows.values()) >= limit:
                 break
-        if len(rows) >= limit:
+        if sum(len(group) for group in rows.values()) >= limit:
             break
-    if not rows:
+    if not any(rows.values()):
         return ""
-    return f"""
-    <h2>Recent scenario cohorts</h2>
-    <p class="small muted">The newest published cohort for each recent scenario. Each row keeps its original benchmark release and comparison boundary.</p>
+    sections = []
+    for input_mode, title in (("text", "Text infrastructure"), ("visual", "Visual infrastructure")):
+        if not rows[input_mode]:
+            continue
+        sections.append(f"""
+    <section class="benchmark-input-section">
+    <p class="eyebrow">{title}</p>
+    <h2>{title} cohorts</h2>
+    <p class="small muted">The newest published cohort for each {input_mode}-input scenario. Each row keeps its original benchmark release and comparison boundary.</p>
     <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Benchmark</th><th>Model lanes</th><th>Repairs</th><th>Known cost</th></tr></thead><tbody>
-{chr(10).join(rows)}
+{chr(10).join(rows[input_mode])}
     </tbody></table></div>
-"""
+    </section>""")
+    return "\n".join(sections)
+
+
+def input_lane_section(index: dict[str, Any], root: Path) -> str:
+    releases_by_mode: dict[str, list[tuple[str, dict[str, Any]]]] = {
+        "text": [],
+        "visual": [],
+    }
+    for version in index["releases"]:
+        release = read_json(root / RELEASES_DIR / f"{version}.json")
+        releases_by_mode[release.get("input_mode", "text")].append((version, release))
+    cards = []
+    for input_mode, title, description in (
+        ("text", "Text infrastructure", "Incidents described through prompts, services, logs, and the shell."),
+        ("visual", "Visual infrastructure", "Incidents where an image is authoritative evidence the agent must inspect."),
+    ):
+        releases = releases_by_mode[input_mode]
+        if not releases:
+            continue
+        version, release = releases[-1]
+        totals = release["totals"]
+        query = urlencode({"release": version})
+        recent_links = []
+        for recent_version, recent_release in reversed(releases[-3:]):
+            recent_query = urlencode({"release": recent_version})
+            recent_links.append(
+                f'<li><a href="benchmark-explorer.html?{html.escape(recent_query)}">'
+                f'{html.escape(recent_release["title"])}</a> '
+                f'<code>{html.escape(recent_version)}</code></li>'
+            )
+        cards.append(
+            f'<article class="cohort-card input-lane-card input-{input_mode}">'
+            f'<span class="badge">{html.escape(input_mode.title())} input</span>'
+            f'<h3>{html.escape(title)}</h3><p>{html.escape(description)}</p>'
+            f'<p><strong>{totals["passed"]}/{totals["evaluated"]}</strong> durable repairs · '
+            f'{format_duration(totals["median_duration_seconds"])} median · '
+            f'<code>{html.escape(version)}</code></p>'
+            f'<p class="small muted">Recent cohorts</p><ul class="input-lane-releases">{"".join(recent_links)}</ul>'
+            f'<a href="benchmark-explorer.html?{html.escape(query)}">Inspect latest {input_mode} cohort →</a>'
+            '</article>'
+        )
+    return '<div class="cohort-grid input-lane-grid">' + "\n".join(cards) + '</div>'
 
 
 def companion_release_section(index: dict[str, Any], root: Path) -> str:
@@ -1164,6 +1220,7 @@ def html_page(
     release: dict[str, Any],
     recent_scenarios: str = "",
     companion_releases: str = "",
+    input_lanes: str = "",
 ) -> str:
     totals = release["totals"]
     harness = normalized_agent_harness(release)
@@ -1357,6 +1414,7 @@ def html_page(
         release=release,
         totals=totals,
         tier=tier_label(release),
+        input_mode=release.get("input_mode", "text"),
         harness_name=harness_label(harness),
         provider=str(harness.get("provider") or "Provider not reported"),
         provider_lower=str(harness.get("provider") or "not reported"),
@@ -1377,6 +1435,7 @@ def html_page(
         unavailable_verb="was" if totals["unavailable"] == 1 else "were",
         companion_releases=trusted_html(companion_releases),
         recent_scenarios=trusted_html(recent_scenarios),
+        input_lanes=trusted_html(input_lanes),
         compare_query=compare_query,
         model_cells=trusted_html(chr(10).join(model_cells)),
         recording_section=trusted_html(recording_section),
@@ -1612,6 +1671,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                     else "historical"
                 ),
                 "tier": tier_value(release),
+                "input_mode": release.get("input_mode", "text"),
                 "agent_harness": agent_harness,
                 "harness_versions": compatibility.get("harness_versions")
                 or [compatibility["harness_version"]],
@@ -1981,6 +2041,7 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
             release,
             recent_scenario_section(index, root),
             companion_release_section(index, root),
+            input_lane_section(index, root),
         ),
         root / DOCS_COVERAGE: coverage_page(),
         root / DOCS_COMPARE: compare_page(),

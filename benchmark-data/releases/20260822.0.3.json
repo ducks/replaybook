@@ -1,0 +1,983 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 830423,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 9769,
+      "known_cost_usd": 0.05804396,
+      "median_duration_seconds": 74,
+      "median_first_non_read_only_tool_seconds": 7.176,
+      "median_model_duration_seconds": 70.641,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 66.221,
+      "median_tool_calls": 30,
+      "median_tool_duration_seconds": 1.799,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 17511,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1244426,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 156,
+      "known_cost_usd": 0.7110647000000001,
+      "median_duration_seconds": 126,
+      "median_first_non_read_only_tool_seconds": 10.252,
+      "median_model_duration_seconds": 120.652,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 114.187,
+      "median_tool_calls": 32,
+      "median_tool_duration_seconds": 4.926,
+      "model": "openai/gpt-5.6-sol",
+      "output_tokens": 21001,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 298752,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 69092,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 205,
+      "median_first_non_read_only_tool_seconds": 5.772,
+      "median_model_duration_seconds": 195.651,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 199.433,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 8.765,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 8424,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 726848,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 39693,
+      "known_cost_usd": 0.014796059999999996,
+      "median_duration_seconds": 249,
+      "median_first_non_read_only_tool_seconds": 26.851,
+      "median_model_duration_seconds": 241.87,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 219.726,
+      "median_tool_calls": 39,
+      "median_tool_duration_seconds": 5.234,
+      "model": "xiaomi/mimo-v2.5",
+      "output_tokens": 16902,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 830423,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 9769,
+      "known_cost_usd": 0.05804396,
+      "median_duration_seconds": 74,
+      "median_first_non_read_only_tool_seconds": 7.176,
+      "median_model_duration_seconds": 70.641,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 66.221,
+      "median_tool_calls": 30,
+      "median_tool_duration_seconds": 1.799,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 17511,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1244426,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 156,
+      "known_cost_usd": 0.7110647000000001,
+      "median_duration_seconds": 126,
+      "median_first_non_read_only_tool_seconds": 10.252,
+      "median_model_duration_seconds": 120.652,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 114.187,
+      "median_tool_calls": 32,
+      "median_tool_duration_seconds": 4.926,
+      "model": "openai/gpt-5.6-sol",
+      "output_tokens": 21001,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 298752,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 69092,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 205,
+      "median_first_non_read_only_tool_seconds": 5.772,
+      "median_model_duration_seconds": 195.651,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 199.433,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 8.765,
+      "model": "stealth/ox-alpha",
+      "output_tokens": 8424,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 726848,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 39693,
+      "known_cost_usd": 0.014796059999999996,
+      "median_duration_seconds": 249,
+      "median_first_non_read_only_tool_seconds": 26.851,
+      "median_model_duration_seconds": 241.87,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 219.726,
+      "median_tool_calls": 39,
+      "median_tool_duration_seconds": 5.234,
+      "model": "xiaomi/mimo-v2.5",
+      "output_tokens": 16902,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "v20260821.0.2"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": null,
+    "benchmark_tier": null,
+    "claux_release": "v20260821.0.2",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": null,
+      "claux_binary_sha256": "ebb3377900fad64f76c0109ee924b68be84759d5d21b06e3348574779a44ad70",
+      "host_harness_sha256": "76c12b8b9e39742fc040275e42f44ee79ef4a1a1a51ddf64eb15838f2467f3c1",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "029-visual-topology-drift",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "9e43c4c58db2c9c1c9f45e43aebfbd2be937a31f4cb8f564aea59a13625ae6e1",
+          "version": 1
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260822.0.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "029-visual-topology-drift",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260822.0.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "GPT-5.6 Luna, GPT-5.6 Sol, Ox Alpha, and MiMo V2.5 each ran three attempts against the same topology-drift incident through Claux and OpenRouter.",
+  "input_mode": "visual",
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "openai/gpt-5.6-sol": "GPT-5.6 Sol",
+    "stealth/ox-alpha": "Ox Alpha",
+    "xiaomi/mimo-v2.5": "MiMo V2.5"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "openai/gpt-5.6-sol",
+    "stealth/ox-alpha",
+    "xiaomi/mimo-v2.5"
+  ],
+  "notes": [
+    "This is a visual-input cohort. The topology image was authoritative evidence and was not translated into the prompt.",
+    "The Kimi and Gemini visual cohort remains a separate release because its execution snapshot recorded a different Claux binary provenance boundary."
+  ],
+  "observations": [
+    "All four models completed all twelve durable repairs, leaving speed and cost as the differentiators in this cohort.",
+    "GPT-5.6 Luna was fastest at a 1:14 median and cost $0.0580 across three attempts.",
+    "GPT-5.6 Sol reached the same repair rate at a 2:06 median and $0.7111, roughly twelve times Luna's known spend.",
+    "Ox Alpha completed the cohort at no reported model cost; MiMo V2.5 completed it for $0.0148."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 029-visual-topology-drift --models openai/gpt-5.6-luna openai/gpt-5.6-sol stealth/ox-alpha xiaomi/mimo-v2.5 --reasoning-efforts high --attempts 3 --concurrency 2 --base-port 28800 --claux-binary ../claux/target/release/claux",
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 74,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T19:53:42Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.461,
+        "model_duration_seconds": 70.641,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 66.221,
+        "tool_calls": 30,
+        "tool_duration_seconds": 1.799,
+        "total_duration_seconds": 72.682
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T19:52:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 21843,
+        "cache_read_tokens": 260771,
+        "cost_usd": 0.01847017,
+        "input_tokens": 48,
+        "output_tokens": 6487
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 60,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T19:53:21Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.633,
+        "model_duration_seconds": 56.874,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 50.64,
+        "tool_calls": 27,
+        "tool_duration_seconds": 1.185,
+        "total_duration_seconds": 58.273
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T19:52:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 20135,
+        "cache_read_tokens": 168479,
+        "cost_usd": 0.013969529999999999,
+        "input_tokens": 39,
+        "output_tokens": 4632
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 100,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T19:56:47Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.176,
+        "model_duration_seconds": 82.188,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 89.911,
+        "tool_calls": 32,
+        "tool_duration_seconds": 13.973,
+        "total_duration_seconds": 97.087
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T19:54:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 31896,
+        "cache_read_tokens": 401173,
+        "cost_usd": 0.025604259999999997,
+        "input_tokens": 9682,
+        "output_tokens": 6392
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 153,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T19:58:14Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 30.218,
+        "model_duration_seconds": 141.87,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 121.11899999999999,
+        "tool_calls": 12,
+        "tool_duration_seconds": 9.303,
+        "total_duration_seconds": 151.337
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-stealth-ox-alpha-reasoning-high-1",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T19:55:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 53632,
+        "cost_usd": 0.0,
+        "input_tokens": 34142,
+        "output_tokens": 2764
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 245,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T20:02:18Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.772,
+        "model_duration_seconds": 234.175,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 237.372,
+        "tool_calls": 19,
+        "tool_duration_seconds": 8.765,
+        "total_duration_seconds": 243.144
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-stealth-ox-alpha-reasoning-high-2",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T19:57:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 143488,
+        "cost_usd": 0.0,
+        "input_tokens": 21200,
+        "output_tokens": 3048
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 205,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T20:03:25Z",
+      "model": "stealth/ox-alpha",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.957,
+        "model_duration_seconds": 195.651,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 199.433,
+        "tool_calls": 15,
+        "tool_duration_seconds": 8.433,
+        "total_duration_seconds": 204.39
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-stealth-ox-alpha-reasoning-high-3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T19:59:38Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 101632,
+        "cost_usd": 0.0,
+        "input_tokens": 13750,
+        "output_tokens": 2612
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 249,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T20:08:01Z",
+      "model": "xiaomi/mimo-v2.5",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 27.684,
+        "model_duration_seconds": 241.87,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 219.726,
+        "tool_calls": 34,
+        "tool_duration_seconds": 5.234,
+        "total_duration_seconds": 247.41
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-xiaomi-mimo-v2-5-reasoning-high-1",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T20:03:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 224384,
+        "cost_usd": 0.004601873599999999,
+        "input_tokens": 12879,
+        "output_tokens": 4986
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 288,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T20:09:48Z",
+      "model": "xiaomi/mimo-v2.5",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 26.851,
+        "model_duration_seconds": 278.467,
+        "model_rounds": 27,
+        "post_first_non_read_only_seconds": 260.08,
+        "tool_calls": 39,
+        "tool_duration_seconds": 8.018,
+        "total_duration_seconds": 286.931
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-xiaomi-mimo-v2-5-reasoning-high-2",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T20:04:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 288704,
+        "cost_usd": 0.005214986399999999,
+        "input_tokens": 12820,
+        "output_tokens": 6257
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 134,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T20:11:53Z",
+      "model": "xiaomi/mimo-v2.5",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 16.445,
+        "model_duration_seconds": 128.057,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 116.21100000000001,
+        "tool_calls": 39,
+        "tool_duration_seconds": 4.299,
+        "total_duration_seconds": 132.656
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-xiaomi-mimo-v2-5-reasoning-high-3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T20:09:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 213760,
+        "cost_usd": 0.0049792,
+        "input_tokens": 13994,
+        "output_tokens": 5659
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 126,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T20:20:37Z",
+      "model": "openai/gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 10.287,
+        "model_duration_seconds": 120.652,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 114.187,
+        "tool_calls": 32,
+        "tool_duration_seconds": 3.465,
+        "total_duration_seconds": 124.474
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-openai-gpt-5-6-sol-reasoning-high-1",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T20:18:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 34226,
+        "cache_read_tokens": 361825,
+        "cost_usd": 0.232102,
+        "input_tokens": 51,
+        "output_tokens": 7407
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 111,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T20:20:24Z",
+      "model": "openai/gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 10.252,
+        "model_duration_seconds": 104.295,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 99.236,
+        "tool_calls": 29,
+        "tool_duration_seconds": 4.926,
+        "total_duration_seconds": 109.488
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-openai-gpt-5-6-sol-reasoning-high-2",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T20:18:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 22875,
+        "cache_read_tokens": 269253,
+        "cost_usd": 0.1698781,
+        "input_tokens": 45,
+        "output_tokens": 5875
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 146,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T20:24:13Z",
+      "model": "openai/gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.892,
+        "model_duration_seconds": 133.794,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 135.31,
+        "tool_calls": 35,
+        "tool_duration_seconds": 11.031,
+        "total_duration_seconds": 145.202
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-openai-gpt-5-6-sol-reasoning-high-3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T20:21:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 43642,
+        "cache_read_tokens": 613348,
+        "cost_usd": 0.30908460000000004,
+        "input_tokens": 60,
+        "output_tokens": 7719
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {
+    "029-visual-topology-drift": "Visual topology drift"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": null,
+      "benchmark_tier": null,
+      "claux_release": "v20260821.0.2",
+      "concurrency": 2,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": null,
+        "claux_binary_sha256": "ebb3377900fad64f76c0109ee924b68be84759d5d21b06e3348574779a44ad70",
+        "host_harness_sha256": "76c12b8b9e39742fc040275e42f44ee79ef4a1a1a51ddf64eb15838f2467f3c1",
+        "scenario_packs": [
+          {
+            "git_commit": "ecca7d557930b664a74488c202045550dda4a68b",
+            "id": "ducks/replaybook-infra",
+            "sha256": "6bc50804797620b08146093135356554293aad9da7cea559b85498a2b017cd2f",
+            "version": "20260822.0.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "029-visual-topology-drift",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "9e43c4c58db2c9c1c9f45e43aebfbd2be937a31f4cb8f564aea59a13625ae6e1",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-08-22T20:11:54.061838Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "openai/gpt-5.6-luna",
+        "stealth/ox-alpha",
+        "xiaomi/mimo-v2.5"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "af0381ab584cd219cfcb40c4c0ccd2c23ac86a1c",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260822.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "029-visual-topology-drift",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260822.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-22__19-50-14.282ed1",
+      "started_at": "2026-08-22T19:50:14.570531Z",
+      "suite": "replaybook-host-matrix-v1"
+    },
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": null,
+      "benchmark_tier": null,
+      "claux_release": "v20260821.0.2",
+      "concurrency": 2,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": null,
+        "claux_binary_sha256": "ebb3377900fad64f76c0109ee924b68be84759d5d21b06e3348574779a44ad70",
+        "host_harness_sha256": "76c12b8b9e39742fc040275e42f44ee79ef4a1a1a51ddf64eb15838f2467f3c1",
+        "scenario_packs": [
+          {
+            "git_commit": "ecca7d557930b664a74488c202045550dda4a68b",
+            "id": "ducks/replaybook-infra",
+            "sha256": "6bc50804797620b08146093135356554293aad9da7cea559b85498a2b017cd2f",
+            "version": "20260822.0.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "029-visual-topology-drift",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "9e43c4c58db2c9c1c9f45e43aebfbd2be937a31f4cb8f564aea59a13625ae6e1",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-08-22T20:24:13.618295Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "openai/gpt-5.6-sol"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "af0381ab584cd219cfcb40c4c0ccd2c23ac86a1c",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260822.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "029-visual-topology-drift",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260822.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-22__20-16-26.778d06",
+      "started_at": "2026-08-22T20:16:26.522777Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "tier": "unclassified",
+  "title": "Four-model visual infrastructure cohort",
+  "totals": {
+    "cache_read_tokens": 3100449,
+    "cost_reported_trials": 12,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 12,
+    "failed": 0,
+    "failure_categories": {},
+    "input_tokens": 118710,
+    "known_cost_usd": 0.78390472,
+    "median_duration_seconds": 140.0,
+    "median_first_non_read_only_tool_seconds": 10.072,
+    "median_model_duration_seconds": 130.9255,
+    "median_model_rounds": 16.5,
+    "median_post_first_non_read_only_seconds": 118.66499999999999,
+    "median_tool_calls": 31.0,
+    "median_tool_duration_seconds": 6.626,
+    "output_tokens": 63838,
+    "pass_rate": 1.0,
+    "passed": 12,
+    "recording_reported_trials": 12,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 12,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 12
+  },
+  "version": "20260822.0.3"
+}

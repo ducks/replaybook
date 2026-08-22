@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20260822.0.1",
+  "current_version": "20260822.0.3",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -2789,6 +2789,183 @@
       "subscription_usage_usd": 0,
       "tier": "core",
       "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.13583733750000002,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 634626,
+      "known_cost_usd": 0.4075120125,
+      "median_duration_seconds": 148,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 29346,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.13403279999999998,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 52949,
+      "known_cost_usd": 0.40209839999999997,
+      "median_duration_seconds": 101,
+      "model": "moonshotai/kimi-k3",
+      "model_label": "Kimi K3",
+      "output_tokens": 9520,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 0,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 0,
+      "known_cost_usd": 0,
+      "median_duration_seconds": null,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "model_label": "Qwen3.8 2.4T A95B",
+      "output_tokens": 0,
+      "pass_rate": null,
+      "pass_rate_95_high": null,
+      "pass_rate_95_low": null,
+      "passed": 0,
+      "reasoning_effort": "high",
+      "release": "20260822.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 3,
+      "unavailable_categories": {
+        "agent_runtime_error": 3
+      }
+    },
+    {
+      "cost_per_repair_usd": 0.019347986666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 9769,
+      "known_cost_usd": 0.05804396,
+      "median_duration_seconds": 74,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 17511,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.2370215666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 156,
+      "known_cost_usd": 0.7110647000000001,
+      "median_duration_seconds": 126,
+      "model": "openai/gpt-5.6-sol",
+      "model_label": "GPT-5.6 Sol",
+      "output_tokens": 21001,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 69092,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 205,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 8424,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.004932019999999999,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 39693,
+      "known_cost_usd": 0.014796059999999996,
+      "median_duration_seconds": 249,
+      "model": "xiaomi/mimo-v2.5",
+      "model_label": "MiMo V2.5",
+      "output_tokens": 16902,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.3",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
     }
@@ -19853,6 +20030,204 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.13583733750000002,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 634626,
+      "known_cost_usd": 0.4075120125,
+      "median_duration_seconds": 148,
+      "model": "google/gemini-3.7-flash",
+      "model_label": "Gemini 3.7 Flash",
+      "output_tokens": 29346,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.2",
+      "scenario": "029-visual-topology-drift",
+      "scenario_label": "Visual topology drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.13403279999999998,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 52949,
+      "known_cost_usd": 0.40209839999999997,
+      "median_duration_seconds": 101,
+      "model": "moonshotai/kimi-k3",
+      "model_label": "Kimi K3",
+      "output_tokens": 9520,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.2",
+      "scenario": "029-visual-topology-drift",
+      "scenario_label": "Visual topology drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 0,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 0,
+      "known_cost_usd": 0,
+      "median_duration_seconds": null,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "model_label": "Qwen3.8 2.4T A95B",
+      "output_tokens": 0,
+      "pass_rate": null,
+      "pass_rate_95_high": null,
+      "pass_rate_95_low": null,
+      "passed": 0,
+      "reasoning_effort": "high",
+      "release": "20260822.0.2",
+      "scenario": "029-visual-topology-drift",
+      "scenario_label": "Visual topology drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 3,
+      "unavailable_categories": {
+        "agent_runtime_error": 3
+      }
+    },
+    {
+      "cost_per_repair_usd": 0.019347986666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 9769,
+      "known_cost_usd": 0.05804396,
+      "median_duration_seconds": 74,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 17511,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_label": "Visual topology drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.2370215666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 156,
+      "known_cost_usd": 0.7110647000000001,
+      "median_duration_seconds": 126,
+      "model": "openai/gpt-5.6-sol",
+      "model_label": "GPT-5.6 Sol",
+      "output_tokens": 21001,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_label": "Visual topology drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 69092,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 205,
+      "model": "stealth/ox-alpha",
+      "model_label": "Ox Alpha",
+      "output_tokens": 8424,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_label": "Visual topology drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.004932019999999999,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 39693,
+      "known_cost_usd": 0.014796059999999996,
+      "median_duration_seconds": 249,
+      "model": "xiaomi/mimo-v2.5",
+      "model_label": "MiMo V2.5",
+      "output_tokens": 16902,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "release": "20260822.0.3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_label": "Visual topology drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -19872,6 +20247,7 @@
       "harness_versions": [
         5
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [],
       "scenarios": [
@@ -19936,6 +20312,7 @@
       "harness_versions": [
         5
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [],
       "scenarios": [
@@ -20000,6 +20377,7 @@
       "harness_versions": [
         6
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [],
       "scenarios": [
@@ -20062,6 +20440,7 @@
       "harness_versions": [
         6
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [],
       "scenarios": [
@@ -20126,6 +20505,7 @@
       "harness_versions": [
         11
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -20214,6 +20594,7 @@
       "harness_versions": [
         11
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -20302,6 +20683,7 @@
       "harness_versions": [
         11
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -20397,6 +20779,7 @@
       "harness_versions": [
         15
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -20461,6 +20844,7 @@
         15,
         17
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -20612,6 +20996,7 @@
       "harness_versions": [
         17
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -20676,6 +21061,7 @@
       "harness_versions": [
         19
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -20838,6 +21224,7 @@
       "harness_versions": [
         19
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -20900,6 +21287,7 @@
       "harness_versions": [
         19
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -20965,6 +21353,7 @@
       "harness_versions": [
         20
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -21027,6 +21416,7 @@
       "harness_versions": [
         20
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -21091,6 +21481,7 @@
       "harness_versions": [
         20
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -21255,6 +21646,7 @@
       "harness_versions": [
         20
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -21439,6 +21831,7 @@
       "harness_versions": [
         21
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -21633,6 +22026,7 @@
       "harness_versions": [
         22
       ],
+      "input_mode": "text",
       "role": "companion",
       "scenario_packs": [
         {
@@ -21714,6 +22108,7 @@
       "harness_versions": [
         22
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -21817,6 +22212,7 @@
       "harness_versions": [
         23
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -22007,6 +22403,7 @@
       "harness_versions": [
         23
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -22129,6 +22526,7 @@
       "harness_versions": [
         23
       ],
+      "input_mode": "text",
       "role": "historical",
       "scenario_packs": [
         {
@@ -22251,12 +22649,13 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": "v20260821.0.2",
-      "current": true,
+      "current": false,
       "description": "Ox Alpha ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter on the current harness generation.",
       "harness_versions": [
         23
       ],
-      "role": "canonical",
+      "input_mode": "text",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -22362,6 +22761,138 @@
         "usage_reported_trials": 24
       },
       "version": "20260822.0.1"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "v20260821.0.2"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": "v20260821.0.2",
+      "current": false,
+      "description": "Kimi K3, Gemini 3.7 Flash, and Qwen3.8 2.4T A95B each received three attempts at a topology-drift incident where the production diagram was authoritative evidence.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "visual",
+      "role": "historical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260822.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "029-visual-topology-drift",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260822.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "tier": "unclassified",
+      "title": "Kimi and Gemini visual infrastructure cohort",
+      "totals": {
+        "cache_read_tokens": 3388265,
+        "cost_reported_trials": 6,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 6,
+        "failed": 0,
+        "failure_categories": {},
+        "input_tokens": 687575,
+        "known_cost_usd": 0.8096104125,
+        "median_duration_seconds": 120.5,
+        "median_first_non_read_only_tool_seconds": 7.19,
+        "median_model_duration_seconds": 87.048,
+        "median_model_rounds": 13,
+        "median_post_first_non_read_only_seconds": 111.332,
+        "median_tool_calls": 18,
+        "median_tool_duration_seconds": 6.363,
+        "output_tokens": 38866,
+        "pass_rate": 1.0,
+        "passed": 6,
+        "recording_reported_trials": 9,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 9,
+        "unavailable": 3,
+        "unavailable_categories": {
+          "agent_runtime_error": 3
+        },
+        "usage_reported_trials": 9
+      },
+      "version": "20260822.0.2"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "v20260821.0.2"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": "v20260821.0.2",
+      "current": true,
+      "description": "GPT-5.6 Luna, GPT-5.6 Sol, Ox Alpha, and MiMo V2.5 each ran three attempts against the same topology-drift incident through Claux and OpenRouter.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "visual",
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260822.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "029-visual-topology-drift",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260822.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "tier": "unclassified",
+      "title": "Four-model visual infrastructure cohort",
+      "totals": {
+        "cache_read_tokens": 3100449,
+        "cost_reported_trials": 12,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 12,
+        "failed": 0,
+        "failure_categories": {},
+        "input_tokens": 118710,
+        "known_cost_usd": 0.78390472,
+        "median_duration_seconds": 140.0,
+        "median_first_non_read_only_tool_seconds": 10.072,
+        "median_model_duration_seconds": 130.9255,
+        "median_model_rounds": 16.5,
+        "median_post_first_non_read_only_seconds": 118.66499999999999,
+        "median_tool_calls": 31.0,
+        "median_tool_duration_seconds": 6.626,
+        "output_tokens": 63838,
+        "pass_rate": 1.0,
+        "passed": 12,
+        "recording_reported_trials": 12,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 12,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 12
+      },
+      "version": "20260822.0.3"
     }
   ],
   "schema_version": 1
