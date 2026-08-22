@@ -1,0 +1,24 @@
+{
+  "title": "Qwen 3.8 and GLM 5.3 core infrastructure cohort",
+  "description": "Qwen3.8 2.4T A95B and GLM 5.3 ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter.",
+  "model_labels": {
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.3": "GLM 5.3"
+  },
+  "model_order": [
+    "qwen/qwen3.8-2.4t-a95b",
+    "z-ai/glm-5.3"
+  ],
+  "notes": [
+    "The matrix scheduled and evaluated all 48 trials: two models, eight core-tier scenarios, and three attempts. Forty-seven repairs passed and one failed, for a 98% aggregate pass rate with no unavailable or missing trials.",
+    "Qwen completed all 24 repairs. GLM completed 23 of 24; its only failure was historical_uploads_not_recovered in one shared-uploads attempt.",
+    "All trials used Replaybook commit 5fce479, host harness v23, Claux v20260815.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.",
+    "OpenRouter reported $7.5341 in total model cost across the 48 evaluated trials."
+  ],
+  "observations": [
+    "Qwen completed the core cohort at 100% with a 2:24 median; GLM reached 96% with a 2:17 median.",
+    "GLM's single failure appeared only after host reboot, when historical uploads were not recovered despite the immediate repair.",
+    "This release adds current core-tier evidence without mixing older full-tier results or results produced through a different harness."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 015-sidekiq-poison-pill --scenario 017-partial-rails-rollout --scenario 019-rust-fd-leak --scenario 021-discourse-shared-uploads --scenario 024-discourse-interrupted-deploy --scenario 028-nix-store-disk-pressure --models qwen/qwen3.8-2.4t-a95b z-ai/glm-5.3 --reasoning-efforts high --concurrency 2 --base-port 28000"
+}

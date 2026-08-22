@@ -30,28 +30,28 @@
       <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <p class="eyebrow">Canonical cohort · Benchmark 20260821.0.0</p>
-    <h1>Ox Alpha full infrastructure cohort</h1>
-    <p class="tagline benchmark-tagline">The anonymous Ox Alpha preview ran three attempts across all 16 full-tier infrastructure incidents through Claux and OpenRouter.</p>
+    <p class="eyebrow">Canonical cohort · Benchmark 20260821.0.1</p>
+    <h1>Qwen 3.8 and GLM 5.3 core infrastructure cohort</h1>
+    <p class="tagline benchmark-tagline">Qwen3.8 2.4T A95B and GLM 5.3 ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter.</p>
 
     <div class="cohort-identity" aria-label="Canonical cohort identity">
       <span class="badge verified">Canonical</span>
-      <span>Full tier</span>
-      <span>Claux v20260821.0.0 agent harness</span>
+      <span>Core tier</span>
+      <span>Claux v20260815.0.0 agent harness</span>
       <span>OpenRouter</span>
       <span>Host harness v23</span>
       <span>900s timeout</span>
     </div>
 
     <div class="metric-grid" aria-label="Current benchmark results">
-      <div class="metric"><span class="metric-value">42/48</span><span class="metric-label">durable repairs</span></div>
-      <div class="metric"><span class="metric-value">2:50</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">$0.0000</span><span class="metric-label">known total cost</span></div>
+      <div class="metric"><span class="metric-value">47/48</span><span class="metric-label">durable repairs</span></div>
+      <div class="metric"><span class="metric-value">2:19</span><span class="metric-label">overall median</span></div>
+      <div class="metric"><span class="metric-value">$7.5341</span><span class="metric-label">known total cost</span></div>
     </div>
 
     <div class="callout benchmark-status verified-status">
       <strong>48 trials across 1 controlled matrix.</strong>
-      16 scenarios were evaluated through the Claux v20260821.0.0 agent harness. 42 repairs passed durable verification. 6 evaluated attempts failed and 0 trials were unavailable.
+      8 scenarios were evaluated through the Claux v20260815.0.0 agent harness. 47 repairs passed durable verification. 1 evaluated attempts failed and 0 trials were unavailable.
     </div>
 
     <h2>Companion harness cohorts</h2>
@@ -63,74 +63,67 @@
     <h2>Recent scenario cohorts</h2>
     <p class="small muted">The newest published cohort for each recent scenario. Each row keeps its original benchmark release and comparison boundary.</p>
     <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Benchmark</th><th>Model lanes</th><th>Repairs</th><th>Known cost</th></tr></thead><tbody>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.0&amp;scenario=001-nginx-502-host">001-nginx-502-host</a></td><td>v1</td><td><code>20260821.0.0</code> · Full</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.0&amp;scenario=013-sidekiq-wrong-redis">013-sidekiq-wrong-redis</a></td><td>v2</td><td><code>20260821.0.0</code> · Full</td><td>1</td><td>2/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.0&amp;scenario=014-missing-rails-migration">014-missing-rails-migration</a></td><td>v2</td><td><code>20260821.0.0</code> · Full</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.0&amp;scenario=015-sidekiq-poison-pill">015-sidekiq-poison-pill</a></td><td>v1</td><td><code>20260821.0.0</code> · Full</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.0&amp;scenario=016-rails-pool-exhaustion">016-rails-pool-exhaustion</a></td><td>v1</td><td><code>20260821.0.0</code> · Full</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.0&amp;scenario=017-partial-rails-rollout">017-partial-rails-rollout</a></td><td>v1</td><td><code>20260821.0.0</code> · Full</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.0&amp;scenario=018-node-event-loop-blocking">018-node-event-loop-blocking</a></td><td>v1</td><td><code>20260821.0.0</code> · Full</td><td>1</td><td>3/3</td><td>$0.0000</td></tr>
-          <tr><td><a href="benchmark-explorer.html?release=20260821.0.0&amp;scenario=019-rust-fd-leak">019-rust-fd-leak</a></td><td>v1</td><td><code>20260821.0.0</code> · Full</td><td>1</td><td>2/3</td><td>$0.0000</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=001-nginx-502-host">001-nginx-502-host</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$0.4458</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=013-sidekiq-wrong-redis">013-sidekiq-wrong-redis</a></td><td>v2</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$0.5106</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=015-sidekiq-poison-pill">015-sidekiq-poison-pill</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$1.2024</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=017-partial-rails-rollout">017-partial-rails-rollout</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$1.0174</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=019-rust-fd-leak">019-rust-fd-leak</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$0.6006</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=021-discourse-shared-uploads">021-discourse-shared-uploads</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>5/6</td><td>$1.7754</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=024-discourse-interrupted-deploy">024-discourse-interrupted-deploy</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$0.9326</td></tr>
+          <tr><td><a href="benchmark-explorer.html?release=20260821.0.1&amp;scenario=028-nix-store-disk-pressure">028-nix-store-disk-pressure</a></td><td>v1</td><td><code>20260821.0.1</code> · Core</td><td>2</td><td>6/6</td><td>$1.0492</td></tr>
     </tbody></table></div>
 
 
     <h2>Canonical model summary</h2>
-    <p class="small muted">Only model lanes inside benchmark <code>20260821.0.0</code> appear here. Companion harness cohorts stay in their own comparison boundary above. <a href="benchmark-compare.html?lane=20260821.0.0%7C%7C%7Cstealth%2Fox-alpha%7C%7C%7Chigh">Compare this cohort →</a></p>
+    <p class="small muted">Only model lanes inside benchmark <code>20260821.0.1</code> appear here. Companion harness cohorts stay in their own comparison boundary above. <a href="benchmark-compare.html?lane=20260821.0.1%7C%7C%7Cqwen%2Fqwen3.8-2.4t-a95b%7C%7C%7Chigh&amp;lane=20260821.0.1%7C%7C%7Cz-ai%2Fglm-5.3%7C%7C%7Chigh">Compare this cohort →</a></p>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
-          <tr><td>Ox Alpha (high)</td><td>42/48</td><td>88%</td><td>2:50</td><td>1,355,680</td><td>$0.0000</td><td>$0.0000</td></tr>
+          <tr><td>Qwen3.8 2.4T A95B (high)</td><td>24/24</td><td>100%</td><td>2:24</td><td>6,056,007</td><td>$4.1613</td><td>$0.1734</td></tr>
+          <tr><td>GLM 5.3 (high)</td><td>23/24</td><td>96%</td><td>2:16</td><td>7,077,999</td><td>$3.3727</td><td>$0.1466</td></tr>
     </tbody></table></div>
 
     <h2>Execution recording</h2>
     <p class="small muted">Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.</p>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Model time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
-          <tr><td>Ox Alpha (high)</td><td>48/48</td><td>14</td><td>2:37</td><td>17</td><td>0:08</td><td>0:08</td><td>2:42</td></tr>
+          <tr><td>Qwen3.8 2.4T A95B (high)</td><td>24/24</td><td>16</td><td>2:05</td><td>21</td><td>0:11</td><td>0:04</td><td>2:20</td></tr>
+          <tr><td>GLM 5.3 (high)</td><td>24/24</td><td>19</td><td>1:52</td><td>25.5</td><td>0:10</td><td>0:05</td><td>2:11</td></tr>
     </tbody></table></div>
 
 
-      <p>Ox Alpha completed every attempt in ten of the 16 scenarios and produced a 2:50 overall median at zero reported cost.</p>
-      <p>The failed wrong-Redis repair damaged the controller-owned backlog during migration, demonstrating why successful health checks alone are insufficient evidence of incident recovery.</p>
-      <p>The Gunicorn repair passed immediate verification but failed after a service restart, while the Nix pressure repair survived a service restart and failed only after host reboot. These outcomes show the additional separation created by durability verification.</p>
-      <p>The model struggled most consistently on shared-upload recovery, completing one of three attempts and leaving historical uploads missing in two runs.</p>
+      <p>Qwen completed the core cohort at 100% with a 2:24 median; GLM reached 96% with a 2:17 median.</p>
+      <p>GLM&#x27;s single failure appeared only after host reboot, when historical uploads were not recovered despite the immediate repair.</p>
+      <p>This release adds current core-tier evidence without mixing older full-tier results or results produced through a different harness.</p>
 
     <h2>Scenario breakdown</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Ox Alpha (high)</th></tr></thead><tbody>
-          <tr><td>001-nginx-502-host</td><td>v1</td><td>3/3 &middot; 4:45</td></tr>
-          <tr><td>013-sidekiq-wrong-redis</td><td>v2</td><td>2/3 &middot; 2:25</td></tr>
-          <tr><td>014-missing-rails-migration</td><td>v2</td><td>3/3 &middot; 3:58</td></tr>
-          <tr><td>015-sidekiq-poison-pill</td><td>v1</td><td>3/3 &middot; 7:32</td></tr>
-          <tr><td>016-rails-pool-exhaustion</td><td>v1</td><td>3/3 &middot; 2:27</td></tr>
-          <tr><td>017-partial-rails-rollout</td><td>v1</td><td>3/3 &middot; 2:45</td></tr>
-          <tr><td>018-node-event-loop-blocking</td><td>v1</td><td>3/3 &middot; 3:31</td></tr>
-          <tr><td>019-rust-fd-leak</td><td>v1</td><td>2/3 &middot; 2:39</td></tr>
-          <tr><td>020-python-gunicorn-saturation</td><td>v1</td><td>2/3 &middot; 2:39</td></tr>
-          <tr><td>021-discourse-shared-uploads</td><td>v1</td><td>1/3 &middot; 2:11</td></tr>
-          <tr><td>022-discourse-multisite-migration</td><td>v1</td><td>3/3 &middot; 3:17</td></tr>
-          <tr><td>023-auth-secret-rollout</td><td>v1</td><td>3/3 &middot; 2:31</td></tr>
-          <tr><td>024-discourse-interrupted-deploy</td><td>v1</td><td>3/3 &middot; 2:26</td></tr>
-          <tr><td>026-discourse-plugin-boot-loop</td><td>v1</td><td>3/3 &middot; 2:21</td></tr>
-          <tr><td>027-partial-service-rollout</td><td>v1</td><td>3/3 &middot; 2:08</td></tr>
-          <tr><td>028-nix-store-disk-pressure</td><td>v1</td><td>2/3 &middot; 2:53</td></tr>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Qwen3.8 2.4T A95B (high)</th><th>GLM 5.3 (high)</th></tr></thead><tbody>
+          <tr><td>001-nginx-502-host</td><td>v1</td><td>3/3 &middot; 1:23</td><td>3/3 &middot; 1:08</td></tr>
+          <tr><td>013-sidekiq-wrong-redis</td><td>v2</td><td>3/3 &middot; 1:30</td><td>3/3 &middot; 1:18</td></tr>
+          <tr><td>015-sidekiq-poison-pill</td><td>v1</td><td>3/3 &middot; 3:38</td><td>3/3 &middot; 4:03</td></tr>
+          <tr><td>017-partial-rails-rollout</td><td>v1</td><td>3/3 &middot; 5:09</td><td>3/3 &middot; 2:35</td></tr>
+          <tr><td>019-rust-fd-leak</td><td>v1</td><td>3/3 &middot; 1:42</td><td>3/3 &middot; 1:31</td></tr>
+          <tr><td>021-discourse-shared-uploads</td><td>v1</td><td>3/3 &middot; 3:14</td><td>2/3 &middot; 7:10</td></tr>
+          <tr><td>024-discourse-interrupted-deploy</td><td>v1</td><td>3/3 &middot; 1:57</td><td>3/3 &middot; 2:01</td></tr>
+          <tr><td>028-nix-store-disk-pressure</td><td>v1</td><td>3/3 &middot; 3:54</td><td>3/3 &middot; 2:21</td></tr>
     </tbody></table></div>
 
     <h2>Failure categories</h2>
-    <ul><li><code>backlog_not_recovered</code>: 1</li><li><code>exports_still_timing_out</code>: 1</li><li><code>historical_uploads_not_recovered</code>: 2</li><li><code>resource_growth_unbounded</code>: 1</li><li><code>writable_capacity_not_recovered</code>: 1</li></ul>
+    <ul><li><code>historical_uploads_not_recovered</code>: 1</li></ul>
 
     <div class="callout comparison-note">
       <strong>Run notes</strong>
-      <ul><li>Ox Alpha was published by OpenRouter under the temporary anonymous identifier stealth/ox-alpha. This release preserves that identifier and does not speculate about the underlying model.</li><li>The matrix scheduled and evaluated all 48 trials: one model, 16 scenarios, and three attempts. Forty-two repairs passed and six failed, for an 88% pass rate with no unavailable or missing trials.</li><li>All trials used Replaybook commit 7235305, host harness v23, Claux v20260821.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.</li><li>OpenRouter reported zero cost for the preview cohort. The published $0.0000 reflects the provider&#x27;s metered result while Ox Alpha was offered free, not an estimate of future pricing.</li><li>The six scored failures were backlog_not_recovered, resource_growth_unbounded, exports_still_timing_out, two historical_uploads_not_recovered outcomes, and writable_capacity_not_recovered. No failure was classified as infrastructure or provider unavailability.</li><li>Three failed trials ended with an empty final response. They remain scored because Replaybook evaluates the resulting host state independently of the agent&#x27;s narrative response.</li></ul>
+      <ul><li>The matrix scheduled and evaluated all 48 trials: two models, eight core-tier scenarios, and three attempts. Forty-seven repairs passed and one failed, for a 98% aggregate pass rate with no unavailable or missing trials.</li><li>Qwen completed all 24 repairs. GLM completed 23 of 24; its only failure was historical_uploads_not_recovered in one shared-uploads attempt.</li><li>All trials used Replaybook commit 5fce479, host harness v23, Claux v20260815.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.</li><li>OpenRouter reported $7.5341 in total model cost across the 48 evaluated trials.</li></ul>
     </div>
 
     <h2>Constituent matrices</h2>
     <p>The publisher recorded harness provenance and validated matching scenario pack revisions, scenario versions, attempts, timeout, and agent adapter before combining these summaries.</p>
     <p class="small muted">Scenario packs: <code>ducks/replaybook-infra@20260817.1.0</code>.</p>
     <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
-          <tr><td><code>host-matrix-2026-08-21__17-40-40.9edde1</code></td><td>Ox Alpha · reasoning high</td><td><code>7235305c</code></td></tr>
+          <tr><td><code>host-matrix-2026-08-21__23-32-25.b9b509</code></td><td>Qwen3.8 2.4T A95B, GLM 5.3 · reasoning high</td><td><code>5fce4797</code></td></tr>
     </tbody></table></div>
 
     <h2>Run the matrix</h2>
-    <pre><code>python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-real.toml --models stealth/ox-alpha --reasoning-efforts high --concurrency 2 --base-port 28000</code></pre>
+    <pre><code>python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 015-sidekiq-poison-pill --scenario 017-partial-rails-rollout --scenario 019-rust-fd-leak --scenario 021-discourse-shared-uploads --scenario 024-discourse-interrupted-deploy --scenario 028-nix-store-disk-pressure --models qwen/qwen3.8-2.4t-a95b z-ai/glm-5.3 --reasoning-efforts high --concurrency 2 --base-port 28000</code></pre>
 
-    <p class="small muted">Agent harness: Claux v20260821.0.0. Provider lane: OpenRouter. Billing: provider-reported. Host harness: v23. Agent timeout: 900 seconds. Usage was reported for 48 of 48 trials.</p>
+    <p class="small muted">Agent harness: Claux v20260815.0.0. Provider lane: OpenRouter. Billing: provider-reported. Host harness: v23. Agent timeout: 900 seconds. Usage was reported for 48 of 48 trials.</p>
 
     <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
 

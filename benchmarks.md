@@ -9,19 +9,20 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Ox Alpha full infrastructure cohort
+## Qwen 3.8 and GLM 5.3 core infrastructure cohort
 
-The anonymous Ox Alpha preview ran three attempts across all 16 full-tier infrastructure incidents through Claux and OpenRouter.
+Qwen3.8 2.4T A95B and GLM 5.3 ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter.
 
-Benchmark release: `20260821.0.0`
-Benchmark tier: `full`
+Benchmark release: `20260821.0.1`
+Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20260817.1.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Ox Alpha (high) | 42/48 | 88% | 2:50 | $0.0000 | $0.0000 |
-| **Total** | **42/48** | **88%** | **2:50** | **$0.0000** | **$0.0000** |
+| Qwen3.8 2.4T A95B (high) | 24/24 | 100% | 2:24 | $4.1613 | $0.1734 |
+| GLM 5.3 (high) | 23/24 | 96% | 2:16 | $3.3727 | $0.1466 |
+| **Total** | **47/48** | **98%** | **2:19** | **$7.5341** | **$0.1603** |
 
 ### Execution recording
 
@@ -29,57 +30,42 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Ox Alpha (high) | 48/48 | 14 | 2:37 | 17 | 0:08 | 0:08 | 2:42 |
+| Qwen3.8 2.4T A95B (high) | 24/24 | 16 | 2:05 | 21 | 0:11 | 0:04 | 2:20 |
+| GLM 5.3 (high) | 24/24 | 19 | 1:52 | 25.5 | 0:10 | 0:05 | 2:11 |
 
-Ox Alpha completed every attempt in ten of the 16 scenarios and produced a 2:50 overall median at zero reported cost.
+Qwen completed the core cohort at 100% with a 2:24 median; GLM reached 96% with a 2:17 median.
 
-The failed wrong-Redis repair damaged the controller-owned backlog during migration, demonstrating why successful health checks alone are insufficient evidence of incident recovery.
+GLM's single failure appeared only after host reboot, when historical uploads were not recovered despite the immediate repair.
 
-The Gunicorn repair passed immediate verification but failed after a service restart, while the Nix pressure repair survived a service restart and failed only after host reboot. These outcomes show the additional separation created by durability verification.
-
-The model struggled most consistently on shared-upload recovery, completing one of three attempts and leaving historical uploads missing in two runs.
+This release adds current core-tier evidence without mixing older full-tier results or results produced through a different harness.
 
 ### Scenario breakdown
 
-| Scenario | Version | Ox Alpha (high) |
-|---|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 4:45 |
-| 013-sidekiq-wrong-redis | v2 | 2/3, 2:25 |
-| 014-missing-rails-migration | v2 | 3/3, 3:58 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 7:32 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 2:27 |
-| 017-partial-rails-rollout | v1 | 3/3, 2:45 |
-| 018-node-event-loop-blocking | v1 | 3/3, 3:31 |
-| 019-rust-fd-leak | v1 | 2/3, 2:39 |
-| 020-python-gunicorn-saturation | v1 | 2/3, 2:39 |
-| 021-discourse-shared-uploads | v1 | 1/3, 2:11 |
-| 022-discourse-multisite-migration | v1 | 3/3, 3:17 |
-| 023-auth-secret-rollout | v1 | 3/3, 2:31 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 2:26 |
-| 026-discourse-plugin-boot-loop | v1 | 3/3, 2:21 |
-| 027-partial-service-rollout | v1 | 3/3, 2:08 |
-| 028-nix-store-disk-pressure | v1 | 2/3, 2:53 |
+| Scenario | Version | Qwen3.8 2.4T A95B (high) | GLM 5.3 (high) |
+|---|---:|---:|---:|
+| 001-nginx-502-host | v1 | 3/3, 1:23 | 3/3, 1:08 |
+| 013-sidekiq-wrong-redis | v2 | 3/3, 1:30 | 3/3, 1:18 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 3:38 | 3/3, 4:03 |
+| 017-partial-rails-rollout | v1 | 3/3, 5:09 | 3/3, 2:35 |
+| 019-rust-fd-leak | v1 | 3/3, 1:42 | 3/3, 1:31 |
+| 021-discourse-shared-uploads | v1 | 3/3, 3:14 | 2/3, 7:10 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 1:57 | 3/3, 2:01 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 3:54 | 3/3, 2:21 |
 
 ### Failure categories
 
-- `backlog_not_recovered`: 1
-- `exports_still_timing_out`: 1
-- `historical_uploads_not_recovered`: 2
-- `resource_growth_unbounded`: 1
-- `writable_capacity_not_recovered`: 1
+- `historical_uploads_not_recovered`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-21__17-40-40.9edde1`: stealth/ox-alpha; Replaybook `7235305c`; reasoning high
+- `host-matrix-2026-08-21__23-32-25.b9b509`: qwen/qwen3.8-2.4t-a95b, z-ai/glm-5.3; Replaybook `5fce4797`; reasoning high
 
 ### Run notes
 
-- Ox Alpha was published by OpenRouter under the temporary anonymous identifier stealth/ox-alpha. This release preserves that identifier and does not speculate about the underlying model.
-- The matrix scheduled and evaluated all 48 trials: one model, 16 scenarios, and three attempts. Forty-two repairs passed and six failed, for an 88% pass rate with no unavailable or missing trials.
-- All trials used Replaybook commit 7235305, host harness v23, Claux v20260821.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.
-- OpenRouter reported zero cost for the preview cohort. The published $0.0000 reflects the provider's metered result while Ox Alpha was offered free, not an estimate of future pricing.
-- The six scored failures were backlog_not_recovered, resource_growth_unbounded, exports_still_timing_out, two historical_uploads_not_recovered outcomes, and writable_capacity_not_recovered. No failure was classified as infrastructure or provider unavailability.
-- Three failed trials ended with an empty final response. They remain scored because Replaybook evaluates the resulting host state independently of the agent's narrative response.
+- The matrix scheduled and evaluated all 48 trials: two models, eight core-tier scenarios, and three attempts. Forty-seven repairs passed and one failed, for a 98% aggregate pass rate with no unavailable or missing trials.
+- Qwen completed all 24 repairs. GLM completed 23 of 24; its only failure was historical_uploads_not_recovered in one shared-uploads attempt.
+- All trials used Replaybook commit 5fce479, host harness v23, Claux v20260815.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.
+- OpenRouter reported $7.5341 in total model cost across the 48 evaluated trials.
 
 <!-- replaybook:current-benchmark:end -->
 

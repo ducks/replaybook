@@ -1,0 +1,2841 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 5139232,
+      "cost_reported_trials": 24,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 24,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 6056007,
+      "known_cost_usd": 4.1613164,
+      "median_duration_seconds": 144.0,
+      "median_first_non_read_only_tool_seconds": 4.413,
+      "median_model_duration_seconds": 124.91,
+      "median_model_rounds": 16.0,
+      "median_post_first_non_read_only_seconds": 139.7335,
+      "median_tool_calls": 21.0,
+      "median_tool_duration_seconds": 10.721499999999999,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 209880,
+      "pass_rate": 1.0,
+      "passed": 24,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 24,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 24
+    },
+    {
+      "cache_read_tokens": 6584832,
+      "cost_reported_trials": 24,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 24,
+      "failed": 1,
+      "failure_categories": {
+        "historical_uploads_not_recovered": 1
+      },
+      "input_tokens": 7077999,
+      "known_cost_usd": 3.37273412,
+      "median_duration_seconds": 136.5,
+      "median_first_non_read_only_tool_seconds": 4.517,
+      "median_model_duration_seconds": 112.43100000000001,
+      "median_model_rounds": 19.0,
+      "median_post_first_non_read_only_seconds": 131.277,
+      "median_tool_calls": 25.5,
+      "median_tool_duration_seconds": 9.664000000000001,
+      "model": "z-ai/glm-5.3",
+      "output_tokens": 220510,
+      "pass_rate": 0.9583333333333334,
+      "passed": 23,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 24,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 24
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 242848,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 333896,
+      "known_cost_usd": 0.313404,
+      "median_duration_seconds": 83,
+      "median_first_non_read_only_tool_seconds": 4.97,
+      "median_model_duration_seconds": 78.661,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 77.89999999999999,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 3.388,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 13218,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 210112,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 236246,
+      "known_cost_usd": 0.13237432,
+      "median_duration_seconds": 68,
+      "median_first_non_read_only_tool_seconds": 6.234,
+      "median_model_duration_seconds": 63.28,
+      "median_model_rounds": 10,
+      "median_post_first_non_read_only_seconds": 60.345000000000006,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 3.731,
+      "model": "z-ai/glm-5.3",
+      "output_tokens": 9354,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 276672,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 366134,
+      "known_cost_usd": 0.3023764,
+      "median_duration_seconds": 90,
+      "median_first_non_read_only_tool_seconds": 4.339,
+      "median_model_duration_seconds": 76.265,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 82.654,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 11.708,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 11353,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 414912,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 450452,
+      "known_cost_usd": 0.20822431999999996,
+      "median_duration_seconds": 78,
+      "median_first_non_read_only_tool_seconds": 4.934,
+      "median_model_duration_seconds": 57.893,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 66.098,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 16.227,
+      "model": "z-ai/glm-5.3",
+      "output_tokens": 11498,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1058112,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1204188,
+      "known_cost_usd": 0.7155503999999999,
+      "median_duration_seconds": 218,
+      "median_first_non_read_only_tool_seconds": 4.426,
+      "median_model_duration_seconds": 172.701,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 210.078,
+      "median_tool_calls": 27,
+      "median_tool_duration_seconds": 38.902,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 35296,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 862848,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 930381,
+      "known_cost_usd": 0.48688308,
+      "median_duration_seconds": 243,
+      "median_first_non_read_only_tool_seconds": 5.214,
+      "median_model_duration_seconds": 194.852,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 233.741,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 45.076,
+      "model": "z-ai/glm-5.3",
+      "output_tokens": 38181,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 744192,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 829329,
+      "known_cost_usd": 0.513744,
+      "median_duration_seconds": 309,
+      "median_first_non_read_only_tool_seconds": 5.978,
+      "median_model_duration_seconds": 204.547,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 300.46,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 35.079,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 26237,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1143424,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1222647,
+      "known_cost_usd": 0.50366044,
+      "median_duration_seconds": 155,
+      "median_first_non_read_only_tool_seconds": 3.751,
+      "median_model_duration_seconds": 115.685,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 149.025,
+      "median_tool_calls": 28,
+      "median_tool_duration_seconds": 37.737,
+      "model": "z-ai/glm-5.3",
+      "output_tokens": 21695,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 312576,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 395759,
+      "known_cost_usd": 0.35295519999999997,
+      "median_duration_seconds": 102,
+      "median_first_non_read_only_tool_seconds": 5.763,
+      "median_model_duration_seconds": 92.762,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 93.22,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 7.313,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 20679,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 477952,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 518025,
+      "known_cost_usd": 0.24767652,
+      "median_duration_seconds": 91,
+      "median_first_non_read_only_tool_seconds": 2.87,
+      "median_model_duration_seconds": 78.117,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 86.389,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 8.849,
+      "model": "z-ai/glm-5.3",
+      "output_tokens": 15297,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1034880,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1190791,
+      "known_cost_usd": 0.768296,
+      "median_duration_seconds": 194,
+      "median_first_non_read_only_tool_seconds": 3.923,
+      "median_model_duration_seconds": 183.77,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 185.496,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 6.154,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 41583,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1791232,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "historical_uploads_not_recovered": 1
+      },
+      "input_tokens": 1922867,
+      "known_cost_usd": 1.00705612,
+      "median_duration_seconds": 430,
+      "median_first_non_read_only_tool_seconds": 4.202,
+      "median_model_duration_seconds": 418.828,
+      "median_model_rounds": 26,
+      "median_post_first_non_read_only_seconds": 424.59,
+      "median_tool_calls": 34,
+      "median_tool_duration_seconds": 9.227,
+      "model": "z-ai/glm-5.3",
+      "output_tokens": 81147,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 573408,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 700824,
+      "known_cost_usd": 0.4831896000000001,
+      "median_duration_seconds": 117,
+      "median_first_non_read_only_tool_seconds": 2.823,
+      "median_model_duration_seconds": 101.727,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 113.015,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 14.82,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 18946,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1041984,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1105011,
+      "known_cost_usd": 0.44943284000000006,
+      "median_duration_seconds": 121,
+      "median_first_non_read_only_tool_seconds": 3.382,
+      "median_model_duration_seconds": 109.177,
+      "median_model_rounds": 25,
+      "median_post_first_non_read_only_seconds": 116.75,
+      "median_tool_calls": 34,
+      "median_tool_duration_seconds": 20.03,
+      "model": "z-ai/glm-5.3",
+      "output_tokens": 20518,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 896544,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1035086,
+      "known_cost_usd": 0.7118008,
+      "median_duration_seconds": 234,
+      "median_first_non_read_only_tool_seconds": 4.4,
+      "median_model_duration_seconds": 222.659,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 227.583,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 9.457,
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "output_tokens": 42568,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 642368,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 692370,
+      "known_cost_usd": 0.33742648000000003,
+      "median_duration_seconds": 141,
+      "median_first_non_read_only_tool_seconds": 4.643,
+      "median_model_duration_seconds": 131.792,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 137.077,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 5.83,
+      "model": "z-ai/glm-5.3",
+      "output_tokens": 22820,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "v20260815.0.0"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "869d07116c8add0ed237f621a5c7d8e9811e6eaced61b906a113279b7c21819a",
+      "status": "preview",
+      "tier": "core",
+      "version": "20260821.0.0"
+    },
+    "benchmark_tier": "core",
+    "claux_release": "v20260815.0.0",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "869d07116c8add0ed237f621a5c7d8e9811e6eaced61b906a113279b7c21819a",
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "920d6f594c715f6412ce67ae299a12fa5d9a679ae35ccea9adf167beeca267c8",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260817.1.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 2
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Qwen3.8 2.4T A95B and GLM 5.3 ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter.",
+  "model_labels": {
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.3": "GLM 5.3"
+  },
+  "model_order": [
+    "qwen/qwen3.8-2.4t-a95b",
+    "z-ai/glm-5.3"
+  ],
+  "notes": [
+    "The matrix scheduled and evaluated all 48 trials: two models, eight core-tier scenarios, and three attempts. Forty-seven repairs passed and one failed, for a 98% aggregate pass rate with no unavailable or missing trials.",
+    "Qwen completed all 24 repairs. GLM completed 23 of 24; its only failure was historical_uploads_not_recovered in one shared-uploads attempt.",
+    "All trials used Replaybook commit 5fce479, host harness v23, Claux v20260815.0.0, high reasoning, a 900-second deadline, and ducks/replaybook-infra 20260817.1.0.",
+    "OpenRouter reported $7.5341 in total model cost across the 48 evaluated trials."
+  ],
+  "observations": [
+    "Qwen completed the core cohort at 100% with a 2:24 median; GLM reached 96% with a 2:17 median.",
+    "GLM's single failure appeared only after host reboot, when historical uploads were not recovered despite the immediate repair.",
+    "This release adds current core-tier evidence without mixing older full-tier results or results produced through a different harness."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 015-sidekiq-poison-pill --scenario 017-partial-rails-rollout --scenario 019-rust-fd-leak --scenario 021-discourse-shared-uploads --scenario 024-discourse-interrupted-deploy --scenario 028-nix-store-disk-pressure --models qwen/qwen3.8-2.4t-a95b z-ai/glm-5.3 --reasoning-efforts high --concurrency 2 --base-port 28000",
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 83,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:35:36Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.188,
+        "model_duration_seconds": 78.661,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 77.89999999999999,
+        "tool_calls": 11,
+        "tool_duration_seconds": 3.388,
+        "total_duration_seconds": 82.088
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:34:00Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 64352,
+        "cost_usd": 0.12475280000000002,
+        "input_tokens": 103850,
+        "output_tokens": 5464
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 65,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:35:18Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.97,
+        "model_duration_seconds": 62.152,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 58.714,
+        "tool_calls": 11,
+        "tool_duration_seconds": 1.487,
+        "total_duration_seconds": 63.684
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:34:00Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 44672,
+        "cost_usd": 0.051428,
+        "input_tokens": 57557,
+        "output_tokens": 2415
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 114,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:38:13Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.403,
+        "model_duration_seconds": 107.286,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 105.508,
+        "tool_calls": 16,
+        "tool_duration_seconds": 4.748,
+        "total_duration_seconds": 112.911
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:36:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 133824,
+        "cost_usd": 0.1372232,
+        "input_tokens": 172489,
+        "output_tokens": 5339
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 78,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:38:07Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.154,
+        "model_duration_seconds": 70.439,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 70.11,
+        "tool_calls": 15,
+        "tool_duration_seconds": 5.788,
+        "total_duration_seconds": 76.264
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-z-ai-glm-5-3-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:36:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 80320,
+        "cost_usd": 0.051949800000000004,
+        "input_tokens": 91985,
+        "output_tokens": 3349
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 66,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:40:29Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.234,
+        "model_duration_seconds": 60.617,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 58.148,
+        "tool_calls": 16,
+        "tool_duration_seconds": 3.731,
+        "total_duration_seconds": 64.382
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-z-ai-glm-5-3-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:39:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 71808,
+        "cost_usd": 0.04350648,
+        "input_tokens": 79950,
+        "output_tokens": 3054
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 68,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:40:32Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.567,
+        "model_duration_seconds": 63.28,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 60.345000000000006,
+        "tool_calls": 11,
+        "tool_duration_seconds": 3.589,
+        "total_duration_seconds": 66.912
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-z-ai-glm-5-3-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:39:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 57984,
+        "cost_usd": 0.03691804,
+        "input_tokens": 64311,
+        "output_tokens": 2951
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 90,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:43:43Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.367,
+        "model_duration_seconds": 76.265,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 82.654,
+        "tool_calls": 14,
+        "tool_duration_seconds": 11.708,
+        "total_duration_seconds": 88.021
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T23:41:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 92928,
+        "cost_usd": 0.1003036,
+        "input_tokens": 122687,
+        "output_tokens": 3700
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 96,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:43:34Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.339,
+        "model_duration_seconds": 86.173,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 90.741,
+        "tool_calls": 16,
+        "tool_duration_seconds": 8.836,
+        "total_duration_seconds": 95.08
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T23:41:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 108768,
+        "cost_usd": 0.10987159999999999,
+        "input_tokens": 140098,
+        "output_tokens": 4243
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:46:18Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.403,
+        "model_duration_seconds": 60.312,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 76.26599999999999,
+        "tool_calls": 15,
+        "tool_duration_seconds": 18.314,
+        "total_duration_seconds": 78.669
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T23:44:40Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 74976,
+        "cost_usd": 0.0922012,
+        "input_tokens": 103349,
+        "output_tokens": 3410
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 66,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:46:11Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.934,
+        "model_duration_seconds": 57.893,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 59.288,
+        "tool_calls": 15,
+        "tool_duration_seconds": 6.274,
+        "total_duration_seconds": 64.222
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-z-ai-glm-5-3-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T23:44:46Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 106240,
+        "cost_usd": 0.05570699999999999,
+        "input_tokens": 117491,
+        "output_tokens": 2803
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 78,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:49:03Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.743,
+        "model_duration_seconds": 55.569,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 66.098,
+        "tool_calls": 17,
+        "tool_duration_seconds": 16.227,
+        "total_duration_seconds": 71.841
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-z-ai-glm-5-3-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T23:47:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 87744,
+        "cost_usd": 0.04993204,
+        "input_tokens": 97469,
+        "output_tokens": 3069
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 129,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:49:58Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.898,
+        "model_duration_seconds": 103.757,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 118.304,
+        "tool_calls": 22,
+        "tool_duration_seconds": 17.376,
+        "total_duration_seconds": 121.202
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-z-ai-glm-5-3-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-21T23:47:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 220928,
+        "cost_usd": 0.10258527999999999,
+        "input_tokens": 235492,
+        "output_tokens": 5626
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 200,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:53:30Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.426,
+        "model_duration_seconds": 165.926,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 193.36800000000002,
+        "tool_calls": 22,
+        "tool_duration_seconds": 31.806,
+        "total_duration_seconds": 197.794
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:49:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 181632,
+        "cost_usd": 0.17019839999999997,
+        "input_tokens": 219939,
+        "output_tokens": 9543
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 326,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:57:00Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.698,
+        "model_duration_seconds": 275.443,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 320.956,
+        "tool_calls": 29,
+        "tool_duration_seconds": 49.105,
+        "total_duration_seconds": 324.654
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:51:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 636768,
+        "cost_usd": 0.3572956,
+        "input_tokens": 703838,
+        "output_tokens": 15967
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 218,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-21T23:58:23Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.268,
+        "model_duration_seconds": 172.701,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 210.078,
+        "tool_calls": 27,
+        "tool_duration_seconds": 38.902,
+        "total_duration_seconds": 216.346
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:54:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 239712,
+        "cost_usd": 0.1880564,
+        "input_tokens": 280411,
+        "output_tokens": 9786
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 216,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:01:55Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.94,
+        "model_duration_seconds": 169.65,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 208.873,
+        "tool_calls": 28,
+        "tool_duration_seconds": 45.076,
+        "total_duration_seconds": 214.813
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-z-ai-glm-5-3-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:58:00Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 263808,
+        "cost_usd": 0.14870368000000003,
+        "input_tokens": 285062,
+        "output_tokens": 11445
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 243,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:03:47Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.214,
+        "model_duration_seconds": 194.852,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 233.741,
+        "tool_calls": 25,
+        "tool_duration_seconds": 38.253,
+        "total_duration_seconds": 238.955
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-z-ai-glm-5-3-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-21T23:59:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 311232,
+        "cost_usd": 0.17348912,
+        "input_tokens": 334550,
+        "output_tokens": 13619
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 257,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:07:28Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.595,
+        "model_duration_seconds": 206.179,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 251.188,
+        "tool_calls": 25,
+        "tool_duration_seconds": 49.509,
+        "total_duration_seconds": 255.783
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-z-ai-glm-5-3-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:02:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 287808,
+        "cost_usd": 0.16469027999999997,
+        "input_tokens": 310769,
+        "output_tokens": 13117
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 343,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:12:17Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.981,
+        "model_duration_seconds": 204.547,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 335.325,
+        "tool_calls": 22,
+        "tool_duration_seconds": 135.695,
+        "total_duration_seconds": 340.306
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:06:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 246912,
+        "cost_usd": 0.16957199999999994,
+        "input_tokens": 274326,
+        "output_tokens": 8836
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 154,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:11:18Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.978,
+        "model_duration_seconds": 129.225,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 147.428,
+        "tool_calls": 16,
+        "tool_duration_seconds": 24.111,
+        "total_duration_seconds": 153.406
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:08:27Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 162560,
+        "cost_usd": 0.119022,
+        "input_tokens": 185245,
+        "output_tokens": 5502
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 144,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:15:04Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.751,
+        "model_duration_seconds": 106.174,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 139.488,
+        "tool_calls": 28,
+        "tool_duration_seconds": 36.969,
+        "total_duration_seconds": 143.239
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-z-ai-glm-5-3-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:12:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 360896,
+        "cost_usd": 0.15903216,
+        "input_tokens": 387318,
+        "output_tokens": 6411
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 245,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:17:39Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.215,
+        "model_duration_seconds": 131.088,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 241.335,
+        "tool_calls": 29,
+        "tool_duration_seconds": 113.346,
+        "total_duration_seconds": 244.55
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-z-ai-glm-5-3-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:13:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 478144,
+        "cost_usd": 0.20136604,
+        "input_tokens": 507511,
+        "output_tokens": 8167
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 155,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:19:01Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.488,
+        "model_duration_seconds": 115.685,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 149.025,
+        "tool_calls": 26,
+        "tool_duration_seconds": 37.737,
+        "total_duration_seconds": 153.513
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-z-ai-glm-5-3-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:15:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 304384,
+        "cost_usd": 0.14326223999999999,
+        "input_tokens": 327818,
+        "output_tokens": 7117
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 106,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:22:09Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.763,
+        "model_duration_seconds": 98.124,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 98.39399999999999,
+        "tool_calls": 15,
+        "tool_duration_seconds": 5.979,
+        "total_duration_seconds": 104.157
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:20:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 77088,
+        "cost_usd": 0.10213559999999999,
+        "input_tokens": 100374,
+        "output_tokens": 6691
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 102,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:24:21Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.911,
+        "model_duration_seconds": 92.762,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 93.22,
+        "tool_calls": 20,
+        "tool_duration_seconds": 7.313,
+        "total_duration_seconds": 100.131
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:22:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 119328,
+        "cost_usd": 0.12227359999999998,
+        "input_tokens": 150316,
+        "output_tokens": 6072
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 97,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:27:01Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.612,
+        "model_duration_seconds": 85.409,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 91.611,
+        "tool_calls": 19,
+        "tool_duration_seconds": 9.735,
+        "total_duration_seconds": 95.223
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:24:46Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 116160,
+        "cost_usd": 0.128546,
+        "input_tokens": 145069,
+        "output_tokens": 7916
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 92,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:29:32Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.87,
+        "model_duration_seconds": 78.117,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 86.389,
+        "tool_calls": 21,
+        "tool_duration_seconds": 11.08,
+        "total_duration_seconds": 89.259
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-z-ai-glm-5-3-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:27:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 165056,
+        "cost_usd": 0.08548416,
+        "input_tokens": 179186,
+        "output_tokens": 5179
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 88,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:31:52Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.976,
+        "model_duration_seconds": 77.094,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 78.043,
+        "tool_calls": 19,
+        "tool_duration_seconds": 8.849,
+        "total_duration_seconds": 86.019
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-z-ai-glm-5-3-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:29:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 132032,
+        "cost_usd": 0.07518332,
+        "input_tokens": 144997,
+        "output_tokens": 5160
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:34:02Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.317,
+        "model_duration_seconds": 81.673,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 87.55099999999999,
+        "tool_calls": 21,
+        "tool_duration_seconds": 7.659,
+        "total_duration_seconds": 89.868
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-z-ai-glm-5-3-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:32:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 180864,
+        "cost_usd": 0.08700904,
+        "input_tokens": 193842,
+        "output_tokens": 4958
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 151,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:36:01Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.511,
+        "model_duration_seconds": 143.567,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 146.805,
+        "tool_calls": 19,
+        "tool_duration_seconds": 6.677,
+        "total_duration_seconds": 150.316
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:33:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 187968,
+        "cost_usd": 0.18074559999999998,
+        "input_tokens": 228053,
+        "output_tokens": 10497
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 210,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:38:47Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.923,
+        "model_duration_seconds": 200.35,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 204.712,
+        "tool_calls": 21,
+        "tool_duration_seconds": 6.154,
+        "total_duration_seconds": 208.635
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:35:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 455136,
+        "cost_usd": 0.30496920000000005,
+        "input_tokens": 517392,
+        "output_tokens": 14905
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 194,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:40:24Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.117,
+        "model_duration_seconds": 183.77,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 185.496,
+        "tool_calls": 26,
+        "tool_duration_seconds": 5.094,
+        "total_duration_seconds": 191.613
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:36:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 391776,
+        "cost_usd": 0.2825812,
+        "input_tokens": 445346,
+        "output_tokens": 16181
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 430,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "repair did not survive host reboot",
+      "failure_category": "historical_uploads_not_recovered",
+      "finished_at": "2026-08-22T00:47:12Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.427,
+        "model_duration_seconds": 418.828,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 424.59,
+        "tool_calls": 27,
+        "tool_duration_seconds": 10.101,
+        "total_duration_seconds": 429.017
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-z-ai-glm-5-3-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:39:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 420736,
+        "cost_usd": 0.28877576000000005,
+        "input_tokens": 462128,
+        "output_tokens": 27599
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 366,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:47:30Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.202,
+        "model_duration_seconds": 358.865,
+        "model_rounds": 27,
+        "post_first_non_read_only_seconds": 360.081,
+        "tool_calls": 35,
+        "tool_duration_seconds": 5.302,
+        "total_duration_seconds": 364.283
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-z-ai-glm-5-3-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:41:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 627584,
+        "cost_usd": 0.31524283999999997,
+        "input_tokens": 666529,
+        "output_tokens": 22170
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 492,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:56:23Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.823,
+        "model_duration_seconds": 481.25,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 487.41700000000003,
+        "tool_calls": 34,
+        "tool_duration_seconds": 9.227,
+        "total_duration_seconds": 491.24
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-z-ai-glm-5-3-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:47:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 742912,
+        "cost_usd": 0.40303752000000004,
+        "input_tokens": 794210,
+        "output_tokens": 31378
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 137,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:51:13Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.823,
+        "model_duration_seconds": 120.595,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 132.662,
+        "tool_calls": 24,
+        "tool_duration_seconds": 14.82,
+        "total_duration_seconds": 135.485
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:48:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 180576,
+        "cost_usd": 0.1580852,
+        "input_tokens": 223192,
+        "output_tokens": 6123
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 117,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:54:18Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.777,
+        "model_duration_seconds": 101.727,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 113.015,
+        "tool_calls": 22,
+        "tool_duration_seconds": 13.987,
+        "total_duration_seconds": 115.792
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:52:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 203808,
+        "cost_usd": 0.17288560000000006,
+        "input_tokens": 249713,
+        "output_tokens": 6719
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 98,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:57:11Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.991,
+        "model_duration_seconds": 82.509,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 94.404,
+        "tool_calls": 21,
+        "tool_duration_seconds": 14.825,
+        "total_duration_seconds": 97.395
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:55:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 189024,
+        "cost_usd": 0.15221880000000002,
+        "input_tokens": 227919,
+        "output_tokens": 6104
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 117,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T00:59:37Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.713,
+        "model_duration_seconds": 109.177,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 113.20400000000001,
+        "tool_calls": 35,
+        "tool_duration_seconds": 6.627,
+        "total_duration_seconds": 115.917
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-z-ai-glm-5-3-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:57:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 345600,
+        "cost_usd": 0.1442968,
+        "input_tokens": 364702,
+        "output_tokens": 6295
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 168,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T01:01:15Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.546,
+        "model_duration_seconds": 146.001,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 161.588,
+        "tool_calls": 34,
+        "tool_duration_seconds": 20.03,
+        "total_duration_seconds": 166.134
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-z-ai-glm-5-3-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T00:58:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 428352,
+        "cost_usd": 0.18448452000000004,
+        "input_tokens": 453503,
+        "output_tokens": 8614
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 121,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T01:02:54Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.382,
+        "model_duration_seconds": 99.361,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 116.75,
+        "tool_calls": 27,
+        "tool_duration_seconds": 20.668,
+        "total_duration_seconds": 120.132
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-z-ai-glm-5-3-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T01:00:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 268032,
+        "cost_usd": 0.12065152,
+        "input_tokens": 286806,
+        "output_tokens": 5609
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 234,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T01:06:35Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.625,
+        "model_duration_seconds": 222.659,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 227.583,
+        "tool_calls": 21,
+        "tool_duration_seconds": 9.457,
+        "total_duration_seconds": 232.208
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T01:02:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 300960,
+        "cost_usd": 0.253982,
+        "input_tokens": 349168,
+        "output_tokens": 16229
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 384,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T01:11:16Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.023,
+        "model_duration_seconds": 367.398,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 379.837,
+        "tool_calls": 29,
+        "tool_duration_seconds": 15.33,
+        "total_duration_seconds": 382.86
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen3-8-2-4t-a95b-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T01:04:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 437184,
+        "cost_usd": 0.3008728,
+        "input_tokens": 489884,
+        "output_tokens": 18006
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 197,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T01:11:49Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.4,
+        "model_duration_seconds": 188.031,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 191.563,
+        "tool_calls": 22,
+        "tool_duration_seconds": 7.859,
+        "total_duration_seconds": 195.963
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen3-8-2-4t-a95b-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T01:08:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 158400,
+        "cost_usd": 0.156946,
+        "input_tokens": 196034,
+        "output_tokens": 8333
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 132,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T01:16:43Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.643,
+        "model_duration_seconds": 124.606,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 125.477,
+        "tool_calls": 17,
+        "tool_duration_seconds": 5.46,
+        "total_duration_seconds": 130.12
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-z-ai-glm-5-3-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T01:14:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 120896,
+        "cost_usd": 0.07745616,
+        "input_tokens": 134570,
+        "output_tokens": 6109
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 168,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T01:17:25Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.749,
+        "model_duration_seconds": 159.921,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 157.08700000000002,
+        "tool_calls": 28,
+        "tool_duration_seconds": 5.83,
+        "total_duration_seconds": 165.836
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-z-ai-glm-5-3-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T01:14:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 308480,
+        "cost_usd": 0.14638440000000003,
+        "input_tokens": 329348,
+        "output_tokens": 8401
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 141,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T01:21:21Z",
+      "model": "z-ai/glm-5.3",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.149,
+        "model_duration_seconds": 131.792,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 137.077,
+        "tool_calls": 26,
+        "tool_duration_seconds": 8.35,
+        "total_duration_seconds": 140.226
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-z-ai-glm-5-3-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T01:18:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 212992,
+        "cost_usd": 0.11358591999999999,
+        "input_tokens": 228452,
+        "output_tokens": 8310
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 309,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-22T01:41:29Z",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.68,
+        "model_duration_seconds": 271.979,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 300.46,
+        "tool_calls": 27,
+        "tool_duration_seconds": 35.079,
+        "total_duration_seconds": 307.14
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-qwen-qwen3-8-2-4t-a95b-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-22T01:35:59Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 334720,
+        "cost_usd": 0.22515000000000002,
+        "input_tokens": 369758,
+        "output_tokens": 11899
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "869d07116c8add0ed237f621a5c7d8e9811e6eaced61b906a113279b7c21819a",
+        "status": "preview",
+        "tier": "core",
+        "version": "20260821.0.0"
+      },
+      "benchmark_tier": "core",
+      "claux_release": "v20260815.0.0",
+      "concurrency": 2,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "869d07116c8add0ed237f621a5c7d8e9811e6eaced61b906a113279b7c21819a",
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "920d6f594c715f6412ce67ae299a12fa5d9a679ae35ccea9adf167beeca267c8",
+        "scenario_packs": [
+          {
+            "git_commit": "b6cf7d34236cee57fc5141136eb9ea3c21657d66",
+            "id": "ducks/replaybook-infra",
+            "sha256": "702159909beafeafc44534a5398bbc0537df829034796437caa3b81aad9140fc",
+            "version": "20260817.1.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+            "version": 2
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-08-22T01:41:29.796724Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "qwen/qwen3.8-2.4t-a95b",
+        "z-ai/glm-5.3"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "5fce4797ba9d99fe04cbf475efcf9b9dd748caf8",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260817.1.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260817.1.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-21__23-32-25.b9b509",
+      "started_at": "2026-08-21T23:32:25.123004Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "tier": "core",
+  "title": "Qwen 3.8 and GLM 5.3 core infrastructure cohort",
+  "totals": {
+    "cache_read_tokens": 11724064,
+    "cost_reported_trials": 48,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 48,
+    "failed": 1,
+    "failure_categories": {
+      "historical_uploads_not_recovered": 1
+    },
+    "input_tokens": 13134006,
+    "known_cost_usd": 7.53405052,
+    "median_duration_seconds": 139.0,
+    "median_first_non_read_only_tool_seconds": 4.4575,
+    "median_model_duration_seconds": 118.14,
+    "median_model_rounds": 17.5,
+    "median_post_first_non_read_only_seconds": 134.86950000000002,
+    "median_tool_calls": 22.0,
+    "median_tool_duration_seconds": 9.918,
+    "output_tokens": 430390,
+    "pass_rate": 0.9791666666666666,
+    "passed": 47,
+    "recording_reported_trials": 48,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 48,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 48
+  },
+  "version": "20260821.0.1"
+}
