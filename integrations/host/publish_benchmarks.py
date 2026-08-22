@@ -1336,6 +1336,7 @@ def html_page(
 
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html" class="active" aria-current="page">Current</a>
+      <a href="scenarios.html">Scenarios</a>
       <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-models.html">Models</a>
       <a href="benchmark-compare.html">Compare</a>
@@ -1949,6 +1950,7 @@ def compare_page() -> str:
 
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html">Current</a>
+      <a href="scenarios.html">Scenarios</a>
       <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-models.html">Models</a>
       <a href="benchmark-compare.html" class="active" aria-current="page">Compare</a>
@@ -2341,6 +2343,7 @@ def explorer_page() -> str:
 
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html">Current</a>
+      <a href="scenarios.html">Scenarios</a>
       <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-models.html">Models</a>
       <a href="benchmark-compare.html">Compare</a>
@@ -2573,6 +2576,7 @@ def coverage_page() -> str:
 
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html">Current</a>
+      <a href="scenarios.html">Scenarios</a>
       <a href="benchmark-coverage.html" class="active" aria-current="page">Coverage</a>
       <a href="benchmark-models.html">Models</a>
       <a href="benchmark-compare.html">Compare</a>
@@ -2728,6 +2732,7 @@ def models_page() -> str:
 
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html">Current</a>
+      <a href="scenarios.html">Scenarios</a>
       <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
       <a href="benchmark-compare.html">Compare</a>
@@ -2852,6 +2857,7 @@ def model_page() -> str:
 
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html">Current</a>
+      <a href="scenarios.html">Scenarios</a>
       <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
       <a href="benchmark-compare.html">Compare</a>
