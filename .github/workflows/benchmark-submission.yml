@@ -6,6 +6,8 @@ on:
       - "benchmark-submissions/**"
       - "integrations/host/benchmark_submission.py"
       - "integrations/host/publish_benchmarks.py"
+      - "site/**"
+      - "requirements-site.txt"
       - ".github/workflows/benchmark-submission.yml"
 
 permissions:
@@ -17,4 +19,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - run: python -m pip install -r requirements-site.txt
       - run: python integrations/host/benchmark_submission.py validate-all benchmark-submissions

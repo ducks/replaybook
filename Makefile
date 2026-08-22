@@ -1,4 +1,4 @@
-.PHONY: help version-bump release build test clean clippy fmt fmt-check lint deploy-check harbor-check host-check skills-check pages-check install-hooks
+.PHONY: help version-bump release build test clean clippy fmt fmt-check lint deploy-check harbor-check host-check skills-check site-build site-check pages-check install-hooks
 
 define get_next_version
 $(shell \
@@ -28,6 +28,8 @@ help:
 	@echo "  make harbor-check                  - Validate Harbor integration scripts"
 	@echo "  make host-check                    - Validate host-native evaluation scripts"
 	@echo "  make skills-check                  - Validate bundled agent skills"
+	@echo "  make site-build                    - Render the static benchmark frontend"
+	@echo "  make site-check                    - Verify generated frontend output"
 	@echo "  make clean                         - Clean build artifacts"
 	@echo ""
 	@echo "Next version will be: $(VERSION)"
@@ -120,7 +122,13 @@ skills-check:
 	@grep -q '^name: replaybook-build-scenario$$' skills/replaybook-build-scenario/SKILL.md
 	@grep -q '\$$replaybook-build-scenario' skills/replaybook-build-scenario/agents/openai.yaml
 
-pages-check:
+site-build:
+	@python integrations/host/publish_benchmarks.py build
+
+site-check:
+	@python integrations/host/publish_benchmarks.py check
+
+pages-check: site-check
 	@python -m unittest tests.test_pages
 
 lint: fmt-check deploy-check harbor-check host-check skills-check pages-check

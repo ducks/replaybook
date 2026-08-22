@@ -36,6 +36,9 @@ DOCS_EXPLORER = Path("docs/benchmark-explorer.html")
 DOCS_HISTORY = Path("docs/benchmark-history.html")
 DOCS_MODEL = Path("docs/benchmark-model.html")
 DOCS_MODELS = Path("docs/benchmark-models.html")
+DOCS_STYLE = Path("docs/style.css")
+SITE_TEMPLATES = Path("site/templates")
+SITE_STYLE = Path("site/static/style.css")
 MARKDOWN_RECORD = Path("benchmarks.md")
 VERSION_PATTERN = re.compile(r"^[0-9]{8}\.[0-9]+\.[0-9]+$")
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
@@ -57,6 +60,45 @@ HISTORY_END = "<!-- replaybook:generated-history:end -->"
 
 class PublishError(ValueError):
     """A benchmark cannot be imported or rendered safely."""
+
+
+def site_environment() -> Any:
+    try:
+        from jinja2 import (
+            Environment,
+            FileSystemLoader,
+            StrictUndefined,
+            select_autoescape,
+        )
+    except ImportError as error:
+        raise PublishError(
+            "site rendering requires: python -m pip install -r requirements-site.txt"
+        ) from error
+    return Environment(
+        loader=FileSystemLoader(REPO_DIR / SITE_TEMPLATES),
+        autoescape=select_autoescape(("html", "xml")),
+        undefined=StrictUndefined,
+        keep_trailing_newline=True,
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+
+
+def render_site_template(template: str, **context: Any) -> str:
+    try:
+        return site_environment().get_template(template).render(**context)
+    except Exception as error:
+        raise PublishError(f"could not render site template {template}: {error}") from error
+
+
+def trusted_html(value: str) -> Any:
+    try:
+        from markupsafe import Markup
+    except ImportError as error:
+        raise PublishError(
+            "site rendering requires: python -m pip install -r requirements-site.txt"
+        ) from error
+    return Markup(value)
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -1288,9 +1330,7 @@ def html_page(
         f"  --attempts {attempts} \\\n"
         "  --concurrency 2"
     )
-    run_command = html.escape(
-        release.get("reproduction_command") or generated_command
-    )
+    run_command = release.get("reproduction_command") or generated_command
     scenario_packs = release["compatibility"].get("scenario_packs", [])
     pack_note = ""
     pack_compatibility = ""
@@ -1312,100 +1352,47 @@ def html_page(
             for row in rows[:5]
         ]
     )
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Current benchmarks &middot; replaybook</title>
-  <meta name="description" content="Current Replaybook infrastructure-agent benchmark results.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrap wide">
-    <header class="site">
-      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
-      <nav class="site">
-        <a href="index.html">Home</a>
-        <a href="usage.html">Usage</a>
-        <a href="benchmarks.html" class="active">Benchmarks</a>
-        <a href="https://github.com/ducks/replaybook">GitHub</a>
-      </nav>
-    </header>
-
-    <nav class="benchmark-tabs" aria-label="Benchmark sections">
-      <a href="benchmarks.html" class="active" aria-current="page">Current</a>
-      <a href="scenarios.html">Scenarios</a>
-      <a href="benchmark-coverage.html">Coverage</a>
-      <a href="benchmark-models.html">Models</a>
-      <a href="benchmark-compare.html">Compare</a>
-      <a href="benchmark-explorer.html">Explore</a>
-      <a href="benchmark-history.html">History</a>
-      <a href="benchmark-methodology.html">Methodology</a>
-    </nav>
-
-    <p class="eyebrow">Canonical cohort · Benchmark {html.escape(release['version'])}</p>
-    <h1>{html.escape(release['title'])}</h1>
-    <p class="tagline benchmark-tagline">{html.escape(release['description'])}</p>
-
-    <div class="cohort-identity" aria-label="Canonical cohort identity">
-      <span class="badge verified">Canonical</span>
-      <span>{html.escape(tier_label(release))} tier</span>
-      <span>{html.escape(harness_label(harness))} agent harness</span>
-      <span>{html.escape(str(harness.get('provider') or 'Provider not reported'))}</span>
-      <span>Host harness {html.escape(host_versions)}</span>
-      <span>{release['compatibility']['agent_timeout_seconds']}s timeout</span>
-    </div>
-
-    <div class="metric-grid" aria-label="Current benchmark results">
-      <div class="metric"><span class="metric-value">{totals['passed']}/{totals['evaluated']}</span><span class="metric-label">durable repairs</span></div>
-      <div class="metric"><span class="metric-value">{format_duration(totals['median_duration_seconds'])}</span><span class="metric-label">overall median</span></div>
-      <div class="metric"><span class="metric-value">{reported_money(totals['known_cost_usd'], totals['cost_reported_trials'], totals['trials'])}</span><span class="metric-label">known total cost</span></div>{subscription_usage_metric}
-    </div>
-
-    <div class="callout benchmark-status verified-status">
-      <strong>{totals['trials']} trials across {source_count} controlled {source_noun}.</strong>
-      {scenario_count} scenarios were evaluated through the {html.escape(harness_label(harness))} agent harness. {totals['passed']} repairs passed durable verification. {totals['failed']} evaluated attempts failed and {totals['unavailable']} {trial_noun(totals['unavailable'])} {"was" if totals['unavailable'] == 1 else "were"} unavailable.
-    </div>
-{companion_releases}
-{recent_scenarios}
-
-    <h2>Canonical model summary</h2>
-    <p class="small muted">Only model lanes inside benchmark <code>{html.escape(release['version'])}</code> appear here. Companion harness cohorts stay in their own comparison boundary above. <a href="benchmark-compare.html?{html.escape(compare_query)}">Compare this cohort →</a></p>
-    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
-{chr(10).join(model_cells)}
-    </tbody></table></div>
-{recording_section}
-
-{observations}
-
-    <h2>Scenario breakdown</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th>{model_headers}</tr></thead><tbody>
-{chr(10).join(scenario_lines)}
-    </tbody></table></div>
-
-    <h2>Failure categories</h2>
-    <ul>{failure_items}</ul>
-{unavailable_section}{post_timeout}{corrections}{notes}
-
-    <h2>Constituent matrices</h2>
-    <p>The publisher recorded harness provenance and validated matching {pack_compatibility}scenario versions, attempts, timeout, and agent adapter before combining these summaries.</p>{pack_note}
-    <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
-{source_rows}
-    </tbody></table></div>
-
-    <h2>Run the matrix</h2>
-    <pre><code>{run_command}</code></pre>
-
-    <p class="small muted">Agent harness: {html.escape(harness_label(harness))}. Provider lane: {html.escape(str(harness.get('provider') or 'not reported'))}. Billing: {html.escape(str(harness.get('billing') or 'unknown'))}. Host harness: {html.escape(host_versions)}. Agent timeout: {release['compatibility']['agent_timeout_seconds']} seconds. Usage was reported for {totals['usage_reported_trials']} of {totals['trials']} trials.</p>
-
-    <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
-
-    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
-  </div>
-</body>
-</html>
-"""
+    return render_site_template(
+        "benchmarks.html",
+        release=release,
+        totals=totals,
+        tier=tier_label(release),
+        harness_name=harness_label(harness),
+        provider=str(harness.get("provider") or "Provider not reported"),
+        provider_lower=str(harness.get("provider") or "not reported"),
+        billing=str(harness.get("billing") or "unknown"),
+        host_versions=host_versions,
+        timeout_seconds=release["compatibility"]["agent_timeout_seconds"],
+        median_duration=format_duration(totals["median_duration_seconds"]),
+        total_cost=reported_money(
+            totals["known_cost_usd"],
+            totals["cost_reported_trials"],
+            totals["trials"],
+        ),
+        subscription_usage_metric=trusted_html(subscription_usage_metric),
+        source_count=source_count,
+        source_noun=source_noun,
+        scenario_count=scenario_count,
+        unavailable_noun=trial_noun(totals["unavailable"]),
+        unavailable_verb="was" if totals["unavailable"] == 1 else "were",
+        companion_releases=trusted_html(companion_releases),
+        recent_scenarios=trusted_html(recent_scenarios),
+        compare_query=compare_query,
+        model_cells=trusted_html(chr(10).join(model_cells)),
+        recording_section=trusted_html(recording_section),
+        observations=trusted_html(observations),
+        model_headers=trusted_html(model_headers),
+        scenario_lines=trusted_html(chr(10).join(scenario_lines)),
+        failure_items=trusted_html(failure_items),
+        unavailable_section=trusted_html(unavailable_section),
+        post_timeout=trusted_html(post_timeout),
+        corrections=trusted_html(corrections),
+        notes=trusted_html(notes),
+        pack_compatibility=pack_compatibility,
+        pack_note=trusted_html(pack_note),
+        source_rows=trusted_html(source_rows),
+        run_command=run_command,
+    )
 
 
 def markdown_section(release: dict[str, Any]) -> str:
@@ -1925,1088 +1912,23 @@ def public_coverage(
 
 
 def compare_page() -> str:
-    return """<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Benchmark comparison &middot; replaybook</title>
-  <meta name="description" content="Compare versioned Replaybook infrastructure-agent benchmark cohorts without hiding compatibility boundaries.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrap wide">
-    <header class="site">
-      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
-      <nav class="site">
-        <a href="index.html">Home</a>
-        <a href="usage.html">Usage</a>
-        <a href="benchmarks.html" class="active">Benchmarks</a>
-        <a href="https://github.com/ducks/replaybook">GitHub</a>
-      </nav>
-    </header>
-
-    <nav class="benchmark-tabs" aria-label="Benchmark sections">
-      <a href="benchmarks.html">Current</a>
-      <a href="scenarios.html">Scenarios</a>
-      <a href="benchmark-coverage.html">Coverage</a>
-      <a href="benchmark-models.html">Models</a>
-      <a href="benchmark-compare.html" class="active" aria-current="page">Compare</a>
-      <a href="benchmark-explorer.html">Explore</a>
-      <a href="benchmark-history.html">History</a>
-      <a href="benchmark-methodology.html">Methodology</a>
-    </nav>
-
-    <p class="eyebrow">Deliberate comparisons</p>
-    <h1>Compare benchmark lanes</h1>
-    <p class="tagline benchmark-tagline">Put two to five model cohorts side by side. Replaybook shows the result and the boundaries that determine whether the comparison is exact.</p>
-
-    <div class="compare-picker">
-      <label>Add a model cohort<select id="lane-picker"></select></label>
-      <button id="add-lane" type="button">Add lane</button>
-    </div>
-    <div id="selected-lanes" class="selected-lanes" aria-live="polite"></div>
-
-    <div id="compatibility-status" class="callout comparison-note" aria-live="polite"></div>
-
-    <div class="metric-grid compare-metrics" aria-label="Comparison highlights">
-      <div class="metric"><span class="metric-value" id="compare-lane-count">0</span><span class="metric-label">selected lanes</span></div>
-      <div class="metric"><span class="metric-value" id="compare-best-rate">n/a</span><span class="metric-label">best pass rate</span></div>
-      <div class="metric"><span class="metric-value" id="compare-fastest">n/a</span><span class="metric-label">fastest median</span></div>
-      <div class="metric"><span class="metric-value" id="compare-cheapest">n/a</span><span class="metric-label">lowest cost / repair</span></div>
-    </div>
-
-    <h2>Model cohorts</h2>
-    <div class="table-scroll"><table><thead><tr><th>Model cohort</th><th>Harness</th><th>Repairs</th><th>Pass rate</th><th>95% CI</th><th>Median</th><th>Tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody id="compare-summary"></tbody></table></div>
-
-    <div class="compare-chart-grid">
-      <section><h2>Durable repair rate</h2><div id="reliability-chart" class="compare-chart"></div></section>
-      <section><h2>Median repair time</h2><div id="duration-chart" class="compare-chart"></div></section>
-    </div>
-
-    <h2>Scenario head-to-head</h2>
-    <p class="small muted">Every cell stays attached to its original release. Missing means that cohort did not evaluate that exact scenario version.</p>
-    <div class="table-scroll"><table><thead><tr id="scenario-head"><th>Scenario</th></tr></thead><tbody id="scenario-results"></tbody></table></div>
-
-    <h2>Observed failures</h2>
-    <div id="compare-failures" class="cohort-grid"></div>
-
-    <p class="small muted">Selections are encoded in the URL for sharing. Data comes from the path-free <a href="benchmark-catalog.json"><code>benchmark-catalog.json</code></a> API.</p>
-    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
-  </div>
-
-  <script>
-  let catalog;
-  let selected = [];
-  const picker = document.querySelector("#lane-picker");
-  const params = new URLSearchParams(window.location.search);
-
-  function laneKey(lane) {
-    return `${lane.release}|||${lane.model}|||${lane.reasoning_effort || ""}`;
-  }
-
-  function laneLabel(lane) {
-    const effort = lane.reasoning_effort ? ` (${lane.reasoning_effort})` : "";
-    return `${lane.model_label}${effort}`;
-  }
-
-  function releaseFor(lane) {
-    return catalog.releases.find(release => release.version === lane.release);
-  }
-
-  function duration(seconds) {
-    if (seconds === null || seconds === undefined) return "n/a";
-    const rounded = Math.round(seconds);
-    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
-  }
-
-  function money(value, incomplete = false) {
-    if (value === null || value === undefined) return "n/a";
-    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
-  }
-
-  function percent(value) {
-    return value === null || value === undefined ? "n/a" : `${Math.round(value * 100)}%`;
-  }
-
-  function interval(lane) {
-    if (lane.pass_rate_95_low === null || lane.pass_rate_95_low === undefined) return "n/a";
-    return `${percent(lane.pass_rate_95_low)}–${percent(lane.pass_rate_95_high)}`;
-  }
-
-  function normalized(value) {
-    return JSON.stringify(value);
-  }
-
-  function boundary(release) {
-    const harness = release.agent_harness || {};
-    return {
-      "Agent harness": [harness.id, harness.version, harness.provider],
-      "Host harness": [...(release.harness_versions || [])].sort(),
-      "Tier": release.tier,
-      "Attempts": release.attempts,
-      "Deadline": release.agent_timeout_seconds,
-      "Scenario set": (release.scenarios || []).map(item => `${item.id}@${item.version}`).sort(),
-      "Scenario packs": (release.scenario_packs || []).map(item => `${item.id}@${item.version}`).sort(),
-      "Claux release": release.claux_release || null
-    };
-  }
-
-  function differingBoundaries(lanes) {
-    const releases = lanes.map(releaseFor);
-    if (releases.length < 2) return [];
-    const values = releases.map(boundary);
-    return Object.keys(values[0]).filter(name => new Set(values.map(item => normalized(item[name]))).size > 1);
-  }
-
-  function updateUrl() {
-    const query = new URLSearchParams();
-    selected.forEach(lane => query.append("lane", laneKey(lane)));
-    const queryString = query.toString();
-    history.replaceState(null, "", `${window.location.pathname}${queryString ? `?${queryString}` : ""}`);
-  }
-
-  function populatePicker() {
-    picker.replaceChildren();
-    const placeholder = document.createElement("option");
-    placeholder.value = "";
-    placeholder.textContent = "Choose a release and model";
-    picker.append(placeholder);
-    [...catalog.releases].reverse().forEach(release => {
-      const lanes = catalog.lanes.filter(lane => lane.release === release.version);
-      if (!lanes.length) return;
-      const group = document.createElement("optgroup");
-      group.label = `${release.version} · ${release.title}`;
-      lanes.forEach(lane => {
-        const item = document.createElement("option");
-        item.value = laneKey(lane);
-        item.textContent = laneLabel(lane);
-        item.disabled = selected.some(current => laneKey(current) === item.value);
-        group.append(item);
-      });
-      picker.append(group);
-    });
-  }
-
-  function renderSelections() {
-    const container = document.querySelector("#selected-lanes");
-    container.replaceChildren();
-    selected.forEach(lane => {
-      const chip = document.createElement("span");
-      chip.className = "selected-lane";
-      const text = document.createElement("span");
-      text.textContent = `${laneLabel(lane)} · ${lane.release}`;
-      const remove = document.createElement("button");
-      remove.type = "button";
-      remove.setAttribute("aria-label", `Remove ${laneLabel(lane)} from comparison`);
-      remove.textContent = "×";
-      remove.addEventListener("click", () => {
-        selected = selected.filter(item => laneKey(item) !== laneKey(lane));
-        render();
-      });
-      chip.append(text, remove);
-      container.append(chip);
-    });
-  }
-
-  function renderCompatibility() {
-    const status = document.querySelector("#compatibility-status");
-    status.classList.remove("compare-compatible", "compare-incompatible");
-    if (selected.length < 2) {
-      status.classList.add("compare-incompatible");
-      status.textContent = "Select at least two model cohorts to make a comparison.";
-      return;
-    }
-    const differences = differingBoundaries(selected);
-    const strong = document.createElement("strong");
-    if (!differences.length) {
-      status.classList.add("compare-compatible");
-      strong.textContent = "Exact comparison boundary.";
-      status.append(strong, " These lanes share the same harness, scenario set, tier, attempts, deadline, and provider boundary.");
-    } else {
-      status.classList.add("compare-incompatible");
-      strong.textContent = "Not directly comparable.";
-      status.append(strong, ` The selected cohorts differ by: ${differences.join(", ")}. Results remain visible, but should not be pooled into one ranking.`);
-    }
-  }
-
-  function appendCell(row, text, className = "") {
-    const cell = document.createElement("td");
-    cell.textContent = text;
-    if (className) cell.className = className;
-    row.append(cell);
-  }
-
-  function renderSummary() {
-    const body = document.querySelector("#compare-summary");
-    body.replaceChildren();
-    selected.forEach(lane => {
-      const release = releaseFor(lane);
-      const harness = release.agent_harness || {};
-      const row = document.createElement("tr");
-      const identity = document.createElement("td");
-      const strong = document.createElement("strong");
-      strong.textContent = laneLabel(lane);
-      const meta = document.createElement("span");
-      meta.className = "profile-cohort";
-      meta.textContent = `${lane.release} · ${release.tier}`;
-      identity.append(strong, meta);
-      row.append(identity);
-      appendCell(row, `${harness.label || harness.id} ${harness.version || ""} · ${harness.provider || "unknown provider"}`);
-      appendCell(row, `${lane.passed}/${lane.evaluated}`);
-      appendCell(row, percent(lane.pass_rate));
-      appendCell(row, interval(lane));
-      appendCell(row, duration(lane.median_duration_seconds));
-      appendCell(row, (lane.input_tokens === null || lane.input_tokens === undefined) ? "n/a" : (lane.input_tokens + lane.output_tokens).toLocaleString());
-      appendCell(row, lane.cost_reported_trials ? money(lane.known_cost_usd, lane.cost_reported_trials < lane.trials) : "n/a");
-      appendCell(row, money(lane.cost_per_repair_usd, lane.cost_reported_trials < lane.trials));
-      body.append(row);
-    });
-
-    document.querySelector("#compare-lane-count").textContent = String(selected.length);
-    const rates = selected.filter(lane => lane.pass_rate !== null && lane.pass_rate !== undefined);
-    const medians = selected.filter(lane => lane.median_duration_seconds !== null && lane.median_duration_seconds !== undefined);
-    const costs = selected.filter(lane => lane.cost_per_repair_usd !== null && lane.cost_per_repair_usd !== undefined);
-    document.querySelector("#compare-best-rate").textContent = rates.length ? percent(Math.max(...rates.map(lane => lane.pass_rate))) : "n/a";
-    document.querySelector("#compare-fastest").textContent = medians.length ? duration(Math.min(...medians.map(lane => lane.median_duration_seconds))) : "n/a";
-    document.querySelector("#compare-cheapest").textContent = costs.length ? money(Math.min(...costs.map(lane => lane.cost_per_repair_usd))) : "n/a";
-  }
-
-  function chartRow(lane, value, maximum, formatted) {
-    const row = document.createElement("div");
-    row.className = "compare-chart-row";
-    const name = document.createElement("span");
-    name.textContent = laneLabel(lane);
-    const track = document.createElement("span");
-    track.className = "compare-chart-track";
-    const bar = document.createElement("span");
-    bar.className = "compare-chart-bar";
-    bar.style.width = `${maximum ? Math.max(1, value / maximum * 100) : 0}%`;
-    track.append(bar);
-    const amount = document.createElement("strong");
-    amount.textContent = formatted;
-    row.append(name, track, amount);
-    return row;
-  }
-
-  function renderCharts() {
-    const reliability = document.querySelector("#reliability-chart");
-    const timing = document.querySelector("#duration-chart");
-    reliability.replaceChildren();
-    timing.replaceChildren();
-    const maxDuration = Math.max(0, ...selected.map(lane => lane.median_duration_seconds || 0));
-    selected.forEach(lane => {
-      reliability.append(chartRow(lane, lane.pass_rate || 0, 1, percent(lane.pass_rate)));
-      timing.append(chartRow(lane, lane.median_duration_seconds || 0, maxDuration, duration(lane.median_duration_seconds)));
-    });
-  }
-
-  function renderScenarios() {
-    const head = document.querySelector("#scenario-head");
-    const body = document.querySelector("#scenario-results");
-    head.replaceChildren();
-    body.replaceChildren();
-    const title = document.createElement("th");
-    title.textContent = "Scenario";
-    head.append(title);
-    selected.forEach(lane => {
-      const cell = document.createElement("th");
-      cell.textContent = laneLabel(lane);
-      head.append(cell);
-    });
-    const records = selected.flatMap(lane => catalog.records.filter(record => laneKey(record) === laneKey(lane)));
-    const scenarios = [...new Map(records.map(record => [`${record.scenario}@${record.scenario_version}`, record])).values()]
-      .sort((a, b) => a.scenario_label.localeCompare(b.scenario_label));
-    scenarios.forEach(scenario => {
-      const row = document.createElement("tr");
-      const label = document.createElement("td");
-      label.textContent = `${scenario.scenario_label} v${scenario.scenario_version}`;
-      row.append(label);
-      selected.forEach(lane => {
-        const record = catalog.records.find(item => laneKey(item) === laneKey(lane) && item.scenario === scenario.scenario && item.scenario_version === scenario.scenario_version);
-        appendCell(row, record ? `${record.passed}/${record.evaluated} · ${percent(record.pass_rate)} · ${duration(record.median_duration_seconds)}` : "missing", record ? "" : "muted");
-      });
-      body.append(row);
-    });
-  }
-
-  function renderFailures() {
-    const container = document.querySelector("#compare-failures");
-    container.replaceChildren();
-    selected.forEach(lane => {
-      const card = document.createElement("article");
-      card.className = "cohort-card";
-      const title = document.createElement("h3");
-      title.textContent = laneLabel(lane);
-      const meta = document.createElement("p");
-      meta.className = "small muted";
-      meta.textContent = lane.release;
-      const list = document.createElement("ul");
-      const failures = Object.entries(lane.failure_categories || {}).sort((a, b) => b[1] - a[1]);
-      const unavailable = Object.entries(lane.unavailable_categories || {}).sort((a, b) => b[1] - a[1]);
-      if (!failures.length && !unavailable.length) {
-        const item = document.createElement("li");
-        item.textContent = "No scored failures or unavailable trials.";
-        list.append(item);
-      }
-      failures.forEach(([name, count]) => {
-        const item = document.createElement("li");
-        item.textContent = `${name}: ${count}`;
-        list.append(item);
-      });
-      unavailable.forEach(([name, count]) => {
-        const item = document.createElement("li");
-        item.textContent = `${name}: ${count} unavailable`;
-        list.append(item);
-      });
-      card.append(title, meta, list);
-      container.append(card);
-    });
-  }
-
-  function render() {
-    populatePicker();
-    renderSelections();
-    renderCompatibility();
-    renderSummary();
-    renderCharts();
-    renderScenarios();
-    renderFailures();
-    updateUrl();
-  }
-
-  function defaultLanes() {
-    const current = catalog.lanes.filter(lane => lane.release === catalog.current_version);
-    const defaults = current.slice(0, 5);
-    if (defaults.length >= 2) return defaults;
-    const releases = [...catalog.releases].reverse().filter(release => release.version !== catalog.current_version && release.role !== "companion");
-    for (const release of releases) {
-      for (const lane of catalog.lanes.filter(item => item.release === release.version)) {
-        if (defaults.length >= 5) return defaults;
-        if (!defaults.some(item => item.model === lane.model && item.reasoning_effort === lane.reasoning_effort)) defaults.push(lane);
-      }
-    }
-    return defaults;
-  }
-
-  async function initialize() {
-    const response = await fetch("benchmark-catalog.json");
-    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
-    catalog = await response.json();
-    const requested = params.getAll("lane");
-    selected = requested.map(key => catalog.lanes.find(lane => laneKey(lane) === key)).filter(Boolean).slice(0, 5);
-    if (!selected.length) selected = defaultLanes();
-    document.querySelector("#add-lane").addEventListener("click", () => {
-      const lane = catalog.lanes.find(item => laneKey(item) === picker.value);
-      if (!lane || selected.length >= 5 || selected.some(item => laneKey(item) === laneKey(lane))) return;
-      selected.push(lane);
-      render();
-    });
-    render();
-  }
-
-  initialize().catch(error => {
-    const status = document.querySelector("#compatibility-status");
-    status.classList.add("compare-incompatible");
-    status.textContent = `Could not load benchmark comparison: ${error.message}`;
-  });
-  </script>
-</body>
-</html>
-"""
+    return render_site_template("benchmark-compare.html")
 
 
 def explorer_page() -> str:
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Benchmark explorer &middot; replaybook</title>
-  <meta name="description" content="Explore versioned Replaybook infrastructure-agent benchmark evidence.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrap wide">
-    <header class="site">
-      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
-      <nav class="site">
-        <a href="index.html">Home</a>
-        <a href="usage.html">Usage</a>
-        <a href="benchmarks.html" class="active">Benchmarks</a>
-        <a href="https://github.com/ducks/replaybook">GitHub</a>
-      </nav>
-    </header>
-
-    <nav class="benchmark-tabs" aria-label="Benchmark sections">
-      <a href="benchmarks.html">Current</a>
-      <a href="scenarios.html">Scenarios</a>
-      <a href="benchmark-coverage.html">Coverage</a>
-      <a href="benchmark-models.html">Models</a>
-      <a href="benchmark-compare.html">Compare</a>
-      <a href="benchmark-explorer.html" class="active" aria-current="page">Explore</a>
-      <a href="benchmark-history.html">History</a>
-      <a href="benchmark-methodology.html">Methodology</a>
-    </nav>
-
-    <p class="eyebrow">Versioned evidence</p>
-    <h1>Benchmark explorer</h1>
-    <p class="tagline benchmark-tagline">Compare model behavior, cost per durable repair, and failure modes inside one compatible DateVer release at a time.</p>
-
-    <div class="callout comparison-note">
-      <strong>Release boundaries are comparison boundaries.</strong>
-      The explorer never silently pools results from different host harnesses, agent harnesses, providers, scenario packs, verifiers, or adapter versions.
-    </div>
-
-    <div class="catalog-controls" aria-label="Benchmark filters">
-      <label>Release<select id="release-filter"></select></label>
-      <label>Scenario<select id="scenario-filter"></select></label>
-      <label>Model<select id="model-filter"></select></label>
-    </div>
-
-    <div id="release-context" class="small muted"></div>
-    <div class="metric-grid" aria-label="Filtered benchmark results">
-      <div class="metric"><span class="metric-value" id="metric-repairs">0/0</span><span class="metric-label">durable repairs</span></div>
-      <div class="metric"><span class="metric-value" id="metric-cost">$0.0000</span><span class="metric-label">known spend</span></div>
-      <div class="metric"><span class="metric-value" id="metric-repair-cost">n/a</span><span class="metric-label">cost / repair</span></div>
-    </div>
-
-    <h2>Results</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Model</th><th>Trials</th><th>Repairs</th><th>Pass rate</th><th>95% CI</th><th>Median</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody id="catalog-results"></tbody></table></div>
-
-    <h2>Cost per durable repair</h2>
-    <div id="cost-chart" class="cost-chart"></div>
-
-    <div class="catalog-breakdowns">
-      <section><h2>Repair failures</h2><ul id="failure-categories"></ul></section>
-      <section><h2>Unavailable trials</h2><ul id="unavailable-categories"></ul></section>
-    </div>
-
-    <p class="small muted">The path-free source data is available as <a href="benchmark-catalog.json"><code>benchmark-catalog.json</code></a>. Local exploratory runs remain in the rebuildable SQLite catalog and are not published automatically.</p>
-    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
-  </div>
-
-  <script>
-  let catalog;
-  const releaseFilter = document.querySelector("#release-filter");
-  const scenarioFilter = document.querySelector("#scenario-filter");
-  const modelFilter = document.querySelector("#model-filter");
-  const params = new URLSearchParams(window.location.search);
-
-  function option(value, text) {{
-    const node = document.createElement("option");
-    node.value = value;
-    node.textContent = text;
-    return node;
-  }}
-
-  function duration(seconds) {{
-    if (seconds === null || seconds === undefined) return "n/a";
-    const rounded = Math.round(seconds);
-    return `${{Math.floor(rounded / 60)}}:${{String(rounded % 60).padStart(2, "0")}}`;
-  }}
-
-  function money(value, incomplete = false) {{
-    if (value === null || value === undefined) return "n/a";
-    return `$${{value.toFixed(4)}}${{incomplete ? "+" : ""}}`;
-  }}
-
-  function percent(value) {{
-    return value === null || value === undefined ? "n/a" : `${{Math.round(value * 100)}}%`;
-  }}
-
-  function variant(record) {{
-    return record.reasoning_effort ? `${{record.model_label}} (${{record.reasoning_effort}})` : record.model_label;
-  }}
-
-  function replaceOptions(select, entries, selected, allLabel) {{
-    select.replaceChildren();
-    if (allLabel) select.append(option("", allLabel));
-    entries.forEach(([value, text]) => select.append(option(value, text)));
-    if ([...select.options].some(item => item.value === selected)) select.value = selected;
-  }}
-
-  function selectedRecords() {{
-    return catalog.records.filter(record =>
-      record.release === releaseFilter.value &&
-      (!scenarioFilter.value || record.scenario === scenarioFilter.value) &&
-      (!modelFilter.value || record.model === modelFilter.value)
-    );
-  }}
-
-  function categories(records, key) {{
-    const counts = new Map();
-    records.forEach(record => Object.entries(record[key]).forEach(([name, count]) =>
-      counts.set(name, (counts.get(name) || 0) + count)
-    ));
-    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-  }}
-
-  function renderCategories(target, values, empty) {{
-    target.replaceChildren();
-    if (!values.length) {{
-      const item = document.createElement("li");
-      item.textContent = empty;
-      target.append(item);
-      return;
-    }}
-    values.forEach(([name, count]) => {{
-      const item = document.createElement("li");
-      const code = document.createElement("code");
-      code.textContent = name;
-      item.append(code, `: ${{count}}`);
-      target.append(item);
-    }});
-  }}
-
-  function render() {{
-    const records = selectedRecords();
-    const release = catalog.releases.find(item => item.version === releaseFilter.value);
-    const harness = release.agent_harness;
-    const harnessVersion = harness.version ? ` ${{harness.version}}` : "";
-    const role = release.role === "companion" ? "companion cohort" : `${{release.tier}} tier`;
-    const provider = harness.provider ? ` · ${{harness.provider}}` : "";
-    document.querySelector("#release-context").textContent = `${{release.title}} · ${{role}} · ${{harness.label}}${{harnessVersion}} agent harness${{provider}} · host harness ${{release.harness_versions.map(value => `v${{value}}`).join("/")}} · ${{release.agent_timeout_seconds}}s timeout`;
-    const evaluated = records.reduce((sum, row) => sum + row.evaluated, 0);
-    const passed = records.reduce((sum, row) => sum + row.passed, 0);
-    const cost = records.reduce((sum, row) => sum + row.known_cost_usd, 0);
-    const costReported = records.reduce((sum, row) => sum + row.cost_reported_trials, 0);
-    const incomplete = records.some(row => row.cost_reported_trials < row.trials);
-    document.querySelector("#metric-repairs").textContent = `${{passed}}/${{evaluated}}`;
-    document.querySelector("#metric-cost").textContent = costReported ? money(cost, incomplete) : "n/a";
-    document.querySelector("#metric-repair-cost").textContent = costReported && passed ? money(cost / passed, incomplete) : "n/a";
-
-    const body = document.querySelector("#catalog-results");
-    body.replaceChildren();
-    records.forEach(record => {{
-      const row = document.createElement("tr");
-      const values = [
-        `${{record.scenario_label}} · v${{record.scenario_version}}`, variant(record),
-        String(record.trials), `${{record.passed}}/${{record.evaluated}}`, percent(record.pass_rate),
-        record.evaluated ? `${{percent(record.pass_rate_95_low)}}–${{percent(record.pass_rate_95_high)}}` : "n/a",
-        duration(record.median_duration_seconds),
-        record.cost_reported_trials ? money(record.known_cost_usd, record.cost_reported_trials < record.trials) : "n/a",
-        money(record.cost_per_repair_usd, record.cost_reported_trials < record.trials)
-      ];
-      values.forEach(value => {{ const cell = document.createElement("td"); cell.textContent = value; row.append(cell); }});
-      body.append(row);
-    }});
-
-    const chart = document.querySelector("#cost-chart");
-    chart.replaceChildren();
-    const priced = records.filter(record => record.cost_per_repair_usd !== null);
-    const maximum = Math.max(...priced.map(record => record.cost_per_repair_usd), 0);
-    priced.sort((a, b) => a.cost_per_repair_usd - b.cost_per_repair_usd).forEach(record => {{
-      const row = document.createElement("div"); row.className = "cost-row";
-      const name = document.createElement("span"); name.textContent = `${{variant(record)}} · ${{record.scenario_label}}`;
-      const track = document.createElement("span"); track.className = "cost-track";
-      const bar = document.createElement("span"); bar.className = "cost-bar";
-      bar.style.width = `${{maximum ? Math.max(2, record.cost_per_repair_usd / maximum * 100) : 0}}%`;
-      track.append(bar);
-      const value = document.createElement("strong"); value.textContent = money(record.cost_per_repair_usd, record.cost_reported_trials < record.trials);
-      row.append(name, track, value); chart.append(row);
-    }});
-    if (!priced.length) chart.textContent = "No durable repairs in this selection.";
-
-    renderCategories(document.querySelector("#failure-categories"), categories(records, "failure_categories"), "None");
-    renderCategories(document.querySelector("#unavailable-categories"), categories(records, "unavailable_categories"), "None");
-    const next = new URLSearchParams();
-    next.set("release", releaseFilter.value);
-    if (scenarioFilter.value) next.set("scenario", scenarioFilter.value);
-    if (modelFilter.value) next.set("model", modelFilter.value);
-    history.replaceState(null, "", `?${{next}}`);
-  }}
-
-  function refreshDimensions() {{
-    const records = catalog.records.filter(record => record.release === releaseFilter.value);
-    const scenarios = [...new Map(records.map(record => [record.scenario, record.scenario_label])).entries()].sort((a, b) => a[1].localeCompare(b[1]));
-    const models = [...new Map(records.map(record => [record.model, record.model_label])).entries()].sort((a, b) => a[1].localeCompare(b[1]));
-    replaceOptions(scenarioFilter, scenarios, params.get("scenario") || scenarioFilter.value, "All scenarios");
-    replaceOptions(modelFilter, models, params.get("model") || modelFilter.value, "All models");
-    render();
-  }}
-  releaseFilter.addEventListener("change", () => {{ params.delete("scenario"); params.delete("model"); refreshDimensions(); }});
-  scenarioFilter.addEventListener("change", render);
-  modelFilter.addEventListener("change", render);
-
-  async function initialize() {{
-    const response = await fetch("benchmark-catalog.json");
-    if (!response.ok) throw new Error(`catalog request failed: ${{response.status}}`);
-    catalog = await response.json();
-    catalog.releases.slice().reverse().forEach(release => releaseFilter.append(option(release.version, `${{release.version}} · ${{release.tier}}${{release.current ? " · current" : ""}}`)));
-    releaseFilter.value = params.get("release") || catalog.current_version;
-    if (!releaseFilter.value) releaseFilter.value = catalog.current_version;
-    refreshDimensions();
-  }}
-
-  initialize().catch(error => {{
-    document.querySelector("#release-context").textContent = `Could not load benchmark catalog: ${{error.message}}`;
-  }});
-  </script>
-</body>
-</html>
-"""
+    return render_site_template("benchmark-explorer.html")
 
 
 def coverage_page() -> str:
-    return """<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Benchmark coverage &middot; replaybook</title>
-  <meta name="description" content="Latest compatible Replaybook evidence across the current model fleet and scenario corpus.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrap coverage-wrap">
-    <header class="site">
-      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
-      <nav class="site">
-        <a href="index.html">Home</a>
-        <a href="usage.html">Usage</a>
-        <a href="benchmarks.html" class="active">Benchmarks</a>
-        <a href="https://github.com/ducks/replaybook">GitHub</a>
-      </nav>
-    </header>
-
-    <nav class="benchmark-tabs" aria-label="Benchmark sections">
-      <a href="benchmarks.html">Current</a>
-      <a href="scenarios.html">Scenarios</a>
-      <a href="benchmark-coverage.html" class="active" aria-current="page">Coverage</a>
-      <a href="benchmark-models.html">Models</a>
-      <a href="benchmark-compare.html">Compare</a>
-      <a href="benchmark-explorer.html">Explore</a>
-      <a href="benchmark-history.html">History</a>
-      <a href="benchmark-methodology.html">Methodology</a>
-    </nav>
-
-    <p class="eyebrow">Living evidence map</p>
-    <h1>Benchmark coverage</h1>
-    <p class="tagline benchmark-tagline">The newest published cohort for every scenario, measured against the model lanes in the current benchmark fleet.</p>
-
-    <div class="callout comparison-note">
-      <strong>Rows are comparison boundaries.</strong>
-      Every populated cell comes from the row's exact release, scenario version, harness, and verifier. Missing evidence stays missing.
-    </div>
-
-    <div class="metric-grid" aria-label="Benchmark coverage summary">
-      <div class="metric"><span class="metric-value" id="coverage-scenarios">0</span><span class="metric-label">current scenarios</span></div>
-      <div class="metric"><span class="metric-value" id="coverage-models">0</span><span class="metric-label">model lanes</span></div>
-      <div class="metric"><span class="metric-value" id="coverage-cells">0/0</span><span class="metric-label">covered cells</span></div>
-    </div>
-
-    <div id="coverage-context" class="small muted"></div>
-    <div class="table-scroll coverage-scroll"><table class="coverage-table"><thead id="coverage-head"></thead><tbody id="coverage-body"></tbody></table></div>
-
-    <div class="coverage-legend small muted">
-      <span><i class="coverage-swatch coverage-perfect"></i> all evaluated attempts repaired</span>
-      <span><i class="coverage-swatch coverage-partial"></i> mixed result</span>
-      <span><i class="coverage-swatch coverage-failed"></i> no durable repair</span>
-      <span><i class="coverage-swatch coverage-missing"></i> not run in this cohort</span>
-    </div>
-
-    <p class="small muted">Select any populated cell to inspect its immutable release in the <a href="benchmark-explorer.html">benchmark explorer</a>. The stable, path-free source is <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a>.</p>
-    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
-  </div>
-
-  <script>
-  function variantLabel(record) {
-    return record.reasoning_effort ? `${record.model_label} (${record.reasoning_effort})` : record.model_label;
-  }
-
-  function duration(seconds) {
-    if (seconds === null || seconds === undefined) return "n/a";
-    const rounded = Math.round(seconds);
-    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
-  }
-
-  function money(value, incomplete) {
-    if (value === null || value === undefined) return "n/a";
-    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
-  }
-
-  function cellClass(record) {
-    if (!record || !record.evaluated) return "coverage-missing";
-    if (record.passed === record.evaluated) return "coverage-perfect";
-    if (record.passed === 0) return "coverage-failed";
-    return "coverage-partial";
-  }
-
-  function cell(record) {
-    const node = document.createElement("td");
-    node.className = `coverage-cell ${cellClass(record)}`;
-    if (record.status === "missing") {
-      node.innerHTML = '<span class="coverage-gap">not run</span>';
-      return node;
-    }
-    const link = document.createElement("a");
-    link.href = record.evidence_url;
-    const incomplete = record.cost_reported_trials < record.trials;
-    link.innerHTML = `<strong>${record.passed}/${record.evaluated}</strong><span>${duration(record.median_duration_seconds)} &middot; ${record.cost_reported_trials ? money(record.known_cost_usd, incomplete) : "n/a"}</span>`;
-    link.title = `${record.scenario_label} · ${variantLabel(record)} · benchmark ${record.release}`;
-    node.append(link);
-    return node;
-  }
-
-  async function initialize() {
-    const response = await fetch("benchmark-coverage.json");
-    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
-    const coverage = await response.json();
-    const fleet = coverage.fleet;
-    const scenarios = coverage.scenarios;
-
-    const header = document.querySelector("#coverage-head");
-    const headerRow = document.createElement("tr");
-    const scenarioHeader = document.createElement("th");
-    scenarioHeader.textContent = "Scenario cohort";
-    headerRow.append(scenarioHeader);
-    fleet.forEach(record => {
-      const heading = document.createElement("th");
-      const link = document.createElement("a");
-      const query = new URLSearchParams({model: record.model});
-      if (record.reasoning_effort) query.set("reasoning", record.reasoning_effort);
-      link.href = `benchmark-model.html?${query}`;
-      link.textContent = variantLabel(record);
-      heading.append(link);
-      headerRow.append(heading);
-    });
-    header.append(headerRow);
-
-    const body = document.querySelector("#coverage-body");
-    scenarios.forEach(scenario => {
-      const row = document.createElement("tr");
-      const heading = document.createElement("th");
-      const link = document.createElement("a");
-      link.href = scenario.evidence_url;
-      link.textContent = scenario.scenario_label;
-      const meta = document.createElement("span");
-      meta.textContent = `v${scenario.scenario_version} · ${scenario.boundary.tier} · ${scenario.release}`;
-      heading.append(link, meta);
-      row.append(heading);
-      scenario.cells.forEach(record => row.append(cell(record)));
-      body.append(row);
-    });
-
-    document.querySelector("#coverage-scenarios").textContent = String(coverage.totals.scenarios);
-    document.querySelector("#coverage-models").textContent = String(coverage.totals.model_lanes);
-    document.querySelector("#coverage-cells").textContent = `${coverage.totals.covered_cells}/${coverage.totals.possible_cells}`;
-    document.querySelector("#coverage-context").textContent = `Using the configured canonical fleet from benchmark ${coverage.generated_from}. Each scenario uses its newest published cohort.`;
-  }
-
-  initialize().catch(error => {
-    document.querySelector("#coverage-context").textContent = `Could not load benchmark catalog: ${error.message}`;
-  });
-  </script>
-</body>
-</html>
-"""
+    return render_site_template("benchmark-coverage.html")
 
 
 def models_page() -> str:
-    return """<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Model evidence &middot; replaybook</title>
-  <meta name="description" content="Shareable evidence profiles for Replaybook's canonical infrastructure-agent fleet.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrap wide">
-    <header class="site">
-      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
-      <nav class="site">
-        <a href="index.html">Home</a>
-        <a href="usage.html">Usage</a>
-        <a href="benchmarks.html" class="active">Benchmarks</a>
-        <a href="https://github.com/ducks/replaybook">GitHub</a>
-      </nav>
-    </header>
-
-    <nav class="benchmark-tabs" aria-label="Benchmark sections">
-      <a href="benchmarks.html">Current</a>
-      <a href="scenarios.html">Scenarios</a>
-      <a href="benchmark-coverage.html">Coverage</a>
-      <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
-      <a href="benchmark-compare.html">Compare</a>
-      <a href="benchmark-explorer.html">Explore</a>
-      <a href="benchmark-history.html">History</a>
-      <a href="benchmark-methodology.html">Methodology</a>
-    </nav>
-
-    <p class="eyebrow">Canonical fleet</p>
-    <h1>Model evidence</h1>
-    <p class="tagline benchmark-tagline">Shareable profiles across the newest exact cohort for each current scenario.</p>
-
-    <div class="callout comparison-note">
-      <strong>This is evidence coverage, not one pooled leaderboard.</strong>
-      Totals below describe independently versioned scenario cohorts. Open a profile to inspect every underlying comparison boundary.
-    </div>
-
-    <div id="models-context" class="small muted"></div>
-    <div id="model-grid" class="model-grid"></div>
-
-    <p class="small muted">Profiles consume the stable <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a> API.</p>
-    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
-  </div>
-
-  <script>
-  function laneKey(item) {
-    return `${item.model}|||${item.reasoning_effort || ""}`;
-  }
-
-  function laneLabel(item) {
-    return item.reasoning_effort ? `${item.model_label} (${item.reasoning_effort})` : item.model_label;
-  }
-
-  function profileUrl(lane) {
-    const query = new URLSearchParams({model: lane.model});
-    if (lane.reasoning_effort) query.set("reasoning", lane.reasoning_effort);
-    return `benchmark-model.html?${query}`;
-  }
-
-  function compareUrl(cell) {
-    const query = new URLSearchParams();
-    query.append("lane", `${cell.release}|||${cell.model}|||${cell.reasoning_effort || ""}`);
-    return `benchmark-compare.html?${query}`;
-  }
-
-  function money(value, incomplete) {
-    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
-  }
-
-  async function initialize() {
-    const response = await fetch("benchmark-coverage.json");
-    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
-    const coverage = await response.json();
-    document.querySelector("#models-context").textContent = `${coverage.fleet.length} model lanes across ${coverage.scenarios.length} current scenarios · generated from benchmark ${coverage.generated_from}`;
-    const grid = document.querySelector("#model-grid");
-    coverage.fleet.forEach(lane => {
-      const key = laneKey(lane);
-      const cells = coverage.scenarios.flatMap(scenario => scenario.cells.filter(cell => laneKey(cell) === key && cell.status === "covered"));
-      const evaluated = cells.reduce((sum, cell) => sum + cell.evaluated, 0);
-      const passed = cells.reduce((sum, cell) => sum + cell.passed, 0);
-      const perfect = cells.filter(cell => cell.evaluated && cell.passed === cell.evaluated).length;
-      const cost = cells.reduce((sum, cell) => sum + cell.known_cost_usd, 0);
-      const costReported = cells.reduce((sum, cell) => sum + cell.cost_reported_trials, 0);
-      const incomplete = cells.some(cell => cell.cost_reported_trials < cell.trials);
-      const card = document.createElement("article");
-      card.className = "model-card";
-      const title = document.createElement("h2");
-      const link = document.createElement("a");
-      link.href = profileUrl(lane);
-      link.textContent = laneLabel(lane);
-      title.append(link);
-      const identity = document.createElement("code");
-      identity.textContent = lane.model;
-      const stats = document.createElement("div");
-      stats.className = "model-card-stats";
-      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${costReported ? money(cost, incomplete) : "n/a"}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
-      const open = document.createElement("a");
-      open.className = "model-card-link";
-      open.href = profileUrl(lane);
-      open.textContent = "View evidence →";
-      const compare = document.createElement("a");
-      compare.className = "model-card-link";
-      const newest = [...cells].sort((a, b) => b.release.localeCompare(a.release))[0];
-      compare.href = newest ? compareUrl(newest) : "benchmark-compare.html";
-      compare.textContent = "Compare latest cohort →";
-      card.append(title, identity, stats, open, compare);
-      grid.append(card);
-    });
-  }
-
-  initialize().catch(error => {
-    document.querySelector("#models-context").textContent = `Could not load model evidence: ${error.message}`;
-  });
-  </script>
-</body>
-</html>
-"""
+    return render_site_template("benchmark-models.html")
 
 
 def model_page() -> str:
-    return """<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Model profile &middot; replaybook</title>
-  <meta name="description" content="Scenario-level Replaybook evidence for one infrastructure-agent model lane.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrap wide">
-    <header class="site">
-      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
-      <nav class="site">
-        <a href="index.html">Home</a>
-        <a href="usage.html">Usage</a>
-        <a href="benchmarks.html" class="active">Benchmarks</a>
-        <a href="https://github.com/ducks/replaybook">GitHub</a>
-      </nav>
-    </header>
-
-    <nav class="benchmark-tabs" aria-label="Benchmark sections">
-      <a href="benchmarks.html">Current</a>
-      <a href="scenarios.html">Scenarios</a>
-      <a href="benchmark-coverage.html">Coverage</a>
-      <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
-      <a href="benchmark-compare.html">Compare</a>
-      <a href="benchmark-explorer.html">Explore</a>
-      <a href="benchmark-history.html">History</a>
-      <a href="benchmark-methodology.html">Methodology</a>
-    </nav>
-
-    <p class="eyebrow" id="profile-effort">Model evidence</p>
-    <h1 id="profile-title">Loading model profile…</h1>
-    <p class="tagline benchmark-tagline" id="profile-identity"></p>
-
-    <div class="callout comparison-note">
-      <strong>Scenario rows remain independent cohorts.</strong>
-      Summary totals describe available evidence. They do not erase differences in harness, verifier, attempt count, or release.
-    </div>
-
-    <div class="metric-grid" aria-label="Model evidence summary">
-      <div class="metric"><span class="metric-value" id="profile-coverage">0/0</span><span class="metric-label">scenarios covered</span></div>
-      <div class="metric"><span class="metric-value" id="profile-perfect">0</span><span class="metric-label">perfect cohorts</span></div>
-      <div class="metric"><span class="metric-value" id="profile-cost">$0.0000</span><span class="metric-label">known evidence spend</span></div>
-    </div>
-
-    <h2>Scenario evidence</h2>
-    <div class="table-scroll"><table><thead><tr><th>Scenario cohort</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Known cost</th><th>Cost / repair</th><th>Failures</th></tr></thead><tbody id="profile-results"></tbody></table></div>
-
-    <h2>Observed failure categories</h2>
-    <ul id="profile-failures"></ul>
-
-    <p><a id="profile-compare" href="benchmark-compare.html">Compare latest cohort →</a></p>
-    <p><a href="benchmark-models.html">← All canonical model profiles</a></p>
-    <p class="small muted">This profile is generated from <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a>.</p>
-    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
-  </div>
-
-  <script>
-  function laneKey(item) {
-    return `${item.model}|||${item.reasoning_effort || ""}`;
-  }
-
-  function duration(seconds) {
-    if (seconds === null || seconds === undefined) return "n/a";
-    const rounded = Math.round(seconds);
-    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
-  }
-
-  function money(value, incomplete) {
-    if (value === null || value === undefined) return "n/a";
-    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
-  }
-
-  function percent(value) {
-    return value === null || value === undefined ? "n/a" : `${Math.round(value * 100)}%`;
-  }
-
-  async function initialize() {
-    const response = await fetch("benchmark-coverage.json");
-    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
-    const coverage = await response.json();
-    const params = new URLSearchParams(window.location.search);
-    const requested = `${params.get("model") || ""}|||${params.get("reasoning") || ""}`;
-    const lane = coverage.fleet.find(item => laneKey(item) === requested);
-    if (!lane) throw new Error("select a canonical model from the model evidence page");
-    document.title = `${lane.model_label} · Replaybook model evidence`;
-    document.querySelector("#profile-title").textContent = lane.model_label;
-    document.querySelector("#profile-effort").textContent = lane.reasoning_effort ? `Reasoning ${lane.reasoning_effort}` : "Default reasoning";
-    document.querySelector("#profile-identity").textContent = `${lane.model} · evidence tiers: ${lane.tiers.join(", ") || "none"}`;
-
-    const key = laneKey(lane);
-    const entries = coverage.scenarios.map(scenario => ({
-      scenario,
-      cell: scenario.cells.find(cell => laneKey(cell) === key)
-    }));
-    const covered = entries.filter(entry => entry.cell && entry.cell.status === "covered");
-    const newest = covered.map(entry => entry.cell).sort((a, b) => b.release.localeCompare(a.release))[0];
-    if (newest) {
-      const compareQuery = new URLSearchParams();
-      compareQuery.append("lane", `${newest.release}|||${newest.model}|||${newest.reasoning_effort || ""}`);
-      document.querySelector("#profile-compare").href = `benchmark-compare.html?${compareQuery}`;
-    }
-    const perfect = covered.filter(entry => entry.cell.evaluated && entry.cell.passed === entry.cell.evaluated).length;
-    const cost = covered.reduce((sum, entry) => sum + entry.cell.known_cost_usd, 0);
-    const costReported = covered.reduce((sum, entry) => sum + entry.cell.cost_reported_trials, 0);
-    const incomplete = covered.some(entry => entry.cell.cost_reported_trials < entry.cell.trials);
-    document.querySelector("#profile-coverage").textContent = `${covered.length}/${entries.length}`;
-    document.querySelector("#profile-perfect").textContent = String(perfect);
-    document.querySelector("#profile-cost").textContent = costReported ? money(cost, incomplete) : "n/a";
-
-    const failures = new Map();
-    const body = document.querySelector("#profile-results");
-    entries.forEach(({scenario, cell}) => {
-      const row = document.createElement("tr");
-      const scenarioCell = document.createElement("td");
-      const scenarioLink = document.createElement("a");
-      scenarioLink.href = scenario.evidence_url;
-      scenarioLink.textContent = scenario.scenario_label;
-      const meta = document.createElement("span");
-      meta.className = "profile-cohort";
-      meta.textContent = `v${scenario.scenario_version} · ${scenario.boundary.tier} · ${scenario.release}`;
-      scenarioCell.append(scenarioLink, meta);
-      row.append(scenarioCell);
-      if (!cell || cell.status === "missing") {
-        const missing = document.createElement("td");
-        missing.colSpan = 6;
-        missing.className = "muted";
-        missing.textContent = "Not run in this cohort";
-        row.append(missing);
-      } else {
-        const incompleteCost = cell.cost_reported_trials < cell.trials;
-        const categories = Object.entries(cell.failure_categories);
-        categories.forEach(([name, count]) => failures.set(name, (failures.get(name) || 0) + count));
-        const values = [
-          `${cell.passed}/${cell.evaluated}`,
-          percent(cell.pass_rate),
-          duration(cell.median_duration_seconds),
-          cell.cost_reported_trials ? money(cell.known_cost_usd, incompleteCost) : "n/a",
-          money(cell.cost_per_repair_usd, incompleteCost),
-          categories.length ? categories.map(([name, count]) => `${name} (${count})`).join(", ") : "None"
-        ];
-        values.forEach((value, index) => {
-          const result = document.createElement("td");
-          if (index === 0) {
-            const link = document.createElement("a");
-            link.href = cell.evidence_url;
-            link.textContent = value;
-            result.append(link);
-          } else result.textContent = value;
-          row.append(result);
-        });
-      }
-      body.append(row);
-    });
-
-    const list = document.querySelector("#profile-failures");
-    if (!failures.size) {
-      const item = document.createElement("li");
-      item.textContent = "None in the current evidence set.";
-      list.append(item);
-    } else [...failures.entries()].sort((a, b) => b[1] - a[1]).forEach(([name, count]) => {
-      const item = document.createElement("li");
-      const code = document.createElement("code");
-      code.textContent = name;
-      item.append(code, `: ${count}`);
-      list.append(item);
-    });
-  }
-
-  initialize().catch(error => {
-    document.querySelector("#profile-title").textContent = "Model profile unavailable";
-    document.querySelector("#profile-identity").textContent = error.message;
-  });
-  </script>
-</body>
-</html>
-"""
+    return render_site_template("benchmark-model.html")
 
 
 def build_outputs(root: Path, *, check: bool = False) -> None:
@@ -3065,6 +1987,7 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
         root / DOCS_EXPLORER: explorer_page(),
         root / DOCS_MODEL: model_page(),
         root / DOCS_MODELS: models_page(),
+        root / DOCS_STYLE: (REPO_DIR / SITE_STYLE).read_text(),
         root / MARKDOWN_RECORD: replace_managed(
             (root / MARKDOWN_RECORD).read_text(),
             MARKDOWN_START,

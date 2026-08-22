@@ -1,35 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Benchmark explorer &middot; replaybook</title>
-  <meta name="description" content="Explore versioned Replaybook infrastructure-agent benchmark evidence.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrap wide">
-    <header class="site">
-      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
-      <nav class="site">
-        <a href="index.html">Home</a>
-        <a href="usage.html">Usage</a>
-        <a href="benchmarks.html" class="active">Benchmarks</a>
-        <a href="https://github.com/ducks/replaybook">GitHub</a>
-      </nav>
-    </header>
-
-    <nav class="benchmark-tabs" aria-label="Benchmark sections">
-      <a href="benchmarks.html">Current</a>
-      <a href="scenarios.html">Scenarios</a>
-      <a href="benchmark-coverage.html">Coverage</a>
-      <a href="benchmark-models.html">Models</a>
-      <a href="benchmark-compare.html">Compare</a>
-      <a href="benchmark-explorer.html" class="active" aria-current="page">Explore</a>
-      <a href="benchmark-history.html">History</a>
-      <a href="benchmark-methodology.html">Methodology</a>
-    </nav>
-
+{% extends "benchmark-base.html" %}
+{% set active_tab = "explore" %}
+{% block title %}Benchmark explorer{% endblock %}
+{% block description %}Explore versioned Replaybook infrastructure-agent benchmark evidence.{% endblock %}
+{% block content %}
     <p class="eyebrow">Versioned evidence</p>
     <h1>Benchmark explorer</h1>
     <p class="tagline benchmark-tagline">Compare model behavior, cost per durable repair, and failure modes inside one compatible DateVer release at a time.</p>
@@ -64,9 +37,8 @@
     </div>
 
     <p class="small muted">The path-free source data is available as <a href="benchmark-catalog.json"><code>benchmark-catalog.json</code></a>. Local exploratory runs remain in the rebuildable SQLite catalog and are not published automatically.</p>
-
-    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
-  </div>
+{% endblock %}
+{% block scripts %}
   <script>
   let catalog;
   const releaseFilter = document.querySelector("#release-filter");
@@ -224,5 +196,4 @@
     document.querySelector("#release-context").textContent = `Could not load benchmark catalog: ${error.message}`;
   });
   </script>
-</body>
-</html>
+{% endblock %}

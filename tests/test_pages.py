@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 REPO_DIR = Path(__file__).resolve().parents[1]
 DOCS_DIR = REPO_DIR / "docs"
 BENCHMARK_DATA_DIR = REPO_DIR / "benchmark-data"
+SITE_DIR = REPO_DIR / "site"
 
 
 class LinkParser(HTMLParser):
@@ -52,6 +53,28 @@ class PagesTests(unittest.TestCase):
         self.assertIn("actions/upload-pages-artifact@v4", workflow)
         self.assertIn("path: docs", workflow)
         self.assertIn("actions/deploy-pages@v4", workflow)
+
+    def test_benchmark_frontend_has_tracked_sources(self) -> None:
+        expected_templates = {
+            "benchmark-base.html",
+            "benchmarks.html",
+            "benchmark-compare.html",
+            "benchmark-coverage.html",
+            "benchmark-explorer.html",
+            "benchmark-model.html",
+            "benchmark-models.html",
+        }
+        templates = SITE_DIR / "templates"
+        template_names = {path.name for path in templates.glob("*.html")}
+        self.assertTrue(expected_templates.issubset(template_names))
+        self.assertEqual(
+            (SITE_DIR / "static/style.css").read_text(),
+            (DOCS_DIR / "style.css").read_text(),
+        )
+        publisher = (
+            REPO_DIR / "integrations/host/publish_benchmarks.py"
+        ).read_text()
+        self.assertNotIn("<!doctype html>", publisher)
 
     def test_benchmark_pages_separate_current_history_and_methodology(self) -> None:
         current = (DOCS_DIR / "benchmarks.html").read_text()
