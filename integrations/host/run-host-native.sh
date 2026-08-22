@@ -924,8 +924,10 @@ post_timeout_verification_attempted=false
 post_timeout_durable_repair=false
 post_timeout_failure=""
 post_timeout_failure_category=""
-if (( run_status == 255 )); then
-  for _ in $(seq 1 10); do
+if (( run_status != 0 )); then
+  exit_classification_attempts=1
+  (( run_status == 255 )) && exit_classification_attempts=10
+  for _ in $(seq 1 "$exit_classification_attempts"); do
     failure_category="$(
       "$SCRIPT_DIR/classify-agent-exit.sh" "$run_status" "$OUTPUT_DIR/console.log"
     )"
@@ -953,6 +955,8 @@ if (( run_status != 0 )); then
     read -r trial_status agent_outcome_category <<<"$agent_outcome_classification"
     failure_category="$agent_outcome_category"
     failure="$(jq -r '.outcome.message // "agent harness could not complete the trial"' "$agent_result")"
+  elif [[ "$failure_category" == "guest_out_of_memory" ]]; then
+    failure="guest ran out of memory while executing the agent harness"
   else
     failure="agent exited with status $run_status"
   fi

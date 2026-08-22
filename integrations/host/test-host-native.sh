@@ -229,6 +229,11 @@ printf '%s\n' '[   63.187500] reboot: Restarting system' >"$console_log"
 [[ -z "$("$script_dir/classify-agent-exit.sh" 1 "$console_log")" ]]
 printf '%s\n' 'Connection to host closed.' >"$console_log"
 [[ -z "$("$script_dir/classify-agent-exit.sh" 255 "$console_log")" ]]
+printf '%s\n' \
+  '[ 121.044938] Out of memory: Killed process 1158 (claux) total-vm:4016828kB, anon-rss:1796480kB' \
+  >"$console_log"
+[[ "$("$script_dir/classify-agent-exit.sh" 137 "$console_log")" == "guest_out_of_memory" ]]
+[[ -z "$("$script_dir/classify-agent-exit.sh" 1 "$console_log")" ]]
 
 probe_dir="$(mktemp -d)"
 probe_server_pid=""
