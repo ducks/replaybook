@@ -282,6 +282,63 @@ pre code {
   border-color: #1f6feb;
 }
 
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.tier-card {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-alt);
+}
+
+.tier-card strong {
+  display: block;
+  margin: 0.75rem 0 0.3rem;
+}
+
+.tier-card p {
+  margin: 0;
+  color: var(--fg-dim);
+  font-size: 0.85rem;
+}
+
+.tier-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  min-width: 8rem;
+}
+
+.tier-badges .badge {
+  font-size: 0.62rem;
+  padding: 0.12rem 0.38rem;
+}
+
+.badge.tier-smoke {
+  color: #79c0ff;
+  border-color: #1f6feb;
+}
+
+.badge.tier-core {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.badge.tier-full {
+  color: #d2a8ff;
+  border-color: #8957e5;
+}
+
+.badge.tier-frontier {
+  color: #ffa657;
+  border-color: #bd561d;
+}
+
 .cohort-identity {
   display: flex;
   flex-wrap: wrap;
