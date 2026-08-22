@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visual infrastructure benchmarks &middot; replaybook</title>
+  <meta name="description" content="Replaybook visual-input infrastructure-agent benchmark evidence.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-modality-tabs" aria-label="Benchmark input modality">
+      <a href="benchmarks.html"><span aria-hidden="true">T</span> Text</a>
+      <a href="benchmark-visual.html" class="active" aria-current="page"><span aria-hidden="true">▧</span> Visual</a>
+    </nav>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmark-visual.html" class="active" aria-current="page">Overview</a>
+      <a href="scenarios.html">Scenarios</a>
+      <a href="benchmark-models.html">Models</a>
+      <a href="benchmark-compare.html">Compare</a>
+      <a href="benchmark-explorer.html">Explore</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+    <p class="eyebrow">Visual infrastructure</p>
+    <h1>Infrastructure agents that can see</h1>
+    <p class="tagline benchmark-tagline">Agents must inspect diagrams or images as authoritative operational evidence, then repair and durably verify the running system.</p>
+
+    <div class="metric-grid overview-metrics" aria-label="Published visual benchmark evidence">
+      <div class="metric"><span class="metric-value">2</span><span class="metric-label">published cohorts</span></div>
+      <div class="metric"><span class="metric-value">7</span><span class="metric-label">model lanes</span></div>
+      <div class="metric"><span class="metric-value">1</span><span class="metric-label">scenarios</span></div>
+    </div>
+
+    <div class="callout comparison-note">
+      <strong>Cohorts are evidence, not one pooled ranking.</strong>
+      Results stay attached to their harness, scenario version, attempt count, deadline, and provider boundary.
+    </div>
+
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Recent cohorts</h2><p class="small muted">Newest visual-input comparisons, each kept inside its original boundary.</p></div>
+      <a href="benchmark-history.html">View history →</a>
+    </div>
+    <div class="cohort-grid overview-cohort-grid">
+      <article class="cohort-card overview-cohort-card">
+        <div class="cohort-card-heading"><span class="badge">Visual input</span><code>20260822.0.3</code></div>
+        <h3>Four-model visual infrastructure cohort</h3>
+        <p>GPT-5.6 Luna, GPT-5.6 Sol, Ox Alpha, and MiMo V2.5 each ran three attempts against the same topology-drift incident through Claux and OpenRouter.</p>
+        <dl class="cohort-facts">
+          <div><dt>Models</dt><dd>4</dd></div>
+          <div><dt>Scenarios</dt><dd>1</dd></div>
+          <div><dt>Repairs</dt><dd>12/12</dd></div>
+          <div><dt>Median</dt><dd>2:20</dd></div>
+          <div><dt>Known cost</dt><dd>$0.7839</dd></div>
+          <div><dt>Harness</dt><dd>Claux v20260821.0.2</dd></div>
+        </dl>
+        <a href="benchmark-explorer.html?release=20260822.0.3">Inspect cohort →</a>
+      </article>
+      <article class="cohort-card overview-cohort-card">
+        <div class="cohort-card-heading"><span class="badge">Visual input</span><code>20260822.0.2</code></div>
+        <h3>Kimi and Gemini visual infrastructure cohort</h3>
+        <p>Kimi K3, Gemini 3.7 Flash, and Qwen3.8 2.4T A95B each received three attempts at a topology-drift incident where the production diagram was authoritative evidence.</p>
+        <dl class="cohort-facts">
+          <div><dt>Models</dt><dd>3</dd></div>
+          <div><dt>Scenarios</dt><dd>1</dd></div>
+          <div><dt>Repairs</dt><dd>6/6</dd></div>
+          <div><dt>Median</dt><dd>2:00</dd></div>
+          <div><dt>Known cost</dt><dd>$0.8096+</dd></div>
+          <div><dt>Harness</dt><dd>Claux v20260821.0.2</dd></div>
+        </dl>
+        <a href="benchmark-explorer.html?release=20260822.0.2">Inspect cohort →</a>
+      </article>
+    </div>
+
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Latest model evidence</h2><p class="small muted">Each model row comes from its newest published visual cohort.</p></div>
+      <a href="benchmark-models.html">Model profiles →</a>
+    </div>
+    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Cohort</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Known cost</th></tr></thead><tbody>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.3&amp;model=openai%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna (high)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-luna</code></span></td><td><code>20260822.0.3</code></td><td>3/3</td><td>100%</td><td>1:14</td><td>$0.0580</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.3&amp;model=openai%2Fgpt-5.6-sol"><strong>GPT-5.6 Sol (high)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-sol</code></span></td><td><code>20260822.0.3</code></td><td>3/3</td><td>100%</td><td>2:06</td><td>$0.7111</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.3&amp;model=stealth%2Fox-alpha"><strong>Ox Alpha (high)</strong></a><span class="profile-cohort"><code>stealth/ox-alpha</code></span></td><td><code>20260822.0.3</code></td><td>3/3</td><td>100%</td><td>3:25</td><td>$0.0000</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.3&amp;model=xiaomi%2Fmimo-v2.5"><strong>MiMo V2.5 (high)</strong></a><span class="profile-cohort"><code>xiaomi/mimo-v2.5</code></span></td><td><code>20260822.0.3</code></td><td>3/3</td><td>100%</td><td>4:09</td><td>$0.0148</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.2&amp;model=moonshotai%2Fkimi-k3"><strong>Kimi K3 (high)</strong></a><span class="profile-cohort"><code>moonshotai/kimi-k3</code></span></td><td><code>20260822.0.2</code></td><td>3/3</td><td>100%</td><td>1:41</td><td>$0.4021</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.2&amp;model=google%2Fgemini-3.7-flash"><strong>Gemini 3.7 Flash (high)</strong></a><span class="profile-cohort"><code>google/gemini-3.7-flash</code></span></td><td><code>20260822.0.2</code></td><td>3/3</td><td>100%</td><td>2:28</td><td>$0.4075</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.2&amp;model=qwen%2Fqwen3.8-2.4t-a95b"><strong>Qwen3.8 2.4T A95B (high)</strong></a><span class="profile-cohort"><code>qwen/qwen3.8-2.4t-a95b</code></span></td><td><code>20260822.0.2</code></td><td>0/0</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+    </tbody></table></div>
+
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Scenario evidence</h2><p class="small muted">Newest exact cohort for each visual-input incident.</p></div>
+      <a href="scenarios.html">Scenario guide →</a>
+    </div>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Cohort</th><th>Models</th><th>Repairs</th></tr></thead><tbody>
+      <tr><td><a href="benchmark-explorer.html?release=20260822.0.3&amp;scenario=029-visual-topology-drift">Visual topology drift</a></td><td>v1</td><td><code>20260822.0.3</code></td><td>4</td><td>12/12</td></tr>
+    </tbody></table></div>
+
+    <p class="small muted overview-footnote">Need the full audit trail? Use the <a href="benchmark-explorer.html">Explorer</a> for failures and filtered records, or read the <a href="benchmark-methodology.html">methodology</a>.</p>
+
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+</body>
+</html>

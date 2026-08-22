@@ -1,0 +1,77 @@
+{% extends "benchmark-base.html" %}
+{% set active_tab = "overview" %}
+{% block title %}{{ copy.eyebrow }} benchmarks{% endblock %}
+{% block description %}Replaybook {{ input_mode }}-input infrastructure-agent benchmark evidence.{% endblock %}
+{% block content %}
+    <p class="eyebrow">{{ copy.eyebrow }}</p>
+    <h1>{{ copy.title }}</h1>
+    <p class="tagline benchmark-tagline">{{ copy.description }}</p>
+
+    <div class="metric-grid overview-metrics" aria-label="Published {{ input_mode }} benchmark evidence">
+      <div class="metric"><span class="metric-value">{{ counts.cohorts }}</span><span class="metric-label">published cohorts</span></div>
+      <div class="metric"><span class="metric-value">{{ counts.models }}</span><span class="metric-label">model lanes</span></div>
+      <div class="metric"><span class="metric-value">{{ counts.scenarios }}</span><span class="metric-label">scenarios</span></div>
+    </div>
+
+    <div class="callout comparison-note">
+      <strong>Cohorts are evidence, not one pooled ranking.</strong>
+      Results stay attached to their harness, scenario version, attempt count, deadline, and provider boundary.
+    </div>
+
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Recent cohorts</h2><p class="small muted">Newest {{ input_mode }}-input comparisons, each kept inside its original boundary.</p></div>
+      <a href="benchmark-history.html">View history →</a>
+    </div>
+    <div class="cohort-grid overview-cohort-grid">
+{% if cohort_cards %}
+{% for cohort in cohort_cards %}
+      <article class="cohort-card overview-cohort-card">
+        <div class="cohort-card-heading"><span class="badge">{{ input_mode|title }} input</span><code>{{ cohort.version }}</code></div>
+        <h3>{{ cohort.title }}</h3>
+        <p>{{ cohort.description }}</p>
+        <dl class="cohort-facts">
+          <div><dt>Models</dt><dd>{{ cohort.models }}</dd></div>
+          <div><dt>Scenarios</dt><dd>{{ cohort.scenarios }}</dd></div>
+          <div><dt>Repairs</dt><dd>{{ cohort.repairs }}</dd></div>
+          <div><dt>Median</dt><dd>{{ cohort.median }}</dd></div>
+          <div><dt>Known cost</dt><dd>{{ cohort.cost }}</dd></div>
+          <div><dt>Harness</dt><dd>{{ cohort.harness }}</dd></div>
+        </dl>
+        <a href="{{ cohort.url }}">Inspect cohort →</a>
+      </article>
+{% endfor %}
+{% else %}
+      <p class="muted">No {{ input_mode }}-input cohorts have been published yet.</p>
+{% endif %}
+    </div>
+
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Latest model evidence</h2><p class="small muted">Each model row comes from its newest published {{ input_mode }} cohort.</p></div>
+      <a href="benchmark-models.html">Model profiles →</a>
+    </div>
+    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Cohort</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Known cost</th></tr></thead><tbody>
+{% if model_evidence %}
+{% for row in model_evidence %}
+      <tr><td><a href="{{ row.url }}"><strong>{{ row.label }}</strong></a><span class="profile-cohort"><code>{{ row.model }}</code></span></td><td><code>{{ row.release }}</code></td><td>{{ row.repairs }}</td><td>{{ row.rate }}</td><td>{{ row.median }}</td><td>{{ row.cost }}</td></tr>
+{% endfor %}
+{% else %}
+      <tr><td colspan="6" class="muted">No model evidence published yet.</td></tr>
+{% endif %}
+    </tbody></table></div>
+
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Scenario evidence</h2><p class="small muted">Newest exact cohort for each {{ input_mode }}-input incident.</p></div>
+      <a href="scenarios.html">Scenario guide →</a>
+    </div>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Cohort</th><th>Models</th><th>Repairs</th></tr></thead><tbody>
+{% if scenario_evidence %}
+{% for row in scenario_evidence %}
+      <tr><td><a href="{{ row.url }}">{{ row.label }}</a></td><td>v{{ row.version }}</td><td><code>{{ row.release }}</code></td><td>{{ row.models }}</td><td>{{ row.repairs }}</td></tr>
+{% endfor %}
+{% else %}
+      <tr><td colspan="5" class="muted">No scenario evidence published yet.</td></tr>
+{% endif %}
+    </tbody></table></div>
+
+    <p class="small muted overview-footnote">Need the full audit trail? Use the <a href="benchmark-explorer.html">Explorer</a> for failures and filtered records, or read the <a href="benchmark-methodology.html">methodology</a>.</p>
+{% endblock %}

@@ -57,6 +57,7 @@ class PagesTests(unittest.TestCase):
     def test_benchmark_frontend_has_tracked_sources(self) -> None:
         expected_templates = {
             "benchmark-base.html",
+            "benchmark-overview.html",
             "benchmarks.html",
             "benchmark-compare.html",
             "benchmark-coverage.html",
@@ -78,6 +79,7 @@ class PagesTests(unittest.TestCase):
 
     def test_benchmark_pages_separate_current_history_and_methodology(self) -> None:
         current = (DOCS_DIR / "benchmarks.html").read_text()
+        visual = (DOCS_DIR / "benchmark-visual.html").read_text()
         explorer = (DOCS_DIR / "benchmark-explorer.html").read_text()
         history = (DOCS_DIR / "benchmark-history.html").read_text()
         methodology = (DOCS_DIR / "benchmark-methodology.html").read_text()
@@ -87,17 +89,16 @@ class PagesTests(unittest.TestCase):
         release = json.loads(
             (BENCHMARK_DATA_DIR / "releases" / f"{version}.json").read_text()
         )
-        totals = release["totals"]
-        harness_version = release["compatibility"]["harness_version"]
-
-        self.assertIn(f"Host harness v{harness_version}", current)
-        self.assertIn(f'{totals["passed"]}/{totals["evaluated"]}', current)
-        self.assertIn(f'{totals["trials"]} trials', current)
-        self.assertIn(version, current)
-        self.assertIn(release["title"], current)
+        self.assertIn("Text infrastructure", current)
+        self.assertIn("Infrastructure agents under pressure", current)
+        self.assertIn('href="benchmark-visual.html"', current)
+        self.assertNotIn("Benchmark input lanes", current)
+        self.assertIn("Visual infrastructure", visual)
+        self.assertIn("Infrastructure agents that can see", visual)
+        self.assertIn(version, visual)
+        self.assertIn(release["title"], visual)
         for label in release["model_labels"].values():
-            self.assertIn(label, current)
-        self.assertNotIn('class="badge archived"', current)
+            self.assertIn(label, visual)
 
         catalog = json.loads((BENCHMARK_DATA_DIR / "catalog.json").read_text())
         docs_catalog = json.loads((DOCS_DIR / "benchmark-catalog.json").read_text())
