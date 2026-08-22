@@ -38,7 +38,7 @@ Environment:
   REPLAYBOOK_HOST_SSH_KEY        SSH key (default: ~/.ssh/id_ed25519).
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to bake into the VM.
-  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260815.0.0).
+  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260821.0.2).
   REPLAYBOOK_HOST_VM_READY_TIMEOUT
                                  VM SSH readiness timeout in seconds (default: 300).
   REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT
@@ -56,7 +56,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
-CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260815.0.0}"
+CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260821.0.2}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
 HOST_HARNESS_VERSION=23
 VM_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_VM_READY_TIMEOUT:-300}"

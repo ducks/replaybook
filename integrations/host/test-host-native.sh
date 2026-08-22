@@ -166,8 +166,8 @@ printf '%s\n' 'required application service failed during boot' >"$reboot_consol
 rm -f -- "$reboot_console"
 grep -q 'read -r trial_status agent_outcome_category' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
-grep -q 'v20260815.0.0' "$script_dir/run-host-native.sh"
-grep -q 'v20260815.0.0' "$script_dir/run_host_matrix.py"
+grep -q 'v20260821.0.2' "$script_dir/run-host-native.sh"
+grep -q 'v20260821.0.2' "$script_dir/run_host_matrix.py"
 
 agent_error="$(mktemp)"
 trap 'rm -f -- "$agent_error"' EXIT
