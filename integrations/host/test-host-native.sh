@@ -98,6 +98,10 @@ grep -q 'root@127.0.0.1:/root/replaybook-eval/adapter' "$script_dir/run-host-nat
 grep -q 'REPLAYBOOK_RESULT_FILE=' "$script_dir/run-agent-adapter.sh"
 grep -q 'REPLAYBOOK_TRANSCRIPT_FILE=' "$script_dir/run-agent-adapter.sh"
 grep -q 'REPLAYBOOK_AGENT_PAYLOAD=' "$script_dir/run-agent-adapter.sh"
+grep -q 'REPLAYBOOK_IMAGE_ARTIFACTS_FILE=' "$script_dir/run-agent-adapter.sh"
+grep -q -- '--image' "$script_dir/run-claux.sh"
+grep -q -- '--file' "$script_dir/adapters/opencode.sh"
+grep -q -- '--image' "$script_dir/adapters/codex.sh"
 grep -q '/run/current-system/sw/bin/claux' "$script_dir/run-claux.sh"
 grep -q 'REPLAYBOOK_HOST_CLAUX_BINARY' "$script_dir/isolated-vm.nix"
 grep -q 'environment.systemPackages' "$script_dir/isolated-vm.nix"
@@ -350,6 +354,9 @@ EOF
   eval_root="$smoke_root/eval"
   mkdir -p "$eval_root/results" "$smoke_root/workspace"
   printf '%s\n' 'repair the deployed service' >"$eval_root/instruction.md"
+  printf 'image-data' >"$eval_root/topology.png"
+  jq -n --arg path "$eval_root/topology.png" \
+    '[{name: "evidence/topology.png", path: $path}]' >"$eval_root/image-artifacts.json"
   cat >"$eval_root/payload" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
@@ -359,8 +366,10 @@ jq -e '.tokens.refresh_token == "replaybook-disabled"' "$CODEX_HOME/auth.json" >
 output=""
 model=""
 workspace=""
+image=""
 while (( $# > 0 )); do
   case "$1" in
+    --image) image="$2"; shift 2 ;;
     --model) model="$2"; shift 2 ;;
     --cd) workspace="$2"; shift 2 ;;
     --output-last-message) output="$2"; shift 2 ;;
@@ -370,6 +379,7 @@ while (( $# > 0 )); do
 done
 [[ "$model" == "openai/test-model" ]]
 [[ -d "$workspace" ]]
+[[ "$image" == "$EXPECTED_IMAGE" ]]
 [[ "$(cat)" == "repair the deployed service" ]]
 printf '%s\n' '{"type":"thread.started","thread_id":"test"}'
 printf '%s\n' '{"type":"turn.completed","usage":{"input_tokens":120,"cached_input_tokens":80,"output_tokens":15,"reasoning_output_tokens":4}}'
@@ -388,6 +398,8 @@ EOF
     REPLAYBOOK_MODEL="openai/test-model" \
     REPLAYBOOK_RESULT_FILE="$eval_root/results/agent.json" \
     REPLAYBOOK_TRANSCRIPT_FILE="$eval_root/results/transcript.json" \
+    REPLAYBOOK_IMAGE_ARTIFACTS_FILE="$eval_root/image-artifacts.json" \
+    EXPECTED_IMAGE="$eval_root/topology.png" \
     REPLAYBOOK_WORKSPACE="$smoke_root/workspace" \
     bash "$script_dir/adapters/codex.sh" >"$smoke_root/stdout"
 
@@ -453,6 +465,9 @@ EOF
   eval_root="$smoke_root/eval"
   mkdir -p "$eval_root/results" "$smoke_root/workspace"
   printf '%s\n' 'repair the deployed service' >"$eval_root/instruction.md"
+  printf 'image-data' >"$eval_root/topology.png"
+  jq -n --arg path "$eval_root/topology.png" \
+    '[{name: "evidence/topology.png", path: $path}]' >"$eval_root/image-artifacts.json"
   cat >"$eval_root/payload" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
@@ -464,12 +479,14 @@ model=""
 variant=""
 workspace=""
 prompt=""
+image=""
 while (( $# > 0 )); do
   case "$1" in
     --pure|--auto) shift ;;
     --dir) workspace="$2"; shift 2 ;;
     --model) model="$2"; shift 2 ;;
     --format) [[ "$2" == "json" ]]; shift 2 ;;
+    --file) image="$2"; shift 2 ;;
     --variant) variant="$2"; shift 2 ;;
     *) prompt="$1"; shift ;;
   esac
@@ -477,6 +494,7 @@ done
 [[ "$model" == "opencode-go/test-model" ]]
 [[ "$variant" == "high" ]]
 [[ "$workspace" == */workspace ]]
+[[ "$image" == "$EXPECTED_IMAGE" ]]
 [[ "$prompt" == "repair the deployed service" ]]
 printf '%s\n' '{"type":"step_start","timestamp":1000,"part":{"type":"step-start"}}'
 printf '%s\n' '{"type":"tool_use","timestamp":1300,"part":{"type":"tool","tool":"bash","callID":"call-1","state":{"status":"completed","input":{"command":"systemctl restart example"},"output":"","metadata":{"exit":0},"time":{"start":1200,"end":1250}}}}'
@@ -497,6 +515,8 @@ EOF
     REPLAYBOOK_REASONING_EFFORT="high" \
     REPLAYBOOK_RESULT_FILE="$eval_root/results/agent.json" \
     REPLAYBOOK_TRANSCRIPT_FILE="$eval_root/results/transcript.json" \
+    REPLAYBOOK_IMAGE_ARTIFACTS_FILE="$eval_root/image-artifacts.json" \
+    EXPECTED_IMAGE="$eval_root/topology.png" \
     REPLAYBOOK_WORKSPACE="$smoke_root/workspace" \
     bash "$script_dir/adapters/opencode.sh" >"$smoke_root/stdout"
 
@@ -581,6 +601,11 @@ EOF
   printf '%s\n' 'vendor/model' >"$eval_root/model"
   printf '%s\n' 'export CUSTOM_SECRET=present' >"$eval_root/runtime.env"
   printf '%s\n' 'payload-data' >"$eval_root/payload"
+  mkdir -p "$eval_root/images"
+  printf 'image-data' >"$eval_root/images/01-topology.png"
+  printf '%s\n' '[{"name":"evidence/topology.png","path":"IMAGE_PATH"}]' \
+    | sed "s#IMAGE_PATH#$eval_root/images/01-topology.png#" \
+    >"$eval_root/image-artifacts.json"
   cat >"$eval_root/adapter" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
@@ -588,6 +613,8 @@ set -euo pipefail
 [[ ! -e "$REPLAYBOOK_EVAL_ROOT/runtime.env" ]]
 [[ "$(< "$REPLAYBOOK_INSTRUCTION_FILE")" == "repair the service" ]]
 [[ "$(< "$REPLAYBOOK_AGENT_PAYLOAD")" == "payload-data" ]]
+[[ "$REPLAYBOOK_IMAGE_ARTIFACTS_FILE" == "$REPLAYBOOK_EVAL_ROOT/image-artifacts.json" ]]
+jq -e '.[0].name == "evidence/topology.png"' "$REPLAYBOOK_IMAGE_ARTIFACTS_FILE" >/dev/null
 jq -n \
   --arg model "$REPLAYBOOK_MODEL" \
   '{schema_version: 1, harness: "custom-agent", model: $model, result: "ok", usage: null}' \
@@ -612,6 +639,9 @@ EOF
   home="$smoke_root/home"
   mkdir -p "$eval_root/results" "$home"
   printf '%s\n' 'repair it' >"$eval_root/instruction.md"
+  printf 'image-data' >"$eval_root/topology.png"
+  jq -n --arg path "$eval_root/topology.png" \
+    '[{name: "evidence/topology.png", path: $path}]' >"$eval_root/image-artifacts.json"
   cat >"$eval_root/fake-claux" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
@@ -640,12 +670,15 @@ case "$EXPECTED_ROUTE" in
   anthropic) grep -qx 'type = "anthropic"' "$config" ;;
 esac
 transcript=""
+image=""
 while (( $# > 0 )); do
   case "$1" in
+    --image) image="$2"; shift 2 ;;
     --transcript) transcript="$2"; shift 2 ;;
     *) shift ;;
   esac
 done
+[[ "$image" == "$EXPECTED_IMAGE" ]]
 printf '%s\n' '{"schema_version":2,"model":"test","usage":null,"outcome":{"status":"completed"},"timing":{"total_duration_ms":1,"model_rounds":[]},"tool_trace":[]}' >"$transcript"
 printf '%s\n' '{"schema_version":1,"model":"test","result":"ok","usage":null,"outcome":{"status":"completed"}}'
 EOF
@@ -665,6 +698,8 @@ EOF
       REPLAYBOOK_MODEL="$model" \
       REPLAYBOOK_CLAUX_PROVIDER_ROUTES="$routes" \
       REPLAYBOOK_OPENAI_BASE_URL="http://127.0.0.1:19091/v1" \
+      REPLAYBOOK_IMAGE_ARTIFACTS_FILE="$eval_root/image-artifacts.json" \
+      EXPECTED_IMAGE="$eval_root/topology.png" \
       bash "$script_dir/run-claux.sh" >/dev/null
   done
 )

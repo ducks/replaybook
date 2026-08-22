@@ -11,6 +11,7 @@ from integrations.host.scenario_phase import (
     FAILURE_FILE,
     PhaseFailure,
     describe_manifest,
+    image_artifacts_config,
     leak_audit_config,
     load_manifest,
     run_phase,
@@ -78,6 +79,7 @@ instruction = "instruction.md"
 oracle = "oracle.sh"
 required_services = ["postgresql.service", "checkout-web.service", "nginx.service"]
 restart_services = ["checkout-web.service", "nginx.service"]
+image_artifacts = ["evidence/topology.png", "evidence/dashboard.webp"]
 
 [guest_leak_audit]
 forbidden_strings = ["intentionally undersized pool", "pool exhaustion benchmark"]
@@ -141,6 +143,10 @@ failure_category = "database_pool_exhausted"
             self.assertEqual(description["preflight_steps"], 2)
             self.assertEqual(description["verify_steps"], 3)
             self.assertEqual(
+                description["image_artifacts"],
+                ["evidence/topology.png", "evidence/dashboard.webp"],
+            )
+            self.assertEqual(
                 description["guest_leak_audit"]["forbidden_strings"],
                 ["intentionally undersized pool", "pool exhaustion benchmark"],
             )
@@ -159,6 +165,14 @@ failure_category = "database_pool_exhausted"
             manifest.write_text(text)
             with self.assertRaisesRegex(ValueError, "safe absolute guest paths"):
                 leak_audit_config(load_manifest(manifest))
+
+    def test_rejects_unsafe_or_unsupported_image_artifacts(self) -> None:
+        with self.assertRaisesRegex(ValueError, "safe relative paths"):
+            image_artifacts_config({"image_artifacts": ["../answer.png"]})
+        with self.assertRaisesRegex(ValueError, "PNG, JPEG, GIF, and WebP"):
+            image_artifacts_config({"image_artifacts": ["evidence.txt"]})
+        with self.assertRaisesRegex(ValueError, "duplicates"):
+            image_artifacts_config({"image_artifacts": ["same.png", "same.png"]})
 
     def test_records_failed_ids_then_replays_them_after_repair(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

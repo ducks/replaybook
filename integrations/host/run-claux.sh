@@ -12,6 +12,22 @@ native_output="${output}.native"
 reasoning_effort="${REPLAYBOOK_REASONING_EFFORT:-}"
 base_url="${REPLAYBOOK_OPENAI_BASE_URL:-}"
 provider_routes="${REPLAYBOOK_CLAUX_PROVIDER_ROUTES:-}"
+image_args=()
+if [[ -n "${REPLAYBOOK_IMAGE_ARTIFACTS_FILE:-}" ]]; then
+  jq -e 'type == "array" and all(.[]; type == "object" and (.path | type == "string"))' \
+    "$REPLAYBOOK_IMAGE_ARTIFACTS_FILE" >/dev/null || {
+    echo "invalid image artifact manifest" >&2
+    exit 2
+  }
+  while IFS= read -r image_path; do
+    [[ -f "$image_path" && ! -L "$image_path" ]] || {
+      echo "image artifact is missing or unsafe: ${image_path}" >&2
+      exit 2
+    }
+    image_args+=(--image "$image_path")
+  done < <(jq -r '.[].path' \
+    "$REPLAYBOOK_IMAGE_ARTIFACTS_FILE")
+fi
 if [[ -z "$provider_routes" ]]; then
   provider_routes='{}'
 fi
@@ -75,6 +91,7 @@ trap forward_termination TERM INT
 
 set +e
 "$claux" --print "$instruction" \
+  "${image_args[@]}" \
   --permission-mode bypass \
   --output-format json \
   --transcript "$transcript" \

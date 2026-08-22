@@ -97,6 +97,16 @@ def first_user_message(transcript: dict[str, Any]) -> str | None:
         content = message.get("content")
         if isinstance(content, str):
             return content
+        if isinstance(content, list):
+            text = "\n".join(
+                block["text"]
+                for block in content
+                if isinstance(block, dict)
+                and block.get("type") == "text"
+                and isinstance(block.get("text"), str)
+            )
+            if text:
+                return text
     return None
 
 
@@ -160,6 +170,7 @@ def infrastructure_metadata(result: dict[str, Any]) -> dict[str, Any]:
             "id": result.get("scenario"),
             "version": str(scenario_version) if scenario_version is not None else None,
             "pack": scenario_pack,
+            "image_artifacts": result.get("image_artifacts", []),
         },
         "execution": {
             "agent": result.get("agent"),

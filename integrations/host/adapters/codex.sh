@@ -15,6 +15,22 @@ events="${eval_root}/results/codex-events.jsonl"
 final_message="${eval_root}/results/codex-final.txt"
 mkdir -m 0700 -p "$codex_home"
 export CODEX_HOME="$codex_home"
+image_args=()
+if [[ -n "${REPLAYBOOK_IMAGE_ARTIFACTS_FILE:-}" ]]; then
+  jq -e 'type == "array" and all(.[]; type == "object" and (.path | type == "string"))' \
+    "$REPLAYBOOK_IMAGE_ARTIFACTS_FILE" >/dev/null || {
+    echo "invalid image artifact manifest" >&2
+    exit 2
+  }
+  while IFS= read -r image_path; do
+    [[ -f "$image_path" && ! -L "$image_path" ]] || {
+      echo "image artifact is missing or unsafe: ${image_path}" >&2
+      exit 2
+    }
+    image_args+=(--image "$image_path")
+  done < <(jq -r '.[].path' \
+    "$REPLAYBOOK_IMAGE_ARTIFACTS_FILE")
+fi
 
 if [[ -n "${CODEX_AUTH_JSON_B64:-}" ]]; then
   printf '%s' "$CODEX_AUTH_JSON_B64" | base64 --decode >"$codex_home/auth.json"
@@ -38,6 +54,7 @@ trap forward_termination TERM INT
 
 set +e
 "$codex" exec \
+  "${image_args[@]}" \
   --model "$REPLAYBOOK_MODEL" \
   --cd "$REPLAYBOOK_WORKSPACE" \
   --dangerously-bypass-approvals-and-sandbox \

@@ -32,6 +32,9 @@ export REPLAYBOOK_MODEL="$(< "${eval_root}/model")"
 export REPLAYBOOK_WORKSPACE="${REPLAYBOOK_WORKSPACE:-/root}"
 export REPLAYBOOK_RESULT_FILE="${eval_root}/results/agent.json"
 export REPLAYBOOK_TRANSCRIPT_FILE="${eval_root}/results/transcript.json"
+if [[ -f "${eval_root}/image-artifacts.json" ]]; then
+  export REPLAYBOOK_IMAGE_ARTIFACTS_FILE="${eval_root}/image-artifacts.json"
+fi
 if [[ -e "${eval_root}/payload" ]]; then
   export REPLAYBOOK_AGENT_PAYLOAD="${eval_root}/payload"
 fi

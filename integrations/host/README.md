@@ -74,6 +74,36 @@ verifier behavior is represented entirely by manifest steps. Legacy
 `scenario.conf`, `preflight.sh`, and `verify.sh` hooks remain supported for
 external scenarios that have not migrated yet.
 
+### Image evidence
+
+A declarative scenario can attach controller-selected visual evidence to the
+agent's initial prompt:
+
+```toml
+[scenario]
+version = 1
+nixos_config = "nixos.nix"
+instruction = "instruction.md"
+oracle = "oracle.sh"
+required_services = ["example.service"]
+restart_services = ["example.service"]
+image_artifacts = ["evidence/topology.png", "evidence/dashboard.webp"]
+```
+
+Paths must be unique, safe relative paths within the scenario directory.
+Replaybook supports at most eight PNG, JPEG, GIF, or WebP files, each no larger
+than 10 MiB. It copies only the declared files into the disposable VM, records
+their scenario-relative names in the result, and adds their names to the
+runtime instruction. Existing scenarios without `image_artifacts` behave
+unchanged.
+
+The bundled Claux, OpenCode, and Codex adapters pass these files through their
+native image/file attachment flags. Custom adapters receive
+`REPLAYBOOK_IMAGE_ARTIFACTS_FILE`, a JSON array of `{name, path}` objects whose
+paths point at controller-staged files inside the VM. An adapter that cannot
+accept images should fail explicitly rather than silently converting a visual
+scenario into a text-only run.
+
 ### Guest image leak audit
 
 Declarative scenarios can reject answer-shaped text that accidentally reaches
