@@ -135,9 +135,15 @@
           <tr><td><a href="benchmark-explorer.html?scenario=026-discourse-plugin-boot-loop"><code>026-discourse-plugin-boot-loop</code></a></td><td>v1</td><td>An incompatible plugin crashes Discourse web and Sidekiq</td><td>Restore core service without rolling back its deployed API</td></tr>
           <tr><td><a href="benchmark-explorer.html?scenario=027-partial-service-rollout"><code>027-partial-service-rollout</code></a></td><td>v1</td><td>Order API generations disagree during a partial rollout</td><td>Converge code and schema while preserving accepted orders</td></tr>
           <tr><td><a href="benchmark-explorer.html?scenario=028-nix-store-disk-pressure"><code>028-nix-store-disk-pressure</code></a></td><td>v1</td><td>Nix cache growth exhausts disk and makes a ledger read-only</td><td>Recover writable capacity without losing receipts</td></tr>
+          <tr><td><a href="benchmark-explorer.html?scenario=029-visual-topology-drift"><code>029-visual-topology-drift</code></a></td><td>v1</td><td>Edge routing and queue consumption drift from the production diagram</td><td>Recover accepted reservations using an image artifact as the authoritative topology</td></tr>
         </tbody>
       </table>
     </div>
+
+    <figure class="scenario-diagram">
+      <a href="assets/scenarios/029-visual-topology-drift.png"><img src="assets/scenarios/029-visual-topology-drift.png" alt="Reservation service production topology showing clients, Nginx, the reservation API, PostgreSQL, a queue worker, and Redis."></a>
+      <figcaption><strong>Scenario 029: visual topology drift.</strong> This diagram is delivered to the agent as the authoritative production architecture. The prompt describes symptoms and preservation requirements without translating the image into text.</figcaption>
+    </figure>
 
     <p>
       Scenario <code>025-discourse-bootstrap</code> is kept in a separate
