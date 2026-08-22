@@ -603,6 +603,7 @@ data, not local paths, transcripts, credentials, or VM logs.
 Rebuild generated files without the original `jobs/` directories:
 
 ```sh
+python -m pip install -r requirements-site.txt
 python integrations/host/publish_benchmarks.py build
 ```
 
@@ -612,6 +613,12 @@ interactive benchmark explorer. The explorer can drill into one published
 DateVer release, scenario, or model without mixing incompatible releases.
 Local paths, transcripts, credentials, and unpublished SQLite rows never enter
 the public catalog.
+
+Benchmark presentation lives under `site/templates/` with shared Jinja layout
+and navigation, while `site/static/` contains source assets. The publisher
+owns data validation and view-model construction, then renders committed
+GitHub Pages output under `docs/`. Edit the site sources rather than generated
+benchmark pages, rebuild, and commit both the source and generated output.
 
 CI uses the corresponding `check` command to reject stale generated pages.
 Importing a later DateVer release keeps earlier snapshots in the generated

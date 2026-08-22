@@ -1,35 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Benchmark comparison &middot; replaybook</title>
-  <meta name="description" content="Compare versioned Replaybook infrastructure-agent benchmark cohorts without hiding compatibility boundaries.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrap wide">
-    <header class="site">
-      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
-      <nav class="site">
-        <a href="index.html">Home</a>
-        <a href="usage.html">Usage</a>
-        <a href="benchmarks.html" class="active">Benchmarks</a>
-        <a href="https://github.com/ducks/replaybook">GitHub</a>
-      </nav>
-    </header>
-
-    <nav class="benchmark-tabs" aria-label="Benchmark sections">
-      <a href="benchmarks.html">Current</a>
-      <a href="scenarios.html">Scenarios</a>
-      <a href="benchmark-coverage.html">Coverage</a>
-      <a href="benchmark-models.html">Models</a>
-      <a href="benchmark-compare.html" class="active" aria-current="page">Compare</a>
-      <a href="benchmark-explorer.html">Explore</a>
-      <a href="benchmark-history.html">History</a>
-      <a href="benchmark-methodology.html">Methodology</a>
-    </nav>
-
+{% extends "benchmark-base.html" %}
+{% set active_tab = "compare" %}
+{% block title %}Benchmark comparison{% endblock %}
+{% block description %}Compare versioned Replaybook infrastructure-agent benchmark cohorts without hiding compatibility boundaries.{% endblock %}
+{% block content %}
     <p class="eyebrow">Deliberate comparisons</p>
     <h1>Compare benchmark lanes</h1>
     <p class="tagline benchmark-tagline">Put two to five model cohorts side by side. Replaybook shows the result and the boundaries that determine whether the comparison is exact.</p>
@@ -65,9 +38,8 @@
     <div id="compare-failures" class="cohort-grid"></div>
 
     <p class="small muted">Selections are encoded in the URL for sharing. Data comes from the path-free <a href="benchmark-catalog.json"><code>benchmark-catalog.json</code></a> API.</p>
-
-    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
-  </div>
+{% endblock %}
+{% block scripts %}
   <script>
   let catalog;
   let selected = [];
@@ -384,5 +356,4 @@
     status.textContent = `Could not load benchmark comparison: ${error.message}`;
   });
   </script>
-</body>
-</html>
+{% endblock %}

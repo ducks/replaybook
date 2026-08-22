@@ -1,0 +1,62 @@
+{% extends "benchmark-base.html" %}
+{% set active_tab = "current" %}
+{% block title %}Current benchmarks{% endblock %}
+{% block description %}Current Replaybook infrastructure-agent benchmark results.{% endblock %}
+{% block content %}
+    <p class="eyebrow">Canonical cohort · Benchmark {{ release.version }}</p>
+    <h1>{{ release.title }}</h1>
+    <p class="tagline benchmark-tagline">{{ release.description }}</p>
+
+    <div class="cohort-identity" aria-label="Canonical cohort identity">
+      <span class="badge verified">Canonical</span>
+      <span>{{ tier }} tier</span>
+      <span>{{ harness_name }} agent harness</span>
+      <span>{{ provider }}</span>
+      <span>Host harness {{ host_versions }}</span>
+      <span>{{ timeout_seconds }}s timeout</span>
+    </div>
+
+    <div class="metric-grid" aria-label="Current benchmark results">
+      <div class="metric"><span class="metric-value">{{ totals.passed }}/{{ totals.evaluated }}</span><span class="metric-label">durable repairs</span></div>
+      <div class="metric"><span class="metric-value">{{ median_duration }}</span><span class="metric-label">overall median</span></div>
+      <div class="metric"><span class="metric-value">{{ total_cost }}</span><span class="metric-label">known total cost</span></div>{{ subscription_usage_metric }}
+    </div>
+
+    <div class="callout benchmark-status verified-status">
+      <strong>{{ totals.trials }} trials across {{ source_count }} controlled {{ source_noun }}.</strong>
+      {{ scenario_count }} scenarios were evaluated through the {{ harness_name }} agent harness. {{ totals.passed }} repairs passed durable verification. {{ totals.failed }} evaluated attempts failed and {{ totals.unavailable }} {{ unavailable_noun }} {{ unavailable_verb }} unavailable.
+    </div>
+{{ companion_releases }}
+{{ recent_scenarios }}
+
+    <h2>Canonical model summary</h2>
+    <p class="small muted">Only model lanes inside benchmark <code>{{ release.version }}</code> appear here. Companion harness cohorts stay in their own comparison boundary above. <a href="benchmark-compare.html?{{ compare_query }}">Compare this cohort →</a></p>
+    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
+{{ model_cells }}
+    </tbody></table></div>
+{{ recording_section }}
+
+{{ observations }}
+
+    <h2>Scenario breakdown</h2>
+    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th>{{ model_headers }}</tr></thead><tbody>
+{{ scenario_lines }}
+    </tbody></table></div>
+
+    <h2>Failure categories</h2>
+    <ul>{{ failure_items }}</ul>
+{{ unavailable_section }}{{ post_timeout }}{{ corrections }}{{ notes }}
+
+    <h2>Constituent matrices</h2>
+    <p>The publisher recorded harness provenance and validated matching {{ pack_compatibility }}scenario versions, attempts, timeout, and agent adapter before combining these summaries.</p>{{ pack_note }}
+    <div class="table-scroll"><table><thead><tr><th>Matrix</th><th>Models</th><th>Replaybook commit</th></tr></thead><tbody>
+{{ source_rows }}
+    </tbody></table></div>
+
+    <h2>Run the matrix</h2>
+    <pre><code>{{ run_command }}</code></pre>
+
+    <p class="small muted">Agent harness: {{ harness_name }}. Provider lane: {{ provider_lower }}. Billing: {{ billing }}. Host harness: {{ host_versions }}. Agent timeout: {{ timeout_seconds }} seconds. Usage was reported for {{ totals.usage_reported_trials }} of {{ totals.trials }} trials.</p>
+
+    <p>Read the <a href="benchmark-methodology.html">methodology</a>, browse the <a href="benchmark-history.html">versioned history</a>, or inspect the <a href="https://github.com/ducks/replaybook/blob/main/benchmarks.md">complete benchmark record</a>.</p>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Benchmarks{% endblock %} &middot; replaybook</title>
+  <meta name="description" content="{% block description %}Replaybook infrastructure-agent benchmark evidence.{% endblock %}">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html"{% if active_tab == "current" %} class="active" aria-current="page"{% endif %}>Current</a>
+      <a href="scenarios.html"{% if active_tab == "scenarios" %} class="active" aria-current="page"{% endif %}>Scenarios</a>
+      <a href="benchmark-coverage.html"{% if active_tab == "coverage" %} class="active" aria-current="page"{% endif %}>Coverage</a>
+      <a href="benchmark-models.html"{% if active_tab == "models" %} class="active" aria-current="page"{% endif %}>Models</a>
+      <a href="benchmark-compare.html"{% if active_tab == "compare" %} class="active" aria-current="page"{% endif %}>Compare</a>
+      <a href="benchmark-explorer.html"{% if active_tab == "explore" %} class="active" aria-current="page"{% endif %}>Explore</a>
+      <a href="benchmark-history.html"{% if active_tab == "history" %} class="active" aria-current="page"{% endif %}>History</a>
+      <a href="benchmark-methodology.html"{% if active_tab == "methodology" %} class="active" aria-current="page"{% endif %}>Methodology</a>
+    </nav>
+
+{% block content %}{% endblock %}
+
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+{% block scripts %}{% endblock %}
+</body>
+</html>

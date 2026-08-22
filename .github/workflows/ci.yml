@@ -39,6 +39,7 @@ jobs:
         with:
           components: clippy, rustfmt
 
+      - run: python -m pip install -r requirements-site.txt
       - run: cargo fmt -- --check
       - run: make deploy-check
       - run: make harbor-check
