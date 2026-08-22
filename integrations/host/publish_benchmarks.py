@@ -1328,7 +1328,6 @@ def html_page(
       <nav class="site">
         <a href="index.html">Home</a>
         <a href="usage.html">Usage</a>
-        <a href="scenarios.html">Scenarios</a>
         <a href="benchmarks.html" class="active">Benchmarks</a>
         <a href="https://github.com/ducks/replaybook">GitHub</a>
       </nav>
@@ -1942,7 +1941,6 @@ def compare_page() -> str:
       <nav class="site">
         <a href="index.html">Home</a>
         <a href="usage.html">Usage</a>
-        <a href="scenarios.html">Scenarios</a>
         <a href="benchmarks.html" class="active">Benchmarks</a>
         <a href="https://github.com/ducks/replaybook">GitHub</a>
       </nav>
@@ -2335,7 +2333,6 @@ def explorer_page() -> str:
       <nav class="site">
         <a href="index.html">Home</a>
         <a href="usage.html">Usage</a>
-        <a href="scenarios.html">Scenarios</a>
         <a href="benchmarks.html" class="active">Benchmarks</a>
         <a href="https://github.com/ducks/replaybook">GitHub</a>
       </nav>
@@ -2568,7 +2565,6 @@ def coverage_page() -> str:
       <nav class="site">
         <a href="index.html">Home</a>
         <a href="usage.html">Usage</a>
-        <a href="scenarios.html">Scenarios</a>
         <a href="benchmarks.html" class="active">Benchmarks</a>
         <a href="https://github.com/ducks/replaybook">GitHub</a>
       </nav>
@@ -2724,7 +2720,6 @@ def models_page() -> str:
       <nav class="site">
         <a href="index.html">Home</a>
         <a href="usage.html">Usage</a>
-        <a href="scenarios.html">Scenarios</a>
         <a href="benchmarks.html" class="active">Benchmarks</a>
         <a href="https://github.com/ducks/replaybook">GitHub</a>
       </nav>
@@ -2849,7 +2844,6 @@ def model_page() -> str:
       <nav class="site">
         <a href="index.html">Home</a>
         <a href="usage.html">Usage</a>
-        <a href="scenarios.html">Scenarios</a>
         <a href="benchmarks.html" class="active">Benchmarks</a>
         <a href="https://github.com/ducks/replaybook">GitHub</a>
       </nav>
