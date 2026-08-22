@@ -381,6 +381,19 @@ whole matrix, not only the resumed workers. A custom adapter whose original
 matrix used `--agent-env-file` must supply that file again; Replaybook verifies
 its hash without retaining the secret-bearing file.
 
+Unavailable trials are retained by default. To archive their existing
+artifacts and retry only those cells in place:
+
+```sh
+python integrations/host/run_host_matrix.py \
+  --resume jobs/host-matrix-2026-08-11__18-47-25.10fa16 \
+  --retry-unavailable \
+  --concurrency 2
+```
+
+The previous run directory and log are moved under the matrix's `retries/`
+directory before the replacement trial starts.
+
 ## Run an executable benchmark manifest
 
 A benchmark repository can freeze its tier, scenario pack, scenario versions,
