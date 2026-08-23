@@ -429,6 +429,11 @@ directory before the replacement trial starts.
 A benchmark repository can freeze its tier, scenario pack, scenario versions,
 attempt count, timeout, verification policy, and required host harness in a
 `benchmark.toml`. Supported tiers are `smoke`, `core`, `full`, and `frontier`.
+Stable subset benchmarks may omit `pack.version`. Their identity remains tied
+to the declared pack ID and the execution snapshot hashes of every selected
+scenario, so adding or changing an unselected scenario does not invalidate the
+benchmark. Keep `pack.version` for manifests intended to freeze a complete
+pack release.
 Run that controlled experiment without repeating its matrix dimensions on the
 command line:
 

@@ -14,7 +14,9 @@ from integrations.host.run_host_matrix import (
 from integrations.host.scenario_pack import discover
 
 
-def write_benchmark(root: Path, *, scenario_version: int = 2) -> Path:
+def write_benchmark(
+    root: Path, *, scenario_version: int = 2, pin_pack_version: bool = True
+) -> Path:
     (root / "replaybook-pack.toml").write_text(
         '[pack]\nid = "test/infra"\nversion = "20260810.0.0"\n'
     )
@@ -24,6 +26,7 @@ def write_benchmark(root: Path, *, scenario_version: int = 2) -> Path:
         f"[scenario]\nversion = {scenario_version}\n"
     )
     manifest = root / "benchmark.toml"
+    pack_version = 'version = "20260810.0.0"\n' if pin_pack_version else ""
     manifest.write_text(
         f'''schema_version = 1
 
@@ -39,7 +42,7 @@ required_host_harness_version = {HOST_HARNESS_VERSION}
 [pack]
 path = "."
 id = "test/infra"
-version = "20260810.0.0"
+{pack_version}
 
 [verification]
 require_immediate_recovery = true
@@ -71,6 +74,33 @@ class BenchmarkManifestTests(unittest.TestCase):
         self.assertEqual(manifest.agent_timeout_seconds, 600)
         self.assertEqual(manifest.scenarios[0].id, "database-incident")
         self.assertEqual(len(manifest.sha256), 64)
+
+    def test_stable_selection_allows_unrelated_pack_releases(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = load_benchmark_manifest(
+                write_benchmark(root, pin_pack_version=False)
+            )
+            (root / "replaybook-pack.toml").write_text(
+                '[pack]\nid = "test/infra"\nversion = "20260823.0.0"\n'
+            )
+            packs, scenarios = discover([root])
+            manifest.validate_environment(packs, scenarios, HOST_HARNESS_VERSION)
+
+        self.assertIsNone(manifest.pack_version)
+
+    def test_pinned_selection_rejects_pack_release_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            manifest = load_benchmark_manifest(write_benchmark(root))
+            (root / "replaybook-pack.toml").write_text(
+                '[pack]\nid = "test/infra"\nversion = "20260823.0.0"\n'
+            )
+            packs, scenarios = discover([root])
+            with self.assertRaisesRegex(ValueError, "pack identity mismatch"):
+                manifest.validate_environment(
+                    packs, scenarios, HOST_HARNESS_VERSION
+                )
 
     def test_rejects_scenario_version_drift(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
