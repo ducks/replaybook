@@ -9,22 +9,24 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Four-model visual infrastructure cohort
+## Visual infrastructure benchmark: topology and metrics
 
-GPT-5.6 Luna, GPT-5.6 Sol, Ox Alpha, and MiMo V2.5 each ran three attempts against the same topology-drift incident through Claux and OpenRouter.
+Six image-capable models each attempted three durable repairs across two visual infrastructure incidents: authoritative topology drift and an operational metrics regression.
 
-Benchmark release: `20260822.0.3`
+Benchmark release: `20260822.0.4`
 Benchmark tier: `unclassified`
 
-Scenario packs: `ducks/replaybook-infra@20260822.0.0`
+Scenario packs: `ducks/replaybook-infra@20260822.1.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 3/3 | 100% | 1:14 | $0.0580 | $0.0193 |
-| GPT-5.6 Sol (high) | 3/3 | 100% | 2:06 | $0.7111 | $0.2370 |
-| Ox Alpha (high) | 3/3 | 100% | 3:25 | $0.0000 | $0.0000 |
-| MiMo V2.5 (high) | 3/3 | 100% | 4:09 | $0.0148 | $0.0049 |
-| **Total** | **12/12** | **100%** | **2:20** | **$0.7839** | **$0.0653** |
+| Kimi K3 (high) | 6/6 | 100% | 1:44 | $0.7410 | $0.1235 |
+| Ox Alpha (high) | 6/6 | 100% | 3:09 | $0.0000 | $0.0000 |
+| MiMo V2.5 (high) | 6/6 | 100% | 2:18 | $0.0237 | $0.0039 |
+| GPT-5.6 Luna (high) | 5/6 | 83% | 1:32 | $0.1268+ | $0.0254+ |
+| Gemini 3.7 Flash (high) | 5/6 | 83% | 3:04 | $0.7497 | $0.1499 |
+| GPT-5.6 Sol (high) | 4/6 | 67% | 2:41 | $0.7297+ | $0.1824+ |
+| **Total** | **32/36** | **89%** | **2:22** | **$2.3708+** | **$0.0741+** |
 
 ### Execution recording
 
@@ -32,37 +34,43 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 3/3 | 16 | 1:11 | 30 | 0:02 | 0:07 | 1:06 |
-| GPT-5.6 Sol (high) | 3/3 | 17 | 2:01 | 32 | 0:05 | 0:10 | 1:54 |
-| Ox Alpha (high) | 3/3 | 11 | 3:16 | 15 | 0:09 | 0:06 | 3:19 |
-| MiMo V2.5 (high) | 3/3 | 20 | 4:02 | 39 | 0:05 | 0:27 | 3:40 |
+| Kimi K3 (high) | 6/6 | 15 | 1:36 | 15.5 | 0:08 | 0:07 | 1:30 |
+| Ox Alpha (high) | 6/6 | 12 | 2:57 | 13 | 0:06 | 0:11 | 2:58 |
+| MiMo V2.5 (high) | 6/6 | 20 | 2:07 | 33.5 | 0:06 | 0:11 | 2:03 |
+| GPT-5.6 Luna (high) | 5/6 | 16 | 1:15 | 33 | 0:08 | 0:07 | 1:22 |
+| Gemini 3.7 Flash (high) | 6/6 | 39 | 2:57 | 38 | 0:05 | 0:08 | 2:54 |
+| GPT-5.6 Sol (high) | 4/6 | 14.5 | 2:10 | 26.5 | 0:08 | 0:13 | 2:06 |
 
-All four models completed all twelve durable repairs, leaving speed and cost as the differentiators in this cohort.
+Kimi K3, Ox Alpha, and MiMo V2.5 completed all six durable repairs; Kimi was the fastest of the sweepers at a 1:44 median.
 
-GPT-5.6 Luna was fastest at a 1:14 median and cost $0.0580 across three attempts.
+GPT-5.6 Luna posted the fastest overall median at 1:32 and completed five of six repairs.
 
-GPT-5.6 Sol reached the same repair rate at a 2:06 median and $0.7111, roughly twelve times Luna's known spend.
+Every model passed all three topology-drift attempts; all four scored failures occurred on the less explicit metrics-regression incident.
 
-Ox Alpha completed the cohort at no reported model cost; MiMo V2.5 completed it for $0.0148.
+MiMo V2.5 completed all six repairs for $0.0237 in reported model cost, while Ox Alpha reported no model charge.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Luna (high) | GPT-5.6 Sol (high) | Ox Alpha (high) | MiMo V2.5 (high) |
-|---|---:|---:|---:|---:|---:|
-| Visual topology drift | v1 | 3/3, 1:14 | 3/3, 2:06 | 3/3, 3:25 | 3/3, 4:09 |
+| Scenario | Version | Kimi K3 (high) | Ox Alpha (high) | MiMo V2.5 (high) | GPT-5.6 Luna (high) | Gemini 3.7 Flash (high) | GPT-5.6 Sol (high) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Visual topology drift | v1 | 3/3, 2:11 | 3/3, 3:04 | 3/3, 3:34 | 3/3, 1:33 | 3/3, 3:00 | 3/3, 2:15 |
+| Visual metrics regression | v1 | 3/3, 1:30 | 3/3, 3:14 | 3/3, 1:29 | 2/3, 1:24 | 2/3, 3:39 | 1/3, 15:31 |
 
 ### Failure categories
 
+- `agent_timeout`: 3
+- `provider_protocol_error`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-22__19-50-14.282ed1`: openai/gpt-5.6-luna, stealth/ox-alpha, xiaomi/mimo-v2.5; Replaybook `af0381ab`; reasoning high
-- `host-matrix-2026-08-22__20-16-26.778d06`: openai/gpt-5.6-sol; Replaybook `af0381ab`; reasoning high
+- `host-matrix-2026-08-22__23-04-31.e6ef1f`: moonshotai/kimi-k3, google/gemini-3.7-flash, openai/gpt-5.6-luna, openai/gpt-5.6-sol, stealth/ox-alpha, xiaomi/mimo-v2.5; Replaybook `3365024c`; reasoning high
 
 ### Run notes
 
-- This is a visual-input cohort. The topology image was authoritative evidence and was not translated into the prompt.
-- The Kimi and Gemini visual cohort remains a separate release because its execution snapshot recorded a different Claux binary provenance boundary.
+- This is the first visual benchmark release produced from the dedicated two-scenario replaybook-infra-visual manifest.
+- The prompt did not translate either authoritative image into text.
+- Gemini's provider protocol error followed meaningful inference and remains scored under the benchmark availability policy. Three other failures reached the 900-second agent deadline.
+- Known aggregate spend is partial because three timed-out trials did not report final usage.
 
 <!-- replaybook:current-benchmark:end -->
 

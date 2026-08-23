@@ -1,0 +1,38 @@
+{
+  "input_mode": "visual",
+  "title": "Visual infrastructure benchmark: topology and metrics",
+  "description": "Six image-capable models each attempted three durable repairs across two visual infrastructure incidents: authoritative topology drift and an operational metrics regression.",
+  "model_labels": {
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "moonshotai/kimi-k3": "Kimi K3",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "openai/gpt-5.6-sol": "GPT-5.6 Sol",
+    "stealth/ox-alpha": "Ox Alpha",
+    "xiaomi/mimo-v2.5": "MiMo V2.5"
+  },
+  "model_order": [
+    "moonshotai/kimi-k3",
+    "stealth/ox-alpha",
+    "xiaomi/mimo-v2.5",
+    "openai/gpt-5.6-luna",
+    "google/gemini-3.7-flash",
+    "openai/gpt-5.6-sol"
+  ],
+  "scenario_labels": {
+    "029-visual-topology-drift": "Visual topology drift",
+    "030-visual-metrics-regression": "Visual metrics regression"
+  },
+  "observations": [
+    "Kimi K3, Ox Alpha, and MiMo V2.5 completed all six durable repairs; Kimi was the fastest of the sweepers at a 1:44 median.",
+    "GPT-5.6 Luna posted the fastest overall median at 1:32 and completed five of six repairs.",
+    "Every model passed all three topology-drift attempts; all four scored failures occurred on the less explicit metrics-regression incident.",
+    "MiMo V2.5 completed all six repairs for $0.0237 in reported model cost, while Ox Alpha reported no model charge."
+  ],
+  "notes": [
+    "This is the first visual benchmark release produced from the dedicated two-scenario replaybook-infra-visual manifest.",
+    "The prompt did not translate either authoritative image into text.",
+    "Gemini's provider protocol error followed meaningful inference and remains scored under the benchmark availability policy. Three other failures reached the 900-second agent deadline.",
+    "Known aggregate spend is partial because three timed-out trials did not report final usage."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-visual.toml --models moonshotai/kimi-k3 google/gemini-3.7-flash openai/gpt-5.6-luna openai/gpt-5.6-sol stealth/ox-alpha xiaomi/mimo-v2.5 --reasoning-efforts high --concurrency 2 --base-port 29000"
+}
