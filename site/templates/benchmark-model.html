@@ -55,19 +55,19 @@
     const coverage = await response.json();
     const params = new URLSearchParams(window.location.search);
     const requested = `${params.get("model") || ""}|||${params.get("reasoning") || ""}`;
-    const lane = coverage.fleet.find(item => laneKey(item) === requested);
+    const lane = coverage.profiles.find(item => laneKey(item) === requested);
     if (!lane) throw new Error("select a canonical model from the model evidence page");
     document.title = `${lane.model_label} · Replaybook model evidence`;
     document.querySelector("#profile-title").textContent = lane.model_label;
     document.querySelector("#profile-effort").textContent = lane.reasoning_effort ? `Reasoning ${lane.reasoning_effort}` : "Default reasoning";
     document.querySelector("#profile-identity").textContent = `${lane.model} · evidence tiers: ${lane.tiers.join(", ") || "none"}`;
 
-    const key = laneKey(lane);
+    const records = new Map(lane.records.map(record => [record.scenario, record]));
     const entries = coverage.scenarios.map(scenario => ({
       scenario,
-      cell: scenario.cells.find(cell => laneKey(cell) === key)
+      cell: records.get(scenario.scenario)
     }));
-    const covered = entries.filter(entry => entry.cell && entry.cell.status === "covered");
+    const covered = entries.filter(entry => entry.cell);
     const newest = covered.map(entry => entry.cell).sort((a, b) => b.release.localeCompare(a.release))[0];
     if (newest) {
       const compareQuery = new URLSearchParams();
@@ -92,10 +92,12 @@
       scenarioLink.textContent = scenario.scenario_label;
       const meta = document.createElement("span");
       meta.className = "profile-cohort";
-      meta.textContent = `v${scenario.scenario_version} · ${scenario.boundary.tier} · ${scenario.release}`;
+      meta.textContent = cell
+        ? `v${cell.scenario_version} · ${cell.tier} · ${cell.release}`
+        : `current v${scenario.scenario_version}`;
       scenarioCell.append(scenarioLink, meta);
       row.append(scenarioCell);
-      if (!cell || cell.status === "missing") {
+      if (!cell) {
         const missing = document.createElement("td");
         missing.colSpan = 6;
         missing.className = "muted";
