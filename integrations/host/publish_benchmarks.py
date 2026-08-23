@@ -518,15 +518,21 @@ def compatibility_snapshot(snapshot: dict[str, Any] | None) -> dict[str, Any] | 
         value["scenario_packs"] = [
             {"id": pack["id"]} for pack in snapshot["scenario_packs"]
         ]
-        value["selected_scenarios"] = sorted(
-            snapshot["selected_scenarios"],
-            key=lambda item: (item["pack_id"], item["id"]),
-        )
+        # Scenario fingerprints are validated and unioned independently by
+        # validate_compatible(). Keeping the complete selection here would
+        # reject otherwise compatible matrices that cover disjoint scenario
+        # slices under the same execution boundary.
+        value["selected_scenarios"] = []
     else:
         value["scenario_packs"] = [
             {key: item for key, item in pack.items() if key != "git_commit"}
             for pack in snapshot["scenario_packs"]
         ]
+    # Optional artifact hashes may be absent in an older matrix even when a
+    # later matrix recorded the same artifact. validate_compatible() rejects
+    # conflicting known values and retains the strongest known provenance.
+    for key in OPTIONAL_SNAPSHOT_HASHES:
+        value[key] = None
     return value
 
 
@@ -578,9 +584,35 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
                     f"{sources[0]['source']} and {source['source']}"
                 )
     scenarios_by_id: dict[str, dict[str, Any]] = {}
+    selected_scenarios: dict[tuple[str, str, int], dict[str, Any]] = {}
+    optional_snapshot_hashes: dict[str, str] = {}
     scenario_order: list[str] = []
     identities: set[tuple[str, int, str, str | None, int]] = set()
     for source in sources:
+        snapshot = source.get("execution_snapshot") or {}
+        for hash_key in OPTIONAL_SNAPSHOT_HASHES:
+            value = snapshot.get(hash_key)
+            previous_hash = optional_snapshot_hashes.get(hash_key)
+            if (
+                value is not None
+                and previous_hash is not None
+                and value != previous_hash
+            ):
+                raise PublishError(
+                    f"incompatible summaries: execution snapshot {hash_key} "
+                    "differs between source matrices"
+                )
+            if value is not None:
+                optional_snapshot_hashes[hash_key] = value
+        for selected in snapshot.get("selected_scenarios", []):
+            key = (selected["pack_id"], selected["id"], selected["version"])
+            previous_selected = selected_scenarios.get(key)
+            if previous_selected is not None and previous_selected != selected:
+                raise PublishError(
+                    "incompatible summaries: selected scenario "
+                    f"{selected['id']} differs between source matrices"
+                )
+            selected_scenarios[key] = selected
         for scenario in source["scenarios"]:
             scenario_id = scenario["id"]
             previous = scenarios_by_id.get(scenario_id)
@@ -635,7 +667,40 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
     # published cohort as provenance for display and reproduction.
     expected["scenario_packs"] = sources[0]["scenario_packs"]
     expected["scenarios"] = [scenarios_by_id[item] for item in scenario_order]
+    if selected_scenarios and expected.get("execution_snapshot") is not None:
+        expected["execution_snapshot"]["selected_scenarios"] = sorted(
+            selected_scenarios.values(),
+            key=lambda item: (item["pack_id"], item["id"], item["version"]),
+        )
+    if expected.get("execution_snapshot") is not None:
+        for key, value in optional_snapshot_hashes.items():
+            expected["execution_snapshot"][key] = value
     return expected
+
+
+def select_source_models(
+    sources: list[dict[str, Any]], selected_models: list[str]
+) -> list[dict[str, Any]]:
+    requested = set(selected_models)
+    available = {run["model"] for source in sources for run in source["runs"]}
+    unknown = requested - available
+    if unknown:
+        raise PublishError(
+            "selected models are absent from source summaries: "
+            + ", ".join(sorted(unknown))
+        )
+    selected_sources = []
+    for source in sources:
+        runs = [run for run in source["runs"] if run["model"] in requested]
+        if not runs:
+            continue
+        source = copy.deepcopy(source)
+        source["runs"] = runs
+        source["models"] = [
+            model for model in source["models"] if model in requested
+        ]
+        selected_sources.append(source)
+    return selected_sources
 
 
 def apply_corrections(
@@ -798,13 +863,18 @@ def scenario_model_group_fields(runs: list[dict[str, Any]]) -> tuple[str, ...]:
 
 
 def create_release(
-    version: str, source_paths: list[Path], annotations: dict[str, Any]
+    version: str,
+    source_paths: list[Path],
+    annotations: dict[str, Any],
+    selected_models: list[str] | None = None,
 ) -> dict[str, Any]:
     if not VERSION_PATTERN.fullmatch(version):
         raise PublishError("benchmark version must use YYYYMMDD.MAJOR.PATCH DateVer")
     if not source_paths:
         raise PublishError("at least one summary is required")
     sources = [import_summary(path) for path in source_paths]
+    if selected_models:
+        sources = select_source_models(sources, selected_models)
     return create_release_from_sources(version, sources, annotations)
 
 
@@ -2208,7 +2278,7 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
 
 def import_release(args: argparse.Namespace, root: Path) -> None:
     annotations = read_json(args.annotations) if args.annotations else {}
-    release = create_release(args.version, args.summaries, annotations)
+    release = create_release(args.version, args.summaries, annotations, args.models)
     store_release(root, release)
 
 
@@ -2239,6 +2309,12 @@ def parser() -> argparse.ArgumentParser:
     importer = commands.add_parser("import", help="import summaries and build the site")
     importer.add_argument("--version", required=True)
     importer.add_argument("--annotations", type=Path)
+    importer.add_argument(
+        "--model",
+        dest="models",
+        action="append",
+        help="include only this model lane; may be repeated",
+    )
     importer.add_argument("summaries", nargs="+", type=Path)
     commands.add_parser("build", help="build pages from tracked benchmark data")
     commands.add_parser("check", help="fail when generated pages are stale")

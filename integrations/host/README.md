@@ -592,6 +592,21 @@ python integrations/host/publish_benchmarks.py import \
   jobs/host-matrix-second/summary.json
 ```
 
+Compatible matrices may cover disjoint scenario slices. When selected-scenario
+fingerprints are available, the publisher validates matching scenario content
+independently and publishes their union while still requiring a complete
+model-by-scenario cohort. Use repeatable `--model` options to exclude unrelated
+lanes from a source matrix, such as an unavailable exploratory model:
+
+```sh
+python integrations/host/publish_benchmarks.py import \
+  --version 20260822.0.0 \
+  --model moonshotai/kimi-k3 \
+  --model openai/gpt-5.6-luna \
+  jobs/visual-topology/summary.json \
+  jobs/visual-metrics/summary.json
+```
+
 Before combining results it requires the same suite, host harness, selected
 scenario content, attempt count, agent timeout, and agent adapter. Claux
 releases are part of that boundary only when Claux is the selected agent

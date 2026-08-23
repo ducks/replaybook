@@ -153,6 +153,9 @@ class PublisherTests(unittest.TestCase):
     def rename_scenario(self, value: dict, scenario_id: str) -> dict:
         value = deepcopy(value)
         value["benchmark"]["scenarios"][0]["id"] = scenario_id
+        snapshot = value["benchmark"].get("execution_snapshot") or {}
+        if snapshot.get("selected_scenarios"):
+            snapshot["selected_scenarios"][0]["id"] = scenario_id
         value["runs"][0]["scenario"] = scenario_id
         value["runs"][0]["run_id"] = (
             f"{scenario_id}-{value['runs'][0]['model']}-1"
@@ -284,6 +287,87 @@ class PublisherTests(unittest.TestCase):
             [scenario["id"] for scenario in release["compatibility"]["scenarios"]],
             ["001-nginx", "002-redis"],
         )
+
+    def test_unions_disjoint_selected_scenario_snapshots(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first_hash = "1" * 64
+            second_hash = "2" * 64
+            paths = []
+            for model in ("model/a", "model/b"):
+                first = summary(
+                    model,
+                    snapshot_hash="a" * 64,
+                    scenario_snapshot_hash=first_hash,
+                )
+                second = self.rename_scenario(
+                    summary(
+                        model,
+                        snapshot_hash="a" * 64,
+                        scenario_snapshot_hash=second_hash,
+                    ),
+                    "002-redis",
+                )
+                paths.append(self.write_summary(root, f"{model}-one", first))
+                paths.append(self.write_summary(root, f"{model}-two", second))
+
+            release = create_release("20260822.0.0", paths, {})
+
+        selected = release["compatibility"]["execution_snapshot"][
+            "selected_scenarios"
+        ]
+        self.assertEqual(
+            [(item["id"], item["sha256"]) for item in selected],
+            [("001-nginx", first_hash), ("002-redis", second_hash)],
+        )
+
+    def test_rejects_conflicting_selected_scenario_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = self.write_summary(
+                root,
+                "first",
+                summary(
+                    "model/a",
+                    snapshot_hash="a" * 64,
+                    scenario_snapshot_hash="1" * 64,
+                ),
+            )
+            second = self.write_summary(
+                root,
+                "second",
+                summary(
+                    "model/b",
+                    snapshot_hash="a" * 64,
+                    scenario_snapshot_hash="2" * 64,
+                ),
+            )
+
+            with self.assertRaisesRegex(PublishError, "selected scenario"):
+                create_release("20260822.0.0", [first, second], {})
+
+    def test_can_select_model_lanes_before_composing_scenario_shards(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            topology = summary("model/a")
+            qwen = deepcopy(topology["runs"][0])
+            qwen["model"] = "model/qwen"
+            qwen["run_id"] = "001-nginx-model-qwen-1"
+            topology["benchmark"]["models"].append("model/qwen")
+            topology["runs"].append(qwen)
+            metrics = self.rename_scenario(summary("model/a"), "002-metrics")
+            paths = [
+                self.write_summary(root, "topology", topology),
+                self.write_summary(root, "metrics", metrics),
+            ]
+
+            release = create_release(
+                "20260822.0.0", paths, {}, selected_models=["model/a"]
+            )
+
+        self.assertEqual(release["totals"]["trials"], 2)
+        self.assertEqual({run["model"] for run in release["runs"]}, {"model/a"})
+        self.assertEqual(release["sources"][0]["models"], ["model/a"])
 
     def test_rejects_incomplete_model_cohort_across_scenario_shards(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -504,8 +588,57 @@ class PublisherTests(unittest.TestCase):
                 ),
             )
 
-            with self.assertRaisesRegex(PublishError, "execution_snapshot differs"):
+            with self.assertRaisesRegex(PublishError, "selected scenario"):
                 create_release("20260817.0.0", [first, second], {})
+
+    def test_optional_snapshot_hash_can_be_missing_from_one_matrix(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first_value = summary(
+                "model/a",
+                snapshot_hash="a" * 64,
+                scenario_snapshot_hash="e" * 64,
+            )
+            second_value = summary(
+                "model/b",
+                snapshot_hash="a" * 64,
+                scenario_snapshot_hash="e" * 64,
+            )
+            second_value["benchmark"]["execution_snapshot"][
+                "claux_binary_sha256"
+            ] = "c" * 64
+            first = self.write_summary(root, "first", first_value)
+            second = self.write_summary(root, "second", second_value)
+
+            release = create_release("20260822.0.0", [first, second], {})
+
+        self.assertEqual(
+            release["compatibility"]["execution_snapshot"][
+                "claux_binary_sha256"
+            ],
+            "c" * 64,
+        )
+
+    def test_rejects_conflicting_optional_snapshot_hashes(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            values = []
+            for model, artifact_hash in (
+                ("model/a", "b" * 64),
+                ("model/b", "c" * 64),
+            ):
+                value = summary(
+                    model,
+                    snapshot_hash="a" * 64,
+                    scenario_snapshot_hash="e" * 64,
+                )
+                value["benchmark"]["execution_snapshot"][
+                    "claux_binary_sha256"
+                ] = artifact_hash
+                values.append(self.write_summary(root, model, value))
+
+            with self.assertRaisesRegex(PublishError, "claux_binary_sha256"):
+                create_release("20260822.0.0", values, {})
 
     def test_rejects_incompatible_execution_snapshots(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
