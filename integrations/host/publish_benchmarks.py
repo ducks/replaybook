@@ -37,6 +37,7 @@ DOCS_EXPLORER = Path("docs/benchmark-explorer.html")
 DOCS_HISTORY = Path("docs/benchmark-history.html")
 DOCS_MODEL = Path("docs/benchmark-model.html")
 DOCS_MODELS = Path("docs/benchmark-models.html")
+DOCS_SCENARIO = Path("docs/benchmark-scenario.html")
 DOCS_STYLE = Path("docs/style.css")
 SITE_TEMPLATES = Path("site/templates")
 SITE_STYLE = Path("site/static/style.css")
@@ -1157,13 +1158,11 @@ def recent_scenario_section(
             trials = sum(row["trials"] for row in aggregates)
             known_cost = sum(row["known_cost_usd"] for row in aggregates)
             cost_reported = sum(row["cost_reported_trials"] for row in aggregates)
-            query = urlencode(
-                {"release": release_version, "scenario": scenario_id}
-            )
+            query = urlencode({"scenario": scenario_id})
             input_mode = release.get("input_mode", "text")
             rows[input_mode].append(
                 "          <tr>"
-                f"<td><a href=\"benchmark-explorer.html?{html.escape(query)}\">"
+                f"<td><a href=\"benchmark-scenario.html?{html.escape(query)}\">"
                 f"{html.escape(label(release, 'scenario', scenario_id))}</a></td>"
                 f"<td>v{scenario_version}</td>"
                 f"<td><code>{html.escape(release_version)}</code>"
@@ -1989,13 +1988,8 @@ def public_coverage(
                 "scenario_label": boundary["scenario_label"],
                 "scenario_version": boundary["scenario_version"],
                 "release": boundary["release"],
-                "evidence_url": "benchmark-explorer.html?"
-                + urlencode(
-                    {
-                        "release": boundary["release"],
-                        "scenario": boundary["scenario"],
-                    }
-                ),
+                "evidence_url": "benchmark-scenario.html?"
+                + urlencode({"scenario": boundary["scenario"]}),
                 "boundary": {
                     "tier": tier_value(release),
                     "agent_harness": normalized_agent_harness(release),
@@ -2060,6 +2054,10 @@ def models_page() -> str:
 
 def model_page() -> str:
     return render_site_template("benchmark-model.html")
+
+
+def scenario_page() -> str:
+    return render_site_template("benchmark-scenario.html")
 
 
 def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -> str:
@@ -2161,8 +2159,8 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
                     "release": version,
                     "models": len(rows),
                     "repairs": f'{sum(row["passed"] for row in rows)}/{sum(row["evaluated"] for row in rows)}',
-                    "url": "benchmark-explorer.html?"
-                    + urlencode({"release": version, "scenario": scenario_id}),
+                    "url": "benchmark-scenario.html?"
+                    + urlencode({"scenario": scenario_id}),
                 }
             )
             if len(scenario_evidence) >= 8:
@@ -2251,6 +2249,7 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
         root / DOCS_EXPLORER: explorer_page(),
         root / DOCS_MODEL: model_page(),
         root / DOCS_MODELS: models_page(),
+        root / DOCS_SCENARIO: scenario_page(),
         root / DOCS_STYLE: (REPO_DIR / SITE_STYLE).read_text(),
         root / MARKDOWN_RECORD: replace_managed(
             (root / MARKDOWN_RECORD).read_text(),

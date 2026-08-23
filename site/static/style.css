@@ -246,6 +246,10 @@ pre code {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.scenario-metrics {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .metric,
 .gate {
   background: var(--bg-alt);
@@ -925,6 +929,7 @@ footer.site a {
 
 @media (max-width: 640px) {
   .metric-grid,
+  .scenario-metrics,
   .gate-grid,
   .catalog-controls,
   .catalog-breakdowns,

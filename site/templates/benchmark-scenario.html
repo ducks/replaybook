@@ -1,0 +1,173 @@
+{% extends "benchmark-base.html" %}
+{% set active_tab = "scenarios" %}
+{% block title %}Scenario evidence{% endblock %}
+{% block description %}Versioned model, harness, cost, timing, and failure evidence for one Replaybook infrastructure scenario.{% endblock %}
+{% block content %}
+    <p class="eyebrow" id="scenario-version">Scenario evidence</p>
+    <h1 id="scenario-title">Loading scenario evidence…</h1>
+    <p class="tagline benchmark-tagline" id="scenario-identity"></p>
+
+    <div class="callout comparison-note">
+      <strong>Each row keeps its original comparison boundary.</strong>
+      Evidence from different releases, harnesses, providers, tiers, and scenario versions is shown together for inspection, never silently pooled into a leaderboard.
+    </div>
+
+    <div class="metric-grid scenario-metrics" aria-label="Scenario evidence summary">
+      <div class="metric"><span class="metric-value" id="scenario-cohorts">0</span><span class="metric-label">published cohorts</span></div>
+      <div class="metric"><span class="metric-value" id="scenario-models">0</span><span class="metric-label">model lanes observed</span></div>
+      <div class="metric"><span class="metric-value" id="scenario-repairs">0/0</span><span class="metric-label">recorded repairs</span></div>
+      <div class="metric"><span class="metric-value" id="scenario-cost">n/a</span><span class="metric-label">known evidence spend</span></div>
+    </div>
+
+    <h2>Published cohorts</h2>
+    <div class="table-scroll"><table><thead><tr><th>Release</th><th>Version</th><th>Boundary</th><th>Harness</th><th>Models</th><th>Repairs</th></tr></thead><tbody id="scenario-cohort-results"></tbody></table></div>
+
+    <h2>Model evidence</h2>
+    <div class="table-scroll"><table><thead><tr><th>Cohort</th><th>Model</th><th>Repairs</th><th>Pass rate</th><th>95% CI</th><th>Median</th><th>Known cost</th><th>Failures</th></tr></thead><tbody id="scenario-model-results"></tbody></table></div>
+
+    <div class="catalog-breakdowns">
+      <section><h2>Repair failures</h2><ul id="scenario-failures"></ul></section>
+      <section><h2>Unavailable trials</h2><ul id="scenario-unavailable"></ul></section>
+    </div>
+
+    <p><a href="scenarios.html">← Scenario guide</a></p>
+    <p class="small muted">This profile is generated from <a href="benchmark-catalog.json"><code>benchmark-catalog.json</code></a>.</p>
+{% endblock %}
+{% block scripts %}
+  <script>
+  function duration(seconds) {
+    if (seconds === null || seconds === undefined) return "n/a";
+    const rounded = Math.round(seconds);
+    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
+  }
+
+  function money(value, incomplete = false) {
+    if (value === null || value === undefined) return "n/a";
+    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
+  }
+
+  function percent(value) {
+    return value === null || value === undefined ? "n/a" : `${Math.round(value * 100)}%`;
+  }
+
+  function variant(record) {
+    return record.reasoning_effort ? `${record.model_label} (${record.reasoning_effort})` : record.model_label;
+  }
+
+  function explorerUrl(record, includeModel = false) {
+    const query = new URLSearchParams({release: record.release, scenario: record.scenario});
+    if (includeModel) query.set("model", record.model);
+    return `benchmark-explorer.html?${query}`;
+  }
+
+  function categoryCounts(records, key) {
+    const counts = new Map();
+    records.forEach(record => Object.entries(record[key]).forEach(([name, count]) =>
+      counts.set(name, (counts.get(name) || 0) + count)
+    ));
+    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  }
+
+  function renderCategories(target, values, empty) {
+    if (!values.length) {
+      const item = document.createElement("li");
+      item.textContent = empty;
+      target.append(item);
+      return;
+    }
+    values.forEach(([name, count]) => {
+      const item = document.createElement("li");
+      const code = document.createElement("code");
+      code.textContent = name;
+      item.append(code, `: ${count}`);
+      target.append(item);
+    });
+  }
+
+  function appendTextCell(row, value) {
+    const cell = document.createElement("td");
+    cell.textContent = value;
+    row.append(cell);
+    return cell;
+  }
+
+  async function initialize() {
+    const response = await fetch("benchmark-catalog.json");
+    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
+    const catalog = await response.json();
+    const scenario = new URLSearchParams(window.location.search).get("scenario") || "";
+    const records = catalog.records
+      .filter(record => record.scenario === scenario)
+      .sort((a, b) => b.release.localeCompare(a.release) || variant(a).localeCompare(variant(b)));
+    if (!records.length) throw new Error("select a published scenario from the scenario guide");
+
+    const releases = new Map(catalog.releases.map(release => [release.version, release]));
+    const newest = records[0];
+    const versions = [...new Set(records.map(record => `v${record.scenario_version}`))];
+    const cohorts = [...new Set(records.map(record => record.release))];
+    const modelLanes = new Set(records.map(record => `${record.model}|||${record.reasoning_effort || ""}`));
+    const evaluated = records.reduce((sum, record) => sum + record.evaluated, 0);
+    const passed = records.reduce((sum, record) => sum + record.passed, 0);
+    const knownCost = records.reduce((sum, record) => sum + record.known_cost_usd, 0);
+    const costReported = records.reduce((sum, record) => sum + record.cost_reported_trials, 0);
+    const incompleteCost = records.some(record => record.cost_reported_trials < record.trials);
+
+    document.title = `${newest.scenario_label} · Replaybook scenario evidence`;
+    document.querySelector("#scenario-title").textContent = newest.scenario_label;
+    document.querySelector("#scenario-version").textContent = versions.join(" · ");
+    const boundaryLabel = cohorts.length === 1 ? "boundary" : "boundaries";
+    document.querySelector("#scenario-identity").textContent = `${scenario} · ${cohorts.length} independently versioned comparison ${boundaryLabel}`;
+    document.querySelector("#scenario-cohorts").textContent = String(cohorts.length);
+    document.querySelector("#scenario-models").textContent = String(modelLanes.size);
+    document.querySelector("#scenario-repairs").textContent = `${passed}/${evaluated}`;
+    document.querySelector("#scenario-cost").textContent = costReported ? money(knownCost, incompleteCost) : "n/a";
+
+    const cohortBody = document.querySelector("#scenario-cohort-results");
+    cohorts.forEach(version => {
+      const release = releases.get(version);
+      const cohortRecords = records.filter(record => record.release === version);
+      const row = document.createElement("tr");
+      const releaseCell = appendTextCell(row, "");
+      const link = document.createElement("a");
+      link.href = explorerUrl(cohortRecords[0]);
+      link.textContent = version;
+      releaseCell.append(link);
+      appendTextCell(row, `v${cohortRecords[0].scenario_version}`);
+      appendTextCell(row, `${release.input_mode} · ${release.tier} · ${release.role}`);
+      const harnessVersion = release.agent_harness.version ? ` ${release.agent_harness.version}` : "";
+      const provider = release.agent_harness.provider ? ` · ${release.agent_harness.provider}` : "";
+      appendTextCell(row, `${release.agent_harness.label}${harnessVersion}${provider} · host v${release.harness_versions.join("/v")}`);
+      appendTextCell(row, String(cohortRecords.length));
+      appendTextCell(row, `${cohortRecords.reduce((sum, record) => sum + record.passed, 0)}/${cohortRecords.reduce((sum, record) => sum + record.evaluated, 0)}`);
+      cohortBody.append(row);
+    });
+
+    const modelBody = document.querySelector("#scenario-model-results");
+    records.forEach(record => {
+      const row = document.createElement("tr");
+      appendTextCell(row, `${record.release} · ${record.tier}`);
+      const modelCell = appendTextCell(row, "");
+      const modelLink = document.createElement("a");
+      modelLink.href = explorerUrl(record, true);
+      modelLink.textContent = variant(record);
+      modelCell.append(modelLink);
+      appendTextCell(row, `${record.passed}/${record.evaluated}`);
+      appendTextCell(row, percent(record.pass_rate));
+      appendTextCell(row, record.evaluated ? `${percent(record.pass_rate_95_low)}–${percent(record.pass_rate_95_high)}` : "n/a");
+      appendTextCell(row, duration(record.median_duration_seconds));
+      appendTextCell(row, record.cost_reported_trials ? money(record.known_cost_usd, record.cost_reported_trials < record.trials) : "n/a");
+      const failures = Object.entries(record.failure_categories);
+      appendTextCell(row, failures.length ? failures.map(([name, count]) => `${name} (${count})`).join(", ") : "None");
+      modelBody.append(row);
+    });
+
+    renderCategories(document.querySelector("#scenario-failures"), categoryCounts(records, "failure_categories"), "None in the published evidence.");
+    renderCategories(document.querySelector("#scenario-unavailable"), categoryCounts(records, "unavailable_categories"), "None in the published evidence.");
+  }
+
+  initialize().catch(error => {
+    document.querySelector("#scenario-title").textContent = "Scenario evidence unavailable";
+    document.querySelector("#scenario-identity").textContent = error.message;
+  });
+  </script>
+{% endblock %}
