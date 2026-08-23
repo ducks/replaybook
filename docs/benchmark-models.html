@@ -33,11 +33,11 @@
 
     <p class="eyebrow">Canonical fleet</p>
     <h1>Model evidence</h1>
-    <p class="tagline benchmark-tagline">Shareable profiles across the newest exact cohort for each current scenario.</p>
+    <p class="tagline benchmark-tagline">Shareable profiles using each model lane's newest tracked evidence for every current scenario.</p>
 
     <div class="callout comparison-note">
       <strong>This is evidence coverage, not one pooled leaderboard.</strong>
-      Totals below describe independently versioned scenario cohorts. Open a profile to inspect every underlying comparison boundary.
+      Each profile uses the newest available result for that model and scenario. Totals still describe independently versioned cohorts; open a profile to inspect every boundary.
     </div>
 
     <div id="models-context" class="small muted"></div>
@@ -78,9 +78,8 @@
     const coverage = await response.json();
     document.querySelector("#models-context").textContent = `${coverage.fleet.length} model lanes across ${coverage.scenarios.length} current scenarios · generated from benchmark ${coverage.generated_from}`;
     const grid = document.querySelector("#model-grid");
-    coverage.fleet.forEach(lane => {
-      const key = laneKey(lane);
-      const cells = coverage.scenarios.flatMap(scenario => scenario.cells.filter(cell => laneKey(cell) === key && cell.status === "covered"));
+    coverage.profiles.forEach(lane => {
+      const cells = lane.records;
       const evaluated = cells.reduce((sum, cell) => sum + cell.evaluated, 0);
       const passed = cells.reduce((sum, cell) => sum + cell.passed, 0);
       const perfect = cells.filter(cell => cell.evaluated && cell.passed === cell.evaluated).length;

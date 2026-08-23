@@ -859,6 +859,11 @@ class PublisherTests(unittest.TestCase):
                 coverage_data["scenarios"][0]["cells"][0]["status"],
                 "covered",
             )
+            self.assertEqual(len(coverage_data["profiles"]), 1)
+            self.assertEqual(
+                coverage_data["profiles"][0]["records"][0]["model"],
+                "model/a",
+            )
             self.assertEqual(
                 coverage_data["scenarios"][0]["boundary"]["harness_versions"],
                 [5],
@@ -869,6 +874,47 @@ class PublisherTests(unittest.TestCase):
             (root / "docs/benchmarks.html").write_text("stale")
             with self.assertRaisesRegex(PublishError, "stale"):
                 build_outputs(root, check=True)
+
+    def test_model_profile_keeps_latest_available_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            older_path = self.write_summary(root, "older", summary("model/b"))
+            newer_path = self.write_summary(root, "newer", summary("model/a"))
+            older = create_release("20260809.0.0", [older_path], {})
+            newer = create_release("20260810.0.0", [newer_path], {})
+            write_json(
+                root / "benchmark-data/index.json",
+                {
+                    "schema_version": 1,
+                    "current_version": "20260810.0.0",
+                    "coverage_fleet": [
+                        {"model": "model/a", "reasoning_effort": None},
+                        {"model": "model/b", "reasoning_effort": None},
+                    ],
+                    "releases": ["20260809.0.0", "20260810.0.0"],
+                },
+            )
+            write_json(root / "benchmark-data/releases/20260809.0.0.json", older)
+            write_json(root / "benchmark-data/releases/20260810.0.0.json", newer)
+            (root / "docs").mkdir()
+            (root / "docs/benchmark-history.html").write_text(
+                f"{HISTORY_START}\n{HISTORY_END}\n"
+            )
+            (root / "benchmarks.md").write_text(
+                f"{MARKDOWN_START}\n{MARKDOWN_END}\n"
+            )
+
+            build_outputs(root)
+            coverage = json.loads(
+                (root / "benchmark-data/coverage.json").read_text()
+            )
+
+        cells = coverage["scenarios"][0]["cells"]
+        self.assertEqual(cells[0]["status"], "covered")
+        self.assertEqual(cells[1]["status"], "missing")
+        profiles = {profile["model"]: profile for profile in coverage["profiles"]}
+        self.assertEqual(profiles["model/a"]["records"][0]["release"], "20260810.0.0")
+        self.assertEqual(profiles["model/b"]["records"][0]["release"], "20260809.0.0")
 
     def test_companion_harness_is_visible_but_does_not_replace_coverage(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

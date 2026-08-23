@@ -1915,6 +1915,45 @@ def public_coverage(
             }
         )
 
+    profiles = []
+    for lane in fleet:
+        latest_evidence: dict[str, dict[str, Any]] = {}
+        for record in primary_records:
+            if (
+                record["model"] != lane["model"]
+                or record.get("reasoning_effort")
+                != lane.get("reasoning_effort")
+            ):
+                continue
+            previous = latest_evidence.get(record["scenario"])
+            if previous is None or release_order[record["release"]] > release_order[
+                previous["release"]
+            ]:
+                latest_evidence[record["scenario"]] = record
+        if not latest_evidence:
+            raise PublishError(
+                "coverage fleet lane has no tracked primary evidence: "
+                f"{lane['model']} ({lane.get('reasoning_effort') or 'default'})"
+            )
+        profile_records = []
+        for record in sorted(
+            latest_evidence.values(), key=lambda item: item["scenario_label"]
+        ):
+            profile_records.append(
+                {
+                    **record,
+                    "evidence_url": "benchmark-explorer.html?"
+                    + urlencode(
+                        {
+                            "release": record["release"],
+                            "scenario": record["scenario"],
+                            "model": lane["model"],
+                        }
+                    ),
+                }
+            )
+        profiles.append({**lane, "records": profile_records})
+
     records_by_cell = {
         (
             record["scenario"],
@@ -2025,6 +2064,7 @@ def public_coverage(
         "generated_from": index["current_version"],
         "comparison_policy": "newest_exact_scenario_cohort",
         "fleet": fleet,
+        "profiles": profiles,
         "scenarios": scenarios,
         "totals": {
             "scenarios": len(scenarios),
