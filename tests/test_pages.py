@@ -64,6 +64,7 @@ class PagesTests(unittest.TestCase):
             "benchmark-explorer.html",
             "benchmark-model.html",
             "benchmark-models.html",
+            "benchmark-scenario.html",
         }
         templates = SITE_DIR / "templates"
         template_names = {path.name for path in templates.glob("*.html")}
@@ -137,6 +138,10 @@ class PagesTests(unittest.TestCase):
         self.assertIn("Docker scenario packs", scenarios)
         self.assertIn("Host-native evaluation scenarios", scenarios)
         self.assertIn("016-rails-pool-exhaustion", scenarios)
+        self.assertIn(
+            "benchmark-scenario.html?scenario=030-visual-metrics-regression",
+            scenarios,
+        )
         self.assertIn("scenario.toml", scenarios)
         self.assertIn("replaybook-build-scenario", scenarios)
 

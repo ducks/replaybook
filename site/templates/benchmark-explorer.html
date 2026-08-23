@@ -133,9 +133,14 @@
     body.replaceChildren();
     records.forEach(record => {
       const row = document.createElement("tr");
+      const scenarioCell = document.createElement("td");
+      const scenarioLink = document.createElement("a");
+      scenarioLink.href = `benchmark-scenario.html?${new URLSearchParams({scenario: record.scenario})}`;
+      scenarioLink.textContent = `${record.scenario_label} · v${record.scenario_version}`;
+      scenarioCell.append(scenarioLink);
+      row.append(scenarioCell);
       const values = [
-        `${record.scenario_label} · v${record.scenario_version}`, variant(record),
-        String(record.trials), `${record.passed}/${record.evaluated}`, percent(record.pass_rate),
+        variant(record), String(record.trials), `${record.passed}/${record.evaluated}`, percent(record.pass_rate),
         record.evaluated ? `${percent(record.pass_rate_95_low)}–${percent(record.pass_rate_95_high)}` : "n/a",
         duration(record.median_duration_seconds),
         record.cost_reported_trials ? money(record.known_cost_usd, record.cost_reported_trials < record.trials) : "n/a",

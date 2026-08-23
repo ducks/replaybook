@@ -786,6 +786,7 @@ class PublisherTests(unittest.TestCase):
             explorer = (root / "docs/benchmark-explorer.html").read_text()
             model_page = (root / "docs/benchmark-model.html").read_text()
             models_page = (root / "docs/benchmark-models.html").read_text()
+            scenario_page = (root / "docs/benchmark-scenario.html").read_text()
             catalog = json.loads((root / "benchmark-data/catalog.json").read_text())
             coverage_data = json.loads(
                 (root / "benchmark-data/coverage.json").read_text()
@@ -819,6 +820,9 @@ class PublisherTests(unittest.TestCase):
             self.assertIn("profile-results", model_page)
             self.assertIn("benchmark-coverage.json", model_page)
             self.assertIn("profile-compare", model_page)
+            self.assertIn("Published cohorts", scenario_page)
+            self.assertIn("scenario-model-results", scenario_page)
+            self.assertIn("benchmark-catalog.json", scenario_page)
             self.assertEqual(catalog["current_version"], "20260809.0.0")
             self.assertEqual(
                 catalog["coverage_fleet"],
@@ -1036,7 +1040,7 @@ class PublisherTests(unittest.TestCase):
             self.assertIn("001-nginx", current)
             self.assertIn("002-redis", current)
             self.assertIn(
-                "release=20260808.0.0&amp;scenario=002-redis", current
+                "benchmark-scenario.html?scenario=002-redis", current
             )
 
     def test_history_retains_superseded_generated_releases(self) -> None:
