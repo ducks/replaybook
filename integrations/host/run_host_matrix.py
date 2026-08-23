@@ -1459,7 +1459,12 @@ def main(argv: list[str] | None = None) -> int:
             print(f"[benchmark] {manifest.id}@{manifest.version} is valid")
             if manifest.tier:
                 print(f"[benchmark] tier: {manifest.tier}")
-            print(f"[benchmark] pack: {manifest.pack_id}@{manifest.pack_version}")
+            pack_label = (
+                f"{manifest.pack_id}@{manifest.pack_version}"
+                if manifest.pack_version is not None
+                else f"{manifest.pack_id} (selected scenarios pinned)"
+            )
+            print(f"[benchmark] pack: {pack_label}")
             print(
                 f"[benchmark] {len(scenarios)} scenarios, "
                 f"{manifest.attempts} attempts per model, "

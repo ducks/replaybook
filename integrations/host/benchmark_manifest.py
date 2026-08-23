@@ -35,7 +35,7 @@ class BenchmarkManifest:
     tier: str | None
     pack_path: Path
     pack_id: str
-    pack_version: str
+    pack_version: str | None
     scenarios: tuple[BenchmarkScenario, ...]
     attempts: int
     agent_timeout_seconds: int
@@ -66,7 +66,12 @@ class BenchmarkManifest:
         if len(packs) != 1:
             raise ValueError("benchmark manifests must resolve exactly one scenario pack")
         pack = packs[0]
-        if (pack.id, pack.version) != (self.pack_id, self.pack_version):
+        if pack.id != self.pack_id:
+            raise ValueError(
+                "benchmark pack identity mismatch: expected "
+                f"{self.pack_id}, found {pack.id}"
+            )
+        if self.pack_version is not None and pack.version != self.pack_version:
             raise ValueError(
                 "benchmark pack identity mismatch: expected "
                 f"{self.pack_id}@{self.pack_version}, found {pack.id}@{pack.version}"
@@ -91,6 +96,17 @@ def table(document: dict[str, Any], key: str, source: Path) -> dict[str, Any]:
 
 def string_field(value: dict[str, Any], key: str, source: Path) -> str:
     field = value.get(key)
+    if not isinstance(field, str) or not field.strip():
+        raise ValueError(f"{source}: {key} must be a non-empty string")
+    return field
+
+
+def optional_string_field(
+    value: dict[str, Any], key: str, source: Path
+) -> str | None:
+    field = value.get(key)
+    if field is None:
+        return None
     if not isinstance(field, str) or not field.strip():
         raise ValueError(f"{source}: {key} must be a non-empty string")
     return field
@@ -173,7 +189,7 @@ def load_benchmark_manifest(path: Path) -> BenchmarkManifest:
         tier=tier,
         pack_path=pack_path,
         pack_id=pack_id,
-        pack_version=string_field(pack, "version", source),
+        pack_version=optional_string_field(pack, "version", source),
         scenarios=tuple(scenarios),
         attempts=positive_int(benchmark, "attempts", source),
         agent_timeout_seconds=positive_int(

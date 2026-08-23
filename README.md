@@ -141,11 +141,12 @@ retain a Markdown report.
 Run the separately versioned
 [Replaybook Infra](https://github.com/ducks/replaybook-infra) benchmark from
 its executable manifest. Replaybook Infra provides smoke, core, full, and
-frontier tiers; `benchmark.toml` is the full publication suite:
+frontier tiers. `benchmark-core.toml` is the stable, DateVer Replaybook Infra Core
+comparison contract; `benchmark.toml` is the wider preview suite:
 
 ```sh
 python integrations/host/run_host_matrix.py \
-  --benchmark ../replaybook-infra/benchmark.toml \
+  --benchmark ../replaybook-infra/benchmark-core.toml \
   --models deepseek/deepseek-v4-flash-0731 \
   --concurrency 2
 ```
@@ -238,7 +239,7 @@ Plan only the coverage that a pinned benchmark still needs:
 
 ```sh
 python -m integrations.host.benchmark_plan \
-  --benchmark ../replaybook-infra/benchmark.toml
+  --benchmark ../replaybook-infra/benchmark-core.toml
 ```
 
 The planner consumes the stable published coverage API, reports stale or
