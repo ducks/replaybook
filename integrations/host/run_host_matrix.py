@@ -13,7 +13,6 @@ import re
 import secrets
 import shutil
 import signal
-import socket
 import statistics
 import subprocess
 import sys
@@ -26,9 +25,11 @@ from typing import Any, Iterable
 
 try:
     from .benchmark_manifest import BenchmarkManifest, load_benchmark_manifest
+    from .matrix_preflight import inspect_host, print_report
     from .scenario_pack import Scenario, ScenarioPack, discover
 except ImportError:
     from benchmark_manifest import BenchmarkManifest, load_benchmark_manifest
+    from matrix_preflight import inspect_host, print_report
     from scenario_pack import Scenario, ScenarioPack, discover
 
 
@@ -355,12 +356,48 @@ def discover_scenarios(
     return {scenario_id: scenario.version for scenario_id, scenario in scenarios.items()}
 
 
-def check_port_available(port: int) -> None:
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
-        try:
-            probe.bind(("127.0.0.1", port))
-        except OSError as error:
-            raise ValueError(f"host port is already in use: {port}") from error
+def write_json_atomic(path: Path, value: dict[str, Any]) -> None:
+    partial = path.with_name(f".{path.name}.partial.{os.getpid()}")
+    try:
+        with partial.open("w") as output:
+            json.dump(value, output, indent=2)
+            output.write("\n")
+            output.flush()
+            os.fsync(output.fileno())
+        os.replace(partial, path)
+    finally:
+        partial.unlink(missing_ok=True)
+
+
+def run_matrix_preflight(
+    *,
+    jobs: list[Job],
+    concurrency: int,
+    matrix_dir: Path,
+    report_name: str = "preflight.json",
+) -> dict[str, Any]:
+    active_concurrency = min(concurrency, len(jobs))
+    work_parent = Path(os.environ.get("REPLAYBOOK_HOST_TMPDIR", "/var/tmp"))
+    ssh_key = Path(
+        os.environ.get(
+            "REPLAYBOOK_HOST_SSH_KEY",
+            str(Path.home() / ".ssh" / "id_ed25519"),
+        )
+    ).expanduser()
+    report = inspect_host(
+        ports=sorted(
+            {port for job in jobs for port in (job.ssh_port, job.http_port)}
+        ),
+        concurrency=active_concurrency,
+        output_parent=matrix_dir.parent,
+        work_parent=work_parent,
+        ssh_key=ssh_key,
+    )
+    report["requested_concurrency"] = concurrency
+    report["scheduled_trials"] = len(jobs)
+    write_json_atomic(matrix_dir / report_name, report)
+    print_report(report)
+    return report
 
 
 def build_jobs(
@@ -1334,9 +1371,16 @@ def resume_matrix(args: argparse.Namespace) -> int:
                 raise ValueError("--agent-env-file does not match the original matrix")
         else:
             agent_env_file = None
-        for job in plan.pending:
-            check_port_available(job.ssh_port)
-            check_port_available(job.http_port)
+        if plan.pending:
+            timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+            report = run_matrix_preflight(
+                jobs=plan.pending,
+                concurrency=args.concurrency,
+                matrix_dir=plan.matrix_dir,
+                report_name=f"preflight-resume-{timestamp}.json",
+            )
+            if not report["healthy"]:
+                raise ValueError("host preflight failed; pending trials were not modified")
         if plan.pending and not any(job.model is None for job in plan.pending):
             if plan.snapshot.agent_adapter is None and not (
                 os.environ.get("REPLAYBOOK_OPENAI_API_KEY")
@@ -1486,9 +1530,6 @@ def main(argv: list[str] | None = None) -> int:
         )
         if jobs[-1].http_port > 65535 or args.base_port <= 0:
             raise ValueError("matrix port range must stay between 1 and 65535")
-        for job in jobs:
-            check_port_available(job.ssh_port)
-            check_port_available(job.http_port)
         if (
             not args.oracle
             and args.agent_adapter is None
@@ -1514,7 +1555,20 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {error}", file=sys.stderr)
         return 2
 
-    (matrix_dir / "logs").mkdir(parents=True)
+    matrix_dir.mkdir(parents=True)
+    print(f"[matrix] results: {matrix_dir}")
+    try:
+        preflight = run_matrix_preflight(
+            jobs=jobs,
+            concurrency=args.concurrency,
+            matrix_dir=matrix_dir,
+        )
+        if not preflight["healthy"]:
+            raise ValueError("host preflight failed; no trials were launched")
+    except (OSError, ValueError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+    (matrix_dir / "logs").mkdir()
     (matrix_dir / "runs").mkdir()
     try:
         snapshot = stage_execution_snapshot(
@@ -1565,6 +1619,12 @@ def main(argv: list[str] | None = None) -> int:
         "attempts": args.attempts,
         "base_port": args.base_port,
         "concurrency": args.concurrency,
+        "host_preflight": {
+            "schema_version": preflight["schema_version"],
+            "checked_at": preflight["checked_at"],
+            "summary": preflight["summary"],
+            "sha256": sha256_file(matrix_dir / "preflight.json"),
+        },
         "agent_timeout_seconds": args.agent_timeout_seconds,
         "agent": {
             "name": args.agent_name
@@ -1582,7 +1642,6 @@ def main(argv: list[str] | None = None) -> int:
     benchmark["started_at"] = utc_now()
     (matrix_dir / "benchmark.json").write_text(json.dumps(benchmark, indent=2) + "\n")
     started_at = benchmark["started_at"]
-    print(f"[matrix] results: {matrix_dir}")
     print(
         "[matrix] execution snapshot: "
         f"{snapshot.metadata['host_harness_sha256'][:12]} "

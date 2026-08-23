@@ -118,6 +118,8 @@ Nushell source mechanically.
 ## Completion Checklist
 
 - Host preflight has no blocking failures.
+- Retain and inspect the matrix `preflight.json`; resume reports are timestamped
+  and written before any pending artifacts are modified.
 - Benchmark manifest check and oracle pass when applicable.
 - Smoke trial produces a valid normalized result.
 - Matrix dimensions and estimated maximum spend are stated before launch.

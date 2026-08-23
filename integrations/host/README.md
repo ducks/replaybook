@@ -395,6 +395,15 @@ Worker logs show
 both launch position and completed progress, such as `starting 3 of 15` and
 `completed 1 of 15`, so long concurrent matrices remain easy to track.
 
+Before creating an execution snapshot or launching a VM, the matrix runner now
+runs a blocking host preflight over the exact scheduled port set and requested
+concurrency. It verifies Linux/KVM access, required commands, the SSH key pair,
+readable Nix storage, writable VM-work/output filesystems, aggregated free-disk
+reservations, available memory, and the open-file limit. CPU pressure and
+already-running Replaybook VMs are reported as warnings. The complete
+machine-readable report is retained as `preflight.json` in the matrix
+directory; a failed preflight leaves that report behind but launches no trials.
+
 If a matrix is interrupted, resume it in place:
 
 ```sh
@@ -410,6 +419,9 @@ the remainder on their original port assignments. The final summary covers the
 whole matrix, not only the resumed workers. A custom adapter whose original
 matrix used `--agent-env-file` must supply that file again; Replaybook verifies
 its hash without retaining the secret-bearing file.
+Each resume also records a timestamped `preflight-resume-*.json` before it
+archives unavailable results or removes partial output, so a capacity or port
+failure cannot mutate the retained matrix.
 
 Unavailable trials are retained by default. To archive their existing
 artifacts and retry only those cells in place:
