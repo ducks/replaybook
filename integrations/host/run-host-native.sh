@@ -32,12 +32,14 @@ Options:
 
 Environment:
   REPLAYBOOK_OPENAI_API_KEY      API key for the default Claux upstream.
-                                 Falls back to OPENROUTER_API_KEY.
+                                 Falls back to OPENROUTER_API_KEY, then a key
+                                 saved by `claux auth login openrouter`.
   REPLAYBOOK_OPENAI_UPSTREAM     Credential-proxy upstream (default: https://openrouter.ai).
   REPLAYBOOK_OPENAI_PROXY_PATH   Guest-visible API path (default: /api/v1).
   REPLAYBOOK_HOST_SSH_KEY        SSH key (default: ~/.ssh/id_ed25519).
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to bake into the VM.
+  REPLAYBOOK_CLAUX_AUTH_BINARY   Host Claux binary used to read saved OAuth.
   REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260821.0.2).
   REPLAYBOOK_HOST_VM_READY_TIMEOUT
                                  VM SSH readiness timeout in seconds (default: 300).
@@ -361,7 +363,11 @@ done
 }
 if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false \
   && -z "$OPENAI_API_KEY" ]]; then
-  echo "REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY is required by the default Claux adapter" >&2
+  OPENAI_API_KEY="$("${SCRIPT_DIR}/resolve-openrouter-key.sh")" || true
+fi
+if [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false \
+  && -z "$OPENAI_API_KEY" ]]; then
+  echo "OpenRouter authentication is required by the default Claux adapter; set REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY, or run 'claux auth login openrouter'" >&2
   exit 1
 fi
 if [[ "$CUSTOM_AGENT_ADAPTER" == false \

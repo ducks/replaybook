@@ -87,10 +87,13 @@ python integrations/host/run_host_matrix.py \
   --concurrency 2</code></pre>
 
     <p>
-      Set <code>OPENROUTER_API_KEY</code> for the bundled Claux adapter. The
-      controller needs Linux, Nix, <code>nixos-generators</code>, QEMU, SSH, and
-      hardware virtualization when available. Each concurrent trial consumes
-      one VM and two adjacent localhost ports.
+      Set <code>OPENROUTER_API_KEY</code> for the bundled Claux adapter, or run
+      <code>claux auth login openrouter</code> once and let Replaybook use the
+      saved host credential. The controller needs Linux, Nix,
+      <code>nixos-generators</code>, QEMU, SSH, and hardware virtualization when
+      available. Each concurrent trial consumes one VM and two adjacent
+      localhost ports. The real provider credential remains behind the host
+      proxy and is not copied into the VM or benchmark artifacts.
     </p>
 
     <h3>Bring another harness</h3>

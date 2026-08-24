@@ -49,6 +49,7 @@ HOST_RUNNER_FILES = (
     "guest_leak_audit.py",
     "isolated-vm.nix",
     "openrouter_proxy.py",
+    "resolve-openrouter-key.sh",
     "run-agent-adapter.sh",
     "run-claux.sh",
     "run-host-native.sh",
@@ -166,6 +167,20 @@ def git_commit(path: Path) -> str | None:
         text=True,
     )
     return result.stdout.strip() if result.returncode == 0 else None
+
+
+def resolve_openrouter_api_key(environment: dict[str, str]) -> str | None:
+    result = subprocess.run(
+        [str(SCRIPT_DIR / "resolve-openrouter-key.sh")],
+        check=False,
+        capture_output=True,
+        text=True,
+        env=environment,
+    )
+    if result.returncode != 0:
+        return None
+    key = result.stdout.strip()
+    return key or None
 
 
 def snapshot_ignore(_: str, names: list[str]) -> set[str]:
@@ -1357,6 +1372,7 @@ def matrix_directory(supplied: Path | None) -> Path:
 
 
 def resume_matrix(args: argparse.Namespace) -> int:
+    openrouter_api_key: str | None = None
     try:
         validate_resume_args(args)
         plan = build_resume_plan(
@@ -1381,14 +1397,19 @@ def resume_matrix(args: argparse.Namespace) -> int:
             )
             if not report["healthy"]:
                 raise ValueError("host preflight failed; pending trials were not modified")
-        if plan.pending and not any(job.model is None for job in plan.pending):
-            if plan.snapshot.agent_adapter is None and not (
-                os.environ.get("REPLAYBOOK_OPENAI_API_KEY")
-                or os.environ.get("OPENROUTER_API_KEY")
-            ):
+        credential_environment = dict(os.environ)
+        if plan.snapshot.claux_binary:
+            credential_environment["REPLAYBOOK_HOST_CLAUX_BINARY"] = str(
+                plan.snapshot.claux_binary
+            )
+        if plan.pending and any(job.model is not None for job in plan.pending):
+            if plan.snapshot.agent_adapter is None:
+                openrouter_api_key = resolve_openrouter_api_key(credential_environment)
+            if plan.snapshot.agent_adapter is None and openrouter_api_key is None:
                 raise ValueError(
-                    "REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY is required "
-                    "by the saved Claux adapter"
+                    "OpenRouter authentication is required by the saved Claux adapter; "
+                    "set REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY, or run "
+                    "`claux auth login openrouter`"
                 )
         for job in plan.unavailable_retries:
             archive = archive_unavailable_retry(job, plan.matrix_dir)
@@ -1400,6 +1421,8 @@ def resume_matrix(args: argparse.Namespace) -> int:
         return 2
 
     environment = dict(os.environ)
+    if openrouter_api_key is not None:
+        environment["REPLAYBOOK_OPENAI_API_KEY"] = openrouter_api_key
     if plan.snapshot.claux_binary:
         environment["REPLAYBOOK_HOST_CLAUX_BINARY"] = str(plan.snapshot.claux_binary)
     if plan.claux_release:
@@ -1463,6 +1486,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     if args.resume is not None:
         return resume_matrix(args)
+    openrouter_api_key: str | None = None
     try:
         manifest = apply_benchmark_manifest(args)
     except ValueError as error:
@@ -1530,18 +1554,6 @@ def main(argv: list[str] | None = None) -> int:
         )
         if jobs[-1].http_port > 65535 or args.base_port <= 0:
             raise ValueError("matrix port range must stay between 1 and 65535")
-        if (
-            not args.oracle
-            and args.agent_adapter is None
-            and not (
-                os.environ.get("REPLAYBOOK_OPENAI_API_KEY")
-                or os.environ.get("OPENROUTER_API_KEY")
-            )
-        ):
-            raise ValueError(
-                "REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY is required "
-                "by the default Claux adapter"
-            )
         if args.claux_binary and not args.claux_binary.expanduser().is_file():
             raise ValueError(f"Claux binary does not exist: {args.claux_binary}")
         for option, supplied in (
@@ -1551,6 +1563,19 @@ def main(argv: list[str] | None = None) -> int:
         ):
             if supplied is not None and not supplied.expanduser().is_file():
                 raise ValueError(f"{option} file does not exist: {supplied}")
+        if not args.oracle and args.agent_adapter is None:
+            credential_environment = dict(os.environ)
+            if args.claux_binary:
+                credential_environment["REPLAYBOOK_HOST_CLAUX_BINARY"] = str(
+                    args.claux_binary.expanduser().resolve()
+                )
+            openrouter_api_key = resolve_openrouter_api_key(credential_environment)
+            if openrouter_api_key is None:
+                raise ValueError(
+                    "OpenRouter authentication is required by the default Claux adapter; "
+                    "set REPLAYBOOK_OPENAI_API_KEY or OPENROUTER_API_KEY, or run "
+                    "`claux auth login openrouter`"
+                )
     except ValueError as error:
         print(f"error: {error}", file=sys.stderr)
         return 2
@@ -1598,6 +1623,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: could not stage execution snapshot: {error}", file=sys.stderr)
         return 2
     environment = dict(os.environ)
+    if openrouter_api_key is not None:
+        environment["REPLAYBOOK_OPENAI_API_KEY"] = openrouter_api_key
     if snapshot.claux_binary:
         environment["REPLAYBOOK_HOST_CLAUX_BINARY"] = str(snapshot.claux_binary)
     if args.claux_release:

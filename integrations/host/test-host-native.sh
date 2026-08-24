@@ -6,6 +6,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 bash -n "$script_dir/run-host-native.sh"
 bash -n "$script_dir/run-agent-adapter.sh"
 bash -n "$script_dir/run-claux.sh"
+bash -n "$script_dir/resolve-openrouter-key.sh"
 python -m py_compile "$script_dir/openrouter_proxy.py"
 python -m py_compile "$script_dir/guest_leak_audit.py"
 bash -n "$script_dir/adapters/codex.sh"
@@ -118,6 +119,29 @@ grep -q 'credential tunnel disconnected; retrying' "$script_dir/run-host-native.
 grep -q 'ServerAliveInterval=2' "$script_dir/run-host-native.sh"
 grep -q 'rm -f -- "$runtime_env"' "$script_dir/run-agent-adapter.sh"
 grep -q 'OPENROUTER_API_KEY=replaybook-proxy' "$script_dir/run-host-native.sh"
+credential_test_root="$(mktemp -d)"
+credential_test_claux="$credential_test_root/claux"
+printf '%s\n' '#!/usr/bin/env bash' 'printf "%s\\n" oauth-secret' >"$credential_test_claux"
+chmod 700 "$credential_test_claux"
+[[ "$(
+  env -u OPENROUTER_API_KEY \
+    REPLAYBOOK_OPENAI_API_KEY=explicit-secret \
+    REPLAYBOOK_CLAUX_AUTH_BINARY="$credential_test_claux" \
+    "$script_dir/resolve-openrouter-key.sh"
+)" == "explicit-secret" ]]
+[[ "$(
+  env -u REPLAYBOOK_OPENAI_API_KEY \
+    OPENROUTER_API_KEY=environment-secret \
+    REPLAYBOOK_CLAUX_AUTH_BINARY="$credential_test_claux" \
+    "$script_dir/resolve-openrouter-key.sh"
+)" == "environment-secret" ]]
+[[ "$(
+  env -u REPLAYBOOK_OPENAI_API_KEY -u OPENROUTER_API_KEY \
+    REPLAYBOOK_CLAUX_AUTH_BINARY="$credential_test_claux" \
+    PATH=/usr/bin:/bin \
+    "$script_dir/resolve-openrouter-key.sh"
+)" == "oauth-secret" ]]
+rm -rf -- "$credential_test_root"
 grep -Fq 'REPLAYBOOK_OPENAI_BASE_URL=http://127.0.0.1:19091${OPENAI_PROXY_PATH}' \
   "$script_dir/run-host-native.sh"
 grep -q 'REPLAYBOOK_CLAUX_PROVIDER_ROUTES' "$script_dir/run-host-native.sh"
