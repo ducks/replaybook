@@ -8,6 +8,7 @@ import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from integrations.host.run_host_matrix import (
     Job,
@@ -22,6 +23,7 @@ from integrations.host.run_host_matrix import (
     print_scenario_table,
     print_table,
     run_jobs,
+    run_matrix_preflight,
     sha256_tree,
     stage_execution_snapshot,
     slugify,
@@ -30,6 +32,36 @@ from integrations.host.scenario_pack import discover, load_pack
 
 
 class HostMatrixTests(unittest.TestCase):
+    def test_matrix_preflight_is_recorded_atomically(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            matrix = Path(temporary) / "matrix"
+            matrix.mkdir()
+            job = build_jobs(
+                scenarios=["incident"],
+                models=["vendor/model"],
+                attempts=1,
+                base_port=26000,
+                matrix_dir=matrix,
+            )[0]
+            report = {
+                "schema_version": 1,
+                "healthy": True,
+                "checks": [],
+                "summary": {"passed": 0, "warnings": 0, "failed": 0},
+            }
+            with patch(
+                "integrations.host.run_host_matrix.inspect_host",
+                return_value=report,
+            ), contextlib.redirect_stdout(io.StringIO()):
+                actual = run_matrix_preflight(
+                    jobs=[job], concurrency=1, matrix_dir=matrix
+                )
+
+            saved = json.loads((matrix / "preflight.json").read_text())
+
+        self.assertEqual(actual, report)
+        self.assertEqual(saved, report)
+
     def test_discovers_versioned_host_scenarios(self) -> None:
         scenarios = discover_scenarios()
         self.assertEqual(scenarios["001-nginx-502-host"], 1)
