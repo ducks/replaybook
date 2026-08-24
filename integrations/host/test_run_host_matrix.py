@@ -4,6 +4,7 @@ import asyncio
 import contextlib
 import io
 import json
+import os
 import subprocess
 import tempfile
 import unittest
@@ -24,6 +25,7 @@ from integrations.host.run_host_matrix import (
     print_table,
     run_jobs,
     run_matrix_preflight,
+    resolve_openrouter_api_key,
     sha256_tree,
     stage_execution_snapshot,
     slugify,
@@ -32,6 +34,17 @@ from integrations.host.scenario_pack import discover, load_pack
 
 
 class HostMatrixTests(unittest.TestCase):
+    def test_openrouter_key_resolver_uses_claux_oauth_fallback(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            claux = Path(temporary) / "claux"
+            claux.write_text("#!/usr/bin/env bash\nprintf '%s\\n' oauth-secret\n")
+            claux.chmod(0o700)
+            environment = {
+                "PATH": os.environ.get("PATH", "/usr/bin:/bin"),
+                "REPLAYBOOK_CLAUX_AUTH_BINARY": str(claux),
+            }
+            self.assertEqual(resolve_openrouter_api_key(environment), "oauth-secret")
+
     def test_matrix_preflight_is_recorded_atomically(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             matrix = Path(temporary) / "matrix"

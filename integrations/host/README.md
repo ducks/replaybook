@@ -219,6 +219,23 @@ integrations/host/run-host-native.sh \
   --model deepseek/deepseek-v4-flash
 ```
 
+For the bundled Claux adapter, Replaybook also accepts a credential saved by
+Claux's OpenRouter OAuth flow:
+
+```bash
+claux auth login openrouter
+python integrations/host/run_host_matrix.py \
+  --scenario-pack ../replaybook-infra \
+  --models z-ai/glm-5.3 \
+  --attempts 1
+```
+
+Credential resolution prefers `REPLAYBOOK_OPENAI_API_KEY`, then
+`OPENROUTER_API_KEY`, then `claux auth token openrouter`. Set
+`REPLAYBOOK_CLAUX_AUTH_BINARY` when the authenticated Claux binary is not on
+`PATH`. The resolved key remains in the host controller and credential proxy;
+the VM receives only the existing `replaybook-proxy` placeholder.
+
 For another OpenAI-compatible provider, set the generic credential, upstream,
 and guest-visible API path. For example, an endpoint rooted at
 `https://provider.example/agent/v1` uses:
