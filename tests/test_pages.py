@@ -86,9 +86,16 @@ class PagesTests(unittest.TestCase):
         methodology = (DOCS_DIR / "benchmark-methodology.html").read_text()
 
         index = json.loads((BENCHMARK_DATA_DIR / "index.json").read_text())
-        version = index["current_version"]
+        visual_version = next(
+            version
+            for version in reversed(index["releases"])
+            if json.loads(
+                (BENCHMARK_DATA_DIR / "releases" / f"{version}.json").read_text()
+            ).get("input_mode", "text")
+            == "visual"
+        )
         release = json.loads(
-            (BENCHMARK_DATA_DIR / "releases" / f"{version}.json").read_text()
+            (BENCHMARK_DATA_DIR / "releases" / f"{visual_version}.json").read_text()
         )
         self.assertIn("Text infrastructure", current)
         self.assertIn("Infrastructure agents under pressure", current)
@@ -96,7 +103,7 @@ class PagesTests(unittest.TestCase):
         self.assertNotIn("Benchmark input lanes", current)
         self.assertIn("Visual infrastructure", visual)
         self.assertIn("Infrastructure agents that can see", visual)
-        self.assertIn(version, visual)
+        self.assertIn(visual_version, visual)
         self.assertIn(release["title"], visual)
         for label in release["model_labels"].values():
             self.assertIn(label, visual)
@@ -104,7 +111,7 @@ class PagesTests(unittest.TestCase):
         catalog = json.loads((BENCHMARK_DATA_DIR / "catalog.json").read_text())
         docs_catalog = json.loads((DOCS_DIR / "benchmark-catalog.json").read_text())
         self.assertEqual(catalog, docs_catalog)
-        self.assertEqual(catalog["current_version"], version)
+        self.assertEqual(catalog["current_version"], index["current_version"])
         self.assertIn("Release boundaries are comparison boundaries", explorer)
         self.assertIn("cost_per_repair_usd", explorer)
         self.assertIn('href="benchmark-catalog.json"', explorer)
