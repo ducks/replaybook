@@ -1,0 +1,26 @@
+{
+  "input_mode": "text",
+  "title": "Reasoning effort experiment: Luna on interrupted deploy",
+  "description": "GPT-5.6 Luna attempted the same interrupted-deployment repair three times at medium and high reasoning effort to measure the latency, cost, and reliability tradeoff.",
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna"
+  ],
+  "scenario_labels": {
+    "024-discourse-interrupted-deploy": "Discourse interrupted deploy"
+  },
+  "observations": [
+    "Medium and high effort both completed two of three repairs; each had one release-not-converged failure.",
+    "Medium effort had a 1:27 median versus 2:15 for high effort, a 48-second reduction on the same scenario.",
+    "Medium reported $0.0818 across three attempts versus $0.1168 for high, about 30% lower cost.",
+    "On this bounded repair, high effort added latency and spend without improving observed convergence."
+  ],
+  "notes": [
+    "This is a controlled effort-level experiment, not a general claim that medium reasoning is always superior.",
+    "Both lanes used the same model, scenario pack, harness, timeout, and three-attempt design.",
+    "The sample is intentionally small; additional scenarios are needed before changing a global default for every workload."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 024-discourse-interrupted-deploy --models openai/gpt-5.6-luna --reasoning-efforts medium high --attempts 3 --concurrency 1 --base-port 30000"
+}
