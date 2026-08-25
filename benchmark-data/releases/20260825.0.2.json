@@ -1,0 +1,565 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 2051682,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 159,
+      "known_cost_usd": 0.11682299,
+      "median_duration_seconds": 135,
+      "median_first_non_read_only_tool_seconds": 7.233,
+      "median_model_duration_seconds": 116.581,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 126.26499999999999,
+      "median_tool_calls": 39,
+      "median_tool_duration_seconds": 16.609,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 27859,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1454118,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 141,
+      "known_cost_usd": 0.08183551,
+      "median_duration_seconds": 87,
+      "median_first_non_read_only_tool_seconds": 6.323,
+      "median_model_duration_seconds": 75.433,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 79.59100000000001,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 9.788,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 13901,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "medium",
+      "recording_reported_trials": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 2051682,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 159,
+      "known_cost_usd": 0.11682299,
+      "median_duration_seconds": 135,
+      "median_first_non_read_only_tool_seconds": 7.233,
+      "median_model_duration_seconds": 116.581,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 126.26499999999999,
+      "median_tool_calls": 39,
+      "median_tool_duration_seconds": 16.609,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 27859,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1454118,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 141,
+      "known_cost_usd": 0.08183551,
+      "median_duration_seconds": 87,
+      "median_first_non_read_only_tool_seconds": 6.323,
+      "median_model_duration_seconds": 75.433,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 79.59100000000001,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 9.788,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 13901,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "reasoning_effort": "medium",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "v20260821.0.2"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": null,
+    "benchmark_tier": null,
+    "claux_release": "v20260821.0.2",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": null,
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "d59941c15303a9ccd5e80ae050d668d13a749239aa26f796b70912016f840e17",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "reasoning_efforts": [
+      "medium",
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260824.0.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "GPT-5.6 Luna attempted the same interrupted-deployment repair three times at medium and high reasoning effort to measure the latency, cost, and reliability tradeoff.",
+  "input_mode": "text",
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna"
+  ],
+  "notes": [
+    "This is a controlled effort-level experiment, not a general claim that medium reasoning is always superior.",
+    "Both lanes used the same model, scenario pack, harness, timeout, and three-attempt design.",
+    "The sample is intentionally small; additional scenarios are needed before changing a global default for every workload."
+  ],
+  "observations": [
+    "Medium and high effort both completed two of three repairs; each had one release-not-converged failure.",
+    "Medium effort had a 1:27 median versus 2:15 for high effort, a 48-second reduction on the same scenario.",
+    "Medium reported $0.0818 across three attempts versus $0.1168 for high, about 30% lower cost.",
+    "On this bounded repair, high effort added latency and spend without improving observed convergence."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 024-discourse-interrupted-deploy --models openai/gpt-5.6-luna --reasoning-efforts medium high --attempts 3 --concurrency 1 --base-port 30000",
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 87,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-08-25T19:24:52Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "medium",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.868,
+        "model_duration_seconds": 75.433,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 79.59100000000001,
+        "tool_calls": 24,
+        "tool_duration_seconds": 9.788,
+        "total_duration_seconds": 85.459
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-medium-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-25T19:22:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 43024,
+        "cache_read_tokens": 510227,
+        "cost_usd": 0.02656634,
+        "input_tokens": 51,
+        "output_tokens": 4663
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 84,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-25T19:27:24Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "medium",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.323,
+        "model_duration_seconds": 70.58,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 75.82300000000001,
+        "tool_calls": 26,
+        "tool_duration_seconds": 11.355,
+        "total_duration_seconds": 82.146
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-medium-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-25T19:25:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 45273,
+        "cache_read_tokens": 448553,
+        "cost_usd": 0.02560591,
+        "input_tokens": 45,
+        "output_tokens": 4423
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-25T19:30:02Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "medium",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.333,
+        "model_duration_seconds": 81.402,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 83.277,
+        "tool_calls": 36,
+        "tool_duration_seconds": 7.841,
+        "total_duration_seconds": 89.61
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-medium-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-25T19:28:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 55878,
+        "cache_read_tokens": 495338,
+        "cost_usd": 0.02966326,
+        "input_tokens": 45,
+        "output_tokens": 4815
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 180,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-25T19:34:08Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.425,
+        "model_duration_seconds": 151.279,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 169.272,
+        "tool_calls": 44,
+        "tool_duration_seconds": 26.122,
+        "total_duration_seconds": 177.697
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-25T19:30:51Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 62071,
+        "cache_read_tokens": 850256,
+        "cost_usd": 0.04727627,
+        "input_tokens": 63,
+        "output_tokens": 12284
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 96,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-08-25T19:37:19Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.935,
+        "model_duration_seconds": 90.394,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 88.044,
+        "tool_calls": 30,
+        "tool_duration_seconds": 4.349,
+        "total_duration_seconds": 94.979
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-25T19:35:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 48489,
+        "cache_read_tokens": 463168,
+        "cost_usd": 0.03028721,
+        "input_tokens": 42,
+        "output_tokens": 7411
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 135,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-25T19:40:41Z",
+      "model": "openai/gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.233,
+        "model_duration_seconds": 116.581,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 126.26499999999999,
+        "tool_calls": 39,
+        "tool_duration_seconds": 16.609,
+        "total_duration_seconds": 133.498
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-25T19:38:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 58747,
+        "cache_read_tokens": 738258,
+        "cost_usd": 0.03925951,
+        "input_tokens": 54,
+        "output_tokens": 8164
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {
+    "024-discourse-interrupted-deploy": "Discourse interrupted deploy"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": null,
+      "benchmark_tier": null,
+      "claux_release": "v20260821.0.2",
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": null,
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "d59941c15303a9ccd5e80ae050d668d13a749239aa26f796b70912016f840e17",
+        "scenario_packs": [
+          {
+            "git_commit": "86d92be2722ece958e09efec88b52c921e23e849",
+            "id": "ducks/replaybook-infra",
+            "sha256": "d1a793e4aacb2e06f95b2c588dcccb7f539e420ca7ff646ff6bfa96ff883dbbc",
+            "version": "20260824.0.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-08-25T19:40:41.324671Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "openai/gpt-5.6-luna"
+      ],
+      "reasoning_efforts": [
+        "medium",
+        "high"
+      ],
+      "replaybook_commit": "ff9164d19dcaf4f765d4872feaea2ff6cb5acb40",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-25__19-21-58.a5d987",
+      "started_at": "2026-08-25T19:21:58.811039Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "tier": "unclassified",
+  "title": "Reasoning effort experiment: Luna on interrupted deploy",
+  "totals": {
+    "cache_read_tokens": 3505800,
+    "cost_reported_trials": 6,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 6,
+    "failed": 2,
+    "failure_categories": {
+      "release_not_converged": 2
+    },
+    "input_tokens": 300,
+    "known_cost_usd": 0.1986585,
+    "median_duration_seconds": 93.5,
+    "median_first_non_read_only_tool_seconds": 6.634,
+    "median_model_duration_seconds": 85.898,
+    "median_model_rounds": 16.0,
+    "median_post_first_non_read_only_seconds": 85.6605,
+    "median_tool_calls": 33.0,
+    "median_tool_duration_seconds": 10.5715,
+    "output_tokens": 41760,
+    "pass_rate": 0.6666666666666666,
+    "passed": 4,
+    "recording_reported_trials": 6,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 6,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 6
+  },
+  "version": "20260825.0.2"
+}
