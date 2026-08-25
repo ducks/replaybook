@@ -11,24 +11,25 @@ counts should not be compared as if they were one controlled experiment.
 <!-- replaybook:current-benchmark:start -->
 ## Visual infrastructure benchmark: deployment timeline
 
-Eight image-capable models each attempted three durable repairs using an authoritative deployment timeline as their primary incident evidence.
+Nine image-capable models each attempted three durable repairs using an authoritative deployment timeline as their primary incident evidence.
 
-Benchmark release: `20260825.0.0`
+Benchmark release: `20260825.0.1`
 Benchmark tier: `unclassified`
 
 Scenario packs: `ducks/replaybook-infra@20260824.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Claude Sonnet 5 (high) | 3/3 | 100% | 2:11 | $0.5097 | $0.1699 |
+| GPT-5.6 Terra (high) | 3/3 | 100% | 1:45 | $0.5414 | $0.1805 |
 | GPT-5.6 Luna (high) | 3/3 | 100% | 1:50 | $0.0824 | $0.0275 |
+| Claude Sonnet 5 (high) | 3/3 | 100% | 2:11 | $0.5097 | $0.1699 |
 | Gemini 3.7 Flash (high) | 3/3 | 100% | 2:58 | $0.3421 | $0.1140 |
 | Kimi K3 (high) | 2/3 | 67% | 2:08 | $0.5460 | $0.2730 |
 | GPT-5.6 Sol (high) | 2/3 | 67% | 2:28 | $0.4205+ | $0.2102+ |
 | MiMo V2.5 (high) | 2/3 | 67% | 4:08 | $0.0569 | $0.0285 |
 | Claude Opus 5 (high) | 1/3 | 33% | 15:31 | $0.6140+ | $0.6140+ |
 | Ox Alpha (high) | 0/1 | 0% | 3:24 | $0.0000+ | n/a |
-| **Total** | **16/22** | **73%** | **2:30** | **$2.5716+** | **$0.1607+** |
+| **Total** | **19/25** | **76%** | **2:25** | **$3.1130+** | **$0.1638+** |
 
 ### Unavailable trial categories
 
@@ -40,8 +41,9 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Claude Sonnet 5 (high) | 3/3 | 16 | 2:05 | 19 | 0:04 | 0:10 | 1:59 |
+| GPT-5.6 Terra (high) | 3/3 | 16 | 1:38 | 26 | 0:05 | 0:09 | 1:35 |
 | GPT-5.6 Luna (high) | 3/3 | 15 | 1:37 | 30 | 0:03 | 0:09 | 1:39 |
+| Claude Sonnet 5 (high) | 3/3 | 16 | 2:05 | 19 | 0:04 | 0:10 | 1:59 |
 | Gemini 3.7 Flash (high) | 3/3 | 38 | 2:43 | 37 | 0:05 | 0:10 | 2:44 |
 | Kimi K3 (high) | 3/3 | 11 | 1:59 | 14 | 0:05 | 0:13 | 1:53 |
 | GPT-5.6 Sol (high) | 2/3 | 16.5 | 2:18 | 40 | 0:05 | 0:11 | 2:13 |
@@ -49,19 +51,19 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 | Claude Opus 5 (high) | 1/3 | 23 | 3:19 | 27 | 2:30 | 0:12 | 5:37 |
 | Ox Alpha (high) | 3/3 | 1 | 0:01 | 0 | 0:00 | 0:18 | 3:05 |
 
-Claude Sonnet 5, GPT-5.6 Luna, and Gemini 3.7 Flash completed all three repairs; Luna was fastest at a 1:50 median, while Sonnet finished at 2:11.
+GPT-5.6 Terra completed all three repairs at a 1:45 median, the fastest result in this cohort.
+
+Terra, GPT-5.6 Luna, Claude Sonnet 5, and Gemini 3.7 Flash completed all three repairs; Luna reported the lowest cost among the clean sweepers at $0.0824.
 
 Claude Opus 5 completed one of three repairs and reached the 900-second agent deadline twice, despite passing its initial smoke attempt.
 
 Kimi K3, GPT-5.6 Sol, and MiMo V2.5 each completed two of three repairs.
 
-GPT-5.6 Luna reported the lowest cost among the clean sweepers at $0.0824; Claude Sonnet 5 reported $0.5097.
-
 ### Scenario breakdown
 
-| Scenario | Version | Claude Sonnet 5 (high) | GPT-5.6 Luna (high) | Gemini 3.7 Flash (high) | Kimi K3 (high) | GPT-5.6 Sol (high) | MiMo V2.5 (high) | Claude Opus 5 (high) | Ox Alpha (high) |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Visual deployment timeline | v1 | 3/3, 2:11 | 3/3, 1:50 | 3/3, 2:58 | 2/3, 2:08 | 2/3, 2:28 | 2/3, 4:08 | 1/3, 15:31 | 0/1, 3:24 |
+| Scenario | Version | GPT-5.6 Terra (high) | GPT-5.6 Luna (high) | Claude Sonnet 5 (high) | Gemini 3.7 Flash (high) | Kimi K3 (high) | GPT-5.6 Sol (high) | MiMo V2.5 (high) | Claude Opus 5 (high) | Ox Alpha (high) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Visual deployment timeline | v1 | 3/3, 1:45 | 3/3, 1:50 | 3/3, 2:11 | 3/3, 2:58 | 2/3, 2:08 | 2/3, 2:28 | 2/3, 4:08 | 1/3, 15:31 | 0/1, 3:24 |
 
 ### Failure categories
 
@@ -73,10 +75,11 @@ GPT-5.6 Luna reported the lowest cost among the clean sweepers at $0.0824; Claud
 
 - `host-matrix-2026-08-25__14-50-15.b41ebc`: google/gemini-3.7-flash, moonshotai/kimi-k3, openai/gpt-5.6-luna, openai/gpt-5.6-sol, stealth/ox-alpha, xiaomi/mimo-v2.5; Replaybook `ec8e4d45`; reasoning high
 - `host-matrix-2026-08-25__16-49-46.e130ba`: anthropic/claude-sonnet-5, anthropic/claude-opus-5; Replaybook `ec8e4d45`; reasoning high
+- `host-matrix-2026-08-25__18-01-08.7308da`: openai/gpt-5.6-terra; Replaybook `d4bfc00e`; reasoning high
 
 ### Run notes
 
-- This release composes two compatible matrices with identical scenario, harness, Claux release, reasoning, attempt count, and timeout boundaries.
+- This release composes three compatible matrices with identical scenario, harness, Claux release, reasoning, attempt count, and timeout boundaries.
 - The prompt did not translate the authoritative deployment timeline into text.
 - Ox Alpha returned two provider-unavailable trials, which are excluded from its evaluated pass rate; its remaining trial was interrupted after inference and scored as a failure.
 - Claude Opus 5's two failures reached the 900-second agent deadline and remain scored as agent timeouts.
