@@ -9,20 +9,22 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Reasoning effort experiment: Luna on interrupted deploy
+## Reasoning effort and convergence: three OpenAI models
 
-GPT-5.6 Luna attempted the same interrupted-deployment repair three times at medium and high reasoning effort to measure the latency, cost, and reliability tradeoff.
+GPT-5.6 Luna, Terra, and Sol attempted the same interrupted-deployment repair under selected reasoning efforts, measuring the tradeoff between speed, cost, and durable convergence.
 
-Benchmark release: `20260825.0.2`
+Benchmark release: `20260826.0.0`
 Benchmark tier: `unclassified`
 
 Scenario packs: `ducks/replaybook-infra@20260824.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 2/3 | 67% | 2:15 | $0.1168 | $0.0584 |
-| GPT-5.6 Luna (medium) | 2/3 | 67% | 1:27 | $0.0818 | $0.0409 |
-| **Total** | **4/6** | **67%** | **1:34** | **$0.1987** | **$0.0497** |
+| GPT-5.6 Terra (medium) | 2/3 | 67% | 1:05 | $0.5394 | $0.2697 |
+| GPT-5.6 Luna (high) | 2/3 | 67% | 2:03 | $0.1022 | $0.0511 |
+| GPT-5.6 Luna (medium) | 1/3 | 33% | 1:41 | $0.0845 | $0.0845 |
+| GPT-5.6 Sol (medium) | 3/3 | 100% | 2:06 | $0.8162 | $0.2721 |
+| **Total** | **8/12** | **67%** | **1:58** | **$1.5424** | **$0.1928** |
 
 ### Execution recording
 
@@ -30,36 +32,39 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) | 3/3 | 18 | 1:57 | 39 | 0:17 | 0:07 | 2:06 |
-| GPT-5.6 Luna (medium) | 3/3 | 15 | 1:15 | 26 | 0:10 | 0:06 | 1:20 |
+| GPT-5.6 Terra (medium) | 3/3 | 13 | 0:58 | 26 | 0:05 | 0:07 | 0:57 |
+| GPT-5.6 Luna (high) | 3/3 | 17 | 1:57 | 38 | 0:06 | 0:08 | 1:53 |
+| GPT-5.6 Luna (medium) | 3/3 | 17 | 1:29 | 31 | 0:10 | 0:09 | 1:31 |
+| GPT-5.6 Sol (medium) | 3/3 | 18 | 1:58 | 39 | 0:07 | 0:08 | 1:58 |
 
-Medium and high effort both completed two of three repairs; each had one release-not-converged failure.
+GPT-5.6 Sol medium completed all three repairs at a 2:06 median, but had the highest known cost at $0.8162.
 
-Medium effort had a 1:27 median versus 2:15 for high effort, a 48-second reduction on the same scenario.
+GPT-5.6 Terra medium was fastest at a 1:05 median and completed two of three repairs.
 
-Medium reported $0.0818 across three attempts versus $0.1168 for high, about 30% lower cost.
+GPT-5.6 Luna completed two of three at high effort and one of three at medium effort; medium was faster (1:41 versus 2:03) and cheaper ($0.0845 versus $0.1022).
 
-On this bounded repair, high effort added latency and spend without improving observed convergence.
+All four failures were classified as release-not-converged, so extra reasoning did not guarantee durable convergence on this incident.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Luna (high) | GPT-5.6 Luna (medium) |
-|---|---:|---:|---:|
-| Discourse interrupted deploy | v1 | 2/3, 2:15 | 2/3, 1:27 |
+| Scenario | Version | GPT-5.6 Terra (medium) | GPT-5.6 Luna (high) | GPT-5.6 Luna (medium) | GPT-5.6 Sol (medium) |
+|---|---:|---:|---:|---:|---:|
+| Discourse interrupted deploy | v1 | 2/3, 1:05 | 2/3, 2:03 | 1/3, 1:41 | 3/3, 2:06 |
 
 ### Failure categories
 
-- `release_not_converged`: 2
+- `release_not_converged`: 4
 
 ### Source matrices
 
-- `host-matrix-2026-08-25__19-21-58.a5d987`: openai/gpt-5.6-luna; Replaybook `ff9164d1`; reasoning medium/high
+- `host-matrix-2026-08-26__00-22-50.329d2f`: openai/gpt-5.6-terra, openai/gpt-5.6-sol; Replaybook `1ff72b5a`; reasoning medium
+- `host-matrix-2026-08-26__14-00-58.679af8`: openai/gpt-5.6-luna; Replaybook `1ff72b5a`; reasoning medium/high
 
 ### Run notes
 
-- This is a controlled effort-level experiment, not a general claim that medium reasoning is always superior.
-- Both lanes used the same model, scenario pack, harness, timeout, and three-attempt design.
-- The sample is intentionally small; additional scenarios are needed before changing a global default for every workload.
+- This is a controlled but small effort/convergence study: 12 total trials across one scenario and four model-effort lanes.
+- All matrices use the same Replaybook commit, scenario-pack version, host harness, Claux release, timeout, and three-attempt design.
+- Results are not a general ranking of the models or a universal recommendation for one reasoning level.
 
 <!-- replaybook:current-benchmark:end -->
 

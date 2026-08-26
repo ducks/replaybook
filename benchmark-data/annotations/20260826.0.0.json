@@ -1,0 +1,30 @@
+{
+  "input_mode": "text",
+  "title": "Reasoning effort and convergence: three OpenAI models",
+  "description": "GPT-5.6 Luna, Terra, and Sol attempted the same interrupted-deployment repair under selected reasoning efforts, measuring the tradeoff between speed, cost, and durable convergence.",
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "openai/gpt-5.6-sol": "GPT-5.6 Sol",
+    "openai/gpt-5.6-terra": "GPT-5.6 Terra"
+  },
+  "model_order": [
+    "openai/gpt-5.6-terra",
+    "openai/gpt-5.6-luna",
+    "openai/gpt-5.6-sol"
+  ],
+  "scenario_labels": {
+    "024-discourse-interrupted-deploy": "Discourse interrupted deploy"
+  },
+  "observations": [
+    "GPT-5.6 Sol medium completed all three repairs at a 2:06 median, but had the highest known cost at $0.8162.",
+    "GPT-5.6 Terra medium was fastest at a 1:05 median and completed two of three repairs.",
+    "GPT-5.6 Luna completed two of three at high effort and one of three at medium effort; medium was faster (1:41 versus 2:03) and cheaper ($0.0845 versus $0.1022).",
+    "All four failures were classified as release-not-converged, so extra reasoning did not guarantee durable convergence on this incident."
+  ],
+  "notes": [
+    "This is a controlled but small effort/convergence study: 12 total trials across one scenario and four model-effort lanes.",
+    "All matrices use the same Replaybook commit, scenario-pack version, host harness, Claux release, timeout, and three-attempt design.",
+    "Results are not a general ranking of the models or a universal recommendation for one reasoning level."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 024-discourse-interrupted-deploy --models openai/gpt-5.6-luna --reasoning-efforts medium high --attempts 3 --concurrency 1 --base-port 30200; python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 024-discourse-interrupted-deploy --models openai/gpt-5.6-terra openai/gpt-5.6-sol --reasoning-efforts medium --attempts 3 --concurrency 1 --base-port 30100"
+}

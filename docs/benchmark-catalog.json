@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20260825.0.2",
+  "current_version": "20260826.0.0",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -3621,6 +3621,112 @@
       "passed": 2,
       "reasoning_effort": "medium",
       "release": "20260825.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0510911,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 150,
+      "known_cost_usd": 0.1021822,
+      "median_duration_seconds": 123,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 23710,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260826.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.08453376,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_tokens": 6967,
+      "known_cost_usd": 0.08453376,
+      "median_duration_seconds": 101,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 16874,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "reasoning_effort": "medium",
+      "release": "20260826.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.27207713333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 566,
+      "known_cost_usd": 0.8162313999999999,
+      "median_duration_seconds": 126,
+      "model": "openai/gpt-5.6-sol",
+      "model_label": "GPT-5.6 Sol",
+      "output_tokens": 15252,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "medium",
+      "release": "20260826.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.2697219,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 1402,
+      "known_cost_usd": 0.5394438,
+      "median_duration_seconds": 65,
+      "model": "openai/gpt-5.6-terra",
+      "model_label": "GPT-5.6 Terra",
+      "output_tokens": 11915,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "medium",
+      "release": "20260826.0.0",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
       "tier": "unclassified",
@@ -21789,6 +21895,124 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0510911,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 150,
+      "known_cost_usd": 0.1021822,
+      "median_duration_seconds": 123,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 23710,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "high",
+      "release": "20260826.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "Discourse interrupted deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.08453376,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_tokens": 6967,
+      "known_cost_usd": 0.08453376,
+      "median_duration_seconds": 101,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 16874,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "reasoning_effort": "medium",
+      "release": "20260826.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "Discourse interrupted deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.27207713333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 566,
+      "known_cost_usd": 0.8162313999999999,
+      "median_duration_seconds": 126,
+      "model": "openai/gpt-5.6-sol",
+      "model_label": "GPT-5.6 Sol",
+      "output_tokens": 15252,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "reasoning_effort": "medium",
+      "release": "20260826.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "Discourse interrupted deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.2697219,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 1402,
+      "known_cost_usd": 0.5394438,
+      "median_duration_seconds": 65,
+      "model": "openai/gpt-5.6-terra",
+      "model_label": "GPT-5.6 Terra",
+      "output_tokens": 11915,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "reasoning_effort": "medium",
+      "release": "20260826.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "Discourse interrupted deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "unclassified",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -24684,13 +24908,13 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": "v20260821.0.2",
-      "current": true,
+      "current": false,
       "description": "GPT-5.6 Luna attempted the same interrupted-deployment repair three times at medium and high reasoning effort to measure the latency, cost, and reliability tradeoff.",
       "harness_versions": [
         23
       ],
       "input_mode": "text",
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -24739,6 +24963,73 @@
         "usage_reported_trials": 6
       },
       "version": "20260825.0.2"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "v20260821.0.2"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": "v20260821.0.2",
+      "current": true,
+      "description": "GPT-5.6 Luna, Terra, and Sol attempted the same interrupted-deployment repair under selected reasoning efforts, measuring the tradeoff between speed, cost, and durable convergence.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "tier": "unclassified",
+      "title": "Reasoning effort and convergence: three OpenAI models",
+      "totals": {
+        "cache_read_tokens": 5728134,
+        "cost_reported_trials": 12,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 12,
+        "failed": 4,
+        "failure_categories": {
+          "release_not_converged": 4
+        },
+        "input_tokens": 9085,
+        "known_cost_usd": 1.54239116,
+        "median_duration_seconds": 117.5,
+        "median_first_non_read_only_tool_seconds": 7.91,
+        "median_model_duration_seconds": 111.11449999999999,
+        "median_model_rounds": 17.0,
+        "median_post_first_non_read_only_seconds": 107.535,
+        "median_tool_calls": 34.5,
+        "median_tool_duration_seconds": 6.4215,
+        "output_tokens": 67751,
+        "pass_rate": 0.6666666666666666,
+        "passed": 8,
+        "recording_reported_trials": 12,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 12,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 12
+      },
+      "version": "20260826.0.0"
     }
   ],
   "schema_version": 1

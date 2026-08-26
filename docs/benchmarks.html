@@ -40,8 +40,8 @@
     <p class="tagline benchmark-tagline">Agents diagnose and repair running systems from incident reports, logs, services, configuration, and shell evidence.</p>
 
     <div class="metric-grid overview-metrics" aria-label="Published text benchmark evidence">
-      <div class="metric"><span class="metric-value">25</span><span class="metric-label">published cohorts</span></div>
-      <div class="metric"><span class="metric-value">28</span><span class="metric-label">model lanes</span></div>
+      <div class="metric"><span class="metric-value">26</span><span class="metric-label">published cohorts</span></div>
+      <div class="metric"><span class="metric-value">30</span><span class="metric-label">model lanes</span></div>
       <div class="metric"><span class="metric-value">17</span><span class="metric-label">scenarios</span></div>
     </div>
 
@@ -55,6 +55,20 @@
       <a href="benchmark-history.html">View history →</a>
     </div>
     <div class="cohort-grid overview-cohort-grid">
+      <article class="cohort-card overview-cohort-card">
+        <div class="cohort-card-heading"><span class="badge">Text input</span><code>20260826.0.0</code></div>
+        <h3>Reasoning effort and convergence: three OpenAI models</h3>
+        <p>GPT-5.6 Luna, Terra, and Sol attempted the same interrupted-deployment repair under selected reasoning efforts, measuring the tradeoff between speed, cost, and durable convergence.</p>
+        <dl class="cohort-facts">
+          <div><dt>Models</dt><dd>4</dd></div>
+          <div><dt>Scenarios</dt><dd>1</dd></div>
+          <div><dt>Repairs</dt><dd>8/12</dd></div>
+          <div><dt>Median</dt><dd>1:58</dd></div>
+          <div><dt>Known cost</dt><dd>$1.5424</dd></div>
+          <div><dt>Harness</dt><dd>Claux v20260821.0.2</dd></div>
+        </dl>
+        <a href="benchmark-explorer.html?release=20260826.0.0">Inspect cohort →</a>
+      </article>
       <article class="cohort-card overview-cohort-card">
         <div class="cohort-card-heading"><span class="badge">Text input</span><code>20260825.0.2</code></div>
         <h3>Reasoning effort experiment: Luna on interrupted deploy</h3>
@@ -97,20 +111,6 @@
         </dl>
         <a href="benchmark-explorer.html?release=20260822.0.0">Inspect cohort →</a>
       </article>
-      <article class="cohort-card overview-cohort-card">
-        <div class="cohort-card-heading"><span class="badge">Text input</span><code>20260821.0.1</code></div>
-        <h3>Qwen 3.8 and GLM 5.3 core infrastructure cohort</h3>
-        <p>Qwen3.8 2.4T A95B and GLM 5.3 ran three attempts across the eight core-tier infrastructure incidents through Claux and OpenRouter.</p>
-        <dl class="cohort-facts">
-          <div><dt>Models</dt><dd>2</dd></div>
-          <div><dt>Scenarios</dt><dd>8</dd></div>
-          <div><dt>Repairs</dt><dd>47/48</dd></div>
-          <div><dt>Median</dt><dd>2:19</dd></div>
-          <div><dt>Known cost</dt><dd>$7.5341</dd></div>
-          <div><dt>Harness</dt><dd>Claux v20260815.0.0</dd></div>
-        </dl>
-        <a href="benchmark-explorer.html?release=20260821.0.1">Inspect cohort →</a>
-      </article>
     </div>
 
     <div class="section-heading benchmark-section-heading">
@@ -118,8 +118,10 @@
       <a href="benchmark-models.html">Model profiles →</a>
     </div>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Cohort</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Known cost</th></tr></thead><tbody>
-      <tr><td><a href="benchmark-explorer.html?release=20260825.0.2&amp;model=openai%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna (high)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-luna</code></span></td><td><code>20260825.0.2</code></td><td>2/3</td><td>67%</td><td>2:15</td><td>$0.1168</td></tr>
-      <tr><td><a href="benchmark-explorer.html?release=20260825.0.2&amp;model=openai%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna (medium)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-luna</code></span></td><td><code>20260825.0.2</code></td><td>2/3</td><td>67%</td><td>1:27</td><td>$0.0818</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260826.0.0&amp;model=openai%2Fgpt-5.6-terra"><strong>GPT-5.6 Terra (medium)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-terra</code></span></td><td><code>20260826.0.0</code></td><td>2/3</td><td>67%</td><td>1:05</td><td>$0.5394</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260826.0.0&amp;model=openai%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna (high)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-luna</code></span></td><td><code>20260826.0.0</code></td><td>2/3</td><td>67%</td><td>2:03</td><td>$0.1022</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260826.0.0&amp;model=openai%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna (medium)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-luna</code></span></td><td><code>20260826.0.0</code></td><td>1/3</td><td>33%</td><td>1:41</td><td>$0.0845</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260826.0.0&amp;model=openai%2Fgpt-5.6-sol"><strong>GPT-5.6 Sol (medium)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-sol</code></span></td><td><code>20260826.0.0</code></td><td>3/3</td><td>100%</td><td>2:06</td><td>$0.8162</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260822.0.1&amp;model=stealth%2Fox-alpha"><strong>Ox Alpha (high)</strong></a><span class="profile-cohort"><code>stealth/ox-alpha</code></span></td><td><code>20260822.0.1</code></td><td>22/24</td><td>92%</td><td>4:06</td><td>$0.0000</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;model=qwen%2Fqwen3.8-2.4t-a95b"><strong>Qwen3.8 2.4T A95B (high)</strong></a><span class="profile-cohort"><code>qwen/qwen3.8-2.4t-a95b</code></span></td><td><code>20260822.0.0</code></td><td>24/24</td><td>100%</td><td>2:24</td><td>$4.1613</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260822.0.0&amp;model=z-ai%2Fglm-5.3"><strong>GLM 5.3 (high)</strong></a><span class="profile-cohort"><code>z-ai/glm-5.3</code></span></td><td><code>20260822.0.0</code></td><td>23/24</td><td>96%</td><td>2:16</td><td>$3.3727</td></tr>
@@ -128,8 +130,6 @@
       <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fdeepseek-v4-flash"><strong>DeepSeek V4 Flash (high)</strong></a><span class="profile-cohort"><code>opencode-go/deepseek-v4-flash</code></span></td><td><code>20260820.0.1</code></td><td>15/15</td><td>100%</td><td>2:19</td><td>n/a</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fqwen3.8-max"><strong>Qwen3.8 Max (high)</strong></a><span class="profile-cohort"><code>opencode-go/qwen3.8-max</code></span></td><td><code>20260820.0.1</code></td><td>14/15</td><td>93%</td><td>2:58</td><td>n/a</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna (high)</strong></a><span class="profile-cohort"><code>opencode-go/gpt-5.6-luna</code></span></td><td><code>20260820.0.1</code></td><td>14/15</td><td>93%</td><td>2:19</td><td>n/a</td></tr>
-      <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fkimi-k2.7-code"><strong>Kimi K2.7 Code (high)</strong></a><span class="profile-cohort"><code>opencode-go/kimi-k2.7-code</code></span></td><td><code>20260820.0.1</code></td><td>14/15</td><td>93%</td><td>4:58</td><td>n/a</td></tr>
-      <tr><td><a href="benchmark-explorer.html?release=20260820.0.1&amp;model=opencode-go%2Fminimax-m3"><strong>MiniMax M3 (high)</strong></a><span class="profile-cohort"><code>opencode-go/minimax-m3</code></span></td><td><code>20260820.0.1</code></td><td>12/15</td><td>80%</td><td>3:28</td><td>n/a</td></tr>
     </tbody></table></div>
 
     <div class="section-heading benchmark-section-heading">
@@ -137,7 +137,7 @@
       <a href="scenarios.html">Scenario guide →</a>
     </div>
     <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Cohort</th><th>Models</th><th>Repairs</th></tr></thead><tbody>
-      <tr><td><a href="benchmark-scenario.html?scenario=024-discourse-interrupted-deploy">Discourse interrupted deploy</a></td><td>v1</td><td><code>20260825.0.2</code></td><td>2</td><td>4/6</td></tr>
+      <tr><td><a href="benchmark-scenario.html?scenario=024-discourse-interrupted-deploy">Discourse interrupted deploy</a></td><td>v1</td><td><code>20260826.0.0</code></td><td>4</td><td>8/12</td></tr>
       <tr><td><a href="benchmark-scenario.html?scenario=001-nginx-502-host">001-nginx-502-host</a></td><td>v1</td><td><code>20260822.0.1</code></td><td>1</td><td>2/3</td></tr>
       <tr><td><a href="benchmark-scenario.html?scenario=013-sidekiq-wrong-redis">013-sidekiq-wrong-redis</a></td><td>v2</td><td><code>20260822.0.1</code></td><td>1</td><td>3/3</td></tr>
       <tr><td><a href="benchmark-scenario.html?scenario=015-sidekiq-poison-pill">015-sidekiq-poison-pill</a></td><td>v1</td><td><code>20260822.0.1</code></td><td>1</td><td>3/3</td></tr>
