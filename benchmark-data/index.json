@@ -28,28 +28,28 @@
       "reasoning_effort": "high"
     }
   ],
+  "current_version": "20260827.0.0",
   "provider_observations": [
     {
+      "categories": "provider_unavailable (5), agent_runtime_error (2)",
       "date": "20260827",
-      "title": "Vercel AI Gateway smoke cohort",
-      "provider": "vercel-ai-gateway",
+      "evaluated": 2,
+      "failed": 2,
       "models": [
         "openai/gpt-5.6-luna",
         "openai/gpt-5.6-sol",
         "zai/glm-5.3-flash"
       ],
-      "requested": 9,
-      "evaluated": 2,
-      "unavailable": 7,
-      "passed": 0,
-      "failed": 2,
-      "categories": "provider_unavailable (5), agent_runtime_error (2)",
-      "summary": "Nine trials across three models; seven were unavailable before meaningful inference and the two evaluated trials did not converge.",
       "note": "The gateway returned free-tier access/rate-limit errors. This is provider availability evidence, not a model capability ranking.",
-      "source": "host-matrix-2026-08-27__15-21-39.0edfc7"
+      "passed": 0,
+      "provider": "vercel-ai-gateway",
+      "requested": 9,
+      "source": "host-matrix-2026-08-27__15-21-39.0edfc7",
+      "summary": "Nine trials across three models; seven were unavailable before meaningful inference and the two evaluated trials did not converge.",
+      "title": "Vercel AI Gateway smoke cohort",
+      "unavailable": 7
     }
   ],
-  "current_version": "20260826.0.1",
   "releases": [
     "20260809.0.0",
     "20260809.0.1",
@@ -82,7 +82,8 @@
     "20260825.0.1",
     "20260825.0.2",
     "20260826.0.0",
-    "20260826.0.1"
+    "20260826.0.1",
+    "20260827.0.0"
   ],
   "schema_version": 1
 }

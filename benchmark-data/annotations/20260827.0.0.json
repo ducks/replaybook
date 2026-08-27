@@ -1,0 +1,41 @@
+{
+  "input_mode": "visual",
+  "title": "OpenCode Go visual infrastructure cohort",
+  "description": "Four OpenCode Go models each attempted three durable repairs across topology drift, noisy metrics, and deployment-timeline incidents, testing whether hosted coding agents can turn visual evidence into convergent infrastructure changes.",
+  "agent_harness": {
+    "id": "opencode",
+    "label": "OpenCode",
+    "version": "1.18.18",
+    "provider": "OpenCode Go",
+    "billing": "subscription"
+  },
+  "model_labels": {
+    "opencode-go/deepseek-v4-flash": "DeepSeek V4 Flash",
+    "opencode-go/kimi-k3": "Kimi K3",
+    "opencode-go/minimax-m3": "MiniMax M3",
+    "opencode-go/qwen3.8-max": "Qwen 3.8 Max"
+  },
+  "model_order": [
+    "opencode-go/deepseek-v4-flash",
+    "opencode-go/kimi-k3",
+    "opencode-go/minimax-m3",
+    "opencode-go/qwen3.8-max"
+  ],
+  "scenario_labels": {
+    "029-visual-topology-drift": "Visual topology drift",
+    "030-visual-metrics-regression": "Visual metrics regression",
+    "031-visual-deployment-timeline": "Visual deployment timeline"
+  },
+  "observations": [
+    "DeepSeek V4 Flash, Kimi K3, and MiniMax M3 completed all nine of their evaluated repairs; Qwen 3.8 Max completed seven of nine.",
+    "The cohort completed 34 of 36 evaluated repairs (94.4%); one runtime error and one provider interruption were scored as failures, with no unavailable trials.",
+    "Kimi K3 was fastest at a 2:10 median, followed by MiniMax M3 at 2:23, DeepSeek V4 Flash at 2:33, and Qwen 3.8 Max at 3:33.",
+    "The visual scenarios test durable infrastructure repair from diagrams and dashboards, not image captioning or general coding ability."
+  ],
+  "notes": [
+    "This is an OpenCode Go subscription cohort and is intentionally published separately from Claux/OpenRouter results.",
+    "All lanes use the same visual scenario-pack revision, Replaybook host harness, three-attempt design, high reasoning effort, and 900-second timeout.",
+    "OpenCode Go does not report per-trial provider costs in the adapter output; cost is therefore shown as unavailable rather than estimated. Subscription usage metadata is retained in the source summary where provided."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 029-visual-topology-drift --scenario 030-visual-metrics-regression --scenario 031-visual-deployment-timeline --models opencode-go/deepseek-v4-flash opencode-go/kimi-k3 opencode-go/minimax-m3 opencode-go/qwen3.8-max --reasoning-efforts high --agent-adapter integrations/host/adapters/opencode.sh --agent-payload ~/.opencode/bin/opencode --agent-env-file <prepared-opencode-env> --agent-name opencode --attempts 3 --concurrency 1 --base-port 27800"
+}

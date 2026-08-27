@@ -65,7 +65,7 @@
       ]
     }
   ],
-  "generated_from": "20260826.0.1",
+  "generated_from": "20260827.0.0",
   "profiles": [
     {
       "model": "deepseek/deepseek-v4-flash-0731",
@@ -5535,24 +5535,24 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": "v20260821.0.2",
+        "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "d59941c15303a9ccd5e80ae050d668d13a749239aa26f796b70912016f840e17",
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20260824.0.0"
@@ -5574,98 +5574,39 @@
           ]
         },
         {
-          "cost_per_repair_usd": 0.1140424375,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260825.0.1&scenario=031-visual-deployment-timeline&model=google%2Fgemini-3.7-flash",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 554539,
-          "known_cost_usd": 0.3421273125,
-          "median_duration_seconds": 178,
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "output_tokens": 30577,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260825.0.1",
-          "scenario": "031-visual-deployment-timeline",
-          "scenario_label": "Visual deployment timeline",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.027466479999999998,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260825.0.1&scenario=031-visual-deployment-timeline&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 9697,
-          "known_cost_usd": 0.08239943999999999,
-          "median_duration_seconds": 110,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 19927,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260825.0.1",
-          "scenario": "031-visual-deployment-timeline",
-          "scenario_label": "Visual deployment timeline",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": null,
-          "cost_reported_trials": 1,
-          "evaluated": 1,
-          "evidence_url": "benchmark-explorer.html?release=20260825.0.1&scenario=031-visual-deployment-timeline&model=stealth%2Fox-alpha",
-          "failed": 1,
-          "failure_categories": {
-            "provider_interrupted": 1
-          },
-          "input_tokens": 11918,
-          "known_cost_usd": 0.0,
-          "median_duration_seconds": 204,
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
-          "output_tokens": 1294,
-          "pass_rate": 0.0,
-          "pass_rate_95_high": 0.7934506856227626,
-          "pass_rate_95_low": 0.0,
-          "passed": 0,
           "reasoning_effort": "high",
-          "release": "20260825.0.1",
-          "scenario": "031-visual-deployment-timeline",
-          "scenario_label": "Visual deployment timeline",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 2,
-          "unavailable_categories": {
-            "provider_unavailable": 2
-          }
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
         },
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
@@ -5691,7 +5632,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=031-visual-deployment-timeline",
-      "release": "20260825.0.1",
+      "release": "20260827.0.0",
       "scenario": "031-visual-deployment-timeline",
       "scenario_label": "Visual deployment timeline",
       "scenario_version": 1
@@ -5709,13 +5650,13 @@
         },
         "agent_name": "opencode",
         "agent_timeout_seconds": 900,
-        "attempts": 5,
+        "attempts": 3,
         "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "d59941c15303a9ccd5e80ae050d668d13a749239aa26f796b70912016f840e17",
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20260824.0.0"
@@ -5795,34 +5736,34 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=030-visual-metrics-regression",
-      "release": "20260826.0.1",
+      "release": "20260827.0.0",
       "scenario": "030-visual-metrics-regression",
       "scenario_label": "Visual metrics regression",
       "scenario_version": 1
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": "v20260821.0.2",
+        "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "76c12b8b9e39742fc040275e42f44ee79ef4a1a1a51ddf64eb15838f2467f3c1",
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
-          "version": "20260822.1.0"
+          "version": "20260824.0.0"
         },
         "scenario_snapshot_sha256": "9e43c4c58db2c9c1c9f45e43aebfbd2be937a31f4cb8f564aea59a13625ae6e1",
         "tier": "unclassified"
@@ -5841,94 +5782,39 @@
           ]
         },
         {
-          "cost_per_repair_usd": 0.1349796375,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=029-visual-topology-drift&model=google%2Fgemini-3.7-flash",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 628461,
-          "known_cost_usd": 0.4049389125,
-          "median_duration_seconds": 180,
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "output_tokens": 33494,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260822.0.4",
-          "scenario": "029-visual-topology-drift",
-          "scenario_label": "Visual topology drift",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.026767816666666666,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=029-visual-topology-drift&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 153,
-          "known_cost_usd": 0.08030345,
-          "median_duration_seconds": 93,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 21826,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260822.0.4",
-          "scenario": "029-visual-topology-drift",
-          "scenario_label": "Visual topology drift",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.0,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=029-visual-topology-drift&model=stealth%2Fox-alpha",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 100147,
-          "known_cost_usd": 0.0,
-          "median_duration_seconds": 184,
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
-          "output_tokens": 7593,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260822.0.4",
-          "scenario": "029-visual-topology-drift",
-          "scenario_label": "Visual topology drift",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
         },
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
@@ -5954,7 +5840,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=029-visual-topology-drift",
-      "release": "20260822.0.4",
+      "release": "20260827.0.0",
       "scenario": "029-visual-topology-drift",
       "scenario_label": "Visual topology drift",
       "scenario_version": 1
@@ -5962,8 +5848,8 @@
   ],
   "schema_version": 1,
   "totals": {
-    "covered_cells": 26,
-    "missing_cells": 94,
+    "covered_cells": 20,
+    "missing_cells": 100,
     "model_lanes": 6,
     "possible_cells": 120,
     "scenarios": 20
