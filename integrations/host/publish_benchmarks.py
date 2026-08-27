@@ -1878,6 +1878,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
         "schema_version": 1,
         "current_version": index["current_version"],
         "coverage_fleet": index.get("coverage_fleet", []),
+        "provider_observations": index.get("provider_observations", []),
         "releases": releases,
         "lanes": lanes,
         "records": records,
@@ -2306,7 +2307,33 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
             "models": len(unique_models),
             "scenarios": len(unique_scenarios),
         },
+        provider_observations=provider_observation_cards(index),
     )
+
+
+def provider_observation_cards(index: dict[str, Any]) -> list[dict[str, Any]]:
+    """Return sanitized provider availability observations for the overview."""
+    cards = []
+    for item in index.get("provider_observations", []):
+        if not isinstance(item, dict):
+            continue
+        cards.append(
+            {
+                "date": str(item.get("date", "")),
+                "title": str(item.get("title", "Provider observation")),
+                "provider": str(item.get("provider", "Unknown provider")),
+                "models": ", ".join(str(model) for model in item.get("models", [])),
+                "summary": str(item.get("summary", "")),
+                "requested": int(item.get("requested", 0)),
+                "evaluated": int(item.get("evaluated", 0)),
+                "unavailable": int(item.get("unavailable", 0)),
+                "passed": int(item.get("passed", 0)),
+                "failed": int(item.get("failed", 0)),
+                "categories": str(item.get("categories", "")),
+                "note": str(item.get("note", "")),
+            }
+        )
+    return cards
 
 
 def build_outputs(root: Path, *, check: bool = False) -> None:

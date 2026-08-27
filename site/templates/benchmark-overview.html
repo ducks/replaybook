@@ -18,6 +18,31 @@
       Results stay attached to their harness, scenario version, attempt count, deadline, and provider boundary.
     </div>
 
+{% if provider_observations %}
+    <div class="section-heading benchmark-section-heading">
+      <div><h2>Provider availability observations</h2><p class="small muted">Operational evidence from incomplete probes. These observations are never included in capability rankings.</p></div>
+    </div>
+    <div class="cohort-grid overview-cohort-grid">
+{% for observation in provider_observations %}
+      <article class="cohort-card provider-observation-card">
+        <div class="cohort-card-heading"><span class="badge">Availability observation</span><code>{{ observation.date }}</code></div>
+        <h3>{{ observation.title }}</h3>
+        <p>{{ observation.summary }}</p>
+        <dl class="cohort-facts">
+          <div><dt>Provider</dt><dd>{{ observation.provider }}</dd></div>
+          <div><dt>Models</dt><dd>{{ observation.models }}</dd></div>
+          <div><dt>Requested</dt><dd>{{ observation.requested }}</dd></div>
+          <div><dt>Evaluated</dt><dd>{{ observation.evaluated }}</dd></div>
+          <div><dt>Unavailable</dt><dd>{{ observation.unavailable }}</dd></div>
+          <div><dt>Repairs</dt><dd>{{ observation.passed }}/{{ observation.failed }} passed/failed</dd></div>
+          <div><dt>Categories</dt><dd>{{ observation.categories }}</dd></div>
+        </dl>
+        <p class="small muted">{{ observation.note }}</p>
+      </article>
+{% endfor %}
+    </div>
+{% endif %}
+
     <div class="section-heading benchmark-section-heading">
       <div><h2>Recent cohorts</h2><p class="small muted">Newest {{ input_mode }}-input comparisons, each kept inside its original boundary.</p></div>
       <a href="benchmark-history.html">View history →</a>
