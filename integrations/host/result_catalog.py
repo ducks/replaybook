@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS matrices (
     host_harness_sha256 TEXT,
     agent_name TEXT,
     agent_adapter TEXT,
+    agent_provider TEXT,
     claux_release TEXT,
     expected_trials INTEGER,
     received_results INTEGER,
@@ -69,6 +70,7 @@ CREATE TABLE IF NOT EXISTS trials (
     harness_version INTEGER,
     agent TEXT NOT NULL,
     agent_adapter TEXT,
+    provider TEXT,
     model TEXT NOT NULL,
     reasoning_effort TEXT,
     attempt INTEGER NOT NULL,
@@ -157,6 +159,12 @@ def connect(database: Path) -> sqlite3.Connection:
     connection = sqlite3.connect(database)
     connection.row_factory = sqlite3.Row
     connection.executescript(SCHEMA)
+    for table, column in (("matrices", "agent_provider"), ("trials", "provider")):
+        columns = {
+            row["name"] for row in connection.execute(f"PRAGMA table_info({table})")
+        }
+        if column not in columns:
+            connection.execute(f"ALTER TABLE {table} ADD COLUMN {column} TEXT")
     current = connection.execute(
         "SELECT value FROM catalog_metadata WHERE key = 'schema_version'"
     ).fetchone()
@@ -287,6 +295,7 @@ def compatibility_identity(
         "agent": {
             "name": agent.get("name") or run.get("agent"),
             "adapter": agent.get("adapter"),
+            "provider": run.get("provider") or agent.get("provider"),
             "adapter_sha256": snapshot.get("agent_adapter_sha256"),
             "payload_sha256": snapshot.get("agent_payload_sha256"),
         },
@@ -362,15 +371,16 @@ def import_summary(connection: sqlite3.Connection, path: Path) -> ImportStats:
                 matrix_id, source_path, source_sha256, suite, started_at,
                 finished_at, replaybook_commit, harness_versions_json,
                 benchmark_manifest_json, host_harness_sha256, agent_name,
-                agent_adapter, claux_release, expected_trials, received_results,
+                agent_adapter, agent_provider, claux_release, expected_trials, received_results,
                 imported_at, benchmark_json
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(matrix_id) DO UPDATE SET
                 source_path = excluded.source_path,
                 source_sha256 = excluded.source_sha256,
                 finished_at = excluded.finished_at,
                 expected_trials = excluded.expected_trials,
                 received_results = excluded.received_results,
+                agent_provider = excluded.agent_provider,
                 imported_at = excluded.imported_at,
                 benchmark_json = excluded.benchmark_json
             """,
@@ -391,6 +401,7 @@ def import_summary(connection: sqlite3.Connection, path: Path) -> ImportStats:
                 snapshot.get("host_harness_sha256"),
                 agent.get("name"),
                 agent.get("adapter"),
+                agent.get("provider"),
                 benchmark.get("claux_release"),
                 summary.get("expected_trials"),
                 summary.get("received_results"),
@@ -432,7 +443,7 @@ def import_summary(connection: sqlite3.Connection, path: Path) -> ImportStats:
                 INSERT INTO trials(
                     trial_id, matrix_id, compatibility_id, compatibility_json,
                     run_id, scenario, scenario_version, pack_id, pack_version,
-                    harness_version, agent, agent_adapter, model,
+                    harness_version, agent, agent_adapter, provider, model,
                     reasoning_effort, attempt, started_at, finished_at,
                     duration_seconds, timeout_seconds, trial_status, reward,
                     failure_category, failure, input_tokens, output_tokens,
@@ -444,7 +455,7 @@ def import_summary(connection: sqlite3.Connection, path: Path) -> ImportStats:
                     post_first_non_read_only_seconds, result_path,
                     transcript_path, log_path, raw_json
                 ) VALUES (
-                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
                     ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
                 )
                 """,
@@ -461,6 +472,7 @@ def import_summary(connection: sqlite3.Connection, path: Path) -> ImportStats:
                     run.get("harness_version") or summary.get("harness_version"),
                     run["agent"],
                     agent.get("adapter"),
+                    run.get("provider") or agent.get("provider"),
                     run["model"],
                     run.get("reasoning_effort"),
                     run["attempt"],

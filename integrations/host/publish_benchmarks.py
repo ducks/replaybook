@@ -207,6 +207,7 @@ def compact_run(run: dict[str, Any], source: Path) -> dict[str, Any]:
         "scenario": run["scenario"],
         "scenario_version": run["scenario_version"],
         "agent": run["agent"],
+        "provider": run.get("provider"),
         "model": run["model"],
         "reasoning_effort": run.get("reasoning_effort"),
         "attempt": run["attempt"],
@@ -235,7 +236,12 @@ def compact_agent(agent: dict[str, Any]) -> dict[str, Any]:
         adapter = f"external:{Path(adapter).name}"
     if isinstance(payload, str):
         payload = f"external:{Path(payload).name}"
-    return {"name": agent.get("name"), "adapter": adapter, "payload": payload}
+    return {
+        "name": agent.get("name"),
+        "adapter": adapter,
+        "payload": payload,
+        "provider": agent.get("provider"),
+    }
 
 
 def import_summary(path: Path) -> dict[str, Any]:
@@ -507,6 +513,9 @@ def validate_source_matrix(source: dict[str, Any], path: Path) -> None:
     for run in source["runs"]:
         if run["agent"] != source["agent"].get("name"):
             raise PublishError(f"{path}: {run['run_id']} reports a different agent")
+        declared_provider = source["agent"].get("provider")
+        if declared_provider is not None and run.get("provider") != declared_provider:
+            raise PublishError(f"{path}: {run['run_id']} reports a different provider")
         if run["agent_timeout_seconds"] != source["agent_timeout_seconds"]:
             raise PublishError(f"{path}: {run['run_id']} reports a different timeout")
 
@@ -569,7 +578,11 @@ def compatibility_key(source: dict[str, Any]) -> dict[str, Any]:
         "execution_snapshot": compatibility_snapshot(source["execution_snapshot"]),
         "attempts": source["attempts"],
         "agent_timeout_seconds": source["agent_timeout_seconds"],
-        "agent": source["agent"],
+        # Harness identity is a compatibility boundary; provider is an
+        # invocation dimension and is carried on each trial instead.
+        "agent": {
+            key: value for key, value in source["agent"].items() if key != "provider"
+        },
         "claux_release": source["claux_release"],
     }
 
@@ -588,7 +601,7 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
     selected_scenarios: dict[tuple[str, str, int], dict[str, Any]] = {}
     optional_snapshot_hashes: dict[str, str] = {}
     scenario_order: list[str] = []
-    identities: set[tuple[str, int, str, str | None, int]] = set()
+    identities: set[tuple[str, int, str | None, str, str | None, int]] = set()
     for source in sources:
         snapshot = source.get("execution_snapshot") or {}
         for hash_key in OPTIONAL_SNAPSHOT_HASHES:
@@ -631,6 +644,7 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
             identity = (
                 run["scenario"],
                 run["scenario_version"],
+                run.get("provider"),
                 run["model"],
                 run.get("reasoning_effort"),
                 run["attempt"],
@@ -645,15 +659,15 @@ def validate_compatible(sources: list[dict[str, Any]]) -> dict[str, Any]:
         for scenario in scenarios_by_id.values()
     }
     variants = {
-        (run["model"], run.get("reasoning_effort"))
+        (run.get("provider"), run["model"], run.get("reasoning_effort"))
         for source in sources
         for run in source["runs"]
     }
     attempts = expected["attempts"]
     complete_cohort = {
-        (scenario, version, model, reasoning, attempt)
+        (scenario, version, provider, model, reasoning, attempt)
         for scenario, version in scenario_keys
-        for model, reasoning in variants
+        for provider, model, reasoning in variants
         for attempt in range(1, attempts + 1)
     }
     if identities != complete_cohort:
@@ -852,15 +866,25 @@ def grouped_aggregates(
 
 
 def model_group_fields(runs: list[dict[str, Any]]) -> tuple[str, ...]:
-    if any(run.get("reasoning_effort") is not None for run in runs):
-        return ("model", "reasoning_effort")
-    return ("model",)
+    fields = (
+        ("model", "reasoning_effort")
+        if any(run.get("reasoning_effort") is not None for run in runs)
+        else ("model",)
+    )
+    return ("provider",) + fields if any(
+        run.get("provider") is not None for run in runs
+    ) else fields
 
 
 def scenario_model_group_fields(runs: list[dict[str, Any]]) -> tuple[str, ...]:
-    if any(run.get("reasoning_effort") is not None for run in runs):
-        return ("scenario", "scenario_version", "model", "reasoning_effort")
-    return ("scenario", "scenario_version", "model")
+    fields = (
+        ("scenario", "scenario_version", "model", "reasoning_effort")
+        if any(run.get("reasoning_effort") is not None for run in runs)
+        else ("scenario", "scenario_version", "model")
+    )
+    return ("provider",) + fields if any(
+        run.get("provider") is not None for run in runs
+    ) else fields
 
 
 def create_release(
@@ -890,6 +914,9 @@ def create_release_from_sources(
     sources = copy.deepcopy(source_matrices)
     compatibility = validate_compatible(sources)
     runs = [run for source in sources for run in source.pop("runs")]
+    compatibility["providers"] = sorted(
+        {provider for provider in (run.get("provider") for run in runs) if provider}
+    )
     compatibility["reasoning_efforts"] = list(
         dict.fromkeys(
             run["reasoning_effort"]
@@ -1115,11 +1142,15 @@ def model_rows(release: dict[str, Any]) -> list[dict[str, Any]]:
 def model_variant_label(release: dict[str, Any], row: dict[str, Any]) -> str:
     model = label(release, "model", row["model"])
     effort = row.get("reasoning_effort")
-    return f"{model} ({effort})" if effort is not None else model
+    provider = row.get("provider")
+    suffix = f" ({effort})" if effort is not None else ""
+    if provider:
+        suffix += f" · {provider}"
+    return model + suffix
 
 
-def variant_key(row: dict[str, Any]) -> tuple[str, str | None]:
-    return row["model"], row.get("reasoning_effort")
+def variant_key(row: dict[str, Any]) -> tuple[str | None, str, str | None]:
+    return row.get("provider"), row["model"], row.get("reasoning_effort")
 
 
 def cost_per_repair(row: dict[str, Any]) -> float | None:
@@ -1354,8 +1385,7 @@ def html_page(
         (
             row["scenario"],
             row["scenario_version"],
-            row["model"],
-            row.get("reasoning_effort"),
+            *variant_key(row),
         ): row
         for row in release["by_scenario_model"]
     }
@@ -1623,8 +1653,7 @@ def markdown_section(release: dict[str, Any]) -> str:
         (
             row["scenario"],
             row["scenario_version"],
-            row["model"],
-            row.get("reasoning_effort"),
+            *variant_key(row),
         ): row
         for row in release["by_scenario_model"]
     }
@@ -1743,6 +1772,11 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                 "tier": tier_value(release),
                 "input_mode": release.get("input_mode", "text"),
                 "agent_harness": agent_harness,
+                **(
+                    {"providers": compatibility["providers"]}
+                    if compatibility.get("providers")
+                    else {}
+                ),
                 "harness_versions": compatibility.get("harness_versions")
                 or [compatibility["harness_version"]],
                 "scenario_packs": compatibility.get("scenario_packs", []),
@@ -1763,6 +1797,11 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                 {
                     "release": version,
                     "tier": tier_value(release),
+                    **(
+                        {"provider": aggregate["provider"]}
+                        if aggregate.get("provider")
+                        else {}
+                    ),
                     "model": aggregate["model"],
                     "model_label": label(release, "model", aggregate["model"]),
                     "reasoning_effort": aggregate.get("reasoning_effort"),
@@ -1801,6 +1840,11 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                     "scenario": aggregate["scenario"],
                     "scenario_label": label(release, "scenario", aggregate["scenario"]),
                     "scenario_version": aggregate["scenario_version"],
+                    **(
+                        {"provider": aggregate["provider"]}
+                        if aggregate.get("provider")
+                        else {}
+                    ),
                     "model": aggregate["model"],
                     "model_label": label(release, "model", aggregate["model"]),
                     "reasoning_effort": aggregate.get("reasoning_effort"),
@@ -1834,6 +1878,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
         "schema_version": 1,
         "current_version": index["current_version"],
         "coverage_fleet": index.get("coverage_fleet", []),
+        "provider_observations": index.get("provider_observations", []),
         "releases": releases,
         "lanes": lanes,
         "records": records,
@@ -1851,7 +1896,7 @@ def public_coverage(
         version: read_json(root / RELEASES_DIR / f"{version}.json")
         for version in index["releases"]
     }
-    latest_variant: dict[tuple[str, str | None], dict[str, Any]] = {}
+    latest_variant: dict[tuple[str | None, str, str | None], dict[str, Any]] = {}
     latest_scenario: dict[str, dict[str, Any]] = {}
     companion_versions = set(index.get("companion_versions", []))
     primary_records = [
@@ -1860,7 +1905,7 @@ def public_coverage(
         if record["release"] not in companion_versions
     ]
     for record in primary_records:
-        latest_variant[(record["model"], record.get("reasoning_effort"))] = record
+        latest_variant[(record.get("provider"), record["model"], record.get("reasoning_effort"))] = record
         previous = latest_scenario.get(record["scenario"])
         if previous is None or release_order[record["release"]] > release_order[
             previous["release"]
@@ -1870,10 +1915,30 @@ def public_coverage(
     configured_fleet = index.get("coverage_fleet", [])
     if configured_fleet:
         fleet_config = configured_fleet
+        expanded_fleet = []
+        for item in fleet_config:
+            provider_matches = {
+                record.get("provider")
+                for record in primary_records
+                if record["model"] == item["model"]
+                and record.get("reasoning_effort") == item.get("reasoning_effort")
+            }
+            if item.get("provider") is None and provider_matches:
+                expanded_fleet.extend(
+                    {**item, "provider": provider}
+                    for provider in sorted(
+                        provider_matches,
+                        key=lambda value: (value is not None, value or ""),
+                    )
+                )
+            else:
+                expanded_fleet.append(item)
+        fleet_config = expanded_fleet
     else:
         fleet_config = [
             {
                 "model": record["model"],
+                "provider": record.get("provider"),
                 "reasoning_effort": record.get("reasoning_effort"),
             }
             for record in primary_records
@@ -1881,21 +1946,27 @@ def public_coverage(
         ]
         fleet_config = list(
             {
-                (item["model"], item.get("reasoning_effort")): item
+                (item.get("provider"), item["model"], item.get("reasoning_effort")): item
                 for item in fleet_config
             }.values()
         )
     fleet = []
     for item in fleet_config:
-        recent = latest_variant.get((item["model"], item.get("reasoning_effort")))
+        recent = latest_variant.get((item.get("provider"), item["model"], item.get("reasoning_effort")))
         tiers = {
             record["tier"]
             for record in primary_records
             if record["model"] == item["model"]
+            and record.get("provider") == item.get("provider")
             and record.get("reasoning_effort") == item.get("reasoning_effort")
         }
         fleet.append(
             {
+                **(
+                    {"provider": item["provider"]}
+                    if item.get("provider")
+                    else {}
+                ),
                 "model": item["model"],
                 "model_label": (
                     recent["model_label"] if recent is not None else item["model"]
@@ -1921,6 +1992,7 @@ def public_coverage(
         for record in primary_records:
             if (
                 record["model"] != lane["model"]
+                or record.get("provider") != lane.get("provider")
                 or record.get("reasoning_effort")
                 != lane.get("reasoning_effort")
             ):
@@ -1959,6 +2031,7 @@ def public_coverage(
             record["scenario"],
             record["release"],
             record["scenario_version"],
+            record.get("provider"),
             record["model"],
             record.get("reasoning_effort"),
         ): record
@@ -1999,6 +2072,7 @@ def public_coverage(
                     boundary["scenario"],
                     boundary["release"],
                     boundary["scenario_version"],
+                    lane.get("provider"),
                     lane["model"],
                     lane.get("reasoning_effort"),
                 )
@@ -2108,7 +2182,7 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
         release = read_json(root / RELEASES_DIR / f"{version}.json")
         if release.get("input_mode", "text") == input_mode:
             releases.append((version, release))
-    unique_models: set[tuple[str, str | None]] = set()
+    unique_models: set[tuple[str | None, str, str | None]] = set()
     unique_scenarios: set[tuple[str, int]] = set()
     for _, release in releases:
         unique_models.update(variant_key(row) for row in release["by_model"])
@@ -2141,7 +2215,7 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
             }
         )
 
-    seen_models: set[tuple[str, str | None]] = set()
+    seen_models: set[tuple[str | None, str, str | None]] = set()
     model_evidence = []
     for version, release in reversed(releases):
         for row in model_rows(release):
@@ -2233,7 +2307,33 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
             "models": len(unique_models),
             "scenarios": len(unique_scenarios),
         },
+        provider_observations=provider_observation_cards(index),
     )
+
+
+def provider_observation_cards(index: dict[str, Any]) -> list[dict[str, Any]]:
+    """Return sanitized provider availability observations for the overview."""
+    cards = []
+    for item in index.get("provider_observations", []):
+        if not isinstance(item, dict):
+            continue
+        cards.append(
+            {
+                "date": str(item.get("date", "")),
+                "title": str(item.get("title", "Provider observation")),
+                "provider": str(item.get("provider", "Unknown provider")),
+                "models": ", ".join(str(model) for model in item.get("models", [])),
+                "summary": str(item.get("summary", "")),
+                "requested": int(item.get("requested", 0)),
+                "evaluated": int(item.get("evaluated", 0)),
+                "unavailable": int(item.get("unavailable", 0)),
+                "passed": int(item.get("passed", 0)),
+                "failed": int(item.get("failed", 0)),
+                "categories": str(item.get("categories", "")),
+                "note": str(item.get("note", "")),
+            }
+        )
+    return cards
 
 
 def build_outputs(root: Path, *, check: bool = False) -> None:

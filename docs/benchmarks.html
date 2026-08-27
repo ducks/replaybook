@@ -51,6 +51,27 @@
     </div>
 
     <div class="section-heading benchmark-section-heading">
+      <div><h2>Provider availability observations</h2><p class="small muted">Operational evidence from incomplete probes. These observations are never included in capability rankings.</p></div>
+    </div>
+    <div class="cohort-grid overview-cohort-grid">
+      <article class="cohort-card provider-observation-card">
+        <div class="cohort-card-heading"><span class="badge">Availability observation</span><code>20260827</code></div>
+        <h3>Vercel AI Gateway smoke cohort</h3>
+        <p>Nine trials across three models; seven were unavailable before meaningful inference and the two evaluated trials did not converge.</p>
+        <dl class="cohort-facts">
+          <div><dt>Provider</dt><dd>vercel-ai-gateway</dd></div>
+          <div><dt>Models</dt><dd>openai/gpt-5.6-luna, openai/gpt-5.6-sol, zai/glm-5.3-flash</dd></div>
+          <div><dt>Requested</dt><dd>9</dd></div>
+          <div><dt>Evaluated</dt><dd>2</dd></div>
+          <div><dt>Unavailable</dt><dd>7</dd></div>
+          <div><dt>Repairs</dt><dd>0/2 passed/failed</dd></div>
+          <div><dt>Categories</dt><dd>provider_unavailable (5), agent_runtime_error (2)</dd></div>
+        </dl>
+        <p class="small muted">The gateway returned free-tier access/rate-limit errors. This is provider availability evidence, not a model capability ranking.</p>
+      </article>
+    </div>
+
+    <div class="section-heading benchmark-section-heading">
       <div><h2>Recent cohorts</h2><p class="small muted">Newest text-input comparisons, each kept inside its original boundary.</p></div>
       <a href="benchmark-history.html">View history →</a>
     </div>

@@ -633,6 +633,44 @@ class HostMatrixTests(unittest.TestCase):
         self.assertEqual(summary["harness_version"], 17)
         self.assertEqual(summary["harness_versions"], [15, 17])
 
+    def test_summary_keeps_provider_lanes_separate(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            jobs = build_jobs(
+                scenarios=["incident"],
+                models=["same/model"],
+                attempts=1,
+                base_port=23000,
+                matrix_dir=Path(temporary),
+            )
+            workers = []
+            for provider, duration in (("openrouter", 1), ("vercel-ai-gateway", 2)):
+                workers.append(
+                    WorkerResult(
+                        jobs[0],
+                        0,
+                        {
+                            "harness_version": 5,
+                            "scenario": "incident",
+                            "scenario_version": 1,
+                            "model": "same/model",
+                            "provider": provider,
+                            "reward": 1,
+                            "agent_duration_seconds": duration,
+                        },
+                        None,
+                    )
+                )
+            summary = build_summary(
+                workers,
+                started_at="2026-08-07T00:00:00Z",
+                benchmark={"suite": "test"},
+            )
+
+        self.assertEqual(
+            {(row["provider"], row["model"]) for row in summary["by_model"]},
+            {("openrouter", "same/model"), ("vercel-ai-gateway", "same/model")},
+        )
+
     def test_summary_counts_durable_repairs_left_by_timed_out_agents(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             jobs = build_jobs(

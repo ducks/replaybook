@@ -301,7 +301,8 @@ integrations/host/run-host-native.sh \
   --agent-adapter ./run-my-agent.sh \
   --agent-payload ./my-agent \
   --agent-env-file ./my-agent.env \
-  --agent-name my-agent
+  --agent-name my-agent \
+  --agent-provider vercel-ai-gateway
 ```
 
 The adapter runs as root with `/root` as its working directory. Replaybook
@@ -314,12 +315,20 @@ exports:
 - `REPLAYBOOK_TRANSCRIPT_FILE`: optional transcript path.
 - `REPLAYBOOK_AGENT_PAYLOAD`: optional staged payload path.
 - `REPLAYBOOK_EVAL_ROOT`: private evaluation directory inside the VM.
+- `REPLAYBOOK_AGENT_PROVIDER`: optional invocation-level upstream provider label.
 
 The adapter must write a JSON object to `REPLAYBOOK_RESULT_FILE` containing
 `schema_version: 1`, the configured harness name, and the scheduled `model`.
 It may also report `result`, `outcome`, and `usage`; Replaybook copies `usage`
 into the verified trial result and aggregates token and cost fields when they
 are available. A transcript is optional and remains harness-defined JSON.
+
+Use `--agent-provider` (also accepted as `--provider`) to identify the
+invocation's upstream provider or gateway, such as `openrouter`, `opencode-go`,
+or `vercel-ai-gateway`. The label is recorded on every trial and included in
+summary and release grouping, so the same model routed through different
+providers remains in separate lanes. It is metadata only; it does not select
+or authenticate a provider.
 
 The environment file is copied with mode 0600, sourced, and unlinked before the
 adapter starts. It should contain shell assignments required by that harness.
