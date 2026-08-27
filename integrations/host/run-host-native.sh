@@ -23,6 +23,7 @@ Options:
   --agent-env-file FILE
                       Optional environment file copied into the VM mode 0600.
   --agent-name NAME   Harness name recorded in results.
+  --agent-provider ID Upstream provider for this invocation, recorded per trial.
   --ssh-port PORT     Forwarded SSH port (default: 22600).
   --http-port PORT    Forwarded HTTP port (default: 22601).
   --agent-timeout-seconds SECONDS
@@ -78,6 +79,7 @@ AGENT_ADAPTER=""
 AGENT_PAYLOAD=""
 AGENT_ENV_FILE=""
 AGENT_NAME=""
+AGENT_PROVIDER=""
 CUSTOM_AGENT_ADAPTER=false
 SCENARIO_PACK_DIRS=()
 
@@ -115,6 +117,11 @@ while (( $# > 0 )); do
     --agent-name)
       (( $# >= 2 )) || { echo "--agent-name requires a value" >&2; exit 2; }
       AGENT_NAME="$2"
+      shift 2
+      ;;
+    --agent-provider|--provider)
+      (( $# >= 2 )) || { echo "$1 requires a value" >&2; exit 2; }
+      AGENT_PROVIDER="$2"
       shift 2
       ;;
     --scenario)
@@ -161,7 +168,7 @@ done
 if [[ "$RUN_ORACLE" == true \
   && ( -n "$AGENT_ADAPTER" || -n "$AGENT_PAYLOAD" \
     || -n "$AGENT_ENV_FILE" || -n "$AGENT_NAME" \
-    || -n "$REASONING_EFFORT" ) ]]; then
+    || -n "$AGENT_PROVIDER" || -n "$REASONING_EFFORT" ) ]]; then
   echo "--oracle cannot be combined with agent adapter options" >&2
   exit 2
 fi
@@ -192,6 +199,10 @@ fi
   echo "agent name contains unsafe characters: ${AGENT_NAME}" >&2
   exit 2
 }
+if [[ -n "$AGENT_PROVIDER" && ! "$AGENT_PROVIDER" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]*$ ]]; then
+  echo "agent provider contains unsafe characters: ${AGENT_PROVIDER}" >&2
+  exit 2
+fi
 if [[ -n "$AGENT_PAYLOAD" && ! -f "$AGENT_PAYLOAD" ]]; then
   echo "agent payload does not exist: ${AGENT_PAYLOAD}" >&2
   exit 2
@@ -877,7 +888,7 @@ else
   printf '%s\n' "$MODEL" | "${SSH[@]}" "umask 077; cat > /root/replaybook-eval/model"
   echo "[host] running ${AGENT_NAME} directly on the incident host"
   "${SSH[@]}" \
-    "REPLAYBOOK_REASONING_EFFORT=$(printf '%q' "$REASONING_EFFORT") timeout --signal=TERM --kill-after=30s ${AGENT_TIMEOUT_SECONDS}s /root/replaybook-eval/launcher" \
+    "REPLAYBOOK_REASONING_EFFORT=$(printf '%q' "$REASONING_EFFORT") REPLAYBOOK_AGENT_PROVIDER=$(printf '%q' "$AGENT_PROVIDER") timeout --signal=TERM --kill-after=30s ${AGENT_TIMEOUT_SECONDS}s /root/replaybook-eval/launcher" \
     || run_status=$?
 fi
 agent_seconds="$(( $(date +%s) - start_seconds ))"
@@ -1021,6 +1032,7 @@ jq -n \
   --arg scenario_pack_id "$SCENARIO_PACK_ID" \
   --arg scenario_pack_version "$SCENARIO_PACK_VERSION" \
   --arg agent "$agent" \
+  --arg provider "$AGENT_PROVIDER" \
   --arg model "$(if [[ "$RUN_ORACLE" == true ]]; then printf 'oracle'; else printf '%s' "$MODEL"; fi)" \
   --arg reasoning_effort "$REASONING_EFFORT" \
   --arg started_at "$started_at" \
@@ -1052,6 +1064,7 @@ jq -n \
       version: $scenario_pack_version
     },
     agent: $agent,
+    provider: (if $provider == "" then null else $provider end),
     model: $model,
     reasoning_effort: (if $reasoning_effort == "" then null else $reasoning_effort end),
     started_at: $started_at,

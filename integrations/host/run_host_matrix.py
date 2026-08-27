@@ -117,6 +117,7 @@ class ResumePlan:
     started_at: str
     agent_timeout_seconds: int
     agent_name: str | None
+    agent_provider: str | None
     claux_release: str | None
 
 
@@ -488,13 +489,16 @@ def load_result(path: Path) -> tuple[dict[str, Any] | None, str | None]:
     return result, None
 
 
-def completed_worker(job: Job) -> WorkerResult | None:
+def completed_worker(
+    job: Job, agent_provider: str | None = None
+) -> WorkerResult | None:
     result, error = load_result(job.output_dir / "result.json")
     expected_model = "oracle" if job.model is None else job.model
     if result is None or (
         result["scenario"] != job.scenario
         or result["model"] != expected_model
         or result.get("reasoning_effort") != job.reasoning_effort
+        or (agent_provider is not None and result.get("provider") != agent_provider)
     ):
         return None
     return WorkerResult(
@@ -548,11 +552,12 @@ def build_resume_plan(
         matrix_dir=matrix_dir,
         reasoning_efforts=efforts,
     )
+    agent = benchmark.get("agent") or {}
     completed = []
     pending = []
     unavailable_retries = []
     for job in jobs:
-        worker = completed_worker(job)
+        worker = completed_worker(job, agent.get("provider"))
         if worker is None:
             pending.append(job)
         elif retry_unavailable and worker.result.get("trial_status") == "unavailable":
@@ -563,7 +568,6 @@ def build_resume_plan(
     snapshot = load_execution_snapshot(matrix_dir)
     verify_saved_result_versions(completed, benchmark)
     started_at = str(benchmark.get("started_at") or utc_now())
-    agent = benchmark.get("agent") or {}
     return ResumePlan(
         matrix_dir=matrix_dir,
         benchmark=benchmark,
@@ -577,6 +581,7 @@ def build_resume_plan(
             benchmark.get("agent_timeout_seconds") or DEFAULT_AGENT_TIMEOUT_SECONDS
         ),
         agent_name=agent.get("name") if agent.get("adapter") != "builtin:claux" else None,
+        agent_provider=agent.get("provider"),
         claux_release=benchmark.get("claux_release"),
     )
 
@@ -621,6 +626,7 @@ async def run_worker(
     agent_payload: Path | None = None,
     agent_env_file: Path | None = None,
     agent_name: str | None = None,
+    agent_provider: str | None = None,
     scenario_pack_dirs: list[Path] | None = None,
 ) -> WorkerResult:
     async with semaphore:
@@ -661,6 +667,8 @@ async def run_worker(
                 command.extend(["--agent-env-file", str(agent_env_file)])
             if agent_name is not None:
                 command.extend(["--agent-name", agent_name])
+            if agent_provider is not None:
+                command.extend(["--agent-provider", agent_provider])
 
         job.log_file.parent.mkdir(parents=True, exist_ok=True)
         with job.log_file.open("wb") as log:
@@ -684,6 +692,7 @@ async def run_worker(
             result["scenario"] != job.scenario
             or result["model"] != expected_model
             or result.get("reasoning_effort") != job.reasoning_effort
+            or (agent_provider is not None and result.get("provider") != agent_provider)
         ):
             error = f"result identity does not match scheduled job: {job.run_id}"
             result = None
@@ -719,6 +728,7 @@ async def run_jobs(
     agent_payload: Path | None = None,
     agent_env_file: Path | None = None,
     agent_name: str | None = None,
+    agent_provider: str | None = None,
     scenario_pack_dirs: list[Path] | None = None,
 ) -> list[WorkerResult]:
     semaphore = asyncio.Semaphore(concurrency)
@@ -736,6 +746,7 @@ async def run_jobs(
                 agent_payload=agent_payload,
                 agent_env_file=agent_env_file,
                 agent_name=agent_name,
+                agent_provider=agent_provider,
                 scenario_pack_dirs=scenario_pack_dirs,
             )
         )
@@ -891,14 +902,15 @@ def build_summary(
                 "transcript_file": str(transcript) if transcript.is_file() else None,
             }
         )
+        run.setdefault("provider", (benchmark.get("agent") or {}).get("provider"))
         runs.append(run)
 
     harness_versions = {int(run["harness_version"]) for run in runs}
     harness_version = max(harness_versions, default=HOST_HARNESS_VERSION)
 
-    by_model_groups: dict[tuple[str, str | None], list[dict[str, Any]]] = defaultdict(list)
+    by_model_groups: dict[tuple[str | None, str, str | None], list[dict[str, Any]]] = defaultdict(list)
     by_scenario_model_groups: dict[
-        tuple[str, int, str, str | None], list[dict[str, Any]]
+        tuple[str, int, str | None, str, str | None], list[dict[str, Any]]
     ] = (
         defaultdict(list)
     )
@@ -907,30 +919,33 @@ def build_summary(
         scenario = str(run.get("scenario", "unknown"))
         version = int(run.get("scenario_version", 0))
         reasoning_effort = run.get("reasoning_effort")
-        by_model_groups[(model, reasoning_effort)].append(run)
-        by_scenario_model_groups[(scenario, version, model, reasoning_effort)].append(run)
+        provider = run.get("provider")
+        by_model_groups[(provider, model, reasoning_effort)].append(run)
+        by_scenario_model_groups[(scenario, version, provider, model, reasoning_effort)].append(run)
 
     by_model = [
         {
+            "provider": provider,
             "model": model,
             "reasoning_effort": reasoning_effort,
             **summarize_runs(group),
         }
-        for (model, reasoning_effort), group in sorted(
-            by_model_groups.items(), key=lambda item: (item[0][0], item[0][1] or "")
+        for (provider, model, reasoning_effort), group in sorted(
+            by_model_groups.items(), key=lambda item: (item[0][0] or "", item[0][1], item[0][2] or "")
         )
     ]
     by_scenario_model = [
         {
             "scenario": scenario,
             "scenario_version": version,
+            "provider": provider,
             "model": model,
             "reasoning_effort": reasoning_effort,
             **summarize_runs(group),
         }
-        for (scenario, version, model, reasoning_effort), group in sorted(
+        for (scenario, version, provider, model, reasoning_effort), group in sorted(
             by_scenario_model_groups.items(),
-            key=lambda item: (*item[0][:3], item[0][3] or ""),
+            key=lambda item: (item[0][0], item[0][1], item[0][2] or "", item[0][3], item[0][4] or ""),
         )
     ]
     failure_categories = Counter(
@@ -991,6 +1006,7 @@ def display_tokens(value: int, coverage: int) -> str:
 
 def print_table(rows: list[dict[str, Any]]) -> None:
     headers = [
+        "provider",
         "model",
         "reasoning",
         "trials",
@@ -1009,6 +1025,7 @@ def print_table(rows: list[dict[str, Any]]) -> None:
         rate = row["pass_rate"]
         formatted.append(
             [
+                str(row.get("provider") or "n/a"),
                 str(row["model"]),
                 str(row.get("reasoning_effort") or "default"),
                 str(row["trials"]),
@@ -1037,6 +1054,7 @@ def print_scenario_table(rows: list[dict[str, Any]]) -> None:
     headers = [
         "scenario",
         "ver",
+        "provider",
         "model",
         "reasoning",
         "trials",
@@ -1050,6 +1068,7 @@ def print_scenario_table(rows: list[dict[str, Any]]) -> None:
         [
             str(row["scenario"]),
             f"v{row['scenario_version']}",
+            str(row.get("provider") or "n/a"),
             str(row["model"]),
             str(row.get("reasoning_effort") or "default"),
             str(row["trials"]),
@@ -1076,6 +1095,7 @@ def print_recording_table(rows: list[dict[str, Any]]) -> None:
     if not rows:
         return
     headers = [
+        "provider",
         "model",
         "reasoning",
         "recorded",
@@ -1088,6 +1108,7 @@ def print_recording_table(rows: list[dict[str, Any]]) -> None:
     ]
     formatted = [
         [
+            str(row.get("provider") or "n/a"),
             str(row["model"]),
             str(row.get("reasoning_effort") or "default"),
             f"{row['recording_reported_trials']}/{row['trials']}",
@@ -1234,6 +1255,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--agent-payload", type=Path)
     parser.add_argument("--agent-env-file", type=Path)
     parser.add_argument("--agent-name")
+    parser.add_argument(
+        "--agent-provider", "--provider", dest="agent_provider",
+        help="upstream model provider for this invocation (recorded per trial)",
+    )
     parser.add_argument("--oracle", action="store_true")
     parser.add_argument(
         "--check",
@@ -1299,6 +1324,7 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
             args.agent_payload,
             args.agent_env_file,
             args.agent_name,
+            args.agent_provider,
         )
     ):
         raise ValueError("--oracle cannot be combined with agent adapter options")
@@ -1314,6 +1340,8 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
             )
     if args.agent_name and not SCENARIO_ID_PATTERN.fullmatch(args.agent_name):
         raise ValueError("--agent-name contains unsafe characters")
+    if args.agent_provider and not SCENARIO_ID_PATTERN.fullmatch(args.agent_provider):
+        raise ValueError("--agent-provider contains unsafe characters")
     if args.agent_adapter is not None and args.claux_binary:
         raise ValueError("--agent-adapter cannot be combined with --claux-binary")
     if args.agent_adapter is not None and args.claux_release:
@@ -1346,6 +1374,7 @@ def validate_resume_args(args: argparse.Namespace) -> None:
         ("--agent-adapter", args.agent_adapter),
         ("--agent-payload", args.agent_payload),
         ("--agent-name", args.agent_name),
+        ("--agent-provider", args.agent_provider),
         ("--oracle", args.oracle),
         ("--check", args.check),
         ("--list-scenarios", args.list_scenarios),
@@ -1457,6 +1486,7 @@ def resume_matrix(args: argparse.Namespace) -> int:
                     agent_payload=plan.snapshot.agent_payload,
                     agent_env_file=runtime_env,
                     agent_name=plan.agent_name,
+                    agent_provider=plan.agent_provider,
                     scenario_pack_dirs=plan.snapshot.scenario_pack_dirs,
                 )
             )
@@ -1662,6 +1692,7 @@ def main(argv: list[str] | None = None) -> int:
             "payload": str(args.agent_payload.expanduser().resolve())
             if args.agent_payload
             else None,
+            "provider": args.agent_provider,
         },
         "claux_release": args.claux_release
         or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20260821.0.2"),
@@ -1696,6 +1727,7 @@ def main(argv: list[str] | None = None) -> int:
                     agent_payload=snapshot.agent_payload,
                     agent_env_file=runtime_env,
                     agent_name=args.agent_name,
+                    agent_provider=args.agent_provider,
                     scenario_pack_dirs=snapshot.scenario_pack_dirs,
                 )
             )
