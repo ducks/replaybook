@@ -11,22 +11,22 @@ counts should not be compared as if they were one controlled experiment.
 <!-- replaybook:current-benchmark:start -->
 ## OpenCode Go visual infrastructure cohort
 
-Four OpenCode Go models attempted the visual metrics-regression incident five times each, testing whether they could correlate noisy dashboard signals and converge on a durable repair.
+Four OpenCode Go models each attempted three durable repairs across topology drift, noisy metrics, and deployment-timeline incidents, testing whether hosted coding agents can turn visual evidence into convergent infrastructure changes.
 
-Benchmark release: `20260826.0.1`
+Benchmark release: `20260827.0.0`
 Benchmark tier: `unclassified`
 
-Provider-reported subscription usage value: **$1.6545** across 20 trials. This is a catalog-priced usage estimate, not metered spend.
+Provider-reported subscription usage value: **$3.5034** across 36 trials. This is a catalog-priced usage estimate, not metered spend.
 
 Scenario packs: `ducks/replaybook-infra@20260824.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash (high) | 5/5 | 100% | 1:22 | n/a | n/a |
-| Qwen 3.8 Max (high) | 5/5 | 100% | 2:17 | n/a | n/a |
-| MiniMax M3 (high) | 5/5 | 100% | 2:16 | n/a | n/a |
-| Kimi K3 (high) | 5/5 | 100% | 3:04 | n/a | n/a |
-| **Total** | **20/20** | **100%** | **2:16** | **n/a** | **n/a** |
+| DeepSeek V4 Flash (high) · opencode-go | 9/9 | 100% | 2:33 | n/a | n/a |
+| Kimi K3 (high) · opencode-go | 9/9 | 100% | 2:10 | n/a | n/a |
+| MiniMax M3 (high) · opencode-go | 9/9 | 100% | 2:23 | n/a | n/a |
+| Qwen 3.8 Max (high) · opencode-go | 7/9 | 78% | 3:33 | n/a | n/a |
+| **Total** | **34/36** | **94%** | **2:30** | **n/a** | **n/a** |
 
 ### Execution recording
 
@@ -34,35 +34,41 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash (high) | 5/5 | 12 | 0:57 | 20 | 0:00 | 0:01 | 1:14 |
-| Qwen 3.8 Max (high) | 5/5 | 13 | 1:28 | 17 | 0:00 | 0:13 | 1:54 |
-| MiniMax M3 (high) | 5/5 | 23 | 1:27 | 28 | 0:00 | 0:04 | 2:03 |
-| Kimi K3 (high) | 5/5 | 11 | 1:50 | 15 | 0:00 | 0:07 | 2:46 |
+| DeepSeek V4 Flash (high) · opencode-go | 9/9 | 15 | 2:03 | 28 | 0:00 | 0:02 | 2:22 |
+| Kimi K3 (high) · opencode-go | 9/9 | 14 | 1:34 | 19 | 0:00 | 0:04 | 1:57 |
+| MiniMax M3 (high) · opencode-go | 9/9 | 23 | 1:22 | 30 | 0:01 | 0:05 | 2:07 |
+| Qwen 3.8 Max (high) · opencode-go | 9/9 | 12 | 2:32 | 19 | 0:00 | 0:17 | 3:01 |
 
-All four models completed all five attempts: 20 evaluated trials, 20 durable repairs, and no unavailable runs.
+DeepSeek V4 Flash, Kimi K3, and MiniMax M3 completed all nine of their evaluated repairs; Qwen 3.8 Max completed seven of nine.
 
-DeepSeek V4 Flash was fastest at a 1:22 median; MiniMax M3 and Qwen 3.8 Max were close at 2:16 and 2:17, while Kimi K3 was 3:04.
+The cohort completed 34 of 36 evaluated repairs (94.4%); one runtime error and one provider interruption were scored as failures, with no unavailable trials.
 
-The cohort measures durable infrastructure repair from visual evidence, not image captioning or general coding ability.
+Kimi K3 was fastest at a 2:10 median, followed by MiniMax M3 at 2:23, DeepSeek V4 Flash at 2:33, and Qwen 3.8 Max at 3:33.
+
+The visual scenarios test durable infrastructure repair from diagrams and dashboards, not image captioning or general coding ability.
 
 ### Scenario breakdown
 
-| Scenario | Version | DeepSeek V4 Flash (high) | Qwen 3.8 Max (high) | MiniMax M3 (high) | Kimi K3 (high) |
+| Scenario | Version | DeepSeek V4 Flash (high) · opencode-go | Kimi K3 (high) · opencode-go | MiniMax M3 (high) · opencode-go | Qwen 3.8 Max (high) · opencode-go |
 |---|---:|---:|---:|---:|---:|
-| Visual metrics regression | v1 | 5/5, 1:22 | 5/5, 2:17 | 5/5, 2:16 | 5/5, 3:04 |
+| Visual topology drift | v1 | 3/3, 3:22 | 3/3, 2:10 | 3/3, 2:13 | 3/3, 3:35 |
+| Visual metrics regression | v1 | 3/3, 2:24 | 3/3, 1:41 | 3/3, 1:05 | 1/3, 2:10 |
+| Visual deployment timeline | v1 | 3/3, 1:57 | 3/3, 2:34 | 3/3, 2:38 | 3/3, 3:37 |
 
 ### Failure categories
 
+- `agent_runtime_error`: 1
+- `provider_interrupted`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-26__23-42-25.91b046`: opencode-go/qwen3.8-max, opencode-go/minimax-m3, opencode-go/deepseek-v4-flash, opencode-go/kimi-k3; Replaybook `30a9b57f`; reasoning high
+- `host-matrix-2026-08-27__16-17-53.8fc7fb`: opencode-go/deepseek-v4-flash, opencode-go/kimi-k3, opencode-go/minimax-m3, opencode-go/qwen3.8-max; Replaybook `eaf54a96`; reasoning high
 
 ### Run notes
 
 - This is an OpenCode Go subscription cohort and is intentionally published separately from Claux/OpenRouter results.
-- All lanes use the same visual scenario, scenario-pack revision, Replaybook host harness, five-attempt design, and 900-second timeout.
-- OpenCode Go does not report per-trial provider costs in the adapter output; cost is therefore shown as unavailable rather than estimated.
+- All lanes use the same visual scenario-pack revision, Replaybook host harness, three-attempt design, high reasoning effort, and 900-second timeout.
+- OpenCode Go does not report per-trial provider costs in the adapter output; cost is therefore shown as unavailable rather than estimated. Subscription usage metadata is retained in the source summary where provided.
 
 <!-- replaybook:current-benchmark:end -->
 
