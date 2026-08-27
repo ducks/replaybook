@@ -65,7 +65,7 @@
       ]
     }
   ],
-  "generated_from": "20260826.0.0",
+  "generated_from": "20260826.0.1",
   "profiles": [
     {
       "model": "deepseek/deepseek-v4-flash-0731",
@@ -5698,27 +5698,27 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
-        "attempts": 3,
+        "attempts": 5,
         "claux_binary_sha256": null,
-        "claux_release": "v20260821.0.2",
+        "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "76c12b8b9e39742fc040275e42f44ee79ef4a1a1a51ddf64eb15838f2467f3c1",
+        "host_harness_sha256": "d59941c15303a9ccd5e80ae050d668d13a749239aa26f796b70912016f840e17",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
-          "version": "20260822.1.0"
+          "version": "20260824.0.0"
         },
         "scenario_snapshot_sha256": "dbf1c44f354b22207d06de7d4336d243afd553bc52aca7aca0ab147d7abb9f31",
         "tier": "unclassified"
@@ -5737,98 +5737,39 @@
           ]
         },
         {
-          "cost_per_repair_usd": 0.17239057499999996,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=030-visual-metrics-regression&model=google%2Fgemini-3.7-flash",
-          "failed": 1,
-          "failure_categories": {
-            "provider_protocol_error": 1
-          },
-          "input_tokens": 546477,
-          "known_cost_usd": 0.3447811499999999,
-          "median_duration_seconds": 219,
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "output_tokens": 34699,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
           "reasoning_effort": "high",
-          "release": "20260822.0.4",
-          "scenario": "030-visual-metrics-regression",
-          "scenario_label": "Visual metrics regression",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.02323753,
-          "cost_reported_trials": 2,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=030-visual-metrics-regression&model=openai%2Fgpt-5.6-luna",
-          "failed": 1,
-          "failure_categories": {
-            "agent_timeout": 1
-          },
-          "input_tokens": 5021,
-          "known_cost_usd": 0.04647506,
-          "median_duration_seconds": 84,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 11279,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
           "reasoning_effort": "high",
-          "release": "20260822.0.4",
-          "scenario": "030-visual-metrics-regression",
-          "scenario_label": "Visual metrics regression",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
-          "cost_per_repair_usd": 0.0,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=030-visual-metrics-regression&model=stealth%2Fox-alpha",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 77054,
-          "known_cost_usd": 0.0,
-          "median_duration_seconds": 194,
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
-          "output_tokens": 6722,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "reasoning_effort": "high",
-          "release": "20260822.0.4",
-          "scenario": "030-visual-metrics-regression",
-          "scenario_label": "Visual metrics regression",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
         },
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
@@ -5854,7 +5795,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=030-visual-metrics-regression",
-      "release": "20260822.0.4",
+      "release": "20260826.0.1",
       "scenario": "030-visual-metrics-regression",
       "scenario_label": "Visual metrics regression",
       "scenario_version": 1
@@ -6021,8 +5962,8 @@
   ],
   "schema_version": 1,
   "totals": {
-    "covered_cells": 29,
-    "missing_cells": 91,
+    "covered_cells": 26,
+    "missing_cells": 94,
     "model_lanes": 6,
     "possible_cells": 120,
     "scenarios": 20

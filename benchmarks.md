@@ -9,22 +9,24 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Reasoning effort and convergence: three OpenAI models
+## OpenCode Go visual infrastructure cohort
 
-GPT-5.6 Luna, Terra, and Sol attempted the same interrupted-deployment repair under selected reasoning efforts, measuring the tradeoff between speed, cost, and durable convergence.
+Four OpenCode Go models attempted the visual metrics-regression incident five times each, testing whether they could correlate noisy dashboard signals and converge on a durable repair.
 
-Benchmark release: `20260826.0.0`
+Benchmark release: `20260826.0.1`
 Benchmark tier: `unclassified`
+
+Provider-reported subscription usage value: **$1.6545** across 20 trials. This is a catalog-priced usage estimate, not metered spend.
 
 Scenario packs: `ducks/replaybook-infra@20260824.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-5.6 Terra (medium) | 2/3 | 67% | 1:05 | $0.5394 | $0.2697 |
-| GPT-5.6 Luna (high) | 2/3 | 67% | 2:03 | $0.1022 | $0.0511 |
-| GPT-5.6 Luna (medium) | 1/3 | 33% | 1:41 | $0.0845 | $0.0845 |
-| GPT-5.6 Sol (medium) | 3/3 | 100% | 2:06 | $0.8162 | $0.2721 |
-| **Total** | **8/12** | **67%** | **1:58** | **$1.5424** | **$0.1928** |
+| DeepSeek V4 Flash (high) | 5/5 | 100% | 1:22 | n/a | n/a |
+| Qwen 3.8 Max (high) | 5/5 | 100% | 2:17 | n/a | n/a |
+| MiniMax M3 (high) | 5/5 | 100% | 2:16 | n/a | n/a |
+| Kimi K3 (high) | 5/5 | 100% | 3:04 | n/a | n/a |
+| **Total** | **20/20** | **100%** | **2:16** | **n/a** | **n/a** |
 
 ### Execution recording
 
@@ -32,39 +34,35 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GPT-5.6 Terra (medium) | 3/3 | 13 | 0:58 | 26 | 0:05 | 0:07 | 0:57 |
-| GPT-5.6 Luna (high) | 3/3 | 17 | 1:57 | 38 | 0:06 | 0:08 | 1:53 |
-| GPT-5.6 Luna (medium) | 3/3 | 17 | 1:29 | 31 | 0:10 | 0:09 | 1:31 |
-| GPT-5.6 Sol (medium) | 3/3 | 18 | 1:58 | 39 | 0:07 | 0:08 | 1:58 |
+| DeepSeek V4 Flash (high) | 5/5 | 12 | 0:57 | 20 | 0:00 | 0:01 | 1:14 |
+| Qwen 3.8 Max (high) | 5/5 | 13 | 1:28 | 17 | 0:00 | 0:13 | 1:54 |
+| MiniMax M3 (high) | 5/5 | 23 | 1:27 | 28 | 0:00 | 0:04 | 2:03 |
+| Kimi K3 (high) | 5/5 | 11 | 1:50 | 15 | 0:00 | 0:07 | 2:46 |
 
-GPT-5.6 Sol medium completed all three repairs at a 2:06 median, but had the highest known cost at $0.8162.
+All four models completed all five attempts: 20 evaluated trials, 20 durable repairs, and no unavailable runs.
 
-GPT-5.6 Terra medium was fastest at a 1:05 median and completed two of three repairs.
+DeepSeek V4 Flash was fastest at a 1:22 median; MiniMax M3 and Qwen 3.8 Max were close at 2:16 and 2:17, while Kimi K3 was 3:04.
 
-GPT-5.6 Luna completed two of three at high effort and one of three at medium effort; medium was faster (1:41 versus 2:03) and cheaper ($0.0845 versus $0.1022).
-
-All four failures were classified as release-not-converged, so extra reasoning did not guarantee durable convergence on this incident.
+The cohort measures durable infrastructure repair from visual evidence, not image captioning or general coding ability.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Terra (medium) | GPT-5.6 Luna (high) | GPT-5.6 Luna (medium) | GPT-5.6 Sol (medium) |
+| Scenario | Version | DeepSeek V4 Flash (high) | Qwen 3.8 Max (high) | MiniMax M3 (high) | Kimi K3 (high) |
 |---|---:|---:|---:|---:|---:|
-| Discourse interrupted deploy | v1 | 2/3, 1:05 | 2/3, 2:03 | 1/3, 1:41 | 3/3, 2:06 |
+| Visual metrics regression | v1 | 5/5, 1:22 | 5/5, 2:17 | 5/5, 2:16 | 5/5, 3:04 |
 
 ### Failure categories
 
-- `release_not_converged`: 4
 
 ### Source matrices
 
-- `host-matrix-2026-08-26__00-22-50.329d2f`: openai/gpt-5.6-terra, openai/gpt-5.6-sol; Replaybook `1ff72b5a`; reasoning medium
-- `host-matrix-2026-08-26__14-00-58.679af8`: openai/gpt-5.6-luna; Replaybook `1ff72b5a`; reasoning medium/high
+- `host-matrix-2026-08-26__23-42-25.91b046`: opencode-go/qwen3.8-max, opencode-go/minimax-m3, opencode-go/deepseek-v4-flash, opencode-go/kimi-k3; Replaybook `30a9b57f`; reasoning high
 
 ### Run notes
 
-- This is a controlled but small effort/convergence study: 12 total trials across one scenario and four model-effort lanes.
-- All matrices use the same Replaybook commit, scenario-pack version, host harness, Claux release, timeout, and three-attempt design.
-- Results are not a general ranking of the models or a universal recommendation for one reasoning level.
+- This is an OpenCode Go subscription cohort and is intentionally published separately from Claux/OpenRouter results.
+- All lanes use the same visual scenario, scenario-pack revision, Replaybook host harness, five-attempt design, and 900-second timeout.
+- OpenCode Go does not report per-trial provider costs in the adapter output; cost is therefore shown as unavailable rather than estimated.
 
 <!-- replaybook:current-benchmark:end -->
 
