@@ -40,8 +40,8 @@
     <p class="tagline benchmark-tagline">Agents must inspect diagrams or images as authoritative operational evidence, then repair and durably verify the running system.</p>
 
     <div class="metric-grid overview-metrics" aria-label="Published visual benchmark evidence">
-      <div class="metric"><span class="metric-value">5</span><span class="metric-label">published cohorts</span></div>
-      <div class="metric"><span class="metric-value">10</span><span class="metric-label">model lanes</span></div>
+      <div class="metric"><span class="metric-value">6</span><span class="metric-label">published cohorts</span></div>
+      <div class="metric"><span class="metric-value">14</span><span class="metric-label">model lanes</span></div>
       <div class="metric"><span class="metric-value">3</span><span class="metric-label">scenarios</span></div>
     </div>
 
@@ -55,6 +55,20 @@
       <a href="benchmark-history.html">View history →</a>
     </div>
     <div class="cohort-grid overview-cohort-grid">
+      <article class="cohort-card overview-cohort-card">
+        <div class="cohort-card-heading"><span class="badge">Visual input</span><code>20260826.0.1</code></div>
+        <h3>OpenCode Go visual infrastructure cohort</h3>
+        <p>Four OpenCode Go models attempted the visual metrics-regression incident five times each, testing whether they could correlate noisy dashboard signals and converge on a durable repair.</p>
+        <dl class="cohort-facts">
+          <div><dt>Models</dt><dd>4</dd></div>
+          <div><dt>Scenarios</dt><dd>1</dd></div>
+          <div><dt>Repairs</dt><dd>20/20</dd></div>
+          <div><dt>Median</dt><dd>2:16</dd></div>
+          <div><dt>Known cost</dt><dd>n/a</dd></div>
+          <div><dt>Harness</dt><dd>OpenCode 1.18.18</dd></div>
+        </dl>
+        <a href="benchmark-explorer.html?release=20260826.0.1">Inspect cohort →</a>
+      </article>
       <article class="cohort-card overview-cohort-card">
         <div class="cohort-card-heading"><span class="badge">Visual input</span><code>20260825.0.1</code></div>
         <h3>Visual infrastructure benchmark: deployment timeline</h3>
@@ -97,20 +111,6 @@
         </dl>
         <a href="benchmark-explorer.html?release=20260822.0.4">Inspect cohort →</a>
       </article>
-      <article class="cohort-card overview-cohort-card">
-        <div class="cohort-card-heading"><span class="badge">Visual input</span><code>20260822.0.3</code></div>
-        <h3>Four-model visual infrastructure cohort</h3>
-        <p>GPT-5.6 Luna, GPT-5.6 Sol, Ox Alpha, and MiMo V2.5 each ran three attempts against the same topology-drift incident through Claux and OpenRouter.</p>
-        <dl class="cohort-facts">
-          <div><dt>Models</dt><dd>4</dd></div>
-          <div><dt>Scenarios</dt><dd>1</dd></div>
-          <div><dt>Repairs</dt><dd>12/12</dd></div>
-          <div><dt>Median</dt><dd>2:20</dd></div>
-          <div><dt>Known cost</dt><dd>$0.7839</dd></div>
-          <div><dt>Harness</dt><dd>Claux v20260821.0.2</dd></div>
-        </dl>
-        <a href="benchmark-explorer.html?release=20260822.0.3">Inspect cohort →</a>
-      </article>
     </div>
 
     <div class="section-heading benchmark-section-heading">
@@ -118,6 +118,10 @@
       <a href="benchmark-models.html">Model profiles →</a>
     </div>
     <div class="table-scroll"><table><thead><tr><th>Model</th><th>Cohort</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Known cost</th></tr></thead><tbody>
+      <tr><td><a href="benchmark-explorer.html?release=20260826.0.1&amp;model=opencode-go%2Fdeepseek-v4-flash"><strong>DeepSeek V4 Flash (high)</strong></a><span class="profile-cohort"><code>opencode-go/deepseek-v4-flash</code></span></td><td><code>20260826.0.1</code></td><td>5/5</td><td>100%</td><td>1:22</td><td>n/a</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260826.0.1&amp;model=opencode-go%2Fqwen3.8-max"><strong>Qwen 3.8 Max (high)</strong></a><span class="profile-cohort"><code>opencode-go/qwen3.8-max</code></span></td><td><code>20260826.0.1</code></td><td>5/5</td><td>100%</td><td>2:17</td><td>n/a</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260826.0.1&amp;model=opencode-go%2Fminimax-m3"><strong>MiniMax M3 (high)</strong></a><span class="profile-cohort"><code>opencode-go/minimax-m3</code></span></td><td><code>20260826.0.1</code></td><td>5/5</td><td>100%</td><td>2:16</td><td>n/a</td></tr>
+      <tr><td><a href="benchmark-explorer.html?release=20260826.0.1&amp;model=opencode-go%2Fkimi-k3"><strong>Kimi K3 (high)</strong></a><span class="profile-cohort"><code>opencode-go/kimi-k3</code></span></td><td><code>20260826.0.1</code></td><td>5/5</td><td>100%</td><td>3:04</td><td>n/a</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=openai%2Fgpt-5.6-terra"><strong>GPT-5.6 Terra (high)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-terra</code></span></td><td><code>20260825.0.1</code></td><td>3/3</td><td>100%</td><td>1:45</td><td>$0.5414</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=openai%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna (high)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-luna</code></span></td><td><code>20260825.0.1</code></td><td>3/3</td><td>100%</td><td>1:50</td><td>$0.0824</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=anthropic%2Fclaude-sonnet-5"><strong>Claude Sonnet 5 (high)</strong></a><span class="profile-cohort"><code>anthropic/claude-sonnet-5</code></span></td><td><code>20260825.0.1</code></td><td>3/3</td><td>100%</td><td>2:11</td><td>$0.5097</td></tr>
@@ -126,8 +130,6 @@
       <tr><td><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=openai%2Fgpt-5.6-sol"><strong>GPT-5.6 Sol (high)</strong></a><span class="profile-cohort"><code>openai/gpt-5.6-sol</code></span></td><td><code>20260825.0.1</code></td><td>2/3</td><td>67%</td><td>2:28</td><td>$0.4205+</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=xiaomi%2Fmimo-v2.5"><strong>MiMo V2.5 (high)</strong></a><span class="profile-cohort"><code>xiaomi/mimo-v2.5</code></span></td><td><code>20260825.0.1</code></td><td>2/3</td><td>67%</td><td>4:08</td><td>$0.0569</td></tr>
       <tr><td><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=anthropic%2Fclaude-opus-5"><strong>Claude Opus 5 (high)</strong></a><span class="profile-cohort"><code>anthropic/claude-opus-5</code></span></td><td><code>20260825.0.1</code></td><td>1/3</td><td>33%</td><td>15:31</td><td>$0.6140+</td></tr>
-      <tr><td><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=stealth%2Fox-alpha"><strong>Ox Alpha (high)</strong></a><span class="profile-cohort"><code>stealth/ox-alpha</code></span></td><td><code>20260825.0.1</code></td><td>0/1</td><td>0%</td><td>3:24</td><td>$0.0000+</td></tr>
-      <tr><td><a href="benchmark-explorer.html?release=20260822.0.2&amp;model=qwen%2Fqwen3.8-2.4t-a95b"><strong>Qwen3.8 2.4T A95B (high)</strong></a><span class="profile-cohort"><code>qwen/qwen3.8-2.4t-a95b</code></span></td><td><code>20260822.0.2</code></td><td>0/0</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
     </tbody></table></div>
 
     <div class="section-heading benchmark-section-heading">
@@ -135,9 +137,9 @@
       <a href="scenarios.html">Scenario guide →</a>
     </div>
     <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Cohort</th><th>Models</th><th>Repairs</th></tr></thead><tbody>
+      <tr><td><a href="benchmark-scenario.html?scenario=030-visual-metrics-regression">Visual metrics regression</a></td><td>v1</td><td><code>20260826.0.1</code></td><td>4</td><td>20/20</td></tr>
       <tr><td><a href="benchmark-scenario.html?scenario=031-visual-deployment-timeline">Visual deployment timeline</a></td><td>v1</td><td><code>20260825.0.1</code></td><td>9</td><td>19/25</td></tr>
       <tr><td><a href="benchmark-scenario.html?scenario=029-visual-topology-drift">Visual topology drift</a></td><td>v1</td><td><code>20260822.0.4</code></td><td>6</td><td>18/18</td></tr>
-      <tr><td><a href="benchmark-scenario.html?scenario=030-visual-metrics-regression">Visual metrics regression</a></td><td>v1</td><td><code>20260822.0.4</code></td><td>6</td><td>14/18</td></tr>
     </tbody></table></div>
 
     <p class="small muted overview-footnote">Need the full audit trail? Use the <a href="benchmark-explorer.html">Explorer</a> for failures and filtered records, or read the <a href="benchmark-methodology.html">methodology</a>.</p>

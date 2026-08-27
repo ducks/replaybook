@@ -1,0 +1,38 @@
+{
+  "input_mode": "visual",
+  "title": "OpenCode Go visual infrastructure cohort",
+  "description": "Four OpenCode Go models attempted the visual metrics-regression incident five times each, testing whether they could correlate noisy dashboard signals and converge on a durable repair.",
+  "agent_harness": {
+    "id": "opencode",
+    "label": "OpenCode",
+    "version": "1.18.18",
+    "provider": "OpenCode Go",
+    "billing": "subscription"
+  },
+  "model_labels": {
+    "opencode-go/deepseek-v4-flash": "DeepSeek V4 Flash",
+    "opencode-go/kimi-k3": "Kimi K3",
+    "opencode-go/minimax-m3": "MiniMax M3",
+    "opencode-go/qwen3.8-max": "Qwen 3.8 Max"
+  },
+  "model_order": [
+    "opencode-go/deepseek-v4-flash",
+    "opencode-go/qwen3.8-max",
+    "opencode-go/minimax-m3",
+    "opencode-go/kimi-k3"
+  ],
+  "scenario_labels": {
+    "030-visual-metrics-regression": "Visual metrics regression"
+  },
+  "observations": [
+    "All four models completed all five attempts: 20 evaluated trials, 20 durable repairs, and no unavailable runs.",
+    "DeepSeek V4 Flash was fastest at a 1:22 median; MiniMax M3 and Qwen 3.8 Max were close at 2:16 and 2:17, while Kimi K3 was 3:04.",
+    "The cohort measures durable infrastructure repair from visual evidence, not image captioning or general coding ability."
+  ],
+  "notes": [
+    "This is an OpenCode Go subscription cohort and is intentionally published separately from Claux/OpenRouter results.",
+    "All lanes use the same visual scenario, scenario-pack revision, Replaybook host harness, five-attempt design, and 900-second timeout.",
+    "OpenCode Go does not report per-trial provider costs in the adapter output; cost is therefore shown as unavailable rather than estimated."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 030-visual-metrics-regression --models opencode-go/qwen3.8-max opencode-go/minimax-m3 opencode-go/deepseek-v4-flash opencode-go/kimi-k3 --reasoning-efforts high --agent-adapter integrations/host/adapters/opencode.sh --agent-payload ~/.opencode/bin/opencode --agent-env-file <prepared-opencode-env> --agent-name opencode --attempts 5 --concurrency 1 --base-port 28200"
+}
