@@ -18,13 +18,13 @@
         </div>
         <div class="dashboard-actions"><a href="benchmark-models.html">All model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a></div>
       </div>
-      <p class="small muted dashboard-fleet-note">Ranks reset inside each provider and harness boundary. Release badges make differences in scenario coverage and comparison conditions visible.</p>
+      <p class="small muted dashboard-fleet-note">One section per provider. Ranks are indicative when lanes come from different cohorts; each card keeps its harness, tier, and release boundary visible.</p>
 {% if latest_dashboard %}
       <p class="small muted dashboard-latest-note">Latest published cohort: <strong>{{ latest_dashboard.title }}</strong> · <code>{{ latest_dashboard.version }}</code></p>
 {% endif %}
 {% for group in model_evidence_groups %}
       <div class="dashboard-provider-group">
-        <div class="dashboard-provider-heading"><h3>{{ group.provider }}</h3><span class="badge">{{ group.harness }} · {{ group.tier }} tier</span></div>
+        <div class="dashboard-provider-heading"><h3>{{ group.provider }}</h3><span class="badge">{{ group.boundary_summary }}</span></div>
         <div class="dashboard-model-grid">
 {% for lane in group.lanes %}
         <a class="dashboard-model-card" href="{{ lane.url }}">

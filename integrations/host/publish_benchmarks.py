@@ -2319,22 +2319,29 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
             row["model"],
         )
     )
-    evidence_groups_by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
+    evidence_groups_by_key: dict[str, dict[str, Any]] = {}
     for row in model_evidence:
-        group_key = (row["provider"], row["harness"], row["tier"])
+        group_key = row["provider"]
         group = evidence_groups_by_key.setdefault(
             group_key,
             {
                 "provider": row["provider"],
-                "harness": row["harness"],
-                "tier": row["tier"],
                 "lanes": [],
+                "boundaries": set(),
             },
         )
         group["lanes"].append(row)
+        group["boundaries"].add(f'{row["harness"]} · {row["tier"]} tier')
+    for group in evidence_groups_by_key.values():
+        boundaries = sorted(group.pop("boundaries"))
+        group["boundary_summary"] = (
+            boundaries[0]
+            if len(boundaries) == 1
+            else f"{len(boundaries)} evidence boundaries"
+        )
     model_evidence_groups = sorted(
         evidence_groups_by_key.values(),
-        key=lambda group: (group["provider"], group["harness"], group["tier"]),
+        key=lambda group: group["provider"],
     )
 
     seen_scenarios: set[str] = set()
