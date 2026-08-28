@@ -520,6 +520,229 @@ pre code {
   color: var(--fg);
 }
 
+.comparison-lockbar {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(0, 2fr) auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1.5rem 0 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-alt);
+}
+
+.comparison-lockbar-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.comparison-lockbar-heading .eyebrow {
+  margin: 0;
+  font-size: 0.68rem;
+}
+
+.comparison-lockbar-heading strong {
+  color: var(--fg);
+  font-size: 0.9rem;
+}
+
+.comparison-lockbar-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  color: var(--fg-dim);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+}
+
+.comparison-lockbar-facts span + span::before {
+  content: "·";
+  margin-right: 1rem;
+  color: var(--border);
+}
+
+.comparison-lockbar-facts b {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.comparison-lockbar > a {
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.benchmark-leaderboard {
+  margin: 2.25rem 0 2.5rem;
+}
+
+.leaderboard-table {
+  width: 100%;
+  min-width: 930px;
+  margin: 0;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  vertical-align: middle;
+}
+
+.leaderboard-table thead th {
+  color: var(--fg-dim);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.leaderboard-provider th {
+  padding-top: 1.1rem;
+  padding-bottom: 0.45rem;
+  color: var(--accent);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.76rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.leaderboard-rank {
+  color: var(--fg-dim);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+}
+
+.leaderboard-model {
+  min-width: 14rem;
+}
+
+.leaderboard-model a {
+  display: flex;
+  flex-direction: column;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.leaderboard-model a:hover strong {
+  color: var(--accent);
+}
+
+.leaderboard-model code {
+  align-self: flex-start;
+  margin-top: 0.2rem;
+  color: var(--fg-dim);
+  font-size: 0.67rem;
+}
+
+.leaderboard-model > span,
+.leaderboard-rate > span {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--fg-dim);
+  font-size: 0.7rem;
+}
+
+.leaderboard-rate {
+  min-width: 11rem;
+}
+
+.leaderboard-rate .dashboard-meter {
+  display: inline-block;
+  width: min(7rem, 55%);
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.leaderboard-rate > strong {
+  color: var(--fg);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+}
+
+.leaderboard-boundary {
+  min-width: 10rem;
+  color: var(--fg-dim);
+  font-size: 0.68rem;
+}
+
+.leaderboard-boundary span,
+.leaderboard-boundary code {
+  display: block;
+  margin: 0.15rem 0;
+}
+
+.leaderboard-boundary code {
+  width: max-content;
+  color: var(--fg-dim);
+}
+
+.tested-panel {
+  margin: 2.5rem 0;
+}
+
+.tested-scenarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0.55rem;
+}
+
+.tested-scenario {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  column-gap: 0.65rem;
+  align-items: center;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.tested-scenario:hover {
+  border-color: var(--accent);
+}
+
+.tested-scenario > strong {
+  grid-row: span 2;
+  color: var(--accent);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+}
+
+.tested-scenario > span {
+  overflow-wrap: anywhere;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.tested-scenario > small {
+  color: var(--fg-dim);
+  font-size: 0.67rem;
+}
+
+.evidence-details {
+  margin: 1.5rem 0 2.5rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.evidence-details summary {
+  padding: 0.85rem 0;
+  color: var(--fg-dim);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.evidence-details .dashboard-snapshot {
+  margin: 0 0 1.25rem;
+}
+
+.evidence-details .dashboard-facts {
+  margin: 1rem 0;
+}
+
 .overview-secondary-links {
   display: flex;
   flex-wrap: wrap;
@@ -808,6 +1031,27 @@ pre code {
 }
 
 @media (max-width: 600px) {
+  .comparison-lockbar {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .comparison-lockbar-facts {
+    gap: 0.25rem 0.7rem;
+  }
+
+  .comparison-lockbar-facts span + span::before {
+    margin-right: 0.7rem;
+  }
+
+  .comparison-lockbar > a {
+    white-space: normal;
+  }
+
+  .tested-scenarios {
+    grid-template-columns: 1fr;
+  }
+
   .cohort-identity span:not(.badge)::before {
     content: none;
     margin: 0;

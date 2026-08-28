@@ -2319,6 +2319,8 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
             row["model"],
         )
     )
+    for rank, row in enumerate(model_evidence, start=1):
+        row["rank"] = rank
     evidence_groups_by_key: dict[str, dict[str, Any]] = {}
     for row in model_evidence:
         group_key = row["provider"]

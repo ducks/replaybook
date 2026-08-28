@@ -7,39 +7,74 @@
     <h1>{{ copy.title }}</h1>
     <p class="tagline benchmark-tagline">{{ copy.description }}</p>
 
-    <p class="benchmark-integrity"><strong>{{ counts.cohorts }} cohorts · {{ counts.models }} model lanes · {{ counts.scenarios }} scenarios.</strong> Rankings stay inside their provider, harness, tier, and scenario boundaries. <a href="benchmark-methodology.html">Read the methodology →</a></p>
+{% if latest_dashboard %}
+    <section class="comparison-lockbar" aria-label="Active comparison boundary">
+      <div class="comparison-lockbar-heading">
+        <span class="eyebrow">Comparison lock</span>
+        <strong>{{ input_mode|capitalize }} lane · {{ latest_dashboard.harness }}</strong>
+      </div>
+      <div class="comparison-lockbar-facts">
+        <span><b>{{ latest_dashboard.scenarios }}</b> scenarios</span>
+        <span><b>{{ latest_dashboard.attempts }}</b> trials/model</span>
+        <span><b>{{ latest_dashboard.tier }}</b> tier</span>
+        <span><code>{{ latest_dashboard.version }}</code></span>
+      </div>
+      <a href="benchmark-methodology.html">How comparisons are locked →</a>
+    </section>
+{% endif %}
+
+    <p class="benchmark-integrity"><strong>{{ counts.cohorts }} cohorts · {{ counts.models }} model lanes · {{ counts.scenarios }} scenarios.</strong> Results stay inside their provider, harness, tier, and scenario boundaries. <a href="benchmark-methodology.html">Read the methodology →</a></p>
 
 {% if model_evidence %}
-    <section class="dashboard-snapshot dashboard-fleet" aria-labelledby="evidence-fleet-heading">
-      <div class="dashboard-snapshot-heading">
-        <div>
-          <p class="eyebrow">Latest evidence by lane</p>
-          <h2 id="evidence-fleet-heading">The {{ input_mode }} infrastructure fleet</h2>
-        </div>
-        <div class="dashboard-actions"><a href="benchmark-models.html">All model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a></div>
+    <section class="benchmark-leaderboard" aria-labelledby="leaderboard-heading">
+      <div class="section-heading benchmark-section-heading">
+        <div><p class="eyebrow">Current evidence</p><h2 id="leaderboard-heading">Model leaderboard</h2><p class="small muted">Newest tracked result for each model lane. Provider and harness boundaries remain visible.</p></div>
+        <div class="dashboard-actions"><a href="benchmark-models.html">Model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a></div>
       </div>
-      <p class="small muted dashboard-fleet-note">One section per provider. Ranks are indicative when lanes come from different cohorts; each card keeps its harness, tier, and release boundary visible.</p>
+      <div class="table-scroll"><table class="leaderboard-table"><thead><tr><th scope="col">#</th><th scope="col">Model lane</th><th scope="col">Provider</th><th scope="col">Durable repair rate</th><th scope="col">Median</th><th scope="col">Cost / repair</th><th scope="col">Boundary</th></tr></thead><tbody>
+{% for group in model_evidence_groups %}
+      <tr class="leaderboard-provider"><th colspan="7" scope="colgroup">{{ group.provider }}</th></tr>
+{% for lane in group.lanes %}
+      <tr>
+        <td class="leaderboard-rank">{{ '%02d'|format(lane.rank) }}</td>
+        <td class="leaderboard-model"><a href="{{ lane.url }}"><strong>{{ lane.name }}</strong><code>{{ lane.model }}</code></a><span>{{ lane.reasoning }} reasoning</span></td>
+        <td><span class="badge">{{ lane.provider }}</span></td>
+        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="{{ lane.rate }} durable repair rate" aria-valuenow="{{ lane.rate_percent }}" aria-valuemin="0" aria-valuemax="100"><span style="width: {{ lane.rate_percent }}%"></span></div><strong>{{ lane.rate }}</strong><span>{{ lane.repairs }} · CI {{ lane.ci }}</span></td>
+        <td><code>{{ lane.median }}</code></td>
+        <td><code>{{ lane.cost_per_repair }}</code></td>
+        <td class="leaderboard-boundary"><span>{{ lane.harness }}</span><span>{{ lane.tier }} tier</span><code>{{ lane.release }}</code></td>
+      </tr>
+{% endfor %}
+{% endfor %}
+      </tbody></table></div>
+    </section>
+
+    <section class="tested-panel" aria-labelledby="tested-heading">
+      <div class="section-heading benchmark-section-heading">
+        <div><p class="eyebrow">Scope</p><h2 id="tested-heading">What was tested</h2><p class="small muted">Each incident links to its protocol, verifier, and model-by-model evidence.</p></div>
+        <a href="scenarios.html">Scenario guide →</a>
+      </div>
+      <div class="tested-scenarios">
+{% for row in scenario_evidence %}
+        <a class="tested-scenario" href="{{ row.url }}"><strong>{{ '%02d'|format(loop.index) }}</strong><span>{{ row.label }}</span><small><code>v{{ row.version }}</code> · {{ row.repairs }} repairs</small></a>
+{% endfor %}
+      </div>
+    </section>
+
+    <details class="evidence-details">
+      <summary>Show release-level evidence</summary>
+      <div class="dashboard-snapshot dashboard-fleet">
 {% if latest_dashboard %}
       <p class="small muted dashboard-latest-note">Latest published cohort: <strong>{{ latest_dashboard.title }}</strong> · <code>{{ latest_dashboard.version }}</code></p>
+      <dl class="dashboard-facts">
+        <div><dt>Durable repairs</dt><dd>{{ latest_dashboard.repairs }}</dd></div>
+        <div><dt>Pass rate</dt><dd>{{ latest_dashboard.rate }}</dd></div>
+        <div><dt>Median</dt><dd>{{ latest_dashboard.median }}</dd></div>
+      </dl>
+      <p class="small"><a href="{{ latest_dashboard.inspect_url }}">Inspect this release →</a> <a href="{{ latest_dashboard.compare_url }}">Compare its lanes →</a></p>
 {% endif %}
-{% for group in model_evidence_groups %}
-      <div class="dashboard-provider-group">
-        <div class="dashboard-provider-heading"><h3>{{ group.provider }}</h3></div>
-        <div class="dashboard-model-grid">
-{% for lane in group.lanes %}
-        <a class="dashboard-model-card" href="{{ lane.url }}">
-          <div class="dashboard-model-head"><span class="dashboard-rank">{{ '%02d'|format(loop.index) }}</span><span class="dashboard-badges"><span class="badge">{{ lane.provider }}</span><span class="badge">{{ lane.reasoning }}</span></span></div>
-          <strong>{{ lane.name }}</strong>
-          <span class="dashboard-model-id"><code>{{ lane.model }}</code></span>
-          <div class="dashboard-boundary"><span>{{ lane.harness }}</span><span>{{ lane.tier }} tier</span><span><code>{{ lane.release }}</code></span></div>
-          <div class="dashboard-meter" role="progressbar" aria-label="{{ lane.rate }} durable repair rate" aria-valuenow="{{ lane.rate_percent }}" aria-valuemin="0" aria-valuemax="100"><span style="width: {{ lane.rate_percent }}%"></span></div>
-          <div class="dashboard-model-stats"><span><b>{{ lane.repairs }}</b> repairs</span><span><b>{{ lane.rate }}</b></span><span>CI <b>{{ lane.ci }}</b></span><span>median <b>{{ lane.median }}</b></span><span>repair <b>{{ lane.cost_per_repair }}</b></span></div>
-        </a>
-{% endfor %}
-        </div>
       </div>
-{% endfor %}
-    </section>
+    </details>
 {% endif %}
 
 {% if provider_observations %}
@@ -68,20 +103,6 @@
 {% endif %}
 
     <p class="overview-secondary-links"><a href="benchmark-history.html">Browse cohort history →</a> <a href="benchmark-models.html">View model profiles →</a> <a href="benchmark-explorer.html">Open the evidence explorer →</a></p>
-
-    <div class="section-heading benchmark-section-heading">
-      <div><h2>Scenario evidence</h2><p class="small muted">Newest exact cohort for each {{ input_mode }}-input incident.</p></div>
-      <a href="scenarios.html">Scenario guide →</a>
-    </div>
-    <div class="table-scroll"><table><thead><tr><th>Scenario</th><th>Version</th><th>Cohort</th><th>Models</th><th>Repairs</th></tr></thead><tbody>
-{% if scenario_evidence %}
-{% for row in scenario_evidence %}
-      <tr><td><a href="{{ row.url }}">{{ row.label }}</a></td><td>v{{ row.version }}</td><td><code>{{ row.release }}</code></td><td>{{ row.models }}</td><td>{{ row.repairs }}</td></tr>
-{% endfor %}
-{% else %}
-      <tr><td colspan="5" class="muted">No scenario evidence published yet.</td></tr>
-{% endif %}
-    </tbody></table></div>
 
     <p class="small muted overview-footnote">Need the full audit trail? Use the <a href="benchmark-explorer.html">Explorer</a> for failures and filtered records, or read the <a href="benchmark-methodology.html">methodology</a>.</p>
 {% endblock %}
