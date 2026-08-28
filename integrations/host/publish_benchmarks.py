@@ -2327,18 +2327,9 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
             {
                 "provider": row["provider"],
                 "lanes": [],
-                "boundaries": set(),
             },
         )
         group["lanes"].append(row)
-        group["boundaries"].add(f'{row["harness"]} · {row["tier"]} tier')
-    for group in evidence_groups_by_key.values():
-        boundaries = sorted(group.pop("boundaries"))
-        group["boundary_summary"] = (
-            boundaries[0]
-            if len(boundaries) == 1
-            else f"{len(boundaries)} evidence boundaries"
-        )
     model_evidence_groups = sorted(
         evidence_groups_by_key.values(),
         key=lambda group: group["provider"],

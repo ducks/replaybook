@@ -24,7 +24,7 @@
 {% endif %}
 {% for group in model_evidence_groups %}
       <div class="dashboard-provider-group">
-        <div class="dashboard-provider-heading"><h3>{{ group.provider }}</h3><span class="badge">{{ group.boundary_summary }}</span></div>
+        <div class="dashboard-provider-heading"><h3>{{ group.provider }}</h3></div>
         <div class="dashboard-model-grid">
 {% for lane in group.lanes %}
         <a class="dashboard-model-card" href="{{ lane.url }}">
