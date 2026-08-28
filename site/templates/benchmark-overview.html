@@ -27,9 +27,12 @@
         </div>
         <div class="dashboard-actions"><a href="benchmark-models.html">All model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a></div>
       </div>
-      <p class="small muted dashboard-fleet-note">Each card is the newest published result for a provider/model/reasoning lane. Boundary badges show which results are directly comparable.</p>
-      <div class="dashboard-model-grid">
-{% for lane in model_evidence %}
+      <p class="small muted dashboard-fleet-note">Ranks reset inside each provider and harness boundary. Release badges make differences in scenario coverage and comparison conditions visible.</p>
+{% for group in model_evidence_groups %}
+      <div class="dashboard-provider-group">
+        <div class="dashboard-provider-heading"><h3>{{ group.provider }}</h3><span class="badge">{{ group.harness }} · {{ group.tier }} tier</span></div>
+        <div class="dashboard-model-grid">
+{% for lane in group.lanes %}
         <a class="dashboard-model-card" href="{{ lane.url }}">
           <div class="dashboard-model-head"><span class="dashboard-rank">{{ '%02d'|format(loop.index) }}</span><span class="dashboard-badges"><span class="badge">{{ lane.provider }}</span><span class="badge">{{ lane.reasoning }}</span></span></div>
           <strong>{{ lane.name }}</strong>
@@ -39,7 +42,9 @@
           <div class="dashboard-model-stats"><span><b>{{ lane.repairs }}</b> repairs</span><span><b>{{ lane.rate }}</b></span><span>CI <b>{{ lane.ci }}</b></span><span>median <b>{{ lane.median }}</b></span><span>repair <b>{{ lane.cost_per_repair }}</b></span></div>
         </a>
 {% endfor %}
+        </div>
       </div>
+{% endfor %}
     </section>
 {% endif %}
 

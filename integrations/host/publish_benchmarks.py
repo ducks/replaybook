@@ -1130,6 +1130,18 @@ def harness_label(harness: dict[str, Any]) -> str:
     return value
 
 
+def provider_label(provider: Any) -> str:
+    """Use stable display names for provider identifiers across legacy releases."""
+    value = str(provider or "").strip()
+    aliases = {
+        "openrouter": "OpenRouter",
+        "opencode-go": "OpenCode Go",
+        "vercel": "Vercel AI Gateway",
+        "vercel-ai-gateway": "Vercel AI Gateway",
+    }
+    return aliases.get(value.lower(), value or "Provider not reported")
+
+
 def model_rows(release: dict[str, Any]) -> list[dict[str, Any]]:
     return sorted(
         release["by_model"],
@@ -2261,7 +2273,9 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
                     "name": label(release, "model", row["model"]),
                     "label": model_variant_label(release, row),
                     "model": row["model"],
-                    "provider": row.get("provider") or harness.get("provider") or "provider not reported",
+                    "provider": provider_label(
+                        row.get("provider") or harness.get("provider")
+                    ),
                     "harness": harness_label(harness),
                     "tier": tier_label(release),
                     "reasoning": row.get("reasoning_effort") or "default",
@@ -2304,6 +2318,23 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
             row["provider"],
             row["model"],
         )
+    )
+    evidence_groups_by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for row in model_evidence:
+        group_key = (row["provider"], row["harness"], row["tier"])
+        group = evidence_groups_by_key.setdefault(
+            group_key,
+            {
+                "provider": row["provider"],
+                "harness": row["harness"],
+                "tier": row["tier"],
+                "lanes": [],
+            },
+        )
+        group["lanes"].append(row)
+    model_evidence_groups = sorted(
+        evidence_groups_by_key.values(),
+        key=lambda group: (group["provider"], group["harness"], group["tier"]),
     )
 
     seen_scenarios: set[str] = set()
@@ -2351,7 +2382,7 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
                     "name": label(latest_release, "model", row["model"]),
                     "label": model_variant_label(latest_release, row),
                     "model": row["model"],
-                    "provider": row.get("provider") or "provider not reported",
+                    "provider": provider_label(row.get("provider")),
                     "reasoning": row.get("reasoning_effort") or "default",
                     "repairs": f'{row["passed"]}/{row["evaluated"]}',
                     "rate": format_rate(row["pass_rate"]),
@@ -2380,7 +2411,7 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
         latest_dashboard = {
             "version": latest_version,
             "title": latest_release["title"],
-            "provider": str(latest_harness.get("provider") or "Provider not reported"),
+            "provider": provider_label(latest_harness.get("provider")),
             "harness": harness_label(latest_harness),
             "tier": tier_label(latest_release),
             "repairs": f'{latest_totals["passed"]}/{latest_totals["evaluated"]}',
@@ -2423,6 +2454,7 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
         copy=copy,
         cohort_cards=cohort_cards,
         model_evidence=model_evidence,
+        model_evidence_groups=model_evidence_groups,
         scenario_evidence=scenario_evidence,
         latest_dashboard=latest_dashboard,
         counts={

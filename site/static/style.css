@@ -675,6 +675,24 @@ pre code {
   margin: -0.35rem 0 1.15rem;
 }
 
+.dashboard-provider-group + .dashboard-provider-group {
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+
+.dashboard-provider-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.7rem;
+}
+
+.dashboard-provider-heading h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
 .dashboard-boundary {
   display: flex;
   flex-wrap: wrap;
