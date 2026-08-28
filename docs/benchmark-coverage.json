@@ -35,6 +35,15 @@
       ]
     },
     {
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "provider": "vercel-ai-gateway",
+      "reasoning_effort": "high",
+      "tiers": [
+        "unclassified"
+      ]
+    },
+    {
       "model": "stealth/ox-alpha",
       "model_label": "Ox Alpha",
       "reasoning_effort": "high",
@@ -65,7 +74,7 @@
       ]
     }
   ],
-  "generated_from": "20260827.0.0",
+  "generated_from": "20260827.0.1",
   "profiles": [
     {
       "model": "deepseek/deepseek-v4-flash-0731",
@@ -1790,6 +1799,107 @@
       ]
     },
     {
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "provider": "vercel-ai-gateway",
+      "reasoning_effort": "high",
+      "records": [
+        {
+          "cost_per_repair_usd": 0.03261741666666667,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20260827.0.1&scenario=024-discourse-interrupted-deploy&model=openai%2Fgpt-5.6-luna",
+          "failed": 0,
+          "failure_categories": {},
+          "input_tokens": 142641,
+          "known_cost_usd": 0.09785225,
+          "median_duration_seconds": 133,
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "output_tokens": 24369,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "release": "20260827.0.1",
+          "scenario": "024-discourse-interrupted-deploy",
+          "scenario_label": "Interrupted Discourse deploy",
+          "scenario_version": 1,
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "unclassified",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
+        },
+        {
+          "cost_per_repair_usd": 0.024328226666666664,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20260827.0.1&scenario=001-nginx-502-host&model=openai%2Fgpt-5.6-luna",
+          "failed": 0,
+          "failure_categories": {},
+          "input_tokens": 149304,
+          "known_cost_usd": 0.07298468,
+          "median_duration_seconds": 73,
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "output_tokens": 13696,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "release": "20260827.0.1",
+          "scenario": "001-nginx-502-host",
+          "scenario_label": "Nginx 502 host failure",
+          "scenario_version": 1,
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "unclassified",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
+        },
+        {
+          "cost_per_repair_usd": 0.030621036666666667,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20260827.0.1&scenario=013-sidekiq-wrong-redis&model=openai%2Fgpt-5.6-luna",
+          "failed": 0,
+          "failure_categories": {},
+          "input_tokens": 172738,
+          "known_cost_usd": 0.09186311,
+          "median_duration_seconds": 107,
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "output_tokens": 20992,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "release": "20260827.0.1",
+          "scenario": "013-sidekiq-wrong-redis",
+          "scenario_label": "Sidekiq connected to the wrong Redis",
+          "scenario_version": 2,
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "unclassified",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
+        }
+      ],
+      "tiers": [
+        "unclassified"
+      ]
+    },
+    {
       "model": "stealth/ox-alpha",
       "model_label": "Ox Alpha",
       "reasoning_effort": "high",
@@ -3391,254 +3501,6 @@
           "id": "claux",
           "label": "Claux",
           "provider": "OpenRouter",
-          "version": "v20260821.0.2"
-        },
-        "agent_name": "claux",
-        "agent_timeout_seconds": 900,
-        "attempts": 3,
-        "claux_binary_sha256": null,
-        "claux_release": "v20260821.0.2",
-        "harness_versions": [
-          23
-        ],
-        "host_harness_sha256": "76c12b8b9e39742fc040275e42f44ee79ef4a1a1a51ddf64eb15838f2467f3c1",
-        "scenario_pack": {
-          "id": "ducks/replaybook-infra",
-          "version": "20260817.1.0"
-        },
-        "scenario_snapshot_sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
-        "tier": "core"
-      },
-      "cells": [
-        {
-          "model": "deepseek/deepseek-v4-flash-0731",
-          "model_label": "DeepSeek V4 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "google/gemini-3.7-flash",
-          "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "cost_per_repair_usd": 0.0,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.1&scenario=001-nginx-502-host&model=stealth%2Fox-alpha",
-          "failed": 1,
-          "failure_categories": {
-            "verification_failed": 1
-          },
-          "input_tokens": 36678,
-          "known_cost_usd": 0.0,
-          "median_duration_seconds": 206,
-          "model": "stealth/ox-alpha",
-          "model_label": "Ox Alpha",
-          "output_tokens": 5270,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
-          "reasoning_effort": "high",
-          "release": "20260822.0.1",
-          "scenario": "001-nginx-502-host",
-          "scenario_label": "001-nginx-502-host",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "model": "qwen/qwen3.8-2.4t-a95b",
-          "model_label": "Qwen3.8 2.4T A95B",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "z-ai/glm-5.3",
-          "model_label": "GLM 5.3",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
-        }
-      ],
-      "evidence_url": "benchmark-scenario.html?scenario=001-nginx-502-host",
-      "release": "20260822.0.1",
-      "scenario": "001-nginx-502-host",
-      "scenario_label": "001-nginx-502-host",
-      "scenario_version": 1
-    },
-    {
-      "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
-        "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
-        },
-        "agent_name": "claux",
-        "agent_timeout_seconds": 900,
-        "attempts": 3,
-        "claux_binary_sha256": null,
-        "claux_release": "v20260821.0.2",
-        "harness_versions": [
-          23
-        ],
-        "host_harness_sha256": "76c12b8b9e39742fc040275e42f44ee79ef4a1a1a51ddf64eb15838f2467f3c1",
-        "scenario_pack": {
-          "id": "ducks/replaybook-infra",
-          "version": "20260817.1.0"
-        },
-        "scenario_snapshot_sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
-        "tier": "core"
-      },
-      "cells": [
-        {
-          "model": "deepseek/deepseek-v4-flash-0731",
-          "model_label": "DeepSeek V4 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "google/gemini-3.7-flash",
-          "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "cost_per_repair_usd": 0.0,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.1&scenario=013-sidekiq-wrong-redis&model=stealth%2Fox-alpha",
-          "failed": 0,
-          "failure_categories": {},
-          "input_tokens": 48877,
-          "known_cost_usd": 0.0,
-          "median_duration_seconds": 180,
-          "model": "stealth/ox-alpha",
-          "model_label": "Ox Alpha",
-          "output_tokens": 6760,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "reasoning_effort": "high",
-          "release": "20260822.0.1",
-          "scenario": "013-sidekiq-wrong-redis",
-          "scenario_label": "013-sidekiq-wrong-redis",
-          "scenario_version": 2,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "model": "qwen/qwen3.8-2.4t-a95b",
-          "model_label": "Qwen3.8 2.4T A95B",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "z-ai/glm-5.3",
-          "model_label": "GLM 5.3",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
-        }
-      ],
-      "evidence_url": "benchmark-scenario.html?scenario=013-sidekiq-wrong-redis",
-      "release": "20260822.0.1",
-      "scenario": "013-sidekiq-wrong-redis",
-      "scenario_label": "013-sidekiq-wrong-redis",
-      "scenario_version": 2
-    },
-    {
-      "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
-        "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
           "version": "v20260821.0.0"
         },
         "agent_name": "claux",
@@ -3691,6 +3553,16 @@
             "core",
             "full",
             "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
             "unclassified"
           ]
         },
@@ -3818,6 +3690,16 @@
           ]
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "cost_per_repair_usd": 0.0,
           "cost_reported_trials": 3,
           "evaluated": 3,
@@ -3937,6 +3819,16 @@
             "core",
             "full",
             "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
             "unclassified"
           ]
         },
@@ -4064,6 +3956,16 @@
           ]
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "cost_per_repair_usd": 0.0,
           "cost_reported_trials": 3,
           "evaluated": 3,
@@ -4183,6 +4085,16 @@
             "core",
             "full",
             "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
             "unclassified"
           ]
         },
@@ -4310,6 +4222,16 @@
           ]
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "cost_per_repair_usd": 0.0,
           "cost_reported_trials": 3,
           "evaluated": 3,
@@ -4429,6 +4351,16 @@
             "core",
             "full",
             "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
             "unclassified"
           ]
         },
@@ -4558,6 +4490,16 @@
           ]
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "cost_per_repair_usd": 0.0,
           "cost_reported_trials": 3,
           "evaluated": 3,
@@ -4683,6 +4625,16 @@
           ]
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "cost_per_repair_usd": 0.0,
           "cost_reported_trials": 3,
           "evaluated": 3,
@@ -4802,6 +4754,16 @@
             "core",
             "full",
             "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
             "unclassified"
           ]
         },
@@ -4983,6 +4945,16 @@
           "unavailable_categories": {}
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
           "reasoning_effort": "high",
@@ -5101,6 +5073,16 @@
             "core",
             "full",
             "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
             "unclassified"
           ]
         },
@@ -5228,6 +5210,16 @@
           ]
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "cost_per_repair_usd": 0.0,
           "cost_reported_trials": 3,
           "evaluated": 3,
@@ -5351,6 +5343,16 @@
           ]
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "cost_per_repair_usd": 0.0,
           "cost_reported_trials": 3,
           "evaluated": 3,
@@ -5417,18 +5419,18 @@
           "billing": "provider-reported",
           "id": "claux",
           "label": "Claux",
-          "provider": "OpenRouter",
+          "provider": "Vercel AI Gateway",
           "version": "v20260821.0.2"
         },
         "agent_name": "claux",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": null,
+        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
         "claux_release": "v20260821.0.2",
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "d59941c15303a9ccd5e80ae050d668d13a749239aa26f796b70912016f840e17",
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20260824.0.0"
@@ -5462,28 +5464,39 @@
           ]
         },
         {
-          "cost_per_repair_usd": 0.0510911,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260826.0.0&scenario=024-discourse-interrupted-deploy&model=openai%2Fgpt-5.6-luna",
-          "failed": 1,
-          "failure_categories": {
-            "release_not_converged": 1
-          },
-          "input_tokens": 150,
-          "known_cost_usd": 0.1021822,
-          "median_duration_seconds": 123,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 23710,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
           "reasoning_effort": "high",
-          "release": "20260826.0.0",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "cost_per_repair_usd": 0.03261741666666667,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20260827.0.1&scenario=024-discourse-interrupted-deploy&model=openai%2Fgpt-5.6-luna",
+          "failed": 0,
+          "failure_categories": {},
+          "input_tokens": 142641,
+          "known_cost_usd": 0.09785225,
+          "median_duration_seconds": 133,
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "output_tokens": 24369,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "release": "20260827.0.1",
           "scenario": "024-discourse-interrupted-deploy",
-          "scenario_label": "Discourse interrupted deploy",
+          "scenario_label": "Interrupted Discourse deploy",
           "scenario_version": 1,
           "status": "covered",
           "subscription_usage_reported_trials": 0,
@@ -5528,10 +5541,280 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=024-discourse-interrupted-deploy",
-      "release": "20260826.0.0",
+      "release": "20260827.0.1",
       "scenario": "024-discourse-interrupted-deploy",
-      "scenario_label": "Discourse interrupted deploy",
+      "scenario_label": "Interrupted Discourse deploy",
       "scenario_version": 1
+    },
+    {
+      "boundary": {
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
+        "agent_harness": {
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "Vercel AI Gateway",
+          "version": "v20260821.0.2"
+        },
+        "agent_name": "claux",
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
+        "claux_release": "v20260821.0.2",
+        "harness_versions": [
+          23
+        ],
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "scenario_snapshot_sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+        "tier": "unclassified"
+      },
+      "cells": [
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "model_label": "DeepSeek V4 Flash",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "google/gemini-3.7-flash",
+          "model_label": "Gemini 3.7 Flash",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "cost_per_repair_usd": 0.024328226666666664,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20260827.0.1&scenario=001-nginx-502-host&model=openai%2Fgpt-5.6-luna",
+          "failed": 0,
+          "failure_categories": {},
+          "input_tokens": 149304,
+          "known_cost_usd": 0.07298468,
+          "median_duration_seconds": 73,
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "output_tokens": 13696,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "release": "20260827.0.1",
+          "scenario": "001-nginx-502-host",
+          "scenario_label": "Nginx 502 host failure",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "unclassified",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
+        },
+        {
+          "model": "stealth/ox-alpha",
+          "model_label": "Ox Alpha",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "qwen/qwen3.8-2.4t-a95b",
+          "model_label": "Qwen3.8 2.4T A95B",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full"
+          ]
+        }
+      ],
+      "evidence_url": "benchmark-scenario.html?scenario=001-nginx-502-host",
+      "release": "20260827.0.1",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "Nginx 502 host failure",
+      "scenario_version": 1
+    },
+    {
+      "boundary": {
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
+        "agent_harness": {
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "Vercel AI Gateway",
+          "version": "v20260821.0.2"
+        },
+        "agent_name": "claux",
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
+        "claux_release": "v20260821.0.2",
+        "harness_versions": [
+          23
+        ],
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "scenario_snapshot_sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+        "tier": "unclassified"
+      },
+      "cells": [
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "model_label": "DeepSeek V4 Flash",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "google/gemini-3.7-flash",
+          "model_label": "Gemini 3.7 Flash",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "cost_per_repair_usd": 0.030621036666666667,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20260827.0.1&scenario=013-sidekiq-wrong-redis&model=openai%2Fgpt-5.6-luna",
+          "failed": 0,
+          "failure_categories": {},
+          "input_tokens": 172738,
+          "known_cost_usd": 0.09186311,
+          "median_duration_seconds": 107,
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "output_tokens": 20992,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "release": "20260827.0.1",
+          "scenario": "013-sidekiq-wrong-redis",
+          "scenario_label": "Sidekiq connected to the wrong Redis",
+          "scenario_version": 2,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "unclassified",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
+        },
+        {
+          "model": "stealth/ox-alpha",
+          "model_label": "Ox Alpha",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "qwen/qwen3.8-2.4t-a95b",
+          "model_label": "Qwen3.8 2.4T A95B",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full"
+          ]
+        }
+      ],
+      "evidence_url": "benchmark-scenario.html?scenario=013-sidekiq-wrong-redis",
+      "release": "20260827.0.1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "Sidekiq connected to the wrong Redis",
+      "scenario_version": 2
     },
     {
       "boundary": {
@@ -5594,6 +5877,16 @@
             "core",
             "full",
             "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
             "unclassified"
           ]
         },
@@ -5702,6 +5995,16 @@
           ]
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
           "reasoning_effort": "high",
@@ -5806,6 +6109,16 @@
           ]
         },
         {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "vercel-ai-gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
           "reasoning_effort": "high",
@@ -5849,9 +6162,9 @@
   "schema_version": 1,
   "totals": {
     "covered_cells": 20,
-    "missing_cells": 100,
-    "model_lanes": 6,
-    "possible_cells": 120,
+    "missing_cells": 120,
+    "model_lanes": 7,
+    "possible_cells": 140,
     "scenarios": 20
   }
 }
