@@ -28,8 +28,8 @@
 {% if model_evidence %}
     <section class="benchmark-leaderboard" aria-labelledby="leaderboard-heading">
       <div class="section-heading benchmark-section-heading">
-        <div><p class="eyebrow">Current evidence</p><h2 id="leaderboard-heading">Model leaderboard</h2><p class="small muted">Newest tracked result for each model lane. Provider and harness boundaries remain visible.</p></div>
-        <div class="dashboard-actions"><a href="benchmark-models.html">Model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a></div>
+        <div><p class="eyebrow">Latest model evidence</p><h2 id="leaderboard-heading">Model leaderboard</h2><p class="small muted">Newest tracked result for each model lane. Provider and harness boundaries remain visible.</p></div>
+        <div class="dashboard-actions"><a href="benchmark-models.html">Model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a>{% if latest_dashboard %}<a href="{{ latest_dashboard.inspect_url }}">Inspect cohort →</a>{% endif %}</div>
       </div>
       <div class="table-scroll"><table class="leaderboard-table"><thead><tr><th scope="col">#</th><th scope="col">Model lane</th><th scope="col">Provider</th><th scope="col">Durable repair rate</th><th scope="col">Median</th><th scope="col">Cost / repair</th><th scope="col">Boundary</th></tr></thead><tbody>
 {% for group in model_evidence_groups %}
@@ -62,7 +62,7 @@
     </section>
 
     <details class="evidence-details">
-      <summary>Show release-level evidence</summary>
+      <summary>Recent cohorts · show release-level evidence</summary>
       <div class="dashboard-snapshot dashboard-fleet">
 {% if latest_dashboard %}
       <p class="small muted dashboard-latest-note">Latest published cohort: <strong>{{ latest_dashboard.title }}</strong> · <code>{{ latest_dashboard.version }}</code></p>
@@ -71,7 +71,12 @@
         <div><dt>Pass rate</dt><dd>{{ latest_dashboard.rate }}</dd></div>
         <div><dt>Median</dt><dd>{{ latest_dashboard.median }}</dd></div>
       </dl>
-      <p class="small"><a href="{{ latest_dashboard.inspect_url }}">Inspect this release →</a> <a href="{{ latest_dashboard.compare_url }}">Compare its lanes →</a></p>
+      <p class="small"><a href="{{ latest_dashboard.inspect_url }}">Inspect cohort →</a> <a href="{{ latest_dashboard.compare_url }}">Compare its lanes →</a></p>
+      <div class="recent-cohort-list">
+{% for cohort in cohort_cards %}
+        <a href="{{ cohort.url }}"><strong>{{ cohort.title }}</strong><span><code>{{ cohort.version }}</code> · {{ cohort.harness }} · {{ cohort.repairs }} repairs</span></a>
+{% endfor %}
+      </div>
 {% endif %}
       </div>
     </details>

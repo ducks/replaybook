@@ -743,6 +743,33 @@ pre code {
   margin: 1rem 0;
 }
 
+.recent-cohort-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.recent-cohort-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.78rem;
+}
+
+.recent-cohort-list a:hover {
+  border-color: var(--accent);
+}
+
+.recent-cohort-list span {
+  color: var(--fg-dim);
+  font-size: 0.68rem;
+}
+
 .overview-secondary-links {
   display: flex;
   flex-wrap: wrap;
