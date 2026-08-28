@@ -18,6 +18,31 @@
       Results stay attached to their harness, scenario version, attempt count, deadline, and provider boundary.
     </div>
 
+{% if model_evidence %}
+    <section class="dashboard-snapshot dashboard-fleet" aria-labelledby="evidence-fleet-heading">
+      <div class="dashboard-snapshot-heading">
+        <div>
+          <p class="eyebrow">Latest evidence by lane</p>
+          <h2 id="evidence-fleet-heading">The {{ input_mode }} infrastructure fleet</h2>
+        </div>
+        <div class="dashboard-actions"><a href="benchmark-models.html">All model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a></div>
+      </div>
+      <p class="small muted dashboard-fleet-note">Each card is the newest published result for a provider/model/reasoning lane. Boundary badges show which results are directly comparable.</p>
+      <div class="dashboard-model-grid">
+{% for lane in model_evidence %}
+        <a class="dashboard-model-card" href="{{ lane.url }}">
+          <div class="dashboard-model-head"><span class="dashboard-rank">{{ '%02d'|format(loop.index) }}</span><span class="dashboard-badges"><span class="badge">{{ lane.provider }}</span><span class="badge">{{ lane.reasoning }}</span></span></div>
+          <strong>{{ lane.name }}</strong>
+          <span class="dashboard-model-id"><code>{{ lane.model }}</code></span>
+          <div class="dashboard-boundary"><span>{{ lane.harness }}</span><span>{{ lane.tier }} tier</span><span><code>{{ lane.release }}</code></span></div>
+          <div class="dashboard-meter" role="progressbar" aria-label="{{ lane.rate }} durable repair rate" aria-valuenow="{{ lane.rate_percent }}" aria-valuemin="0" aria-valuemax="100"><span style="width: {{ lane.rate_percent }}%"></span></div>
+          <div class="dashboard-model-stats"><span><b>{{ lane.repairs }}</b> repairs</span><span><b>{{ lane.rate }}</b></span><span>CI <b>{{ lane.ci }}</b></span><span>median <b>{{ lane.median }}</b></span><span>repair <b>{{ lane.cost_per_repair }}</b></span></div>
+        </a>
+{% endfor %}
+      </div>
+    </section>
+{% endif %}
+
 {% if latest_dashboard %}
     <section class="dashboard-snapshot" aria-labelledby="latest-release-heading">
       <div class="dashboard-snapshot-heading">

@@ -670,6 +670,26 @@ pre code {
   font-size: 0.68rem;
 }
 
+.dashboard-fleet-note {
+  max-width: 58rem;
+  margin: -0.35rem 0 1.15rem;
+}
+
+.dashboard-boundary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.65rem;
+  margin: 0.65rem 0;
+  color: var(--fg-dim);
+  font-size: 0.66rem;
+}
+
+.dashboard-boundary span + span::before {
+  content: "·";
+  margin-right: 0.65rem;
+  color: var(--border);
+}
+
 .dashboard-model-head .badge {
   color: var(--fg-dim);
   font-size: 0.62rem;

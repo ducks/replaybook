@@ -2249,24 +2249,39 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
     seen_models: set[tuple[str | None, str, str | None]] = set()
     model_evidence = []
     for version, release in reversed(releases):
+        harness = normalized_agent_harness(release)
         for row in model_rows(release):
             key = variant_key(row)
             if key in seen_models:
                 continue
             seen_models.add(key)
+            interval = wilson_interval(row["passed"], row["evaluated"])
             model_evidence.append(
                 {
+                    "name": label(release, "model", row["model"]),
                     "label": model_variant_label(release, row),
                     "model": row["model"],
+                    "provider": row.get("provider") or harness.get("provider") or "provider not reported",
+                    "harness": harness_label(harness),
+                    "tier": tier_label(release),
+                    "reasoning": row.get("reasoning_effort") or "default",
                     "release": version,
                     "repairs": f'{row["passed"]}/{row["evaluated"]}',
                     "rate": format_rate(row["pass_rate"]),
+                    "rate_percent": max(0, min(100, round(row["pass_rate"] * 100))),
+                    "ci": (
+                        f"{format_rate(interval[0])}–{format_rate(interval[1])}"
+                        if interval
+                        else "n/a"
+                    ),
+                    "median_seconds": row["median_duration_seconds"],
                     "median": format_duration(row["median_duration_seconds"]),
                     "cost": reported_money(
                         row["known_cost_usd"],
                         row["cost_reported_trials"],
                         row["trials"],
                     ),
+                    "cost_per_repair": reported_cost_per_repair(row),
                     "url": "benchmark-explorer.html?"
                     + urlencode(
                         {
@@ -2276,10 +2291,20 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
                     ),
                 }
             )
-            if len(model_evidence) >= 12:
+            if len(model_evidence) >= 16:
                 break
-        if len(model_evidence) >= 12:
+        if len(model_evidence) >= 16:
             break
+
+    model_evidence.sort(
+        key=lambda row: (
+            -row["rate_percent"],
+            row["median_seconds"] is None,
+            row["median_seconds"] if row["median_seconds"] is not None else float("inf"),
+            row["provider"],
+            row["model"],
+        )
+    )
 
     seen_scenarios: set[str] = set()
     scenario_evidence = []
