@@ -510,6 +510,24 @@ pre code {
   background: linear-gradient(135deg, var(--bg-alt), #111820);
 }
 
+.benchmark-integrity {
+  margin: 1.4rem 0 2rem;
+  color: var(--fg-dim);
+  font-size: 0.85rem;
+}
+
+.benchmark-integrity strong {
+  color: var(--fg);
+}
+
+.overview-secondary-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.2rem;
+  margin: 1.75rem 0 0;
+  font-size: 0.85rem;
+}
+
 .dashboard-snapshot-heading,
 .dashboard-lanes-heading,
 .dashboard-model-head,

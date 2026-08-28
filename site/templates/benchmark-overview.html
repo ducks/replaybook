@@ -7,16 +7,7 @@
     <h1>{{ copy.title }}</h1>
     <p class="tagline benchmark-tagline">{{ copy.description }}</p>
 
-    <div class="metric-grid overview-metrics" aria-label="Published {{ input_mode }} benchmark evidence">
-      <div class="metric"><span class="metric-value">{{ counts.cohorts }}</span><span class="metric-label">published cohorts</span></div>
-      <div class="metric"><span class="metric-value">{{ counts.models }}</span><span class="metric-label">model lanes</span></div>
-      <div class="metric"><span class="metric-value">{{ counts.scenarios }}</span><span class="metric-label">scenarios</span></div>
-    </div>
-
-    <div class="callout comparison-note">
-      <strong>Cohorts are evidence, not one pooled ranking.</strong>
-      Results stay attached to their harness, scenario version, attempt count, deadline, and provider boundary.
-    </div>
+    <p class="benchmark-integrity"><strong>{{ counts.cohorts }} cohorts · {{ counts.models }} model lanes · {{ counts.scenarios }} scenarios.</strong> Rankings stay inside their provider, harness, tier, and scenario boundaries. <a href="benchmark-methodology.html">Read the methodology →</a></p>
 
 {% if model_evidence %}
     <section class="dashboard-snapshot dashboard-fleet" aria-labelledby="evidence-fleet-heading">
@@ -28,6 +19,9 @@
         <div class="dashboard-actions"><a href="benchmark-models.html">All model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a></div>
       </div>
       <p class="small muted dashboard-fleet-note">Ranks reset inside each provider and harness boundary. Release badges make differences in scenario coverage and comparison conditions visible.</p>
+{% if latest_dashboard %}
+      <p class="small muted dashboard-latest-note">Latest published cohort: <strong>{{ latest_dashboard.title }}</strong> · <code>{{ latest_dashboard.version }}</code></p>
+{% endif %}
 {% for group in model_evidence_groups %}
       <div class="dashboard-provider-group">
         <div class="dashboard-provider-heading"><h3>{{ group.provider }}</h3><span class="badge">{{ group.harness }} · {{ group.tier }} tier</span></div>
@@ -45,50 +39,6 @@
         </div>
       </div>
 {% endfor %}
-    </section>
-{% endif %}
-
-{% if latest_dashboard %}
-    <section class="dashboard-snapshot" aria-labelledby="latest-release-heading">
-      <div class="dashboard-snapshot-heading">
-        <div>
-          <p class="eyebrow">Latest release · <code>{{ latest_dashboard.version }}</code></p>
-          <h2 id="latest-release-heading">{{ latest_dashboard.title }}</h2>
-        </div>
-        <div class="dashboard-actions">
-          <a href="{{ latest_dashboard.inspect_url }}">Inspect release →</a>
-          <a href="{{ latest_dashboard.compare_url }}">Compare lanes →</a>
-        </div>
-      </div>
-      <div class="dashboard-meta" aria-label="Latest release boundary">
-        <span class="badge verified">{{ latest_dashboard.tier }} tier</span>
-        <span>{{ latest_dashboard.provider }}</span>
-        <span>{{ latest_dashboard.harness }} harness</span>
-        <span>{{ latest_dashboard.scenarios }} scenarios · {{ latest_dashboard.attempts }} attempts</span>
-      </div>
-      <div class="dashboard-scoreline">
-        <div class="dashboard-total"><strong>{{ latest_dashboard.repairs }}</strong><span>{{ latest_dashboard.rate }} durable repairs</span></div>
-        <dl class="dashboard-facts">
-          <div><dt>Overall median</dt><dd>{{ latest_dashboard.median }}</dd></div>
-          <div><dt>Model lanes</dt><dd>{{ latest_dashboard.models|length }}</dd></div>
-          <div><dt>Evidence lane</dt><dd>{{ input_mode|title }}</dd></div>
-        </dl>
-      </div>
-      <div class="dashboard-lanes-heading">
-        <div><h3>Current cohort ranking</h3><p class="small muted">Ranked within this cohort by durable repair rate, then median duration, then cost per repair.</p></div>
-        <span class="small muted">{{ latest_dashboard.models|length }} lanes · no cross-cohort pooling</span>
-      </div>
-      <div class="dashboard-model-grid">
-{% for lane in latest_dashboard.models %}
-        <a class="dashboard-model-card" href="{{ lane.url }}">
-          <div class="dashboard-model-head"><span class="dashboard-rank">{{ '%02d'|format(loop.index) }}</span><span class="dashboard-badges"><span class="badge">{{ lane.provider }}</span><span class="badge">{{ lane.reasoning }}</span></span></div>
-          <strong>{{ lane.name }}</strong>
-          <span class="dashboard-model-id"><code>{{ lane.model }}</code></span>
-          <div class="dashboard-meter" role="progressbar" aria-label="{{ lane.rate }} durable repair rate" aria-valuenow="{{ lane.rate_percent }}" aria-valuemin="0" aria-valuemax="100"><span style="width: {{ lane.rate_percent }}%"></span></div>
-          <div class="dashboard-model-stats"><span><b>{{ lane.repairs }}</b> repairs</span><span><b>{{ lane.rate }}</b></span><span>CI <b>{{ lane.ci }}</b></span><span>median <b>{{ lane.median }}</b></span><span>repair <b>{{ lane.cost_per_repair }}</b></span><span>known <b>{{ lane.cost }}</b></span></div>
-        </a>
-{% endfor %}
-      </div>
     </section>
 {% endif %}
 
@@ -117,46 +67,7 @@
     </details>
 {% endif %}
 
-    <div class="section-heading benchmark-section-heading">
-      <div><h2>Recent cohorts</h2><p class="small muted">Newest {{ input_mode }}-input comparisons, each kept inside its original boundary.</p></div>
-      <a href="benchmark-history.html">View history →</a>
-    </div>
-    <div class="cohort-grid overview-cohort-grid">
-{% if cohort_cards %}
-{% for cohort in cohort_cards %}
-      <article class="cohort-card overview-cohort-card">
-        <div class="cohort-card-heading"><span class="badge">{{ input_mode|title }} input</span><code>{{ cohort.version }}</code></div>
-        <h3>{{ cohort.title }}</h3>
-        <p>{{ cohort.description }}</p>
-        <dl class="cohort-facts">
-          <div><dt>Models</dt><dd>{{ cohort.models }}</dd></div>
-          <div><dt>Scenarios</dt><dd>{{ cohort.scenarios }}</dd></div>
-          <div><dt>Repairs</dt><dd>{{ cohort.repairs }}</dd></div>
-          <div><dt>Median</dt><dd>{{ cohort.median }}</dd></div>
-          <div><dt>Known cost</dt><dd>{{ cohort.cost }}</dd></div>
-          <div><dt>Harness</dt><dd>{{ cohort.harness }}</dd></div>
-        </dl>
-        <a href="{{ cohort.url }}">Inspect cohort →</a>
-      </article>
-{% endfor %}
-{% else %}
-      <p class="muted">No {{ input_mode }}-input cohorts have been published yet.</p>
-{% endif %}
-    </div>
-
-    <div class="section-heading benchmark-section-heading">
-      <div><h2>Latest model evidence</h2><p class="small muted">Each model row comes from its newest published {{ input_mode }} cohort.</p></div>
-      <a href="benchmark-models.html">Model profiles →</a>
-    </div>
-    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Cohort</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Known cost</th></tr></thead><tbody>
-{% if model_evidence %}
-{% for row in model_evidence %}
-      <tr><td><a href="{{ row.url }}"><strong>{{ row.label }}</strong></a><span class="profile-cohort"><code>{{ row.model }}</code></span></td><td><code>{{ row.release }}</code></td><td>{{ row.repairs }}</td><td>{{ row.rate }}</td><td>{{ row.median }}</td><td>{{ row.cost }}</td></tr>
-{% endfor %}
-{% else %}
-      <tr><td colspan="6" class="muted">No model evidence published yet.</td></tr>
-{% endif %}
-    </tbody></table></div>
+    <p class="overview-secondary-links"><a href="benchmark-history.html">Browse cohort history →</a> <a href="benchmark-models.html">View model profiles →</a> <a href="benchmark-explorer.html">Open the evidence explorer →</a></p>
 
     <div class="section-heading benchmark-section-heading">
       <div><h2>Scenario evidence</h2><p class="small muted">Newest exact cohort for each {{ input_mode }}-input incident.</p></div>
