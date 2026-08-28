@@ -1159,6 +1159,35 @@ def cost_per_repair(row: dict[str, Any]) -> float | None:
     return row["known_cost_usd"] / row["passed"]
 
 
+def dashboard_model_sort_key(row: dict[str, Any]) -> tuple[float, float, float, str, str]:
+    """Rank lanes for the overview without pooling across releases.
+
+    The overview only uses this for the selected latest cohort. Keep the
+    ordering deterministic when rates or costs tie, and put missing values at
+    the end rather than treating them as zero-performance evidence.
+    """
+    rate = row.get("pass_rate")
+    median = row.get("median_duration_seconds")
+    repair_cost = cost_per_repair(row)
+    return (
+        -(float(rate) if rate is not None else -1.0),
+        float(median) if median is not None else float("inf"),
+        float(repair_cost) if repair_cost is not None else float("inf"),
+        str(row.get("model", "")),
+        str(row.get("reasoning_effort") or ""),
+    )
+
+
+def reported_cost_per_repair(row: dict[str, Any]) -> str:
+    value = cost_per_repair(row)
+    if value is None:
+        return "n/a"
+    return money(
+        value,
+        row.get("cost_reported_trials", 0) < row.get("trials", 0),
+    )
+
+
 def recent_scenario_section(
     index: dict[str, Any], root: Path, *, limit: int = 8
 ) -> str:
@@ -1797,6 +1826,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                 {
                     "release": version,
                     "tier": tier_value(release),
+                    "input_mode": release.get("input_mode", "text"),
                     **(
                         {"provider": aggregate["provider"]}
                         if aggregate.get("provider")
@@ -1837,6 +1867,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                 {
                     "release": version,
                     "tier": tier_value(release),
+                    "input_mode": release.get("input_mode", "text"),
                     "scenario": aggregate["scenario"],
                     "scenario_label": label(release, "scenario", aggregate["scenario"]),
                     "scenario_version": aggregate["scenario_version"],
@@ -2282,6 +2313,72 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
         if len(scenario_evidence) >= 8:
             break
 
+    latest_dashboard = None
+    if releases:
+        latest_version, latest_release = releases[-1]
+        latest_totals = latest_release["totals"]
+        latest_harness = normalized_agent_harness(latest_release)
+        latest_models = []
+        for row in sorted(latest_release["by_model"], key=dashboard_model_sort_key):
+            interval = wilson_interval(row["passed"], row["evaluated"])
+            latest_models.append(
+                {
+                    "name": label(latest_release, "model", row["model"]),
+                    "label": model_variant_label(latest_release, row),
+                    "model": row["model"],
+                    "provider": row.get("provider") or "provider not reported",
+                    "reasoning": row.get("reasoning_effort") or "default",
+                    "repairs": f'{row["passed"]}/{row["evaluated"]}',
+                    "rate": format_rate(row["pass_rate"]),
+                    "rate_percent": max(0, min(100, round(row["pass_rate"] * 100))),
+                    "ci": (
+                        f"{format_rate(interval[0])}–{format_rate(interval[1])}"
+                        if interval
+                        else "n/a"
+                    ),
+                    "median": format_duration(row["median_duration_seconds"]),
+                    "cost": reported_money(
+                        row["known_cost_usd"],
+                        row["cost_reported_trials"],
+                        row["trials"],
+                    ),
+                    "cost_per_repair": reported_cost_per_repair(row),
+                    "url": "benchmark-explorer.html?"
+                    + urlencode(
+                        {
+                            "release": latest_version,
+                            "model": row["model"],
+                        }
+                    ),
+                }
+            )
+        latest_dashboard = {
+            "version": latest_version,
+            "title": latest_release["title"],
+            "provider": str(latest_harness.get("provider") or "Provider not reported"),
+            "harness": harness_label(latest_harness),
+            "tier": tier_label(latest_release),
+            "repairs": f'{latest_totals["passed"]}/{latest_totals["evaluated"]}',
+            "rate": format_rate(latest_totals["pass_rate"]),
+            "median": format_duration(latest_totals["median_duration_seconds"]),
+            "scenarios": len(latest_release["compatibility"]["scenarios"]),
+            "attempts": latest_release["compatibility"]["attempts"],
+            "models": latest_models,
+            "inspect_url": "benchmark-explorer.html?"
+            + urlencode({"release": latest_version}),
+            "compare_url": "benchmark-compare.html?"
+            + urlencode(
+                [
+                    (
+                        "lane",
+                        f'{latest_version}|||{row["model"]}|||'
+                        f'{row.get("reasoning_effort") or ""}',
+                    )
+                    for row in model_rows(latest_release)[:5]
+                ]
+            ),
+        }
+
     copy = {
         "text": {
             "eyebrow": "Text infrastructure",
@@ -2302,6 +2399,7 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
         cohort_cards=cohort_cards,
         model_evidence=model_evidence,
         scenario_evidence=scenario_evidence,
+        latest_dashboard=latest_dashboard,
         counts={
             "cohorts": len(releases),
             "models": len(unique_models),

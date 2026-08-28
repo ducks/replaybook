@@ -50,10 +50,70 @@
       Results stay attached to their harness, scenario version, attempt count, deadline, and provider boundary.
     </div>
 
-    <div class="section-heading benchmark-section-heading">
-      <div><h2>Provider availability observations</h2><p class="small muted">Operational evidence from incomplete probes. These observations are never included in capability rankings.</p></div>
-    </div>
-    <div class="cohort-grid overview-cohort-grid">
+    <section class="dashboard-snapshot" aria-labelledby="latest-release-heading">
+      <div class="dashboard-snapshot-heading">
+        <div>
+          <p class="eyebrow">Latest release · <code>20260827.0.0</code></p>
+          <h2 id="latest-release-heading">OpenCode Go visual infrastructure cohort</h2>
+        </div>
+        <div class="dashboard-actions">
+          <a href="benchmark-explorer.html?release=20260827.0.0">Inspect release →</a>
+          <a href="benchmark-compare.html?lane=20260827.0.0%7C%7C%7Copencode-go%2Fdeepseek-v4-flash%7C%7C%7Chigh&amp;lane=20260827.0.0%7C%7C%7Copencode-go%2Fkimi-k3%7C%7C%7Chigh&amp;lane=20260827.0.0%7C%7C%7Copencode-go%2Fminimax-m3%7C%7C%7Chigh&amp;lane=20260827.0.0%7C%7C%7Copencode-go%2Fqwen3.8-max%7C%7C%7Chigh">Compare lanes →</a>
+        </div>
+      </div>
+      <div class="dashboard-meta" aria-label="Latest release boundary">
+        <span class="badge verified">Unclassified tier</span>
+        <span>OpenCode Go</span>
+        <span>OpenCode 1.18.18 harness</span>
+        <span>3 scenarios · 3 attempts</span>
+      </div>
+      <div class="dashboard-scoreline">
+        <div class="dashboard-total"><strong>34/36</strong><span>94% durable repairs</span></div>
+        <dl class="dashboard-facts">
+          <div><dt>Overall median</dt><dd>2:30</dd></div>
+          <div><dt>Model lanes</dt><dd>4</dd></div>
+          <div><dt>Evidence lane</dt><dd>Visual</dd></div>
+        </dl>
+      </div>
+      <div class="dashboard-lanes-heading">
+        <div><h3>Current cohort ranking</h3><p class="small muted">Ranked within this cohort by durable repair rate, then median duration, then cost per repair.</p></div>
+        <span class="small muted">4 lanes · no cross-cohort pooling</span>
+      </div>
+      <div class="dashboard-model-grid">
+        <a class="dashboard-model-card" href="benchmark-explorer.html?release=20260827.0.0&amp;model=opencode-go%2Fkimi-k3">
+          <div class="dashboard-model-head"><span class="dashboard-rank">01</span><span class="dashboard-badges"><span class="badge">opencode-go</span><span class="badge">high</span></span></div>
+          <strong>Kimi K3</strong>
+          <span class="dashboard-model-id"><code>opencode-go/kimi-k3</code></span>
+          <div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div>
+          <div class="dashboard-model-stats"><span><b>9/9</b> repairs</span><span><b>100%</b></span><span>CI <b>70%–100%</b></span><span>median <b>2:10</b></span><span>repair <b>n/a</b></span><span>known <b>n/a</b></span></div>
+        </a>
+        <a class="dashboard-model-card" href="benchmark-explorer.html?release=20260827.0.0&amp;model=opencode-go%2Fminimax-m3">
+          <div class="dashboard-model-head"><span class="dashboard-rank">02</span><span class="dashboard-badges"><span class="badge">opencode-go</span><span class="badge">high</span></span></div>
+          <strong>MiniMax M3</strong>
+          <span class="dashboard-model-id"><code>opencode-go/minimax-m3</code></span>
+          <div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div>
+          <div class="dashboard-model-stats"><span><b>9/9</b> repairs</span><span><b>100%</b></span><span>CI <b>70%–100%</b></span><span>median <b>2:23</b></span><span>repair <b>n/a</b></span><span>known <b>n/a</b></span></div>
+        </a>
+        <a class="dashboard-model-card" href="benchmark-explorer.html?release=20260827.0.0&amp;model=opencode-go%2Fdeepseek-v4-flash">
+          <div class="dashboard-model-head"><span class="dashboard-rank">03</span><span class="dashboard-badges"><span class="badge">opencode-go</span><span class="badge">high</span></span></div>
+          <strong>DeepSeek V4 Flash</strong>
+          <span class="dashboard-model-id"><code>opencode-go/deepseek-v4-flash</code></span>
+          <div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div>
+          <div class="dashboard-model-stats"><span><b>9/9</b> repairs</span><span><b>100%</b></span><span>CI <b>70%–100%</b></span><span>median <b>2:33</b></span><span>repair <b>n/a</b></span><span>known <b>n/a</b></span></div>
+        </a>
+        <a class="dashboard-model-card" href="benchmark-explorer.html?release=20260827.0.0&amp;model=opencode-go%2Fqwen3.8-max">
+          <div class="dashboard-model-head"><span class="dashboard-rank">04</span><span class="dashboard-badges"><span class="badge">opencode-go</span><span class="badge">high</span></span></div>
+          <strong>Qwen 3.8 Max</strong>
+          <span class="dashboard-model-id"><code>opencode-go/qwen3.8-max</code></span>
+          <div class="dashboard-meter" role="progressbar" aria-label="78% durable repair rate" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"><span style="width: 78%"></span></div>
+          <div class="dashboard-model-stats"><span><b>7/9</b> repairs</span><span><b>78%</b></span><span>CI <b>45%–94%</b></span><span>median <b>3:33</b></span><span>repair <b>n/a</b></span><span>known <b>n/a</b></span></div>
+        </a>
+      </div>
+    </section>
+
+    <details class="provider-observations">
+      <summary><strong>Provider availability observations</strong><span class="small muted">Operational evidence from incomplete probes; excluded from capability rankings.</span></summary>
+      <div class="cohort-grid overview-cohort-grid">
       <article class="cohort-card provider-observation-card">
         <div class="cohort-card-heading"><span class="badge">Availability observation</span><code>20260827</code></div>
         <h3>Vercel AI Gateway smoke cohort</h3>
@@ -69,7 +129,8 @@
         </dl>
         <p class="small muted">The gateway returned free-tier access/rate-limit errors. This is provider availability evidence, not a model capability ranking.</p>
       </article>
-    </div>
+      </div>
+    </details>
 
     <div class="section-heading benchmark-section-heading">
       <div><h2>Recent cohorts</h2><p class="small muted">Newest visual-input comparisons, each kept inside its original boundary.</p></div>

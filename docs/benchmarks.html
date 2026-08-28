@@ -50,10 +50,63 @@
       Results stay attached to their harness, scenario version, attempt count, deadline, and provider boundary.
     </div>
 
-    <div class="section-heading benchmark-section-heading">
-      <div><h2>Provider availability observations</h2><p class="small muted">Operational evidence from incomplete probes. These observations are never included in capability rankings.</p></div>
-    </div>
-    <div class="cohort-grid overview-cohort-grid">
+    <section class="dashboard-snapshot" aria-labelledby="latest-release-heading">
+      <div class="dashboard-snapshot-heading">
+        <div>
+          <p class="eyebrow">Latest release · <code>20260827.0.1</code></p>
+          <h2 id="latest-release-heading">Vercel AI Gateway funded infrastructure cohort</h2>
+        </div>
+        <div class="dashboard-actions">
+          <a href="benchmark-explorer.html?release=20260827.0.1">Inspect release →</a>
+          <a href="benchmark-compare.html?lane=20260827.0.1%7C%7C%7Copenai%2Fgpt-5.6-luna%7C%7C%7Chigh&amp;lane=20260827.0.1%7C%7C%7Copenai%2Fgpt-5.6-sol%7C%7C%7Chigh&amp;lane=20260827.0.1%7C%7C%7Czai%2Fglm-5.3-flash%7C%7C%7Chigh">Compare lanes →</a>
+        </div>
+      </div>
+      <div class="dashboard-meta" aria-label="Latest release boundary">
+        <span class="badge verified">Unclassified tier</span>
+        <span>Vercel AI Gateway</span>
+        <span>Claux v20260821.0.2 harness</span>
+        <span>3 scenarios · 3 attempts</span>
+      </div>
+      <div class="dashboard-scoreline">
+        <div class="dashboard-total"><strong>27/27</strong><span>100% durable repairs</span></div>
+        <dl class="dashboard-facts">
+          <div><dt>Overall median</dt><dd>2:07</dd></div>
+          <div><dt>Model lanes</dt><dd>3</dd></div>
+          <div><dt>Evidence lane</dt><dd>Text</dd></div>
+        </dl>
+      </div>
+      <div class="dashboard-lanes-heading">
+        <div><h3>Current cohort ranking</h3><p class="small muted">Ranked within this cohort by durable repair rate, then median duration, then cost per repair.</p></div>
+        <span class="small muted">3 lanes · no cross-cohort pooling</span>
+      </div>
+      <div class="dashboard-model-grid">
+        <a class="dashboard-model-card" href="benchmark-explorer.html?release=20260827.0.1&amp;model=openai%2Fgpt-5.6-luna">
+          <div class="dashboard-model-head"><span class="dashboard-rank">01</span><span class="dashboard-badges"><span class="badge">vercel-ai-gateway</span><span class="badge">high</span></span></div>
+          <strong>GPT-5.6 Luna</strong>
+          <span class="dashboard-model-id"><code>openai/gpt-5.6-luna</code></span>
+          <div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div>
+          <div class="dashboard-model-stats"><span><b>9/9</b> repairs</span><span><b>100%</b></span><span>CI <b>70%–100%</b></span><span>median <b>1:47</b></span><span>repair <b>$0.0292</b></span><span>known <b>$0.2627</b></span></div>
+        </a>
+        <a class="dashboard-model-card" href="benchmark-explorer.html?release=20260827.0.1&amp;model=openai%2Fgpt-5.6-sol">
+          <div class="dashboard-model-head"><span class="dashboard-rank">02</span><span class="dashboard-badges"><span class="badge">vercel-ai-gateway</span><span class="badge">high</span></span></div>
+          <strong>GPT-5.6 Sol</strong>
+          <span class="dashboard-model-id"><code>openai/gpt-5.6-sol</code></span>
+          <div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div>
+          <div class="dashboard-model-stats"><span><b>9/9</b> repairs</span><span><b>100%</b></span><span>CI <b>70%–100%</b></span><span>median <b>1:55</b></span><span>repair <b>$0.2101</b></span><span>known <b>$1.8907</b></span></div>
+        </a>
+        <a class="dashboard-model-card" href="benchmark-explorer.html?release=20260827.0.1&amp;model=zai%2Fglm-5.3-flash">
+          <div class="dashboard-model-head"><span class="dashboard-rank">03</span><span class="dashboard-badges"><span class="badge">vercel-ai-gateway</span><span class="badge">high</span></span></div>
+          <strong>GLM-5.3 Flash</strong>
+          <span class="dashboard-model-id"><code>zai/glm-5.3-flash</code></span>
+          <div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div>
+          <div class="dashboard-model-stats"><span><b>9/9</b> repairs</span><span><b>100%</b></span><span>CI <b>70%–100%</b></span><span>median <b>2:43</b></span><span>repair <b>$0.0060</b></span><span>known <b>$0.0540</b></span></div>
+        </a>
+      </div>
+    </section>
+
+    <details class="provider-observations">
+      <summary><strong>Provider availability observations</strong><span class="small muted">Operational evidence from incomplete probes; excluded from capability rankings.</span></summary>
+      <div class="cohort-grid overview-cohort-grid">
       <article class="cohort-card provider-observation-card">
         <div class="cohort-card-heading"><span class="badge">Availability observation</span><code>20260827</code></div>
         <h3>Vercel AI Gateway smoke cohort</h3>
@@ -69,7 +122,8 @@
         </dl>
         <p class="small muted">The gateway returned free-tier access/rate-limit errors. This is provider availability evidence, not a model capability ranking.</p>
       </article>
-    </div>
+      </div>
+    </details>
 
     <div class="section-heading benchmark-section-heading">
       <div><h2>Recent cohorts</h2><p class="small muted">Newest text-input comparisons, each kept inside its original boundary.</p></div>
