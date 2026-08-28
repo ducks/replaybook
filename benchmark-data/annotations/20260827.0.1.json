@@ -1,0 +1,39 @@
+{
+  "input_mode": "text",
+  "title": "Vercel AI Gateway funded infrastructure cohort",
+  "description": "GPT-5.6 Luna, GPT-5.6 Sol, and GLM-5.3 Flash each attempted three durable repairs across a 502 host failure, a Sidekiq/Redis misconfiguration, and an interrupted Discourse deploy through the funded Vercel AI Gateway.",
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "v20260821.0.2",
+    "provider": "Vercel AI Gateway",
+    "billing": "provider-reported"
+  },
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "openai/gpt-5.6-sol": "GPT-5.6 Sol",
+    "zai/glm-5.3-flash": "GLM-5.3 Flash"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna",
+    "openai/gpt-5.6-sol",
+    "zai/glm-5.3-flash"
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502 host failure",
+    "013-sidekiq-wrong-redis": "Sidekiq connected to the wrong Redis",
+    "024-discourse-interrupted-deploy": "Interrupted Discourse deploy"
+  },
+  "observations": [
+    "All three models completed all nine evaluated repairs: 27 durable repairs from 27 attempts, with no unavailable trials.",
+    "GPT-5.6 Luna was fastest at a 1:47 median, followed by GPT-5.6 Sol at 1:55 and GLM-5.3 Flash at 2:43.",
+    "The cohort cost $2.2074 in reported provider spend; GLM-5.3 Flash was the least expensive lane at $0.0540, while Sol was the most expensive at $1.8907.",
+    "This funded run replaces the earlier free-tier availability probe as the Vercel capability evidence for these scenarios."
+  ],
+  "notes": [
+    "This is a Vercel AI Gateway provider cohort through Claux and is intentionally kept separate from direct OpenRouter and OpenCode Go results.",
+    "All lanes use the same text scenario-pack revision, Replaybook host harness, three-attempt design, high reasoning effort, and 900-second timeout.",
+    "Reported costs are provider-reported request charges from the funded gateway account."
+  ],
+  "reproduction_command": "REPLAYBOOK_OPENAI_API_KEY=\"$AI_GATEWAY_API_KEY\" REPLAYBOOK_OPENAI_UPSTREAM=\"https://ai-gateway.vercel.sh\" REPLAYBOOK_OPENAI_PROXY_PATH=\"/v1\" python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 024-discourse-interrupted-deploy --models openai/gpt-5.6-luna openai/gpt-5.6-sol zai/glm-5.3-flash --reasoning-efforts high --attempts 3 --concurrency 1 --base-port 28200 --claux-binary ../claux/target/release/claux --agent-provider vercel-ai-gateway"
+}

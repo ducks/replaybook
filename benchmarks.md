@@ -9,24 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## OpenCode Go visual infrastructure cohort
+## Vercel AI Gateway funded infrastructure cohort
 
-Four OpenCode Go models each attempted three durable repairs across topology drift, noisy metrics, and deployment-timeline incidents, testing whether hosted coding agents can turn visual evidence into convergent infrastructure changes.
+GPT-5.6 Luna, GPT-5.6 Sol, and GLM-5.3 Flash each attempted three durable repairs across a 502 host failure, a Sidekiq/Redis misconfiguration, and an interrupted Discourse deploy through the funded Vercel AI Gateway.
 
-Benchmark release: `20260827.0.0`
+Benchmark release: `20260827.0.1`
 Benchmark tier: `unclassified`
-
-Provider-reported subscription usage value: **$3.5034** across 36 trials. This is a catalog-priced usage estimate, not metered spend.
 
 Scenario packs: `ducks/replaybook-infra@20260824.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash (high) · opencode-go | 9/9 | 100% | 2:33 | n/a | n/a |
-| Kimi K3 (high) · opencode-go | 9/9 | 100% | 2:10 | n/a | n/a |
-| MiniMax M3 (high) · opencode-go | 9/9 | 100% | 2:23 | n/a | n/a |
-| Qwen 3.8 Max (high) · opencode-go | 7/9 | 78% | 3:33 | n/a | n/a |
-| **Total** | **34/36** | **94%** | **2:30** | **n/a** | **n/a** |
+| GPT-5.6 Luna (high) · vercel-ai-gateway | 9/9 | 100% | 1:47 | $0.2627 | $0.0292 |
+| GPT-5.6 Sol (high) · vercel-ai-gateway | 9/9 | 100% | 1:55 | $1.8907 | $0.2101 |
+| GLM-5.3 Flash (high) · vercel-ai-gateway | 9/9 | 100% | 2:43 | $0.0540 | $0.0060 |
+| **Total** | **27/27** | **100%** | **2:07** | **$2.2074** | **$0.0818** |
 
 ### Execution recording
 
@@ -34,41 +31,38 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash (high) · opencode-go | 9/9 | 15 | 2:03 | 28 | 0:00 | 0:02 | 2:22 |
-| Kimi K3 (high) · opencode-go | 9/9 | 14 | 1:34 | 19 | 0:00 | 0:04 | 1:57 |
-| MiniMax M3 (high) · opencode-go | 9/9 | 23 | 1:22 | 30 | 0:01 | 0:05 | 2:07 |
-| Qwen 3.8 Max (high) · opencode-go | 9/9 | 12 | 2:32 | 19 | 0:00 | 0:17 | 3:01 |
+| GPT-5.6 Luna (high) · vercel-ai-gateway | 9/9 | 16 | 1:31 | 33 | 0:11 | 0:06 | 1:39 |
+| GPT-5.6 Sol (high) · vercel-ai-gateway | 9/9 | 16 | 1:43 | 34 | 0:06 | 0:09 | 1:41 |
+| GLM-5.3 Flash (high) · vercel-ai-gateway | 9/9 | 14 | 2:31 | 17 | 0:06 | 0:07 | 2:34 |
 
-DeepSeek V4 Flash, Kimi K3, and MiniMax M3 completed all nine of their evaluated repairs; Qwen 3.8 Max completed seven of nine.
+All three models completed all nine evaluated repairs: 27 durable repairs from 27 attempts, with no unavailable trials.
 
-The cohort completed 34 of 36 evaluated repairs (94.4%); one runtime error and one provider interruption were scored as failures, with no unavailable trials.
+GPT-5.6 Luna was fastest at a 1:47 median, followed by GPT-5.6 Sol at 1:55 and GLM-5.3 Flash at 2:43.
 
-Kimi K3 was fastest at a 2:10 median, followed by MiniMax M3 at 2:23, DeepSeek V4 Flash at 2:33, and Qwen 3.8 Max at 3:33.
+The cohort cost $2.2074 in reported provider spend; GLM-5.3 Flash was the least expensive lane at $0.0540, while Sol was the most expensive at $1.8907.
 
-The visual scenarios test durable infrastructure repair from diagrams and dashboards, not image captioning or general coding ability.
+This funded run replaces the earlier free-tier availability probe as the Vercel capability evidence for these scenarios.
 
 ### Scenario breakdown
 
-| Scenario | Version | DeepSeek V4 Flash (high) · opencode-go | Kimi K3 (high) · opencode-go | MiniMax M3 (high) · opencode-go | Qwen 3.8 Max (high) · opencode-go |
-|---|---:|---:|---:|---:|---:|
-| Visual topology drift | v1 | 3/3, 3:22 | 3/3, 2:10 | 3/3, 2:13 | 3/3, 3:35 |
-| Visual metrics regression | v1 | 3/3, 2:24 | 3/3, 1:41 | 3/3, 1:05 | 1/3, 2:10 |
-| Visual deployment timeline | v1 | 3/3, 1:57 | 3/3, 2:34 | 3/3, 2:38 | 3/3, 3:37 |
+| Scenario | Version | GPT-5.6 Luna (high) · vercel-ai-gateway | GPT-5.6 Sol (high) · vercel-ai-gateway | GLM-5.3 Flash (high) · vercel-ai-gateway |
+|---|---:|---:|---:|---:|
+| Nginx 502 host failure | v1 | 3/3, 1:13 | 3/3, 1:18 | 3/3, 4:30 |
+| Sidekiq connected to the wrong Redis | v2 | 3/3, 1:47 | 3/3, 2:10 | 3/3, 2:13 |
+| Interrupted Discourse deploy | v1 | 3/3, 2:13 | 3/3, 2:07 | 3/3, 3:04 |
 
 ### Failure categories
 
-- `agent_runtime_error`: 1
-- `provider_interrupted`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-27__16-17-53.8fc7fb`: opencode-go/deepseek-v4-flash, opencode-go/kimi-k3, opencode-go/minimax-m3, opencode-go/qwen3.8-max; Replaybook `eaf54a96`; reasoning high
+- `host-matrix-2026-08-27__23-40-56.206d85`: openai/gpt-5.6-luna, openai/gpt-5.6-sol, zai/glm-5.3-flash; Replaybook `39988d1f`; reasoning high
 
 ### Run notes
 
-- This is an OpenCode Go subscription cohort and is intentionally published separately from Claux/OpenRouter results.
-- All lanes use the same visual scenario-pack revision, Replaybook host harness, three-attempt design, high reasoning effort, and 900-second timeout.
-- OpenCode Go does not report per-trial provider costs in the adapter output; cost is therefore shown as unavailable rather than estimated. Subscription usage metadata is retained in the source summary where provided.
+- This is a Vercel AI Gateway provider cohort through Claux and is intentionally kept separate from direct OpenRouter and OpenCode Go results.
+- All lanes use the same text scenario-pack revision, Replaybook host harness, three-attempt design, high reasoning effort, and 900-second timeout.
+- Reported costs are provider-reported request charges from the funded gateway account.
 
 <!-- replaybook:current-benchmark:end -->
 
