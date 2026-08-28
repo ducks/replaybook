@@ -38,7 +38,7 @@
       <tr>
         <td class="leaderboard-rank">{{ '%02d'|format(lane.rank) }}</td>
         <td class="leaderboard-model"><a href="{{ lane.url }}"><strong>{{ lane.name }}</strong><code>{{ lane.model }}</code></a><span>{{ lane.reasoning }} reasoning</span></td>
-        <td><span class="badge">{{ lane.provider }}</span></td>
+        <td><span class="badge">{% if lane.provider == "Vercel AI Gateway" %}Vercel{% else %}{{ lane.provider }}{% endif %}</span></td>
         <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="{{ lane.rate }} durable repair rate" aria-valuenow="{{ lane.rate_percent }}" aria-valuemin="0" aria-valuemax="100"><span style="width: {{ lane.rate_percent }}%"></span></div><strong>{{ lane.rate }}</strong><span>{{ lane.repairs }} · CI {{ lane.ci }}</span></td>
         <td><code>{{ lane.median }}</code></td>
         <td><code>{{ lane.cost_per_repair }}</code></td>
