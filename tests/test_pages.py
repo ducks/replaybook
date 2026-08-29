@@ -30,6 +30,12 @@ class LinkParser(HTMLParser):
 
 
 class PagesTests(unittest.TestCase):
+    def test_every_page_includes_goatcounter(self) -> None:
+        snippet = 'data-goatcounter="https://stats.replaybook.dev/count"'
+        for page in DOCS_DIR.glob("*.html"):
+            with self.subTest(page=page.name):
+                self.assertIn(snippet, page.read_text())
+
     def test_local_links_exist(self) -> None:
         for page in DOCS_DIR.glob("*.html"):
             parser = LinkParser()
