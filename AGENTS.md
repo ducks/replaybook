@@ -53,6 +53,38 @@
   the source change.
 - Static Pages changes must continue to pass `make pages-check`.
 
+## OpenCode adapter runs
+
+- Use the custom OpenCode adapter for OpenCode Go runs. Custom adapter options
+  are mutually exclusive with `--claux-binary` and `--claux-release`.
+- Prepare the isolated credential environment with
+  `integrations/host/prepare-opencode-env.sh`; never print or commit the
+  resulting environment file.
+- Pass the absolute OpenCode executable path through `--agent-payload` and
+  identify the upstream provider with `--agent-provider` (for example,
+  `opencode-go`).
+- A benchmark manifest supplies its pinned scenarios, attempts, and timeout;
+  do not override those values unless the run is explicitly exploratory.
+- Prefer `--concurrency 1` on memory-constrained hosts, and choose an unused
+  `--base-port` before starting a matrix.
+
+Example:
+
+```sh
+opencode_env="$(integrations/host/prepare-opencode-env.sh)"
+python integrations/host/run_host_matrix.py \
+  --benchmark ../replaybook-infra/benchmark-core.toml \
+  --models opencode-go/gpt-5.6-luna \
+  --reasoning-efforts high \
+  --agent-provider opencode-go \
+  --agent-adapter integrations/host/adapters/opencode.sh \
+  --agent-payload /absolute/path/to/opencode \
+  --agent-env-file "$opencode_env" \
+  --agent-name opencode \
+  --concurrency 1 \
+  --base-port 30200
+```
+
 ## Validation
 
 - Run the narrowest relevant tests while iterating, then the matching project
