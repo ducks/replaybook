@@ -1,0 +1,1725 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 12879809,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 24,
+      "failed": 2,
+      "failure_categories": {
+        "agent_runtime_error": 1,
+        "release_not_converged": 1
+      },
+      "input_tokens": 1224,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 114.5,
+      "median_first_non_read_only_tool_seconds": 1.982,
+      "median_model_duration_seconds": 86.82300000000001,
+      "median_model_rounds": 17.0,
+      "median_post_first_non_read_only_seconds": 101.47200000000001,
+      "median_tool_calls": 40.5,
+      "median_tool_duration_seconds": 1.471,
+      "model": "opencode-go/gpt-5.6-luna",
+      "output_tokens": 107057,
+      "pass_rate": 0.9166666666666666,
+      "passed": 22,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 24,
+      "subscription_usage_reported_trials": 24,
+      "subscription_usage_usd": 0.68820228,
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 24
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 920922,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 135,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 72,
+      "median_first_non_read_only_tool_seconds": 1.865,
+      "median_model_duration_seconds": 45.41,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 61.907,
+      "median_tool_calls": 30,
+      "median_tool_duration_seconds": 0.317,
+      "model": "opencode-go/gpt-5.6-luna",
+      "output_tokens": 7953,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.056635490000000004,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1399337,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 159,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 136,
+      "median_first_non_read_only_tool_seconds": 1.742,
+      "median_model_duration_seconds": 109.795,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 128.143,
+      "median_tool_calls": 40,
+      "median_tool_duration_seconds": 3.176,
+      "model": "opencode-go/gpt-5.6-luna",
+      "output_tokens": 13851,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.08778939000000001,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1811206,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 189,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 137,
+      "median_first_non_read_only_tool_seconds": 2.437,
+      "median_model_duration_seconds": 107.253,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 125.99000000000001,
+      "median_tool_calls": 56,
+      "median_tool_duration_seconds": 1.235,
+      "model": "opencode-go/gpt-5.6-luna",
+      "output_tokens": 16409,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.10643491999999999,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1351806,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 123,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 115,
+      "median_first_non_read_only_tool_seconds": 2.341,
+      "median_model_duration_seconds": 92.23,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 106.328,
+      "median_tool_calls": 43,
+      "median_tool_duration_seconds": 1.156,
+      "model": "opencode-go/gpt-5.6-luna",
+      "output_tokens": 11712,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.08942152,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1235988,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 156,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 102,
+      "median_first_non_read_only_tool_seconds": 1.945,
+      "median_model_duration_seconds": 76.226,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 93.75,
+      "median_tool_calls": 41,
+      "median_tool_duration_seconds": 1.303,
+      "model": "opencode-go/gpt-5.6-luna",
+      "output_tokens": 11942,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.07582661,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 2520870,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 195,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 156,
+      "median_first_non_read_only_tool_seconds": 2.314,
+      "median_model_duration_seconds": 111.606,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 147.03400000000002,
+      "median_tool_calls": 51,
+      "median_tool_duration_seconds": 1.639,
+      "model": "opencode-go/gpt-5.6-luna",
+      "output_tokens": 19277,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.12353755,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 2651765,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 147,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 115,
+      "median_first_non_read_only_tool_seconds": 4.184,
+      "median_model_duration_seconds": 90.105,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 102.758,
+      "median_tool_calls": 43,
+      "median_tool_duration_seconds": 1.823,
+      "model": "opencode-go/gpt-5.6-luna",
+      "output_tokens": 13466,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.07321685,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 987915,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_runtime_error": 1
+      },
+      "input_tokens": 120,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 104,
+      "median_first_non_read_only_tool_seconds": 2.092,
+      "median_model_duration_seconds": 80.014,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 94.92399999999999,
+      "median_tool_calls": 37,
+      "median_tool_duration_seconds": 2.952,
+      "model": "opencode-go/gpt-5.6-luna",
+      "output_tokens": 12447,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.07533994999999999,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "external:opencode.sh",
+      "name": "opencode",
+      "payload": "external:opencode"
+    },
+    "agent_harness": {
+      "billing": "subscription",
+      "id": "opencode",
+      "label": "OpenCode",
+      "provider": "OpenCode Go",
+      "version": null
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.08.23"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
+      "agent_env_sha256": "8bf04194fb9d73e845f72b9ad0daaec32b9247d68b0cf1ca9cb3c60f6d7f453d",
+      "agent_payload_sha256": "bb71f45b564f9234a97f54d6252a4a41d2f4388ae4b078918f691824cc3b3e54",
+      "benchmark_manifest_sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "opencode-go"
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260824.0.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 2
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "GPT-5.6 Luna attempted three repairs across each of the eight stable core infrastructure incidents through the OpenCode harness and OpenCode Go subscription.",
+  "input_mode": "text",
+  "model_labels": {
+    "opencode-go/gpt-5.6-luna": "GPT-5.6 Luna"
+  },
+  "model_order": [
+    "opencode-go/gpt-5.6-luna"
+  ],
+  "notes": [
+    "This is an independent OpenCode Go companion cohort using the same core scenario and host-verifier boundary as the canonical OpenRouter release.",
+    "Results are intentionally not pooled with Claux/OpenRouter, Vercel AI Gateway, or other harness/provider cohorts.",
+    "Failures remain evaluated failures: one agent runtime error and one release-not-converged result.",
+    "OpenCode Go does not expose a metered request cost in the adapter output; n/a is the truthful cost value."
+  ],
+  "observations": [
+    "GPT-5.6 Luna completed 22 of 24 evaluated repairs for a 92% pass rate; all 24 trials produced an evaluated result.",
+    "Luna completed every attempt for six scenarios. The misses were one of three attempts on the interrupted Discourse deploy and one of three on Nix store disk pressure.",
+    "OpenCode Go reports subscription usage rather than metered per-trial provider cost, so public cost is unavailable rather than estimated.",
+    "The 1:54 median is directly comparable to other core cohorts only after keeping harness and provider identity visible."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --models opencode-go/gpt-5.6-luna --reasoning-efforts high --agent-provider opencode-go --agent-adapter integrations/host/adapters/opencode.sh --agent-payload ~/.opencode/bin/opencode --agent-env-file <prepared-opencode-env> --agent-name opencode --concurrency 1 --base-port 28600",
+  "runs": [
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 77,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:01:26Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.891,
+        "model_duration_seconds": 50.498,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 68.103,
+        "tool_calls": 30,
+        "tool_duration_seconds": 0.317,
+        "total_duration_seconds": 69.994
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-go-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T15:59:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 39486,
+        "cache_read_tokens": 362318,
+        "cost_usd": null,
+        "input_tokens": 45,
+        "output_tokens": 2832,
+        "reasoning_tokens": 1884,
+        "subscription_usage_usd": 0.02278606
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 55,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:03:19Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.865,
+        "model_duration_seconds": 30.896,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 44.416999999999994,
+        "tool_calls": 27,
+        "tool_duration_seconds": 0.28,
+        "total_duration_seconds": 46.282
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-go-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:02:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 27860,
+        "cache_read_tokens": 237584,
+        "cost_usd": null,
+        "input_tokens": 39,
+        "output_tokens": 2360,
+        "reasoning_tokens": 782,
+        "subscription_usage_usd": 0.015494879999999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 72,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:05:23Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.695,
+        "model_duration_seconds": 45.41,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 61.907,
+        "tool_calls": 35,
+        "tool_duration_seconds": 0.447,
+        "total_duration_seconds": 63.602
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-go-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:03:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 29475,
+        "cache_read_tokens": 321020,
+        "cost_usd": null,
+        "input_tokens": 51,
+        "output_tokens": 2761,
+        "reasoning_tokens": 1035,
+        "subscription_usage_usd": 0.018354550000000004
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 101,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:08:13Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.567,
+        "model_duration_seconds": 75.375,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 91.355,
+        "tool_calls": 44,
+        "tool_duration_seconds": 3.176,
+        "total_duration_seconds": 92.922
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-30T16:06:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 35326,
+        "cache_read_tokens": 348974,
+        "cost_usd": null,
+        "input_tokens": 51,
+        "output_tokens": 4431,
+        "reasoning_tokens": 4156,
+        "subscription_usage_usd": 0.02612558
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 136,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:11:44Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.742,
+        "model_duration_seconds": 109.795,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 128.143,
+        "tool_calls": 40,
+        "tool_duration_seconds": 0.278,
+        "total_duration_seconds": 129.885
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-30T16:09:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 50408,
+        "cache_read_tokens": 615080,
+        "cost_usd": null,
+        "input_tokens": 57,
+        "output_tokens": 5376,
+        "reasoning_tokens": 3480,
+        "subscription_usage_usd": 0.0355422
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 207,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:16:38Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.956,
+        "model_duration_seconds": 183.632,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 198.28900000000002,
+        "tool_calls": 38,
+        "tool_duration_seconds": 120.671,
+        "total_duration_seconds": 200.245
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-30T16:12:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 38495,
+        "cache_read_tokens": 435283,
+        "cost_usd": null,
+        "input_tokens": 51,
+        "output_tokens": 4044,
+        "reasoning_tokens": 2441,
+        "subscription_usage_usd": 0.026121610000000003
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 137,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:20:27Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.67,
+        "model_duration_seconds": 107.253,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 125.629,
+        "tool_calls": 51,
+        "tool_duration_seconds": 1.235,
+        "total_duration_seconds": 127.299
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-go-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:17:51Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 44528,
+        "cache_read_tokens": 517531,
+        "cost_usd": null,
+        "input_tokens": 57,
+        "output_tokens": 4909,
+        "reasoning_tokens": 2925,
+        "subscription_usage_usd": 0.03089482
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 214,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:25:27Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.437,
+        "model_duration_seconds": 174.853,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 205.06,
+        "tool_calls": 58,
+        "tool_duration_seconds": 1.183,
+        "total_duration_seconds": 207.497
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-go-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:21:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 51103,
+        "cache_read_tokens": 806621,
+        "cost_usd": null,
+        "input_tokens": 75,
+        "output_tokens": 6353,
+        "reasoning_tokens": 5826,
+        "subscription_usage_usd": 0.04353796999999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 135,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:29:08Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.684,
+        "model_duration_seconds": 104.558,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 125.99000000000001,
+        "tool_calls": 56,
+        "tool_duration_seconds": 26.636,
+        "total_duration_seconds": 128.674
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-go-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:26:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 43557,
+        "cache_read_tokens": 487054,
+        "cost_usd": null,
+        "input_tokens": 57,
+        "output_tokens": 5147,
+        "reasoning_tokens": 4320,
+        "subscription_usage_usd": 0.032002130000000004
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 115,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:32:28Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.341,
+        "model_duration_seconds": 92.23,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 106.328,
+        "tool_calls": 43,
+        "tool_duration_seconds": 4.111,
+        "total_duration_seconds": 108.669
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-opencode-go-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:30:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 42597,
+        "cache_read_tokens": 359878,
+        "cost_usd": null,
+        "input_tokens": 39,
+        "output_tokens": 3779,
+        "reasoning_tokens": 1671,
+        "subscription_usage_usd": 0.02439461
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 84,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:35:18Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.024,
+        "model_duration_seconds": 62.698,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 74.99,
+        "tool_calls": 39,
+        "tool_duration_seconds": 0.391,
+        "total_duration_seconds": 78.014
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-opencode-go-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:33:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 66024,
+        "cache_read_tokens": 460860,
+        "cost_usd": null,
+        "input_tokens": 39,
+        "output_tokens": 4094,
+        "reasoning_tokens": 1793,
+        "subscription_usage_usd": 0.0327954
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 119,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:38:50Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.816,
+        "model_duration_seconds": 94.201,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 111.082,
+        "tool_calls": 50,
+        "tool_duration_seconds": 1.156,
+        "total_duration_seconds": 112.898
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-opencode-go-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:36:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 55867,
+        "cache_read_tokens": 531068,
+        "cost_usd": null,
+        "input_tokens": 45,
+        "output_tokens": 3839,
+        "reasoning_tokens": 2523,
+        "subscription_usage_usd": 0.03223151
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 102,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:43:12Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.038,
+        "model_duration_seconds": 76.226,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 93.75,
+        "tool_calls": 41,
+        "tool_duration_seconds": 2.172,
+        "total_duration_seconds": 95.788
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-go-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:41:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 40382,
+        "cache_read_tokens": 479650,
+        "cost_usd": null,
+        "input_tokens": 54,
+        "output_tokens": 4708,
+        "reasoning_tokens": 3210,
+        "subscription_usage_usd": 0.029200900000000005
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 93,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:47:24Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.843,
+        "model_duration_seconds": 71.422,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 85.21,
+        "tool_calls": 33,
+        "tool_duration_seconds": 1.303,
+        "total_duration_seconds": 87.053
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-go-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:45:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 30971,
+        "cache_read_tokens": 292942,
+        "cost_usd": null,
+        "input_tokens": 45,
+        "output_tokens": 3108,
+        "reasoning_tokens": 2594,
+        "subscription_usage_usd": 0.02045299
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 111,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:52:03Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.945,
+        "model_duration_seconds": 77.882,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 100.186,
+        "tool_calls": 43,
+        "tool_duration_seconds": 1.165,
+        "total_duration_seconds": 102.131
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-go-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:49:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 37084,
+        "cache_read_tokens": 463396,
+        "cost_usd": null,
+        "input_tokens": 57,
+        "output_tokens": 4126,
+        "reasoning_tokens": 2226,
+        "subscription_usage_usd": 0.02617272
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 156,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:55:57Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.533,
+        "model_duration_seconds": 111.606,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 147.03400000000002,
+        "tool_calls": 80,
+        "tool_duration_seconds": 2.839,
+        "total_duration_seconds": 149.567
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-go-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:53:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 62950,
+        "cache_read_tokens": 1023189,
+        "cost_usd": null,
+        "input_tokens": 75,
+        "output_tokens": 6285,
+        "reasoning_tokens": 5211,
+        "subscription_usage_usd": 0.050011480000000004
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 122,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T16:59:13Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.008,
+        "model_duration_seconds": 93.513,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 111.473,
+        "tool_calls": 39,
+        "tool_duration_seconds": 1.639,
+        "total_duration_seconds": 113.481
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-go-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T16:56:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 49066,
+        "cache_read_tokens": 607185,
+        "cost_usd": null,
+        "input_tokens": 60,
+        "output_tokens": 5548,
+        "reasoning_tokens": 5589,
+        "subscription_usage_usd": 0.018893300000000002
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 175,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T17:03:12Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.314,
+        "model_duration_seconds": 144.112,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 166.316,
+        "tool_calls": 51,
+        "tool_duration_seconds": 0.833,
+        "total_duration_seconds": 168.63
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-go-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T17:00:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 72901,
+        "cache_read_tokens": 890496,
+        "cost_usd": null,
+        "input_tokens": 60,
+        "output_tokens": 7444,
+        "reasoning_tokens": 8044,
+        "subscription_usage_usd": 0.05463277
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 114,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-08-30T17:06:41Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.184,
+        "model_duration_seconds": 90.105,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 102.758,
+        "tool_calls": 38,
+        "tool_duration_seconds": 1.823,
+        "total_duration_seconds": 106.942
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T17:04:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 83152,
+        "cache_read_tokens": 699729,
+        "cost_usd": null,
+        "input_tokens": 42,
+        "output_tokens": 4562,
+        "reasoning_tokens": 2156,
+        "subscription_usage_usd": 0.02142629
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 221,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T17:11:41Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.594,
+        "model_duration_seconds": 191.899,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 213.465,
+        "tool_calls": 43,
+        "tool_duration_seconds": 0.451,
+        "total_duration_seconds": 215.059
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T17:07:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 100878,
+        "cache_read_tokens": 1107369,
+        "cost_usd": null,
+        "input_tokens": 54,
+        "output_tokens": 4686,
+        "reasoning_tokens": 2633,
+        "subscription_usage_usd": 0.028080240000000003
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 115,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T17:15:13Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.832,
+        "model_duration_seconds": 80.794,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 95.343,
+        "tool_calls": 51,
+        "tool_duration_seconds": 2.283,
+        "total_duration_seconds": 100.175
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T17:13:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 87806,
+        "cache_read_tokens": 844667,
+        "cost_usd": null,
+        "input_tokens": 51,
+        "output_tokens": 4218,
+        "reasoning_tokens": 2920,
+        "subscription_usage_usd": 0.023710320000000003
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 65,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent harness could not complete the trial",
+      "failure_category": "agent_runtime_error",
+      "finished_at": "2026-08-30T17:17:41Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.092,
+        "model_duration_seconds": 39.534,
+        "model_rounds": 7,
+        "post_first_non_read_only_seconds": 50.757,
+        "tool_calls": 31,
+        "tool_duration_seconds": 2.952,
+        "total_duration_seconds": 52.849
+      },
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-opencode-go-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T17:16:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 36877,
+        "cache_read_tokens": 96878,
+        "cost_usd": null,
+        "input_tokens": 21,
+        "output_tokens": 2836,
+        "reasoning_tokens": 1216,
+        "subscription_usage_usd": 0.01602341
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 104,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T17:21:21Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.819,
+        "model_duration_seconds": 83.541,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 94.92399999999999,
+        "tool_calls": 37,
+        "tool_duration_seconds": 5.69,
+        "total_duration_seconds": 96.743
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-opencode-go-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T17:19:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 32851,
+        "cache_read_tokens": 313714,
+        "cost_usd": null,
+        "input_tokens": 48,
+        "output_tokens": 4753,
+        "reasoning_tokens": 4087,
+        "subscription_usage_usd": 0.02510463
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 107,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-30T17:25:02Z",
+      "model": "opencode-go/gpt-5.6-luna",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.414,
+        "model_duration_seconds": 80.014,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 98.577,
+        "tool_calls": 40,
+        "tool_duration_seconds": 2.794,
+        "total_duration_seconds": 100.991
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-opencode-go-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-30T17:22:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 51237,
+        "cache_read_tokens": 577323,
+        "cost_usd": null,
+        "input_tokens": 51,
+        "output_tokens": 4858,
+        "reasoning_tokens": 3347,
+        "subscription_usage_usd": 0.03421191
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502 host failure",
+    "013-sidekiq-wrong-redis": "Sidekiq connected to the wrong Redis",
+    "015-sidekiq-poison-pill": "Sidekiq poison-pill job",
+    "017-partial-rails-rollout": "Partial Rails rollout",
+    "019-rust-fd-leak": "Rust file-descriptor leak",
+    "021-discourse-shared-uploads": "Discourse shared uploads",
+    "024-discourse-interrupted-deploy": "Interrupted Discourse deploy",
+    "028-nix-store-disk-pressure": "Nix store disk pressure"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "external:opencode.sh",
+        "name": "opencode",
+        "payload": "external:opencode",
+        "provider": "opencode-go"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.08.23"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
+        "agent_env_sha256": "8bf04194fb9d73e845f72b9ad0daaec32b9247d68b0cf1ca9cb3c60f6d7f453d",
+        "agent_payload_sha256": "bb71f45b564f9234a97f54d6252a4a41d2f4388ae4b078918f691824cc3b3e54",
+        "benchmark_manifest_sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_packs": [
+          {
+            "git_commit": "86d92be2722ece958e09efec88b52c921e23e849",
+            "id": "ducks/replaybook-infra",
+            "sha256": "d1a793e4aacb2e06f95b2c588dcccb7f539e420ca7ff646ff6bfa96ff883dbbc",
+            "version": "20260824.0.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+            "version": 2
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-08-30T17:25:03.355749Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "opencode-go/gpt-5.6-luna"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "9544ff10ae2baae5f41c59063f52c6c3589646cd",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-30__15-59-19.aa4e2e",
+      "started_at": "2026-08-30T15:59:20.084653Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "tier": "core",
+  "title": "OpenCode Go GPT-5.6 Luna core infrastructure cohort",
+  "totals": {
+    "cache_read_tokens": 12879809,
+    "cost_reported_trials": 0,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 24,
+    "failed": 2,
+    "failure_categories": {
+      "agent_runtime_error": 1,
+      "release_not_converged": 1
+    },
+    "input_tokens": 1224,
+    "known_cost_usd": 0,
+    "median_duration_seconds": 114.5,
+    "median_first_non_read_only_tool_seconds": 1.982,
+    "median_model_duration_seconds": 86.82300000000001,
+    "median_model_rounds": 17.0,
+    "median_post_first_non_read_only_seconds": 101.47200000000001,
+    "median_tool_calls": 40.5,
+    "median_tool_duration_seconds": 1.471,
+    "output_tokens": 107057,
+    "pass_rate": 0.9166666666666666,
+    "passed": 22,
+    "recording_reported_trials": 24,
+    "subscription_usage_reported_trials": 24,
+    "subscription_usage_usd": 0.68820228,
+    "trials": 24,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 24
+  },
+  "version": "20260830.0.1"
+}

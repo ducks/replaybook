@@ -2371,7 +2371,20 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
 
     latest_dashboard = None
     if releases:
-        latest_version, latest_release = releases[-1]
+        # Companion cohorts are appended after the canonical release so they
+        # retain chronological provenance. The overview dashboard must still
+        # follow the index's explicit current release; otherwise an independent
+        # harness can silently replace the primary lane on the homepage.
+        current_version = index.get("current_version")
+        latest_version, latest_release = next(
+            (
+                (version, release)
+                for version, release in releases
+                if version == current_version
+                and release.get("input_mode", "text") == input_mode
+            ),
+            releases[-1],
+        )
         latest_totals = latest_release["totals"]
         latest_harness = normalized_agent_harness(latest_release)
         latest_models = []

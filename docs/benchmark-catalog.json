@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20260827.0.1",
+  "current_version": "20260830.0.0",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -4167,6 +4167,66 @@
       "subscription_usage_usd": 0,
       "tier": "unclassified",
       "trials": 9,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.036567222727272725,
+      "cost_reported_trials": 23,
+      "evaluated": 24,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 1251,
+      "known_cost_usd": 0.8044789,
+      "median_duration_seconds": 112.0,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 212773,
+      "pass_rate": 0.9166666666666666,
+      "pass_rate_95_high": 0.9768411847029567,
+      "pass_rate_95_low": 0.741511978067893,
+      "passed": 22,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "release": "20260830.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 24,
+      "failed": 2,
+      "failure_categories": {
+        "agent_runtime_error": 1,
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 1224,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 114.5,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 107057,
+      "pass_rate": 0.9166666666666666,
+      "pass_rate_95_high": 0.9768411847029567,
+      "pass_rate_95_low": 0.741511978067893,
+      "passed": 22,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "release": "20260830.0.1",
+      "subscription_usage_reported_trials": 24,
+      "subscription_usage_usd": 0.68820228,
+      "tier": "core",
+      "trials": 24,
       "unavailable": 0,
       "unavailable_categories": {}
     }
@@ -23862,6 +23922,494 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.026326723333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 126,
+      "known_cost_usd": 0.07898017,
+      "median_duration_seconds": 70,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 14783,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "release": "20260830.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "Nginx 502 host failure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.03096322,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 174,
+      "known_cost_usd": 0.09288966,
+      "median_duration_seconds": 149,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 26209,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "release": "20260830.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "Sidekiq connected to the wrong Redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.051658145,
+      "cost_reported_trials": 2,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 147,
+      "known_cost_usd": 0.10331629,
+      "median_duration_seconds": 363,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 27543,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "release": "20260830.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "Sidekiq poison-pill job",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.023418003333333336,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 111,
+      "known_cost_usd": 0.07025401,
+      "median_duration_seconds": 95,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 13954,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "release": "20260830.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "Partial Rails rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.02688393,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 141,
+      "known_cost_usd": 0.08065179,
+      "median_duration_seconds": 99,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 22098,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "release": "20260830.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "Rust file-descriptor leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.04238720666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 210,
+      "known_cost_usd": 0.12716162,
+      "median_duration_seconds": 157,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 40925,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "release": "20260830.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "Discourse shared uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.06304246,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 156,
+      "known_cost_usd": 0.12608492,
+      "median_duration_seconds": 108,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 24288,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "release": "20260830.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "Interrupted Discourse deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.04171348,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 186,
+      "known_cost_usd": 0.12514044,
+      "median_duration_seconds": 131,
+      "model": "openai/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 42973,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "release": "20260830.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "Nix store disk pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 135,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 72,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 7953,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "release": "20260830.0.1",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "Nginx 502 host failure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.056635490000000004,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 159,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 136,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 13851,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "release": "20260830.0.1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "Sidekiq connected to the wrong Redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.08778939000000001,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 189,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 137,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 16409,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "release": "20260830.0.1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "Sidekiq poison-pill job",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.10643491999999999,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 123,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 115,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 11712,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "release": "20260830.0.1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "Partial Rails rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.08942152,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 156,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 102,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 11942,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "release": "20260830.0.1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "Rust file-descriptor leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.07582661,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 195,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 156,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 19277,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "release": "20260830.0.1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "Discourse shared uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.12353755,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 147,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 115,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 13466,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "release": "20260830.0.1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "Interrupted Discourse deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.07321685,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_runtime_error": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 120,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 104,
+      "model": "opencode-go/gpt-5.6-luna",
+      "model_label": "GPT-5.6 Luna",
+      "output_tokens": 12447,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "release": "20260830.0.1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "Nix store disk pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.07533994999999999,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -27043,7 +27591,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": "v20260821.0.2",
-      "current": true,
+      "current": false,
       "description": "GPT-5.6 Luna, GPT-5.6 Sol, and GLM-5.3 Flash each attempted three durable repairs across a 502 host failure, a Sidekiq/Redis misconfiguration, and an interrupted Discourse deploy through the funded Vercel AI Gateway.",
       "harness_versions": [
         23
@@ -27052,7 +27600,7 @@
       "providers": [
         "vercel-ai-gateway"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -27115,6 +27663,260 @@
         "usage_reported_trials": 27
       },
       "version": "20260827.0.1"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "v20260821.0.2"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": "v20260821.0.2",
+      "current": true,
+      "description": "GPT-5.6 Luna attempted three repairs across each of the eight stable core infrastructure incidents through Claux and the OpenRouter API.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "tier": "core",
+      "title": "OpenRouter GPT-5.6 Luna core infrastructure cohort",
+      "totals": {
+        "cache_read_tokens": 13165980,
+        "cost_reported_trials": 23,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 24,
+        "failed": 2,
+        "failure_categories": {
+          "agent_timeout": 1,
+          "release_not_converged": 1
+        },
+        "input_tokens": 1251,
+        "known_cost_usd": 0.8044789,
+        "median_duration_seconds": 112.0,
+        "median_first_non_read_only_tool_seconds": 6.301,
+        "median_model_duration_seconds": 88.008,
+        "median_model_rounds": 16,
+        "median_post_first_non_read_only_seconds": 101.999,
+        "median_tool_calls": 33,
+        "median_tool_duration_seconds": 13.275,
+        "output_tokens": 212773,
+        "pass_rate": 0.9166666666666666,
+        "passed": 22,
+        "recording_reported_trials": 23,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 24,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 23
+      },
+      "version": "20260830.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "subscription",
+        "id": "opencode",
+        "label": "OpenCode",
+        "provider": "OpenCode Go",
+        "version": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": false,
+      "description": "GPT-5.6 Luna attempted three repairs across each of the eight stable core infrastructure incidents through the OpenCode harness and OpenCode Go subscription.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "opencode-go"
+      ],
+      "role": "companion",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "tier": "core",
+      "title": "OpenCode Go GPT-5.6 Luna core infrastructure cohort",
+      "totals": {
+        "cache_read_tokens": 12879809,
+        "cost_reported_trials": 0,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 24,
+        "failed": 2,
+        "failure_categories": {
+          "agent_runtime_error": 1,
+          "release_not_converged": 1
+        },
+        "input_tokens": 1224,
+        "known_cost_usd": 0,
+        "median_duration_seconds": 114.5,
+        "median_first_non_read_only_tool_seconds": 1.982,
+        "median_model_duration_seconds": 86.82300000000001,
+        "median_model_rounds": 17.0,
+        "median_post_first_non_read_only_seconds": 101.47200000000001,
+        "median_tool_calls": 40.5,
+        "median_tool_duration_seconds": 1.471,
+        "output_tokens": 107057,
+        "pass_rate": 0.9166666666666666,
+        "passed": 22,
+        "recording_reported_trials": 24,
+        "subscription_usage_reported_trials": 24,
+        "subscription_usage_usd": 0.68820228,
+        "trials": 24,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 24
+      },
+      "version": "20260830.0.1"
     }
   ],
   "schema_version": 1
