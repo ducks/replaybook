@@ -1,0 +1,41 @@
+{
+  "input_mode": "text",
+  "title": "OpenCode Go GPT-5.6 Luna core infrastructure cohort",
+  "description": "GPT-5.6 Luna attempted three repairs across each of the eight stable core infrastructure incidents through the OpenCode harness and OpenCode Go subscription.",
+  "agent_harness": {
+    "id": "opencode",
+    "label": "OpenCode",
+    "version": null,
+    "provider": "OpenCode Go",
+    "billing": "subscription"
+  },
+  "model_labels": {
+    "opencode-go/gpt-5.6-luna": "GPT-5.6 Luna"
+  },
+  "model_order": [
+    "opencode-go/gpt-5.6-luna"
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502 host failure",
+    "013-sidekiq-wrong-redis": "Sidekiq connected to the wrong Redis",
+    "015-sidekiq-poison-pill": "Sidekiq poison-pill job",
+    "017-partial-rails-rollout": "Partial Rails rollout",
+    "019-rust-fd-leak": "Rust file-descriptor leak",
+    "021-discourse-shared-uploads": "Discourse shared uploads",
+    "024-discourse-interrupted-deploy": "Interrupted Discourse deploy",
+    "028-nix-store-disk-pressure": "Nix store disk pressure"
+  },
+  "observations": [
+    "GPT-5.6 Luna completed 22 of 24 evaluated repairs for a 92% pass rate; all 24 trials produced an evaluated result.",
+    "Luna completed every attempt for six scenarios. The misses were one of three attempts on the interrupted Discourse deploy and one of three on Nix store disk pressure.",
+    "OpenCode Go reports subscription usage rather than metered per-trial provider cost, so public cost is unavailable rather than estimated.",
+    "The 1:54 median is directly comparable to other core cohorts only after keeping harness and provider identity visible."
+  ],
+  "notes": [
+    "This is an independent OpenCode Go companion cohort using the same core scenario and host-verifier boundary as the canonical OpenRouter release.",
+    "Results are intentionally not pooled with Claux/OpenRouter, Vercel AI Gateway, or other harness/provider cohorts.",
+    "Failures remain evaluated failures: one agent runtime error and one release-not-converged result.",
+    "OpenCode Go does not expose a metered request cost in the adapter output; n/a is the truthful cost value."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --models opencode-go/gpt-5.6-luna --reasoning-efforts high --agent-provider opencode-go --agent-adapter integrations/host/adapters/opencode.sh --agent-payload ~/.opencode/bin/opencode --agent-env-file <prepared-opencode-env> --agent-name opencode --concurrency 1 --base-port 28600"
+}

@@ -1,0 +1,1666 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 13165980,
+      "cost_reported_trials": 23,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 24,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "release_not_converged": 1
+      },
+      "input_tokens": 1251,
+      "known_cost_usd": 0.8044789,
+      "median_duration_seconds": 112.0,
+      "median_first_non_read_only_tool_seconds": 6.301,
+      "median_model_duration_seconds": 88.008,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 101.999,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 13.275,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 212773,
+      "pass_rate": 0.9166666666666666,
+      "passed": 22,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 23,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 23
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 1296531,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 126,
+      "known_cost_usd": 0.07898017,
+      "median_duration_seconds": 70,
+      "median_first_non_read_only_tool_seconds": 6.741,
+      "median_model_duration_seconds": 63.115,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 59.803999999999995,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 4.77,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 14783,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1595678,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 174,
+      "known_cost_usd": 0.09288966,
+      "median_duration_seconds": 149,
+      "median_first_non_read_only_tool_seconds": 6.854,
+      "median_model_duration_seconds": 88.008,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 141.236,
+      "median_tool_calls": 38,
+      "median_tool_duration_seconds": 28.704,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 26209,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1954327,
+      "cost_reported_trials": 2,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 147,
+      "known_cost_usd": 0.10331629,
+      "median_duration_seconds": 363,
+      "median_first_non_read_only_tool_seconds": 5.973,
+      "median_model_duration_seconds": 155.522,
+      "median_model_rounds": 24.5,
+      "median_post_first_non_read_only_seconds": 250.1565,
+      "median_tool_calls": 50.5,
+      "median_tool_duration_seconds": 100.111,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 27543,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 2,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 2
+    },
+    {
+      "cache_read_tokens": 1008038,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 111,
+      "known_cost_usd": 0.07025401,
+      "median_duration_seconds": 95,
+      "median_first_non_read_only_tool_seconds": 5.93,
+      "median_model_duration_seconds": 52.382,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 85.416,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 32.876,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 13954,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1309837,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 141,
+      "known_cost_usd": 0.08065179,
+      "median_duration_seconds": 99,
+      "median_first_non_read_only_tool_seconds": 6.301,
+      "median_model_duration_seconds": 85.364,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 90.798,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 13.275,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 22098,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 2083556,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 210,
+      "known_cost_usd": 0.12716162,
+      "median_duration_seconds": 157,
+      "median_first_non_read_only_tool_seconds": 7.192,
+      "median_model_duration_seconds": 146.883,
+      "median_model_rounds": 23,
+      "median_post_first_non_read_only_seconds": 145.394,
+      "median_tool_calls": 44,
+      "median_tool_duration_seconds": 6.273,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 40925,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1954456,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_tokens": 156,
+      "known_cost_usd": 0.12608492,
+      "median_duration_seconds": 108,
+      "median_first_non_read_only_tool_seconds": 5.834,
+      "median_model_duration_seconds": 95.183,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 99.702,
+      "median_tool_calls": 37,
+      "median_tool_duration_seconds": 9.929,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 24288,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1963557,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 186,
+      "known_cost_usd": 0.12514044,
+      "median_duration_seconds": 131,
+      "median_first_non_read_only_tool_seconds": 6.457,
+      "median_model_duration_seconds": 89.598,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 122.561,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 38.243,
+      "model": "openai/gpt-5.6-luna",
+      "output_tokens": 42973,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "v20260821.0.2"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.08.23"
+    },
+    "benchmark_tier": "core",
+    "claux_release": "v20260821.0.2",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+      "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
+      "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260824.0.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 2
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "GPT-5.6 Luna attempted three repairs across each of the eight stable core infrastructure incidents through Claux and the OpenRouter API.",
+  "input_mode": "text",
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna"
+  ],
+  "notes": [
+    "This is the canonical OpenRouter/Claux cohort for the stable core infrastructure manifest.",
+    "Results are intentionally not pooled with OpenCode Go, Vercel AI Gateway, or other harness/provider cohorts; those remain companion evidence.",
+    "Failures remain evaluated failures: one agent runtime error and one release-not-converged result.",
+    "The benchmark measures durable repair under the Replaybook host verifier, not general coding ability."
+  ],
+  "observations": [
+    "GPT-5.6 Luna completed 22 of 24 evaluated repairs for a 92% pass rate; all 24 trials produced an evaluated result.",
+    "Luna completed every attempt for six scenarios. The misses were one of three attempts on the Sidekiq poison-pill scenario and one of three on the interrupted Discourse deploy.",
+    "The run reported $0.8045 in provider spend, with the trailing plus indicating incomplete cost coverage in the source usage records.",
+    "This is a full three-attempt core cohort and supersedes the earlier single-model Luna snapshot for this scenario boundary."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --models openai/gpt-5.6-luna --reasoning-efforts high --claux-binary ../claux/target/release/claux --concurrency 1 --base-port 28600",
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 70,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T19:30:02Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.469,
+        "model_duration_seconds": 64.576,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 59.803999999999995,
+        "tool_calls": 25,
+        "tool_duration_seconds": 3.489,
+        "total_duration_seconds": 68.273
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T19:28:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 44323,
+        "cache_read_tokens": 344147,
+        "cost_usd": 0.023849090000000003,
+        "input_tokens": 39,
+        "output_tokens": 4898
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 70,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T19:31:55Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.741,
+        "model_duration_seconds": 63.115,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 61.479,
+        "tool_calls": 26,
+        "tool_duration_seconds": 4.77,
+        "total_duration_seconds": 68.22
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T19:30:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 43557,
+        "cache_read_tokens": 410792,
+        "cost_usd": 0.025315090000000005,
+        "input_tokens": 42,
+        "output_tokens": 5168
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 66,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T19:33:59Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.668,
+        "model_duration_seconds": 59.314,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 58.701,
+        "tool_calls": 28,
+        "tool_duration_seconds": 4.79,
+        "total_duration_seconds": 64.369
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T19:32:40Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 53259,
+        "cache_read_tokens": 541592,
+        "cost_usd": 0.029815989999999997,
+        "input_tokens": 45,
+        "output_tokens": 4717
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 114,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T19:37:04Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.327,
+        "model_duration_seconds": 82.656,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 106.32900000000001,
+        "tool_calls": 33,
+        "tool_duration_seconds": 28.704,
+        "total_duration_seconds": 111.656
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-29T19:34:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 46098,
+        "cache_read_tokens": 516930,
+        "cost_usd": 0.030497099999999996,
+        "input_tokens": 48,
+        "output_tokens": 7187
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 217,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T19:41:56Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.986,
+        "model_duration_seconds": 88.008,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 207.76100000000002,
+        "tool_calls": 38,
+        "tool_duration_seconds": 125.058,
+        "total_duration_seconds": 214.747
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-29T19:38:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 28796,
+        "cache_read_tokens": 335436,
+        "cost_usd": 0.023837120000000003,
+        "input_tokens": 51,
+        "output_tokens": 8266
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 149,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T19:45:39Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.854,
+        "model_duration_seconds": 140.627,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 141.236,
+        "tool_calls": 46,
+        "tool_duration_seconds": 7.13,
+        "total_duration_seconds": 148.09
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-08-29T19:42:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 43068,
+        "cache_read_tokens": 743312,
+        "cost_usd": 0.03855544,
+        "input_tokens": 75,
+        "output_tokens": 10756
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 153,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T19:49:32Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.133,
+        "model_duration_seconds": 104.01,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 145.295,
+        "tool_calls": 36,
+        "tool_duration_seconds": 47.061,
+        "total_duration_seconds": 151.428
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T19:46:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 50845,
+        "cache_read_tokens": 518521,
+        "cost_usd": 0.034276469999999996,
+        "input_tokens": 48,
+        "output_tokens": 9321
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 363,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T19:56:44Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.813,
+        "model_duration_seconds": 207.034,
+        "model_rounds": 33,
+        "post_first_non_read_only_seconds": 355.01800000000003,
+        "tool_calls": 65,
+        "tool_duration_seconds": 153.161,
+        "total_duration_seconds": 360.831
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T19:50:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 73750,
+        "cache_read_tokens": 1435806,
+        "cost_usd": 0.06903982,
+        "input_tokens": 99,
+        "output_tokens": 18222
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 931,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-08-29T20:14:20Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T19:57:38Z",
+      "trial_status": "evaluated",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 95,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:17:31Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.381,
+        "model_duration_seconds": 59.685,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 85.416,
+        "tool_calls": 24,
+        "tool_duration_seconds": 32.876,
+        "total_duration_seconds": 92.797
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:15:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 38306,
+        "cache_read_tokens": 336314,
+        "cost_usd": 0.02264658,
+        "input_tokens": 39,
+        "output_tokens": 5280
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 110,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:20:36Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.93,
+        "model_duration_seconds": 52.382,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 101.999,
+        "tool_calls": 25,
+        "tool_duration_seconds": 55.351,
+        "total_duration_seconds": 107.929
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:18:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 46900,
+        "cache_read_tokens": 399794,
+        "cost_usd": 0.02490908,
+        "input_tokens": 39,
+        "output_tokens": 4317
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 62,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:22:58Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.738,
+        "model_duration_seconds": 47.952,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 55.269,
+        "tool_calls": 27,
+        "tool_duration_seconds": 12.801,
+        "total_duration_seconds": 61.007
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:21:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 48099,
+        "cache_read_tokens": 271930,
+        "cost_usd": 0.02269835,
+        "input_tokens": 33,
+        "output_tokens": 4357
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 77,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:26:48Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.301,
+        "model_duration_seconds": 62.58,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 69.767,
+        "tool_calls": 22,
+        "tool_duration_seconds": 13.275,
+        "total_duration_seconds": 76.068
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:25:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 22868,
+        "cache_read_tokens": 208240,
+        "cost_usd": 0.017441200000000004,
+        "input_tokens": 39,
+        "output_tokens": 6293
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 99,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:31:00Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.089,
+        "model_duration_seconds": 85.939,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 90.798,
+        "tool_calls": 24,
+        "tool_duration_seconds": 10.709,
+        "total_duration_seconds": 96.887
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:29:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 36388,
+        "cache_read_tokens": 366054,
+        "cost_usd": 0.026219080000000002,
+        "input_tokens": 45,
+        "output_tokens": 8160
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 106,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:35:09Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.997,
+        "model_duration_seconds": 85.364,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 94.506,
+        "tool_calls": 35,
+        "tool_duration_seconds": 18.77,
+        "total_duration_seconds": 104.503
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:33:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 52381,
+        "cache_read_tokens": 735543,
+        "cost_usd": 0.03699151,
+        "input_tokens": 57,
+        "output_tokens": 7645
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 157,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:39:10Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.921,
+        "model_duration_seconds": 146.883,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 145.394,
+        "tool_calls": 44,
+        "tool_duration_seconds": 4.097,
+        "total_duration_seconds": 151.315
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:36:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 52748,
+        "cache_read_tokens": 686235,
+        "cost_usd": 0.0446531,
+        "input_tokens": 69,
+        "output_tokens": 14773
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 131,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:42:37Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.192,
+        "model_duration_seconds": 122.671,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 122.76999999999998,
+        "tool_calls": 44,
+        "tool_duration_seconds": 6.936,
+        "total_duration_seconds": 129.962
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:40:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 43364,
+        "cache_read_tokens": 599731,
+        "cost_usd": 0.03736102,
+        "input_tokens": 63,
+        "output_tokens": 12094
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 165,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:46:38Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 12.889,
+        "model_duration_seconds": 155.699,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 149.518,
+        "tool_calls": 49,
+        "tool_duration_seconds": 6.273,
+        "total_duration_seconds": 162.407
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:43:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 49242,
+        "cache_read_tokens": 797590,
+        "cost_usd": 0.0451475,
+        "input_tokens": 78,
+        "output_tokens": 14058
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 108,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-08-29T20:49:52Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.834,
+        "model_duration_seconds": 95.183,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 99.702,
+        "tool_calls": 33,
+        "tool_duration_seconds": 9.929,
+        "total_duration_seconds": 105.536
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:47:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 113964,
+        "cache_read_tokens": 558582,
+        "cost_usd": 0.048317040000000006,
+        "input_tokens": 48,
+        "output_tokens": 7204
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 144,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:53:33Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.235,
+        "model_duration_seconds": 112.842,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 135.849,
+        "tool_calls": 41,
+        "tool_duration_seconds": 28.928,
+        "total_duration_seconds": 142.084
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:50:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 51607,
+        "cache_read_tokens": 694246,
+        "cost_usd": 0.03897866999999999,
+        "input_tokens": 60,
+        "output_tokens": 10150
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 92,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T20:56:24Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.203,
+        "model_duration_seconds": 84.271,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 85.005,
+        "tool_calls": 37,
+        "tool_duration_seconds": 5.585,
+        "total_duration_seconds": 90.208
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:54:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 65705,
+        "cache_read_tokens": 701628,
+        "cost_usd": 0.038789210000000005,
+        "input_tokens": 48,
+        "output_tokens": 6934
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 131,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T21:00:04Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.457,
+        "model_duration_seconds": 89.428,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 122.561,
+        "tool_calls": 33,
+        "tool_duration_seconds": 39.36,
+        "total_duration_seconds": 129.018
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-openai-gpt-5-6-luna-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T20:57:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 34465,
+        "cache_read_tokens": 393410,
+        "cost_usd": 0.027087049999999998,
+        "input_tokens": 51,
+        "output_tokens": 8827
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 110,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T21:03:34Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.328,
+        "model_duration_seconds": 89.598,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 101.446,
+        "tool_calls": 28,
+        "tool_duration_seconds": 17.954,
+        "total_duration_seconds": 107.774
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-openai-gpt-5-6-luna-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T21:01:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 29846,
+        "cache_read_tokens": 302921,
+        "cost_usd": 0.023493120000000003,
+        "input_tokens": 48,
+        "output_tokens": 8303
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 292,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-08-29T21:10:10Z",
+      "model": "openai/gpt-5.6-luna",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.841,
+        "model_duration_seconds": 251.349,
+        "model_rounds": 29,
+        "post_first_non_read_only_seconds": 283.158,
+        "tool_calls": 61,
+        "tool_duration_seconds": 38.243,
+        "total_duration_seconds": 289.999
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-openai-gpt-5-6-luna-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-08-29T21:05:00Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 72747,
+        "cache_read_tokens": 1267226,
+        "cost_usd": 0.07456027,
+        "input_tokens": 87,
+        "output_tokens": 25843
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502 host failure",
+    "013-sidekiq-wrong-redis": "Sidekiq connected to the wrong Redis",
+    "015-sidekiq-poison-pill": "Sidekiq poison-pill job",
+    "017-partial-rails-rollout": "Partial Rails rollout",
+    "019-rust-fd-leak": "Rust file-descriptor leak",
+    "021-discourse-shared-uploads": "Discourse shared uploads",
+    "024-discourse-interrupted-deploy": "Interrupted Discourse deploy",
+    "028-nix-store-disk-pressure": "Nix store disk pressure"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.08.23"
+      },
+      "benchmark_tier": "core",
+      "claux_release": "v20260821.0.2",
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_packs": [
+          {
+            "git_commit": "86d92be2722ece958e09efec88b52c921e23e849",
+            "id": "ducks/replaybook-infra",
+            "sha256": "d1a793e4aacb2e06f95b2c588dcccb7f539e420ca7ff646ff6bfa96ff883dbbc",
+            "version": "20260824.0.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+            "version": 2
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-08-29T21:10:11.003567Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "openai/gpt-5.6-luna"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "f5042d197ab27c8808ac484b8810096e750889a6",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-08-29__19-27-41.db695c",
+      "started_at": "2026-08-29T19:27:42.040393Z",
+      "suite": "replaybook-host-matrix-v1"
+    }
+  ],
+  "tier": "core",
+  "title": "OpenRouter GPT-5.6 Luna core infrastructure cohort",
+  "totals": {
+    "cache_read_tokens": 13165980,
+    "cost_reported_trials": 23,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 24,
+    "failed": 2,
+    "failure_categories": {
+      "agent_timeout": 1,
+      "release_not_converged": 1
+    },
+    "input_tokens": 1251,
+    "known_cost_usd": 0.8044789,
+    "median_duration_seconds": 112.0,
+    "median_first_non_read_only_tool_seconds": 6.301,
+    "median_model_duration_seconds": 88.008,
+    "median_model_rounds": 16,
+    "median_post_first_non_read_only_seconds": 101.999,
+    "median_tool_calls": 33,
+    "median_tool_duration_seconds": 13.275,
+    "output_tokens": 212773,
+    "pass_rate": 0.9166666666666666,
+    "passed": 22,
+    "recording_reported_trials": 23,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 24,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 23
+  },
+  "version": "20260830.0.0"
+}

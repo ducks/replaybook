@@ -1,0 +1,41 @@
+{
+  "input_mode": "text",
+  "title": "OpenRouter GPT-5.6 Luna core infrastructure cohort",
+  "description": "GPT-5.6 Luna attempted three repairs across each of the eight stable core infrastructure incidents through Claux and the OpenRouter API.",
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "v20260821.0.2",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "model_labels": {
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna"
+  },
+  "model_order": [
+    "openai/gpt-5.6-luna"
+  ],
+  "scenario_labels": {
+    "001-nginx-502-host": "Nginx 502 host failure",
+    "013-sidekiq-wrong-redis": "Sidekiq connected to the wrong Redis",
+    "015-sidekiq-poison-pill": "Sidekiq poison-pill job",
+    "017-partial-rails-rollout": "Partial Rails rollout",
+    "019-rust-fd-leak": "Rust file-descriptor leak",
+    "021-discourse-shared-uploads": "Discourse shared uploads",
+    "024-discourse-interrupted-deploy": "Interrupted Discourse deploy",
+    "028-nix-store-disk-pressure": "Nix store disk pressure"
+  },
+  "observations": [
+    "GPT-5.6 Luna completed 22 of 24 evaluated repairs for a 92% pass rate; all 24 trials produced an evaluated result.",
+    "Luna completed every attempt for six scenarios. The misses were one of three attempts on the Sidekiq poison-pill scenario and one of three on the interrupted Discourse deploy.",
+    "The run reported $0.8045 in provider spend, with the trailing plus indicating incomplete cost coverage in the source usage records.",
+    "This is a full three-attempt core cohort and supersedes the earlier single-model Luna snapshot for this scenario boundary."
+  ],
+  "notes": [
+    "This is the canonical OpenRouter/Claux cohort for the stable core infrastructure manifest.",
+    "Results are intentionally not pooled with OpenCode Go, Vercel AI Gateway, or other harness/provider cohorts; those remain companion evidence.",
+    "Failures remain evaluated failures: one agent runtime error and one release-not-converged result.",
+    "The benchmark measures durable repair under the Replaybook host verifier, not general coding ability."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --models openai/gpt-5.6-luna --reasoning-efforts high --claux-binary ../claux/target/release/claux --concurrency 1 --base-port 28600"
+}

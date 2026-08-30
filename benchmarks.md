@@ -9,21 +9,19 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Vercel AI Gateway funded infrastructure cohort
+## OpenRouter GPT-5.6 Luna core infrastructure cohort
 
-GPT-5.6 Luna, GPT-5.6 Sol, and GLM-5.3 Flash each attempted three durable repairs across a 502 host failure, a Sidekiq/Redis misconfiguration, and an interrupted Discourse deploy through the funded Vercel AI Gateway.
+GPT-5.6 Luna attempted three repairs across each of the eight stable core infrastructure incidents through Claux and the OpenRouter API.
 
-Benchmark release: `20260827.0.1`
-Benchmark tier: `unclassified`
+Benchmark release: `20260830.0.0`
+Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20260824.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) · vercel-ai-gateway | 9/9 | 100% | 1:47 | $0.2627 | $0.0292 |
-| GPT-5.6 Sol (high) · vercel-ai-gateway | 9/9 | 100% | 1:55 | $1.8907 | $0.2101 |
-| GLM-5.3 Flash (high) · vercel-ai-gateway | 9/9 | 100% | 2:43 | $0.0540 | $0.0060 |
-| **Total** | **27/27** | **100%** | **2:07** | **$2.2074** | **$0.0818** |
+| GPT-5.6 Luna (high) · openrouter | 22/24 | 92% | 1:52 | $0.8045+ | $0.0366+ |
+| **Total** | **22/24** | **92%** | **1:52** | **$0.8045+** | **$0.0366+** |
 
 ### Execution recording
 
@@ -31,38 +29,44 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) · vercel-ai-gateway | 9/9 | 16 | 1:31 | 33 | 0:11 | 0:06 | 1:39 |
-| GPT-5.6 Sol (high) · vercel-ai-gateway | 9/9 | 16 | 1:43 | 34 | 0:06 | 0:09 | 1:41 |
-| GLM-5.3 Flash (high) · vercel-ai-gateway | 9/9 | 14 | 2:31 | 17 | 0:06 | 0:07 | 2:34 |
+| GPT-5.6 Luna (high) · openrouter | 23/24 | 16 | 1:28 | 33 | 0:13 | 0:06 | 1:42 |
 
-All three models completed all nine evaluated repairs: 27 durable repairs from 27 attempts, with no unavailable trials.
+GPT-5.6 Luna completed 22 of 24 evaluated repairs for a 92% pass rate; all 24 trials produced an evaluated result.
 
-GPT-5.6 Luna was fastest at a 1:47 median, followed by GPT-5.6 Sol at 1:55 and GLM-5.3 Flash at 2:43.
+Luna completed every attempt for six scenarios. The misses were one of three attempts on the Sidekiq poison-pill scenario and one of three on the interrupted Discourse deploy.
 
-The cohort cost $2.2074 in reported provider spend; GLM-5.3 Flash was the least expensive lane at $0.0540, while Sol was the most expensive at $1.8907.
+The run reported $0.8045 in provider spend, with the trailing plus indicating incomplete cost coverage in the source usage records.
 
-This funded run replaces the earlier free-tier availability probe as the Vercel capability evidence for these scenarios.
+This is a full three-attempt core cohort and supersedes the earlier single-model Luna snapshot for this scenario boundary.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Luna (high) · vercel-ai-gateway | GPT-5.6 Sol (high) · vercel-ai-gateway | GLM-5.3 Flash (high) · vercel-ai-gateway |
-|---|---:|---:|---:|---:|
-| Nginx 502 host failure | v1 | 3/3, 1:13 | 3/3, 1:18 | 3/3, 4:30 |
-| Sidekiq connected to the wrong Redis | v2 | 3/3, 1:47 | 3/3, 2:10 | 3/3, 2:13 |
-| Interrupted Discourse deploy | v1 | 3/3, 2:13 | 3/3, 2:07 | 3/3, 3:04 |
+| Scenario | Version | GPT-5.6 Luna (high) · openrouter |
+|---|---:|---:|
+| Nginx 502 host failure | v1 | 3/3, 1:10 |
+| Sidekiq connected to the wrong Redis | v2 | 3/3, 2:29 |
+| Sidekiq poison-pill job | v1 | 2/3, 6:03 |
+| Partial Rails rollout | v1 | 3/3, 1:35 |
+| Rust file-descriptor leak | v1 | 3/3, 1:39 |
+| Discourse shared uploads | v1 | 3/3, 2:37 |
+| Interrupted Discourse deploy | v1 | 2/3, 1:48 |
+| Nix store disk pressure | v1 | 3/3, 2:11 |
 
 ### Failure categories
 
+- `agent_timeout`: 1
+- `release_not_converged`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-08-27__23-40-56.206d85`: openai/gpt-5.6-luna, openai/gpt-5.6-sol, zai/glm-5.3-flash; Replaybook `39988d1f`; reasoning high
+- `host-matrix-2026-08-29__19-27-41.db695c`: openai/gpt-5.6-luna; Replaybook `f5042d19`; reasoning high
 
 ### Run notes
 
-- This is a Vercel AI Gateway provider cohort through Claux and is intentionally kept separate from direct OpenRouter and OpenCode Go results.
-- All lanes use the same text scenario-pack revision, Replaybook host harness, three-attempt design, high reasoning effort, and 900-second timeout.
-- Reported costs are provider-reported request charges from the funded gateway account.
+- This is the canonical OpenRouter/Claux cohort for the stable core infrastructure manifest.
+- Results are intentionally not pooled with OpenCode Go, Vercel AI Gateway, or other harness/provider cohorts; those remain companion evidence.
+- Failures remain evaluated failures: one agent runtime error and one release-not-converged result.
+- The benchmark measures durable repair under the Replaybook host verifier, not general coding ability.
 
 <!-- replaybook:current-benchmark:end -->
 
