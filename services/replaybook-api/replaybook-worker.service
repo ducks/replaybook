@@ -1,0 +1,20 @@
+[Unit]
+Description=Replaybook warm scenario worker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=replaybook-worker
+Group=replaybook-worker
+EnvironmentFile=/etc/replaybook-api/worker.env
+ExecStart=/opt/replaybook-api/bin/replaybook-worker
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

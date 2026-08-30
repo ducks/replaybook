@@ -88,6 +88,12 @@ socket and must be treated as owning that VM. See
 model. A repeatable [two-host deployment kit](deploy/README.md) configures a
 trusted controller and a disposable Fornex-compatible Ubuntu worker.
 
+The separate [`services/replaybook-api`](services/replaybook-api/) package is
+the experimental hosted benchmark-submission control plane. It is distinct
+from `replaybook serve`: the existing command serves one authenticated training
+VM, while this API queues scenario runs onto warm workers and returns
+normalized benchmark results.
+
 ## Evaluate agents
 
 The host-native evaluator runs an agent directly on a disposable NixOS
