@@ -1837,16 +1837,13 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
         )
         for aggregate in release["by_model"]:
             interval = wilson_interval(aggregate["passed"], aggregate["evaluated"])
+            provider = agent_harness.get("provider") or aggregate.get("provider")
             lanes.append(
                 {
                     "release": version,
                     "tier": tier_value(release),
                     "input_mode": release.get("input_mode", "text"),
-                    **(
-                        {"provider": aggregate["provider"]}
-                        if aggregate.get("provider")
-                        else {}
-                    ),
+                    **({"provider": provider} if provider else {}),
                     "model": aggregate["model"],
                     "model_label": label(release, "model", aggregate["model"]),
                     "reasoning_effort": aggregate.get("reasoning_effort"),
@@ -1878,6 +1875,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
             )
         for aggregate in release["by_scenario_model"]:
             interval = wilson_interval(aggregate["passed"], aggregate["evaluated"])
+            provider = agent_harness.get("provider") or aggregate.get("provider")
             records.append(
                 {
                     "release": version,
@@ -1886,11 +1884,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                     "scenario": aggregate["scenario"],
                     "scenario_label": label(release, "scenario", aggregate["scenario"]),
                     "scenario_version": aggregate["scenario_version"],
-                    **(
-                        {"provider": aggregate["provider"]}
-                        if aggregate.get("provider")
-                        else {}
-                    ),
+                    **({"provider": provider} if provider else {}),
                     "model": aggregate["model"],
                     "model_label": label(release, "model", aggregate["model"]),
                     "reasoning_effort": aggregate.get("reasoning_effort"),
