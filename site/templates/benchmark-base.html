@@ -21,7 +21,7 @@
     </header>
 
 {% set mode = active_mode|default("none") %}
-    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+    <nav class="benchmark-tabs{% if active_tab == 'scenarios' %} with-modality{% endif %}" aria-label="Benchmark sections">
       <a href="{% if mode == 'visual' %}benchmark-visual.html{% else %}benchmarks.html{% endif %}"{% if active_tab in ["overview", "current"] %} class="active" aria-current="page"{% endif %}>Overview</a>
       <a href="scenarios.html"{% if active_tab == "scenarios" %} class="active" aria-current="page"{% endif %}>Scenarios</a>
       <a href="benchmark-models.html"{% if active_tab == "models" %} class="active" aria-current="page"{% endif %}>Models</a>
