@@ -84,12 +84,11 @@ class PagesTests(unittest.TestCase):
         ).read_text()
         self.assertNotIn("<!doctype html>", publisher)
 
-    def test_benchmark_pages_separate_current_history_and_methodology(self) -> None:
+    def test_benchmark_pages_separate_current_and_history(self) -> None:
         current = (DOCS_DIR / "benchmarks.html").read_text()
         visual = (DOCS_DIR / "benchmark-visual.html").read_text()
         explorer = (DOCS_DIR / "benchmark-explorer.html").read_text()
         history = (DOCS_DIR / "benchmark-history.html").read_text()
-        methodology = (DOCS_DIR / "benchmark-methodology.html").read_text()
 
         index = json.loads((BENCHMARK_DATA_DIR / "index.json").read_text())
         visual_version = next(
@@ -129,9 +128,9 @@ class PagesTests(unittest.TestCase):
         self.assertIn("migration_not_applied", history)
         self.assertIn('class="badge archived"', history)
 
-        self.assertIn("Evaluated, failed, and unavailable", methodology)
-        self.assertIn("Price per durable repair", methodology)
-        self.assertIn("v6", methodology)
+        self.assertIn("Evaluated, failed, and unavailable", current)
+        self.assertIn("When results are comparable", current)
+        self.assertIn("Benchmark tiers", current)
 
     def test_core_pages_cover_current_workflows(self) -> None:
         home = (DOCS_DIR / "index.html").read_text()
