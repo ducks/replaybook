@@ -1,15 +1,15 @@
 {% extends "benchmark-base.html" %}
 {% set active_tab = "models" %}
 {% block title %}Model evidence{% endblock %}
-{% block description %}Shareable evidence profiles for Replaybook's canonical infrastructure-agent fleet.{% endblock %}
+{% block description %}Shareable evidence profiles for every model lane observed in Replaybook infrastructure-agent benchmarks.{% endblock %}
 {% block content %}
-    <p class="eyebrow">Canonical fleet</p>
+    <p class="eyebrow">Observed model lanes</p>
     <h1>Model evidence</h1>
-    <p class="tagline benchmark-tagline">Shareable profiles using each model lane's newest tracked evidence for every current scenario.</p>
+    <p class="tagline benchmark-tagline">Shareable profiles using each observed model lane's newest tracked evidence for every current scenario.</p>
 
     <div class="callout comparison-note">
       <strong>This is evidence coverage, not one pooled leaderboard.</strong>
-      Each profile uses the newest available result for that model and scenario. Totals still describe independently versioned cohorts; open a profile to inspect every boundary.
+      Each profile uses the newest available result for that model, provider, and scenario. Totals still describe independently versioned cohorts; open a profile to inspect every boundary.
     </div>
 
     <div id="models-context" class="small muted"></div>
@@ -30,6 +30,7 @@
   function profileUrl(lane) {
     const query = new URLSearchParams({model: lane.model});
     if (lane.reasoning_effort) query.set("reasoning", lane.reasoning_effort);
+    if (lane.provider) query.set("provider", lane.provider);
     return `benchmark-model.html?${query}`;
   }
 
@@ -44,12 +45,30 @@
   }
 
   async function initialize() {
-    const response = await fetch("benchmark-coverage.json");
-    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
-    const coverage = await response.json();
-    document.querySelector("#models-context").textContent = `${coverage.fleet.length} model lanes across ${coverage.scenarios.length} current scenarios · generated from benchmark ${coverage.generated_from}`;
+    const [coverageResponse, catalogResponse] = await Promise.all([fetch("benchmark-coverage.json"), fetch("benchmark-catalog.json")]);
+    if (!coverageResponse.ok || !catalogResponse.ok) throw new Error("benchmark data request failed");
+    const coverage = await coverageResponse.json();
+    const catalog = await catalogResponse.json();
+    const scenarioCount = coverage.scenarios.length;
+    const groups = new Map();
+    catalog.records.forEach(record => {
+      const key = `${record.provider || ""}|||${record.model}|||${record.reasoning_effort || ""}`;
+      if (!groups.has(key)) groups.set(key, {provider: record.provider, model: record.model, model_label: record.model_label, reasoning_effort: record.reasoning_effort, records: []});
+      groups.get(key).records.push(record);
+    });
+    const lanes = [...groups.values()].map(lane => {
+      const latest = new Map();
+      lane.records.forEach(record => {
+        const previous = latest.get(record.scenario);
+        if (!previous || record.release.localeCompare(previous.release) > 0) latest.set(record.scenario, record);
+      });
+      lane.records = [...latest.values()];
+      lane.tiers = [...new Set(lane.records.map(record => record.tier))];
+      return lane;
+    }).sort((a, b) => a.model_label.localeCompare(b.model_label) || (a.provider || "").localeCompare(b.provider || ""));
+    document.querySelector("#models-context").textContent = `${lanes.length} observed model lanes across ${catalog.records.length} published records · newest evidence per scenario`;
     const grid = document.querySelector("#model-grid");
-    coverage.profiles.forEach(lane => {
+    lanes.forEach(lane => {
       const cells = lane.records;
       const evaluated = cells.reduce((sum, cell) => sum + cell.evaluated, 0);
       const passed = cells.reduce((sum, cell) => sum + cell.passed, 0);
@@ -65,10 +84,10 @@
       link.textContent = laneLabel(lane);
       title.append(link);
       const identity = document.createElement("code");
-      identity.textContent = lane.model;
+      identity.textContent = `${lane.provider || "Provider not reported"} · ${lane.model}`;
       const stats = document.createElement("div");
       stats.className = "model-card-stats";
-      stats.innerHTML = `<span><strong>${cells.length}/${coverage.scenarios.length}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${costReported ? money(cost, incomplete) : "n/a"}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
+      stats.innerHTML = `<span><strong>${cells.length}/${scenarioCount}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${costReported ? money(cost, incomplete) : "n/a"}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
       const open = document.createElement("a");
       open.className = "model-card-link";
       open.href = profileUrl(lane);

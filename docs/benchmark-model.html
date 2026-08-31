@@ -54,14 +54,14 @@
     <ul id="profile-failures"></ul>
 
     <p><a id="profile-compare" href="benchmark-compare.html">Compare latest cohort →</a></p>
-    <p><a href="benchmark-models.html">← All canonical model profiles</a></p>
+    <p><a href="benchmark-models.html">← All observed model profiles</a></p>
     <p class="small muted">This profile is generated from <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a>.</p>
 
     <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
   </div>
   <script>
   function laneKey(item) {
-    return `${item.model}|||${item.reasoning_effort || ""}`;
+    return `${item.provider || ""}|||${item.model}|||${item.reasoning_effort || ""}`;
   }
 
   function duration(seconds) {
@@ -80,17 +80,30 @@
   }
 
   async function initialize() {
-    const response = await fetch("benchmark-coverage.json");
-    if (!response.ok) throw new Error(`coverage request failed: ${response.status}`);
-    const coverage = await response.json();
+    const [coverageResponse, catalogResponse] = await Promise.all([fetch("benchmark-coverage.json"), fetch("benchmark-catalog.json")]);
+    if (!coverageResponse.ok || !catalogResponse.ok) throw new Error("benchmark data request failed");
+    const coverage = await coverageResponse.json();
+    const catalog = await catalogResponse.json();
     const params = new URLSearchParams(window.location.search);
-    const requested = `${params.get("model") || ""}|||${params.get("reasoning") || ""}`;
-    const lane = coverage.profiles.find(item => laneKey(item) === requested);
-    if (!lane) throw new Error("select a canonical model from the model evidence page");
+    const requested = `${params.get("provider") || ""}|||${params.get("model") || ""}|||${params.get("reasoning") || ""}`;
+    let lane = coverage.profiles.find(item => laneKey(item) === requested);
+    if (!lane && !params.get("provider")) lane = coverage.profiles.find(item => laneKey(item) === `|||${params.get("model") || ""}|||${params.get("reasoning") || ""}`);
+    if (!lane) {
+      const matches = catalog.records.filter(record => laneKey(record) === requested);
+      if (matches.length) {
+        const latest = new Map();
+        matches.forEach(record => {
+          const previous = latest.get(record.scenario);
+          if (!previous || record.release.localeCompare(previous.release) > 0) latest.set(record.scenario, record);
+        });
+        lane = {provider: matches[0].provider, model: matches[0].model, model_label: matches[0].model_label, reasoning_effort: matches[0].reasoning_effort, tiers: [...new Set(matches.map(record => record.tier))], records: [...latest.values()]};
+      }
+    }
+    if (!lane) throw new Error("select an observed model from the model evidence page");
     document.title = `${lane.model_label} · Replaybook model evidence`;
     document.querySelector("#profile-title").textContent = lane.model_label;
     document.querySelector("#profile-effort").textContent = lane.reasoning_effort ? `Reasoning ${lane.reasoning_effort}` : "Default reasoning";
-    document.querySelector("#profile-identity").textContent = `${lane.model} · evidence tiers: ${lane.tiers.join(", ") || "none"}`;
+    document.querySelector("#profile-identity").textContent = `${lane.provider || "Provider not reported"} · ${lane.model} · evidence tiers: ${lane.tiers.join(", ") || "none"}`;
 
     const records = new Map(lane.records.map(record => [record.scenario, record]));
     const entries = coverage.scenarios.map(scenario => ({
