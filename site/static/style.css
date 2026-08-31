@@ -40,7 +40,7 @@ header.site {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.5rem;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border);
 }
@@ -99,9 +99,8 @@ nav.site a.active {
 .benchmark-tabs {
   display: flex;
   gap: 0.35rem;
-  margin: -1rem 0 2.25rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  margin: 0 0 2.25rem;
+  padding: 0 0 0.5rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -229,6 +228,16 @@ pre code {
 
 .benchmark-tagline {
   max-width: 760px;
+}
+
+.guide-intro {
+  margin: 2rem 0 2.75rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--accent);
+}
+
+.guide-intro h2 {
+  margin-top: 0;
 }
 
 .metric-grid,
@@ -1259,6 +1268,16 @@ pre code {
   margin: 1.5rem 0 2rem;
 }
 
+.model-family > h2 {
+  margin: 2.5rem 0 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.model-family:first-child > h2 {
+  margin-top: 2rem;
+}
+
 .model-card {
   display: flex;
   flex-direction: column;
@@ -1305,6 +1324,71 @@ pre code {
   margin-top: auto;
   font-weight: 600;
   text-decoration: none;
+}
+
+.scenario-catalog-grid,
+.provider-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.scenario-catalog-card,
+.provider-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.25rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.scenario-catalog-card h2,
+.provider-card h2 {
+  margin: 0 0 0.35rem;
+  padding: 0;
+  border: 0;
+}
+
+.provider-card h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.provider-card h2 a:hover {
+  color: var(--accent);
+}
+
+.scenario-catalog-card > code,
+.provider-card > code {
+  align-self: flex-start;
+  overflow-wrap: anywhere;
+}
+
+.scenario-catalog-card p,
+.provider-card p {
+  color: var(--fg-dim);
+}
+
+.provider-card-link {
+  margin-top: auto;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.scenario-catalog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.8rem;
+  margin: 0.5rem 0 1.25rem;
+  color: var(--fg-dim);
+  font-size: 0.78rem;
+}
+
+.scenario-catalog-next {
+  max-width: 48rem;
 }
 
 .catalog-controls {
@@ -1547,6 +1631,8 @@ footer.site a {
   .catalog-controls,
   .catalog-breakdowns,
   .model-grid,
+  .scenario-catalog-grid,
+  .provider-grid,
   .compare-picker,
   .compare-metrics,
   .compare-chart-grid {

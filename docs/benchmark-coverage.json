@@ -4,6 +4,7 @@
     {
       "model": "deepseek/deepseek-v4-flash-0731",
       "model_label": "DeepSeek V4 Flash",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "tiers": [
         "core",
@@ -15,6 +16,7 @@
     {
       "model": "google/gemini-3.7-flash",
       "model_label": "Gemini 3.7 Flash",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "tiers": [
         "core",
@@ -26,6 +28,7 @@
     {
       "model": "openai/gpt-5.6-luna",
       "model_label": "GPT-5.6 Luna",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "tiers": [
         "core",
@@ -37,16 +40,7 @@
     {
       "model": "openai/gpt-5.6-luna",
       "model_label": "GPT-5.6 Luna",
-      "provider": "openrouter",
-      "reasoning_effort": "high",
-      "tiers": [
-        "core"
-      ]
-    },
-    {
-      "model": "openai/gpt-5.6-luna",
-      "model_label": "GPT-5.6 Luna",
-      "provider": "vercel-ai-gateway",
+      "provider": "Vercel AI Gateway",
       "reasoning_effort": "high",
       "tiers": [
         "unclassified"
@@ -55,6 +49,7 @@
     {
       "model": "stealth/ox-alpha",
       "model_label": "Ox Alpha",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "tiers": [
         "core",
@@ -65,6 +60,7 @@
     {
       "model": "qwen/qwen3.8-2.4t-a95b",
       "model_label": "Qwen3.8 2.4T A95B",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "tiers": [
         "core",
@@ -76,6 +72,7 @@
     {
       "model": "z-ai/glm-5.3",
       "model_label": "GLM 5.3",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "tiers": [
         "core",
@@ -88,6 +85,7 @@
     {
       "model": "deepseek/deepseek-v4-flash-0731",
       "model_label": "DeepSeek V4 Flash",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "records": [
         {
@@ -108,6 +106,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "001-nginx-502-host",
@@ -138,6 +137,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "013-sidekiq-wrong-redis",
@@ -168,6 +168,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "014-missing-rails-migration",
@@ -198,6 +199,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "015-sidekiq-poison-pill",
@@ -228,6 +230,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "016-rails-pool-exhaustion",
@@ -258,6 +261,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "017-partial-rails-rollout",
@@ -288,6 +292,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "018-node-event-loop-blocking",
@@ -318,6 +323,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "019-rust-fd-leak",
@@ -348,6 +354,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "020-python-gunicorn-saturation",
@@ -378,6 +385,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "021-discourse-shared-uploads",
@@ -408,6 +416,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "022-discourse-multisite-migration",
@@ -438,6 +447,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "023-auth-secret-rollout",
@@ -470,6 +480,7 @@
           "pass_rate_95_high": 0.5614970317550454,
           "pass_rate_95_low": 5.551115123125783e-17,
           "passed": 0,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "024-discourse-interrupted-deploy",
@@ -500,6 +511,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.20654931437723745,
           "passed": 1,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260816.0.0",
           "scenario": "025-discourse-bootstrap",
@@ -532,6 +544,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "026-discourse-plugin-boot-loop",
@@ -562,6 +575,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "027-partial-service-rollout",
@@ -594,6 +608,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "028-nix-store-disk-pressure",
@@ -617,6 +632,7 @@
     {
       "model": "google/gemini-3.7-flash",
       "model_label": "Gemini 3.7 Flash",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "records": [
         {
@@ -637,6 +653,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "001-nginx-502-host",
@@ -667,6 +684,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "013-sidekiq-wrong-redis",
@@ -697,6 +715,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "014-missing-rails-migration",
@@ -727,6 +746,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "015-sidekiq-poison-pill",
@@ -757,6 +777,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "016-rails-pool-exhaustion",
@@ -789,6 +810,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "017-partial-rails-rollout",
@@ -819,6 +841,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "018-node-event-loop-blocking",
@@ -849,6 +872,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "019-rust-fd-leak",
@@ -881,6 +905,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "020-python-gunicorn-saturation",
@@ -913,6 +938,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "021-discourse-shared-uploads",
@@ -943,6 +969,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "022-discourse-multisite-migration",
@@ -975,6 +1002,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "023-auth-secret-rollout",
@@ -1005,6 +1033,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "024-discourse-interrupted-deploy",
@@ -1035,6 +1064,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.20654931437723745,
           "passed": 1,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260816.0.0",
           "scenario": "025-discourse-bootstrap",
@@ -1065,6 +1095,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "026-discourse-plugin-boot-loop",
@@ -1097,6 +1128,7 @@
           "pass_rate_95_high": 0.7923403991979522,
           "pass_rate_95_low": 0.06149194472039621,
           "passed": 1,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "027-partial-service-rollout",
@@ -1129,6 +1161,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "028-nix-store-disk-pressure",
@@ -1159,6 +1192,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260825.0.1",
           "scenario": "031-visual-deployment-timeline",
@@ -1191,6 +1225,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.4",
           "scenario": "030-visual-metrics-regression",
@@ -1221,6 +1256,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.4",
           "scenario": "029-visual-topology-drift",
@@ -1244,68 +1280,9 @@
     {
       "model": "openai/gpt-5.6-luna",
       "model_label": "GPT-5.6 Luna",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "records": [
-        {
-          "cost_per_repair_usd": 0.02466575,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.0&scenario=001-nginx-502-host&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 1271353,
-          "known_cost_usd": 0.07399725,
-          "median_duration_seconds": 69,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 14112,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "reasoning_effort": "high",
-          "release": "20260822.0.0",
-          "scenario": "001-nginx-502-host",
-          "scenario_label": "001-nginx-502-host",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "cost_per_repair_usd": 0.024149706666666663,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.0&scenario=013-sidekiq-wrong-redis&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 1194120,
-          "known_cost_usd": 0.07244911999999999,
-          "median_duration_seconds": 94,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 19711,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "reasoning_effort": "high",
-          "release": "20260822.0.0",
-          "scenario": "013-sidekiq-wrong-redis",
-          "scenario_label": "013-sidekiq-wrong-redis",
-          "scenario_version": 2,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
         {
           "cost_per_repair_usd": 0.030913713333333332,
           "cost_reported_trials": 3,
@@ -1324,6 +1301,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "014-missing-rails-migration",
@@ -1332,36 +1310,6 @@
           "subscription_usage_reported_trials": 0,
           "subscription_usage_usd": 0,
           "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "cost_per_repair_usd": 0.035122146666666666,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.0&scenario=015-sidekiq-poison-pill&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 1841278,
-          "known_cost_usd": 0.10536643999999999,
-          "median_duration_seconds": 152,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 31320,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "reasoning_effort": "high",
-          "release": "20260822.0.0",
-          "scenario": "015-sidekiq-poison-pill",
-          "scenario_label": "015-sidekiq-poison-pill",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1384,6 +1332,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "016-rails-pool-exhaustion",
@@ -1392,36 +1341,6 @@
           "subscription_usage_reported_trials": 0,
           "subscription_usage_usd": 0,
           "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "cost_per_repair_usd": 0.02959107666666667,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.0&scenario=017-partial-rails-rollout&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 1543407,
-          "known_cost_usd": 0.08877323000000001,
-          "median_duration_seconds": 120,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 19364,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "reasoning_effort": "high",
-          "release": "20260822.0.0",
-          "scenario": "017-partial-rails-rollout",
-          "scenario_label": "017-partial-rails-rollout",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1444,6 +1363,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "018-node-event-loop-blocking",
@@ -1452,36 +1372,6 @@
           "subscription_usage_reported_trials": 0,
           "subscription_usage_usd": 0,
           "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "cost_per_repair_usd": 0.02794359,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.0&scenario=019-rust-fd-leak&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 1557139,
-          "known_cost_usd": 0.08383077,
-          "median_duration_seconds": 197,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 22358,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "reasoning_effort": "high",
-          "release": "20260822.0.0",
-          "scenario": "019-rust-fd-leak",
-          "scenario_label": "019-rust-fd-leak",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1506,6 +1396,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "020-python-gunicorn-saturation",
@@ -1514,36 +1405,6 @@
           "subscription_usage_reported_trials": 0,
           "subscription_usage_usd": 0,
           "tier": "full",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "cost_per_repair_usd": 0.05424026666666667,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.0&scenario=021-discourse-shared-uploads&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 3416983,
-          "known_cost_usd": 0.1627208,
-          "median_duration_seconds": 181,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 39885,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "reasoning_effort": "high",
-          "release": "20260822.0.0",
-          "scenario": "021-discourse-shared-uploads",
-          "scenario_label": "021-discourse-shared-uploads",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
@@ -1566,6 +1427,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "022-discourse-multisite-migration",
@@ -1596,6 +1458,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "023-auth-secret-rollout",
@@ -1626,6 +1489,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.20654931437723745,
           "passed": 1,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260816.0.0",
           "scenario": "025-discourse-bootstrap",
@@ -1658,6 +1522,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "026-discourse-plugin-boot-loop",
@@ -1688,6 +1553,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "027-partial-service-rollout",
@@ -1700,176 +1566,6 @@
           "unavailable": 0,
           "unavailable_categories": {}
         },
-        {
-          "cost_per_repair_usd": 0.039617505,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.0&scenario=028-nix-store-disk-pressure&model=openai%2Fgpt-5.6-luna",
-          "failed": 1,
-          "failure_categories": {
-            "new_receipts_not_writable": 1
-          },
-          "input_mode": "text",
-          "input_tokens": 1311769,
-          "known_cost_usd": 0.07923501,
-          "median_duration_seconds": 126,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 22648,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
-          "reasoning_effort": "high",
-          "release": "20260822.0.0",
-          "scenario": "028-nix-store-disk-pressure",
-          "scenario_label": "028-nix-store-disk-pressure",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "cost_per_repair_usd": 0.0510911,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260826.0.0&scenario=024-discourse-interrupted-deploy&model=openai%2Fgpt-5.6-luna",
-          "failed": 1,
-          "failure_categories": {
-            "release_not_converged": 1
-          },
-          "input_mode": "text",
-          "input_tokens": 150,
-          "known_cost_usd": 0.1021822,
-          "median_duration_seconds": 123,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 23710,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
-          "reasoning_effort": "high",
-          "release": "20260826.0.0",
-          "scenario": "024-discourse-interrupted-deploy",
-          "scenario_label": "Discourse interrupted deploy",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "cost_per_repair_usd": 0.027466479999999998,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260825.0.1&scenario=031-visual-deployment-timeline&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "visual",
-          "input_tokens": 9697,
-          "known_cost_usd": 0.08239943999999999,
-          "median_duration_seconds": 110,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 19927,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "reasoning_effort": "high",
-          "release": "20260825.0.1",
-          "scenario": "031-visual-deployment-timeline",
-          "scenario_label": "Visual deployment timeline",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "cost_per_repair_usd": 0.02323753,
-          "cost_reported_trials": 2,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=030-visual-metrics-regression&model=openai%2Fgpt-5.6-luna",
-          "failed": 1,
-          "failure_categories": {
-            "agent_timeout": 1
-          },
-          "input_mode": "visual",
-          "input_tokens": 5021,
-          "known_cost_usd": 0.04647506,
-          "median_duration_seconds": 84,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 11279,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
-          "reasoning_effort": "high",
-          "release": "20260822.0.4",
-          "scenario": "030-visual-metrics-regression",
-          "scenario_label": "Visual metrics regression",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "cost_per_repair_usd": 0.026767816666666666,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=029-visual-topology-drift&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "visual",
-          "input_tokens": 153,
-          "known_cost_usd": 0.08030345,
-          "median_duration_seconds": 93,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 21826,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "reasoning_effort": "high",
-          "release": "20260822.0.4",
-          "scenario": "029-visual-topology-drift",
-          "scenario_label": "Visual topology drift",
-          "scenario_version": 1,
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "unclassified",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        }
-      ],
-      "tiers": [
-        "core",
-        "full",
-        "frontier",
-        "unclassified"
-      ]
-    },
-    {
-      "model": "openai/gpt-5.6-luna",
-      "model_label": "GPT-5.6 Luna",
-      "provider": "openrouter",
-      "reasoning_effort": "high",
-      "records": [
         {
           "cost_per_repair_usd": 0.04238720666666667,
           "cost_reported_trials": 3,
@@ -1888,7 +1584,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "021-discourse-shared-uploads",
@@ -1921,7 +1617,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "024-discourse-interrupted-deploy",
@@ -1952,7 +1648,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "001-nginx-502-host",
@@ -1983,7 +1679,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "028-nix-store-disk-pressure",
@@ -2014,7 +1710,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "017-partial-rails-rollout",
@@ -2045,7 +1741,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "019-rust-fd-leak",
@@ -2076,7 +1772,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "013-sidekiq-wrong-redis",
@@ -2109,7 +1805,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "015-sidekiq-poison-pill",
@@ -2121,16 +1817,114 @@
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
+        },
+        {
+          "cost_per_repair_usd": 0.027466479999999998,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20260825.0.1&scenario=031-visual-deployment-timeline&model=openai%2Fgpt-5.6-luna",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "visual",
+          "input_tokens": 9697,
+          "known_cost_usd": 0.08239943999999999,
+          "median_duration_seconds": 110,
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "output_tokens": 19927,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "release": "20260825.0.1",
+          "scenario": "031-visual-deployment-timeline",
+          "scenario_label": "Visual deployment timeline",
+          "scenario_version": 1,
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "unclassified",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
+        },
+        {
+          "cost_per_repair_usd": 0.02323753,
+          "cost_reported_trials": 2,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=030-visual-metrics-regression&model=openai%2Fgpt-5.6-luna",
+          "failed": 1,
+          "failure_categories": {
+            "agent_timeout": 1
+          },
+          "input_mode": "visual",
+          "input_tokens": 5021,
+          "known_cost_usd": 0.04647506,
+          "median_duration_seconds": 84,
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "output_tokens": 11279,
+          "pass_rate": 0.6666666666666666,
+          "pass_rate_95_high": 0.9385080552796037,
+          "pass_rate_95_low": 0.2076596008020477,
+          "passed": 2,
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "release": "20260822.0.4",
+          "scenario": "030-visual-metrics-regression",
+          "scenario_label": "Visual metrics regression",
+          "scenario_version": 1,
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "unclassified",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
+        },
+        {
+          "cost_per_repair_usd": 0.026767816666666666,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20260822.0.4&scenario=029-visual-topology-drift&model=openai%2Fgpt-5.6-luna",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "visual",
+          "input_tokens": 153,
+          "known_cost_usd": 0.08030345,
+          "median_duration_seconds": 93,
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "output_tokens": 21826,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "release": "20260822.0.4",
+          "scenario": "029-visual-topology-drift",
+          "scenario_label": "Visual topology drift",
+          "scenario_version": 1,
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "unclassified",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "tiers": [
-        "core"
+        "core",
+        "full",
+        "frontier",
+        "unclassified"
       ]
     },
     {
       "model": "openai/gpt-5.6-luna",
       "model_label": "GPT-5.6 Luna",
-      "provider": "vercel-ai-gateway",
+      "provider": "Vercel AI Gateway",
       "reasoning_effort": "high",
       "records": [
         {
@@ -2151,7 +1945,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "release": "20260827.0.1",
           "scenario": "024-discourse-interrupted-deploy",
@@ -2182,7 +1976,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "release": "20260827.0.1",
           "scenario": "001-nginx-502-host",
@@ -2213,7 +2007,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "release": "20260827.0.1",
           "scenario": "013-sidekiq-wrong-redis",
@@ -2234,6 +2028,7 @@
     {
       "model": "stealth/ox-alpha",
       "model_label": "Ox Alpha",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "records": [
         {
@@ -2256,6 +2051,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.1",
           "scenario": "001-nginx-502-host",
@@ -2286,6 +2082,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.1",
           "scenario": "013-sidekiq-wrong-redis",
@@ -2316,6 +2113,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "014-missing-rails-migration",
@@ -2346,6 +2144,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.1",
           "scenario": "015-sidekiq-poison-pill",
@@ -2376,6 +2175,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "016-rails-pool-exhaustion",
@@ -2406,6 +2206,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.1",
           "scenario": "017-partial-rails-rollout",
@@ -2436,6 +2237,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "018-node-event-loop-blocking",
@@ -2466,6 +2268,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.1",
           "scenario": "019-rust-fd-leak",
@@ -2498,6 +2301,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "020-python-gunicorn-saturation",
@@ -2530,6 +2334,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.1",
           "scenario": "021-discourse-shared-uploads",
@@ -2560,6 +2365,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "022-discourse-multisite-migration",
@@ -2590,6 +2396,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "023-auth-secret-rollout",
@@ -2620,6 +2427,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.1",
           "scenario": "024-discourse-interrupted-deploy",
@@ -2650,6 +2458,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "026-discourse-plugin-boot-loop",
@@ -2680,6 +2489,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "027-partial-service-rollout",
@@ -2710,6 +2520,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.1",
           "scenario": "028-nix-store-disk-pressure",
@@ -2742,6 +2553,7 @@
           "pass_rate_95_high": 0.7934506856227626,
           "pass_rate_95_low": 0.0,
           "passed": 0,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260825.0.1",
           "scenario": "031-visual-deployment-timeline",
@@ -2774,6 +2586,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.4",
           "scenario": "030-visual-metrics-regression",
@@ -2804,6 +2617,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.4",
           "scenario": "029-visual-topology-drift",
@@ -2826,6 +2640,7 @@
     {
       "model": "qwen/qwen3.8-2.4t-a95b",
       "model_label": "Qwen3.8 2.4T A95B",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "records": [
         {
@@ -2846,6 +2661,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "001-nginx-502-host",
@@ -2876,6 +2692,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "013-sidekiq-wrong-redis",
@@ -2906,6 +2723,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "014-missing-rails-migration",
@@ -2936,6 +2754,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "015-sidekiq-poison-pill",
@@ -2966,6 +2785,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "016-rails-pool-exhaustion",
@@ -2996,6 +2816,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "017-partial-rails-rollout",
@@ -3026,6 +2847,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "018-node-event-loop-blocking",
@@ -3056,6 +2878,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "019-rust-fd-leak",
@@ -3086,6 +2909,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "020-python-gunicorn-saturation",
@@ -3116,6 +2940,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "021-discourse-shared-uploads",
@@ -3146,6 +2971,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "022-discourse-multisite-migration",
@@ -3176,6 +3002,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "023-auth-secret-rollout",
@@ -3206,6 +3033,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "024-discourse-interrupted-deploy",
@@ -3236,6 +3064,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.20654931437723745,
           "passed": 1,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260816.0.0",
           "scenario": "025-discourse-bootstrap",
@@ -3266,6 +3095,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "026-discourse-plugin-boot-loop",
@@ -3296,6 +3126,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "027-partial-service-rollout",
@@ -3326,6 +3157,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "028-nix-store-disk-pressure",
@@ -3356,6 +3188,7 @@
           "pass_rate_95_high": null,
           "pass_rate_95_low": null,
           "passed": 0,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.2",
           "scenario": "029-visual-topology-drift",
@@ -3381,6 +3214,7 @@
     {
       "model": "z-ai/glm-5.3",
       "model_label": "GLM 5.3",
+      "provider": "OpenRouter",
       "reasoning_effort": "high",
       "records": [
         {
@@ -3401,6 +3235,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "001-nginx-502-host",
@@ -3431,6 +3266,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "013-sidekiq-wrong-redis",
@@ -3461,6 +3297,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "014-missing-rails-migration",
@@ -3491,6 +3328,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "015-sidekiq-poison-pill",
@@ -3521,6 +3359,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "016-rails-pool-exhaustion",
@@ -3551,6 +3390,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "017-partial-rails-rollout",
@@ -3583,6 +3423,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "018-node-event-loop-blocking",
@@ -3613,6 +3454,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "019-rust-fd-leak",
@@ -3645,6 +3487,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "020-python-gunicorn-saturation",
@@ -3677,6 +3520,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "021-discourse-shared-uploads",
@@ -3707,6 +3551,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "022-discourse-multisite-migration",
@@ -3737,6 +3582,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "023-auth-secret-rollout",
@@ -3767,6 +3613,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "024-discourse-interrupted-deploy",
@@ -3797,6 +3644,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "026-discourse-plugin-boot-loop",
@@ -3827,6 +3675,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260819.0.0",
           "scenario": "027-partial-service-rollout",
@@ -3857,6 +3706,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260822.0.0",
           "scenario": "028-nix-store-disk-pressure",
@@ -3908,6 +3758,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -3920,6 +3771,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -3932,6 +3784,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -3944,17 +3797,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -3979,6 +3822,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "014-missing-rails-migration",
@@ -3995,6 +3839,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4007,6 +3852,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4052,6 +3898,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4064,6 +3911,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4076,6 +3924,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4088,17 +3937,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4123,6 +3962,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "016-rails-pool-exhaustion",
@@ -4139,6 +3979,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4151,6 +3992,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4196,6 +4038,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4208,6 +4051,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4220,6 +4064,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4232,17 +4077,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4267,6 +4102,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "018-node-event-loop-blocking",
@@ -4283,6 +4119,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4295,6 +4132,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4340,6 +4178,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4352,6 +4191,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4364,6 +4204,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4376,17 +4217,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4413,6 +4244,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "020-python-gunicorn-saturation",
@@ -4429,6 +4261,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4441,6 +4274,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4486,6 +4320,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4498,6 +4333,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4510,6 +4346,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4522,17 +4359,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4557,6 +4384,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "022-discourse-multisite-migration",
@@ -4573,6 +4401,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4585,6 +4414,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4630,6 +4460,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4642,6 +4473,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4654,6 +4486,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4666,17 +4499,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4701,6 +4524,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "023-auth-secret-rollout",
@@ -4717,6 +4541,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4729,6 +4554,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4789,6 +4615,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.20654931437723745,
           "passed": 1,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260816.0.0",
           "scenario": "025-discourse-bootstrap",
@@ -4820,6 +4647,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.20654931437723745,
           "passed": 1,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260816.0.0",
           "scenario": "025-discourse-bootstrap",
@@ -4851,6 +4679,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.20654931437723745,
           "passed": 1,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260816.0.0",
           "scenario": "025-discourse-bootstrap",
@@ -4867,17 +4696,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4887,6 +4706,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4913,6 +4733,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.20654931437723745,
           "passed": 1,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260816.0.0",
           "scenario": "025-discourse-bootstrap",
@@ -4929,6 +4750,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4974,6 +4796,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4986,6 +4809,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -4998,6 +4822,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5010,17 +4835,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5045,6 +4860,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "026-discourse-plugin-boot-loop",
@@ -5061,6 +4877,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5073,6 +4890,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5118,6 +4936,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5130,6 +4949,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5142,6 +4962,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5154,17 +4975,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5189,6 +5000,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260821.0.0",
           "scenario": "027-partial-service-rollout",
@@ -5205,6 +5017,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5217,6 +5030,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5262,6 +5076,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5274,18 +5089,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5313,7 +5117,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "021-discourse-shared-uploads",
@@ -5330,7 +5134,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5340,6 +5144,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5351,6 +5156,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5363,6 +5169,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5408,6 +5215,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5420,18 +5228,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5461,7 +5258,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "024-discourse-interrupted-deploy",
@@ -5478,7 +5275,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5488,6 +5285,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5499,6 +5297,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5511,6 +5310,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5556,6 +5356,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5568,18 +5369,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5607,7 +5397,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "001-nginx-502-host",
@@ -5624,7 +5414,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5634,6 +5424,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5645,6 +5436,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5657,6 +5449,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5702,6 +5495,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5714,18 +5508,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5753,7 +5536,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "028-nix-store-disk-pressure",
@@ -5770,7 +5553,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5780,6 +5563,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5791,6 +5575,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5803,6 +5588,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5848,6 +5634,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5860,18 +5647,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5899,7 +5675,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "017-partial-rails-rollout",
@@ -5916,7 +5692,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5926,6 +5702,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5937,6 +5714,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5949,6 +5727,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -5994,6 +5773,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6006,18 +5786,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6045,7 +5814,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "019-rust-fd-leak",
@@ -6062,7 +5831,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6072,6 +5841,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6083,6 +5853,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6095,6 +5866,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6140,6 +5912,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6152,18 +5925,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6191,7 +5953,7 @@
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "013-sidekiq-wrong-redis",
@@ -6208,7 +5970,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6218,6 +5980,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6229,6 +5992,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6241,6 +6005,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6286,6 +6051,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6298,18 +6064,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6339,7 +6094,7 @@
           "pass_rate_95_high": 0.9385080552796037,
           "pass_rate_95_low": 0.2076596008020477,
           "passed": 2,
-          "provider": "openrouter",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "release": "20260830.0.0",
           "scenario": "015-sidekiq-poison-pill",
@@ -6356,7 +6111,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6366,6 +6121,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6377,6 +6133,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6389,6 +6146,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6434,6 +6192,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6446,6 +6205,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6458,6 +6218,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6470,17 +6231,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6490,6 +6241,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6501,6 +6253,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6513,6 +6266,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6558,6 +6312,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6570,6 +6325,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6582,6 +6338,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6594,17 +6351,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6614,6 +6361,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6625,6 +6373,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6637,6 +6386,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6682,6 +6432,7 @@
         {
           "model": "deepseek/deepseek-v4-flash-0731",
           "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6694,6 +6445,7 @@
         {
           "model": "google/gemini-3.7-flash",
           "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6706,6 +6458,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6718,17 +6471,7 @@
         {
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "provider": "openrouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core"
-          ]
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "vercel-ai-gateway",
+          "provider": "Vercel AI Gateway",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6738,6 +6481,7 @@
         {
           "model": "stealth/ox-alpha",
           "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6749,6 +6493,7 @@
         {
           "model": "qwen/qwen3.8-2.4t-a95b",
           "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6761,6 +6506,7 @@
         {
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
           "reasoning_effort": "high",
           "status": "missing",
           "tiers": [
@@ -6779,9 +6525,9 @@
   "schema_version": 1,
   "totals": {
     "covered_cells": 20,
-    "missing_cells": 140,
-    "model_lanes": 8,
-    "possible_cells": 160,
+    "missing_cells": 120,
+    "model_lanes": 7,
+    "possible_cells": 140,
     "scenarios": 20
   }
 }

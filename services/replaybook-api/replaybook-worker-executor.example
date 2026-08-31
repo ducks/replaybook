@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# The worker receives run metadata as environment variables. Install a real,
+# pinned Replaybook runner at this path on the worker and replace this example.
+echo "scenario=${AGENT_ZEN_GARDEN_SCENARIO_ID:?} version=${AGENT_ZEN_GARDEN_SCENARIO_VERSION:?}"
+echo "provider=${AGENT_ZEN_GARDEN_PROVIDER:-} model=${AGENT_ZEN_GARDEN_MODEL:-}"
+echo "harness=${AGENT_ZEN_GARDEN_HARNESS:-} reasoning=${AGENT_ZEN_GARDEN_REASONING:-}"
+echo "No executor configured; this example intentionally fails."
+exit 78

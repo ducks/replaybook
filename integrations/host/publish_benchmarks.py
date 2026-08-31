@@ -37,7 +37,10 @@ DOCS_EXPLORER = Path("docs/benchmark-explorer.html")
 DOCS_HISTORY = Path("docs/benchmark-history.html")
 DOCS_MODEL = Path("docs/benchmark-model.html")
 DOCS_MODELS = Path("docs/benchmark-models.html")
+DOCS_PROVIDERS = Path("docs/benchmark-providers.html")
+DOCS_PROVIDER = Path("docs/benchmark-provider.html")
 DOCS_SCENARIO = Path("docs/benchmark-scenario.html")
+DOCS_SCENARIOS = Path("docs/scenarios.html")
 DOCS_STYLE = Path("docs/style.css")
 SITE_TEMPLATES = Path("site/templates")
 SITE_STYLE = Path("site/static/style.css")
@@ -1834,16 +1837,13 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
         )
         for aggregate in release["by_model"]:
             interval = wilson_interval(aggregate["passed"], aggregate["evaluated"])
+            provider = agent_harness.get("provider") or aggregate.get("provider")
             lanes.append(
                 {
                     "release": version,
                     "tier": tier_value(release),
                     "input_mode": release.get("input_mode", "text"),
-                    **(
-                        {"provider": aggregate["provider"]}
-                        if aggregate.get("provider")
-                        else {}
-                    ),
+                    **({"provider": provider} if provider else {}),
                     "model": aggregate["model"],
                     "model_label": label(release, "model", aggregate["model"]),
                     "reasoning_effort": aggregate.get("reasoning_effort"),
@@ -1875,6 +1875,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
             )
         for aggregate in release["by_scenario_model"]:
             interval = wilson_interval(aggregate["passed"], aggregate["evaluated"])
+            provider = agent_harness.get("provider") or aggregate.get("provider")
             records.append(
                 {
                     "release": version,
@@ -1883,11 +1884,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                     "scenario": aggregate["scenario"],
                     "scenario_label": label(release, "scenario", aggregate["scenario"]),
                     "scenario_version": aggregate["scenario_version"],
-                    **(
-                        {"provider": aggregate["provider"]}
-                        if aggregate.get("provider")
-                        else {}
-                    ),
+                    **({"provider": provider} if provider else {}),
                     "model": aggregate["model"],
                     "model_label": label(release, "model", aggregate["model"]),
                     "reasoning_effort": aggregate.get("reasoning_effort"),
@@ -2209,12 +2206,24 @@ def models_page() -> str:
     return render_site_template("benchmark-models.html")
 
 
+def providers_page() -> str:
+    return render_site_template("benchmark-providers.html")
+
+
+def provider_page() -> str:
+    return render_site_template("benchmark-provider.html")
+
+
 def model_page() -> str:
     return render_site_template("benchmark-model.html")
 
 
 def scenario_page() -> str:
     return render_site_template("benchmark-scenario.html")
+
+
+def scenarios_page() -> str:
+    return render_site_template("scenarios.html", scenario_mode="text")
 
 
 def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -> str:
@@ -2355,6 +2364,7 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
             seen_scenarios.add(scenario_id)
             scenario_evidence.append(
                 {
+                    "id": scenario_id,
                     "label": label(release, "scenario", scenario_id),
                     "version": scenario["version"],
                     "release": version,
@@ -2557,7 +2567,10 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
         root / DOCS_EXPLORER: explorer_page(),
         root / DOCS_MODEL: model_page(),
         root / DOCS_MODELS: models_page(),
+        root / DOCS_PROVIDERS: providers_page(),
+        root / DOCS_PROVIDER: provider_page(),
         root / DOCS_SCENARIO: scenario_page(),
+        root / DOCS_SCENARIOS: scenarios_page(),
         root / DOCS_STYLE: (REPO_DIR / SITE_STYLE).read_text(),
         root / MARKDOWN_RECORD: replace_managed(
             (root / MARKDOWN_RECORD).read_text(),

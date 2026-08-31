@@ -1,0 +1,82 @@
+{% extends "benchmark-base.html" %}
+{% set active_tab = "providers" %}
+{% block title %}Provider runs{% endblock %}
+{% block description %}Replaybook runs grouped by provider boundary.{% endblock %}
+{% block content %}
+    <p class="eyebrow">Provider runs</p>
+    <h1 id="provider-title">Provider evidence</h1>
+    <p class="tagline benchmark-tagline">Every published model/scenario record for this provider, with its release and comparison boundary intact.</p>
+
+    <p><a href="benchmark-providers.html">← All providers</a></p>
+    <div id="provider-context" class="small muted">Loading provider runs…</div>
+    <div class="metric-grid" aria-label="Provider run summary">
+      <div class="metric"><span class="metric-value" id="metric-models">0</span><span class="metric-label">models</span></div>
+      <div class="metric"><span class="metric-value" id="metric-records">0</span><span class="metric-label">scenario records</span></div>
+      <div class="metric"><span class="metric-value" id="metric-repairs">0/0</span><span class="metric-label">durable repairs</span></div>
+    </div>
+
+    <h2>All runs</h2>
+    <div class="table-scroll"><table><thead><tr><th>Release</th><th>Input</th><th>Scenario</th><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Known cost</th></tr></thead><tbody id="provider-runs"></tbody></table></div>
+    <p id="provider-empty" class="small muted" hidden>No published records are associated with this provider.</p>
+{% endblock %}
+{% block scripts %}
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const providerKey = params.get("provider");
+
+  function duration(seconds) {
+    if (seconds === null || seconds === undefined) return "n/a";
+    const rounded = Math.round(seconds);
+    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
+  }
+
+  function money(value, incomplete) {
+    if (!value) return "n/a";
+    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
+  }
+
+  function providerName(value) {
+    return value === "__unreported" ? "Provider not reported" : value;
+  }
+
+  function link(path, values) {
+    return `${path}?${new URLSearchParams(values)}`;
+  }
+
+  async function initialize() {
+    const response = await fetch("benchmark-catalog.json");
+    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
+    const catalog = await response.json();
+    const wanted = providerKey === "__unreported" ? "" : providerKey;
+    const records = catalog.records.filter(record => (record.provider || "") === wanted);
+    const models = new Set(records.map(record => record.model));
+    const evaluated = records.reduce((sum, record) => sum + record.evaluated, 0);
+    const passed = records.reduce((sum, record) => sum + record.passed, 0);
+    const title = providerKey ? providerName(providerKey) : "All providers";
+    document.querySelector("#provider-title").textContent = title;
+    document.querySelector("#provider-context").textContent = `${records.length} published scenario records across ${models.size} models`;
+    document.querySelector("#metric-models").textContent = models.size;
+    document.querySelector("#metric-records").textContent = records.length;
+    document.querySelector("#metric-repairs").textContent = `${passed}/${evaluated}`;
+    const body = document.querySelector("#provider-runs");
+    records.sort((a, b) => b.release.localeCompare(a.release) || a.input_mode.localeCompare(b.input_mode) || a.scenario_label.localeCompare(b.scenario_label) || a.model_label.localeCompare(b.model_label));
+    records.forEach(record => {
+      const row = document.createElement("tr");
+      const scenario = document.createElement("a");
+      scenario.href = link("benchmark-scenario.html", {scenario: record.scenario});
+      scenario.textContent = `${record.scenario_label} · v${record.scenario_version}`;
+      const model = document.createElement("a");
+      model.href = link("benchmark-explorer.html", {release: record.release, scenario: record.scenario, model: record.model});
+      model.textContent = record.reasoning_effort ? `${record.model_label} (${record.reasoning_effort})` : record.model_label;
+      const values = [record.release, record.input_mode, scenario, model, `${record.passed}/${record.evaluated}`, record.evaluated ? `${Math.round(record.pass_rate * 100)}%` : "n/a", duration(record.median_duration_seconds), record.cost_reported_trials ? money(record.known_cost_usd, record.cost_reported_trials < record.trials) : "n/a"];
+      values.forEach(value => { const cell = document.createElement("td"); if (value instanceof Node) cell.append(value); else cell.textContent = value; row.append(cell); });
+      body.append(row);
+    });
+    document.querySelector("#provider-empty").hidden = records.length !== 0;
+  }
+
+  initialize().catch(error => {
+    document.querySelector("#provider-context").textContent = `Could not load provider runs: ${error.message}`;
+  });
+  </script>
+{% endblock %}

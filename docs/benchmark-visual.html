@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Visual infrastructure benchmarks &middot; replaybook</title>
-  <meta name="description" content="Replaybook visual-input infrastructure-agent benchmark evidence.">
+  <meta name="description" content="Replaybook visual-input infrastructure-agent benchmark methodology and evidence guide.">
   <link rel="stylesheet" href="style.css">
   <script data-goatcounter="https://stats.replaybook.dev/count" async src="https://stats.replaybook.dev/count.js"></script>
 </head>
@@ -20,252 +20,115 @@
       </nav>
     </header>
 
-    <nav class="benchmark-tabs with-modality" aria-label="Benchmark sections">
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmark-visual.html" class="active" aria-current="page">Overview</a>
       <a href="scenarios.html">Scenarios</a>
       <a href="benchmark-models.html">Models</a>
+      <a href="benchmark-providers.html">Providers</a>
       <a href="benchmark-compare.html">Compare</a>
       <a href="benchmark-explorer.html">Explore</a>
       <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-history.html">History</a>
-      <a href="benchmark-methodology.html">Methodology</a>
     </nav>
 
-    <nav class="benchmark-modality-tabs" aria-label="Overview input modality">
-      <a href="benchmarks.html"><span aria-hidden="true">T</span> Text</a>
-      <a href="benchmark-visual.html" class="active" aria-current="page"><span aria-hidden="true">▧</span> Visual</a>
-    </nav>
 
-    <p class="eyebrow">Visual infrastructure</p>
+    <p class="eyebrow">Benchmark guide</p>
     <h1>Infrastructure agents that can see</h1>
     <p class="tagline benchmark-tagline">Agents must inspect diagrams or images as authoritative operational evidence, then repair and durably verify the running system.</p>
 
-    <section class="comparison-lockbar" aria-label="Active comparison boundary">
-      <div class="comparison-lockbar-heading">
-        <span class="eyebrow">Comparison lock</span>
-        <strong>Visual lane · OpenCode 1.18.18</strong>
-      </div>
-      <div class="comparison-lockbar-facts">
-        <span><b>3</b> scenarios</span>
-        <span><b>3</b> trials/model</span>
-        <span><b>Unclassified</b> tier</span>
-        <span><code>20260827.0.0</code></span>
-      </div>
-      <a href="benchmark-methodology.html">How comparisons are locked →</a>
+    <section class="guide-intro">
+      <p class="eyebrow">Start here</p>
+      <h2>What Replaybook measures</h2>
+      <p>Replaybook evaluates whether an agent can diagnose and durably repair a running production-style system. We score the state left behind after the agent stops, not the confidence or polish of its final answer.</p>
+      <p>Choose a <a href="scenarios.html">scenario</a> to see one benchmark in isolation, or use <a href="benchmark-models.html">Models</a>, <a href="benchmark-providers.html">Providers</a>, and <a href="benchmark-compare.html">Compare</a> to inspect compatible evidence.</p>
     </section>
 
-    <p class="benchmark-integrity"><strong>7 cohorts · 18 model lanes · 3 scenarios.</strong> Results stay inside their provider, harness, tier, and scenario boundaries. <a href="benchmark-methodology.html">Read the methodology →</a></p>
-
-    <section class="benchmark-leaderboard" aria-labelledby="leaderboard-heading">
-      <div class="section-heading benchmark-section-heading">
-        <div><p class="eyebrow">Latest model evidence</p><h2 id="leaderboard-heading">Model leaderboard</h2><p class="small muted">Newest tracked result for each model lane. Provider and harness boundaries remain visible.</p></div>
-        <div class="dashboard-actions"><a href="benchmark-models.html">Model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a><a href="benchmark-explorer.html?release=20260827.0.0">Inspect cohort →</a></div>
+    <section aria-labelledby="pass-heading">
+      <p class="eyebrow">The scoring contract</p>
+      <h2 id="pass-heading">What counts as a pass</h2>
+      <div class="gate-grid">
+        <article class="gate"><span class="gate-number">01</span><h3>Repair the live system</h3><p>User-facing behavior must recover without replacing the host.</p></article>
+        <article class="gate"><span class="gate-number">02</span><h3>Preserve existing work</h3><p>Queued jobs and controller-owned state cannot be discarded.</p></article>
+        <article class="gate"><span class="gate-number">03</span><h3>Survive service restart</h3><p>Temporary processes and in-memory workarounds must disappear safely.</p></article>
+        <article class="gate"><span class="gate-number">04</span><h3>Survive host reboot</h3><p>Only durable changes to the deployed system count.</p></article>
       </div>
-      <div class="table-scroll"><table class="leaderboard-table"><thead><tr><th scope="col">#</th><th scope="col">Model lane</th><th scope="col">Provider</th><th scope="col">Durable repair rate</th><th scope="col">Median</th><th scope="col">Cost / repair</th><th scope="col">Boundary</th></tr></thead><tbody>
-      <tr class="leaderboard-provider"><th colspan="7" scope="colgroup">OpenCode Go</th></tr>
-      <tr>
-        <td class="leaderboard-rank">01</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260826.0.1&amp;model=opencode-go%2Fdeepseek-v4-flash"><strong>DeepSeek V4 Flash</strong><code>opencode-go/deepseek-v4-flash</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenCode Go</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>5/5 · CI 57%–100%</span></td>
-        <td><code>1:22</code></td>
-        <td><code>n/a</code></td>
-        <td class="leaderboard-boundary"><span>OpenCode 1.18.18</span><span>Unclassified tier</span><code>20260826.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">04</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260827.0.0&amp;model=opencode-go%2Fkimi-k3"><strong>Kimi K3</strong><code>opencode-go/kimi-k3</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenCode Go</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>9/9 · CI 70%–100%</span></td>
-        <td><code>2:10</code></td>
-        <td><code>n/a</code></td>
-        <td class="leaderboard-boundary"><span>OpenCode 1.18.18</span><span>Unclassified tier</span><code>20260827.0.0</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">06</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260826.0.1&amp;model=opencode-go%2Fminimax-m3"><strong>MiniMax M3</strong><code>opencode-go/minimax-m3</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenCode Go</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>5/5 · CI 57%–100%</span></td>
-        <td><code>2:16</code></td>
-        <td><code>n/a</code></td>
-        <td class="leaderboard-boundary"><span>OpenCode 1.18.18</span><span>Unclassified tier</span><code>20260826.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">07</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260826.0.1&amp;model=opencode-go%2Fqwen3.8-max"><strong>Qwen 3.8 Max</strong><code>opencode-go/qwen3.8-max</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenCode Go</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>5/5 · CI 57%–100%</span></td>
-        <td><code>2:17</code></td>
-        <td><code>n/a</code></td>
-        <td class="leaderboard-boundary"><span>OpenCode 1.18.18</span><span>Unclassified tier</span><code>20260826.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">08</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260827.0.0&amp;model=opencode-go%2Fminimax-m3"><strong>MiniMax M3</strong><code>opencode-go/minimax-m3</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenCode Go</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>9/9 · CI 70%–100%</span></td>
-        <td><code>2:23</code></td>
-        <td><code>n/a</code></td>
-        <td class="leaderboard-boundary"><span>OpenCode 1.18.18</span><span>Unclassified tier</span><code>20260827.0.0</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">09</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260827.0.0&amp;model=opencode-go%2Fdeepseek-v4-flash"><strong>DeepSeek V4 Flash</strong><code>opencode-go/deepseek-v4-flash</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenCode Go</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>9/9 · CI 70%–100%</span></td>
-        <td><code>2:33</code></td>
-        <td><code>n/a</code></td>
-        <td class="leaderboard-boundary"><span>OpenCode 1.18.18</span><span>Unclassified tier</span><code>20260827.0.0</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">11</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260826.0.1&amp;model=opencode-go%2Fkimi-k3"><strong>Kimi K3</strong><code>opencode-go/kimi-k3</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenCode Go</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>5/5 · CI 57%–100%</span></td>
-        <td><code>3:04</code></td>
-        <td><code>n/a</code></td>
-        <td class="leaderboard-boundary"><span>OpenCode 1.18.18</span><span>Unclassified tier</span><code>20260826.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">12</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260827.0.0&amp;model=opencode-go%2Fqwen3.8-max"><strong>Qwen 3.8 Max</strong><code>opencode-go/qwen3.8-max</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenCode Go</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="78% durable repair rate" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"><span style="width: 78%"></span></div><strong>78%</strong><span>7/9 · CI 45%–94%</span></td>
-        <td><code>3:33</code></td>
-        <td><code>n/a</code></td>
-        <td class="leaderboard-boundary"><span>OpenCode 1.18.18</span><span>Unclassified tier</span><code>20260827.0.0</code></td>
-      </tr>
-      <tr class="leaderboard-provider"><th colspan="7" scope="colgroup">OpenRouter</th></tr>
-      <tr>
-        <td class="leaderboard-rank">02</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=openai%2Fgpt-5.6-terra"><strong>GPT-5.6 Terra</strong><code>openai/gpt-5.6-terra</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenRouter</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>3/3 · CI 44%–100%</span></td>
-        <td><code>1:45</code></td>
-        <td><code>$0.1805</code></td>
-        <td class="leaderboard-boundary"><span>Claux v20260821.0.2</span><span>Unclassified tier</span><code>20260825.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">03</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=openai%2Fgpt-5.6-luna"><strong>GPT-5.6 Luna</strong><code>openai/gpt-5.6-luna</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenRouter</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>3/3 · CI 44%–100%</span></td>
-        <td><code>1:50</code></td>
-        <td><code>$0.0275</code></td>
-        <td class="leaderboard-boundary"><span>Claux v20260821.0.2</span><span>Unclassified tier</span><code>20260825.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">05</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=anthropic%2Fclaude-sonnet-5"><strong>Claude Sonnet 5</strong><code>anthropic/claude-sonnet-5</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenRouter</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>3/3 · CI 44%–100%</span></td>
-        <td><code>2:11</code></td>
-        <td><code>$0.1699</code></td>
-        <td class="leaderboard-boundary"><span>Claux v20260821.0.2</span><span>Unclassified tier</span><code>20260825.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">10</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=google%2Fgemini-3.7-flash"><strong>Gemini 3.7 Flash</strong><code>google/gemini-3.7-flash</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenRouter</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="100% durable repair rate" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span style="width: 100%"></span></div><strong>100%</strong><span>3/3 · CI 44%–100%</span></td>
-        <td><code>2:58</code></td>
-        <td><code>$0.1140</code></td>
-        <td class="leaderboard-boundary"><span>Claux v20260821.0.2</span><span>Unclassified tier</span><code>20260825.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">13</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=moonshotai%2Fkimi-k3"><strong>Kimi K3</strong><code>moonshotai/kimi-k3</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenRouter</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="67% durable repair rate" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"><span style="width: 67%"></span></div><strong>67%</strong><span>2/3 · CI 21%–94%</span></td>
-        <td><code>2:08</code></td>
-        <td><code>$0.2730</code></td>
-        <td class="leaderboard-boundary"><span>Claux v20260821.0.2</span><span>Unclassified tier</span><code>20260825.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">14</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=openai%2Fgpt-5.6-sol"><strong>GPT-5.6 Sol</strong><code>openai/gpt-5.6-sol</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenRouter</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="67% durable repair rate" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"><span style="width: 67%"></span></div><strong>67%</strong><span>2/3 · CI 21%–94%</span></td>
-        <td><code>2:28</code></td>
-        <td><code>$0.2102+</code></td>
-        <td class="leaderboard-boundary"><span>Claux v20260821.0.2</span><span>Unclassified tier</span><code>20260825.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">15</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=xiaomi%2Fmimo-v2.5"><strong>MiMo V2.5</strong><code>xiaomi/mimo-v2.5</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenRouter</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="67% durable repair rate" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"><span style="width: 67%"></span></div><strong>67%</strong><span>2/3 · CI 21%–94%</span></td>
-        <td><code>4:08</code></td>
-        <td><code>$0.0285</code></td>
-        <td class="leaderboard-boundary"><span>Claux v20260821.0.2</span><span>Unclassified tier</span><code>20260825.0.1</code></td>
-      </tr>
-      <tr>
-        <td class="leaderboard-rank">16</td>
-        <td class="leaderboard-model"><a href="benchmark-explorer.html?release=20260825.0.1&amp;model=anthropic%2Fclaude-opus-5"><strong>Claude Opus 5</strong><code>anthropic/claude-opus-5</code></a><span>high reasoning</span></td>
-        <td><span class="badge">OpenRouter</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="33% durable repair rate" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"><span style="width: 33%"></span></div><strong>33%</strong><span>1/3 · CI 6%–79%</span></td>
-        <td><code>15:31</code></td>
-        <td><code>$0.6140+</code></td>
-        <td class="leaderboard-boundary"><span>Claux v20260821.0.2</span><span>Unclassified tier</span><code>20260825.0.1</code></td>
-      </tr>
-      </tbody></table></div>
     </section>
 
-    <section class="tested-panel" aria-labelledby="tested-heading">
-      <div class="section-heading benchmark-section-heading">
-        <div><p class="eyebrow">Scope</p><h2 id="tested-heading">What was tested</h2><p class="small muted">Each incident links to its protocol, verifier, and model-by-model evidence.</p></div>
-        <a href="scenarios.html">Scenario guide →</a>
+    <section aria-labelledby="layers-heading">
+      <h2 id="layers-heading">How the layers fit together</h2>
+      <p>The controller builds a disposable NixOS VM and owns the incident lifecycle, timeout, restart, reboot, oracle, and verifier. The <strong>host harness</strong> is this scoring boundary. An <strong>agent harness</strong>, such as Claux or OpenCode, drives the model inside the VM. Provider and billing information are recorded separately when known.</p>
+      <p>The oracle and verifier stay outside the model VM. The agent receives the incident and normal Linux tools, but never the answer key. Every trial retains a sanitized transcript and immutable execution snapshot.</p>
+    </section>
+
+    <section aria-labelledby="outcomes-heading">
+      <h2 id="outcomes-heading">Evaluated, failed, and unavailable</h2>
+      <p>An <strong>evaluated</strong> trial reached the agent and verifier. A failed repair counts against that complete model, harness, and provider lane. Authentication failures and provider or harness errors before meaningful inference are <strong>unavailable</strong>; they remain visible but are excluded from the pass-rate denominator.</p>
+      <p>After work begins, interruptions, protocol errors, policy rejections, and runtime failures remain evaluated execution-lane failures with their original category.</p>
+    </section>
+
+    <section aria-labelledby="comparison-heading">
+      <h2 id="comparison-heading">When results are comparable</h2>
+      <p>Comparisons lock the scenario and verifier versions, host harness, timeout, agent harness, tools, permissions, tier, attempt count, and provenance. Different providers or harnesses are companion cohorts, not silently pooled totals.</p>
+      <div class="comparison-lockbar" aria-label="Comparison requirements">
+        <div class="comparison-lockbar-facts"><span><b>Same</b> scenario versions</span><span><b>Same</b> verifier boundary</span><span><b>Same</b> tier and attempts</span><span><b>Visible</b> provider and harness</span></div>
       </div>
+    </section>
+
+    <section aria-labelledby="tiers-heading">
+      <h2 id="tiers-heading">Benchmark tiers</h2>
+      <div class="tier-grid">
+        <article class="tier-card"><span class="badge tier-smoke">Smoke</span><strong>Qualify cheaply</strong><p>Three representative scenarios, one attempt each.</p></article>
+        <article class="tier-card"><span class="badge tier-core">Core</span><strong>Compare routinely</strong><p>Eight representative incidents, three attempts each.</p></article>
+        <article class="tier-card"><span class="badge tier-full">Full</span><strong>Measure broadly</strong><p>Every stable incident, three attempts each.</p></article>
+        <article class="tier-card"><span class="badge tier-frontier">Frontier</span><strong>Test real systems</strong><p>Resource-heavy, longer-deadline deployments.</p></article>
+      </div>
+      <p class="small muted">Tiers overlap by design, but remain separate comparison boundaries.</p>
+    </section>
+
+    <section aria-labelledby="current-heading">
+      <p class="eyebrow">Current evidence</p>
+      <h2 id="current-heading">Latest benchmark boundary</h2>
+      <p>OpenCode Go visual infrastructure cohort is the current unclassified cohort for this input lane: 3 scenarios, 3 attempts per model, and OpenCode 1.18.18.</p>
+      <div class="metric-grid" aria-label="Current benchmark summary">
+        <div class="metric"><span class="metric-value">34/36</span><span class="metric-label">durable repairs</span></div>
+        <div class="metric"><span class="metric-value">94%</span><span class="metric-label">pass rate</span></div>
+        <div class="metric"><span class="metric-value">2:30</span><span class="metric-label">overall median</span></div>
+      </div>
+      <p class="small muted">Latest model lanes: <span>Kimi K3</span>, <span>MiniMax M3</span>, <span>DeepSeek V4 Flash</span>, <span>Qwen 3.8 Max</span>.</p>
+      <p class="dashboard-actions"><a href="benchmark-explorer.html?release=20260827.0.0">Inspect cohort →</a> <a href="benchmark-compare.html?lane=20260827.0.0%7C%7C%7Copencode-go%2Fdeepseek-v4-flash%7C%7C%7Chigh&amp;lane=20260827.0.0%7C%7C%7Copencode-go%2Fkimi-k3%7C%7C%7Chigh&amp;lane=20260827.0.0%7C%7C%7Copencode-go%2Fminimax-m3%7C%7C%7Chigh&amp;lane=20260827.0.0%7C%7C%7Copencode-go%2Fqwen3.8-max%7C%7C%7Chigh">Compare latest model evidence →</a> <a href="benchmark-visual.html">Visual overview →</a></p>
+    </section>
+
+    <section aria-labelledby="scope-heading">
+      <h2 id="scope-heading">Current scenario scope</h2>
+      <p class="small muted">The catalog below is the quickest way to find a concrete benchmark. Each entry opens a single-scenario evidence page.</p>
       <div class="tested-scenarios">
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=029-visual-topology-drift"><strong>01</strong><span>Visual topology drift</span><small><code>v1</code> · 12/12 repairs</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=030-visual-metrics-regression"><strong>02</strong><span>Visual metrics regression</span><small><code>v1</code> · 10/12 repairs</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=031-visual-deployment-timeline"><strong>03</strong><span>Visual deployment timeline</span><small><code>v1</code> · 12/12 repairs</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=029-visual-topology-drift"><strong>01</strong><span>Visual topology drift</span><small><code>029-visual-topology-drift</code> · v1</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=030-visual-metrics-regression"><strong>02</strong><span>Visual metrics regression</span><small><code>030-visual-metrics-regression</code> · v1</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=031-visual-deployment-timeline"><strong>03</strong><span>Visual deployment timeline</span><small><code>031-visual-deployment-timeline</code> · v1</small></a>
+      </div>
+    </section>
+
+    <section aria-labelledby="path-heading">
+      <h2 id="path-heading">A useful reading path</h2>
+      <div class="tested-scenarios">
+        <a class="tested-scenario" href="scenarios.html"><strong>01</strong><span>Choose a scenario</span><small>Text or Visual</small></a>
+        <a class="tested-scenario" href="benchmark-compare.html"><strong>02</strong><span>Compare compatible lanes</span><small>Provider and harness stay visible</small></a>
+        <a class="tested-scenario" href="benchmark-explorer.html"><strong>03</strong><span>Inspect the evidence</span><small>Failures, timing, and artifacts</small></a>
       </div>
     </section>
 
     <details class="evidence-details">
       <summary>Recent cohorts · show release-level evidence</summary>
-      <div class="dashboard-snapshot dashboard-fleet">
-      <p class="small muted dashboard-latest-note">Latest published cohort: <strong>OpenCode Go visual infrastructure cohort</strong> · <code>20260827.0.0</code></p>
-      <dl class="dashboard-facts">
-        <div><dt>Durable repairs</dt><dd>34/36</dd></div>
-        <div><dt>Pass rate</dt><dd>94%</dd></div>
-        <div><dt>Median</dt><dd>2:30</dd></div>
-      </dl>
-      <p class="small"><a href="benchmark-explorer.html?release=20260827.0.0">Inspect cohort →</a> <a href="benchmark-compare.html?lane=20260827.0.0%7C%7C%7Copencode-go%2Fdeepseek-v4-flash%7C%7C%7Chigh&amp;lane=20260827.0.0%7C%7C%7Copencode-go%2Fkimi-k3%7C%7C%7Chigh&amp;lane=20260827.0.0%7C%7C%7Copencode-go%2Fminimax-m3%7C%7C%7Chigh&amp;lane=20260827.0.0%7C%7C%7Copencode-go%2Fqwen3.8-max%7C%7C%7Chigh">Compare its lanes →</a></p>
       <div class="recent-cohort-list">
         <a href="benchmark-explorer.html?release=20260827.0.0"><strong>OpenCode Go visual infrastructure cohort</strong><span><code>20260827.0.0</code> · OpenCode 1.18.18 · 34/36 repairs</span></a>
         <a href="benchmark-explorer.html?release=20260826.0.1"><strong>OpenCode Go visual infrastructure cohort</strong><span><code>20260826.0.1</code> · OpenCode 1.18.18 · 20/20 repairs</span></a>
         <a href="benchmark-explorer.html?release=20260825.0.1"><strong>Visual infrastructure benchmark: deployment timeline</strong><span><code>20260825.0.1</code> · Claux v20260821.0.2 · 19/25 repairs</span></a>
         <a href="benchmark-explorer.html?release=20260825.0.0"><strong>Visual infrastructure benchmark: deployment timeline</strong><span><code>20260825.0.0</code> · Claux v20260821.0.2 · 16/22 repairs</span></a>
       </div>
-      </div>
     </details>
 
-    <details class="provider-observations">
-      <summary><strong>Provider availability observations</strong><span class="small muted">Operational evidence from incomplete probes; excluded from capability rankings.</span></summary>
-      <div class="cohort-grid overview-cohort-grid">
-      <article class="cohort-card provider-observation-card">
-        <div class="cohort-card-heading"><span class="badge">Availability observation</span><code>20260827</code></div>
-        <h3>Vercel AI Gateway smoke cohort</h3>
-        <p>Nine trials across three models; seven were unavailable before meaningful inference and the two evaluated trials did not converge.</p>
-        <dl class="cohort-facts">
-          <div><dt>Provider</dt><dd>vercel-ai-gateway</dd></div>
-          <div><dt>Models</dt><dd>openai/gpt-5.6-luna, openai/gpt-5.6-sol, zai/glm-5.3-flash</dd></div>
-          <div><dt>Requested</dt><dd>9</dd></div>
-          <div><dt>Evaluated</dt><dd>2</dd></div>
-          <div><dt>Unavailable</dt><dd>7</dd></div>
-          <div><dt>Repairs</dt><dd>0/2 passed/failed</dd></div>
-          <div><dt>Categories</dt><dd>provider_unavailable (5), agent_runtime_error (2)</dd></div>
-        </dl>
-        <p class="small muted">The gateway returned free-tier access/rate-limit errors. This is provider availability evidence, not a model capability ranking.</p>
-      </article>
-      </div>
-    </details>
-
-    <p class="overview-secondary-links"><a href="benchmark-history.html">Browse cohort history →</a> <a href="benchmark-models.html">View model profiles →</a> <a href="benchmark-explorer.html">Open the evidence explorer →</a></p>
-
-    <p class="small muted overview-footnote">Need the full audit trail? Use the <a href="benchmark-explorer.html">Explorer</a> for failures and filtered records, or read the <a href="benchmark-methodology.html">methodology</a>.</p>
+    <p class="overview-secondary-links"><a href="scenarios.html">Browse scenarios →</a> <a href="benchmark-models.html">View model profiles →</a> <a href="benchmark-providers.html">View providers →</a> <a href="benchmark-explorer.html">Open the evidence explorer →</a></p>
+    <p class="small muted overview-footnote">Latest scope: 7 cohorts, 18 model lanes, and 3 scenarios. This page is the benchmark guide; the <a href="benchmark-explorer.html">Explorer</a> contains the full audit trail.</p>
 
     <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
   </div>

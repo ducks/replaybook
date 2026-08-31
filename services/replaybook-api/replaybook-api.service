@@ -1,0 +1,22 @@
+[Unit]
+Description=Replaybook hosted control plane
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=replaybook-api
+Group=replaybook-api
+EnvironmentFile=/etc/replaybook-api/control-plane.env
+ExecStart=/opt/replaybook-api/bin/replaybook-api
+StateDirectory=replaybook-api
+ReadWritePaths=/var/lib/replaybook-api
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

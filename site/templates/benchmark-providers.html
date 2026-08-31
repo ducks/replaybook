@@ -1,0 +1,79 @@
+{% extends "benchmark-base.html" %}
+{% set active_tab = "providers" %}
+{% block title %}Provider evidence{% endblock %}
+{% block description %}Replaybook infrastructure-agent evidence grouped by provider boundary.{% endblock %}
+{% block content %}
+    <p class="eyebrow">Provider evidence</p>
+    <h1>Providers</h1>
+    <p class="tagline benchmark-tagline">Provider views make routing and availability differences visible without turning unlike harnesses into one ranking.</p>
+
+    <div class="callout comparison-note">
+      <strong>Provider is part of the result identity.</strong>
+      The same model can behave differently through different providers. Legacy records without an explicit provider remain labeled as unreported rather than guessed.
+    </div>
+
+    <div id="providers-context" class="small muted">Loading provider evidence…</div>
+    <div id="provider-grid" class="provider-grid" aria-live="polite"></div>
+
+    <p class="small muted">For model-first views, see <a href="benchmark-models.html">model evidence</a>. For exact run boundaries, use the <a href="benchmark-explorer.html">evidence explorer</a>.</p>
+{% endblock %}
+{% block scripts %}
+  <script>
+  function duration(seconds) {
+    if (seconds === null || seconds === undefined) return "n/a";
+    const rounded = Math.round(seconds);
+    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
+  }
+
+  function money(value, incomplete) {
+    if (!value) return "n/a";
+    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
+  }
+
+  async function initialize() {
+    const response = await fetch("benchmark-catalog.json");
+    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
+    const catalog = await response.json();
+    const groups = new Map();
+    catalog.records.forEach(record => {
+      const provider = record.provider || "Provider not reported";
+      if (!groups.has(provider)) groups.set(provider, []);
+      groups.get(provider).push(record);
+    });
+    const sorted = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+    document.querySelector("#providers-context").textContent = `${sorted.length} provider boundaries observed across ${catalog.records.length} published model/scenario records`;
+    const grid = document.querySelector("#provider-grid");
+    sorted.forEach(([provider, records]) => {
+      const models = new Set(records.map(record => record.model));
+      const evaluated = records.reduce((sum, record) => sum + record.evaluated, 0);
+      const passed = records.reduce((sum, record) => sum + record.passed, 0);
+      const cost = records.reduce((sum, record) => sum + record.known_cost_usd, 0);
+      const incomplete = records.some(record => record.cost_reported_trials < record.trials);
+      const card = document.createElement("article");
+      card.className = "provider-card";
+      const heading = document.createElement("h2");
+      const headingLink = document.createElement("a");
+      headingLink.href = `benchmark-provider.html?provider=${encodeURIComponent(provider === "Provider not reported" ? "__unreported" : provider)}`;
+      headingLink.textContent = provider;
+      heading.append(headingLink);
+      const identity = document.createElement("code");
+      identity.textContent = `${models.size} models · ${records.length} records`;
+      const stats = document.createElement("div");
+      stats.className = "model-card-stats";
+      stats.innerHTML = `<span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${evaluated ? Math.round(passed / evaluated * 100) : 0}%</strong> pass rate</span><span><strong>${duration(Math.round(records.reduce((sum, record) => sum + (record.median_duration_seconds || 0), 0) / Math.max(records.length, 1)))}</strong> average median</span><span><strong>${money(cost, incomplete)}</strong> known spend</span>`;
+      const note = document.createElement("p");
+      note.textContent = provider === "Provider not reported" ? "Older releases did not persist provider identity." : "Records retain this provider boundary for comparison.";
+      const runs = document.createElement("a");
+      runs.className = "provider-card-link";
+      runs.href = headingLink.href;
+      runs.textContent = "View all runs →";
+      card.append(heading, identity, stats, note, runs);
+      grid.append(card);
+    });
+  }
+
+  initialize().catch(error => {
+    document.querySelector("#providers-context").textContent = `Could not load provider evidence: ${error.message}`;
+  });
+  </script>
+{% endblock %}
