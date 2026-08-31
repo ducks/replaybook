@@ -1,113 +1,106 @@
 {% extends "benchmark-base.html" %}
 {% set active_tab = "overview" %}
 {% block title %}{{ copy.eyebrow }} benchmarks{% endblock %}
-{% block description %}Replaybook {{ input_mode }}-input infrastructure-agent benchmark evidence.{% endblock %}
+{% block description %}Replaybook {{ input_mode }}-input infrastructure-agent benchmark methodology and evidence guide.{% endblock %}
 {% block content %}
     <p class="eyebrow">{{ copy.eyebrow }}</p>
     <h1>{{ copy.title }}</h1>
     <p class="tagline benchmark-tagline">{{ copy.description }}</p>
 
+    <section class="guide-intro">
+      <p class="eyebrow">Start here</p>
+      <h2>What Replaybook measures</h2>
+      <p>Replaybook evaluates whether an agent can diagnose and durably repair a running production-style system. We score the state left behind after the agent stops, not the confidence or polish of its final answer.</p>
+      <p>Choose a <a href="scenarios.html">scenario</a> to see one benchmark in isolation, or use <a href="benchmark-models.html">Models</a>, <a href="benchmark-providers.html">Providers</a>, and <a href="benchmark-compare.html">Compare</a> to inspect compatible evidence.</p>
+    </section>
+
+    <section aria-labelledby="pass-heading">
+      <p class="eyebrow">The scoring contract</p>
+      <h2 id="pass-heading">What counts as a pass</h2>
+      <div class="gate-grid">
+        <article class="gate"><span class="gate-number">01</span><h3>Repair the live system</h3><p>User-facing behavior must recover without replacing the host.</p></article>
+        <article class="gate"><span class="gate-number">02</span><h3>Preserve existing work</h3><p>Queued jobs and controller-owned state cannot be discarded.</p></article>
+        <article class="gate"><span class="gate-number">03</span><h3>Survive service restart</h3><p>Temporary processes and in-memory workarounds must disappear safely.</p></article>
+        <article class="gate"><span class="gate-number">04</span><h3>Survive host reboot</h3><p>Only durable changes to the deployed system count.</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="layers-heading">
+      <h2 id="layers-heading">How the layers fit together</h2>
+      <p>The controller builds a disposable NixOS VM and owns the incident lifecycle, timeout, restart, reboot, oracle, and verifier. The <strong>host harness</strong> is this scoring boundary. An <strong>agent harness</strong>, such as Claux or OpenCode, drives the model inside the VM. Provider and billing information are recorded separately when known.</p>
+      <p>The oracle and verifier stay outside the model VM. The agent receives the incident and normal Linux tools, but never the answer key. Every trial retains a sanitized transcript and immutable execution snapshot.</p>
+    </section>
+
+    <section aria-labelledby="outcomes-heading">
+      <h2 id="outcomes-heading">Evaluated, failed, and unavailable</h2>
+      <p>An <strong>evaluated</strong> trial reached the agent and verifier. A failed repair counts against that complete model, harness, and provider lane. Authentication failures and provider or harness errors before meaningful inference are <strong>unavailable</strong>; they remain visible but are excluded from the pass-rate denominator.</p>
+      <p>After work begins, interruptions, protocol errors, policy rejections, and runtime failures remain evaluated execution-lane failures with their original category.</p>
+    </section>
+
+    <section aria-labelledby="comparison-heading">
+      <h2 id="comparison-heading">When results are comparable</h2>
+      <p>Comparisons lock the scenario and verifier versions, host harness, timeout, agent harness, tools, permissions, tier, attempt count, and provenance. Different providers or harnesses are companion cohorts, not silently pooled totals.</p>
+      <div class="comparison-lockbar" aria-label="Comparison requirements">
+        <div class="comparison-lockbar-facts"><span><b>Same</b> scenario versions</span><span><b>Same</b> verifier boundary</span><span><b>Same</b> tier and attempts</span><span><b>Visible</b> provider and harness</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="tiers-heading">
+      <h2 id="tiers-heading">Benchmark tiers</h2>
+      <div class="tier-grid">
+        <article class="tier-card"><span class="badge tier-smoke">Smoke</span><strong>Qualify cheaply</strong><p>Three representative scenarios, one attempt each.</p></article>
+        <article class="tier-card"><span class="badge tier-core">Core</span><strong>Compare routinely</strong><p>Eight representative incidents, three attempts each.</p></article>
+        <article class="tier-card"><span class="badge tier-full">Full</span><strong>Measure broadly</strong><p>Every stable incident, three attempts each.</p></article>
+        <article class="tier-card"><span class="badge tier-frontier">Frontier</span><strong>Test real systems</strong><p>Resource-heavy, longer-deadline deployments.</p></article>
+      </div>
+      <p class="small muted">Tiers overlap by design, but remain separate comparison boundaries.</p>
+    </section>
+
 {% if latest_dashboard %}
-    <section class="comparison-lockbar" aria-label="Active comparison boundary">
-      <div class="comparison-lockbar-heading">
-        <span class="eyebrow">Comparison lock</span>
-        <strong>{{ input_mode|capitalize }} lane · {{ latest_dashboard.harness }}</strong>
+    <section aria-labelledby="current-heading">
+      <p class="eyebrow">Current evidence</p>
+      <h2 id="current-heading">Latest benchmark boundary</h2>
+      <p>{{ latest_dashboard.title }} is the current {{ latest_dashboard.tier|lower }} cohort for this input lane: {{ latest_dashboard.scenarios }} scenarios, {{ latest_dashboard.attempts }} attempts per model, and {{ latest_dashboard.harness }}.</p>
+      <div class="metric-grid" aria-label="Current benchmark summary">
+        <div class="metric"><span class="metric-value">{{ latest_dashboard.repairs }}</span><span class="metric-label">durable repairs</span></div>
+        <div class="metric"><span class="metric-value">{{ latest_dashboard.rate }}</span><span class="metric-label">pass rate</span></div>
+        <div class="metric"><span class="metric-value">{{ latest_dashboard.median }}</span><span class="metric-label">overall median</span></div>
       </div>
-      <div class="comparison-lockbar-facts">
-        <span><b>{{ latest_dashboard.scenarios }}</b> scenarios</span>
-        <span><b>{{ latest_dashboard.attempts }}</b> trials/model</span>
-        <span><b>{{ latest_dashboard.tier }}</b> tier</span>
-        <span><code>{{ latest_dashboard.version }}</code></span>
-      </div>
-      <a href="benchmark-methodology.html">How comparisons are locked →</a>
+      <p class="small muted">Latest model lanes: {% for lane in latest_dashboard.models %}<span>{{ lane.name }}</span>{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+      <p class="dashboard-actions"><a href="{{ latest_dashboard.inspect_url }}">Inspect cohort →</a> <a href="{{ latest_dashboard.compare_url }}">Compare latest model evidence →</a> <a href="benchmark-visual.html">Visual overview →</a></p>
     </section>
 {% endif %}
 
-    <p class="benchmark-integrity"><strong>{{ counts.cohorts }} cohorts · {{ counts.models }} model lanes · {{ counts.scenarios }} scenarios.</strong> Results stay inside their provider, harness, tier, and scenario boundaries. <a href="benchmark-methodology.html">Read the methodology →</a></p>
-
-{% if model_evidence %}
-    <section class="benchmark-leaderboard" aria-labelledby="leaderboard-heading">
-      <div class="section-heading benchmark-section-heading">
-        <div><p class="eyebrow">Latest model evidence</p><h2 id="leaderboard-heading">Model leaderboard</h2><p class="small muted">Newest tracked result for each model lane. Provider and harness boundaries remain visible.</p></div>
-        <div class="dashboard-actions"><a href="benchmark-models.html">Model profiles →</a><a href="benchmark-explorer.html">Explore evidence →</a>{% if latest_dashboard %}<a href="{{ latest_dashboard.inspect_url }}">Inspect cohort →</a>{% endif %}</div>
-      </div>
-      <div class="table-scroll"><table class="leaderboard-table"><thead><tr><th scope="col">#</th><th scope="col">Model lane</th><th scope="col">Provider</th><th scope="col">Durable repair rate</th><th scope="col">Median</th><th scope="col">Cost / repair</th><th scope="col">Boundary</th></tr></thead><tbody>
-{% for group in model_evidence_groups %}
-      <tr class="leaderboard-provider"><th colspan="7" scope="colgroup">{{ group.provider }}</th></tr>
-{% for lane in group.lanes %}
-      <tr>
-        <td class="leaderboard-rank">{{ '%02d'|format(lane.rank) }}</td>
-        <td class="leaderboard-model"><a href="{{ lane.url }}"><strong>{{ lane.name }}</strong><code>{{ lane.model }}</code></a><span>{{ lane.reasoning }} reasoning</span></td>
-        <td><span class="badge">{% if lane.provider == "Vercel AI Gateway" %}Vercel{% else %}{{ lane.provider }}{% endif %}</span></td>
-        <td class="leaderboard-rate"><div class="dashboard-meter" role="progressbar" aria-label="{{ lane.rate }} durable repair rate" aria-valuenow="{{ lane.rate_percent }}" aria-valuemin="0" aria-valuemax="100"><span style="width: {{ lane.rate_percent }}%"></span></div><strong>{{ lane.rate }}</strong><span>{{ lane.repairs }} · CI {{ lane.ci }}</span></td>
-        <td><code>{{ lane.median }}</code></td>
-        <td><code>{{ lane.cost_per_repair }}</code></td>
-        <td class="leaderboard-boundary"><span>{{ lane.harness }}</span><span>{{ lane.tier }} tier</span><code>{{ lane.release }}</code></td>
-      </tr>
-{% endfor %}
-{% endfor %}
-      </tbody></table></div>
-    </section>
-
-    <section class="tested-panel" aria-labelledby="tested-heading">
-      <div class="section-heading benchmark-section-heading">
-        <div><p class="eyebrow">Scope</p><h2 id="tested-heading">What was tested</h2><p class="small muted">Each incident links to its protocol, verifier, and model-by-model evidence.</p></div>
-        <a href="scenarios.html">Scenario guide →</a>
-      </div>
+    <section aria-labelledby="scope-heading">
+      <h2 id="scope-heading">Current scenario scope</h2>
+      <p class="small muted">The catalog below is the quickest way to find a concrete benchmark. Each entry opens a single-scenario evidence page.</p>
       <div class="tested-scenarios">
 {% for row in scenario_evidence %}
-        <a class="tested-scenario" href="{{ row.url }}"><strong>{{ '%02d'|format(loop.index) }}</strong><span>{{ row.label }}</span><small><code>v{{ row.version }}</code> · {{ row.repairs }} repairs</small></a>
+        <a class="tested-scenario" href="{{ row.url }}"><strong>{{ '%02d'|format(loop.index) }}</strong><span>{{ row.label }}</span><small><code>{{ row.id }}</code> · v{{ row.version }}</small></a>
 {% endfor %}
       </div>
     </section>
 
+    <section aria-labelledby="path-heading">
+      <h2 id="path-heading">A useful reading path</h2>
+      <div class="tested-scenarios">
+        <a class="tested-scenario" href="scenarios.html"><strong>01</strong><span>Choose a scenario</span><small>Text or Visual</small></a>
+        <a class="tested-scenario" href="benchmark-compare.html"><strong>02</strong><span>Compare compatible lanes</span><small>Provider and harness stay visible</small></a>
+        <a class="tested-scenario" href="benchmark-explorer.html"><strong>03</strong><span>Inspect the evidence</span><small>Failures, timing, and artifacts</small></a>
+      </div>
+    </section>
+
+{% if cohort_cards %}
     <details class="evidence-details">
       <summary>Recent cohorts · show release-level evidence</summary>
-      <div class="dashboard-snapshot dashboard-fleet">
-{% if latest_dashboard %}
-      <p class="small muted dashboard-latest-note">Latest published cohort: <strong>{{ latest_dashboard.title }}</strong> · <code>{{ latest_dashboard.version }}</code></p>
-      <dl class="dashboard-facts">
-        <div><dt>Durable repairs</dt><dd>{{ latest_dashboard.repairs }}</dd></div>
-        <div><dt>Pass rate</dt><dd>{{ latest_dashboard.rate }}</dd></div>
-        <div><dt>Median</dt><dd>{{ latest_dashboard.median }}</dd></div>
-      </dl>
-      <p class="small"><a href="{{ latest_dashboard.inspect_url }}">Inspect cohort →</a> <a href="{{ latest_dashboard.compare_url }}">Compare its lanes →</a></p>
       <div class="recent-cohort-list">
 {% for cohort in cohort_cards %}
         <a href="{{ cohort.url }}"><strong>{{ cohort.title }}</strong><span><code>{{ cohort.version }}</code> · {{ cohort.harness }} · {{ cohort.repairs }} repairs</span></a>
 {% endfor %}
       </div>
-{% endif %}
-      </div>
     </details>
 {% endif %}
 
-{% if provider_observations %}
-    <details class="provider-observations">
-      <summary><strong>Provider availability observations</strong><span class="small muted">Operational evidence from incomplete probes; excluded from capability rankings.</span></summary>
-      <div class="cohort-grid overview-cohort-grid">
-{% for observation in provider_observations %}
-      <article class="cohort-card provider-observation-card">
-        <div class="cohort-card-heading"><span class="badge">Availability observation</span><code>{{ observation.date }}</code></div>
-        <h3>{{ observation.title }}</h3>
-        <p>{{ observation.summary }}</p>
-        <dl class="cohort-facts">
-          <div><dt>Provider</dt><dd>{{ observation.provider }}</dd></div>
-          <div><dt>Models</dt><dd>{{ observation.models }}</dd></div>
-          <div><dt>Requested</dt><dd>{{ observation.requested }}</dd></div>
-          <div><dt>Evaluated</dt><dd>{{ observation.evaluated }}</dd></div>
-          <div><dt>Unavailable</dt><dd>{{ observation.unavailable }}</dd></div>
-          <div><dt>Repairs</dt><dd>{{ observation.passed }}/{{ observation.failed }} passed/failed</dd></div>
-          <div><dt>Categories</dt><dd>{{ observation.categories }}</dd></div>
-        </dl>
-        <p class="small muted">{{ observation.note }}</p>
-      </article>
-{% endfor %}
-      </div>
-    </details>
-{% endif %}
-
-    <p class="overview-secondary-links"><a href="scenarios.html">Browse scenarios →</a> <a href="benchmark-visual.html">Visual overview →</a> <a href="benchmark-history.html">Browse cohort history →</a> <a href="benchmark-models.html">View model profiles →</a> <a href="benchmark-explorer.html">Open the evidence explorer →</a></p>
-
-    <p class="small muted overview-footnote">Need the full audit trail? Use the <a href="benchmark-explorer.html">Explorer</a> for failures and filtered records, or read the <a href="benchmark-methodology.html">methodology</a>.</p>
+    <p class="overview-secondary-links"><a href="scenarios.html">Browse scenarios →</a> <a href="benchmark-models.html">View model profiles →</a> <a href="benchmark-providers.html">View providers →</a> <a href="benchmark-methodology.html">Detailed methodology →</a></p>
+    <p class="small muted overview-footnote">Latest scope: {{ counts.cohorts }} cohorts, {{ counts.models }} model lanes, and {{ counts.scenarios }} scenarios. Use the <a href="benchmark-methodology.html">methodology reference</a> for the full audit trail.</p>
 {% endblock %}

@@ -2365,6 +2365,7 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
             seen_scenarios.add(scenario_id)
             scenario_evidence.append(
                 {
+                    "id": scenario_id,
                     "label": label(release, "scenario", scenario_id),
                     "version": scenario["version"],
                     "release": version,
