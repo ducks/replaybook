@@ -13,7 +13,7 @@
     </div>
 
     <div id="models-context" class="small muted"></div>
-    <div id="model-grid" class="model-grid"></div>
+    <div id="model-groups"></div>
 
     <p class="small muted">Profiles consume the stable <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a> API.</p>
 {% endblock %}
@@ -67,8 +67,25 @@
       return lane;
     }).sort((a, b) => a.model_label.localeCompare(b.model_label) || (a.provider || "").localeCompare(b.provider || ""));
     document.querySelector("#models-context").textContent = `${lanes.length} observed model lanes across ${catalog.records.length} published records · newest evidence per scenario`;
-    const grid = document.querySelector("#model-grid");
+    const groupsByParent = new Map();
     lanes.forEach(lane => {
+      const parent = lane.model.includes("/") ? lane.model.split("/", 1)[0] : "other";
+      if (!groupsByParent.has(parent)) groupsByParent.set(parent, []);
+      groupsByParent.get(parent).push(lane);
+    });
+    const parentLabel = parent => ({"z-ai": "Z.AI", "openai": "OpenAI", "google": "Google", "moonshotai": "Moonshot AI", "xiaomi": "Xiaomi", "nvidia": "NVIDIA", "anthropic": "Anthropic"}[parent] || parent.replace(/[-_]/g, " ").replace(/\b\w/g, letter => letter.toUpperCase()));
+    const container = document.querySelector("#model-groups");
+    [...groupsByParent.entries()].sort((a, b) => parentLabel(a[0]).localeCompare(parentLabel(b[0]))).forEach(([parent, parentLanes]) => {
+      const section = document.createElement("section");
+      section.className = "model-family";
+      const heading = document.createElement("h2");
+      heading.textContent = parentLabel(parent);
+      section.append(heading);
+      const grid = document.createElement("div");
+      grid.className = "model-grid";
+      section.append(grid);
+      container.append(section);
+      parentLanes.forEach(lane => {
       const cells = lane.records;
       const evaluated = cells.reduce((sum, cell) => sum + cell.evaluated, 0);
       const passed = cells.reduce((sum, cell) => sum + cell.passed, 0);
@@ -98,7 +115,8 @@
       compare.href = newest ? compareUrl(newest) : "benchmark-compare.html";
       compare.textContent = "Compare latest cohort →";
       card.append(title, identity, stats, open, compare);
-      grid.append(card);
+        grid.append(card);
+      });
     });
   }
 
