@@ -794,7 +794,7 @@ class PublisherTests(unittest.TestCase):
             self.assertIn("Current release", current)
             self.assertIn("Text infrastructure", current)
             self.assertIn("Recent cohorts", current)
-            self.assertIn("Latest model evidence", current)
+            self.assertIn("Compare latest model evidence", current)
             self.assertIn("001-nginx", current)
             self.assertNotIn("scenario pack revisions", current)
             self.assertNotIn("Run notes", current)
@@ -981,7 +981,7 @@ class PublisherTests(unittest.TestCase):
         self.assertIn("Primary cohort", current)
         self.assertIn("Other harness", current)
         self.assertIn("Harness", current)
-        self.assertEqual(current.count("Inspect cohort"), 2)
+        self.assertEqual(current.count("Inspect cohort"), 1)
         self.assertEqual(catalog["releases"][1]["role"], "companion")
         self.assertEqual(
             catalog["releases"][1]["agent_harness"]["id"], "other-harness"
