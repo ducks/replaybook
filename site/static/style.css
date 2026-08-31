@@ -1307,6 +1307,56 @@ pre code {
   text-decoration: none;
 }
 
+.scenario-catalog-grid,
+.provider-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.scenario-catalog-card,
+.provider-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.25rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.scenario-catalog-card h2,
+.provider-card h2 {
+  margin: 0 0 0.35rem;
+  padding: 0;
+  border: 0;
+}
+
+.scenario-catalog-card > code,
+.provider-card > code {
+  align-self: flex-start;
+  overflow-wrap: anywhere;
+}
+
+.scenario-catalog-card p,
+.provider-card p {
+  color: var(--fg-dim);
+}
+
+.scenario-catalog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.8rem;
+  margin: 0.5rem 0 1.25rem;
+  color: var(--fg-dim);
+  font-size: 0.78rem;
+}
+
+.scenario-catalog-next {
+  max-width: 48rem;
+}
+
 .catalog-controls {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1547,6 +1597,8 @@ footer.site a {
   .catalog-controls,
   .catalog-breakdowns,
   .model-grid,
+  .scenario-catalog-grid,
+  .provider-grid,
   .compare-picker,
   .compare-metrics,
   .compare-chart-grid {

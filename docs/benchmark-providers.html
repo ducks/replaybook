@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Provider evidence &middot; replaybook</title>
+  <meta name="description" content="Replaybook infrastructure-agent evidence grouped by provider boundary.">
+  <link rel="stylesheet" href="style.css">
+  <script data-goatcounter="https://stats.replaybook.dev/count" async src="https://stats.replaybook.dev/count.js"></script>
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Overview</a>
+      <a href="scenarios.html">Scenarios</a>
+      <a href="benchmark-models.html">Models</a>
+      <a href="benchmark-providers.html" class="active" aria-current="page">Providers</a>
+      <a href="benchmark-compare.html">Compare</a>
+      <a href="benchmark-explorer.html">Explore</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-history.html">History</a>
+      <a href="benchmark-methodology.html">Methodology</a>
+    </nav>
+
+
+    <p class="eyebrow">Provider evidence</p>
+    <h1>Providers</h1>
+    <p class="tagline benchmark-tagline">Provider views make routing and availability differences visible without turning unlike harnesses into one ranking.</p>
+
+    <div class="callout comparison-note">
+      <strong>Provider is part of the result identity.</strong>
+      The same model can behave differently through different providers. Legacy records without an explicit provider remain labeled as unreported rather than guessed.
+    </div>
+
+    <div id="providers-context" class="small muted">Loading provider evidence…</div>
+    <div id="provider-grid" class="provider-grid" aria-live="polite"></div>
+
+    <p class="small muted">For model-first views, see <a href="benchmark-models.html">model evidence</a>. For exact run boundaries, use the <a href="benchmark-explorer.html">evidence explorer</a>.</p>
+
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+  <script>
+  function duration(seconds) {
+    if (seconds === null || seconds === undefined) return "n/a";
+    const rounded = Math.round(seconds);
+    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
+  }
+
+  function money(value, incomplete) {
+    if (!value) return "n/a";
+    return `$${value.toFixed(4)}${incomplete ? "+" : ""}`;
+  }
+
+  async function initialize() {
+    const response = await fetch("benchmark-catalog.json");
+    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
+    const catalog = await response.json();
+    const groups = new Map();
+    catalog.records.forEach(record => {
+      const provider = record.provider || "Provider not reported";
+      if (!groups.has(provider)) groups.set(provider, []);
+      groups.get(provider).push(record);
+    });
+    const sorted = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+    document.querySelector("#providers-context").textContent = `${sorted.length} provider boundaries observed across ${catalog.records.length} published model/scenario records`;
+    const grid = document.querySelector("#provider-grid");
+    sorted.forEach(([provider, records]) => {
+      const models = new Set(records.map(record => record.model));
+      const evaluated = records.reduce((sum, record) => sum + record.evaluated, 0);
+      const passed = records.reduce((sum, record) => sum + record.passed, 0);
+      const cost = records.reduce((sum, record) => sum + record.known_cost_usd, 0);
+      const incomplete = records.some(record => record.cost_reported_trials < record.trials);
+      const card = document.createElement("article");
+      card.className = "provider-card";
+      const heading = document.createElement("h2");
+      heading.textContent = provider;
+      const identity = document.createElement("code");
+      identity.textContent = `${models.size} models · ${records.length} records`;
+      const stats = document.createElement("div");
+      stats.className = "model-card-stats";
+      stats.innerHTML = `<span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${evaluated ? Math.round(passed / evaluated * 100) : 0}%</strong> pass rate</span><span><strong>${duration(Math.round(records.reduce((sum, record) => sum + (record.median_duration_seconds || 0), 0) / Math.max(records.length, 1)))}</strong> average median</span><span><strong>${money(cost, incomplete)}</strong> known spend</span>`;
+      const note = document.createElement("p");
+      note.textContent = provider === "Provider not reported" ? "Older releases did not persist provider identity." : "Records retain this provider boundary for comparison.";
+      card.append(heading, identity, stats, note);
+      grid.append(card);
+    });
+  }
+
+  initialize().catch(error => {
+    document.querySelector("#providers-context").textContent = `Could not load provider evidence: ${error.message}`;
+  });
+  </script>
+</body>
+</html>

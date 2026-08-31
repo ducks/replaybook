@@ -21,10 +21,11 @@
     </header>
 
 {% set mode = active_mode|default("none") %}
-    <nav class="benchmark-tabs{% if active_tab == 'overview' %} with-modality{% endif %}" aria-label="Benchmark sections">
-      <a href="{% if mode == 'visual' %}benchmark-visual.html{% else %}benchmarks.html{% endif %}"{% if active_tab == "overview" %} class="active" aria-current="page"{% endif %}>Overview</a>
+    <nav class="benchmark-tabs{% if active_tab in ['overview', 'current'] %} with-modality{% endif %}" aria-label="Benchmark sections">
+      <a href="{% if mode == 'visual' %}benchmark-visual.html{% else %}benchmarks.html{% endif %}"{% if active_tab in ["overview", "current"] %} class="active" aria-current="page"{% endif %}>Overview</a>
       <a href="scenarios.html"{% if active_tab == "scenarios" %} class="active" aria-current="page"{% endif %}>Scenarios</a>
       <a href="benchmark-models.html"{% if active_tab == "models" %} class="active" aria-current="page"{% endif %}>Models</a>
+      <a href="benchmark-providers.html"{% if active_tab == "providers" %} class="active" aria-current="page"{% endif %}>Providers</a>
       <a href="benchmark-compare.html"{% if active_tab == "compare" %} class="active" aria-current="page"{% endif %}>Compare</a>
       <a href="benchmark-explorer.html"{% if active_tab == "explore" %} class="active" aria-current="page"{% endif %}>Explore</a>
       <a href="benchmark-coverage.html"{% if active_tab == "coverage" %} class="active" aria-current="page"{% endif %}>Coverage</a>
@@ -32,10 +33,10 @@
       <a href="benchmark-methodology.html"{% if active_tab == "methodology" %} class="active" aria-current="page"{% endif %}>Methodology</a>
     </nav>
 
-{% if active_tab == "overview" %}
-    <nav class="benchmark-modality-tabs" aria-label="Overview input modality">
-      <a href="benchmarks.html"{% if mode == "text" %} class="active" aria-current="page"{% endif %}><span aria-hidden="true">T</span> Text</a>
-      <a href="benchmark-visual.html"{% if mode == "visual" %} class="active" aria-current="page"{% endif %}><span aria-hidden="true">▧</span> Visual</a>
+{% if active_tab == "scenarios" %}
+    <nav class="benchmark-modality-tabs" aria-label="Scenario input modality">
+      <a href="scenarios.html?mode=text"{% if mode != "visual" %} class="active" aria-current="page"{% endif %}><span aria-hidden="true">T</span> Text</a>
+      <a href="scenarios.html?mode=visual"{% if mode == "visual" %} class="active" aria-current="page"{% endif %}><span aria-hidden="true">▧</span> Visual</a>
     </nav>
 {% endif %}
 
