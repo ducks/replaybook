@@ -38,6 +38,7 @@ DOCS_HISTORY = Path("docs/benchmark-history.html")
 DOCS_MODEL = Path("docs/benchmark-model.html")
 DOCS_MODELS = Path("docs/benchmark-models.html")
 DOCS_PROVIDERS = Path("docs/benchmark-providers.html")
+DOCS_PROVIDER = Path("docs/benchmark-provider.html")
 DOCS_SCENARIO = Path("docs/benchmark-scenario.html")
 DOCS_SCENARIOS = Path("docs/scenarios.html")
 DOCS_STYLE = Path("docs/style.css")
@@ -2215,6 +2216,10 @@ def providers_page() -> str:
     return render_site_template("benchmark-providers.html")
 
 
+def provider_page() -> str:
+    return render_site_template("benchmark-provider.html")
+
+
 def model_page() -> str:
     return render_site_template("benchmark-model.html")
 
@@ -2569,6 +2574,7 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
         root / DOCS_MODEL: model_page(),
         root / DOCS_MODELS: models_page(),
         root / DOCS_PROVIDERS: providers_page(),
+        root / DOCS_PROVIDER: provider_page(),
         root / DOCS_SCENARIO: scenario_page(),
         root / DOCS_SCENARIOS: scenarios_page(),
         root / DOCS_STYLE: (REPO_DIR / SITE_STYLE).read_text(),

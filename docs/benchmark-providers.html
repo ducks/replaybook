@@ -82,7 +82,10 @@
       const card = document.createElement("article");
       card.className = "provider-card";
       const heading = document.createElement("h2");
-      heading.textContent = provider;
+      const headingLink = document.createElement("a");
+      headingLink.href = `benchmark-provider.html?provider=${encodeURIComponent(provider === "Provider not reported" ? "__unreported" : provider)}`;
+      headingLink.textContent = provider;
+      heading.append(headingLink);
       const identity = document.createElement("code");
       identity.textContent = `${models.size} models · ${records.length} records`;
       const stats = document.createElement("div");
@@ -90,7 +93,11 @@
       stats.innerHTML = `<span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${evaluated ? Math.round(passed / evaluated * 100) : 0}%</strong> pass rate</span><span><strong>${duration(Math.round(records.reduce((sum, record) => sum + (record.median_duration_seconds || 0), 0) / Math.max(records.length, 1)))}</strong> average median</span><span><strong>${money(cost, incomplete)}</strong> known spend</span>`;
       const note = document.createElement("p");
       note.textContent = provider === "Provider not reported" ? "Older releases did not persist provider identity." : "Records retain this provider boundary for comparison.";
-      card.append(heading, identity, stats, note);
+      const runs = document.createElement("a");
+      runs.className = "provider-card-link";
+      runs.href = headingLink.href;
+      runs.textContent = "View all runs →";
+      card.append(heading, identity, stats, note, runs);
       grid.append(card);
     });
   }

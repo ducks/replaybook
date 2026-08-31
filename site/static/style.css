@@ -1343,6 +1343,15 @@ pre code {
   border: 0;
 }
 
+.provider-card h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.provider-card h2 a:hover {
+  color: var(--accent);
+}
+
 .scenario-catalog-card > code,
 .provider-card > code {
   align-self: flex-start;
@@ -1352,6 +1361,12 @@ pre code {
 .scenario-catalog-card p,
 .provider-card p {
   color: var(--fg-dim);
+}
+
+.provider-card-link {
+  margin-top: auto;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .scenario-catalog-meta {

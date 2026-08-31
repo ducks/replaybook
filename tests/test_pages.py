@@ -70,6 +70,8 @@ class PagesTests(unittest.TestCase):
             "benchmark-explorer.html",
             "benchmark-model.html",
             "benchmark-models.html",
+            "benchmark-provider.html",
+            "benchmark-providers.html",
             "benchmark-scenario.html",
         }
         templates = SITE_DIR / "templates"
