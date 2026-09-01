@@ -56,6 +56,64 @@ def write_coverage(root: Path, *, evaluated: int = 3, version: int = 2) -> Path:
     return path
 
 
+def write_provider_coverage(root: Path) -> Path:
+    path = root / "provider-coverage.json"
+    path.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "fleet": [
+                    {
+                        "model": "same/model",
+                        "provider": "OpenRouter",
+                        "reasoning_effort": "high",
+                        "tiers": ["core"],
+                    },
+                    {
+                        "model": "same/model",
+                        "provider": "Vercel AI Gateway",
+                        "reasoning_effort": "high",
+                        "tiers": ["core"],
+                    },
+                ],
+                "scenarios": [
+                    {
+                        "scenario": "database-incident",
+                        "scenario_version": 2,
+                        "boundary": {
+                            "tier": "core",
+                            "attempts": 3,
+                            "agent_timeout_seconds": 600,
+                            "harness_versions": [23],
+                            "scenario_pack": {"id": "test/infra", "version": "1"},
+                        },
+                        "cells": [
+                            {
+                                "provider": "OpenRouter",
+                                "model": "same/model",
+                                "reasoning_effort": "high",
+                                "status": "covered",
+                                "evaluated": 3,
+                                "trials": 3,
+                                "median_duration_seconds": 60,
+                                "known_cost_usd": 0.30,
+                                "cost_reported_trials": 3,
+                            },
+                            {
+                                "provider": "Vercel AI Gateway",
+                                "model": "same/model",
+                                "reasoning_effort": "high",
+                                "status": "missing",
+                            },
+                        ],
+                    }
+                ],
+            }
+        )
+    )
+    return path
+
+
 def args(benchmark: Path, coverage: Path, models: list[str] | None = None) -> Namespace:
     return Namespace(
         benchmark=benchmark,
@@ -111,6 +169,33 @@ def write_summary(root: Path, manifest_sha: str) -> Path:
 
 
 class BenchmarkPlanTests(unittest.TestCase):
+    def test_provider_is_part_of_lane_identity(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            plan = build_plan(
+                args(write_benchmark(root), write_provider_coverage(root))
+            )
+
+        self.assertEqual(plan["possible_cells"], 2)
+        self.assertEqual(plan["covered_cells"], 1)
+        self.assertEqual(len(plan["gaps"]), 1)
+        self.assertEqual(plan["gaps"][0]["provider"], "Vercel AI Gateway")
+        self.assertIn("--agent-provider vercel-ai-gateway", plan["commands"][0]["command"])
+
+    def test_explicit_model_expands_to_all_configured_providers(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            namespace = args(
+                write_benchmark(root), write_provider_coverage(root), ["same/model"]
+            )
+            plan = build_plan(namespace)
+
+        self.assertEqual(
+            {lane["provider"] for lane in plan["lanes"]},
+            {"OpenRouter", "Vercel AI Gateway"},
+        )
+        self.assertEqual(len(plan["commands"]), 1)
+
     def test_plans_only_missing_fleet_lane(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
