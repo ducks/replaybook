@@ -532,6 +532,14 @@ cohort rather than being mixed into a statistically different attempt count.
 Models with identical gaps are grouped into one matrix, and separate commands
 receive non-overlapping port ranges.
 
+Provider is part of the lane identity. If the coverage fleet contains the same
+model through multiple providers, the planner keeps those cells separate and
+emits one command per provider lane with a normalized `--agent-provider` label.
+Use `--providers` to limit planning to one or more published provider labels;
+without it, a model selected with `--models` expands to every matching provider
+lane in the fleet. The provider flag records the lane; credentials and endpoint
+routing still come from the selected adapter's environment.
+
 Limit planning to an incoming model or temporary fleet:
 
 ```sh

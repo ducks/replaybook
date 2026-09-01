@@ -30,6 +30,7 @@ class PlanError(ValueError):
 
 @dataclass(frozen=True)
 class Lane:
+    provider: str | None
     model: str
     reasoning_effort: str | None
 
@@ -38,6 +39,7 @@ class Lane:
 class Gap:
     scenario: str
     scenario_version: int
+    provider: str | None
     model: str
     reasoning_effort: str | None
     reason: str
@@ -46,6 +48,7 @@ class Gap:
 @dataclass(frozen=True)
 class CommandPlan:
     scenarios: tuple[str, ...]
+    provider: str | None
     models: tuple[str, ...]
     reasoning_effort: str | None
     trials: int
@@ -91,7 +94,10 @@ def coverage_lanes(coverage: dict[str, Any]) -> tuple[Lane, ...]:
         effort = item.get("reasoning_effort")
         if effort is not None and not isinstance(effort, str):
             raise PlanError("coverage fleet contains an invalid reasoning effort")
-        lanes.append(Lane(item["model"], effort))
+        provider = item.get("provider")
+        if provider is not None and not isinstance(provider, str):
+            raise PlanError("coverage fleet contains an invalid provider")
+        lanes.append(Lane(provider, item["model"], effort))
     if not lanes:
         raise PlanError("coverage fleet is empty; pass --models explicitly")
     return tuple(lanes)
@@ -101,12 +107,23 @@ def selected_lanes(
     coverage: dict[str, Any],
     models: Sequence[str] | None,
     reasoning_efforts: Sequence[str] | None,
+    providers: Sequence[str] | None,
 ) -> tuple[Lane, ...]:
     def unique_lanes(items: Iterable[Lane]) -> tuple[Lane, ...]:
         return tuple(dict.fromkeys(items))
 
+    requested_providers = {
+        provider_id(provider) for provider in providers or ()
+    }
+
+    def provider_selected(provider: str | None) -> bool:
+        return not requested_providers or (
+            provider_id(provider) in requested_providers
+        )
+
     if not models:
         lanes = coverage_lanes(coverage)
+        lanes = tuple(lane for lane in lanes if provider_selected(lane.provider))
         if reasoning_efforts:
             requested = set(reasoning_efforts)
             lanes = tuple(lane for lane in lanes if lane.reasoning_effort in requested)
@@ -114,9 +131,43 @@ def selected_lanes(
                 raise PlanError("no configured coverage lanes use the requested effort")
         return unique_lanes(lanes)
     efforts: Sequence[str | None] = reasoning_efforts or ("high",)
-    return unique_lanes(
-        Lane(model, effort) for effort in efforts for model in models
-    )
+    configured = coverage_lanes(coverage)
+    lanes: list[Lane] = []
+    for model in models:
+        matches = [
+            lane
+            for lane in configured
+            if lane.model == model and provider_selected(lane.provider)
+        ]
+        if matches:
+            lanes.extend(
+                Lane(provider, model, effort)
+                for provider in dict.fromkeys(lane.provider for lane in matches)
+                for effort in efforts
+            )
+        else:
+            lanes.extend(
+                Lane(provider, model, effort)
+                for provider in (providers or (None,))
+                for effort in efforts
+            )
+    return unique_lanes(lanes)
+
+
+def provider_id(provider: str | None) -> str | None:
+    """Normalize a published provider label for --agent-provider metadata."""
+    if provider is None:
+        return None
+    normalized = "-".join(provider.casefold().replace("_", " ").split())
+    aliases = {
+        "openrouter": "openrouter",
+        "opencode-go": "opencode-go",
+        "opencode go": "opencode-go",
+        "vercel": "vercel-ai-gateway",
+        "vercel-ai-gateway": "vercel-ai-gateway",
+        "vercel ai gateway": "vercel-ai-gateway",
+    }
+    return aliases.get(normalized, normalized)
 
 
 def result_files(paths: Iterable[Path]) -> tuple[Path, ...]:
@@ -157,6 +208,7 @@ def local_sources(path: Path) -> tuple[dict[str, Any], ...]:
                 "benchmark_tier": benchmark.get("tier"),
                 "attempts": benchmark.get("attempts"),
                 "agent_timeout_seconds": benchmark.get("agent_timeout_seconds"),
+                "agent_provider": (benchmark.get("agent") or {}).get("provider"),
                 "scenario_packs": benchmark.get("scenario_packs"),
                 "scenarios": benchmark.get("scenarios"),
                 "runs": value.get("runs"),
@@ -196,8 +248,8 @@ def source_matches(manifest: BenchmarkManifest, source: dict[str, Any]) -> bool:
 
 def local_coverage(
     manifest: BenchmarkManifest, paths: Iterable[Path]
-) -> dict[tuple[str, int, str, str | None], int]:
-    counts: dict[tuple[str, int, str, str | None], int] = defaultdict(int)
+) -> dict[tuple[str, int, str | None, str, str | None], int]:
+    counts: dict[tuple[str, int, str | None, str, str | None], int] = defaultdict(int)
     for path in result_files(paths):
         for source in local_sources(path):
             if not source_matches(manifest, source):
@@ -206,12 +258,14 @@ def local_coverage(
             runs = source.get("runs")
             if not isinstance(runs, list):
                 raise PlanError(f"{path}: local evidence has no runs array")
+            source_provider = source.get("agent_provider")
             for run in runs:
                 if not isinstance(run, dict) or run.get("trial_status") != "evaluated":
                     continue
                 key = (
                     str(run.get("scenario")),
                     int(run.get("scenario_version", 0)),
+                    provider_id(run.get("provider") or source_provider),
                     str(run.get("model")),
                     run.get("reasoning_effort"),
                 )
@@ -246,7 +300,7 @@ def plan_gaps(
     manifest: BenchmarkManifest,
     coverage: dict[str, Any],
     lanes: Sequence[Lane],
-    local: dict[tuple[str, int, str, str | None], int] | None = None,
+    local: dict[tuple[str, int, str | None, str, str | None], int] | None = None,
 ) -> tuple[Gap, ...]:
     local = local or {}
     published = {
@@ -260,7 +314,14 @@ def plan_gaps(
             lane
             for lane in lanes
             if local.get(
-                (expected.id, expected.version, lane.model, lane.reasoning_effort), 0
+                (
+                    expected.id,
+                    expected.version,
+                    provider_id(lane.provider),
+                    lane.model,
+                    lane.reasoning_effort,
+                ),
+                0,
             )
             < manifest.attempts
         ]
@@ -279,18 +340,31 @@ def plan_gaps(
                 else "scenario has no published evidence"
             )
             gaps.extend(
-                Gap(expected.id, expected.version, lane.model, lane.reasoning_effort, reason)
+                Gap(
+                    expected.id,
+                    expected.version,
+                    lane.provider,
+                    lane.model,
+                    lane.reasoning_effort,
+                    reason,
+                )
                 for lane in uncovered_lanes
             )
             continue
         incompatible = boundary_reason(manifest, scenario)
         cells = {
-            (cell.get("model"), cell.get("reasoning_effort")): cell
+            (
+                provider_id(cell.get("provider")),
+                cell.get("model"),
+                cell.get("reasoning_effort"),
+            ): cell
             for cell in scenario.get("cells", [])
             if isinstance(cell, dict)
         }
         for lane in uncovered_lanes:
-            cell = cells.get((lane.model, lane.reasoning_effort))
+            cell = cells.get(
+                (provider_id(lane.provider), lane.model, lane.reasoning_effort)
+            )
             reason = incompatible
             if reason is None and (cell is None or cell.get("status") != "covered"):
                 reason = "model/scenario cell has no current evidence"
@@ -301,6 +375,7 @@ def plan_gaps(
                     Gap(
                         expected.id,
                         expected.version,
+                        lane.provider,
                         lane.model,
                         lane.reasoning_effort,
                         reason,
@@ -319,16 +394,18 @@ def build_commands(
     manifest_order = {item.id: index for index, item in enumerate(manifest.scenarios)}
     missing_by_lane: dict[Lane, set[str]] = defaultdict(set)
     for gap in gaps:
-        missing_by_lane[Lane(gap.model, gap.reasoning_effort)].add(gap.scenario)
-    grouped: dict[tuple[str | None, tuple[str, ...]], list[str]] = defaultdict(list)
+        missing_by_lane[Lane(gap.provider, gap.model, gap.reasoning_effort)].add(gap.scenario)
+    grouped: dict[
+        tuple[str | None, str | None, tuple[str, ...]], list[str]
+    ] = defaultdict(list)
     for lane, scenarios in missing_by_lane.items():
         ordered = tuple(sorted(scenarios, key=manifest_order.__getitem__))
-        grouped[(lane.reasoning_effort, ordered)].append(lane.model)
+        grouped[(lane.provider, lane.reasoning_effort, ordered)].append(lane.model)
 
     plans = []
     next_port = base_port
-    for (effort, scenarios), models in sorted(
-        grouped.items(), key=lambda item: (manifest_order[item[0][1][0]], item[0][0] or "")
+    for (provider, effort, scenarios), models in sorted(
+        grouped.items(), key=lambda item: (manifest_order[item[0][2][0]], item[0][0] or "")
     ):
         ordered_models = tuple(sorted(models))
         command = [
@@ -341,6 +418,8 @@ def build_commands(
             command.extend(("--scenario", scenario))
         command.append("--models")
         command.extend(ordered_models)
+        if provider is not None:
+            command.extend(("--agent-provider", provider_id(provider)))
         if effort is not None:
             command.extend(("--reasoning-efforts", effort))
         command.extend(("--concurrency", str(concurrency), "--base-port", str(next_port)))
@@ -350,6 +429,7 @@ def build_commands(
         plans.append(
             CommandPlan(
                 scenarios=scenarios,
+                provider=provider,
                 models=ordered_models,
                 reasoning_effort=effort,
                 trials=trials,
@@ -369,12 +449,19 @@ def estimate(
     concurrency: int,
     catalog: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    lane_keys = {(lane.model, lane.reasoning_effort) for lane in lanes}
-    durations: dict[tuple[str, str | None], list[float]] = defaultdict(list)
-    costs: dict[tuple[str, str | None], list[float]] = defaultdict(list)
+    lane_keys = {
+        (provider_id(lane.provider), lane.model, lane.reasoning_effort)
+        for lane in lanes
+    }
+    durations: dict[tuple[str | None, str, str | None], list[float]] = defaultdict(list)
+    costs: dict[tuple[str | None, str, str | None], list[float]] = defaultdict(list)
     for scenario in coverage["scenarios"]:
         for cell in scenario.get("cells", []):
-            key = (cell.get("model"), cell.get("reasoning_effort"))
+            key = (
+                provider_id(cell.get("provider")),
+                cell.get("model"),
+                cell.get("reasoning_effort"),
+            )
             if key not in lane_keys or cell.get("status") != "covered":
                 continue
             trials = int(cell.get("trials", 0))
@@ -389,7 +476,11 @@ def estimate(
         for lane in catalog.get("lanes", []):
             if not isinstance(lane, dict):
                 continue
-            key = (lane.get("model"), lane.get("reasoning_effort"))
+            key = (
+                provider_id(lane.get("provider")),
+                lane.get("model"),
+                lane.get("reasoning_effort"),
+            )
             if key not in lane_keys:
                 continue
             if not durations[key] and isinstance(
@@ -407,7 +498,7 @@ def estimate(
     cost_total = 0.0
     cost_known = True
     for gap in gaps:
-        key = (gap.model, gap.reasoning_effort)
+        key = (provider_id(gap.provider), gap.model, gap.reasoning_effort)
         if durations[key]:
             duration_total += sorted(durations[key])[len(durations[key]) // 2] * manifest.attempts
         else:
@@ -433,7 +524,9 @@ def build_plan(args: argparse.Namespace) -> dict[str, Any]:
     catalog = None
     if args.catalog is not None:
         catalog = read_catalog(args.catalog)
-    lanes = selected_lanes(coverage, args.models, args.reasoning_efforts)
+    lanes = selected_lanes(
+        coverage, args.models, args.reasoning_efforts, getattr(args, "providers", None)
+    )
     local = local_coverage(manifest, args.results)
     gaps = plan_gaps(manifest, coverage, lanes, local)
     commands = build_commands(
@@ -526,6 +619,11 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="local summary, submission bundle, or jobs directory; repeat as needed",
     )
     parser.add_argument("--models", nargs="+")
+    parser.add_argument(
+        "--providers",
+        nargs="+",
+        help="limit planning to published provider labels (case-insensitive)",
+    )
     parser.add_argument("--reasoning-efforts", nargs="+")
     parser.add_argument("--concurrency", type=int, default=2)
     parser.add_argument("--base-port", type=int, default=22600)
