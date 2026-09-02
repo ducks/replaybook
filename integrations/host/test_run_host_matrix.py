@@ -34,6 +34,9 @@ from integrations.host.scenario_pack import discover, load_pack
 
 
 class HostMatrixTests(unittest.TestCase):
+    def test_snapshot_includes_host_reboot_classifier(self) -> None:
+        self.assertIn("classify-host-reboot-failure.sh", HOST_RUNNER_FILES)
+
     def test_openrouter_key_resolver_uses_claux_oauth_fallback(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             claux = Path(temporary) / "claux"

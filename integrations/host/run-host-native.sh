@@ -912,6 +912,7 @@ fi
 
 agent_result="${OUTPUT_DIR}/results/agent.json"
 agent_result_invalid=false
+agent_result_missing=false
 if [[ "$RUN_ORACLE" == false && -f "$agent_result" ]]; then
   reported_agent="$(jq -r --arg model "$MODEL" --arg agent "$AGENT_NAME" 'select(
       type == "object" and
@@ -928,6 +929,8 @@ if [[ "$RUN_ORACLE" == false && -f "$agent_result" ]]; then
 elif [[ "$RUN_ORACLE" == false && $run_status -eq 0 ]]; then
   agent_result_invalid=true
   run_status=65
+elif [[ "$RUN_ORACLE" == false ]]; then
+  agent_result_missing=true
 fi
 
 reward=0
@@ -974,6 +977,10 @@ if (( run_status != 0 )); then
     failure="$(jq -r '.outcome.message // "agent harness could not complete the trial"' "$agent_result")"
   elif [[ "$failure_category" == "guest_out_of_memory" ]]; then
     failure="guest ran out of memory while executing the agent harness"
+  elif [[ "$agent_result_missing" == true ]]; then
+    trial_status="unavailable"
+    failure_category="agent_result_missing"
+    failure="agent did not write a result"
   else
     failure="agent exited with status $run_status"
   fi

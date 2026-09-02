@@ -45,7 +45,12 @@ if [[ -n "${1:-}" ]]; then
   umask 077
   : >"$output"
 else
-  output="$(mktemp "${TMPDIR:-/var/tmp}/replaybook-codex-env.XXXXXX")"
+  runtime_dir="${XDG_RUNTIME_DIR:-${TMPDIR:-/var/tmp}}"
+  [[ -d "$runtime_dir" && -w "$runtime_dir" ]] || {
+    echo "runtime directory is not writable: ${runtime_dir}" >&2
+    exit 1
+  }
+  output="$(mktemp "$runtime_dir/replaybook-codex-env.XXXXXX")"
 fi
 chmod 0600 "$output"
 

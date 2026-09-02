@@ -338,6 +338,26 @@ Replaybook does not require an OpenRouter key for custom adapters. The bundled
 Claux adapter instead uses the host-side credential proxy and remains the
 default when `--agent-adapter` is omitted.
 
+Credential helpers place disposable OpenCode and Codex environment files in
+`XDG_RUNTIME_DIR` when it is available, rather than a shared temporary
+directory. Audit retained artifacts without printing credential contents:
+
+```sh
+python integrations/host/credential_lifecycle.py scan
+```
+
+If a job archive must be scrubbed, use the explicit confirmation flag. This
+redacts OpenRouter key-shaped strings in job files and removes only the known
+disposable environment files in the selected runtime directory:
+
+```sh
+python integrations/host/credential_lifecycle.py scrub \
+  --remove-env-files --yes
+```
+
+Rotate any provider key that was previously written into a retained artifact;
+the scrubber cannot invalidate a credential at its provider.
+
 ### OpenCode
 
 The bundled OpenCode adapter runs an installed OpenCode CLI in pure JSON mode,

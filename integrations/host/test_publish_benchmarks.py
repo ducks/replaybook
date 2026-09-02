@@ -17,6 +17,7 @@ from integrations.host.publish_benchmarks import (
     create_release,
     html_page,
     normalized_agent_harness,
+    public_catalog,
     validate_release,
     write_json,
 )
@@ -171,6 +172,12 @@ class PublisherTests(unittest.TestCase):
 
         self.assertEqual(release["totals"]["passed"], 2)
         self.assertEqual(len(release["sources"]), 2)
+        self.assertTrue(
+            all(
+                len(source["summary_sha256"]) == 64
+                for source in release["sources"]
+            )
+        )
         self.assertNotIn("result_file", release["runs"][0])
         self.assertNotIn("transcript_file", release["runs"][0])
 
@@ -1137,6 +1144,28 @@ class PublisherTests(unittest.TestCase):
             release["totals"]["passed"] = 0
             with self.assertRaisesRegex(PublishError, "totals"):
                 validate_release(release, root / "release.json")
+
+    def test_catalog_validates_historical_releases(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.write_summary(root, "matrix", summary("model/a"))
+            historical = create_release("20260808.0.0", [path], {})
+            historical["totals"]["passed"] = 0
+            current = create_release("20260809.0.0", [path], {})
+            write_json(
+                root / "benchmark-data/index.json",
+                {
+                    "schema_version": 1,
+                    "current_version": "20260809.0.0",
+                    "releases": ["20260808.0.0", "20260809.0.0"],
+                },
+            )
+            write_json(root / "benchmark-data/releases/20260808.0.0.json", historical)
+            write_json(root / "benchmark-data/releases/20260809.0.0.json", current)
+            with self.assertRaisesRegex(PublishError, "20260808.0.0.*totals"):
+                public_catalog(
+                    json.loads((root / "benchmark-data/index.json").read_text()), root
+                )
 
 
 if __name__ == "__main__":

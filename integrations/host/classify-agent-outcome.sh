@@ -13,7 +13,8 @@ made_progress="$(jq -r '
   if type != "object" then false
   else
     any(.recording.model_rounds[]?; .status == "completed") or
-    ((.recording.tools // []) | length > 0)
+    ((.recording.tools // []) | length > 0) or
+    (((.usage.output_tokens // .usage.completion_tokens // 0) | tonumber? // 0) > 0)
   end
 ' "$result_file" 2>/dev/null || printf '%s\n' false)"
 
@@ -30,7 +31,11 @@ elif [[ "$message" =~ corrupted[[:space:]]+thought[[:space:]]+signature|thought[
     printf '%s\t%s\n' unavailable provider_protocol_error
   fi
 elif [[ "$message" =~ 401|authentication[[:space:]_-]*failed|unauthorized|invalid[[:space:]_-]*api[[:space:]_-]*key|api[[:space:]_-]*key.*(missing|invalid|expired) ]]; then
-  printf '%s\t%s\n' unavailable authentication_failed
+  if [[ "$made_progress" == true ]]; then
+    printf '%s\t%s\n' evaluated authentication_failed
+  else
+    printf '%s\t%s\n' unavailable authentication_failed
+  fi
 elif [[ "$message" =~ output[[:space:]_-]*token[[:space:]_-]*limit|maximum[[:space:]_-]*output[[:space:]_-]*tokens ]]; then
   printf '%s\t%s\n' evaluated agent_output_limit
 elif [[ "$message" =~ 429|too[[:space:]]+many[[:space:]]+requests|provider[[:space:]]+returned[[:space:]]+error|provider[[:space:]]+unavailable|service[[:space:]]+unavailable|endpoint[[:space:]]+is[[:space:]]+unavailable|provider_model_not_found|model[[:space:]_-]*not[[:space:]_-]*found|bad[[:space:]]+gateway|upstream[[:space:]]+request[[:space:]]+failed|stream[[:space:]]+ended[[:space:]]+before[[:space:]]+(message_stop|a[[:space:]]+finish[[:space:]]+reason)|stream[[:space:]]+ended[[:space:]]+in[[:space:]]+the[[:space:]]+middle[[:space:]]+of[[:space:]]+an[[:space:]]+sse[[:space:]]+frame ]]; then

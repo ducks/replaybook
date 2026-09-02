@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import html
 import json
 import re
@@ -280,6 +281,7 @@ def import_summary(path: Path) -> dict[str, Any]:
     compacted_agent = compact_agent(agent)
     source = {
         "source": path.parent.name,
+        "summary_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         "started_at": summary.get("started_at"),
         "finished_at": summary.get("finished_at"),
         "suite": summary.get("suite"),
@@ -971,14 +973,42 @@ def validate_release(release: dict[str, Any], source: Path) -> None:
     runs = release.get("runs")
     if not isinstance(runs, list) or not runs:
         raise PublishError(f"{source}: release contains no normalized runs")
+    release_sources = release.get("sources")
+    if not isinstance(release_sources, list) or not release_sources:
+        raise PublishError(f"{source}: release contains no source matrices")
+    for matrix in release_sources:
+        if not isinstance(matrix, dict):
+            raise PublishError(f"{source}: release source metadata is invalid")
+        digest = matrix.get("summary_sha256")
+        if digest is not None and (
+            not isinstance(digest, str) or not SHA256_PATTERN.fullmatch(digest)
+        ):
+            raise PublishError(f"{source}: source summary digest is invalid")
     expected = {
         "totals": aggregate_runs(runs),
         "by_model": grouped_aggregates(runs, model_group_fields(runs)),
         "by_scenario_model": grouped_aggregates(runs, scenario_model_group_fields(runs)),
     }
     for key, value in expected.items():
-        if release.get(key) != value:
+        # Older releases predate some aggregate fields. Missing fields are
+        # left intact for reproducibility; fields that are present must still
+        # match normalized runs so historical edits cannot pass silently.
+        if key in release and not matches_present(release[key], value):
             raise PublishError(f"{source}: generated {key} does not match normalized runs")
+
+
+def matches_present(actual: Any, expected: Any) -> bool:
+    """Compare generated data while tolerating fields added after a release."""
+    if isinstance(actual, dict) and isinstance(expected, dict):
+        return all(
+            key not in actual or matches_present(actual[key], value)
+            for key, value in expected.items()
+        )
+    if isinstance(actual, list) and isinstance(expected, list):
+        return len(actual) == len(expected) and all(
+            matches_present(left, right) for left, right in zip(actual, expected)
+        )
+    return actual == expected
 
 
 def format_duration(seconds: float | int | None) -> str:
@@ -1796,8 +1826,9 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
     for version in index["releases"]:
         path = root / RELEASES_DIR / f"{version}.json"
         release = read_json(path)
-        if version == index["current_version"]:
-            validate_release(release, path)
+        # Validate every published release, including historical cohorts. A
+        # catalog must never silently expose stale or hand-edited aggregates.
+        validate_release(release, path)
         compatibility = release["compatibility"]
         agent_harness = normalized_agent_harness(release)
         releases.append(
@@ -1833,6 +1864,13 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                 "agent_timeout_seconds": compatibility["agent_timeout_seconds"],
                 "attempts": compatibility["attempts"],
                 "totals": release["totals"],
+                "source_digests": [
+                    {
+                        "source": matrix.get("source"),
+                        "summary_sha256": matrix.get("summary_sha256"),
+                    }
+                    for matrix in release.get("sources", [])
+                ],
             }
         )
         for aggregate in release["by_model"]:
@@ -2291,7 +2329,11 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
                     "release": version,
                     "repairs": f'{row["passed"]}/{row["evaluated"]}',
                     "rate": format_rate(row["pass_rate"]),
-                    "rate_percent": max(0, min(100, round(row["pass_rate"] * 100))),
+                    "rate_percent": (
+                        max(0, min(100, round(row["pass_rate"] * 100)))
+                        if row["pass_rate"] is not None
+                        else None
+                    ),
                     "ci": (
                         f"{format_rate(interval[0])}–{format_rate(interval[1])}"
                         if interval
@@ -2409,7 +2451,11 @@ def modality_overview_page(index: dict[str, Any], root: Path, input_mode: str) -
                     "reasoning": row.get("reasoning_effort") or "default",
                     "repairs": f'{row["passed"]}/{row["evaluated"]}',
                     "rate": format_rate(row["pass_rate"]),
-                    "rate_percent": max(0, min(100, round(row["pass_rate"] * 100))),
+                    "rate_percent": (
+                        max(0, min(100, round(row["pass_rate"] * 100)))
+                        if row["pass_rate"] is not None
+                        else None
+                    ),
                     "ci": (
                         f"{format_rate(interval[0])}–{format_rate(interval[1])}"
                         if interval

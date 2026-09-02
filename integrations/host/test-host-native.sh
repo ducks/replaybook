@@ -160,6 +160,8 @@ fi
 grep -q 'usage_candidate=' "$script_dir/run-host-native.sh"
 grep -q 'capture_agent_results || true' "$script_dir/run-host-native.sh"
 grep -q 'agent result capture attempt.*failed; retrying' "$script_dir/run-host-native.sh"
+grep -q 'agent_result_missing=true' "$script_dir/run-host-native.sh"
+grep -q 'failure_category="agent_result_missing"' "$script_dir/run-host-native.sh"
 grep -q 'completed agent result could not be captured from the incident host' \
   "$script_dir/run-host-native.sh"
 grep -q 'failure_category="host_reboot_failed"' "$script_dir/run-host-native.sh"
@@ -213,6 +215,10 @@ printf '%s\n' '{"outcome":{"status":"error","message":"API error: SSE stream err
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_unavailable' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"authentication failed: invalid API key"}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tauthentication_failed' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"authentication failed after partial response"},"usage":{"output_tokens":12}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tauthentication_failed' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"authentication failed after partial response"},"usage":{"output_tokens":"12"}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tauthentication_failed' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (400 Bad Request) [content_policy_violation]: PROHIBITED_CONTENT"}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_policy_rejection' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (403 Forbidden) [content_policy_violation]: PROHIBITED_CONTENT"},"recording":{"model_rounds":[{"status":"completed"}],"tools":[{"name":"Bash"}]}}' >"$agent_error"

@@ -46,6 +46,7 @@ HOST_RUNNER_FILES = (
     "classify-agent-exit.sh",
     "classify-agent-outcome.sh",
     "classify-agent-run-exit.sh",
+    "classify-host-reboot-failure.sh",
     "guest_leak_audit.py",
     "isolated-vm.nix",
     "openrouter_proxy.py",
