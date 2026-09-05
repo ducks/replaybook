@@ -12,6 +12,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from integrations.host.run_host_matrix import (
+    DEFAULT_SCENARIO_PACK,
     Job,
     HOST_RUNNER_FILES,
     WorkerResult,
@@ -34,6 +35,25 @@ from integrations.host.scenario_pack import discover, load_pack
 
 
 class HostMatrixTests(unittest.TestCase):
+    def test_model_runs_require_provider_metadata(self) -> None:
+        output = io.StringIO()
+        with contextlib.redirect_stderr(output):
+            status = main(
+                [
+                    "--scenario-pack",
+                    str(DEFAULT_SCENARIO_PACK),
+                    "--scenario",
+                    "001-nginx-502-host",
+                    "--models",
+                    "vendor/model",
+                    "--attempts",
+                    "1",
+                ]
+            )
+
+        self.assertEqual(status, 2)
+        self.assertIn("--agent-provider is required", output.getvalue())
+
     def test_snapshot_includes_host_reboot_classifier(self) -> None:
         self.assertIn("classify-host-reboot-failure.sh", HOST_RUNNER_FILES)
 

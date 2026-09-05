@@ -325,7 +325,8 @@ are available. A transcript is optional and remains harness-defined JSON.
 
 Use `--agent-provider` (also accepted as `--provider`) to identify the
 invocation's upstream provider or gateway, such as `openrouter`, `opencode-go`,
-or `vercel-ai-gateway`. The label is recorded on every trial and included in
+or `vercel-ai-gateway`. The flag is required for model runs (oracle runs are
+the only exception). The label is recorded on every trial and included in
 summary and release grouping, so the same model routed through different
 providers remains in separate lanes. It is metadata only; it does not select
 or authenticate a provider.

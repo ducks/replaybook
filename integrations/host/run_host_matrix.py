@@ -1258,7 +1258,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--agent-name")
     parser.add_argument(
         "--agent-provider", "--provider", dest="agent_provider",
-        help="upstream model provider for this invocation (recorded per trial)",
+        help="upstream model provider for this invocation (required for model runs; recorded per trial)",
     )
     parser.add_argument("--oracle", action="store_true")
     parser.add_argument(
@@ -1349,6 +1349,15 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
         raise ValueError("--agent-adapter cannot be combined with --claux-release")
     if not args.oracle and not args.models and not args.list_scenarios and not args.check:
         raise ValueError("--models is required unless --oracle is used")
+    if (
+        not args.oracle
+        and not args.list_scenarios
+        and not args.check
+        and not args.agent_provider
+    ):
+        raise ValueError(
+            "--agent-provider is required for model runs; use --oracle for oracle runs"
+        )
     for scenario in unique(args.scenarios or [DEFAULT_SCENARIO]):
         if not SCENARIO_ID_PATTERN.fullmatch(scenario) or scenario not in available:
             raise ValueError(f"unknown host-native scenario: {scenario}")
