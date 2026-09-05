@@ -1274,6 +1274,13 @@ pre code {
   border-top: 1px solid var(--border);
 }
 
+.model-family-id {
+  display: block;
+  margin-top: -0.65rem;
+  color: var(--fg-dim);
+  overflow-wrap: anywhere;
+}
+
 .model-family:first-child > h2 {
   margin-top: 2rem;
 }
@@ -1288,7 +1295,8 @@ pre code {
   border-radius: 8px;
 }
 
-.model-card h2 {
+.model-card h2,
+.model-card h3 {
   margin: 0 0 0.35rem;
   padding: 0;
   border: 0;

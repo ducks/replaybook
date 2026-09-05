@@ -27,6 +27,27 @@
     return item.reasoning_effort ? `${item.model_label} (${item.reasoning_effort})` : item.model_label;
   }
 
+  // OpenCode Go namespaces the upstream model ID. Keep that namespace in the
+  // lane URL, but group the lane with the canonical model everywhere it is
+  // presented on this page.
+  function canonicalModelId(model) {
+    return model.startsWith("opencode-go/") ? model.slice("opencode-go/".length) : model;
+  }
+
+  function modelLabel(lane) {
+    if (lane.model_label) return lane.model_label;
+    const canonical = canonicalModelId(lane.model);
+    return canonical.split("/").at(-1);
+  }
+
+  function providerLabel(provider) {
+    return ({
+      "openrouter": "OpenRouter",
+      "opencode-go": "OpenCode Go",
+      "vercel-ai-gateway": "Vercel AI Gateway",
+    })[provider] || provider || "Provider not reported";
+  }
+
   function profileUrl(lane) {
     const query = new URLSearchParams({model: lane.model});
     if (lane.reasoning_effort) query.set("reasoning", lane.reasoning_effort);
@@ -65,27 +86,32 @@
       lane.records = [...latest.values()];
       lane.tiers = [...new Set(lane.records.map(record => record.tier))];
       return lane;
-    }).sort((a, b) => a.model_label.localeCompare(b.model_label) || (a.provider || "").localeCompare(b.provider || ""));
-    document.querySelector("#models-context").textContent = `${lanes.length} observed model lanes across ${catalog.records.length} published records · newest evidence per scenario`;
-    const groupsByParent = new Map();
+    }).sort((a, b) => modelLabel(a).localeCompare(modelLabel(b)) || providerLabel(a.provider).localeCompare(providerLabel(b.provider)));
+    const groupsByModel = new Map();
     lanes.forEach(lane => {
-      const parent = lane.model.includes("/") ? lane.model.split("/", 1)[0] : "other";
-      if (!groupsByParent.has(parent)) groupsByParent.set(parent, []);
-      groupsByParent.get(parent).push(lane);
+      const key = `${canonicalModelId(lane.model)}|||${lane.reasoning_effort || ""}`;
+      if (!groupsByModel.has(key)) groupsByModel.set(key, {model: canonicalModelId(lane.model), model_label: modelLabel(lane), lanes: []});
+      groupsByModel.get(key).lanes.push(lane);
     });
-    const parentLabel = parent => ({"z-ai": "Z.AI", "openai": "OpenAI", "google": "Google", "moonshotai": "Moonshot AI", "xiaomi": "Xiaomi", "nvidia": "NVIDIA", "anthropic": "Anthropic"}[parent] || parent.replace(/[-_]/g, " ").replace(/\b\w/g, letter => letter.toUpperCase()));
+    const modelGroups = [...groupsByModel.values()].sort((a, b) => a.model_label.localeCompare(b.model_label) || a.model.localeCompare(b.model));
+    document.querySelector("#models-context").textContent = `${modelGroups.length} models · ${lanes.length} provider lanes across ${catalog.records.length} published records · newest evidence per scenario`;
     const container = document.querySelector("#model-groups");
-    [...groupsByParent.entries()].sort((a, b) => parentLabel(a[0]).localeCompare(parentLabel(b[0]))).forEach(([parent, parentLanes]) => {
+    modelGroups.forEach(modelGroup => {
       const section = document.createElement("section");
       section.className = "model-family";
       const heading = document.createElement("h2");
-      heading.textContent = parentLabel(parent);
+      heading.textContent = modelGroup.model_label;
       section.append(heading);
+      const modelId = document.createElement("code");
+      modelId.className = "model-family-id";
+      modelId.textContent = modelGroup.model;
+      section.append(modelId);
       const grid = document.createElement("div");
       grid.className = "model-grid";
       section.append(grid);
       container.append(section);
-      parentLanes.forEach(lane => {
+      modelGroup.lanes.sort((a, b) => providerLabel(a.provider).localeCompare(providerLabel(b.provider)) || laneLabel(a).localeCompare(laneLabel(b)));
+      modelGroup.lanes.forEach(lane => {
       const cells = lane.records;
       const evaluated = cells.reduce((sum, cell) => sum + cell.evaluated, 0);
       const passed = cells.reduce((sum, cell) => sum + cell.passed, 0);
@@ -95,13 +121,13 @@
       const incomplete = cells.some(cell => cell.cost_reported_trials < cell.trials);
       const card = document.createElement("article");
       card.className = "model-card";
-      const title = document.createElement("h2");
+      const title = document.createElement("h3");
       const link = document.createElement("a");
       link.href = profileUrl(lane);
-      link.textContent = laneLabel(lane);
+      link.textContent = providerLabel(lane.provider);
       title.append(link);
       const identity = document.createElement("code");
-      identity.textContent = `${lane.provider || "Provider not reported"} · ${lane.model}`;
+      identity.textContent = laneLabel(lane);
       const stats = document.createElement("div");
       stats.className = "model-card-stats";
       stats.innerHTML = `<span><strong>${cells.length}/${scenarioCount}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${costReported ? money(cost, incomplete) : "n/a"}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
