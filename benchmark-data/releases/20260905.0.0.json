@@ -1,0 +1,4565 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 3960409,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 730,
+      "known_cost_usd": 14.64070225,
+      "median_duration_seconds": 100,
+      "median_first_non_read_only_tool_seconds": 7.737,
+      "median_model_duration_seconds": 91.459,
+      "median_model_rounds": 10,
+      "median_post_first_non_read_only_seconds": 90.134,
+      "median_tool_calls": 9,
+      "median_tool_duration_seconds": 6.616,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 142706,
+      "pass_rate": 0.9696969696969697,
+      "passed": 32,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    },
+    {
+      "cache_read_tokens": 70818962,
+      "cost_reported_trials": 32,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 9,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "provider_protocol_error": 8
+      },
+      "input_tokens": 8921347,
+      "known_cost_usd": 14.9736474,
+      "median_duration_seconds": 325,
+      "median_first_non_read_only_tool_seconds": 7.45,
+      "median_model_duration_seconds": 296.0575,
+      "median_model_rounds": 63.0,
+      "median_post_first_non_read_only_seconds": 315.36899999999997,
+      "median_tool_calls": 62.0,
+      "median_tool_duration_seconds": 13.5985,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 792324,
+      "pass_rate": 0.7272727272727273,
+      "passed": 24,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 32,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 32
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 225573,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 54,
+      "known_cost_usd": 0.83759575,
+      "median_duration_seconds": 68,
+      "median_first_non_read_only_tool_seconds": 6.617,
+      "median_model_duration_seconds": 61.048,
+      "median_model_rounds": 8,
+      "median_post_first_non_read_only_seconds": 57.376999999999995,
+      "median_tool_calls": 7,
+      "median_tool_duration_seconds": 3.563,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 7402,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 6042643,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 914547,
+      "known_cost_usd": 1.339077225,
+      "median_duration_seconds": 225,
+      "median_first_non_read_only_tool_seconds": 7.45,
+      "median_model_duration_seconds": 220.33,
+      "median_model_rounds": 53,
+      "median_post_first_non_read_only_seconds": 215.871,
+      "median_tool_calls": 52,
+      "median_tool_duration_seconds": 12.741,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 53325,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 248682,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 56,
+      "known_cost_usd": 0.9549179999999999,
+      "median_duration_seconds": 78,
+      "median_first_non_read_only_tool_seconds": 6.56,
+      "median_model_duration_seconds": 62.028,
+      "median_model_rounds": 8,
+      "median_post_first_non_read_only_seconds": 69.84400000000001,
+      "median_tool_calls": 7,
+      "median_tool_duration_seconds": 9.974,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 8298,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 2354640,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "provider_protocol_error": 2
+      },
+      "input_tokens": 435798,
+      "known_cost_usd": 0.5755327500000001,
+      "median_duration_seconds": 72,
+      "median_first_non_read_only_tool_seconds": 6.624,
+      "median_model_duration_seconds": 68.44,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 63.57200000000001,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 0.498,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 19223,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 458331,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 76,
+      "known_cost_usd": 1.90115525,
+      "median_duration_seconds": 172,
+      "median_first_non_read_only_tool_seconds": 6.782,
+      "median_model_duration_seconds": 131.171,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 163.866,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 38.863,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 20944,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 8916413,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "provider_protocol_error": 1
+      },
+      "input_tokens": 943050,
+      "known_cost_usd": 1.8288497249999998,
+      "median_duration_seconds": 528,
+      "median_first_non_read_only_tool_seconds": 6.189,
+      "median_model_duration_seconds": 499.476,
+      "median_model_rounds": 80,
+      "median_post_first_non_read_only_seconds": 520.243,
+      "median_tool_calls": 79,
+      "median_tool_duration_seconds": 26.009,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 120755,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 457381,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 70,
+      "known_cost_usd": 1.4739577499999998,
+      "median_duration_seconds": 141,
+      "median_first_non_read_only_tool_seconds": 6.543,
+      "median_model_duration_seconds": 100.295,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 133.19899999999998,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 15.932,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 11944,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 8378346,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1173299,
+      "known_cost_usd": 1.7554264499999999,
+      "median_duration_seconds": 599,
+      "median_first_non_read_only_tool_seconds": 6.666,
+      "median_model_duration_seconds": 385.557,
+      "median_model_rounds": 86,
+      "median_post_first_non_read_only_seconds": 590.947,
+      "median_tool_calls": 85,
+      "median_tool_duration_seconds": 206.878,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 65887,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 362222,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 80,
+      "known_cost_usd": 1.1978680000000002,
+      "median_duration_seconds": 108,
+      "median_first_non_read_only_tool_seconds": 6.707,
+      "median_model_duration_seconds": 99.839,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 99.256,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 5.367,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 13339,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 3396814,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "provider_protocol_error": 1
+      },
+      "input_tokens": 669594,
+      "known_cost_usd": 0.9681528000000001,
+      "median_duration_seconds": 326,
+      "median_first_non_read_only_tool_seconds": 6.915,
+      "median_model_duration_seconds": 282.22,
+      "median_model_rounds": 67,
+      "median_post_first_non_read_only_seconds": 318.639,
+      "median_tool_calls": 66,
+      "median_tool_duration_seconds": 6.716,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 56319,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 359224,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 64,
+      "known_cost_usd": 1.9380709999999999,
+      "median_duration_seconds": 140,
+      "median_first_non_read_only_tool_seconds": 9.786,
+      "median_model_duration_seconds": 134.933,
+      "median_model_rounds": 10,
+      "median_post_first_non_read_only_seconds": 129.335,
+      "median_tool_calls": 9,
+      "median_tool_duration_seconds": 4.913,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 22204,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 7817272,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "provider_protocol_error": 1
+      },
+      "input_tokens": 1086685,
+      "known_cost_usd": 1.7898954000000005,
+      "median_duration_seconds": 450,
+      "median_first_non_read_only_tool_seconds": 8.112,
+      "median_model_duration_seconds": 428.625,
+      "median_model_rounds": 73,
+      "median_post_first_non_read_only_seconds": 440.96400000000006,
+      "median_tool_calls": 72,
+      "median_tool_duration_seconds": 17.116,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 103623,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 421684,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 66,
+      "known_cost_usd": 1.3409935000000002,
+      "median_duration_seconds": 97,
+      "median_first_non_read_only_tool_seconds": 7.868,
+      "median_model_duration_seconds": 84.188,
+      "median_model_rounds": 10,
+      "median_post_first_non_read_only_seconds": 86.88900000000001,
+      "median_tool_calls": 9,
+      "median_tool_duration_seconds": 10.827,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 11123,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 15647997,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1108542,
+      "known_cost_usd": 2.493916275,
+      "median_duration_seconds": 628,
+      "median_first_non_read_only_tool_seconds": 6.082,
+      "median_model_duration_seconds": 492.532,
+      "median_model_rounds": 73,
+      "median_post_first_non_read_only_seconds": 621.001,
+      "median_tool_calls": 72,
+      "median_tool_duration_seconds": 132.675,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 130376,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 398773,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 74,
+      "known_cost_usd": 1.4532957499999999,
+      "median_duration_seconds": 128,
+      "median_first_non_read_only_tool_seconds": 7.698,
+      "median_model_duration_seconds": 119.775,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 117.836,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 5.308,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 14538,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1118082,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "provider_protocol_error": 2
+      },
+      "input_tokens": 257411,
+      "known_cost_usd": 0.34726065,
+      "median_duration_seconds": 31,
+      "median_first_non_read_only_tool_seconds": 13.315999999999999,
+      "median_model_duration_seconds": 28.473,
+      "median_model_rounds": 3,
+      "median_post_first_non_read_only_seconds": 158.4575,
+      "median_tool_calls": 2,
+      "median_tool_duration_seconds": 0.028,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 18759,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 464489,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 70,
+      "known_cost_usd": 1.41788475,
+      "median_duration_seconds": 120,
+      "median_first_non_read_only_tool_seconds": 7.622,
+      "median_model_duration_seconds": 107.872,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 110.613,
+      "median_tool_calls": 10,
+      "median_tool_duration_seconds": 10.841,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 12640,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 6070712,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 837166,
+      "known_cost_usd": 1.33006665,
+      "median_duration_seconds": 346,
+      "median_first_non_read_only_tool_seconds": 9.289,
+      "median_model_duration_seconds": 340.355,
+      "median_model_rounds": 62,
+      "median_post_first_non_read_only_seconds": 330.173,
+      "median_tool_calls": 61,
+      "median_tool_duration_seconds": 4.185,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 65837,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 257932,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 64,
+      "known_cost_usd": 0.8351355,
+      "median_duration_seconds": 93,
+      "median_first_non_read_only_tool_seconds": 10.363,
+      "median_model_duration_seconds": 85.966,
+      "median_model_rounds": 10,
+      "median_post_first_non_read_only_seconds": 80.386,
+      "median_tool_calls": 9,
+      "median_tool_duration_seconds": 4.724,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 8917,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "030-visual-metrics-regression",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 3820901,
+      "cost_reported_trials": 2,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "provider_protocol_error": 1
+      },
+      "input_tokens": 667929,
+      "known_cost_usd": 1.0597155749999998,
+      "median_duration_seconds": 792,
+      "median_first_non_read_only_tool_seconds": 8.036999999999999,
+      "median_model_duration_seconds": 387.5815,
+      "median_model_rounds": 52.0,
+      "median_post_first_non_read_only_seconds": 522.288,
+      "median_tool_calls": 51.0,
+      "median_tool_duration_seconds": 142.112,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 72587,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 2,
+      "scenario": "030-visual-metrics-regression",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 2
+    },
+    {
+      "cache_read_tokens": 306118,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 56,
+      "known_cost_usd": 1.289827,
+      "median_duration_seconds": 91,
+      "median_first_non_read_only_tool_seconds": 9.696,
+      "median_model_duration_seconds": 81.796,
+      "median_model_rounds": 8,
+      "median_post_first_non_read_only_seconds": 77.94,
+      "median_tool_calls": 7,
+      "median_tool_duration_seconds": 5.667,
+      "model": "anthropic/claude-fable-5.1",
+      "output_tokens": 11357,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "031-visual-deployment-timeline",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 7255142,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 827326,
+      "known_cost_usd": 1.4857539,
+      "median_duration_seconds": 325,
+      "median_first_non_read_only_tool_seconds": 8.002,
+      "median_model_duration_seconds": 298.534,
+      "median_model_rounds": 62,
+      "median_post_first_non_read_only_seconds": 315.36899999999997,
+      "median_tool_calls": 61,
+      "median_tool_duration_seconds": 16.848,
+      "model": "google/gemini-3.8-flash",
+      "output_tokens": 85633,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "031-visual-deployment-timeline",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "v20260821.0.2"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": null,
+    "benchmark_tier": null,
+    "claux_release": "v20260821.0.2",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": null,
+      "claux_binary_sha256": "693da498a20a39a10546da6db6d94adfa20c8d99d26663d6c0df742db115fc5a",
+      "host_harness_sha256": "9d3d63a934d46f875badbe519f07ac9cb9f50d9a8646d7cd9a2153fd87d8e401",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "029-visual-topology-drift",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "9e43c4c58db2c9c1c9f45e43aebfbd2be937a31f4cb8f564aea59a13625ae6e1",
+          "version": 1
+        },
+        {
+          "id": "030-visual-metrics-regression",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "dbf1c44f354b22207d06de7d4336d243afd553bc52aca7aca0ab147d7abb9f31",
+          "version": 1
+        },
+        {
+          "id": "031-visual-deployment-timeline",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "7f0961a1711e582841c568e8c8a389aa309afdfadec13a3cb349ec00167c5de5",
+          "version": 1
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260824.0.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 2
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "029-visual-topology-drift",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "030-visual-metrics-regression",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "031-visual-deployment-timeline",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "001-nginx-502-host-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "001-nginx-502-host-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "001-nginx-502-host-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "001-nginx-502-host-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "001-nginx-502-host-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "001-nginx-502-host-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "013-sidekiq-wrong-redis-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "013-sidekiq-wrong-redis-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "013-sidekiq-wrong-redis-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "015-sidekiq-poison-pill-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "015-sidekiq-poison-pill-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "015-sidekiq-poison-pill-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "015-sidekiq-poison-pill-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "015-sidekiq-poison-pill-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "015-sidekiq-poison-pill-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "017-partial-rails-rollout-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "017-partial-rails-rollout-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "017-partial-rails-rollout-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "017-partial-rails-rollout-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "017-partial-rails-rollout-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "017-partial-rails-rollout-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "019-rust-fd-leak-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "019-rust-fd-leak-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "019-rust-fd-leak-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "019-rust-fd-leak-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "019-rust-fd-leak-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "019-rust-fd-leak-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "021-discourse-shared-uploads-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "021-discourse-shared-uploads-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "021-discourse-shared-uploads-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "021-discourse-shared-uploads-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "021-discourse-shared-uploads-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "021-discourse-shared-uploads-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "024-discourse-interrupted-deploy-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "024-discourse-interrupted-deploy-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "024-discourse-interrupted-deploy-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "028-nix-store-disk-pressure-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "028-nix-store-disk-pressure-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "028-nix-store-disk-pressure-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "028-nix-store-disk-pressure-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "028-nix-store-disk-pressure-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "028-nix-store-disk-pressure-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "029-visual-topology-drift-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "029-visual-topology-drift-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "029-visual-topology-drift-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "029-visual-topology-drift-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "029-visual-topology-drift-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "029-visual-topology-drift-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "030-visual-metrics-regression-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "030-visual-metrics-regression-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "030-visual-metrics-regression-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "030-visual-metrics-regression-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "030-visual-metrics-regression-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "030-visual-metrics-regression-anthropic-claude-fable-5-1-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "031-visual-deployment-timeline-google-gemini-3-8-flash-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "031-visual-deployment-timeline-google-gemini-3-8-flash-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "031-visual-deployment-timeline-google-gemini-3-8-flash-reasoning-high-3"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "031-visual-deployment-timeline-anthropic-claude-fable-5-1-reasoning-high-1"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "031-visual-deployment-timeline-anthropic-claude-fable-5-1-reasoning-high-2"
+    },
+    {
+      "changes": {
+        "provider": "openrouter"
+      },
+      "original": {
+        "provider": null
+      },
+      "reason": "The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.",
+      "run_id": "031-visual-deployment-timeline-anthropic-claude-fable-5-1-reasoning-high-3"
+    }
+  ],
+  "description": "Claude Fable 5.1 and Gemini 3.8 Flash each attempted three repairs across the eight stable text infrastructure incidents and three visual infrastructure incidents through Claux and OpenRouter.",
+  "input_mode": "mixed",
+  "model_labels": {
+    "anthropic/claude-fable-5.1": "Claude Fable 5.1",
+    "google/gemini-3.8-flash": "Gemini 3.8 Flash"
+  },
+  "model_order": [
+    "anthropic/claude-fable-5.1",
+    "google/gemini-3.8-flash"
+  ],
+  "notes": [
+    "This is a mixed text-and-visual cohort: eight text infrastructure incidents and three image-evidence incidents, each repeated three times per model.",
+    "Provider attribution is a documented post-run correction. The original matrix omitted --agent-provider, while retained adapter logs identify OpenRouter for these Claux runs.",
+    "Claude Fable 5.1 completed 32 of 33 evaluated repairs (97%); its only miss was a host reboot verification failure.",
+    "Gemini 3.8 Flash completed 24 of 33 evaluated repairs (73%). Eight failures were OpenRouter protocol errors reporting Corrupted thought signature, and one reached the agent timeout.",
+    "This mixed cohort is not pooled with the modality-specific or other provider/harness releases."
+  ],
+  "observations": [
+    "Fable was the stronger and faster lane in this cohort: 32/33 repairs at a 1:40 median versus Gemini's 24/33 at 5:25.",
+    "Gemini's score is materially affected by eight provider protocol failures, so its 73% is not a clean estimate of repair capability.",
+    "Fable completed all three attempts on every visual scenario and all but one attempt on the Sidekiq poison-pill scenario.",
+    "The mixed release is intended for model-by-scenario inspection; modality-specific comparisons remain on the dedicated text and visual releases."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --scenario-pack ../replaybook-infra --scenario 001-nginx-502-host --scenario 013-sidekiq-wrong-redis --scenario 015-sidekiq-poison-pill --scenario 017-partial-rails-rollout --scenario 019-rust-fd-leak --scenario 021-discourse-shared-uploads --scenario 024-discourse-interrupted-deploy --scenario 028-nix-store-disk-pressure --scenario 029-visual-topology-drift --scenario 030-visual-metrics-regression --scenario 031-visual-deployment-timeline --models anthropic/claude-fable-5.1 google/gemini-3.8-flash --reasoning-efforts high --attempts 3 --concurrency 1 --agent-provider openrouter --claux-binary ../claux/target/release/claux",
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 225,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:19:08Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.596,
+        "model_duration_seconds": 220.33,
+        "model_rounds": 52,
+        "post_first_non_read_only_seconds": 215.871,
+        "tool_calls": 51,
+        "tool_duration_seconds": 2.545,
+        "total_duration_seconds": 223.467
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T03:15:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1800098,
+        "cost_usd": 0.4114566,
+        "input_tokens": 282424,
+        "output_tokens": 17235
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 220,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:23:49Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.836,
+        "model_duration_seconds": 205.492,
+        "model_rounds": 53,
+        "post_first_non_read_only_seconds": 211.94699999999997,
+        "tool_calls": 52,
+        "tool_duration_seconds": 12.741,
+        "total_duration_seconds": 218.783
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T03:19:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1010619,
+        "cost_usd": 0.33918517500000006,
+        "input_tokens": 284760,
+        "output_tokens": 13285
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 338,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:30:32Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.45,
+        "model_duration_seconds": 319.163,
+        "model_rounds": 64,
+        "post_first_non_read_only_seconds": 328.904,
+        "tool_calls": 63,
+        "tool_duration_seconds": 16.125,
+        "total_duration_seconds": 336.354
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T03:24:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 3231926,
+        "cost_usd": 0.58843545,
+        "input_tokens": 347363,
+        "output_tokens": 22805
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 68,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:32:41Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.446,
+        "model_duration_seconds": 61.048,
+        "model_rounds": 8,
+        "post_first_non_read_only_seconds": 58.245000000000005,
+        "tool_calls": 7,
+        "tool_duration_seconds": 3.542,
+        "total_duration_seconds": 64.691
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T03:31:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 15122,
+        "cache_read_tokens": 78113,
+        "cost_usd": 0.33328325,
+        "input_tokens": 18,
+        "output_tokens": 2491
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 68,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:34:52Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.899,
+        "model_duration_seconds": 62.353,
+        "model_rounds": 8,
+        "post_first_non_read_only_seconds": 57.376999999999995,
+        "tool_calls": 7,
+        "tool_duration_seconds": 3.789,
+        "total_duration_seconds": 66.276
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T03:33:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 8799,
+        "cache_read_tokens": 72639,
+        "cost_usd": 0.24907725000000003,
+        "input_tokens": 18,
+        "output_tokens": 2415
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 64,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:37:00Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.617,
+        "model_duration_seconds": 57.994,
+        "model_rounds": 8,
+        "post_first_non_read_only_seconds": 55.046,
+        "tool_calls": 7,
+        "tool_duration_seconds": 3.563,
+        "total_duration_seconds": 61.663
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T03:35:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 8924,
+        "cache_read_tokens": 74821,
+        "cost_usd": 0.25523525,
+        "input_tokens": 18,
+        "output_tokens": 2496
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 289,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:43:16Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.679,
+        "model_duration_seconds": 279.132,
+        "model_rounds": 64,
+        "post_first_non_read_only_seconds": 278.045,
+        "tool_calls": 63,
+        "tool_duration_seconds": 5.957,
+        "total_duration_seconds": 285.724
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-09-05T03:38:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 2260357,
+        "cost_usd": 0.47325127500000014,
+        "input_tokens": 330726,
+        "output_tokens": 14848
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 51,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.8-flash' [invalid_request]: Corrupted thought signature.",
+      "failure_category": "provider_protocol_error",
+      "finished_at": "2026-09-05T03:45:07Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.624,
+        "model_duration_seconds": 48.394,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 42.199,
+        "tool_calls": 11,
+        "tool_duration_seconds": 0.176,
+        "total_duration_seconds": 48.823
+      },
+      "reward": 0,
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-09-05T03:44:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 14462,
+        "cost_usd": 0.03326565,
+        "input_tokens": 36428,
+        "output_tokens": 1296
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 72,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.8-flash' [invalid_request]: Corrupted thought signature.",
+      "failure_category": "provider_protocol_error",
+      "finished_at": "2026-09-05T03:47:33Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.608,
+        "model_duration_seconds": 68.44,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 63.57200000000001,
+        "tool_calls": 18,
+        "tool_duration_seconds": 0.498,
+        "total_duration_seconds": 69.18
+      },
+      "reward": 0,
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-09-05T03:46:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 79821,
+        "cost_usd": 0.069015825,
+        "input_tokens": 68644,
+        "output_tokens": 3079
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 78,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:50:24Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.467,
+        "model_duration_seconds": 62.028,
+        "model_rounds": 8,
+        "post_first_non_read_only_seconds": 69.84400000000001,
+        "tool_calls": 7,
+        "tool_duration_seconds": 14.152,
+        "total_duration_seconds": 76.311
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-09-05T03:48:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 14717,
+        "cache_read_tokens": 71185,
+        "cost_usd": 0.33868875,
+        "input_tokens": 18,
+        "output_tokens": 2735
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 84,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:53:20Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.94,
+        "model_duration_seconds": 74.898,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 75.88,
+        "tool_calls": 9,
+        "tool_duration_seconds": 7.741,
+        "total_duration_seconds": 82.82
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-09-05T03:51:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 12789,
+        "cache_read_tokens": 114399,
+        "cost_usd": 0.34358225,
+        "input_tokens": 22,
+        "output_tokens": 3098
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 73,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T03:55:56Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.56,
+        "model_duration_seconds": 61.477,
+        "model_rounds": 7,
+        "post_first_non_read_only_seconds": 65.009,
+        "tool_calls": 6,
+        "tool_duration_seconds": 9.974,
+        "total_duration_seconds": 71.569
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-09-05T03:54:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 10677,
+        "cache_read_tokens": 63098,
+        "cost_usd": 0.27264700000000003,
+        "input_tokens": 16,
+        "output_tokens": 2465
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 528,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T04:06:18Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.189,
+        "model_duration_seconds": 499.476,
+        "model_rounds": 80,
+        "post_first_non_read_only_seconds": 520.243,
+        "tool_calls": 79,
+        "tool_duration_seconds": 26.009,
+        "total_duration_seconds": 526.432
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T03:57:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 3421084,
+        "cost_usd": 0.7331125500000001,
+        "input_tokens": 355950,
+        "output_tokens": 55885
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 717,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T04:19:38Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.301,
+        "model_duration_seconds": 550.267,
+        "model_rounds": 104,
+        "post_first_non_read_only_seconds": 707.7289999999999,
+        "tool_calls": 103,
+        "tool_duration_seconds": 163.644,
+        "total_duration_seconds": 715.03
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T04:07:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 5027850,
+        "cost_usd": 0.8861602499999996,
+        "input_tokens": 425632,
+        "output_tokens": 50626
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 224,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.8-flash' [invalid_request]: Corrupted thought signature.",
+      "failure_category": "provider_protocol_error",
+      "finished_at": "2026-09-05T04:24:17Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.863,
+        "model_duration_seconds": 220.202,
+        "model_rounds": 42,
+        "post_first_non_read_only_seconds": 216.059,
+        "tool_calls": 41,
+        "tool_duration_seconds": 1.374,
+        "total_duration_seconds": 221.922
+      },
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T04:20:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 467479,
+        "cost_usd": 0.209576925,
+        "input_tokens": 161468,
+        "output_tokens": 14244
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 172,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T04:28:20Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.367,
+        "model_duration_seconds": 131.171,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 163.866,
+        "tool_calls": 11,
+        "tool_duration_seconds": 38.863,
+        "total_duration_seconds": 170.233
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T04:25:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 20848,
+        "cache_read_tokens": 139685,
+        "cost_usd": 0.62348125,
+        "input_tokens": 26,
+        "output_tokens": 6554
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 153,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T04:32:09Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.782,
+        "model_duration_seconds": 116.293,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 145.028,
+        "tool_calls": 8,
+        "tool_duration_seconds": 35.393,
+        "total_duration_seconds": 151.81
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T04:29:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 18183,
+        "cache_read_tokens": 114319,
+        "cost_usd": 0.58006725,
+        "input_tokens": 20,
+        "output_tokens": 6480
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 203,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "VM did not shut down for reboot",
+      "failure_category": "host_reboot_failed",
+      "finished_at": "2026-09-05T04:37:13Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.961,
+        "model_duration_seconds": 162.039,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 194.004,
+        "tool_calls": 13,
+        "tool_duration_seconds": 39.753,
+        "total_duration_seconds": 201.965
+      },
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T04:33:00Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 20058,
+        "cache_read_tokens": 204327,
+        "cost_usd": 0.6976067499999999,
+        "input_tokens": 30,
+        "output_tokens": 7910
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 629,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T04:49:09Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.982,
+        "model_duration_seconds": 419.594,
+        "model_rounds": 86,
+        "post_first_non_read_only_seconds": 621.224,
+        "tool_calls": 85,
+        "tool_duration_seconds": 206.878,
+        "total_duration_seconds": 627.206
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T04:38:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 3316565,
+        "cost_usd": 0.6689741249999999,
+        "input_tokens": 462929,
+        "output_tokens": 19476
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 310,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T04:55:37Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.666,
+        "model_duration_seconds": 263.685,
+        "model_rounds": 58,
+        "post_first_non_read_only_seconds": 302.134,
+        "tool_calls": 57,
+        "tool_duration_seconds": 44.643,
+        "total_duration_seconds": 308.8
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T04:50:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 2007017,
+        "cost_usd": 0.43070527499999994,
+        "input_tokens": 290067,
+        "output_tokens": 16701
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 599,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T05:06:49Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.209,
+        "model_duration_seconds": 385.557,
+        "model_rounds": 95,
+        "post_first_non_read_only_seconds": 590.947,
+        "tool_calls": 94,
+        "tool_duration_seconds": 211.818,
+        "total_duration_seconds": 598.156
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T04:56:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 3054764,
+        "cost_usd": 0.6557470500000001,
+        "input_tokens": 420303,
+        "output_tokens": 29710
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 141,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T05:10:40Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.341,
+        "model_duration_seconds": 100.295,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 133.19899999999998,
+        "tool_calls": 11,
+        "tool_duration_seconds": 39.059,
+        "total_duration_seconds": 139.54
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:07:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 23603,
+        "cache_read_tokens": 181314,
+        "cost_usd": 0.5328259999999999,
+        "input_tokens": 26,
+        "output_tokens": 3844
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 82,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T05:13:24Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.543,
+        "model_duration_seconds": 73.61,
+        "model_rounds": 8,
+        "post_first_non_read_only_seconds": 73.70899999999999,
+        "tool_calls": 7,
+        "tool_duration_seconds": 6.52,
+        "total_duration_seconds": 80.252
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:11:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 17715,
+        "cache_read_tokens": 95485,
+        "cost_usd": 0.42183875000000004,
+        "input_tokens": 18,
+        "output_tokens": 3527
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 147,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T05:17:03Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.894,
+        "model_duration_seconds": 128.852,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 137.148,
+        "tool_calls": 11,
+        "tool_duration_seconds": 15.932,
+        "total_duration_seconds": 145.042
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:14:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 19619,
+        "cache_read_tokens": 180582,
+        "cost_usd": 0.519293,
+        "input_tokens": 26,
+        "output_tokens": 4573
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 87,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.8-flash' [invalid_request]: Corrupted thought signature.",
+      "failure_category": "provider_protocol_error",
+      "finished_at": "2026-09-05T05:20:58Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.464,
+        "model_duration_seconds": 84.405,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 77.506,
+        "tool_calls": 17,
+        "tool_duration_seconds": 0.349,
+        "total_duration_seconds": 84.97
+      },
+      "reward": 0,
+      "run_id": "019-rust-fd-leak-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:19:30Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 92314,
+        "cost_usd": 0.07082655,
+        "input_tokens": 69294,
+        "output_tokens": 3182
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 349,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T05:29:21Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.915,
+        "model_duration_seconds": 339.508,
+        "model_rounds": 67,
+        "post_first_non_read_only_seconds": 340.05199999999996,
+        "tool_calls": 66,
+        "tool_duration_seconds": 6.716,
+        "total_duration_seconds": 346.967
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:23:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1710067,
+        "cost_usd": 0.46122802500000004,
+        "input_tokens": 296999,
+        "output_tokens": 29393
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 326,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T05:37:36Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.132,
+        "model_duration_seconds": 282.22,
+        "model_rounds": 69,
+        "post_first_non_read_only_seconds": 318.639,
+        "tool_calls": 68,
+        "tool_duration_seconds": 41.847,
+        "total_duration_seconds": 324.771
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:31:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1594433,
+        "cost_usd": 0.43609822500000006,
+        "input_tokens": 303301,
+        "output_tokens": 23744
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 108,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T05:41:57Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.707,
+        "model_duration_seconds": 99.839,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 99.256,
+        "tool_calls": 11,
+        "tool_duration_seconds": 5.367,
+        "total_duration_seconds": 105.963
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:39:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 14946,
+        "cache_read_tokens": 119225,
+        "cost_usd": 0.43849125000000005,
+        "input_tokens": 26,
+        "output_tokens": 4432
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 130,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T05:46:52Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.635,
+        "model_duration_seconds": 121.135,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 121.26599999999999,
+        "tool_calls": 13,
+        "tool_duration_seconds": 6.616,
+        "total_duration_seconds": 127.901
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:44:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 9550,
+        "cache_read_tokens": 129989,
+        "cost_usd": 0.39457225,
+        "input_tokens": 30,
+        "output_tokens": 4848
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 94,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T05:51:08Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.773,
+        "model_duration_seconds": 88.079,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 84.769,
+        "tool_calls": 10,
+        "tool_duration_seconds": 3.329,
+        "total_duration_seconds": 91.542
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:49:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 10669,
+        "cache_read_tokens": 113008,
+        "cost_usd": 0.3648045,
+        "input_tokens": 24,
+        "output_tokens": 4059
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 450,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:00:08Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.78,
+        "model_duration_seconds": 428.625,
+        "model_rounds": 73,
+        "post_first_non_read_only_seconds": 440.96400000000006,
+        "tool_calls": 72,
+        "tool_duration_seconds": 18.341,
+        "total_duration_seconds": 447.744
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T05:52:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 3339315,
+        "cost_usd": 0.7360998750000002,
+        "input_tokens": 436245,
+        "output_tokens": 42258
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 520,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:09:51Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.112,
+        "model_duration_seconds": 499.378,
+        "model_rounds": 74,
+        "post_first_non_read_only_seconds": 509.20599999999996,
+        "tool_calls": 73,
+        "tool_duration_seconds": 17.116,
+        "total_duration_seconds": 517.318
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:00:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 4404631,
+        "cost_usd": 0.9818963250000003,
+        "input_tokens": 582392,
+        "output_tokens": 57268
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 83,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.8-flash' [invalid_request]: Corrupted thought signature.",
+      "failure_category": "provider_protocol_error",
+      "finished_at": "2026-09-05T06:12:11Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 12.376,
+        "model_duration_seconds": 79.709,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 68.821,
+        "tool_calls": 14,
+        "tool_duration_seconds": 1.25,
+        "total_duration_seconds": 81.197
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:10:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 73326,
+        "cost_usd": 0.0718992,
+        "input_tokens": 68048,
+        "output_tokens": 4097
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 164,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:16:01Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 13.223,
+        "model_duration_seconds": 155.605,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 147.432,
+        "tool_calls": 10,
+        "tool_duration_seconds": 4.913,
+        "total_duration_seconds": 160.655
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:13:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 22660,
+        "cache_read_tokens": 143893,
+        "cost_usd": 0.69841325,
+        "input_tokens": 24,
+        "output_tokens": 7579
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 140,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:19:28Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.652,
+        "model_duration_seconds": 134.933,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 129.335,
+        "tool_calls": 9,
+        "tool_duration_seconds": 2.287,
+        "total_duration_seconds": 137.987
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:16:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 17637,
+        "cache_read_tokens": 120945,
+        "cost_usd": 0.6391187500000001,
+        "input_tokens": 22,
+        "output_tokens": 7764
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 131,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:22:49Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.786,
+        "model_duration_seconds": 118.874,
+        "model_rounds": 8,
+        "post_first_non_read_only_seconds": 118.71100000000001,
+        "tool_calls": 7,
+        "tool_duration_seconds": 7.704,
+        "total_duration_seconds": 128.497
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:20:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 18697,
+        "cache_read_tokens": 94386,
+        "cost_usd": 0.6005389999999999,
+        "input_tokens": 18,
+        "output_tokens": 6861
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 653,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:35:07Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.321,
+        "model_duration_seconds": 507.422,
+        "model_rounds": 84,
+        "post_first_non_read_only_seconds": 644.807,
+        "tool_calls": 83,
+        "tool_duration_seconds": 142.618,
+        "total_duration_seconds": 651.128
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:23:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 6724965,
+        "cost_usd": 1.008703875,
+        "input_tokens": 420072,
+        "output_tokens": 50474
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 305,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:41:34Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.082,
+        "model_duration_seconds": 288.473,
+        "model_rounds": 68,
+        "post_first_non_read_only_seconds": 297.633,
+        "tool_calls": 67,
+        "tool_duration_seconds": 14.456,
+        "total_duration_seconds": 303.715
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:36:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 3576035,
+        "cost_usd": 0.608406375,
+        "input_tokens": 315550,
+        "output_tokens": 27611
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 628,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:53:26Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.254,
+        "model_duration_seconds": 492.532,
+        "model_rounds": 73,
+        "post_first_non_read_only_seconds": 621.001,
+        "tool_calls": 72,
+        "tool_duration_seconds": 132.675,
+        "total_duration_seconds": 626.255
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:42:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 5346997,
+        "cost_usd": 0.8768060249999999,
+        "input_tokens": 372920,
+        "output_tokens": 52291
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 97,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:56:09Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.246,
+        "model_duration_seconds": 84.188,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 86.88900000000001,
+        "tool_calls": 9,
+        "tool_duration_seconds": 10.827,
+        "total_duration_seconds": 95.135
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:54:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 19325,
+        "cache_read_tokens": 126096,
+        "cost_usd": 0.46120649999999996,
+        "input_tokens": 22,
+        "output_tokens": 3758
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 90,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T06:58:46Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.868,
+        "model_duration_seconds": 75.545,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 80.55300000000001,
+        "tool_calls": 8,
+        "tool_duration_seconds": 12.769,
+        "total_duration_seconds": 88.421
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:56:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 15626,
+        "cache_read_tokens": 117962,
+        "cost_usd": 0.4025155000000001,
+        "input_tokens": 20,
+        "output_tokens": 3550
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 104,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:01:47Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.851,
+        "model_duration_seconds": 92.604,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 93.474,
+        "tool_calls": 10,
+        "tool_duration_seconds": 8.597,
+        "total_duration_seconds": 101.325
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T06:59:46Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 19350,
+        "cache_read_tokens": 177626,
+        "cost_usd": 0.4772715,
+        "input_tokens": 24,
+        "output_tokens": 3815
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 317,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:08:45Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 12.331,
+        "model_duration_seconds": 309.184,
+        "model_rounds": 62,
+        "post_first_non_read_only_seconds": 302.591,
+        "tool_calls": 61,
+        "tool_duration_seconds": 5.269,
+        "total_duration_seconds": 314.922
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:03:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1118082,
+        "cost_usd": 0.3374739,
+        "input_tokens": 250172,
+        "output_tokens": 17597
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 31,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.8-flash' [invalid_request]: Corrupted thought signature.",
+      "failure_category": "provider_protocol_error",
+      "finished_at": "2026-09-05T07:10:29Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 14.301,
+        "model_duration_seconds": 28.473,
+        "model_rounds": 3,
+        "post_first_non_read_only_seconds": 14.324,
+        "tool_calls": 2,
+        "tool_duration_seconds": 0.028,
+        "total_duration_seconds": 28.625
+      },
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:09:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_usd": 0.00590175,
+        "input_tokens": 5014,
+        "output_tokens": 571
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 21,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.8-flash' [invalid_request]: Corrupted thought signature.",
+      "failure_category": "provider_protocol_error",
+      "finished_at": "2026-09-05T07:12:42Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": null,
+        "model_duration_seconds": 18.62,
+        "model_rounds": 2,
+        "post_first_non_read_only_seconds": null,
+        "tool_calls": 1,
+        "tool_duration_seconds": 0.0,
+        "total_duration_seconds": 18.728
+      },
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:12:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_usd": 0.003885,
+        "input_tokens": 2225,
+        "output_tokens": 591
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 137,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:17:12Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.698,
+        "model_duration_seconds": 126.086,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 123.43599999999998,
+        "tool_calls": 11,
+        "tool_duration_seconds": 4.927,
+        "total_duration_seconds": 131.134
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:14:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 17861,
+        "cache_read_tokens": 128928,
+        "cost_usd": 0.5038545,
+        "input_tokens": 26,
+        "output_tokens": 4962
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 110,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:21:01Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.181,
+        "model_duration_seconds": 102.652,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 100.887,
+        "tool_calls": 9,
+        "tool_duration_seconds": 5.308,
+        "total_duration_seconds": 108.068
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:18:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 14796,
+        "cache_read_tokens": 110657,
+        "cost_usd": 0.43033425,
+        "input_tokens": 22,
+        "output_tokens": 4350
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 128,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:24:54Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.099,
+        "model_duration_seconds": 119.775,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 117.836,
+        "tool_calls": 11,
+        "tool_duration_seconds": 6.037,
+        "total_duration_seconds": 125.935
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:22:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 17420,
+        "cache_read_tokens": 159188,
+        "cost_usd": 0.519107,
+        "input_tokens": 26,
+        "output_tokens": 5226
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 393,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:33:09Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.289,
+        "model_duration_seconds": 386.509,
+        "model_rounds": 71,
+        "post_first_non_read_only_seconds": 382.75600000000003,
+        "tool_calls": 70,
+        "tool_duration_seconds": 4.709,
+        "total_duration_seconds": 392.045
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:26:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 2986016,
+        "cost_usd": 0.5398534500000001,
+        "input_tokens": 296713,
+        "output_tokens": 24898
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 346,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:40:03Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 13.147,
+        "model_duration_seconds": 340.355,
+        "model_rounds": 59,
+        "post_first_non_read_only_seconds": 330.173,
+        "tool_calls": 58,
+        "tool_duration_seconds": 2.36,
+        "total_duration_seconds": 343.32
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:33:59Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1850805,
+        "cost_usd": 0.398652375,
+        "input_tokens": 241296,
+        "output_tokens": 21032
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 301,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:46:25Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.076,
+        "model_duration_seconds": 293.581,
+        "model_rounds": 62,
+        "post_first_non_read_only_seconds": 290.36899999999997,
+        "tool_calls": 61,
+        "tool_duration_seconds": 4.185,
+        "total_duration_seconds": 298.445
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:41:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1233891,
+        "cost_usd": 0.391560825,
+        "input_tokens": 299157,
+        "output_tokens": 19907
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 121,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:49:39Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.281,
+        "model_duration_seconds": 107.872,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 111.604,
+        "tool_calls": 10,
+        "tool_duration_seconds": 10.841,
+        "total_duration_seconds": 118.885
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:47:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 21930,
+        "cache_read_tokens": 159974,
+        "cost_usd": 0.5454585000000001,
+        "input_tokens": 24,
+        "output_tokens": 4622
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 120,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:53:01Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.737,
+        "model_duration_seconds": 110.291,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 110.613,
+        "tool_calls": 11,
+        "tool_duration_seconds": 7.9,
+        "total_duration_seconds": 118.35
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:50:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 15640,
+        "cache_read_tokens": 179289,
+        "cost_usd": 0.44853225,
+        "input_tokens": 26,
+        "output_tokens": 4159
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 100,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T07:55:52Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.622,
+        "model_duration_seconds": 85.782,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 90.134,
+        "tool_calls": 8,
+        "tool_duration_seconds": 11.8,
+        "total_duration_seconds": 97.756
+      },
+      "reward": 1,
+      "run_id": "029-visual-topology-drift-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "029-visual-topology-drift",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:53:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 15955,
+        "cache_read_tokens": 125226,
+        "cost_usd": 0.42389399999999994,
+        "input_tokens": 20,
+        "output_tokens": 3859
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 792,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T08:10:33Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.92,
+        "model_duration_seconds": 634.129,
+        "model_rounds": 76,
+        "post_first_non_read_only_seconds": 781.575,
+        "tool_calls": 75,
+        "tool_duration_seconds": 154.475,
+        "total_duration_seconds": 789.495
+      },
+      "reward": 1,
+      "run_id": "030-visual-metrics-regression-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "030-visual-metrics-regression",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T07:57:05Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 3478982,
+        "cost_usd": 0.9144826499999998,
+        "input_tokens": 537277,
+        "output_tokens": 66827
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 273,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "API error: openrouter API error (400 Bad Request) for model 'google/gemini-3.8-flash' [invalid_request]: Corrupted thought signature.",
+      "failure_category": "provider_protocol_error",
+      "finished_at": "2026-09-05T08:16:01Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.154,
+        "model_duration_seconds": 141.034,
+        "model_rounds": 28,
+        "post_first_non_read_only_seconds": 263.001,
+        "tool_calls": 27,
+        "tool_duration_seconds": 129.749,
+        "total_duration_seconds": 271.155
+      },
+      "reward": 0,
+      "run_id": "030-visual-metrics-regression-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "030-visual-metrics-regression",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T08:11:27Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 341919,
+        "cost_usd": 0.14523292499999996,
+        "input_tokens": 130652,
+        "output_tokens": 5760
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 931,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-09-05T08:33:08Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "reward": 0,
+      "run_id": "030-visual-metrics-regression-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "030-visual-metrics-regression",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T08:16:56Z",
+      "trial_status": "evaluated",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "memory_pressure_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 93,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T08:35:56Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 10.363,
+        "model_duration_seconds": 85.966,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 80.386,
+        "tool_calls": 9,
+        "tool_duration_seconds": 4.611,
+        "total_duration_seconds": 90.749
+      },
+      "reward": 1,
+      "run_id": "030-visual-metrics-regression-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "030-visual-metrics-regression",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T08:34:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 12787,
+        "cache_read_tokens": 86522,
+        "cost_usd": 0.335238,
+        "input_tokens": 22,
+        "output_tokens": 3071
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 84,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T08:38:19Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.019,
+        "model_duration_seconds": 76.619,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 72.77799999999999,
+        "tool_calls": 8,
+        "tool_duration_seconds": 5.052,
+        "total_duration_seconds": 81.797
+      },
+      "reward": 1,
+      "run_id": "030-visual-metrics-regression-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "030-visual-metrics-regression",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T08:36:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 6736,
+        "cache_read_tokens": 80775,
+        "cost_usd": 0.24694375000000002,
+        "input_tokens": 20,
+        "output_tokens": 2847
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 98,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T08:41:05Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 12.004,
+        "model_duration_seconds": 91.459,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 84.342,
+        "tool_calls": 9,
+        "tool_duration_seconds": 4.724,
+        "total_duration_seconds": 96.346
+      },
+      "reward": 1,
+      "run_id": "030-visual-metrics-regression-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "030-visual-metrics-regression",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T08:39:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 6410,
+        "cache_read_tokens": 90635,
+        "cost_usd": 0.25295375,
+        "input_tokens": 22,
+        "output_tokens": 2999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 311,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T08:47:41Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.464,
+        "model_duration_seconds": 298.534,
+        "model_rounds": 62,
+        "post_first_non_read_only_seconds": 300.541,
+        "tool_calls": 61,
+        "tool_duration_seconds": 10.668,
+        "total_duration_seconds": 310.005
+      },
+      "reward": 1,
+      "run_id": "031-visual-deployment-timeline-google-gemini-3-8-flash-reasoning-high-1",
+      "scenario": "031-visual-deployment-timeline",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T08:42:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1977300,
+        "cost_usd": 0.4711987499999999,
+        "input_tokens": 290935,
+        "output_tokens": 27920
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 412,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T08:55:43Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.002,
+        "model_duration_seconds": 275.072,
+        "model_rounds": 55,
+        "post_first_non_read_only_seconds": 401.89799999999997,
+        "tool_calls": 54,
+        "tool_duration_seconds": 134.086,
+        "total_duration_seconds": 409.9
+      },
+      "reward": 1,
+      "run_id": "031-visual-deployment-timeline-google-gemini-3-8-flash-reasoning-high-2",
+      "scenario": "031-visual-deployment-timeline",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T08:48:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 2551458,
+        "cost_usd": 0.48431985,
+        "input_tokens": 242659,
+        "output_tokens": 29591
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 325,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T09:02:27Z",
+      "model": "google/gemini-3.8-flash",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.617,
+        "model_duration_seconds": 305.395,
+        "model_rounds": 65,
+        "post_first_non_read_only_seconds": 315.36899999999997,
+        "tool_calls": 64,
+        "tool_duration_seconds": 16.848,
+        "total_duration_seconds": 322.986
+      },
+      "reward": 1,
+      "run_id": "031-visual-deployment-timeline-google-gemini-3-8-flash-reasoning-high-3",
+      "scenario": "031-visual-deployment-timeline",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T08:56:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 2726384,
+        "cost_usd": 0.5302353000000001,
+        "input_tokens": 293732,
+        "output_tokens": 28122
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T09:05:15Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 10.571,
+        "model_duration_seconds": 79.405,
+        "model_rounds": 8,
+        "post_first_non_read_only_seconds": 77.599,
+        "tool_calls": 7,
+        "tool_duration_seconds": 7.421,
+        "total_duration_seconds": 88.17
+      },
+      "reward": 1,
+      "run_id": "031-visual-deployment-timeline-anthropic-claude-fable-5-1-reasoning-high-1",
+      "scenario": "031-visual-deployment-timeline",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T09:03:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 19196,
+        "cache_read_tokens": 86091,
+        "cost_usd": 0.45835275000000003,
+        "input_tokens": 18,
+        "output_tokens": 3934
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T09:07:48Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.696,
+        "model_duration_seconds": 81.796,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 77.94,
+        "tool_calls": 8,
+        "tool_duration_seconds": 5.667,
+        "total_duration_seconds": 87.636
+      },
+      "reward": 1,
+      "run_id": "031-visual-deployment-timeline-anthropic-claude-fable-5-1-reasoning-high-2",
+      "scenario": "031-visual-deployment-timeline",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T09:05:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 18884,
+        "cache_read_tokens": 121090,
+        "cost_usd": 0.4488725,
+        "input_tokens": 20,
+        "output_tokens": 3647
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-05T09:10:30Z",
+      "model": "anthropic/claude-fable-5.1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.287,
+        "model_duration_seconds": 84.007,
+        "model_rounds": 8,
+        "post_first_non_read_only_seconds": 80.73899999999999,
+        "tool_calls": 7,
+        "tool_duration_seconds": 4.898,
+        "total_duration_seconds": 89.026
+      },
+      "reward": 1,
+      "run_id": "031-visual-deployment-timeline-anthropic-claude-fable-5-1-reasoning-high-3",
+      "scenario": "031-visual-deployment-timeline",
+      "scenario_version": 1,
+      "started_at": "2026-09-05T09:08:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 13511,
+        "cache_read_tokens": 98937,
+        "cost_usd": 0.38260174999999996,
+        "input_tokens": 18,
+        "output_tokens": 3776
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": null,
+      "benchmark_tier": null,
+      "claux_release": "v20260821.0.2",
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": null,
+        "claux_binary_sha256": "693da498a20a39a10546da6db6d94adfa20c8d99d26663d6c0df742db115fc5a",
+        "host_harness_sha256": "9d3d63a934d46f875badbe519f07ac9cb9f50d9a8646d7cd9a2153fd87d8e401",
+        "scenario_packs": [
+          {
+            "git_commit": "86d92be2722ece958e09efec88b52c921e23e849",
+            "id": "ducks/replaybook-infra",
+            "sha256": "d1a793e4aacb2e06f95b2c588dcccb7f539e420ca7ff646ff6bfa96ff883dbbc",
+            "version": "20260824.0.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+            "version": 2
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "029-visual-topology-drift",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "9e43c4c58db2c9c1c9f45e43aebfbd2be937a31f4cb8f564aea59a13625ae6e1",
+            "version": 1
+          },
+          {
+            "id": "030-visual-metrics-regression",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "dbf1c44f354b22207d06de7d4336d243afd553bc52aca7aca0ab147d7abb9f31",
+            "version": 1
+          },
+          {
+            "id": "031-visual-deployment-timeline",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "7f0961a1711e582841c568e8c8a389aa309afdfadec13a3cb349ec00167c5de5",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-09-05T09:10:30.592507Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "google/gemini-3.8-flash",
+        "anthropic/claude-fable-5.1"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "b210295658d45944f375a1e306e71ef40c475e99",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "029-visual-topology-drift",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "030-visual-metrics-regression",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "031-visual-deployment-timeline",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "host-matrix-2026-09-05__03-14-09.777f8a",
+      "started_at": "2026-09-05T03:14:09.804527Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "892499fb357fabbdd310100f9c1d80867dbd7a6b597685753273e3bc1af7ecb4"
+    }
+  ],
+  "tier": "unclassified",
+  "title": "OpenRouter Fable 5.1 and Gemini 3.8 mixed infrastructure cohort",
+  "totals": {
+    "cache_read_tokens": 74779371,
+    "cost_reported_trials": 65,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 66,
+    "failed": 10,
+    "failure_categories": {
+      "agent_timeout": 1,
+      "host_reboot_failed": 1,
+      "provider_protocol_error": 8
+    },
+    "input_tokens": 8922077,
+    "known_cost_usd": 29.61434965,
+    "median_duration_seconds": 140.5,
+    "median_first_non_read_only_tool_seconds": 7.6065000000000005,
+    "median_model_duration_seconds": 121.135,
+    "median_model_rounds": 12,
+    "median_post_first_non_read_only_seconds": 131.267,
+    "median_tool_calls": 11,
+    "median_tool_duration_seconds": 7.704,
+    "output_tokens": 935030,
+    "pass_rate": 0.8484848484848485,
+    "passed": 56,
+    "recording_reported_trials": 65,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 66,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 65
+  },
+  "version": "20260905.0.0"
+}

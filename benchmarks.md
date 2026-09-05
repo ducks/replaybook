@@ -9,33 +9,20 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## OpenCode Go core infrastructure cohort
+## OpenRouter Fable 5.1 and Gemini 3.8 mixed infrastructure cohort
 
-Five models attempted three repairs across each of the eight stable core infrastructure incidents through the OpenCode harness and OpenCode Go subscription.
+Claude Fable 5.1 and Gemini 3.8 Flash each attempted three repairs across the eight stable text infrastructure incidents and three visual infrastructure incidents through Claux and OpenRouter.
 
-Benchmark release: `20260904.0.0`
-Benchmark tier: `core`
-
-Provider-reported subscription usage value: **$11.6512** across 115 trials. This is a catalog-priced usage estimate, not metered spend.
+Benchmark release: `20260905.0.0`
+Benchmark tier: `unclassified`
 
 Scenario packs: `ducks/replaybook-infra@20260824.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash (high) · opencode-go | 20/24 | 83% | 1:50 | n/a | n/a |
-| DeepSeek V4 Pro (high) · opencode-go | 22/24 | 92% | 4:32 | n/a | n/a |
-| GLM 5.3 (high) · opencode-go | 19/21 | 90% | 2:16 | n/a | n/a |
-| HY4 Preview (high) · opencode-go | 20/22 | 91% | 5:10 | n/a | n/a |
-| Qwen3.8 Max (high) · opencode-go | 21/24 | 88% | 3:20 | n/a | n/a |
-| **Total** | **102/115** | **89%** | **3:19** | **n/a** | **n/a** |
-
-### Unavailable trial categories
-
-- `provider_unavailable`: 5
-
-### Post-timeout verification
-
-1 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
+| Claude Fable 5.1 (high) · openrouter | 32/33 | 97% | 1:40 | $14.6407 | $0.4575 |
+| Gemini 3.8 Flash (high) · openrouter | 24/33 | 73% | 5:25 | $14.9736+ | $0.6239+ |
+| **Total** | **56/66** | **85%** | **2:20** | **$29.6143+** | **$0.5288+** |
 
 ### Execution recording
 
@@ -43,51 +30,119 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| DeepSeek V4 Flash (high) · opencode-go | 24/24 | 19.5 | 1:21 | 30 | 0:00 | 0:01 | 1:36 |
-| DeepSeek V4 Pro (high) · opencode-go | 24/24 | 20 | 4:04 | 31 | 0:00 | 0:03 | 4:22 |
-| GLM 5.3 (high) · opencode-go | 24/24 | 13.5 | 1:37 | 19.5 | 0:00 | 0:03 | 2:05 |
-| HY4 Preview (high) · opencode-go | 24/24 | 20 | 3:50 | 28.5 | 0:00 | 0:01 | 4:59 |
-| Qwen3.8 Max (high) · opencode-go | 24/24 | 14 | 2:44 | 19 | 0:00 | 0:03 | 3:06 |
+| Claude Fable 5.1 (high) · openrouter | 33/33 | 10 | 1:31 | 9 | 0:07 | 0:08 | 1:30 |
+| Gemini 3.8 Flash (high) · openrouter | 32/33 | 63 | 4:56 | 62 | 0:14 | 0:07 | 5:15 |
 
-DeepSeek V4 Pro led the evaluated cohort at 22 of 24 durable repairs (92%), while DeepSeek V4 Flash completed 20 of 24 (83%).
+Fable was the stronger and faster lane in this cohort: 32/33 repairs at a 1:40 median versus Gemini's 24/33 at 5:25.
 
-Qwen3.8 Max completed 21 of 24 repairs (88%); GLM 5.3 completed 19 of 21 evaluated repairs (90%) and HY4 Preview completed 20 of 22 (91%).
+Gemini's score is materially affected by eight provider protocol failures, so its 73% is not a clean estimate of repair capability.
 
-DeepSeek V4 Flash had the fastest median recovery at 1:50. DeepSeek V4 Pro was substantially slower at 4:32, illustrating the speed/reliability tradeoff within one provider subscription.
+Fable completed all three attempts on every visual scenario and all but one attempt on the Sidekiq poison-pill scenario.
 
-These results remain a separate provider and harness lane. They are not pooled with Claux/OpenRouter, Vercel AI Gateway, or other cohorts.
+The mixed release is intended for model-by-scenario inspection; modality-specific comparisons remain on the dedicated text and visual releases.
 
 ### Scenario breakdown
 
-| Scenario | Version | DeepSeek V4 Flash (high) · opencode-go | DeepSeek V4 Pro (high) · opencode-go | GLM 5.3 (high) · opencode-go | HY4 Preview (high) · opencode-go | Qwen3.8 Max (high) · opencode-go |
-|---|---:|---:|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 1:15 | 3/3, 5:19 | 3/3, 1:47 | 3/3, 4:59 | 3/3, 1:18 |
-| 013-sidekiq-wrong-redis | v2 | 3/3, 1:33 | 3/3, 2:00 | 3/3, 1:25 | 3/3, 2:58 | 3/3, 2:05 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 3:28 | 3/3, 6:33 | 2/3, 4:29 | 3/3, 6:04 | 1/3, 5:32 |
-| 017-partial-rails-rollout | v1 | 3/3, 1:50 | 3/3, 4:33 | 3/3, 2:46 | 3/3, 6:32 | 3/3, 4:12 |
-| 019-rust-fd-leak | v1 | 3/3, 1:49 | 3/3, 3:11 | 3/3, 1:52 | 3/3, 3:26 | 3/3, 2:41 |
-| 021-discourse-shared-uploads | v1 | 2/3, 2:57 | 2/3, 9:45 | 2/3, 3:19 | 3/3, 6:32 | 2/3, 6:06 |
-| 024-discourse-interrupted-deploy | v1 | 0/3, 1:11 | 2/3, 3:43 | 3/3, 2:02 | 1/3, 3:46 | 3/3, 2:41 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 4:12 | 3/3, 4:15 | 0/0, n/a | 1/1, 5:40 | 3/3, 5:24 |
+| Scenario | Version | Claude Fable 5.1 (high) · openrouter | Gemini 3.8 Flash (high) · openrouter |
+|---|---:|---:|---:|
+| 001-nginx-502-host | v1 | 3/3, 1:08 | 3/3, 3:45 |
+| 013-sidekiq-wrong-redis | v2 | 3/3, 1:18 | 1/3, 1:12 |
+| 015-sidekiq-poison-pill | v1 | 2/3, 2:52 | 2/3, 8:48 |
+| 017-partial-rails-rollout | v1 | 3/3, 2:21 | 3/3, 9:59 |
+| 019-rust-fd-leak | v1 | 3/3, 1:48 | 2/3, 5:26 |
+| 021-discourse-shared-uploads | v1 | 3/3, 2:20 | 2/3, 7:30 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 1:37 | 3/3, 10:28 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 2:08 | 1/3, 0:31 |
+| 029-visual-topology-drift | v1 | 3/3, 2:00 | 3/3, 5:46 |
+| 030-visual-metrics-regression | v1 | 3/3, 1:33 | 1/3, 13:12 |
+| 031-visual-deployment-timeline | v1 | 3/3, 1:31 | 3/3, 5:25 |
 
 ### Failure categories
 
-- `accepted_uploads_not_recovered`: 2
 - `agent_timeout`: 1
-- `host_reboot_failed`: 2
-- `provider_interrupted`: 2
-- `release_not_converged`: 6
+- `host_reboot_failed`: 1
+- `provider_protocol_error`: 8
 
 ### Source matrices
 
-- `host-matrix-2026-09-02__16-30-28.36a4a7`: opencode-go/deepseek-v4-flash, opencode-go/deepseek-v4-pro, opencode-go/glm-5.3, opencode-go/qwen3.8-max, opencode-go/hy4-preview; Replaybook `eb258707`; reasoning high
+- `host-matrix-2026-09-05__03-14-09.777f8a`: google/gemini-3.8-flash, anthropic/claude-fable-5.1; Replaybook `b2102956`; reasoning high
 
 ### Run notes
 
-- This is an independent OpenCode/OpenCode Go harness cohort using the same stable core scenario and host-verifier boundary as the canonical OpenRouter/Claux release.
-- All 120 scheduled trials used the eight core incidents, three attempts, high reasoning, a 900-second deadline, and host harness v23. Five trials were unavailable at the provider boundary and are excluded from evaluated pass rates.
-- The unavailable trials were provider availability failures in the OpenCode Go catalog, not evaluated model failures. The remaining 115 trials produced 102 durable repairs and 13 evaluated failures.
-- OpenCode Go reports subscription usage rather than metered API cost, so public cost remains unavailable rather than zero.
+- This is a mixed text-and-visual cohort: eight text infrastructure incidents and three image-evidence incidents, each repeated three times per model.
+- Provider attribution is a documented post-run correction. The original matrix omitted --agent-provider, while retained adapter logs identify OpenRouter for these Claux runs.
+- Claude Fable 5.1 completed 32 of 33 evaluated repairs (97%); its only miss was a host reboot verification failure.
+- Gemini 3.8 Flash completed 24 of 33 evaluated repairs (73%). Eight failures were OpenRouter protocol errors reporting Corrupted thought signature, and one reached the agent timeout.
+- This mixed cohort is not pooled with the modality-specific or other provider/harness releases.
+
+### Post-run corrections
+
+- `001-nginx-502-host-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `001-nginx-502-host-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `001-nginx-502-host-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `001-nginx-502-host-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `001-nginx-502-host-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `001-nginx-502-host-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `013-sidekiq-wrong-redis-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `013-sidekiq-wrong-redis-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `013-sidekiq-wrong-redis-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `013-sidekiq-wrong-redis-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `013-sidekiq-wrong-redis-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `013-sidekiq-wrong-redis-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `015-sidekiq-poison-pill-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `015-sidekiq-poison-pill-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `015-sidekiq-poison-pill-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `015-sidekiq-poison-pill-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `015-sidekiq-poison-pill-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `015-sidekiq-poison-pill-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `017-partial-rails-rollout-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `017-partial-rails-rollout-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `017-partial-rails-rollout-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `017-partial-rails-rollout-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `017-partial-rails-rollout-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `017-partial-rails-rollout-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `019-rust-fd-leak-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `019-rust-fd-leak-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `019-rust-fd-leak-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `019-rust-fd-leak-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `019-rust-fd-leak-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `019-rust-fd-leak-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `021-discourse-shared-uploads-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `021-discourse-shared-uploads-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `021-discourse-shared-uploads-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `021-discourse-shared-uploads-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `021-discourse-shared-uploads-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `021-discourse-shared-uploads-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `024-discourse-interrupted-deploy-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `024-discourse-interrupted-deploy-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `024-discourse-interrupted-deploy-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `024-discourse-interrupted-deploy-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `024-discourse-interrupted-deploy-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `024-discourse-interrupted-deploy-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `028-nix-store-disk-pressure-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `028-nix-store-disk-pressure-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `028-nix-store-disk-pressure-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `028-nix-store-disk-pressure-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `028-nix-store-disk-pressure-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `028-nix-store-disk-pressure-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `029-visual-topology-drift-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `029-visual-topology-drift-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `029-visual-topology-drift-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `029-visual-topology-drift-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `029-visual-topology-drift-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `029-visual-topology-drift-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `030-visual-metrics-regression-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `030-visual-metrics-regression-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `030-visual-metrics-regression-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `030-visual-metrics-regression-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `030-visual-metrics-regression-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `030-visual-metrics-regression-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `031-visual-deployment-timeline-google-gemini-3-8-flash-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `031-visual-deployment-timeline-google-gemini-3-8-flash-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `031-visual-deployment-timeline-google-gemini-3-8-flash-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `031-visual-deployment-timeline-anthropic-claude-fable-5-1-reasoning-high-1`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `031-visual-deployment-timeline-anthropic-claude-fable-5-1-reasoning-high-2`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
+- `031-visual-deployment-timeline-anthropic-claude-fable-5-1-reasoning-high-3`: The retained Claux adapter logs identify the OpenRouter endpoint; the original invocation omitted --agent-provider openrouter. Outcomes and failure classifications are unchanged.
 
 <!-- replaybook:current-benchmark:end -->
 

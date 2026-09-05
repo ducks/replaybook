@@ -51,7 +51,7 @@ SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 GIT_COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40,64}$")
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 BENCHMARK_TIERS = {"smoke", "core", "full", "frontier"}
-INPUT_MODES = {"text", "visual"}
+INPUT_MODES = {"text", "visual", "mixed"}
 OPTIONAL_SNAPSHOT_HASHES = (
     "agent_adapter_sha256",
     "agent_payload_sha256",
@@ -743,9 +743,17 @@ def apply_corrections(
             raise PublishError(f"correction for {run_id} has no changes")
         if not isinstance(reason, str) or not reason.strip():
             raise PublishError(f"correction for {run_id} needs a reason")
-        allowed = {"failure", "failure_category"}
+        allowed = {"failure", "failure_category", "provider"}
         if not set(changes).issubset(allowed):
             raise PublishError(f"correction for {run_id} changes unsupported fields")
+        if "provider" in changes:
+            provider = changes["provider"]
+            if provider is not None and (
+                not isinstance(provider, str) or not provider.strip()
+            ):
+                raise PublishError(
+                    f"correction for {run_id} provider must be a non-empty string or null"
+                )
         original = {key: by_id[run_id].get(key) for key in changes}
         by_id[run_id].update(changes)
         applied.append(
@@ -919,6 +927,7 @@ def create_release_from_sources(
     sources = copy.deepcopy(source_matrices)
     compatibility = validate_compatible(sources)
     runs = [run for source in sources for run in source.pop("runs")]
+    corrections = apply_corrections(runs, annotations)
     compatibility["providers"] = sorted(
         {provider for provider in (run.get("provider") for run in runs) if provider}
     )
@@ -932,7 +941,6 @@ def create_release_from_sources(
     compatibility["agent_harness"] = release_agent_harness(
         compatibility, runs, annotations.get("agent_harness")
     )
-    corrections = apply_corrections(runs, annotations)
     reproduction_command = annotations.get("reproduction_command")
     if reproduction_command is not None and (
         not isinstance(reproduction_command, str) or not reproduction_command.strip()
@@ -940,7 +948,7 @@ def create_release_from_sources(
         raise PublishError("annotations reproduction_command must be a non-empty string")
     input_mode = annotations.get("input_mode", "text")
     if input_mode not in INPUT_MODES:
-        raise PublishError("annotations input_mode must be text or visual")
+        raise PublishError("annotations input_mode must be text, visual, or mixed")
     return {
         "schema_version": 1,
         "version": version,
@@ -1238,7 +1246,7 @@ def recent_scenario_section(
 ) -> str:
     """Render the newest published cohort for each recently seen scenario."""
     seen: set[str] = set()
-    rows: dict[str, list[str]] = {"text": [], "visual": []}
+    rows: dict[str, list[str]] = {"text": [], "visual": [], "mixed": []}
     for release_version in reversed(index["releases"]):
         release = read_json(root / RELEASES_DIR / f"{release_version}.json")
         for scenario in release["compatibility"]["scenarios"]:
@@ -1284,7 +1292,11 @@ def recent_scenario_section(
     if not any(rows.values()):
         return ""
     sections = []
-    for input_mode, title in (("text", "Text infrastructure"), ("visual", "Visual infrastructure")):
+    for input_mode, title in (
+        ("text", "Text infrastructure"),
+        ("visual", "Visual infrastructure"),
+        ("mixed", "Mixed text and visual infrastructure"),
+    ):
         if not rows[input_mode]:
             continue
         sections.append(f"""
@@ -1303,6 +1315,7 @@ def input_lane_section(index: dict[str, Any], root: Path) -> str:
     releases_by_mode: dict[str, list[tuple[str, dict[str, Any]]]] = {
         "text": [],
         "visual": [],
+        "mixed": [],
     }
     for version in index["releases"]:
         release = read_json(root / RELEASES_DIR / f"{version}.json")
@@ -1311,6 +1324,7 @@ def input_lane_section(index: dict[str, Any], root: Path) -> str:
     for input_mode, title, description in (
         ("text", "Text infrastructure", "Incidents described through prompts, services, logs, and the shell."),
         ("visual", "Visual infrastructure", "Incidents where an image is authoritative evidence the agent must inspect."),
+        ("mixed", "Mixed infrastructure", "Cohorts that intentionally combine text-only and image-evidence incidents."),
     ):
         releases = releases_by_mode[input_mode]
         if not releases:

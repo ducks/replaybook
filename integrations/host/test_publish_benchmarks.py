@@ -226,6 +226,36 @@ class PublisherTests(unittest.TestCase):
         self.assertIn("$0.2500", page)
         self.assertIn("provider usage value", page)
 
+    def test_applies_documented_provider_correction_before_grouping(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            value = summary("google/gemini-3.8-flash")
+            path = self.write_summary(root, "matrix", value)
+            release = create_release(
+                "20260905.0.0",
+                [path],
+                {
+                    "agent_harness": {
+                        "id": "claux",
+                        "label": "Claux",
+                        "provider": "OpenRouter",
+                        "billing": "provider-reported",
+                    },
+                    "corrections": [
+                        {
+                            "run_id": "001-nginx-google/gemini-3.8-flash-1",
+                            "changes": {"provider": "openrouter"},
+                            "reason": "The retained adapter log identifies the OpenRouter endpoint; the original invocation omitted --agent-provider.",
+                        }
+                    ],
+                },
+            )
+
+        self.assertEqual(release["runs"][0]["provider"], "openrouter")
+        self.assertEqual(release["by_model"][0]["provider"], "openrouter")
+        self.assertEqual(release["compatibility"]["providers"], ["openrouter"])
+        self.assertEqual(release["corrections"][0]["changes"], {"provider": "openrouter"})
+
     def test_propagates_tier_into_release_and_catalog(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
