@@ -80,7 +80,7 @@
       ]
     }
   ],
-  "generated_from": "20260830.0.0",
+  "generated_from": "20260904.0.0",
   "profiles": [
     {
       "model": "deepseek/deepseek-v4-flash-0731",
@@ -3729,6 +3729,246 @@
   "scenarios": [
     {
       "boundary": {
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
+        "agent_harness": {
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
+        },
+        "agent_name": "opencode",
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "claux_binary_sha256": null,
+        "claux_release": null,
+        "harness_versions": [
+          23
+        ],
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "scenario_snapshot_sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+        "tier": "core"
+      },
+      "cells": [
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "google/gemini-3.7-flash",
+          "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "Vercel AI Gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
+          "model": "stealth/ox-alpha",
+          "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "qwen/qwen3.8-2.4t-a95b",
+          "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full"
+          ]
+        }
+      ],
+      "evidence_url": "benchmark-scenario.html?scenario=001-nginx-502-host",
+      "release": "20260904.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1
+    },
+    {
+      "boundary": {
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
+        "agent_harness": {
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
+        },
+        "agent_name": "opencode",
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "claux_binary_sha256": null,
+        "claux_release": null,
+        "harness_versions": [
+          23
+        ],
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "scenario_snapshot_sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+        "tier": "core"
+      },
+      "cells": [
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "google/gemini-3.7-flash",
+          "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "Vercel AI Gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
+          "model": "stealth/ox-alpha",
+          "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "qwen/qwen3.8-2.4t-a95b",
+          "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full"
+          ]
+        }
+      ],
+      "evidence_url": "benchmark-scenario.html?scenario=013-sidekiq-wrong-redis",
+      "release": "20260904.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 2
+    },
+    {
+      "boundary": {
         "agent_adapter": "builtin:claux",
         "agent_adapter_sha256": null,
         "agent_harness": {
@@ -3869,6 +4109,126 @@
     },
     {
       "boundary": {
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
+        "agent_harness": {
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
+        },
+        "agent_name": "opencode",
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "claux_binary_sha256": null,
+        "claux_release": null,
+        "harness_versions": [
+          23
+        ],
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "scenario_snapshot_sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+        "tier": "core"
+      },
+      "cells": [
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "google/gemini-3.7-flash",
+          "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "Vercel AI Gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
+          "model": "stealth/ox-alpha",
+          "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "qwen/qwen3.8-2.4t-a95b",
+          "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full"
+          ]
+        }
+      ],
+      "evidence_url": "benchmark-scenario.html?scenario=015-sidekiq-poison-pill",
+      "release": "20260904.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1
+    },
+    {
+      "boundary": {
         "agent_adapter": "builtin:claux",
         "agent_adapter_sha256": null,
         "agent_harness": {
@@ -4005,6 +4365,126 @@
       "release": "20260821.0.0",
       "scenario": "016-rails-pool-exhaustion",
       "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1
+    },
+    {
+      "boundary": {
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
+        "agent_harness": {
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
+        },
+        "agent_name": "opencode",
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "claux_binary_sha256": null,
+        "claux_release": null,
+        "harness_versions": [
+          23
+        ],
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "scenario_snapshot_sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+        "tier": "core"
+      },
+      "cells": [
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "google/gemini-3.7-flash",
+          "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "Vercel AI Gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
+          "model": "stealth/ox-alpha",
+          "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "qwen/qwen3.8-2.4t-a95b",
+          "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full"
+          ]
+        }
+      ],
+      "evidence_url": "benchmark-scenario.html?scenario=017-partial-rails-rollout",
+      "release": "20260904.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
       "scenario_version": 1
     },
     {
@@ -4149,6 +4629,126 @@
     },
     {
       "boundary": {
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
+        "agent_harness": {
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
+        },
+        "agent_name": "opencode",
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "claux_binary_sha256": null,
+        "claux_release": null,
+        "harness_versions": [
+          23
+        ],
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "scenario_snapshot_sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+        "tier": "core"
+      },
+      "cells": [
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "google/gemini-3.7-flash",
+          "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "Vercel AI Gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
+          "model": "stealth/ox-alpha",
+          "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "qwen/qwen3.8-2.4t-a95b",
+          "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full"
+          ]
+        }
+      ],
+      "evidence_url": "benchmark-scenario.html?scenario=019-rust-fd-leak",
+      "release": "20260904.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1
+    },
+    {
+      "boundary": {
         "agent_adapter": "builtin:claux",
         "agent_adapter_sha256": null,
         "agent_harness": {
@@ -4287,6 +4887,126 @@
       "release": "20260821.0.0",
       "scenario": "020-python-gunicorn-saturation",
       "scenario_label": "020-python-gunicorn-saturation",
+      "scenario_version": 1
+    },
+    {
+      "boundary": {
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
+        "agent_harness": {
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
+        },
+        "agent_name": "opencode",
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "claux_binary_sha256": null,
+        "claux_release": null,
+        "harness_versions": [
+          23
+        ],
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "scenario_snapshot_sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+        "tier": "core"
+      },
+      "cells": [
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "google/gemini-3.7-flash",
+          "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "Vercel AI Gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
+          "model": "stealth/ox-alpha",
+          "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "qwen/qwen3.8-2.4t-a95b",
+          "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full"
+          ]
+        }
+      ],
+      "evidence_url": "benchmark-scenario.html?scenario=021-discourse-shared-uploads",
+      "release": "20260904.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
       "scenario_version": 1
     },
     {
@@ -4567,6 +5287,126 @@
       "release": "20260821.0.0",
       "scenario": "023-auth-secret-rollout",
       "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1
+    },
+    {
+      "boundary": {
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
+        "agent_harness": {
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
+        },
+        "agent_name": "opencode",
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "claux_binary_sha256": null,
+        "claux_release": null,
+        "harness_versions": [
+          23
+        ],
+        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
+        "scenario_pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "scenario_snapshot_sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+        "tier": "core"
+      },
+      "cells": [
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "model_label": "DeepSeek V4 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "google/gemini-3.7-flash",
+          "model_label": "Gemini 3.7 Flash",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "openai/gpt-5.6-luna",
+          "model_label": "GPT-5.6 Luna",
+          "provider": "Vercel AI Gateway",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "unclassified"
+          ]
+        },
+        {
+          "model": "stealth/ox-alpha",
+          "model_label": "Ox Alpha",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "qwen/qwen3.8-2.4t-a95b",
+          "model_label": "Qwen3.8 2.4T A95B",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full"
+          ]
+        }
+      ],
+      "evidence_url": "benchmark-scenario.html?scenario=024-discourse-interrupted-deploy",
+      "release": "20260904.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
       "scenario_version": 1
     },
     {
@@ -5047,439 +5887,20 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "f8213d5f445d8fe7fd072709929cb5d4dd16adcef2fac58066cdb8c516b04c1c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.18.18"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
-        "claux_release": "v20260821.0.2",
-        "harness_versions": [
-          23
-        ],
-        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
-        "scenario_pack": {
-          "id": "ducks/replaybook-infra",
-          "version": "20260824.0.0"
-        },
-        "scenario_snapshot_sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
-        "tier": "core"
-      },
-      "cells": [
-        {
-          "model": "deepseek/deepseek-v4-flash-0731",
-          "model_label": "DeepSeek V4 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "google/gemini-3.7-flash",
-          "model_label": "Gemini 3.7 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "cost_per_repair_usd": 0.04238720666666667,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260830.0.0&scenario=021-discourse-shared-uploads&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 210,
-          "known_cost_usd": 0.12716162,
-          "median_duration_seconds": 157,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 40925,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "release": "20260830.0.0",
-          "scenario": "021-discourse-shared-uploads",
-          "scenario_label": "Discourse shared uploads",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "Vercel AI Gateway",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "unclassified"
-          ]
-        },
-        {
-          "model": "stealth/ox-alpha",
-          "model_label": "Ox Alpha",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "qwen/qwen3.8-2.4t-a95b",
-          "model_label": "Qwen3.8 2.4T A95B",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "z-ai/glm-5.3",
-          "model_label": "GLM 5.3",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
-        }
-      ],
-      "evidence_url": "benchmark-scenario.html?scenario=021-discourse-shared-uploads",
-      "release": "20260830.0.0",
-      "scenario": "021-discourse-shared-uploads",
-      "scenario_label": "Discourse shared uploads",
-      "scenario_version": 1
-    },
-    {
-      "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
-        "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
-        },
-        "agent_name": "claux",
-        "agent_timeout_seconds": 900,
-        "attempts": 3,
-        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
-        "claux_release": "v20260821.0.2",
-        "harness_versions": [
-          23
-        ],
-        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
-        "scenario_pack": {
-          "id": "ducks/replaybook-infra",
-          "version": "20260824.0.0"
-        },
-        "scenario_snapshot_sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
-        "tier": "core"
-      },
-      "cells": [
-        {
-          "model": "deepseek/deepseek-v4-flash-0731",
-          "model_label": "DeepSeek V4 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "google/gemini-3.7-flash",
-          "model_label": "Gemini 3.7 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "cost_per_repair_usd": 0.06304246,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260830.0.0&scenario=024-discourse-interrupted-deploy&model=openai%2Fgpt-5.6-luna",
-          "failed": 1,
-          "failure_categories": {
-            "release_not_converged": 1
-          },
-          "input_mode": "text",
-          "input_tokens": 156,
-          "known_cost_usd": 0.12608492,
-          "median_duration_seconds": 108,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 24288,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "release": "20260830.0.0",
-          "scenario": "024-discourse-interrupted-deploy",
-          "scenario_label": "Interrupted Discourse deploy",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "Vercel AI Gateway",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "unclassified"
-          ]
-        },
-        {
-          "model": "stealth/ox-alpha",
-          "model_label": "Ox Alpha",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "qwen/qwen3.8-2.4t-a95b",
-          "model_label": "Qwen3.8 2.4T A95B",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "z-ai/glm-5.3",
-          "model_label": "GLM 5.3",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
-        }
-      ],
-      "evidence_url": "benchmark-scenario.html?scenario=024-discourse-interrupted-deploy",
-      "release": "20260830.0.0",
-      "scenario": "024-discourse-interrupted-deploy",
-      "scenario_label": "Interrupted Discourse deploy",
-      "scenario_version": 1
-    },
-    {
-      "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
-        "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
-        },
-        "agent_name": "claux",
-        "agent_timeout_seconds": 900,
-        "attempts": 3,
-        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
-        "claux_release": "v20260821.0.2",
-        "harness_versions": [
-          23
-        ],
-        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
-        "scenario_pack": {
-          "id": "ducks/replaybook-infra",
-          "version": "20260824.0.0"
-        },
-        "scenario_snapshot_sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
-        "tier": "core"
-      },
-      "cells": [
-        {
-          "model": "deepseek/deepseek-v4-flash-0731",
-          "model_label": "DeepSeek V4 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "google/gemini-3.7-flash",
-          "model_label": "Gemini 3.7 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "cost_per_repair_usd": 0.026326723333333333,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260830.0.0&scenario=001-nginx-502-host&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 126,
-          "known_cost_usd": 0.07898017,
-          "median_duration_seconds": 70,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 14783,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "release": "20260830.0.0",
-          "scenario": "001-nginx-502-host",
-          "scenario_label": "Nginx 502 host failure",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "Vercel AI Gateway",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "unclassified"
-          ]
-        },
-        {
-          "model": "stealth/ox-alpha",
-          "model_label": "Ox Alpha",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "qwen/qwen3.8-2.4t-a95b",
-          "model_label": "Qwen3.8 2.4T A95B",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "z-ai/glm-5.3",
-          "model_label": "GLM 5.3",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
-        }
-      ],
-      "evidence_url": "benchmark-scenario.html?scenario=001-nginx-502-host",
-      "release": "20260830.0.0",
-      "scenario": "001-nginx-502-host",
-      "scenario_label": "Nginx 502 host failure",
-      "scenario_version": 1
-    },
-    {
-      "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
-        "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
-        },
-        "agent_name": "claux",
-        "agent_timeout_seconds": 900,
-        "attempts": 3,
-        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
-        "claux_release": "v20260821.0.2",
+        "claux_binary_sha256": null,
+        "claux_release": null,
         "harness_versions": [
           23
         ],
@@ -5519,36 +5940,17 @@
           ]
         },
         {
-          "cost_per_repair_usd": 0.04171348,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260830.0.0&scenario=028-nix-store-disk-pressure&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 186,
-          "known_cost_usd": 0.12514044,
-          "median_duration_seconds": 131,
           "model": "openai/gpt-5.6-luna",
           "model_label": "GPT-5.6 Luna",
-          "output_tokens": 42973,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260830.0.0",
-          "scenario": "028-nix-store-disk-pressure",
-          "scenario_label": "Nix store disk pressure",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
+          "status": "missing",
+          "tiers": [
+            "core",
+            "full",
+            "frontier",
+            "unclassified"
+          ]
         },
         {
           "model": "openai/gpt-5.6-luna",
@@ -5598,567 +6000,9 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=028-nix-store-disk-pressure",
-      "release": "20260830.0.0",
+      "release": "20260904.0.0",
       "scenario": "028-nix-store-disk-pressure",
-      "scenario_label": "Nix store disk pressure",
-      "scenario_version": 1
-    },
-    {
-      "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
-        "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
-        },
-        "agent_name": "claux",
-        "agent_timeout_seconds": 900,
-        "attempts": 3,
-        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
-        "claux_release": "v20260821.0.2",
-        "harness_versions": [
-          23
-        ],
-        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
-        "scenario_pack": {
-          "id": "ducks/replaybook-infra",
-          "version": "20260824.0.0"
-        },
-        "scenario_snapshot_sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
-        "tier": "core"
-      },
-      "cells": [
-        {
-          "model": "deepseek/deepseek-v4-flash-0731",
-          "model_label": "DeepSeek V4 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "google/gemini-3.7-flash",
-          "model_label": "Gemini 3.7 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "cost_per_repair_usd": 0.023418003333333336,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260830.0.0&scenario=017-partial-rails-rollout&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 111,
-          "known_cost_usd": 0.07025401,
-          "median_duration_seconds": 95,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 13954,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "release": "20260830.0.0",
-          "scenario": "017-partial-rails-rollout",
-          "scenario_label": "Partial Rails rollout",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "Vercel AI Gateway",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "unclassified"
-          ]
-        },
-        {
-          "model": "stealth/ox-alpha",
-          "model_label": "Ox Alpha",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "qwen/qwen3.8-2.4t-a95b",
-          "model_label": "Qwen3.8 2.4T A95B",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "z-ai/glm-5.3",
-          "model_label": "GLM 5.3",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
-        }
-      ],
-      "evidence_url": "benchmark-scenario.html?scenario=017-partial-rails-rollout",
-      "release": "20260830.0.0",
-      "scenario": "017-partial-rails-rollout",
-      "scenario_label": "Partial Rails rollout",
-      "scenario_version": 1
-    },
-    {
-      "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
-        "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
-        },
-        "agent_name": "claux",
-        "agent_timeout_seconds": 900,
-        "attempts": 3,
-        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
-        "claux_release": "v20260821.0.2",
-        "harness_versions": [
-          23
-        ],
-        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
-        "scenario_pack": {
-          "id": "ducks/replaybook-infra",
-          "version": "20260824.0.0"
-        },
-        "scenario_snapshot_sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
-        "tier": "core"
-      },
-      "cells": [
-        {
-          "model": "deepseek/deepseek-v4-flash-0731",
-          "model_label": "DeepSeek V4 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "google/gemini-3.7-flash",
-          "model_label": "Gemini 3.7 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "cost_per_repair_usd": 0.02688393,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260830.0.0&scenario=019-rust-fd-leak&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 141,
-          "known_cost_usd": 0.08065179,
-          "median_duration_seconds": 99,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 22098,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "release": "20260830.0.0",
-          "scenario": "019-rust-fd-leak",
-          "scenario_label": "Rust file-descriptor leak",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "Vercel AI Gateway",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "unclassified"
-          ]
-        },
-        {
-          "model": "stealth/ox-alpha",
-          "model_label": "Ox Alpha",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "qwen/qwen3.8-2.4t-a95b",
-          "model_label": "Qwen3.8 2.4T A95B",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "z-ai/glm-5.3",
-          "model_label": "GLM 5.3",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
-        }
-      ],
-      "evidence_url": "benchmark-scenario.html?scenario=019-rust-fd-leak",
-      "release": "20260830.0.0",
-      "scenario": "019-rust-fd-leak",
-      "scenario_label": "Rust file-descriptor leak",
-      "scenario_version": 1
-    },
-    {
-      "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
-        "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
-        },
-        "agent_name": "claux",
-        "agent_timeout_seconds": 900,
-        "attempts": 3,
-        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
-        "claux_release": "v20260821.0.2",
-        "harness_versions": [
-          23
-        ],
-        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
-        "scenario_pack": {
-          "id": "ducks/replaybook-infra",
-          "version": "20260824.0.0"
-        },
-        "scenario_snapshot_sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
-        "tier": "core"
-      },
-      "cells": [
-        {
-          "model": "deepseek/deepseek-v4-flash-0731",
-          "model_label": "DeepSeek V4 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "google/gemini-3.7-flash",
-          "model_label": "Gemini 3.7 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "cost_per_repair_usd": 0.03096322,
-          "cost_reported_trials": 3,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260830.0.0&scenario=013-sidekiq-wrong-redis&model=openai%2Fgpt-5.6-luna",
-          "failed": 0,
-          "failure_categories": {},
-          "input_mode": "text",
-          "input_tokens": 174,
-          "known_cost_usd": 0.09288966,
-          "median_duration_seconds": 149,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 26209,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "release": "20260830.0.0",
-          "scenario": "013-sidekiq-wrong-redis",
-          "scenario_label": "Sidekiq connected to the wrong Redis",
-          "scenario_version": 2,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "Vercel AI Gateway",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "unclassified"
-          ]
-        },
-        {
-          "model": "stealth/ox-alpha",
-          "model_label": "Ox Alpha",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "qwen/qwen3.8-2.4t-a95b",
-          "model_label": "Qwen3.8 2.4T A95B",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "z-ai/glm-5.3",
-          "model_label": "GLM 5.3",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
-        }
-      ],
-      "evidence_url": "benchmark-scenario.html?scenario=013-sidekiq-wrong-redis",
-      "release": "20260830.0.0",
-      "scenario": "013-sidekiq-wrong-redis",
-      "scenario_label": "Sidekiq connected to the wrong Redis",
-      "scenario_version": 2
-    },
-    {
-      "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
-        "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "v20260821.0.2"
-        },
-        "agent_name": "claux",
-        "agent_timeout_seconds": 900,
-        "attempts": 3,
-        "claux_binary_sha256": "c1090e95cfa2d0233116ee56c3e2b865847a730465f5895048588194afb8c0ce",
-        "claux_release": "v20260821.0.2",
-        "harness_versions": [
-          23
-        ],
-        "host_harness_sha256": "03c62cbabca04f20b6fc9fbb2bca10dec6111dcaa44a8c04a27331a402e3d9a5",
-        "scenario_pack": {
-          "id": "ducks/replaybook-infra",
-          "version": "20260824.0.0"
-        },
-        "scenario_snapshot_sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
-        "tier": "core"
-      },
-      "cells": [
-        {
-          "model": "deepseek/deepseek-v4-flash-0731",
-          "model_label": "DeepSeek V4 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "google/gemini-3.7-flash",
-          "model_label": "Gemini 3.7 Flash",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "cost_per_repair_usd": 0.051658145,
-          "cost_reported_trials": 2,
-          "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260830.0.0&scenario=015-sidekiq-poison-pill&model=openai%2Fgpt-5.6-luna",
-          "failed": 1,
-          "failure_categories": {
-            "agent_timeout": 1
-          },
-          "input_mode": "text",
-          "input_tokens": 147,
-          "known_cost_usd": 0.10331629,
-          "median_duration_seconds": 363,
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "output_tokens": 27543,
-          "pass_rate": 0.6666666666666666,
-          "pass_rate_95_high": 0.9385080552796037,
-          "pass_rate_95_low": 0.2076596008020477,
-          "passed": 2,
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "release": "20260830.0.0",
-          "scenario": "015-sidekiq-poison-pill",
-          "scenario_label": "Sidekiq poison-pill job",
-          "scenario_version": 1,
-          "status": "covered",
-          "subscription_usage_reported_trials": 0,
-          "subscription_usage_usd": 0,
-          "tier": "core",
-          "trials": 3,
-          "unavailable": 0,
-          "unavailable_categories": {}
-        },
-        {
-          "model": "openai/gpt-5.6-luna",
-          "model_label": "GPT-5.6 Luna",
-          "provider": "Vercel AI Gateway",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "unclassified"
-          ]
-        },
-        {
-          "model": "stealth/ox-alpha",
-          "model_label": "Ox Alpha",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "qwen/qwen3.8-2.4t-a95b",
-          "model_label": "Qwen3.8 2.4T A95B",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full",
-            "frontier",
-            "unclassified"
-          ]
-        },
-        {
-          "model": "z-ai/glm-5.3",
-          "model_label": "GLM 5.3",
-          "provider": "OpenRouter",
-          "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
-        }
-      ],
-      "evidence_url": "benchmark-scenario.html?scenario=015-sidekiq-poison-pill",
-      "release": "20260830.0.0",
-      "scenario": "015-sidekiq-poison-pill",
-      "scenario_label": "Sidekiq poison-pill job",
+      "scenario_label": "028-nix-store-disk-pressure",
       "scenario_version": 1
     },
     {
@@ -6524,8 +6368,8 @@
   ],
   "schema_version": 1,
   "totals": {
-    "covered_cells": 20,
-    "missing_cells": 120,
+    "covered_cells": 12,
+    "missing_cells": 128,
     "model_lanes": 7,
     "possible_cells": 140,
     "scenarios": 20

@@ -1,0 +1,39 @@
+{
+  "title": "OpenCode Go core infrastructure cohort",
+  "description": "Five models attempted three repairs across each of the eight stable core infrastructure incidents through the OpenCode harness and OpenCode Go subscription.",
+  "input_mode": "text",
+  "model_order": [
+    "opencode-go/deepseek-v4-flash",
+    "opencode-go/deepseek-v4-pro",
+    "opencode-go/glm-5.3",
+    "opencode-go/hy4-preview",
+    "opencode-go/qwen3.8-max"
+  ],
+  "model_labels": {
+    "opencode-go/deepseek-v4-flash": "DeepSeek V4 Flash",
+    "opencode-go/deepseek-v4-pro": "DeepSeek V4 Pro",
+    "opencode-go/glm-5.3": "GLM 5.3",
+    "opencode-go/hy4-preview": "HY4 Preview",
+    "opencode-go/qwen3.8-max": "Qwen3.8 Max"
+  },
+  "agent_harness": {
+    "id": "opencode",
+    "label": "OpenCode",
+    "version": "1.18.18",
+    "provider": "OpenCode Go",
+    "billing": "subscription"
+  },
+  "notes": [
+    "This is an independent OpenCode/OpenCode Go harness cohort using the same stable core scenario and host-verifier boundary as the canonical OpenRouter/Claux release.",
+    "All 120 scheduled trials used the eight core incidents, three attempts, high reasoning, a 900-second deadline, and host harness v23. Five trials were unavailable at the provider boundary and are excluded from evaluated pass rates.",
+    "The unavailable trials were provider availability failures in the OpenCode Go catalog, not evaluated model failures. The remaining 115 trials produced 102 durable repairs and 13 evaluated failures.",
+    "OpenCode Go reports subscription usage rather than metered API cost, so public cost remains unavailable rather than zero."
+  ],
+  "observations": [
+    "DeepSeek V4 Pro led the evaluated cohort at 22 of 24 durable repairs (92%), while DeepSeek V4 Flash completed 20 of 24 (83%).",
+    "Qwen3.8 Max completed 21 of 24 repairs (88%); GLM 5.3 completed 19 of 21 evaluated repairs (90%) and HY4 Preview completed 20 of 22 (91%).",
+    "DeepSeek V4 Flash had the fastest median recovery at 1:50. DeepSeek V4 Pro was substantially slower at 4:32, illustrating the speed/reliability tradeoff within one provider subscription.",
+    "These results remain a separate provider and harness lane. They are not pooled with Claux/OpenRouter, Vercel AI Gateway, or other cohorts."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --models opencode-go/deepseek-v4-flash opencode-go/deepseek-v4-pro opencode-go/glm-5.3 opencode-go/hy4-preview opencode-go/qwen3.8-max --reasoning-efforts high --concurrency 1 --agent-adapter integrations/host/adapters/opencode.sh --agent-payload ~/.opencode/bin/opencode --agent-env-file ~/.config/replaybook/opencode.env --agent-name opencode"
+}

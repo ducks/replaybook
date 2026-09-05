@@ -9,19 +9,33 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## OpenRouter GPT-5.6 Luna core infrastructure cohort
+## OpenCode Go core infrastructure cohort
 
-GPT-5.6 Luna attempted three repairs across each of the eight stable core infrastructure incidents through Claux and the OpenRouter API.
+Five models attempted three repairs across each of the eight stable core infrastructure incidents through the OpenCode harness and OpenCode Go subscription.
 
-Benchmark release: `20260830.0.0`
+Benchmark release: `20260904.0.0`
 Benchmark tier: `core`
+
+Provider-reported subscription usage value: **$11.6512** across 115 trials. This is a catalog-priced usage estimate, not metered spend.
 
 Scenario packs: `ducks/replaybook-infra@20260824.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) · openrouter | 22/24 | 92% | 1:52 | $0.8045+ | $0.0366+ |
-| **Total** | **22/24** | **92%** | **1:52** | **$0.8045+** | **$0.0366+** |
+| DeepSeek V4 Flash (high) · opencode-go | 20/24 | 83% | 1:50 | n/a | n/a |
+| DeepSeek V4 Pro (high) · opencode-go | 22/24 | 92% | 4:32 | n/a | n/a |
+| GLM 5.3 (high) · opencode-go | 19/21 | 90% | 2:16 | n/a | n/a |
+| HY4 Preview (high) · opencode-go | 20/22 | 91% | 5:10 | n/a | n/a |
+| Qwen3.8 Max (high) · opencode-go | 21/24 | 88% | 3:20 | n/a | n/a |
+| **Total** | **102/115** | **89%** | **3:19** | **n/a** | **n/a** |
+
+### Unavailable trial categories
+
+- `provider_unavailable`: 5
+
+### Post-timeout verification
+
+1 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
 
 ### Execution recording
 
@@ -29,44 +43,51 @@ Medians across trials with transcript schema v2 recording. First non-read is tim
 
 | Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GPT-5.6 Luna (high) · openrouter | 23/24 | 16 | 1:28 | 33 | 0:13 | 0:06 | 1:42 |
+| DeepSeek V4 Flash (high) · opencode-go | 24/24 | 19.5 | 1:21 | 30 | 0:00 | 0:01 | 1:36 |
+| DeepSeek V4 Pro (high) · opencode-go | 24/24 | 20 | 4:04 | 31 | 0:00 | 0:03 | 4:22 |
+| GLM 5.3 (high) · opencode-go | 24/24 | 13.5 | 1:37 | 19.5 | 0:00 | 0:03 | 2:05 |
+| HY4 Preview (high) · opencode-go | 24/24 | 20 | 3:50 | 28.5 | 0:00 | 0:01 | 4:59 |
+| Qwen3.8 Max (high) · opencode-go | 24/24 | 14 | 2:44 | 19 | 0:00 | 0:03 | 3:06 |
 
-GPT-5.6 Luna completed 22 of 24 evaluated repairs for a 92% pass rate; all 24 trials produced an evaluated result.
+DeepSeek V4 Pro led the evaluated cohort at 22 of 24 durable repairs (92%), while DeepSeek V4 Flash completed 20 of 24 (83%).
 
-Luna completed every attempt for six scenarios. The misses were one of three attempts on the Sidekiq poison-pill scenario and one of three on the interrupted Discourse deploy.
+Qwen3.8 Max completed 21 of 24 repairs (88%); GLM 5.3 completed 19 of 21 evaluated repairs (90%) and HY4 Preview completed 20 of 22 (91%).
 
-The run reported $0.8045 in provider spend, with the trailing plus indicating incomplete cost coverage in the source usage records.
+DeepSeek V4 Flash had the fastest median recovery at 1:50. DeepSeek V4 Pro was substantially slower at 4:32, illustrating the speed/reliability tradeoff within one provider subscription.
 
-This is a full three-attempt core cohort and supersedes the earlier single-model Luna snapshot for this scenario boundary.
+These results remain a separate provider and harness lane. They are not pooled with Claux/OpenRouter, Vercel AI Gateway, or other cohorts.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-5.6 Luna (high) · openrouter |
-|---|---:|---:|
-| Nginx 502 host failure | v1 | 3/3, 1:10 |
-| Sidekiq connected to the wrong Redis | v2 | 3/3, 2:29 |
-| Sidekiq poison-pill job | v1 | 2/3, 6:03 |
-| Partial Rails rollout | v1 | 3/3, 1:35 |
-| Rust file-descriptor leak | v1 | 3/3, 1:39 |
-| Discourse shared uploads | v1 | 3/3, 2:37 |
-| Interrupted Discourse deploy | v1 | 2/3, 1:48 |
-| Nix store disk pressure | v1 | 3/3, 2:11 |
+| Scenario | Version | DeepSeek V4 Flash (high) · opencode-go | DeepSeek V4 Pro (high) · opencode-go | GLM 5.3 (high) · opencode-go | HY4 Preview (high) · opencode-go | Qwen3.8 Max (high) · opencode-go |
+|---|---:|---:|---:|---:|---:|---:|
+| 001-nginx-502-host | v1 | 3/3, 1:15 | 3/3, 5:19 | 3/3, 1:47 | 3/3, 4:59 | 3/3, 1:18 |
+| 013-sidekiq-wrong-redis | v2 | 3/3, 1:33 | 3/3, 2:00 | 3/3, 1:25 | 3/3, 2:58 | 3/3, 2:05 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 3:28 | 3/3, 6:33 | 2/3, 4:29 | 3/3, 6:04 | 1/3, 5:32 |
+| 017-partial-rails-rollout | v1 | 3/3, 1:50 | 3/3, 4:33 | 3/3, 2:46 | 3/3, 6:32 | 3/3, 4:12 |
+| 019-rust-fd-leak | v1 | 3/3, 1:49 | 3/3, 3:11 | 3/3, 1:52 | 3/3, 3:26 | 3/3, 2:41 |
+| 021-discourse-shared-uploads | v1 | 2/3, 2:57 | 2/3, 9:45 | 2/3, 3:19 | 3/3, 6:32 | 2/3, 6:06 |
+| 024-discourse-interrupted-deploy | v1 | 0/3, 1:11 | 2/3, 3:43 | 3/3, 2:02 | 1/3, 3:46 | 3/3, 2:41 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 4:12 | 3/3, 4:15 | 0/0, n/a | 1/1, 5:40 | 3/3, 5:24 |
 
 ### Failure categories
 
+- `accepted_uploads_not_recovered`: 2
 - `agent_timeout`: 1
-- `release_not_converged`: 1
+- `host_reboot_failed`: 2
+- `provider_interrupted`: 2
+- `release_not_converged`: 6
 
 ### Source matrices
 
-- `host-matrix-2026-08-29__19-27-41.db695c`: openai/gpt-5.6-luna; Replaybook `f5042d19`; reasoning high
+- `host-matrix-2026-09-02__16-30-28.36a4a7`: opencode-go/deepseek-v4-flash, opencode-go/deepseek-v4-pro, opencode-go/glm-5.3, opencode-go/qwen3.8-max, opencode-go/hy4-preview; Replaybook `eb258707`; reasoning high
 
 ### Run notes
 
-- This is the canonical OpenRouter/Claux cohort for the stable core infrastructure manifest.
-- Results are intentionally not pooled with OpenCode Go, Vercel AI Gateway, or other harness/provider cohorts; those remain companion evidence.
-- Failures remain evaluated failures: one agent runtime error and one release-not-converged result.
-- The benchmark measures durable repair under the Replaybook host verifier, not general coding ability.
+- This is an independent OpenCode/OpenCode Go harness cohort using the same stable core scenario and host-verifier boundary as the canonical OpenRouter/Claux release.
+- All 120 scheduled trials used the eight core incidents, three attempts, high reasoning, a 900-second deadline, and host harness v23. Five trials were unavailable at the provider boundary and are excluded from evaluated pass rates.
+- The unavailable trials were provider availability failures in the OpenCode Go catalog, not evaluated model failures. The remaining 115 trials produced 102 durable repairs and 13 evaluated failures.
+- OpenCode Go reports subscription usage rather than metered API cost, so public cost remains unavailable rather than zero.
 
 <!-- replaybook:current-benchmark:end -->
 

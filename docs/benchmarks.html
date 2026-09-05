@@ -88,28 +88,28 @@
     <section aria-labelledby="current-heading">
       <p class="eyebrow">Current evidence</p>
       <h2 id="current-heading">Latest benchmark boundary</h2>
-      <p>OpenRouter GPT-5.6 Luna core infrastructure cohort is the current core cohort for this input lane: 8 scenarios, 3 attempts per model, and Claux v20260821.0.2.</p>
+      <p>OpenCode Go core infrastructure cohort is the current core cohort for this input lane: 8 scenarios, 3 attempts per model, and OpenCode 1.18.18.</p>
       <div class="metric-grid" aria-label="Current benchmark summary">
-        <div class="metric"><span class="metric-value">22/24</span><span class="metric-label">durable repairs</span></div>
-        <div class="metric"><span class="metric-value">92%</span><span class="metric-label">pass rate</span></div>
-        <div class="metric"><span class="metric-value">1:52</span><span class="metric-label">overall median</span></div>
+        <div class="metric"><span class="metric-value">102/115</span><span class="metric-label">durable repairs</span></div>
+        <div class="metric"><span class="metric-value">89%</span><span class="metric-label">pass rate</span></div>
+        <div class="metric"><span class="metric-value">3:19</span><span class="metric-label">overall median</span></div>
       </div>
-      <p class="small muted">Latest model lanes: <span>GPT-5.6 Luna</span>.</p>
-      <p class="dashboard-actions"><a href="benchmark-explorer.html?release=20260830.0.0">Inspect cohort →</a> <a href="benchmark-compare.html?lane=20260830.0.0%7C%7C%7Copenai%2Fgpt-5.6-luna%7C%7C%7Chigh">Compare latest model evidence →</a> <a href="benchmark-visual.html">Visual overview →</a></p>
+      <p class="small muted">Latest model lanes: <span>DeepSeek V4 Pro</span>, <span>HY4 Preview</span>, <span>GLM 5.3</span>, <span>Qwen3.8 Max</span>, <span>DeepSeek V4 Flash</span>.</p>
+      <p class="dashboard-actions"><a href="benchmark-explorer.html?release=20260904.0.0">Inspect cohort →</a> <a href="benchmark-compare.html?lane=20260904.0.0%7C%7C%7Copencode-go%2Fdeepseek-v4-flash%7C%7C%7Chigh&amp;lane=20260904.0.0%7C%7C%7Copencode-go%2Fdeepseek-v4-pro%7C%7C%7Chigh&amp;lane=20260904.0.0%7C%7C%7Copencode-go%2Fglm-5.3%7C%7C%7Chigh&amp;lane=20260904.0.0%7C%7C%7Copencode-go%2Fhy4-preview%7C%7C%7Chigh&amp;lane=20260904.0.0%7C%7C%7Copencode-go%2Fqwen3.8-max%7C%7C%7Chigh">Compare latest model evidence →</a> <a href="benchmark-visual.html">Visual overview →</a></p>
     </section>
 
     <section aria-labelledby="scope-heading">
       <h2 id="scope-heading">Current scenario scope</h2>
       <p class="small muted">The catalog below is the quickest way to find a concrete benchmark. Each entry opens a single-scenario evidence page.</p>
       <div class="tested-scenarios">
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=001-nginx-502-host"><strong>01</strong><span>Nginx 502 host failure</span><small><code>001-nginx-502-host</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=013-sidekiq-wrong-redis"><strong>02</strong><span>Sidekiq connected to the wrong Redis</span><small><code>013-sidekiq-wrong-redis</code> · v2</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=015-sidekiq-poison-pill"><strong>03</strong><span>Sidekiq poison-pill job</span><small><code>015-sidekiq-poison-pill</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=017-partial-rails-rollout"><strong>04</strong><span>Partial Rails rollout</span><small><code>017-partial-rails-rollout</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=019-rust-fd-leak"><strong>05</strong><span>Rust file-descriptor leak</span><small><code>019-rust-fd-leak</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=021-discourse-shared-uploads"><strong>06</strong><span>Discourse shared uploads</span><small><code>021-discourse-shared-uploads</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=024-discourse-interrupted-deploy"><strong>07</strong><span>Interrupted Discourse deploy</span><small><code>024-discourse-interrupted-deploy</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=028-nix-store-disk-pressure"><strong>08</strong><span>Nix store disk pressure</span><small><code>028-nix-store-disk-pressure</code> · v1</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=001-nginx-502-host"><strong>01</strong><span>001-nginx-502-host</span><small><code>001-nginx-502-host</code> · v1</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=013-sidekiq-wrong-redis"><strong>02</strong><span>013-sidekiq-wrong-redis</span><small><code>013-sidekiq-wrong-redis</code> · v2</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=015-sidekiq-poison-pill"><strong>03</strong><span>015-sidekiq-poison-pill</span><small><code>015-sidekiq-poison-pill</code> · v1</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=017-partial-rails-rollout"><strong>04</strong><span>017-partial-rails-rollout</span><small><code>017-partial-rails-rollout</code> · v1</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=019-rust-fd-leak"><strong>05</strong><span>019-rust-fd-leak</span><small><code>019-rust-fd-leak</code> · v1</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=021-discourse-shared-uploads"><strong>06</strong><span>021-discourse-shared-uploads</span><small><code>021-discourse-shared-uploads</code> · v1</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=024-discourse-interrupted-deploy"><strong>07</strong><span>024-discourse-interrupted-deploy</span><small><code>024-discourse-interrupted-deploy</code> · v1</small></a>
+        <a class="tested-scenario" href="benchmark-scenario.html?scenario=028-nix-store-disk-pressure"><strong>08</strong><span>028-nix-store-disk-pressure</span><small><code>028-nix-store-disk-pressure</code> · v1</small></a>
       </div>
     </section>
 
@@ -125,15 +125,15 @@
     <details class="evidence-details">
       <summary>Recent cohorts · show release-level evidence</summary>
       <div class="recent-cohort-list">
+        <a href="benchmark-explorer.html?release=20260904.0.0"><strong>OpenCode Go core infrastructure cohort</strong><span><code>20260904.0.0</code> · OpenCode 1.18.18 · 102/115 repairs</span></a>
         <a href="benchmark-explorer.html?release=20260830.0.1"><strong>OpenCode Go GPT-5.6 Luna core infrastructure cohort</strong><span><code>20260830.0.1</code> · OpenCode · 22/24 repairs</span></a>
         <a href="benchmark-explorer.html?release=20260830.0.0"><strong>OpenRouter GPT-5.6 Luna core infrastructure cohort</strong><span><code>20260830.0.0</code> · Claux v20260821.0.2 · 22/24 repairs</span></a>
         <a href="benchmark-explorer.html?release=20260827.0.1"><strong>Vercel AI Gateway funded infrastructure cohort</strong><span><code>20260827.0.1</code> · Claux v20260821.0.2 · 27/27 repairs</span></a>
-        <a href="benchmark-explorer.html?release=20260826.0.0"><strong>Reasoning effort and convergence: three OpenAI models</strong><span><code>20260826.0.0</code> · Claux v20260821.0.2 · 8/12 repairs</span></a>
       </div>
     </details>
 
     <p class="overview-secondary-links"><a href="scenarios.html">Browse scenarios →</a> <a href="benchmark-models.html">View model profiles →</a> <a href="benchmark-providers.html">View providers →</a> <a href="benchmark-explorer.html">Open the evidence explorer →</a></p>
-    <p class="small muted overview-footnote">Latest scope: 29 cohorts, 35 model lanes, and 17 scenarios. This page is the benchmark guide; the <a href="benchmark-explorer.html">Explorer</a> contains the full audit trail.</p>
+    <p class="small muted overview-footnote">Latest scope: 30 cohorts, 40 model lanes, and 17 scenarios. This page is the benchmark guide; the <a href="benchmark-explorer.html">Explorer</a> contains the full audit trail.</p>
 
     <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
   </div>
