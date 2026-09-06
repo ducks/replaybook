@@ -1,0 +1,42 @@
+{
+  "title": "OpenRouter core infrastructure baseline",
+  "description": "Six models each attempted three durable repairs across all eight stable core infrastructure incidents through Claux and OpenRouter.",
+  "input_mode": "text",
+  "model_order": [
+    "anthropic/claude-sonnet-5",
+    "deepseek/deepseek-v4-flash-0731",
+    "google/gemini-3.7-flash",
+    "openai/gpt-5.6-luna",
+    "qwen/qwen3.8-2.4t-a95b",
+    "z-ai/glm-5.3"
+  ],
+  "model_labels": {
+    "anthropic/claude-sonnet-5": "Claude Sonnet 5",
+    "deepseek/deepseek-v4-flash-0731": "DeepSeek V4 Flash 0731",
+    "google/gemini-3.7-flash": "Gemini 3.7 Flash",
+    "openai/gpt-5.6-luna": "GPT-5.6 Luna",
+    "qwen/qwen3.8-2.4t-a95b": "Qwen3.8 2.4T A95B",
+    "z-ai/glm-5.3": "GLM 5.3"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "v20260821.0.2",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "This is the canonical OpenRouter/Claux baseline for the stable core infrastructure manifest and is kept separate from OpenCode Go and Vercel AI Gateway cohorts.",
+    "All 144 scheduled trials produced evaluated results using the same eight incidents, three-attempt design, high reasoning effort, 900-second timeout, scenario-pack revision, and host harness v23.",
+    "Twelve provider interruptions occurred after meaningful inference and agent work, so they remain evaluated failures rather than being excluded as unavailable trials.",
+    "Reported costs are request charges captured from OpenRouter; model quality, provider reliability, harness behavior, speed, and cost are distinct dimensions of the result."
+  ],
+  "observations": [
+    "Qwen3.8 2.4T A95B and GLM 5.3 completed all 24 repairs. Claude Sonnet 5 completed 21, GPT-5.6 Luna 20, DeepSeek V4 Flash 19, and Gemini 3.7 Flash 17.",
+    "The full cohort completed 125 of 144 evaluated repairs (86.8%) at $22.3951 in reported provider spend, with no unavailable trials.",
+    "DeepSeek V4 Flash had the fastest recovery median at 1:43, followed by GPT-5.6 Luna at 2:12 and Claude Sonnet 5 at 2:28. The two perfect lanes traded speed for reliability: Qwen at 3:40 and GLM at 4:37.",
+    "OpenRouter returned twelve mid-run 502 interruptions: seven on Gemini, three on Luna, and two on DeepSeek. The remaining failures were five non-converged interrupted deployments, one unrecovered Sidekiq backlog, and one response-header timeout.",
+    "Claude Sonnet 5 failed all three interrupted-deployment attempts; this was the clearest repeated model-level miss in the cohort."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --models anthropic/claude-sonnet-5 deepseek/deepseek-v4-flash-0731 google/gemini-3.7-flash openai/gpt-5.6-luna qwen/qwen3.8-2.4t-a95b z-ai/glm-5.3 --reasoning-efforts high --agent-provider openrouter --claux-binary ../claux/target/release/claux --concurrency 1 --base-port 28800"
+}
