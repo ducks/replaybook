@@ -56,7 +56,7 @@
     <div class="table-scroll"><table><thead><tr><th>Release</th><th>Version</th><th>Boundary</th><th>Harness</th><th>Models</th><th>Repairs</th></tr></thead><tbody id="scenario-cohort-results"></tbody></table></div>
 
     <h2>Model evidence</h2>
-    <div class="table-scroll"><table><thead><tr><th>Cohort</th><th>Model</th><th>Repairs</th><th>Pass rate</th><th>95% CI</th><th>Median</th><th>Known cost</th><th>Failures</th></tr></thead><tbody id="scenario-model-results"></tbody></table></div>
+    <div class="table-scroll"><table><thead><tr><th>Cohort</th><th>Model</th><th>Repairs</th><th>Attempts</th><th>Pass rate</th><th>95% CI</th><th>Median</th><th>Known cost</th><th>Failures</th></tr></thead><tbody id="scenario-model-results"></tbody></table></div>
 
     <div class="catalog-breakdowns">
       <section><h2>Repair failures</h2><ul id="scenario-failures"></ul></section>
@@ -82,6 +82,28 @@
 
   function percent(value) {
     return value === null || value === undefined ? "n/a" : `${Math.round(value * 100)}%`;
+  }
+
+  function attemptSwatches(record) {
+    const wrap = document.createElement("span");
+    wrap.className = "attempt-swatches";
+    (record.outcomes || []).forEach(outcome => {
+      const swatch = document.createElement("span");
+      const unavailable = outcome.trial_status !== "evaluated";
+      const passed = !unavailable && outcome.reward === 1;
+      swatch.className = `attempt-swatch attempt-${unavailable ? "unavailable" : passed ? "pass" : "fail"}`;
+      const label = [`attempt ${outcome.attempt}: ${unavailable ? "unavailable" : passed ? "repaired" : "failed"}`];
+      if (outcome.duration_seconds !== null && outcome.duration_seconds !== undefined) label.push(duration(outcome.duration_seconds));
+      if (outcome.failure_category) label.push(outcome.failure_category);
+      swatch.title = label.join(" · ");
+      swatch.setAttribute("aria-label", label.join(" · "));
+      wrap.append(swatch);
+    });
+    if (!wrap.children.length) {
+      wrap.classList.add("muted");
+      wrap.textContent = "n/a";
+    }
+    return wrap;
   }
 
   function variant(record) {
@@ -186,6 +208,9 @@
       modelLink.textContent = variant(record);
       modelCell.append(modelLink);
       appendTextCell(row, `${record.passed}/${record.evaluated}`);
+      const attemptsCell = document.createElement("td");
+      attemptsCell.append(attemptSwatches(record));
+      row.append(attemptsCell);
       appendTextCell(row, percent(record.pass_rate));
       appendTextCell(row, record.evaluated ? `${percent(record.pass_rate_95_low)}–${percent(record.pass_rate_95_high)}` : "n/a");
       appendTextCell(row, duration(record.median_duration_seconds));

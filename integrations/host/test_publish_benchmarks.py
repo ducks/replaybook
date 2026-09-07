@@ -877,6 +877,21 @@ class PublisherTests(unittest.TestCase):
             self.assertAlmostEqual(
                 catalog["records"][0]["cost_per_repair_usd"], 0.01
             )
+            self.assertEqual(
+                catalog["records"][0]["outcomes"],
+                [
+                    {
+                        "attempt": 1,
+                        "trial_status": "evaluated",
+                        "reward": 1,
+                        "duration_seconds": 60,
+                    }
+                ],
+            )
+            self.assertEqual(
+                coverage_data["profiles"][0]["records"][0]["outcomes"],
+                catalog["records"][0]["outcomes"],
+            )
             self.assertEqual(coverage_data["schema_version"], 1)
             self.assertEqual(
                 coverage_data["comparison_policy"],

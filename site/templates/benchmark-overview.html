@@ -7,6 +7,34 @@
     <h1>{{ copy.title }}</h1>
     <p class="tagline benchmark-tagline">{{ copy.description }}</p>
 
+    <section aria-labelledby="wall-heading">
+      <p class="eyebrow">The wall</p>
+      <h2 id="wall-heading">Every incident, every lane, every attempt</h2>
+      <p class="small muted">Each cell is one scenario cohort for one model lane: one mark per attempt. Purple dots flag flaky cohorts whose mixed outcomes a percentage would hide. Pick a provider to load its lanes; providers are never pooled into one view. Click a cell for per-attempt detail.</p>
+      <div class="wall-provider-bar">
+        <label for="wall-provider">Provider</label>
+        <select id="wall-provider"></select>
+        <span class="wall-provider-note" id="wall-stats"></span>
+      </div>
+      <div class="wall-legend">
+        <span><span class="wall-swatch" style="background:var(--accent)"></span>repaired</span>
+        <span><span class="wall-swatch" style="background:#f85149"></span>failed</span>
+        <span><span class="wall-swatch" style="background:repeating-linear-gradient(45deg,transparent 0 2px,#d29922 2px 4px)"></span>unavailable</span>
+        <span><span class="wall-swatch" style="background:#bc8cff;border-radius:50%;width:8px;height:8px"></span>flaky cohort</span>
+        <span><span class="wall-swatch" style="background:transparent;border:1px dashed var(--border)"></span>not run</span>
+      </div>
+      <div class="wall-scroll"><div id="wall" aria-live="polite"></div></div>
+    </section>
+
+    <div class="wall-drawer" id="wall-drawer" aria-hidden="true">
+      <button class="wall-drawer-close" id="wall-drawer-close" aria-label="Close">&times;</button>
+      <h3 id="wall-drawer-title"></h3>
+      <p class="wall-drawer-sub" id="wall-drawer-sub"></p>
+      <div class="wall-drawer-strip" id="wall-drawer-strip"></div>
+      <div id="wall-drawer-trials"></div>
+      <div class="wall-drawer-actions" id="wall-drawer-actions"></div>
+    </div>
+
     <section class="guide-intro">
       <p class="eyebrow">Start here</p>
       <h2>What Replaybook measures</h2>
@@ -103,4 +131,192 @@
 
     <p class="overview-secondary-links"><a href="scenarios.html">Browse scenarios →</a> <a href="benchmark-models.html">View model profiles →</a> <a href="benchmark-providers.html">View providers →</a> <a href="benchmark-explorer.html">Open the evidence explorer →</a></p>
     <p class="small muted overview-footnote">Latest scope: {{ counts.cohorts }} cohorts, {{ counts.models }} model lanes, and {{ counts.scenarios }} scenarios. This page is the benchmark guide; the <a href="benchmark-explorer.html">Explorer</a> contains the full audit trail.</p>
+{% endblock %}
+{% block scripts %}
+  <script>
+  function wallEscape(value) {
+    return String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+
+  function wallDuration(seconds) {
+    if (seconds === null || seconds === undefined) return "n/a";
+    const rounded = Math.round(seconds);
+    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
+  }
+
+  function wallPercent(value) {
+    return value === null || value === undefined ? "n/a" : `${Math.round(value * 100)}%`;
+  }
+
+  async function initializeWall() {
+    const response = await fetch("benchmark-catalog.json");
+    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
+    const catalog = await response.json();
+
+    const laneKeys = new Map();
+    catalog.records.forEach(record => {
+      const provider = record.provider || "unknown";
+      const key = `${provider}|||${record.model}|||${record.reasoning_effort || ""}`;
+      if (!laneKeys.has(key)) laneKeys.set(key, {
+        provider,
+        model: record.model,
+        short: record.model.split("/").pop(),
+        reasoning: record.reasoning_effort || null,
+      });
+    });
+    const lanes = [...laneKeys.values()].sort((a, b) =>
+      a.provider.localeCompare(b.provider) || a.model.localeCompare(b.model));
+    const laneIndex = new Map(lanes.map((lane, i) => [
+      `${lane.provider}|||${lane.model}|||${lane.reasoning || ""}`, i]));
+
+    const rowsById = new Map();
+    catalog.records.forEach(record => {
+      const provider = record.provider || "unknown";
+      const li = laneIndex.get(`${provider}|||${record.model}|||${record.reasoning_effort || ""}`);
+      let row = rowsById.get(record.scenario);
+      if (!row) {
+        row = { id: record.scenario, label: record.scenario_label, release: record.release, cells: new Map() };
+        rowsById.set(record.scenario, row);
+      }
+      if (record.release > row.release) row.release = record.release;
+      row.cells.set(li, {
+        status: "covered",
+        passed: record.passed,
+        evaluated: record.evaluated,
+        rate: record.pass_rate,
+        median: record.median_duration_seconds,
+        release: record.release,
+        outcomes: (record.outcomes || []).map(o => ({
+          attempt: o.attempt,
+          state: o.trial_status !== "evaluated" ? "unavailable" : (o.reward === 1 ? "pass" : "fail"),
+          duration: o.duration_seconds,
+          failure: o.failure_category || null,
+        })),
+      });
+    });
+    const rows = [...rowsById.values()].sort((a, b) => a.id.localeCompare(b.id));
+    rows.forEach(row => {
+      row.cells = lanes.map((_, i) => row.cells.get(i) || { status: "missing" });
+    });
+
+    const wallEl = document.getElementById("wall");
+    const pickEl = document.getElementById("wall-provider");
+    const statsEl = document.getElementById("wall-stats");
+    const drawer = document.getElementById("wall-drawer");
+    let selected = null;
+
+    const providers = [...new Set(lanes.map(l => l.provider))].sort((a, b) => {
+      const covered = p => lanes.reduce((n, l, i) =>
+        n + (l.provider === p && rows.some(r => r.cells[i].status === "covered") ? 1 : 0), 0);
+      return covered(b) - covered(a) || a.localeCompare(b);
+    });
+    providers.forEach(p => {
+      const opt = document.createElement("option");
+      opt.value = p;
+      opt.textContent = p;
+      pickEl.append(opt);
+    });
+
+    function closeDrawer() {
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden", "true");
+      if (selected) selected.classList.remove("selected");
+      selected = null;
+    }
+
+    function openCell(r_i, c_i) {
+      const row = rows[r_i], lane = lanes[c_i], cell = row.cells[c_i];
+      if (cell.status !== "covered") return;
+      document.getElementById("wall-drawer-title").textContent = row.label;
+      document.getElementById("wall-drawer-sub").textContent =
+        `${lane.model} · ${lane.provider} · reasoning ${lane.reasoning || "default"} · cohort ${cell.release}`;
+      const flaky = cell.passed > 0 && cell.passed < cell.evaluated;
+      document.getElementById("wall-drawer-strip").innerHTML = [
+        ["repairs", `${cell.passed}/${cell.evaluated}`],
+        ["pass rate", wallPercent(cell.rate)],
+        ["median", wallDuration(cell.median)],
+        ["verdict", flaky ? "flaky" : cell.passed === cell.evaluated ? "solid" : "failing"],
+      ].map(([k, v]) => `<div class="wall-metric"><b>${v}</b>${k}</div>`).join("");
+      document.getElementById("wall-drawer-trials").innerHTML = cell.outcomes.map(o => `
+        <div class="wall-trial">
+          <span class="wall-attempt wall-${o.state}"></span>
+          <span class="wall-trial-label">attempt ${o.attempt}</span>
+          ${o.failure ? `<span class="wall-trial-cat">${wallEscape(o.failure)}</span>` : ""}
+          <span class="wall-trial-meta">${o.state === "unavailable" ? "excluded from rate" : wallDuration(o.duration)}</span>
+        </div>`).join("");
+      document.getElementById("wall-drawer-actions").innerHTML = `
+        <a href="benchmark-scenario.html?scenario=${encodeURIComponent(row.id)}">Scenario evidence &rarr;</a>
+        <a href="benchmark-explorer.html?release=${encodeURIComponent(cell.release)}&scenario=${encodeURIComponent(row.id)}&model=${encodeURIComponent(lane.model)}">Open in transcript explorer &rarr;</a>`;
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden", "false");
+      if (selected) selected.classList.remove("selected");
+      selected = wallEl.querySelector(`.wall-cell[data-r="${r_i}"][data-c="${c_i}"]`);
+      if (selected) selected.classList.add("selected");
+    }
+
+    function renderWall(provider) {
+      const laneIdx = lanes.map((l, i) => [l, i]).filter(([l]) => l.provider === provider);
+      let trials = 0, covered = 0;
+      laneIdx.forEach(([, i]) => rows.forEach(r => {
+        if (r.cells[i].status === "covered") { covered++; trials += r.cells[i].outcomes.length; }
+      }));
+      statsEl.textContent = `${laneIdx.length} lanes · ${covered} cohorts · ${trials} trials`;
+
+      const cols = `260px repeat(${laneIdx.length}, minmax(84px, 1fr))`;
+      const parts = [`<div class="wall" style="grid-template-columns:${cols}">`];
+      parts.push('<div class="wall-row"><div class="wall-head" style="visibility:hidden"></div>');
+      laneIdx.forEach(([l]) => parts.push(
+        `<div class="wall-head"><span>${wallEscape(l.short)}</span></div>`));
+      parts.push("</div>");
+
+      rows.forEach((row, r_i) => {
+        parts.push('<div class="wall-row">');
+        parts.push(`<div class="wall-label"><a href="benchmark-scenario.html?scenario=${encodeURIComponent(row.id)}">${wallEscape(row.label)}</a></div>`);
+        laneIdx.forEach(([, c_i]) => {
+          const cell = row.cells[c_i];
+          if (cell.status !== "covered") { parts.push('<div class="wall-cell wall-missing"></div>'); return; }
+          const flaky = cell.passed > 0 && cell.passed < cell.evaluated;
+          const swatches = cell.outcomes.map(o => {
+            const bits = [`attempt ${o.attempt}: ${o.state}`];
+            if (o.duration !== null && o.duration !== undefined) bits.push(wallDuration(o.duration));
+            if (o.failure) bits.push(o.failure);
+            return `<span class="wall-attempt wall-${o.state}" title="${wallEscape(bits.join(" · "))}"></span>`;
+          }).join("");
+          parts.push(`<div class="wall-cell" data-r="${r_i}" data-c="${c_i}" role="button" tabindex="0">${swatches}${flaky ? '<span class="wall-flaky-dot"></span>' : ""}</div>`);
+        });
+        parts.push("</div>");
+      });
+
+      parts.push('<div class="wall-row"><div class="wall-foot"></div>');
+      laneIdx.forEach(([, c_i]) => {
+        const p = rows.reduce((n, r) => n + (r.cells[c_i].passed || 0), 0);
+        const e = rows.reduce((n, r) => n + (r.cells[c_i].evaluated || 0), 0);
+        const f = rows.filter(r => { const c = r.cells[c_i];
+          return c.status === "covered" && c.passed > 0 && c.passed < c.evaluated; }).length;
+        parts.push(`<div class="wall-foot"><b>${p}/${e}</b><span>${f} flaky</span></div>`);
+      });
+      parts.push("</div></div>");
+      wallEl.innerHTML = parts.join("");
+
+      wallEl.querySelectorAll(".wall-cell[data-r]").forEach(el => {
+        const open = () => openCell(+el.dataset.r, +el.dataset.c);
+        el.addEventListener("click", open);
+        el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+      });
+      closeDrawer();
+    }
+
+    pickEl.addEventListener("change", () => renderWall(pickEl.value));
+    document.getElementById("wall-drawer-close").addEventListener("click", closeDrawer);
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+
+    pickEl.value = providers[0];
+    renderWall(providers[0]);
+  }
+
+  initializeWall().catch(error => {
+    document.getElementById("wall").innerHTML =
+      `<p class="muted">Evidence wall unavailable: ${wallEscape(error.message)}</p>`;
+  });
+  </script>
 {% endblock %}
