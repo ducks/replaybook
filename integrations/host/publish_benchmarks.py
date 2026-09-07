@@ -1831,6 +1831,39 @@ def history_cards(index: dict[str, Any], root: Path) -> str:
     return HISTORY_START + "\n" + "\n".join(cards) + "\n    " + HISTORY_END
 
 
+def trial_outcomes(
+    release: dict[str, Any],
+) -> dict[tuple[Any, ...], list[dict[str, Any]]]:
+    """Index per-attempt outcomes from normalized runs for catalog records."""
+    grouped: dict[tuple[Any, ...], list[dict[str, Any]]] = defaultdict(list)
+    for run in release.get("runs", []):
+        key = (
+            run["scenario"],
+            run["scenario_version"],
+            run["model"],
+            run.get("reasoning_effort"),
+            run.get("provider"),
+        )
+        grouped[key].append(run)
+    outcomes = {}
+    for key, runs in grouped.items():
+        outcomes[key] = [
+            {
+                "attempt": run["attempt"],
+                "trial_status": run["trial_status"],
+                "reward": run["reward"],
+                "duration_seconds": run.get("agent_duration_seconds"),
+                **(
+                    {"failure_category": run["failure_category"]}
+                    if run.get("failure_category")
+                    else {}
+                ),
+            }
+            for run in sorted(runs, key=lambda item: item["attempt"])
+        ]
+    return outcomes
+
+
 def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
     """Build the path-free catalog consumed by the static benchmark explorer."""
     releases = []
@@ -1845,6 +1878,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
         validate_release(release, path)
         compatibility = release["compatibility"]
         agent_harness = normalized_agent_harness(release)
+        outcomes = trial_outcomes(release)
         releases.append(
             {
                 "version": version,
@@ -1928,6 +1962,24 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
         for aggregate in release["by_scenario_model"]:
             interval = wilson_interval(aggregate["passed"], aggregate["evaluated"])
             provider = agent_harness.get("provider") or aggregate.get("provider")
+            outcome_key = (
+                aggregate["scenario"],
+                aggregate["scenario_version"],
+                aggregate["model"],
+                aggregate.get("reasoning_effort"),
+                provider,
+            )
+            record_outcomes = outcomes.get(outcome_key)
+            if record_outcomes is None:
+                # Harness-level providers are display labels ("OpenRouter"),
+                # not the raw provider ids stored on normalized runs.
+                aggregate_provider = aggregate.get("provider")
+                if aggregate_provider and aggregate_provider != provider:
+                    record_outcomes = outcomes.get(
+                        (*outcome_key[:4], aggregate_provider)
+                    )
+            if record_outcomes is None and provider is not None:
+                record_outcomes = outcomes.get((*outcome_key[:4], None))
             records.append(
                 {
                     "release": version,
@@ -1937,6 +1989,7 @@ def public_catalog(index: dict[str, Any], root: Path) -> dict[str, Any]:
                     "scenario_label": label(release, "scenario", aggregate["scenario"]),
                     "scenario_version": aggregate["scenario_version"],
                     **({"provider": provider} if provider else {}),
+                    **({"outcomes": record_outcomes} if record_outcomes else {}),
                     "model": aggregate["model"],
                     "model_label": label(release, "model", aggregate["model"]),
                     "reasoning_effort": aggregate.get("reasoning_effort"),
