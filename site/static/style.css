@@ -1660,21 +1660,57 @@ pre code {
   margin: 1.5rem 0 2rem;
 }
 
-.model-family > h2 {
-  margin: 2.5rem 0 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--border);
+.model-family-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+  align-items: start;
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
 }
 
-.model-family-id {
-  display: block;
-  margin-top: -0.65rem;
-  color: var(--fg-dim);
+.model-family {
+  min-width: 0;
+  padding: 1.5rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.model-family > h2 {
+  font: normal 1.8rem/1.2 Georgia, serif;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  border: 0;
   overflow-wrap: anywhere;
 }
 
-.model-family:first-child > h2 {
-  margin-top: 2rem;
+.model-family-count {
+  color: var(--fg-dim);
+  font-size: 0.78rem;
+  margin: 0;
+}
+
+.model-family .model-grid {
+  grid-template-columns: minmax(0, 1fr);
+  margin: 1.25rem 0 0;
+  gap: 0;
+}
+
+.model-family .model-card {
+  padding: 1.25rem 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.model-family .model-card:last-child {
+  padding-bottom: 0;
+}
+
+.model-reasoning {
+  align-self: flex-start;
 }
 
 .model-card {

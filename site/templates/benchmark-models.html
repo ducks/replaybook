@@ -3,9 +3,9 @@
 {% block title %}Model evidence{% endblock %}
 {% block description %}Shareable evidence profiles for every model lane observed in Replaybook infrastructure-agent benchmarks.{% endblock %}
 {% block content %}
-    <p class="eyebrow">Observed model lanes</p>
+    <p class="eyebrow">Models / execution configurations</p>
     <h1>Model evidence</h1>
-    <p class="tagline benchmark-tagline">Shareable profiles using each observed model lane's newest tracked evidence for every current scenario.</p>
+    <p class="tagline benchmark-tagline">Find a model, then inspect its provider and reasoning configurations. Each card keeps the exact model identity and evidence boundaries visible.</p>
 
     <div class="callout comparison-note">
       <strong>This is evidence coverage, not one pooled leaderboard.</strong>
@@ -13,7 +13,7 @@
     </div>
 
     <div id="models-context" class="small muted"></div>
-    <div id="model-groups"></div>
+    <div id="model-groups" class="model-family-grid"></div>
 
     <p class="small muted">Profiles consume the stable <a href="benchmark-coverage.json"><code>benchmark-coverage.json</code></a> API.</p>
 {% endblock %}
@@ -27,17 +27,23 @@
     return item.reasoning_effort ? `${item.model_label} (${item.reasoning_effort})` : item.model_label;
   }
 
-  // OpenCode Go namespaces the upstream model ID. Keep that namespace in the
-  // lane URL, but group the lane with the canonical model everywhere it is
-  // presented on this page.
-  function canonicalModelId(model) {
-    return model.startsWith("opencode-go/") ? model.slice("opencode-go/".length) : model;
-  }
-
   function modelLabel(lane) {
     if (lane.model_label) return lane.model_label;
-    const canonical = canonicalModelId(lane.model);
-    return canonical.split("/").at(-1);
+    return lane.model.split("/").at(-1);
+  }
+
+  function groupModels(lanes) {
+    const groups = new Map();
+    lanes.forEach(lane => {
+      // Reasoning and provider are configurations, not model identities.
+      // Distinct served IDs remain separate until aliases are explicitly verified.
+      if (!groups.has(lane.model)) {
+        groups.set(lane.model, {model: lane.model, model_label: modelLabel(lane), lanes: []});
+      }
+      groups.get(lane.model).lanes.push(lane);
+    });
+    return [...groups.values()].sort((a, b) =>
+      a.model_label.localeCompare(b.model_label) || a.model.localeCompare(b.model));
   }
 
   function providerLabel(provider) {
@@ -56,9 +62,10 @@
   }
 
   function compareUrl(cell) {
-    const query = new URLSearchParams();
-    query.append("lane", `${cell.release}|||${cell.model}|||${cell.reasoning_effort || ""}`);
-    return `benchmark-compare.html?${query}`;
+    const query = new URLSearchParams({release: cell.release, model: cell.model});
+    if (cell.provider) query.set("provider", cell.provider);
+    query.set("reasoning", cell.reasoning_effort || "Unspecified");
+    return `benchmark-evidence.html?${query}`;
   }
 
   function money(value, incomplete) {
@@ -87,13 +94,7 @@
       lane.tiers = [...new Set(lane.records.map(record => record.tier))];
       return lane;
     }).sort((a, b) => modelLabel(a).localeCompare(modelLabel(b)) || providerLabel(a.provider).localeCompare(providerLabel(b.provider)));
-    const groupsByModel = new Map();
-    lanes.forEach(lane => {
-      const key = `${canonicalModelId(lane.model)}|||${lane.reasoning_effort || ""}`;
-      if (!groupsByModel.has(key)) groupsByModel.set(key, {model: canonicalModelId(lane.model), model_label: modelLabel(lane), lanes: []});
-      groupsByModel.get(key).lanes.push(lane);
-    });
-    const modelGroups = [...groupsByModel.values()].sort((a, b) => a.model_label.localeCompare(b.model_label) || a.model.localeCompare(b.model));
+    const modelGroups = groupModels(lanes);
     document.querySelector("#models-context").textContent = `${modelGroups.length} models · ${lanes.length} provider lanes across ${catalog.records.length} published records · newest evidence per scenario`;
     const container = document.querySelector("#model-groups");
     modelGroups.forEach(modelGroup => {
@@ -102,10 +103,10 @@
       const heading = document.createElement("h2");
       heading.textContent = modelGroup.model_label;
       section.append(heading);
-      const modelId = document.createElement("code");
-      modelId.className = "model-family-id";
-      modelId.textContent = modelGroup.model;
-      section.append(modelId);
+      const count = document.createElement("p");
+      count.className = "model-family-count";
+      count.textContent = `${modelGroup.lanes.length} execution configuration${modelGroup.lanes.length === 1 ? "" : "s"}`;
+      section.append(count);
       const grid = document.createElement("div");
       grid.className = "model-grid";
       section.append(grid);
@@ -126,8 +127,9 @@
       link.href = profileUrl(lane);
       link.textContent = providerLabel(lane.provider);
       title.append(link);
-      const identity = document.createElement("code");
-      identity.textContent = laneLabel(lane);
+      const identity = document.createElement("span");
+      identity.className = "badge model-reasoning";
+      identity.textContent = lane.reasoning_effort ? `Reasoning: ${lane.reasoning_effort}` : "Reasoning not specified";
       const stats = document.createElement("div");
       stats.className = "model-card-stats";
       stats.innerHTML = `<span><strong>${cells.length}/${scenarioCount}</strong> scenarios</span><span><strong>${perfect}</strong> perfect cohorts</span><span><strong>${passed}/${evaluated}</strong> recorded repairs</span><span><strong>${costReported ? money(cost, incomplete) : "n/a"}</strong> known spend</span><span><strong>${lane.tiers.join(", ") || "none"}</strong> tiers</span>`;
@@ -138,7 +140,7 @@
       const compare = document.createElement("a");
       compare.className = "model-card-link";
       const newest = [...cells].sort((a, b) => b.release.localeCompare(a.release))[0];
-      compare.href = newest ? compareUrl(newest) : "benchmark-compare.html";
+      compare.href = newest ? compareUrl(newest) : "benchmark-evidence.html";
       compare.textContent = "Compare latest cohort →";
       card.append(title, identity, stats, open, compare);
         grid.append(card);
