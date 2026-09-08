@@ -1,0 +1,34 @@
+{% extends "benchmark-base.html" %}
+{% set active_tab = "evidence" %}
+{% block title %}Evidence{% endblock %}
+{% block description %}Inspect Replaybook repair attempts, model configurations, cost, and exact benchmark conditions.{% endblock %}
+{% block head %}<link rel="stylesheet" href="evidence.css">{% endblock %}
+{% block content %}
+<main class="evidence-view">
+
+<div class="topline"><div><p class="eyebrow">Real systems. Observable repairs.</p><h1>Where does the agent break?</h1><p class="intro">Inspect the attempts behind the score. Keep the model, its execution settings,<br>and the benchmark conditions visible as separate things.</p></div><div class="tagline">A repair counts only when it survives<br><strong>verification → restart → reboot.</strong></div></div>
+<div class="tabs" role="group" aria-label="Evidence view"><button class="tab" id="cohort-tab" aria-pressed="true">Compare one cohort</button><button class="tab" id="browse-tab" aria-pressed="false">Browse evidence <span class="count" id="record-count"></span></button></div>
+<div class="controls">
+<div class="field grow" id="cohort-field"><label for="cohort">Benchmark cohort</label><select id="cohort"></select></div>
+<div class="field hidden" id="tier-field"><label for="tier">Tier</label><select id="tier"></select></div>
+<div class="field hidden" id="input-field"><label for="input">Input</label><select id="input"></select></div>
+<div class="field"><label for="provider">Provider</label><select id="provider"></select></div>
+<div class="field"><label for="harness">Agent harness</label><select id="harness"></select></div>
+<div class="field"><label for="reasoning">Reasoning</label><select id="reasoning"></select></div>
+<div class="field"><label for="scenario">Scenario</label><select id="scenario"></select></div>
+<div class="field search"><label for="search">Find a model</label><input id="search" type="search" placeholder="Name or exact model ID"></div>
+<button class="reset" id="reset">Reset</button></div>
+<div class="selection-controls"><button class="metric-switch" id="only-pinned" aria-pressed="false">Compare selected <span id="pinned-count">0</span></button><button class="reset" id="clear-pins">Clear selection</button><span class="detail-help">Select model rows to compare. Selected view ignores all filters except scenario.</span></div>
+<section class="boundary" id="boundary" aria-label="Comparison conditions"></section>
+<div class="legend-bar"><div><strong id="view-count"></strong> <span class="muted" style="font-size:11px">· select a cell to inspect</span></div><div class="legend"><span><i class="dot pass">✓</i>Repaired</span><span><i class="dot fail">×</i>Failed</span><span><i class="dot unavailable">–</i>Unavailable</span><span>— Not run</span><button class="metric-switch" id="outcome-mode" aria-pressed="true">Outcomes</button><button class="metric-switch" id="duration-mode" aria-pressed="false">Time</button></div></div>
+<div class="content"><section class="matrix-panel" aria-label="Scenario evidence matrix"><div class="scroll"><table><thead id="head"></thead><tbody id="body"></tbody></table><div id="empty" class="empty hidden">No configurations match these filters. Try Reset.</div></div><div class="table-note" id="table-note"></div></section><aside class="inspector" id="inspector" aria-label="Selected evidence" aria-live="polite"></aside></div>
+<div class="summary"><table><caption>Whole-cohort summary · includes all scenarios, independent of the scenario filter</caption><thead><tr><th>Configuration</th><th>Repairs</th><th>95% interval</th><th>Median time</th><th>Reported tokens</th><th>Known spend</th><th>Cost / repair</th><th>Cost coverage</th></tr></thead><tbody id="summary"></tbody></table></div>
+<footer><span>Tracked evidence only · no live inference · no inferred model aliases</span><span id="source"></span></footer>
+
+<noscript><p>JavaScript is needed for interactive filters. Read the <a href="benchmark-catalog.json">public catalog</a> or <a href="benchmark-history.html">release history</a>.</p></noscript>
+</main>
+{% endblock %}
+{% block scripts %}
+<script type="application/json" id="data">{{ catalog|tojson }}</script>
+<script src="evidence.js"></script>
+{% endblock %}

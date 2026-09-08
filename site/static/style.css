@@ -1,11 +1,15 @@
 :root {
+  color-scheme: dark;
   --bg: #0d1117;
   --bg-alt: #161b22;
-  --fg: #c9d1d9;
-  --fg-dim: #8b949e;
-  --accent: #3fb950;
-  --border: #30363d;
+  --fg: #e6edf3;
+  --fg-dim: #9ba8b5;
+  --accent: #73c991;
+  --border: #303a45;
   --code-bg: #161b22;
+  --warm: #ee9068;
+  --surface-raised: #1d252e;
+  --surface-green: #17251f;
 }
 
 * {
@@ -21,13 +25,13 @@ body {
 }
 
 .wrap {
-  max-width: 760px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
+  padding: 2rem clamp(1.25rem, 4vw, 4rem) 4rem;
 }
 
 .wrap.wide {
-  max-width: 980px;
+  max-width: 1440px;
 }
 
 .wrap.coverage-wrap {
@@ -36,7 +40,7 @@ body {
 
 header.site {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
@@ -46,15 +50,25 @@ header.site {
 }
 
 header.site .brand {
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-family: inherit;
+  font-size: 1.35rem;
+  font-weight: 750;
+  letter-spacing: -0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   color: var(--fg);
   text-decoration: none;
 }
 
 header.site .brand .prompt {
-  color: var(--accent);
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: 7px solid var(--warm);
+  border-right-width: 3px;
+  transform: rotate(-8deg);
+  font-size: 0;
 }
 
 nav.site a {
@@ -136,9 +150,9 @@ nav.site a.active {
 .benchmark-tabs a {
   color: var(--fg-dim);
   border: 1px solid transparent;
-  border-radius: 6px;
-  padding: 0.35rem 0.75rem;
-  font-family: "SF Mono", Menlo, Consolas, monospace;
+  border-radius: 0;
+  padding: 0.75rem 0.85rem;
+  font-family: inherit;
   font-size: 0.82rem;
   text-decoration: none;
 }
@@ -149,14 +163,17 @@ nav.site a.active {
 }
 
 .benchmark-tabs a.active {
-  color: var(--accent);
-  background: var(--bg-alt);
-  border-color: var(--border);
+  color: var(--fg);
+  background: transparent;
+  border-color: transparent;
+  border-bottom: 3px solid var(--accent);
 }
 
 h1 {
-  font-size: 1.9rem;
-  margin: 0 0 0.75rem;
+  font: normal clamp(2.1rem, 4vw, 3.4rem)/1.12 Georgia, "Times New Roman", serif;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  margin: 0 0 1rem;
 }
 
 h2 {
@@ -182,7 +199,49 @@ p {
 }
 
 a {
-  color: #58a6ff;
+  color: var(--accent);
+}
+
+:where(a, button, input, select, summary):focus-visible {
+  outline: 3px solid var(--warm);
+  outline-offset: 4px;
+}
+
+/* Evidence-study visual language, shared by all public pages. */
+.benchmark-tabs {
+  column-gap: 0.35rem;
+}
+
+.tagline {
+  max-width: 52rem;
+}
+
+.metric-value {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+}
+
+.comparison-note,
+.comparison-lockbar,
+.benchmark-integrity {
+  background: var(--surface-green);
+}
+
+.table-scroll {
+  border-radius: 8px;
+  background: var(--bg-alt);
+}
+
+.table-scroll thead th {
+  background: var(--surface-raised);
+}
+
+.table-scroll tbody tr:hover td {
+  background: rgb(115 201 145 / 4%);
+}
+
+:where(.cohort-card, .model-card, .provider-card, .scenario-catalog-card) {
+  box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
 }
 
 code {
@@ -1964,6 +2023,20 @@ footer.site {
 footer.site a {
   color: var(--fg-dim);
 }
+
+.benchmark-guide { max-width: 980px; margin: 0 auto; }
+.guide-hero { padding: 2.5rem 0 3rem; max-width: 760px; }
+.guide-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+.guide-action { display: inline-flex; gap: 1.5rem; align-items: center; padding: 0.8rem 1.2rem; border: 1px solid #426b50; border-radius: 5px; background: var(--surface-green); color: var(--fg); font-weight: 650; text-decoration: none; }
+.guide-action:hover { border-color: var(--accent); }
+.guide-section { padding: 2.5rem 0; border-top: 1px solid var(--border); }
+.guide-section h2, .guide-end h2 { font: normal clamp(1.6rem, 3vw, 2.1rem)/1.2 Georgia, serif; border: 0; margin: 0 0 1.25rem; }
+.guide-section > p:not(.eyebrow), .guide-end p { max-width: 760px; color: var(--fg-dim); }
+.guide-section strong { color: var(--fg); }
+.guide-section .gate { border-top: 2px solid var(--warm); }
+.guide-section .comparison-lockbar { display: block; background: var(--surface-green); border-color: #31473a; }
+.guide-section .comparison-lockbar p { margin: 0.5rem 0 0; }
+.guide-end { padding: 2.5rem; margin-top: 1rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; }
 
 @media (max-width: 640px) {
   .metric-grid,

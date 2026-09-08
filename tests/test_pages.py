@@ -63,6 +63,8 @@ class PagesTests(unittest.TestCase):
     def test_benchmark_frontend_has_tracked_sources(self) -> None:
         expected_templates = {
             "benchmark-base.html",
+            "benchmark-evidence.html",
+            "benchmark-redirect.html",
             "benchmark-overview.html",
             "benchmarks.html",
             "benchmark-compare.html",
@@ -93,35 +95,26 @@ class PagesTests(unittest.TestCase):
         history = (DOCS_DIR / "benchmark-history.html").read_text()
 
         index = json.loads((BENCHMARK_DATA_DIR / "index.json").read_text())
-        visual_version = next(
-            version
-            for version in reversed(index["releases"])
-            if json.loads(
-                (BENCHMARK_DATA_DIR / "releases" / f"{version}.json").read_text()
-            ).get("input_mode", "text")
-            == "visual"
-        )
-        release = json.loads(
-            (BENCHMARK_DATA_DIR / "releases" / f"{visual_version}.json").read_text()
-        )
-        self.assertIn("Text infrastructure", current)
-        self.assertIn("Infrastructure agents under pressure", current)
-        self.assertIn('href="benchmark-visual.html"', current)
-        self.assertNotIn("Benchmark input lanes", current)
-        self.assertIn("Visual infrastructure", visual)
-        self.assertIn("Infrastructure agents that can see", visual)
-        self.assertIn(visual_version, visual)
-        self.assertIn(release["title"], visual)
-        for label in release["model_labels"].values():
-            self.assertIn(label, visual)
+        evidence = (DOCS_DIR / "benchmark-evidence.html").read_text()
+        self.assertIn("What Replaybook measures", current)
+        self.assertIn("The scoring contract", current)
+        self.assertEqual(current, visual)
+        self.assertNotIn('id="wall"', current)
+        self.assertNotIn("Latest benchmark boundary", current)
+        self.assertNotIn('id="data"', current)
+        self.assertIn('href="benchmark-evidence.html"', current)
+        self.assertIn("Where does the agent break?", evidence)
+        self.assertIn("Whole-cohort summary", evidence)
+        self.assertIn('id="inspector"', evidence)
 
         catalog = json.loads((BENCHMARK_DATA_DIR / "catalog.json").read_text())
         docs_catalog = json.loads((DOCS_DIR / "benchmark-catalog.json").read_text())
         self.assertEqual(catalog, docs_catalog)
         self.assertEqual(catalog["current_version"], index["current_version"])
-        self.assertIn("Release boundaries are comparison boundaries", explorer)
-        self.assertIn("cost_per_repair_usd", explorer)
-        self.assertIn('href="benchmark-catalog.json"', explorer)
+        self.assertIn("window.location.search", explorer)
+        self.assertIn("window.location.replace", explorer)
+        self.assertIn("cost_per_repair_usd", evidence)
+        self.assertIn('href="benchmark-catalog.json"', evidence)
 
         self.assertIn("DeepSeek V4 Flash 0731", history)
         self.assertIn("Host harness v2", history)
@@ -133,6 +126,27 @@ class PagesTests(unittest.TestCase):
         self.assertIn("Evaluated, failed, and unavailable", current)
         self.assertIn("When results are comparable", current)
         self.assertIn("Benchmark tiers", current)
+
+    def test_evidence_assets_and_navigation(self) -> None:
+        for asset in ("evidence.js", "evidence.css"):
+            self.assertEqual((SITE_DIR / "static" / asset).read_text(),
+                             (DOCS_DIR / asset).read_text())
+        for page in DOCS_DIR.glob("*.html"):
+            html = page.read_text()
+            if 'aria-label="Benchmark sections"' not in html:
+                continue
+            nav = html.split('aria-label="Benchmark sections"', 1)[1].split("</nav>", 1)[0]
+            self.assertIn('href="benchmark-evidence.html"', nav)
+            self.assertNotIn(">Compare</a>", nav)
+            self.assertNotIn(">Explore</a>", nav)
+
+    def test_evidence_interactions(self) -> None:
+        import shutil
+        import subprocess
+
+        if not shutil.which("node"):
+            self.skipTest("Node is required for the Evidence interaction tests")
+        subprocess.run(["node", "tests/evidence.test.cjs"], cwd=REPO_DIR, check=True)
 
     def test_core_pages_cover_current_workflows(self) -> None:
         home = (DOCS_DIR / "index.html").read_text()
