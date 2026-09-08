@@ -147,6 +147,7 @@ class PagesTests(unittest.TestCase):
         if not shutil.which("node"):
             self.skipTest("Node is required for the Evidence interaction tests")
         subprocess.run(["node", "tests/evidence.test.cjs"], cwd=REPO_DIR, check=True)
+        subprocess.run(["node", "tests/models.test.cjs"], cwd=REPO_DIR, check=True)
 
     def test_core_pages_cover_current_workflows(self) -> None:
         home = (DOCS_DIR / "index.html").read_text()
