@@ -1,0 +1,14 @@
+{% extends "benchmark-base.html" %}
+{% set active_tab = "evidence" %}
+{% block title %}Evidence has moved{% endblock %}
+{% block content %}
+<h1>One place for the evidence.</h1>
+<p>Comparison and exploration now live together in <a id="evidence-link" href="benchmark-evidence.html">Evidence</a>.</p>
+{% endblock %}
+{% block scripts %}
+<script>
+const destination = "benchmark-evidence.html" + window.location.search + window.location.hash;
+document.getElementById("evidence-link").href = destination;
+window.location.replace(destination);
+</script>
+{% endblock %}

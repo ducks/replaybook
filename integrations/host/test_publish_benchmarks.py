@@ -828,27 +828,28 @@ class PublisherTests(unittest.TestCase):
             coverage_data = json.loads(
                 (root / "benchmark-data/coverage.json").read_text()
             )
-            self.assertIn("Current release", current)
-            self.assertIn("Text infrastructure", current)
-            self.assertIn("Recent cohorts", current)
-            self.assertIn("Compare latest model evidence", current)
-            self.assertIn("001-nginx", current)
+            self.assertIn("What Replaybook measures", current)
+            self.assertIn("The scoring contract", current)
+            self.assertIn("When results are comparable", current)
+            self.assertNotIn("Recent cohorts", current)
+            self.assertNotIn("001-nginx", current)
             self.assertNotIn("scenario pack revisions", current)
             self.assertNotIn("Run notes", current)
-            self.assertIn("Inspect cohort", current)
+            self.assertIn("Open Evidence", current)
             self.assertNotIn("\n+  --scenario", current)
-            self.assertIn("Benchmark explorer", explorer)
-            self.assertIn("cost / repair", explorer)
-            self.assertIn("release-filter", explorer)
+            self.assertIn("benchmark-evidence.html", explorer)
+            self.assertIn("window.location.search", explorer)
+            evidence = (root / "docs/benchmark-evidence.html").read_text()
+            self.assertIn("001-nginx", evidence)
+            self.assertIn("Cost / repair", evidence)
+            self.assertIn("evidence.js", evidence)
             self.assertIn("Benchmark coverage", coverage)
             self.assertIn("Rows are comparison boundaries", coverage)
             self.assertIn("coverage-cells", coverage)
             self.assertIn("benchmark-coverage.json", coverage)
             self.assertNotIn("\0", coverage)
-            self.assertIn("Compare benchmark lanes", compare)
-            self.assertIn("compatibility-status", compare)
-            self.assertIn("Scenario head-to-head", compare)
-            self.assertIn("benchmark-catalog.json", compare)
+            self.assertIn("benchmark-evidence.html", compare)
+            self.assertIn("window.location.replace", compare)
             self.assertIn("Model evidence", models_page)
             self.assertIn("not one pooled leaderboard", models_page)
             self.assertIn("model-grid", models_page)
@@ -1030,10 +1031,11 @@ class PublisherTests(unittest.TestCase):
                 (root / "benchmark-data/catalog.json").read_text()
             )
 
-        self.assertIn("Primary cohort", current)
-        self.assertIn("Other harness", current)
-        self.assertIn("Harness", current)
-        self.assertEqual(current.count("Inspect cohort"), 1)
+        self.assertNotIn("Primary cohort", current)
+        self.assertNotIn("Other harness", current)
+        self.assertIn("Open Evidence", current)
+        self.assertEqual(catalog["releases"][0]["title"], "Primary cohort")
+        self.assertEqual(catalog["releases"][1]["agent_harness"]["label"], "Other Harness")
         self.assertEqual(catalog["releases"][1]["role"], "companion")
         self.assertEqual(
             catalog["releases"][1]["agent_harness"]["id"], "other-harness"
@@ -1099,7 +1101,7 @@ class PublisherTests(unittest.TestCase):
                     {"agent_harness": {"id": "custom"}},
                 )
 
-    def test_homepage_lists_recent_distinct_scenarios(self) -> None:
+    def test_evidence_lists_scenarios_and_overview_is_informational(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             nginx_path = self.write_summary(root, "nginx", summary("model/a"))
@@ -1135,10 +1137,13 @@ class PublisherTests(unittest.TestCase):
             build_outputs(root)
 
             current = (root / "docs/benchmarks.html").read_text()
-            self.assertIn("001-nginx", current)
-            self.assertIn("002-redis", current)
+            self.assertNotIn("001-nginx", current)
+            self.assertNotIn("002-redis", current)
+            evidence = (root / "docs/benchmark-evidence.html").read_text()
+            self.assertIn("001-nginx", evidence)
+            self.assertIn("002-redis", evidence)
             self.assertIn(
-                "benchmark-scenario.html?scenario=002-redis", current
+                'href="scenarios.html"', current
             )
 
     def test_history_retains_superseded_generated_releases(self) -> None:

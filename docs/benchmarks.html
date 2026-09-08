@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Text infrastructure benchmarks &middot; replaybook</title>
-  <meta name="description" content="Replaybook text-input infrastructure-agent benchmark methodology and evidence guide.">
+  <title>What Replaybook measures &middot; replaybook</title>
+  <meta name="description" content="How Replaybook measures durable infrastructure repairs, what counts as a pass, and how to interpret agent benchmark evidence.">
   <link rel="stylesheet" href="style.css">
   <script data-goatcounter="https://stats.replaybook.dev/count" async src="https://stats.replaybook.dev/count.js"></script>
 </head>
@@ -22,334 +22,63 @@
 
     <nav class="benchmark-tabs" aria-label="Benchmark sections">
       <a href="benchmarks.html" class="active" aria-current="page">Overview</a>
-      <a href="scenarios.html">Scenarios</a>
+      <a href="benchmark-evidence.html">Evidence</a>
       <a href="benchmark-models.html">Models</a>
+      <a href="scenarios.html">Scenarios</a>
       <a href="benchmark-providers.html">Providers</a>
-      <a href="benchmark-compare.html">Compare</a>
-      <a href="benchmark-explorer.html">Explore</a>
       <a href="benchmark-coverage.html">Coverage</a>
       <a href="benchmark-history.html">History</a>
     </nav>
 
 
-    <p class="eyebrow">Benchmark guide</p>
-    <h1>Infrastructure agents under pressure</h1>
-    <p class="tagline benchmark-tagline">Agents diagnose and repair running systems from incident reports, logs, services, configuration, and shell evidence.</p>
-
-    <section aria-labelledby="wall-heading">
-      <p class="eyebrow">The wall</p>
-      <h2 id="wall-heading">Every incident, every lane, every attempt</h2>
-      <p class="small muted">Each cell is one scenario cohort for one model lane: one mark per attempt. Purple dots flag flaky cohorts whose mixed outcomes a percentage would hide. Pick a provider to load its lanes; providers are never pooled into one view. Click a cell for per-attempt detail.</p>
-      <div class="wall-provider-bar">
-        <label for="wall-provider">Provider</label>
-        <select id="wall-provider"></select>
-        <span class="wall-provider-note" id="wall-stats"></span>
-      </div>
-      <div class="wall-legend">
-        <span><span class="wall-swatch" style="background:var(--accent)"></span>repaired</span>
-        <span><span class="wall-swatch" style="background:#f85149"></span>failed</span>
-        <span><span class="wall-swatch" style="background:repeating-linear-gradient(45deg,transparent 0 2px,#d29922 2px 4px)"></span>unavailable</span>
-        <span><span class="wall-swatch" style="background:#bc8cff;border-radius:50%;width:8px;height:8px"></span>flaky cohort</span>
-        <span><span class="wall-swatch" style="background:transparent;border:1px dashed var(--border)"></span>not run</span>
-      </div>
-      <div class="wall-scroll"><div id="wall" aria-live="polite"></div></div>
-    </section>
-
-    <div class="wall-drawer" id="wall-drawer" aria-hidden="true">
-      <button class="wall-drawer-close" id="wall-drawer-close" aria-label="Close">&times;</button>
-      <h3 id="wall-drawer-title"></h3>
-      <p class="wall-drawer-sub" id="wall-drawer-sub"></p>
-      <div class="wall-drawer-strip" id="wall-drawer-strip"></div>
-      <div id="wall-drawer-trials"></div>
-      <div class="wall-drawer-actions" id="wall-drawer-actions"></div>
+<main class="benchmark-guide">
+  <div class="guide-hero">
+    <p class="eyebrow">Real systems. Observable repairs.</p>
+    <h1>Can an agent fix it?<br>And make it stay fixed?</h1>
+    <p class="tagline">Replaybook is a benchmark for agents operating real infrastructure. It puts an agent inside a broken, disposable NixOS VM and checks the system it leaves behind—not the answer it writes.</p>
+    <a class="guide-action" href="benchmark-evidence.html">Explore the evidence <span aria-hidden="true">↗</span></a>
+  </div>
+  <section class="guide-section">
+    <p class="eyebrow">01 / The task</p>
+    <h2>Diagnose a running system. Make a durable repair.</h2>
+    <p>The agent receives an incident report and tools to inspect logs, services, configuration, and application state. It must find the fault and repair the existing host within a fixed deadline.</p>
+    <div class="gate-grid">
+      <article class="gate"><span class="gate-number">TEXT</span><h3>Operational evidence</h3><p>Incident reports, shell output, logs, and configuration describe the failure.</p></article>
+      <article class="gate"><span class="gate-number">VISUAL</span><h3>Images that matter</h3><p>Visual scenarios require the agent to interpret a diagram or image as operational evidence, then repair the system.</p></article>
     </div>
-
-    <section class="guide-intro">
-      <p class="eyebrow">Start here</p>
-      <h2>What Replaybook measures</h2>
-      <p>Replaybook evaluates whether an agent can diagnose and durably repair a running production-style system. We score the state left behind after the agent stops, not the confidence or polish of its final answer.</p>
-      <p>Choose a <a href="scenarios.html">scenario</a> to see one benchmark in isolation, or use <a href="benchmark-models.html">Models</a>, <a href="benchmark-providers.html">Providers</a>, and <a href="benchmark-compare.html">Compare</a> to inspect compatible evidence.</p>
-    </section>
-
-    <section aria-labelledby="pass-heading">
-      <p class="eyebrow">The scoring contract</p>
-      <h2 id="pass-heading">What counts as a pass</h2>
-      <div class="gate-grid">
-        <article class="gate"><span class="gate-number">01</span><h3>Repair the live system</h3><p>User-facing behavior must recover without replacing the host.</p></article>
-        <article class="gate"><span class="gate-number">02</span><h3>Preserve existing work</h3><p>Queued jobs and controller-owned state cannot be discarded.</p></article>
-        <article class="gate"><span class="gate-number">03</span><h3>Survive service restart</h3><p>Temporary processes and in-memory workarounds must disappear safely.</p></article>
-        <article class="gate"><span class="gate-number">04</span><h3>Survive host reboot</h3><p>Only durable changes to the deployed system count.</p></article>
-      </div>
-    </section>
-
-    <section aria-labelledby="layers-heading">
-      <h2 id="layers-heading">How the layers fit together</h2>
-      <p>The controller builds a disposable NixOS VM and owns the incident lifecycle, timeout, restart, reboot, oracle, and verifier. The <strong>host harness</strong> is this scoring boundary. An <strong>agent harness</strong>, such as Claux or OpenCode, drives the model inside the VM. Provider and billing information are recorded separately when known.</p>
-      <p>The oracle and verifier stay outside the model VM. The agent receives the incident and normal Linux tools, but never the answer key. Every trial retains a sanitized transcript and immutable execution snapshot.</p>
-    </section>
-
-    <section aria-labelledby="outcomes-heading">
-      <h2 id="outcomes-heading">Evaluated, failed, and unavailable</h2>
-      <p>An <strong>evaluated</strong> trial reached the agent and verifier. A failed repair counts against that complete model, harness, and provider lane. Authentication failures and provider or harness errors before meaningful inference are <strong>unavailable</strong>; they remain visible but are excluded from the pass-rate denominator.</p>
-      <p>After work begins, interruptions, protocol errors, policy rejections, and runtime failures remain evaluated execution-lane failures with their original category.</p>
-    </section>
-
-    <section aria-labelledby="comparison-heading">
-      <h2 id="comparison-heading">When results are comparable</h2>
-      <p>Comparisons lock the scenario and verifier versions, host harness, timeout, agent harness, tools, permissions, tier, attempt count, and provenance. Different providers or harnesses are companion cohorts, not silently pooled totals.</p>
-      <div class="comparison-lockbar" aria-label="Comparison requirements">
-        <div class="comparison-lockbar-facts"><span><b>Same</b> scenario versions</span><span><b>Same</b> verifier boundary</span><span><b>Same</b> tier and attempts</span><span><b>Visible</b> provider and harness</span></div>
-      </div>
-    </section>
-
-    <section aria-labelledby="tiers-heading">
-      <h2 id="tiers-heading">Benchmark tiers</h2>
-      <div class="tier-grid">
-        <article class="tier-card"><span class="badge tier-smoke">Smoke</span><strong>Qualify cheaply</strong><p>Three representative scenarios, one attempt each.</p></article>
-        <article class="tier-card"><span class="badge tier-core">Core</span><strong>Compare routinely</strong><p>Eight representative incidents, three attempts each.</p></article>
-        <article class="tier-card"><span class="badge tier-full">Full</span><strong>Measure broadly</strong><p>Every stable incident, three attempts each.</p></article>
-        <article class="tier-card"><span class="badge tier-frontier">Frontier</span><strong>Test real systems</strong><p>Resource-heavy, longer-deadline deployments.</p></article>
-      </div>
-      <p class="small muted">Tiers overlap by design, but remain separate comparison boundaries.</p>
-    </section>
-
-    <section aria-labelledby="current-heading">
-      <p class="eyebrow">Current evidence</p>
-      <h2 id="current-heading">Latest benchmark boundary</h2>
-      <p>OpenRouter core infrastructure baseline is the current core cohort for this input lane: 8 scenarios, 3 attempts per model, and Claux v20260821.0.2.</p>
-      <div class="metric-grid" aria-label="Current benchmark summary">
-        <div class="metric"><span class="metric-value">125/144</span><span class="metric-label">durable repairs</span></div>
-        <div class="metric"><span class="metric-value">87%</span><span class="metric-label">pass rate</span></div>
-        <div class="metric"><span class="metric-value">2:36</span><span class="metric-label">overall median</span></div>
-      </div>
-      <p class="small muted">Latest model lanes: <span>Qwen3.8 2.4T A95B</span>, <span>GLM 5.3</span>, <span>Claude Sonnet 5</span>, <span>GPT-5.6 Luna</span>, <span>DeepSeek V4 Flash 0731</span>, <span>Gemini 3.7 Flash</span>.</p>
-      <p class="dashboard-actions"><a href="benchmark-explorer.html?release=20260906.0.0">Inspect cohort →</a> <a href="benchmark-compare.html?lane=20260906.0.0%7C%7C%7Canthropic%2Fclaude-sonnet-5%7C%7C%7Chigh&amp;lane=20260906.0.0%7C%7C%7Cdeepseek%2Fdeepseek-v4-flash-0731%7C%7C%7Chigh&amp;lane=20260906.0.0%7C%7C%7Cgoogle%2Fgemini-3.7-flash%7C%7C%7Chigh&amp;lane=20260906.0.0%7C%7C%7Copenai%2Fgpt-5.6-luna%7C%7C%7Chigh&amp;lane=20260906.0.0%7C%7C%7Cqwen%2Fqwen3.8-2.4t-a95b%7C%7C%7Chigh">Compare latest model evidence →</a> <a href="benchmark-visual.html">Visual overview →</a></p>
-    </section>
-
-    <section aria-labelledby="scope-heading">
-      <h2 id="scope-heading">Current scenario scope</h2>
-      <p class="small muted">The catalog below is the quickest way to find a concrete benchmark. Each entry opens a single-scenario evidence page.</p>
-      <div class="tested-scenarios">
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=001-nginx-502-host"><strong>01</strong><span>001-nginx-502-host</span><small><code>001-nginx-502-host</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=013-sidekiq-wrong-redis"><strong>02</strong><span>013-sidekiq-wrong-redis</span><small><code>013-sidekiq-wrong-redis</code> · v2</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=015-sidekiq-poison-pill"><strong>03</strong><span>015-sidekiq-poison-pill</span><small><code>015-sidekiq-poison-pill</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=017-partial-rails-rollout"><strong>04</strong><span>017-partial-rails-rollout</span><small><code>017-partial-rails-rollout</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=019-rust-fd-leak"><strong>05</strong><span>019-rust-fd-leak</span><small><code>019-rust-fd-leak</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=021-discourse-shared-uploads"><strong>06</strong><span>021-discourse-shared-uploads</span><small><code>021-discourse-shared-uploads</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=024-discourse-interrupted-deploy"><strong>07</strong><span>024-discourse-interrupted-deploy</span><small><code>024-discourse-interrupted-deploy</code> · v1</small></a>
-        <a class="tested-scenario" href="benchmark-scenario.html?scenario=028-nix-store-disk-pressure"><strong>08</strong><span>028-nix-store-disk-pressure</span><small><code>028-nix-store-disk-pressure</code> · v1</small></a>
-      </div>
-    </section>
-
-    <section aria-labelledby="path-heading">
-      <h2 id="path-heading">A useful reading path</h2>
-      <div class="tested-scenarios">
-        <a class="tested-scenario" href="scenarios.html"><strong>01</strong><span>Choose a scenario</span><small>Text or Visual</small></a>
-        <a class="tested-scenario" href="benchmark-compare.html"><strong>02</strong><span>Compare compatible lanes</span><small>Provider and harness stay visible</small></a>
-        <a class="tested-scenario" href="benchmark-explorer.html"><strong>03</strong><span>Inspect the evidence</span><small>Failures, timing, and artifacts</small></a>
-      </div>
-    </section>
-
-    <details class="evidence-details">
-      <summary>Recent cohorts · show release-level evidence</summary>
-      <div class="recent-cohort-list">
-        <a href="benchmark-explorer.html?release=20260906.0.0"><strong>OpenRouter core infrastructure baseline</strong><span><code>20260906.0.0</code> · Claux v20260821.0.2 · 125/144 repairs</span></a>
-        <a href="benchmark-explorer.html?release=20260904.0.0"><strong>OpenCode Go core infrastructure cohort</strong><span><code>20260904.0.0</code> · OpenCode 1.18.18 · 102/115 repairs</span></a>
-        <a href="benchmark-explorer.html?release=20260830.0.1"><strong>OpenCode Go GPT-5.6 Luna core infrastructure cohort</strong><span><code>20260830.0.1</code> · OpenCode · 22/24 repairs</span></a>
-        <a href="benchmark-explorer.html?release=20260830.0.0"><strong>OpenRouter GPT-5.6 Luna core infrastructure cohort</strong><span><code>20260830.0.0</code> · Claux v20260821.0.2 · 22/24 repairs</span></a>
-      </div>
-    </details>
-
-    <p class="overview-secondary-links"><a href="scenarios.html">Browse scenarios →</a> <a href="benchmark-models.html">View model profiles →</a> <a href="benchmark-providers.html">View providers →</a> <a href="benchmark-explorer.html">Open the evidence explorer →</a></p>
-    <p class="small muted overview-footnote">Latest scope: 31 cohorts, 45 model lanes, and 17 scenarios. This page is the benchmark guide; the <a href="benchmark-explorer.html">Explorer</a> contains the full audit trail.</p>
+    <p class="small muted">These input modes stay separate in the evidence. <a href="scenarios.html">Browse the scenario catalog →</a></p>
+  </section>
+  <section class="guide-section" aria-labelledby="pass-heading">
+    <p class="eyebrow">02 / The scoring contract</p>
+    <h2 id="pass-heading">A working command is not a working repair.</h2>
+    <div class="gate-grid">
+      <article class="gate"><span class="gate-number">01</span><h3>Restore behavior</h3><p>The deployed service must do the work the scenario requires.</p></article>
+      <article class="gate"><span class="gate-number">02</span><h3>Preserve existing work</h3><p>A repair must retain the data and queued work protected by the scenario.</p></article>
+      <article class="gate"><span class="gate-number">03</span><h3>Survive service restart</h3><p>A temporary process or in-memory workaround is not enough.</p></article>
+      <article class="gate"><span class="gate-number">04</span><h3>Survive host reboot</h3><p>The repaired system must return to working order after reboot.</p></article>
+    </div>
+    <p>The host controller owns the verifier, restart, reboot, and deadline. The agent harness drives the model inside the guest. The scoring design keeps the verifier and expected repair outside the agent-visible environment.</p>
+  </section>
+  <section class="guide-section">
+    <p class="eyebrow">03 / Reading the evidence</p>
+    <h2>Evaluated, failed, and unavailable</h2>
+    <p>A <strong>pass</strong> meets the scenario’s verification checks. An <strong>evaluated failure</strong> does not. An <strong>unavailable</strong> trial records a provider or harness problem and is excluded from the published repair-rate denominator; it remains visible beside the results.</p>
+    <p>Each matrix cell shows the individual attempts. For three fully evaluated attempts, red means zero or one repaired, yellow means two, and green means all three. Incomplete evidence is gray; a missing cell means that scenario version was not run for that configuration.</p>
+    <p>The interval beside a repair rate is a 95% Wilson interval. Three successes out of three are an observation—not proof that the model will always succeed. Median duration covers evaluated attempts, not only successful repairs. Unreported API cost is unknown, not free.</p>
+  </section>
+  <section class="guide-section">
+    <p class="eyebrow">04 / Comparison limits</p>
+    <h2>When results are comparable</h2>
+    <p>A result belongs to a full execution configuration: the exact model ID, reasoning setting, provider, agent harness, and benchmark release. It is not a universal score for a model name.</p>
+    <div class="comparison-lockbar"><strong>Keep the conditions attached.</strong><p>Scenario versions, verifier and host harness, input mode, tier, attempts, and deadlines define the comparison. Evidence from different releases is shown separately, never silently pooled into a leaderboard.</p></div>
+    <h3>Benchmark tiers</h3>
+    <p>Smoke runs qualify a setup cheaply. Core runs support routine comparison. Full runs broaden scenario coverage. Frontier runs exercise more demanding systems. The exact scenario set, attempt count, and deadline belong to each published release; tier names alone do not establish compatibility.</p>
+    <p>Replaybook measures these particular tasks under these particular conditions. It does not establish general coding ability, production safety, or reliability across every infrastructure incident.</p>
+  </section>
+  <div class="guide-end"><h2>Inspect the attempts behind the score.</h2><p>Filter by model, provider, harness, and reasoning. Compare selected configurations, inspect failures, and follow the tracked source.</p><a class="guide-action" href="benchmark-evidence.html">Open Evidence <span aria-hidden="true">↗</span></a></div>
+</main>
 
     <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
   </div>
-  <script>
-  function wallEscape(value) {
-    return String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  }
-
-  function wallDuration(seconds) {
-    if (seconds === null || seconds === undefined) return "n/a";
-    const rounded = Math.round(seconds);
-    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, "0")}`;
-  }
-
-  function wallPercent(value) {
-    return value === null || value === undefined ? "n/a" : `${Math.round(value * 100)}%`;
-  }
-
-  async function initializeWall() {
-    const response = await fetch("benchmark-catalog.json");
-    if (!response.ok) throw new Error(`catalog request failed: ${response.status}`);
-    const catalog = await response.json();
-
-    const laneKeys = new Map();
-    catalog.records.forEach(record => {
-      const provider = record.provider || "unknown";
-      const key = `${provider}|||${record.model}|||${record.reasoning_effort || ""}`;
-      if (!laneKeys.has(key)) laneKeys.set(key, {
-        provider,
-        model: record.model,
-        short: record.model.split("/").pop(),
-        reasoning: record.reasoning_effort || null,
-      });
-    });
-    const lanes = [...laneKeys.values()].sort((a, b) =>
-      a.provider.localeCompare(b.provider) || a.model.localeCompare(b.model));
-    const laneIndex = new Map(lanes.map((lane, i) => [
-      `${lane.provider}|||${lane.model}|||${lane.reasoning || ""}`, i]));
-
-    const rowsById = new Map();
-    catalog.records.forEach(record => {
-      const provider = record.provider || "unknown";
-      const li = laneIndex.get(`${provider}|||${record.model}|||${record.reasoning_effort || ""}`);
-      let row = rowsById.get(record.scenario);
-      if (!row) {
-        row = { id: record.scenario, label: record.scenario_label, release: record.release, cells: new Map() };
-        rowsById.set(record.scenario, row);
-      }
-      if (record.release > row.release) row.release = record.release;
-      row.cells.set(li, {
-        status: "covered",
-        passed: record.passed,
-        evaluated: record.evaluated,
-        rate: record.pass_rate,
-        median: record.median_duration_seconds,
-        release: record.release,
-        outcomes: (record.outcomes || []).map(o => ({
-          attempt: o.attempt,
-          state: o.trial_status !== "evaluated" ? "unavailable" : (o.reward === 1 ? "pass" : "fail"),
-          duration: o.duration_seconds,
-          failure: o.failure_category || null,
-        })),
-      });
-    });
-    const rows = [...rowsById.values()].sort((a, b) => a.id.localeCompare(b.id));
-    rows.forEach(row => {
-      row.cells = lanes.map((_, i) => row.cells.get(i) || { status: "missing" });
-    });
-
-    const wallEl = document.getElementById("wall");
-    const pickEl = document.getElementById("wall-provider");
-    const statsEl = document.getElementById("wall-stats");
-    const drawer = document.getElementById("wall-drawer");
-    let selected = null;
-
-    const providers = [...new Set(lanes.map(l => l.provider))].sort((a, b) => {
-      const covered = p => lanes.reduce((n, l, i) =>
-        n + (l.provider === p && rows.some(r => r.cells[i].status === "covered") ? 1 : 0), 0);
-      return covered(b) - covered(a) || a.localeCompare(b);
-    });
-    providers.forEach(p => {
-      const opt = document.createElement("option");
-      opt.value = p;
-      opt.textContent = p;
-      pickEl.append(opt);
-    });
-
-    function closeDrawer() {
-      drawer.classList.remove("open");
-      drawer.setAttribute("aria-hidden", "true");
-      if (selected) selected.classList.remove("selected");
-      selected = null;
-    }
-
-    function openCell(r_i, c_i) {
-      const row = rows[r_i], lane = lanes[c_i], cell = row.cells[c_i];
-      if (cell.status !== "covered") return;
-      document.getElementById("wall-drawer-title").textContent = row.label;
-      document.getElementById("wall-drawer-sub").textContent =
-        `${lane.model} · ${lane.provider} · reasoning ${lane.reasoning || "default"} · cohort ${cell.release}`;
-      const flaky = cell.passed > 0 && cell.passed < cell.evaluated;
-      document.getElementById("wall-drawer-strip").innerHTML = [
-        ["repairs", `${cell.passed}/${cell.evaluated}`],
-        ["pass rate", wallPercent(cell.rate)],
-        ["median", wallDuration(cell.median)],
-        ["verdict", flaky ? "flaky" : cell.passed === cell.evaluated ? "solid" : "failing"],
-      ].map(([k, v]) => `<div class="wall-metric"><b>${v}</b>${k}</div>`).join("");
-      document.getElementById("wall-drawer-trials").innerHTML = cell.outcomes.map(o => `
-        <div class="wall-trial">
-          <span class="wall-attempt wall-${o.state}"></span>
-          <span class="wall-trial-label">attempt ${o.attempt}</span>
-          ${o.failure ? `<span class="wall-trial-cat">${wallEscape(o.failure)}</span>` : ""}
-          <span class="wall-trial-meta">${o.state === "unavailable" ? "excluded from rate" : wallDuration(o.duration)}</span>
-        </div>`).join("");
-      document.getElementById("wall-drawer-actions").innerHTML = `
-        <a href="benchmark-scenario.html?scenario=${encodeURIComponent(row.id)}">Scenario evidence &rarr;</a>
-        <a href="benchmark-explorer.html?release=${encodeURIComponent(cell.release)}&scenario=${encodeURIComponent(row.id)}&model=${encodeURIComponent(lane.model)}">Open in transcript explorer &rarr;</a>`;
-      drawer.classList.add("open");
-      drawer.setAttribute("aria-hidden", "false");
-      if (selected) selected.classList.remove("selected");
-      selected = wallEl.querySelector(`.wall-cell[data-r="${r_i}"][data-c="${c_i}"]`);
-      if (selected) selected.classList.add("selected");
-    }
-
-    function renderWall(provider) {
-      const laneIdx = lanes.map((l, i) => [l, i]).filter(([l]) => l.provider === provider);
-      let trials = 0, covered = 0;
-      laneIdx.forEach(([, i]) => rows.forEach(r => {
-        if (r.cells[i].status === "covered") { covered++; trials += r.cells[i].outcomes.length; }
-      }));
-      statsEl.textContent = `${laneIdx.length} lanes · ${covered} cohorts · ${trials} trials`;
-
-      const cols = `260px repeat(${laneIdx.length}, minmax(84px, 1fr))`;
-      const parts = [`<div class="wall" style="grid-template-columns:${cols}">`];
-      parts.push('<div class="wall-row"><div class="wall-head" style="visibility:hidden"></div>');
-      laneIdx.forEach(([l]) => parts.push(
-        `<div class="wall-head"><span>${wallEscape(l.short)}</span></div>`));
-      parts.push("</div>");
-
-      rows.forEach((row, r_i) => {
-        parts.push('<div class="wall-row">');
-        parts.push(`<div class="wall-label"><a href="benchmark-scenario.html?scenario=${encodeURIComponent(row.id)}">${wallEscape(row.label)}</a></div>`);
-        laneIdx.forEach(([, c_i]) => {
-          const cell = row.cells[c_i];
-          if (cell.status !== "covered") { parts.push('<div class="wall-cell wall-missing"></div>'); return; }
-          const flaky = cell.passed > 0 && cell.passed < cell.evaluated;
-          const swatches = cell.outcomes.map(o => {
-            const bits = [`attempt ${o.attempt}: ${o.state}`];
-            if (o.duration !== null && o.duration !== undefined) bits.push(wallDuration(o.duration));
-            if (o.failure) bits.push(o.failure);
-            return `<span class="wall-attempt wall-${o.state}" title="${wallEscape(bits.join(" · "))}"></span>`;
-          }).join("");
-          parts.push(`<div class="wall-cell" data-r="${r_i}" data-c="${c_i}" role="button" tabindex="0">${swatches}${flaky ? '<span class="wall-flaky-dot"></span>' : ""}</div>`);
-        });
-        parts.push("</div>");
-      });
-
-      parts.push('<div class="wall-row"><div class="wall-foot"></div>');
-      laneIdx.forEach(([, c_i]) => {
-        const p = rows.reduce((n, r) => n + (r.cells[c_i].passed || 0), 0);
-        const e = rows.reduce((n, r) => n + (r.cells[c_i].evaluated || 0), 0);
-        const f = rows.filter(r => { const c = r.cells[c_i];
-          return c.status === "covered" && c.passed > 0 && c.passed < c.evaluated; }).length;
-        parts.push(`<div class="wall-foot"><b>${p}/${e}</b><span>${f} flaky</span></div>`);
-      });
-      parts.push("</div></div>");
-      wallEl.innerHTML = parts.join("");
-
-      wallEl.querySelectorAll(".wall-cell[data-r]").forEach(el => {
-        const open = () => openCell(+el.dataset.r, +el.dataset.c);
-        el.addEventListener("click", open);
-        el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
-      });
-      closeDrawer();
-    }
-
-    pickEl.addEventListener("change", () => renderWall(pickEl.value));
-    document.getElementById("wall-drawer-close").addEventListener("click", closeDrawer);
-    document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
-
-    pickEl.value = providers[0];
-    renderWall(providers[0]);
-  }
-
-  initializeWall().catch(error => {
-    document.getElementById("wall").innerHTML =
-      `<p class="muted">Evidence wall unavailable: ${wallEscape(error.message)}</p>`;
-  });
-  </script>
 </body>
 </html>
