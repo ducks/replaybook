@@ -41,7 +41,10 @@ Environment:
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to bake into the VM.
   REPLAYBOOK_CLAUX_AUTH_BINARY   Host Claux binary used to read saved OAuth.
-  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260821.0.2).
+  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260908.0.0).
+  REPLAYBOOK_HOST_CLAUX_SHA256   Expected SHA-256 of that release's Linux binary. The
+                                 default release ships with its digest; another release
+                                 must set this or publish SHA256SUMS on GitHub.
   REPLAYBOOK_HOST_VM_READY_TIMEOUT
                                  VM SSH readiness timeout in seconds (default: 300).
   REPLAYBOOK_HOST_REBOOT_COMMAND_TIMEOUT
@@ -59,7 +62,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
-CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-v20260821.0.2}"
+# The pinned release and its digest change together, deliberately: a bump
+# starts a new benchmark cohort. Never default to "latest".
+CLAUX_PINNED_RELEASE="v20260908.0.0"
+CLAUX_PINNED_SHA256="8e386c95dc489f3388c7c8dfb6fdf79d774d706125fa02af79b4d0f4116de33e"
+CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-$CLAUX_PINNED_RELEASE}"
+CLAUX_SHA256="${REPLAYBOOK_HOST_CLAUX_SHA256:-}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
 HOST_HARNESS_VERSION=23
 VM_READY_TIMEOUT_SECONDS="${REPLAYBOOK_HOST_VM_READY_TIMEOUT:-300}"
@@ -219,12 +227,50 @@ for timeout_setting in VM_READY_TIMEOUT_SECONDS REBOOT_COMMAND_TIMEOUT_SECONDS P
   fi
 done
 
+# The digest a Claux release binary must match: an explicit override, the
+# pinned digest for the pinned release, or the release's published
+# SHA256SUMS. Fails closed when none is available.
+expected_claux_sha256() {
+  if [[ -n "$CLAUX_SHA256" ]]; then
+    printf '%s\n' "$CLAUX_SHA256"
+    return 0
+  fi
+  if [[ "$CLAUX_RELEASE" == "$CLAUX_PINNED_RELEASE" ]]; then
+    printf '%s\n' "$CLAUX_PINNED_SHA256"
+    return 0
+  fi
+  local sums digest
+  sums="$(curl --fail --location --silent --show-error \
+    --retry 3 --retry-all-errors --retry-delay 2 \
+    "https://github.com/ducks/claux/releases/download/${CLAUX_RELEASE}/SHA256SUMS")" || {
+    echo "Claux ${CLAUX_RELEASE} publishes no SHA256SUMS; set REPLAYBOOK_HOST_CLAUX_SHA256 to its Linux binary digest" >&2
+    return 1
+  }
+  digest="$(printf '%s\n' "$sums" | awk '$2 == "claux-linux-x86_64" { print $1 }' | head -n 1)"
+  if [[ ! "$digest" =~ ^[0-9a-f]{64}$ ]]; then
+    echo "SHA256SUMS for Claux ${CLAUX_RELEASE} does not list claux-linux-x86_64" >&2
+    return 1
+  fi
+  printf '%s\n' "$digest"
+}
+
+verify_sha256() {
+  local file="$1" expected="$2" actual
+  actual="$(sha256sum "$file" | cut -d' ' -f1)"
+  if [[ "$actual" != "$expected" ]]; then
+    echo "Claux binary digest mismatch for ${file}: expected ${expected}, got ${actual}" >&2
+    return 1
+  fi
+}
+
 acquire_claux() {
   [[ "$RUN_ORACLE" == false && "$CUSTOM_AGENT_ADAPTER" == false ]] || return 0
   if [[ -n "$CLAUX_BINARY" ]]; then
     CLAUX_BINARY="$(realpath "$CLAUX_BINARY")"
     return 0
   fi
+  local expected_sha256
+  expected_sha256="$(expected_claux_sha256)" || exit 2
 
   local cache_root="${XDG_CACHE_HOME:-${HOME}/.cache}/replaybook/claux/${CLAUX_RELEASE}"
   local cached_binary="${cache_root}/claux-linux-x86_64"
@@ -240,9 +286,16 @@ acquire_claux() {
       --retry 5 --retry-all-errors --retry-delay 2 \
       "https://github.com/ducks/claux/releases/download/${CLAUX_RELEASE}/claux-linux-x86_64" \
       --output "$partial"
+    verify_sha256 "$partial" "$expected_sha256" || {
+      rm -f -- "$partial"
+      exit 2
+    }
     chmod 0755 "$partial"
     mv "$partial" "$cached_binary"
   fi
+  # A cached binary is re-verified too, so a re-tagged release or a
+  # tampered cache cannot enter a guest.
+  verify_sha256 "$cached_binary" "$expected_sha256" || exit 2
   CLAUX_BINARY="$cached_binary"
   flock -u "$claux_lock_fd"
   exec {claux_lock_fd}>&-
