@@ -192,8 +192,44 @@ printf '%s\n' 'required application service failed during boot' >"$reboot_consol
 rm -f -- "$reboot_console"
 grep -q 'read -r trial_status agent_outcome_category' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
-grep -q 'v20260821.0.2' "$script_dir/run-host-native.sh"
-grep -q 'v20260821.0.2' "$script_dir/run_host_matrix.py"
+grep -q 'CLAUX_PINNED_RELEASE="v20260908.0.0"' "$script_dir/run-host-native.sh"
+grep -q 'CLAUX_PINNED_SHA256="8e386c95dc489f3388c7c8dfb6fdf79d774d706125fa02af79b4d0f4116de33e"' "$script_dir/run-host-native.sh"
+grep -q 'v20260908.0.0' "$script_dir/run_host_matrix.py"
+
+# Digest resolution and verification, sourced from the runner so the test
+# exercises the shipped functions rather than a copy.
+claux_digest_root="$(mktemp -d)"
+sed -n '/^expected_claux_sha256() {/,/^}/p; /^verify_sha256() {/,/^}/p' \
+  "$script_dir/run-host-native.sh" >"$claux_digest_root/functions.sh"
+printf 'binary\n' >"$claux_digest_root/claux-linux-x86_64"
+good_digest="$(sha256sum "$claux_digest_root/claux-linux-x86_64" | cut -d' ' -f1)"
+mkdir -p "$claux_digest_root/bin"
+cat >"$claux_digest_root/bin/curl" <<EOF
+#!/usr/bin/env bash
+# Fake release SHA256SUMS for any tag that is not the pinned one.
+printf '%s  claux-linux-x86_64\n' "${good_digest}"
+EOF
+chmod 0700 "$claux_digest_root/bin/curl"
+(
+  source "$claux_digest_root/functions.sh"
+  # Pinned release resolves to the pinned digest without network.
+  CLAUX_PINNED_RELEASE=v1 CLAUX_PINNED_SHA256=pinneddigest CLAUX_RELEASE=v1 CLAUX_SHA256=""
+  [[ "$(expected_claux_sha256)" == pinneddigest ]]
+  # An explicit override wins.
+  CLAUX_SHA256=override
+  [[ "$(expected_claux_sha256)" == override ]]
+  # Another release fetches the published SHA256SUMS.
+  CLAUX_SHA256="" CLAUX_RELEASE=v2
+  PATH="$claux_digest_root/bin:$PATH"
+  [[ "$(expected_claux_sha256)" == "$good_digest" ]]
+  # Verification passes on a match and fails closed on a mismatch.
+  verify_sha256 "$claux_digest_root/claux-linux-x86_64" "$good_digest"
+  if verify_sha256 "$claux_digest_root/claux-linux-x86_64" "0000000000000000000000000000000000000000000000000000000000000000" 2>/dev/null; then
+    echo "digest mismatch was accepted" >&2
+    exit 1
+  fi
+)
+rm -rf -- "$claux_digest_root"
 
 agent_error="$(mktemp)"
 trap 'rm -f -- "$agent_error"' EXIT

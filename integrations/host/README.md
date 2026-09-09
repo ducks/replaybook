@@ -275,6 +275,13 @@ once on the host and includes it in the immutable guest closure. Claux receives
 900 seconds by default;
 override it with `--agent-timeout-seconds`.
 
+The pinned release and its SHA-256 digest live together at the top of
+`run-host-native.sh` and change together; a bump starts a new benchmark
+cohort. Downloads and cached binaries are verified against that digest before
+they enter a guest. To run another release, set `REPLAYBOOK_HOST_CLAUX_RELEASE`
+and either `REPLAYBOOK_HOST_CLAUX_SHA256` or rely on the `SHA256SUMS` file
+that Claux publishes with each release; a release with neither is refused.
+
 Cold VM builds get 300 seconds to expose SSH. The credential proxy and reverse
 tunnel each get 30 seconds. The SSH command that requests a host reboot gets 15
 seconds before Replaybook proceeds to its bounded shutdown and readiness
