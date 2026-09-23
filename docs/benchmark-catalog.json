@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20260906.0.0",
+  "current_version": "20260924.0.0",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -4753,6 +4753,38 @@
       "provider": "OpenRouter",
       "reasoning_effort": "high",
       "release": "20260906.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 21,
+      "evaluated": 24,
+      "failed": 8,
+      "failure_categories": {
+        "agent_timeout": 3,
+        "backlog_not_recovered": 1,
+        "host_reboot_failed": 1,
+        "release_not_converged": 3
+      },
+      "input_mode": "text",
+      "input_tokens": 763095,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 114.0,
+      "model": "stealth/space-bunny-alpha",
+      "model_label": "Space Bunny Alpha",
+      "output_tokens": 164570,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.8202780967270225,
+      "pass_rate_95_low": 0.4670631683813174,
+      "passed": 16,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20260924.0.0",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
       "tier": "core",
@@ -43273,6 +43305,424 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 82308,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 73,
+      "model": "stealth/space-bunny-alpha",
+      "model_label": "Space Bunny Alpha",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 75,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 73,
+          "failure_category": "host_reboot_failed",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 68,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 15816,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20260924.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "backlog_not_recovered": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 87731,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 71,
+      "model": "stealth/space-bunny-alpha",
+      "model_label": "Space Bunny Alpha",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 71,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 76,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 54,
+          "failure_category": "backlog_not_recovered",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 15033,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20260924.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 66433,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 138,
+      "model": "stealth/space-bunny-alpha",
+      "model_label": "Space Bunny Alpha",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 153,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 122,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 138,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 26386,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20260924.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 104697,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 131,
+      "model": "stealth/space-bunny-alpha",
+      "model_label": "Space Bunny Alpha",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 84,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 131,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 158,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 15987,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20260924.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 138240,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 132,
+      "model": "stealth/space-bunny-alpha",
+      "model_label": "Space Bunny Alpha",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 83,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 132,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 142,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 22658,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20260924.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 1,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_mode": "text",
+      "input_tokens": 61211,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 930,
+      "model": "stealth/space-bunny-alpha",
+      "model_label": "Space Bunny Alpha",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 930,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 317,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 931,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 27576,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20260924.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "release_not_converged": 3
+      },
+      "input_mode": "text",
+      "input_tokens": 144419,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 105,
+      "model": "stealth/space-bunny-alpha",
+      "model_label": "Space Bunny Alpha",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 90,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 107,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 105,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 22105,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.5614970317550454,
+      "pass_rate_95_low": 5.551115123125783e-17,
+      "passed": 0,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20260924.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 2,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 78056,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 121,
+      "model": "stealth/space-bunny-alpha",
+      "model_label": "Space Bunny Alpha",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 930,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 121,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 106,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 19009,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20260924.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -47380,7 +47830,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": "v20260821.0.2",
-      "current": true,
+      "current": false,
       "description": "Six models each attempted three durable repairs across all eight stable core infrastructure incidents through Claux and OpenRouter.",
       "harness_versions": [
         23
@@ -47389,7 +47839,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -47503,6 +47953,141 @@
         "usage_reported_trials": 144
       },
       "version": "20260906.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "v20260821.0.2"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": "v20260821.0.2",
+      "current": true,
+      "description": "Space Bunny Alpha attempted three durable repairs across each of the eight stable core infrastructure incidents through Claux and OpenRouter.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix-001",
+          "summary_sha256": "4e7dd830d496e350e419160236483c6f248ebdac54118aa8a59a708df49478c8"
+        }
+      ],
+      "tier": "core",
+      "title": "OpenRouter Space Bunny Alpha core cohort",
+      "totals": {
+        "cache_read_tokens": 9909167,
+        "cost_reported_trials": 21,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 24,
+        "failed": 8,
+        "failure_categories": {
+          "agent_timeout": 3,
+          "backlog_not_recovered": 1,
+          "host_reboot_failed": 1,
+          "release_not_converged": 3
+        },
+        "input_tokens": 763095,
+        "known_cost_usd": 0.0,
+        "median_duration_seconds": 114.0,
+        "median_first_non_read_only_tool_seconds": 8.071,
+        "median_model_duration_seconds": 84.349,
+        "median_model_rounds": 15,
+        "median_post_first_non_read_only_seconds": 95.565,
+        "median_tool_calls": 32,
+        "median_tool_duration_seconds": 8.501,
+        "output_tokens": 164570,
+        "pass_rate": 0.6666666666666666,
+        "passed": 16,
+        "recording_reported_trials": 21,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 24,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 21
+      },
+      "version": "20260924.0.0"
     }
   ],
   "schema_version": 1

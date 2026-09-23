@@ -1,0 +1,1647 @@
+{
+  "by_model": [
+    {
+      "cache_read_tokens": 9909167,
+      "cost_reported_trials": 21,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 24,
+      "failed": 8,
+      "failure_categories": {
+        "agent_timeout": 3,
+        "backlog_not_recovered": 1,
+        "host_reboot_failed": 1,
+        "release_not_converged": 3
+      },
+      "input_tokens": 763095,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 114.0,
+      "median_first_non_read_only_tool_seconds": 8.071,
+      "median_model_duration_seconds": 84.349,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 95.565,
+      "median_tool_calls": 32,
+      "median_tool_duration_seconds": 8.501,
+      "model": "stealth/space-bunny-alpha",
+      "output_tokens": 164570,
+      "pass_rate": 0.6666666666666666,
+      "passed": 16,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 21,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 21
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_read_tokens": 748910,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 82308,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 73,
+      "median_first_non_read_only_tool_seconds": 8.593,
+      "median_model_duration_seconds": 63.131,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 62.141,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 2.807,
+      "model": "stealth/space-bunny-alpha",
+      "output_tokens": 15816,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 948477,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "backlog_not_recovered": 1
+      },
+      "input_tokens": 87731,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 71,
+      "median_first_non_read_only_tool_seconds": 6.623,
+      "median_model_duration_seconds": 60.595,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 62.586999999999996,
+      "median_tool_calls": 28,
+      "median_tool_duration_seconds": 5.282,
+      "model": "stealth/space-bunny-alpha",
+      "output_tokens": 15033,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1092741,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 66433,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 138,
+      "median_first_non_read_only_tool_seconds": 8.195,
+      "median_model_duration_seconds": 101.403,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 129.088,
+      "median_tool_calls": 35,
+      "median_tool_duration_seconds": 33.0,
+      "model": "stealth/space-bunny-alpha",
+      "output_tokens": 26386,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 968599,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 104697,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 131,
+      "median_first_non_read_only_tool_seconds": 7.282,
+      "median_model_duration_seconds": 61.382,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 122.03000000000002,
+      "median_tool_calls": 29,
+      "median_tool_duration_seconds": 71.617,
+      "model": "stealth/space-bunny-alpha",
+      "output_tokens": 15987,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1778610,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 138240,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 132,
+      "median_first_non_read_only_tool_seconds": 8.951,
+      "median_model_duration_seconds": 94.502,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 121.87900000000002,
+      "median_tool_calls": 31,
+      "median_tool_duration_seconds": 17.407,
+      "model": "stealth/space-bunny-alpha",
+      "output_tokens": 22658,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 1984611,
+      "cost_reported_trials": 1,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_tokens": 61211,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 930,
+      "median_first_non_read_only_tool_seconds": 9.192,
+      "median_model_duration_seconds": 311.195,
+      "median_model_rounds": 32,
+      "median_post_first_non_read_only_seconds": 306.365,
+      "median_tool_calls": 54,
+      "median_tool_duration_seconds": 4.086,
+      "model": "stealth/space-bunny-alpha",
+      "output_tokens": 27576,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 1,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 1
+    },
+    {
+      "cache_read_tokens": 1588964,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "release_not_converged": 3
+      },
+      "input_tokens": 144419,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 105,
+      "median_first_non_read_only_tool_seconds": 6.919,
+      "median_model_duration_seconds": 90.072,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 94.481,
+      "median_tool_calls": 34,
+      "median_tool_duration_seconds": 9.961,
+      "model": "stealth/space-bunny-alpha",
+      "output_tokens": 22105,
+      "pass_rate": 0.0,
+      "passed": 0,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_read_tokens": 798255,
+      "cost_reported_trials": 2,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 78056,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 121,
+      "median_first_non_read_only_tool_seconds": 8.016,
+      "median_model_duration_seconds": 108.662,
+      "median_model_rounds": 15.0,
+      "median_post_first_non_read_only_seconds": 103.473,
+      "median_tool_calls": 32.0,
+      "median_tool_duration_seconds": 2.719,
+      "model": "stealth/space-bunny-alpha",
+      "output_tokens": 19009,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 2,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 2
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "v20260821.0.2"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.08.23"
+    },
+    "benchmark_tier": "core",
+    "claux_release": "v20260821.0.2",
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+      "claux_binary_sha256": "1ea2027179bd35dd7dbb08bb986c4208eae3d74fa5e418e40d5377ee6f25f0ec",
+      "host_harness_sha256": "9d3d63a934d46f875badbe519f07ac9cb9f50d9a8646d7cd9a2153fd87d8e401",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20260824.0.0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 2
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        },
+        "version": 1
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Space Bunny Alpha attempted three durable repairs across each of the eight stable core infrastructure incidents through Claux and OpenRouter.",
+  "input_mode": "text",
+  "model_labels": {
+    "stealth/space-bunny-alpha": "Space Bunny Alpha"
+  },
+  "model_order": [
+    "stealth/space-bunny-alpha"
+  ],
+  "notes": [
+    "All 24 scheduled trials produced evaluated results using the same eight incidents, three-attempt design, high reasoning effort, 900-second timeout, scenario-pack revision, and host harness v23.",
+    "Space Bunny Alpha was an anonymous OpenRouter preview when this cohort was recorded; the published result preserves that model identifier.",
+    "OpenRouter listed Space Bunny Alpha with zero prompt and completion pricing when this cohort was recorded. The 21 trials with usage data also reported zero request cost; three timed-out trials did not return usage records."
+  ],
+  "observations": [
+    "Space Bunny Alpha completed 16 of 24 evaluated repairs (66.7%) with a 1:54 median duration and no unavailable trials.",
+    "It completed every Sidekiq poison-pill, partial Rails rollout, and Rust file-descriptor leak repair.",
+    "It failed all three interrupted-deployment attempts because the release did not converge, and completed only one of three shared-upload repairs after two agent timeouts.",
+    "The remaining failures were one unrecovered Sidekiq backlog, one failed host-reboot verification, and one Nix disk-pressure timeout."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --models stealth/space-bunny-alpha --reasoning-efforts high --agent-provider openrouter --claux-binary ../claux/target/release/claux --concurrency 4",
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 75,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:22:30Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.044,
+        "model_duration_seconds": 70.738,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 66.528,
+        "tool_calls": 27,
+        "tool_duration_seconds": 2.71,
+        "total_duration_seconds": 73.572
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-stealth-space-bunny-alpha-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:21:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 298215,
+        "cost_usd": 0.0,
+        "input_tokens": 35831,
+        "output_tokens": 5720
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 73,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "VM did not shut down for reboot",
+      "failure_category": "host_reboot_failed",
+      "finished_at": "2026-09-23T22:23:05Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.748,
+        "model_duration_seconds": 62.484,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 62.141,
+        "tool_calls": 25,
+        "tool_duration_seconds": 7.826,
+        "total_duration_seconds": 70.889
+      },
+      "reward": 0,
+      "run_id": "001-nginx-502-host-stealth-space-bunny-alpha-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:21:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 187676,
+        "cost_usd": 0.0,
+        "input_tokens": 16295,
+        "output_tokens": 5363
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 68,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:22:28Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.593,
+        "model_duration_seconds": 63.131,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 57.777,
+        "tool_calls": 21,
+        "tool_duration_seconds": 2.807,
+        "total_duration_seconds": 66.37
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-stealth-space-bunny-alpha-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:21:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 263019,
+        "cost_usd": 0.0,
+        "input_tokens": 30182,
+        "output_tokens": 4733
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 71,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:22:55Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.623,
+        "model_duration_seconds": 60.595,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 62.586999999999996,
+        "tool_calls": 28,
+        "tool_duration_seconds": 8.501,
+        "total_duration_seconds": 69.21
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-stealth-space-bunny-alpha-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-09-23T22:21:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 395210,
+        "cost_usd": 0.0,
+        "input_tokens": 36247,
+        "output_tokens": 5338
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 76,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:24:26Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.618,
+        "model_duration_seconds": 68.864,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 67.203,
+        "tool_calls": 33,
+        "tool_duration_seconds": 4.838,
+        "total_duration_seconds": 73.821
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-stealth-space-bunny-alpha-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-09-23T22:22:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 420079,
+        "cost_usd": 0.0,
+        "input_tokens": 39351,
+        "output_tokens": 5412
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 54,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "repair did not recover the pre-existing backlog",
+      "failure_category": "backlog_not_recovered",
+      "finished_at": "2026-09-23T22:24:19Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.942,
+        "model_duration_seconds": 47.006,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 45.43,
+        "tool_calls": 21,
+        "tool_duration_seconds": 5.282,
+        "total_duration_seconds": 52.372
+      },
+      "reward": 0,
+      "run_id": "013-sidekiq-wrong-redis-stealth-space-bunny-alpha-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 2,
+      "started_at": "2026-09-23T22:22:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 133188,
+        "cost_usd": 0.0,
+        "input_tokens": 12133,
+        "output_tokens": 4283
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 153,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:26:16Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.195,
+        "model_duration_seconds": 117.419,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 142.347,
+        "tool_calls": 44,
+        "tool_duration_seconds": 33.0,
+        "total_duration_seconds": 150.542
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-stealth-space-bunny-alpha-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:23:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 420929,
+        "cost_usd": 0.0,
+        "input_tokens": 23876,
+        "output_tokens": 9171
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 122,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:25:48Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.591,
+        "model_duration_seconds": 92.494,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 111.19900000000001,
+        "tool_calls": 35,
+        "tool_duration_seconds": 27.193,
+        "total_duration_seconds": 119.79
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-stealth-space-bunny-alpha-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:23:30Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 232407,
+        "cost_usd": 0.0,
+        "input_tokens": 16923,
+        "output_tokens": 8547
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 138,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:27:20Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.895,
+        "model_duration_seconds": 101.403,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 129.088,
+        "tool_calls": 35,
+        "tool_duration_seconds": 34.444,
+        "total_duration_seconds": 135.983
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-stealth-space-bunny-alpha-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:24:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 439405,
+        "cost_usd": 0.0,
+        "input_tokens": 25634,
+        "output_tokens": 8668
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 84,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:26:39Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.282,
+        "model_duration_seconds": 61.382,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 74.83,
+        "tool_calls": 24,
+        "tool_duration_seconds": 20.631,
+        "total_duration_seconds": 82.112
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-stealth-space-bunny-alpha-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:24:59Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 296950,
+        "cost_usd": 0.0,
+        "input_tokens": 28394,
+        "output_tokens": 5019
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 131,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:28:43Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.091,
+        "model_duration_seconds": 58.388,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 122.03000000000002,
+        "tool_calls": 29,
+        "tool_duration_seconds": 71.617,
+        "total_duration_seconds": 130.121
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-stealth-space-bunny-alpha-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:26:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 319049,
+        "cost_usd": 0.0,
+        "input_tokens": 40413,
+        "output_tokens": 4716
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 158,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:29:50Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.624,
+        "model_duration_seconds": 79.977,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 150.413,
+        "tool_calls": 37,
+        "tool_duration_seconds": 76.769,
+        "total_duration_seconds": 157.037
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-stealth-space-bunny-alpha-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:26:46Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 352600,
+        "cost_usd": 0.0,
+        "input_tokens": 35890,
+        "output_tokens": 6252
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 83,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:29:10Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.332,
+        "model_duration_seconds": 77.235,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 72.25999999999999,
+        "tool_calls": 27,
+        "tool_duration_seconds": 3.142,
+        "total_duration_seconds": 80.592
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-stealth-space-bunny-alpha-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:27:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 458833,
+        "cost_usd": 0.0,
+        "input_tokens": 52639,
+        "output_tokens": 5868
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 132,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:30:17Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.951,
+        "model_duration_seconds": 113.273,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 121.87900000000002,
+        "tool_calls": 31,
+        "tool_duration_seconds": 17.407,
+        "total_duration_seconds": 130.83
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-stealth-space-bunny-alpha-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:27:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 779444,
+        "cost_usd": 0.0,
+        "input_tokens": 50159,
+        "output_tokens": 8852
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 142,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:31:53Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.506,
+        "model_duration_seconds": 94.502,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 130.98,
+        "tool_calls": 47,
+        "tool_duration_seconds": 45.322,
+        "total_duration_seconds": 140.486
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-stealth-space-bunny-alpha-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:29:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 540333,
+        "cost_usd": 0.0,
+        "input_tokens": 35442,
+        "output_tokens": 7938
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 930,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-09-23T22:45:37Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-stealth-space-bunny-alpha-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:29:46Z",
+      "trial_status": "evaluated",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "historical_uploads_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 317,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:35:43Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.192,
+        "model_duration_seconds": 311.195,
+        "model_rounds": 32,
+        "post_first_non_read_only_seconds": 306.365,
+        "tool_calls": 54,
+        "tool_duration_seconds": 4.086,
+        "total_duration_seconds": 315.557
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-stealth-space-bunny-alpha-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:30:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1984611,
+        "cost_usd": 0.0,
+        "input_tokens": 61211,
+        "output_tokens": 27576
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 931,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-09-23T22:46:34Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-stealth-space-bunny-alpha-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:30:43Z",
+      "trial_status": "evaluated",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "historical_uploads_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 90,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-09-23T22:34:17Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.919,
+        "model_duration_seconds": 84.349,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 81.49300000000001,
+        "tool_calls": 34,
+        "tool_duration_seconds": 3.944,
+        "total_duration_seconds": 88.412
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-stealth-space-bunny-alpha-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:32:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 503609,
+        "cost_usd": 0.0,
+        "input_tokens": 38931,
+        "output_tokens": 7128
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 107,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-09-23T22:36:56Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.408,
+        "model_duration_seconds": 90.072,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 98.372,
+        "tool_calls": 36,
+        "tool_duration_seconds": 14.579,
+        "total_duration_seconds": 104.78
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-stealth-space-bunny-alpha-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:34:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 609760,
+        "cost_usd": 0.0,
+        "input_tokens": 58857,
+        "output_tokens": 7494
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 105,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-09-23T22:38:21Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.677,
+        "model_duration_seconds": 93.084,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 94.481,
+        "tool_calls": 32,
+        "tool_duration_seconds": 9.961,
+        "total_duration_seconds": 103.158
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-stealth-space-bunny-alpha-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:36:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 475595,
+        "cost_usd": 0.0,
+        "input_tokens": 46631,
+        "output_tokens": 7483
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 930,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-09-23T22:54:13Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-stealth-space-bunny-alpha-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:37:22Z",
+      "trial_status": "evaluated",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "writable_capacity_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 121,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:40:59Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.071,
+        "model_duration_seconds": 116.528,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 111.381,
+        "tool_calls": 37,
+        "tool_duration_seconds": 2.811,
+        "total_duration_seconds": 119.452
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-stealth-space-bunny-alpha-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:38:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 581669,
+        "cost_usd": 0.0,
+        "input_tokens": 64364,
+        "output_tokens": 9433
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 106,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-09-23T22:43:22Z",
+      "model": "stealth/space-bunny-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.961,
+        "model_duration_seconds": 100.796,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 95.565,
+        "tool_calls": 27,
+        "tool_duration_seconds": 2.627,
+        "total_duration_seconds": 103.526
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-stealth-space-bunny-alpha-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-09-23T22:41:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 216586,
+        "cost_usd": 0.0,
+        "input_tokens": 13692,
+        "output_tokens": 9576
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.08.23"
+      },
+      "benchmark_tier": "core",
+      "claux_release": "v20260821.0.2",
+      "concurrency": 4,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "3b2afe46adfde33d59b8b083f0cb2f7ca0bf5753c056dfd84eba499bf2641b9d",
+        "claux_binary_sha256": "1ea2027179bd35dd7dbb08bb986c4208eae3d74fa5e418e40d5377ee6f25f0ec",
+        "host_harness_sha256": "9d3d63a934d46f875badbe519f07ac9cb9f50d9a8646d7cd9a2153fd87d8e401",
+        "scenario_packs": [
+          {
+            "git_commit": "86d92be2722ece958e09efec88b52c921e23e849",
+            "id": "ducks/replaybook-infra",
+            "sha256": "d1a793e4aacb2e06f95b2c588dcccb7f539e420ca7ff646ff6bfa96ff883dbbc",
+            "version": "20260824.0.0"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "efe880f278828ff2d399533399ff4bca60b46b1987c5a0c980d6d4d715f35fb6",
+            "version": 2
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-09-23T22:54:13.735325Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "stealth/space-bunny-alpha"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "76b0f0855b30af2528d22094b61feef7b11b7e96",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20260824.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 2
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20260824.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source": "matrix-001",
+      "started_at": "2026-09-23T22:20:31.754119Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "4e7dd830d496e350e419160236483c6f248ebdac54118aa8a59a708df49478c8"
+    }
+  ],
+  "submission_id": "7d73b9487d02b870a54747758fc365099944df25b0db220a44ed871ab5527bc6",
+  "submitted_by": "ducks",
+  "tier": "core",
+  "title": "OpenRouter Space Bunny Alpha core cohort",
+  "totals": {
+    "cache_read_tokens": 9909167,
+    "cost_reported_trials": 21,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 24,
+    "failed": 8,
+    "failure_categories": {
+      "agent_timeout": 3,
+      "backlog_not_recovered": 1,
+      "host_reboot_failed": 1,
+      "release_not_converged": 3
+    },
+    "input_tokens": 763095,
+    "known_cost_usd": 0.0,
+    "median_duration_seconds": 114.0,
+    "median_first_non_read_only_tool_seconds": 8.071,
+    "median_model_duration_seconds": 84.349,
+    "median_model_rounds": 15,
+    "median_post_first_non_read_only_seconds": 95.565,
+    "median_tool_calls": 32,
+    "median_tool_duration_seconds": 8.501,
+    "output_tokens": 164570,
+    "pass_rate": 0.6666666666666666,
+    "passed": 16,
+    "recording_reported_trials": 21,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 24,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 21
+  },
+  "version": "20260924.0.0"
+}
