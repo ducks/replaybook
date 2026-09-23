@@ -1,0 +1,30 @@
+{
+  "title": "OpenRouter Space Bunny Alpha core cohort",
+  "description": "Space Bunny Alpha attempted three durable repairs across each of the eight stable core infrastructure incidents through Claux and OpenRouter.",
+  "input_mode": "text",
+  "model_order": [
+    "stealth/space-bunny-alpha"
+  ],
+  "model_labels": {
+    "stealth/space-bunny-alpha": "Space Bunny Alpha"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "v20260821.0.2",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "All 24 scheduled trials produced evaluated results using the same eight incidents, three-attempt design, high reasoning effort, 900-second timeout, scenario-pack revision, and host harness v23.",
+    "Space Bunny Alpha was an anonymous OpenRouter preview when this cohort was recorded; the published result preserves that model identifier.",
+    "OpenRouter listed Space Bunny Alpha with zero prompt and completion pricing when this cohort was recorded. The 21 trials with usage data also reported zero request cost; three timed-out trials did not return usage records."
+  ],
+  "observations": [
+    "Space Bunny Alpha completed 16 of 24 evaluated repairs (66.7%) with a 1:54 median duration and no unavailable trials.",
+    "It completed every Sidekiq poison-pill, partial Rails rollout, and Rust file-descriptor leak repair.",
+    "It failed all three interrupted-deployment attempts because the release did not converge, and completed only one of three shared-upload repairs after two agent timeouts.",
+    "The remaining failures were one unrecovered Sidekiq backlog, one failed host-reboot verification, and one Nix disk-pressure timeout."
+  ],
+  "reproduction_command": "python integrations/host/run_host_matrix.py --benchmark ../replaybook-infra/benchmark-core.toml --models stealth/space-bunny-alpha --reasoning-efforts high --agent-provider openrouter --claux-binary ../claux/target/release/claux --concurrency 4"
+}
