@@ -41,7 +41,7 @@ Environment:
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to bake into the VM.
   REPLAYBOOK_CLAUX_AUTH_BINARY   Host Claux binary used to read saved OAuth.
-  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20260908.0.0).
+  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20261005.0.1).
   REPLAYBOOK_HOST_CLAUX_SHA256   Expected SHA-256 of that release's Linux binary. The
                                  default release ships with its digest; another release
                                  must set this or publish SHA256SUMS on GitHub.
@@ -64,8 +64,8 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 # The pinned release and its digest change together, deliberately: a bump
 # starts a new benchmark cohort. Never default to "latest".
-CLAUX_PINNED_RELEASE="v20260908.0.0"
-CLAUX_PINNED_SHA256="8e386c95dc489f3388c7c8dfb6fdf79d774d706125fa02af79b4d0f4116de33e"
+CLAUX_PINNED_RELEASE="v20261005.0.1"
+CLAUX_PINNED_SHA256="26a758e635f10cfde523d4ddc73d3011c07ef10ac1f0c503e68f57b56c7734b4"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-$CLAUX_PINNED_RELEASE}"
 CLAUX_SHA256="${REPLAYBOOK_HOST_CLAUX_SHA256:-}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
