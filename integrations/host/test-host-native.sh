@@ -192,9 +192,9 @@ printf '%s\n' 'required application service failed during boot' >"$reboot_consol
 rm -f -- "$reboot_console"
 grep -q 'read -r trial_status agent_outcome_category' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
-grep -q 'CLAUX_PINNED_RELEASE="v20260908.0.0"' "$script_dir/run-host-native.sh"
-grep -q 'CLAUX_PINNED_SHA256="8e386c95dc489f3388c7c8dfb6fdf79d774d706125fa02af79b4d0f4116de33e"' "$script_dir/run-host-native.sh"
-grep -q 'v20260908.0.0' "$script_dir/run_host_matrix.py"
+grep -q 'CLAUX_PINNED_RELEASE="v20261005.0.1"' "$script_dir/run-host-native.sh"
+grep -q 'CLAUX_PINNED_SHA256="26a758e635f10cfde523d4ddc73d3011c07ef10ac1f0c503e68f57b56c7734b4"' "$script_dir/run-host-native.sh"
+grep -q 'v20261005.0.1' "$script_dir/run_host_matrix.py"
 
 # Digest resolution and verification, sourced from the runner so the test
 # exercises the shipped functions rather than a copy.
