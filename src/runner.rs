@@ -34,7 +34,7 @@ pub struct StateFile {
 
 impl StateFile {
     fn new(scenario_id: &str) -> Result<Self> {
-        let path = std::env::temp_dir().join(format!("on-call-state-{}", scenario_id));
+        let path = std::env::temp_dir().join(format!("on-call-state-{scenario_id}"));
         fs::write(&path, "")?;
         Ok(Self { host_path: path })
     }
@@ -481,12 +481,7 @@ fn setup_tmux(container: &str) -> Result<()> {
     }
     if !docker_exec(
         container,
-        &[
-            "tmux",
-            "select-pane",
-            "-t",
-            &format!("{}:0.0", TMUX_SESSION),
-        ],
+        &["tmux", "select-pane", "-t", &format!("{TMUX_SESSION}:0.0")],
     ) {
         bail!("failed to select the workstation shell pane");
     }
@@ -547,11 +542,7 @@ fn cp_bytes(container: &str, contents: &[u8], dest: &str) -> Result<()> {
     let tmp = std::env::temp_dir().join(format!("on-call-inject-{}", dest.replace('/', "_")));
     fs::write(&tmp, contents)?;
     let status = Command::new("docker")
-        .args([
-            "cp",
-            tmp.to_str().unwrap(),
-            &format!("{}:{}", container, dest),
-        ])
+        .args(["cp", tmp.to_str().unwrap(), &format!("{container}:{dest}")])
         .status()?;
     fs::remove_file(&tmp).ok();
     if !status.success() {

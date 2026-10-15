@@ -224,7 +224,7 @@ fn resolve_scenario(target: &str, scenarios_dir: Option<PathBuf>) -> Result<scen
     scenario::discover(&dir)?
         .into_iter()
         .find(|scenario| scenario.meta.id == target)
-        .ok_or_else(|| anyhow::anyhow!("scenario '{}' not found", target))
+        .ok_or_else(|| anyhow::anyhow!("scenario '{target}' not found"))
 }
 
 fn print_validation(scenario: &scenario::Scenario, issues: &[validate::Issue]) {
@@ -292,7 +292,7 @@ async fn execute_run<B: ExecutionBackend>(
             hints_used,
             transcript,
         } => {
-            println!("\n✗ SLA breached ({} hints used).", hints_used);
+            println!("\n✗ SLA breached ({hints_used} hints used).");
             print_fault(fault_name);
             print_transcript(&transcript);
             if record_locally {
@@ -377,12 +377,12 @@ async fn main() -> Result<()> {
             author::create(&id, &pack, &mut input, &mut output)?;
         }
         Commands::Add { repo } => {
-            let url = format!("https://github.com/{}.git", repo);
+            let url = format!("https://github.com/{repo}.git");
             let pack_name = repo.split('/').next_back().unwrap_or(&repo);
             let dest = default_scenarios_dir().join(pack_name);
 
             if dest.exists() {
-                println!("[replaybook] updating {}...", repo);
+                println!("[replaybook] updating {repo}...");
                 let status = std::process::Command::new("git")
                     .args(["pull", "--ff-only"])
                     .current_dir(&dest)
@@ -391,7 +391,7 @@ async fn main() -> Result<()> {
                     anyhow::bail!("git pull failed");
                 }
             } else {
-                println!("[replaybook] adding {}...", repo);
+                println!("[replaybook] adding {repo}...");
                 std::fs::create_dir_all(dest.parent().unwrap())?;
                 let status = std::process::Command::new("git")
                     .args(["clone", "--depth=1", &url, dest.to_str().unwrap()])
