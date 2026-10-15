@@ -30,9 +30,9 @@ Scenario packs: `ducks/replaybook-infra@20260824.0.0`
 
 ### Execution recording
 
-Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.
+Medians across trials with execution recording. Round time sums recorded model/agent steps, not pure inference. It can include tools; parallel tool durations can overlap. Do not add these columns. First non-read means a potentially mutating tool, not a confirmed write; after non-read is the remaining agent time.
 
-| Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |
+| Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Claude Sonnet 5 (high) · openrouter | 24/24 | 16.5 | 2:11 | 21.5 | 0:10 | 0:04 | 2:22 |
 | DeepSeek V4 Flash 0731 (high) · openrouter | 24/24 | 18 | 1:24 | 23.5 | 0:09 | 0:02 | 1:38 |

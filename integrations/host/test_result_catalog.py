@@ -142,6 +142,13 @@ def matrix_summary(
 
 
 class ResultCatalogTests(unittest.TestCase):
+    def test_configuration_hash_separates_cohorts(self):
+        first = matrix_summary()
+        second = matrix_summary(model="model/other", run_id="other-1")
+        second["benchmark"]["execution_snapshot"]["agent_config_sha256"] = "f" * 64
+        import_paths(self.connection, [self.write_summary("a", first), self.write_summary("b", second)])
+        self.assertEqual(len(compatibility_cohorts(self.connection, "024-discourse-interrupted-deploy")), 2)
+
     def setUp(self) -> None:
         self.temporary = tempfile.TemporaryDirectory()
         self.root = Path(self.temporary.name)

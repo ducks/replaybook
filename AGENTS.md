@@ -57,6 +57,11 @@
 
 - Use the custom OpenCode adapter for OpenCode Go runs. Custom adapter options
   are mutually exclusive with `--claux-binary` and `--claux-release`.
+- Pass `--agent-config` with a versioned public model-definition JSON for new
+  OpenCode runs. Keep model IDs, endpoints, SDKs, limits, and capabilities in
+  configuration, never model-specific adapter branches. The matrix preflights
+  and snapshots this file; missing definitions fail before VMs start. Never put
+  keys in it. See `integrations/host/models/opencode-go.json` and the host README.
 - Prepare the isolated credential environment with
   `integrations/host/prepare-opencode-env.sh`; never print or commit the
   resulting environment file.

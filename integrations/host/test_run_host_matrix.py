@@ -24,11 +24,13 @@ from integrations.host.run_host_matrix import (
     main,
     print_scenario_table,
     print_table,
+    print_summary,
     run_jobs,
     run_matrix_preflight,
     resolve_openrouter_api_key,
     sha256_tree,
     stage_execution_snapshot,
+    load_execution_snapshot,
     slugify,
 )
 from integrations.host.scenario_pack import discover, load_pack
@@ -158,6 +160,8 @@ class HostMatrixTests(unittest.TestCase):
             )
             adapter = root / "adapter"
             adapter.write_text("original adapter\n")
+            config = root / "config.json"
+            config.write_text('{"public": true}\n')
             benchmark_manifest = root / "benchmark.toml"
             benchmark_manifest.write_text("schema_version = 1\n")
             matrix = root / "matrix"
@@ -167,6 +171,7 @@ class HostMatrixTests(unittest.TestCase):
                 matrix,
                 packs=[load_pack(pack)],
                 agent_adapter=adapter,
+                agent_config=config,
                 agent_payload=None,
                 agent_env_file=None,
                 claux_binary=None,
@@ -175,6 +180,13 @@ class HostMatrixTests(unittest.TestCase):
             )
             (host / "run-host-native.sh").write_text("changed\n")
             adapter.write_text("changed\n")
+            config.write_text("changed\n")
+            self.assertEqual(snapshot.agent_config.read_text(), '{"public": true}\n')
+            (matrix / "benchmark.json").write_text('{}')
+            self.assertEqual(load_execution_snapshot(matrix).agent_config, snapshot.agent_config)
+            snapshot.agent_config.write_text("tampered")
+            with self.assertRaisesRegex(ValueError, "config.json"):
+                load_execution_snapshot(matrix)
             (scenario / "scenario.toml").write_text(
                 "[scenario]\nversion = 2\n"
             )
@@ -752,7 +764,8 @@ class HostMatrixTests(unittest.TestCase):
                 "trial_status": "evaluated",
                 "failure_category": None,
                 "agent_duration_seconds": 120,
-                "usage": {"input_tokens": 100, "cost_usd": 0.01},
+                "usage": {"input_tokens": 100, "cache_read_tokens": 271481,
+                          "cache_creation_tokens": 34790, "cost_usd": 0.01},
                 "recording": {
                     "total_duration_ms": 110_000,
                     "model_rounds": [
@@ -804,6 +817,17 @@ class HostMatrixTests(unittest.TestCase):
         self.assertEqual(summary["totals"]["recording_reported_trials"], 1)
         self.assertEqual(summary["totals"]["median_model_rounds"], 2)
         self.assertEqual(summary["totals"]["median_model_duration_seconds"], 70)
+        self.assertEqual(summary["totals"]["cache_read_tokens"], 271481)
+        self.assertEqual(summary["totals"]["cache_creation_tokens"], 34790)
+        self.assertEqual(summary["totals"]["cache_creation_reported_trials"], 1)
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            print_summary(summary, Path("summary.json"))
+        rendered = output.getvalue()
+        for label in ("input(reported)", "cache read", "cache write", "round time",
+                      "271,481", "34,790", "not pure inference", "Do not add"):
+            self.assertIn(label, rendered)
+        self.assertNotIn("model time", rendered)
         self.assertEqual(summary["totals"]["median_tool_calls"], 2)
         self.assertEqual(summary["totals"]["median_tool_duration_seconds"], 15)
         self.assertEqual(
@@ -912,6 +936,7 @@ model=""
 scenario=""
 adapter=""
 payload=""
+config=""
 env_file=""
 agent_name=""
 scenario_packs=""
@@ -922,6 +947,7 @@ while (( $# > 0 )); do
     --scenario) scenario="$2"; shift 2 ;;
     --agent-adapter) adapter="$2"; shift 2 ;;
     --agent-payload) payload="$2"; shift 2 ;;
+    --agent-config) config="$2"; shift 2 ;;
     --agent-env-file) env_file="$2"; shift 2 ;;
     --agent-name) agent_name="$2"; shift 2 ;;
     --scenario-pack) scenario_packs="${scenario_packs}${scenario_packs:+,}$2"; shift 2 ;;
@@ -929,7 +955,7 @@ while (( $# > 0 )); do
   esac
 done
 mkdir -p "$output"
-python - "$output/result.json" "$scenario" "$model" "$adapter" "$payload" "$env_file" "$agent_name" "$scenario_packs" <<'PY'
+python - "$output/result.json" "$scenario" "$model" "$adapter" "$payload" "$env_file" "$agent_name" "$scenario_packs" "$config" <<'PY'
 import json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
 path.write_text(json.dumps({
@@ -940,6 +966,7 @@ path.write_text(json.dumps({
     "reward": 1,
     "adapter_args": sys.argv[4:8],
     "scenario_packs": sys.argv[8].split(","),
+    "agent_config": sys.argv[9],
 }))
 PY
 """
@@ -965,6 +992,7 @@ PY
                     concurrency=1,
                     agent_adapter=adapter,
                     agent_payload=payload,
+                    agent_config=root / "config.json",
                     agent_env_file=env_file,
                     agent_name="my-agent",
                     scenario_pack_dirs=[root / "pack-a", root / "pack-b"],
@@ -975,6 +1003,7 @@ PY
             results[0].result["adapter_args"],
             [str(adapter), str(payload), str(env_file), "my-agent"],
         )
+        self.assertEqual(results[0].result["agent_config"], str(root / "config.json"))
         self.assertEqual(
             results[0].result["scenario_packs"],
             [str(root / "pack-a"), str(root / "pack-b")],

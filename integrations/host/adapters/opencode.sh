@@ -1,6 +1,61 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Public definitions are supplied separately and frozen by the matrix runner.
+# This adapter never chooses a model, endpoint, or SDK on the user's behalf.
+model_config() {
+  local config_file="$1" selected="$2"
+  jq -ce --arg selected "$selected" '
+    ($selected | split("/") | .[0]) as $provider |
+    ($selected | ltrimstr($provider + "/")) as $id |
+    if .schema_version != 1 or ($selected | contains("/") | not) then
+      error("invalid model configuration schema or non-qualified model ID")
+    else . end |
+    .providers[$provider] as $p | $p.models[$id] as $m |
+    if $m == null or $m.id != $id or
+       ($p.base_url | type) != "string" or
+       ($p.base_url | startswith("https://") | not) or
+       ($m.provider.npm | type) != "string" or
+       ($m.provider.npm | length) == 0 or
+       $m.tool_call != true or
+       ($m.limit.context | type) != "number" or
+       ($m.limit.output | type) != "number" then
+      error("missing or invalid pinned model definition")
+    else {
+      enabled_providers: [$provider], model: $selected,
+      autoupdate: false, share: "disabled",
+      provider: {($provider): {
+        options: {baseURL: $p.base_url},
+        models: {($id): ($m | {
+          id, name, family, attachment, reasoning, temperature, tool_call,
+          limit, cost, modalities, interleaved,
+          provider: {npm: .provider.npm}
+        } | with_entries(select(.value != null)))}
+      }}
+    } end
+  ' "$config_file"
+}
+
+if [[ "${1:-}" == "--print-config" ]]; then
+  model_config "${2:?config file required}" "${3:?model required}"
+  exit
+fi
+if [[ "${1:-}" == "--preflight" ]]; then
+  config="$(model_config "${2:?config file required}" "${3:?model required}")"
+  payload="$(realpath -e "${4:?OpenCode payload required}")"
+  # No user config, credentials, network model refresh, or generation.
+  root="$(mktemp -d)"
+  trap 'rm -rf -- "$root"' EXIT
+  config="$(jq -c '.provider |= with_entries(.value.options.apiKey = "preflight-no-credential" | .value.options.baseURL = "http://127.0.0.1:1")' <<<"$config")"
+  resolved="$(cd "$root" && XDG_CONFIG_HOME="$root/config" XDG_DATA_HOME="$root/data" \
+    XDG_CACHE_HOME="$root/cache" OPENCODE_CONFIG="" OPENCODE_CONFIG_DIR="" \
+    OPENCODE_CONFIG_CONTENT="$config" OPENCODE_DISABLE_MODELS_FETCH=true \
+    OPENCODE_DISABLE_AUTOUPDATE=true timeout 45 "$payload" models "${3%%/*}")"
+  grep -Fxq -- "$3" <<<"$resolved" || { echo 'pinned model could not be resolved' >&2; exit 2; }
+  echo "OpenCode pinned model preflight passed: $3 (no inference)"
+  exit
+fi
+
 : "${REPLAYBOOK_AGENT_PAYLOAD:?OpenCode adapter requires --agent-payload}"
 : "${REPLAYBOOK_INSTRUCTION_FILE:?missing instruction path}"
 : "${REPLAYBOOK_MODEL:?missing model identifier}"
@@ -21,6 +76,12 @@ scheduled_model="$REPLAYBOOK_MODEL"
 provider_model="$scheduled_model"
 if [[ "$provider_model" != */* ]]; then
   provider_model="opencode-go/${provider_model}"
+fi
+if [[ -n "${REPLAYBOOK_AGENT_CONFIG:-}" ]]; then
+  OPENCODE_CONFIG_CONTENT="$(model_config "$REPLAYBOOK_AGENT_CONFIG" "$provider_model")"
+  export OPENCODE_CONFIG_CONTENT
+  export OPENCODE_DISABLE_MODELS_FETCH=true OPENCODE_DISABLE_AUTOUPDATE=true
+  unset OPENCODE_CONFIG OPENCODE_CONFIG_DIR
 fi
 
 mkdir -m 0700 -p "$config_home" "$data_home/opencode" "$cache_home"

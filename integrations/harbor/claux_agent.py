@@ -229,7 +229,10 @@ class ClauxAgent(BaseInstalledAgent):
     """Install a released Claux binary and run it headlessly via OpenRouter."""
 
     SUPPORTS_ATIF = True
-    _DEFAULT_RELEASE_TAG = "v20260804.0.0"
+    _RELEASE_CONFIG = json.loads(
+        (Path(__file__).resolve().parent.parent / "host/claux-release.json").read_text()
+    )
+    _DEFAULT_RELEASE_TAG = _RELEASE_CONFIG["release"]
 
     def __init__(self, *args, release_tag: str | None = None, **kwargs):
         self._release_tag = release_tag or self._DEFAULT_RELEASE_TAG
@@ -247,11 +250,16 @@ class ClauxAgent(BaseInstalledAgent):
             "https://github.com/ducks/claux/releases/download/"
             f"{self._release_tag}/claux-linux-x86_64"
         )
+        verify = ""
+        if self._release_tag == self._DEFAULT_RELEASE_TAG:
+            digest = self._RELEASE_CONFIG["linux_x86_64_sha256"]
+            verify = f"printf '%s\\n' {shlex.quote(digest + '  /usr/local/bin/claux')} | sha256sum --check --status && "
         await self.exec_as_root(
             environment,
             command=(
                 f"curl --fail --location --silent --show-error {url} "
                 "--output /usr/local/bin/claux && "
+                f"{verify}"
                 "chmod 0755 /usr/local/bin/claux && "
                 "claux --help >/dev/null"
             ),
