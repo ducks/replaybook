@@ -36,7 +36,8 @@
 
     <h2>Canonical model summary</h2>
     <p class="small muted">Only model lanes inside benchmark <code>{{ release.version }}</code> appear here. Companion harness cohorts stay in their own comparison boundary above. <a href="benchmark-compare.html?{{ compare_query }}">Compare this cohort →</a></p>
-    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input tokens</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
+    <p class="small muted">Tokens are summed across requests. Reported input is not necessarily total prompt volume: OpenCode reports cache reads and writes separately. Other adapters may include cached tokens in input; do not add counters without checking their semantics. Missing cache counters show n/a.</p>
+    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Repairs</th><th>Pass rate</th><th>Median</th><th>Input (reported)</th><th>Cache read</th><th>Cache write</th><th>Known cost</th><th>Cost / repair</th></tr></thead><tbody>
 {{ model_cells }}
     </tbody></table></div>
 {{ recording_section }}

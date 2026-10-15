@@ -34,6 +34,7 @@ except ImportError:
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
+DEFAULT_CLAUX_RELEASE = json.loads((SCRIPT_DIR / "claux-release.json").read_text())["release"]
 REPO_DIR = SCRIPT_DIR.parents[1]
 DEFAULT_SCENARIO = "013-sidekiq-wrong-redis"
 DEFAULT_SCENARIO_PACK = SCRIPT_DIR / "scenarios"
@@ -43,6 +44,7 @@ TRIAL_STATUSES = {"evaluated", "unavailable"}
 REASONING_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh", "max"}
 SCENARIO_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 HOST_RUNNER_FILES = (
+    "claux-release.json",
     "classify-agent-exit.sh",
     "classify-agent-outcome.sh",
     "classify-agent-run-exit.sh",
@@ -104,6 +106,7 @@ class ExecutionSnapshot:
     agent_payload: Path | None
     claux_binary: Path | None
     metadata: dict[str, Any]
+    agent_config: Path | None = None
 
 
 @dataclass(frozen=True)
@@ -211,6 +214,7 @@ def stage_execution_snapshot(
     agent_env_file: Path | None,
     claux_binary: Path | None,
     benchmark_manifest: Path | None = None,
+    agent_config: Path | None = None,
     host_dir: Path = SCRIPT_DIR,
 ) -> ExecutionSnapshot:
     snapshot_dir = matrix_dir / "execution-snapshot"
@@ -272,6 +276,7 @@ def stage_execution_snapshot(
         agent_payload,
         snapshot_dir / "agent" / "payload",
     )
+    config, config_hash = copy_artifact(agent_config, snapshot_dir / "agent" / "config.json")
     binary, binary_hash = copy_artifact(
         claux_binary,
         snapshot_dir / "agent" / "claux",
@@ -287,6 +292,7 @@ def stage_execution_snapshot(
         "selected_scenarios": selected_metadata,
         "agent_adapter_sha256": adapter_hash,
         "agent_payload_sha256": payload_hash,
+        "agent_config_sha256": config_hash,
         "agent_env_sha256": sha256_file(agent_env_file)
         if agent_env_file is not None
         else None,
@@ -301,6 +307,7 @@ def stage_execution_snapshot(
         scenario_pack_dirs=pack_dirs,
         agent_adapter=adapter,
         agent_payload=payload,
+        agent_config=config,
         claux_binary=binary,
         metadata=metadata,
     )
@@ -349,6 +356,7 @@ def load_execution_snapshot(matrix_dir: Path) -> ExecutionSnapshot:
         scenario_pack_dirs=pack_dirs,
         agent_adapter=optional_artifact("adapter", "agent_adapter_sha256"),
         agent_payload=optional_artifact("payload", "agent_payload_sha256"),
+        agent_config=optional_artifact("config.json", "agent_config_sha256"),
         claux_binary=optional_artifact("claux", "claux_binary_sha256"),
         metadata=metadata,
     )
@@ -625,6 +633,7 @@ async def run_worker(
     agent_timeout_seconds: int = DEFAULT_AGENT_TIMEOUT_SECONDS,
     agent_adapter: Path | None = None,
     agent_payload: Path | None = None,
+    agent_config: Path | None = None,
     agent_env_file: Path | None = None,
     agent_name: str | None = None,
     agent_provider: str | None = None,
@@ -664,6 +673,8 @@ async def run_worker(
                 command.extend(["--agent-adapter", str(agent_adapter)])
             if agent_payload is not None:
                 command.extend(["--agent-payload", str(agent_payload)])
+            if agent_config is not None:
+                command.extend(["--agent-config", str(agent_config)])
             if agent_env_file is not None:
                 command.extend(["--agent-env-file", str(agent_env_file)])
             if agent_name is not None:
@@ -727,6 +738,7 @@ async def run_jobs(
     agent_timeout_seconds: int = DEFAULT_AGENT_TIMEOUT_SECONDS,
     agent_adapter: Path | None = None,
     agent_payload: Path | None = None,
+    agent_config: Path | None = None,
     agent_env_file: Path | None = None,
     agent_name: str | None = None,
     agent_provider: str | None = None,
@@ -745,6 +757,7 @@ async def run_jobs(
                 agent_timeout_seconds=agent_timeout_seconds,
                 agent_adapter=agent_adapter,
                 agent_payload=agent_payload,
+                agent_config=agent_config,
                 agent_env_file=agent_env_file,
                 agent_name=agent_name,
                 agent_provider=agent_provider,
@@ -847,6 +860,11 @@ def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         "cache_read_tokens": sum(
             int(usage.get("cache_read_tokens") or 0) for usage in usages
         ),
+        "cache_creation_tokens": sum(
+            int(usage.get("cache_creation_tokens") or 0) for usage in usages
+        ),
+        "cache_read_reported_trials": sum(usage.get("cache_read_tokens") is not None for usage in usages),
+        "cache_creation_reported_trials": sum(usage.get("cache_creation_tokens") is not None for usage in usages),
         "usage_reported_trials": len(usages),
         "recording_reported_trials": len(recordings),
         "median_model_rounds": (
@@ -1017,7 +1035,9 @@ def print_table(rows: list[dict[str, Any]]) -> None:
         "failed",
         "pass",
         "median",
-        "input",
+        "input(reported)",
+        "cache read",
+        "cache write",
         "output",
         "cost",
     ]
@@ -1037,6 +1057,8 @@ def print_table(rows: list[dict[str, Any]]) -> None:
                 "n/a" if rate is None else f"{rate:.0%}",
                 display_duration(row["median_duration_seconds"]),
                 display_tokens(row["input_tokens"], row["usage_reported_trials"]),
+                display_tokens(row.get("cache_read_tokens", 0), row.get("cache_read_reported_trials", 0)),
+                display_tokens(row.get("cache_creation_tokens", 0), row.get("cache_creation_reported_trials", 0)),
                 display_tokens(row["output_tokens"], row["usage_reported_trials"]),
                 display_cost(row),
             ]
@@ -1049,6 +1071,9 @@ def print_table(rows: list[dict[str, Any]]) -> None:
     print("  ".join("-" * width for width in widths))
     for row in formatted:
         print("  ".join(value.ljust(widths[index]) for index, value in enumerate(row)))
+
+    print("Tokens are summed across requests. OpenCode input excludes cache reads/writes; "
+          "its output excludes separately recorded reasoning tokens. Other adapters may use different input semantics.")
 
 
 def print_scenario_table(rows: list[dict[str, Any]]) -> None:
@@ -1101,7 +1126,7 @@ def print_recording_table(rows: list[dict[str, Any]]) -> None:
         "reasoning",
         "recorded",
         "rounds",
-        "model time",
+        "round time",
         "tools",
         "tool time",
         "first non-read",
@@ -1140,6 +1165,9 @@ def print_summary(summary: dict[str, Any], summary_file: Path) -> None:
     if summary["totals"]["recording_reported_trials"]:
         print("\nExecution recording (medians):")
         print_recording_table(summary["by_model"])
+        print("Round time sums recorded model/agent steps, not pure inference. "
+              "It can include tools; parallel tool durations can overlap. Do not add these columns. "
+              "First non-read means a potentially mutating tool, not a confirmed write.")
     if summary["failure_categories"]:
         print("\nFailure categories:")
         for row in summary["failure_categories"]:
@@ -1254,6 +1282,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--claux-release")
     parser.add_argument("--agent-adapter", type=Path)
     parser.add_argument("--agent-payload", type=Path)
+    parser.add_argument("--agent-config", type=Path, help="public adapter configuration, frozen with the execution snapshot")
     parser.add_argument("--agent-env-file", type=Path)
     parser.add_argument("--agent-name")
     parser.add_argument(
@@ -1323,6 +1352,7 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
         (
             args.agent_adapter,
             args.agent_payload,
+            args.agent_config,
             args.agent_env_file,
             args.agent_name,
             args.agent_provider,
@@ -1330,7 +1360,7 @@ def validate_args(args: argparse.Namespace, available: dict[str, int]) -> None:
     ):
         raise ValueError("--oracle cannot be combined with agent adapter options")
     if args.agent_adapter is None and any(
-        (args.agent_payload, args.agent_env_file, args.agent_name)
+        (args.agent_payload, args.agent_config, args.agent_env_file, args.agent_name)
     ):
         raise ValueError("custom agent options require --agent-adapter")
     if args.reasoning_efforts:
@@ -1383,6 +1413,7 @@ def validate_resume_args(args: argparse.Namespace) -> None:
         ("--claux-release", args.claux_release),
         ("--agent-adapter", args.agent_adapter),
         ("--agent-payload", args.agent_payload),
+        ("--agent-config", args.agent_config),
         ("--agent-name", args.agent_name),
         ("--agent-provider", args.agent_provider),
         ("--oracle", args.oracle),
@@ -1410,6 +1441,27 @@ def matrix_directory(supplied: Path | None) -> Path:
     return path
 
 
+def preflight_agent_config(adapter: Path | None, config: Path | None,
+                           payload: Path | None, models: Iterable[str | None]) -> None:
+    if config is None:
+        return
+    if adapter is None:
+        raise ValueError("agent configuration requires an adapter")
+    for model in sorted({model for model in models if model is not None}):
+        try:
+            result = subprocess.run(
+                ["bash", str(adapter.expanduser().resolve()), "--preflight",
+                 str(config.expanduser().resolve()), model,
+                 str(payload.expanduser().resolve()) if payload else ""],
+                capture_output=True, text=True, timeout=60,
+            )
+        except (OSError, subprocess.TimeoutExpired) as error:
+            raise ValueError(f"agent configuration preflight could not finish: {type(error).__name__}") from error
+        if result.returncode:
+            raise ValueError(f"agent configuration preflight failed for {model}: {result.stderr[-2000:]}")
+        print(result.stdout.strip())
+
+
 def resume_matrix(args: argparse.Namespace) -> int:
     openrouter_api_key: str | None = None
     try:
@@ -1417,6 +1469,8 @@ def resume_matrix(args: argparse.Namespace) -> int:
         plan = build_resume_plan(
             args.resume, retry_unavailable=args.retry_unavailable
         )
+        preflight_agent_config(plan.snapshot.agent_adapter, plan.snapshot.agent_config,
+                               plan.snapshot.agent_payload, (job.model for job in plan.pending))
         if args.agent_env_file is not None:
             agent_env_file = args.agent_env_file.expanduser().resolve()
             if not agent_env_file.is_file():
@@ -1494,6 +1548,7 @@ def resume_matrix(args: argparse.Namespace) -> int:
                     agent_timeout_seconds=plan.agent_timeout_seconds,
                     agent_adapter=plan.snapshot.agent_adapter,
                     agent_payload=plan.snapshot.agent_payload,
+                    agent_config=plan.snapshot.agent_config,
                     agent_env_file=runtime_env,
                     agent_name=plan.agent_name,
                     agent_provider=plan.agent_provider,
@@ -1599,10 +1654,13 @@ def main(argv: list[str] | None = None) -> int:
         for option, supplied in (
             ("--agent-adapter", args.agent_adapter),
             ("--agent-payload", args.agent_payload),
+            ("--agent-config", args.agent_config),
             ("--agent-env-file", args.agent_env_file),
         ):
             if supplied is not None and not supplied.expanduser().is_file():
                 raise ValueError(f"{option} file does not exist: {supplied}")
+        preflight_agent_config(args.agent_adapter, args.agent_config, args.agent_payload,
+                               (job.model for job in jobs))
         if not args.oracle and args.agent_adapter is None:
             credential_environment = dict(os.environ)
             if args.claux_binary:
@@ -1653,6 +1711,7 @@ def main(argv: list[str] | None = None) -> int:
             if args.claux_binary
             else None,
             benchmark_manifest=manifest.path if manifest else None,
+            agent_config=args.agent_config.expanduser().resolve() if args.agent_config else None,
         )
         if (
             manifest is not None
@@ -1705,7 +1764,7 @@ def main(argv: list[str] | None = None) -> int:
             "provider": args.agent_provider,
         },
         "claux_release": args.claux_release
-        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", "v20261005.0.1"),
+        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", DEFAULT_CLAUX_RELEASE),
     }
     benchmark["started_at"] = utc_now()
     (matrix_dir / "benchmark.json").write_text(json.dumps(benchmark, indent=2) + "\n")
@@ -1735,6 +1794,7 @@ def main(argv: list[str] | None = None) -> int:
                     agent_timeout_seconds=args.agent_timeout_seconds,
                     agent_adapter=snapshot.agent_adapter,
                     agent_payload=snapshot.agent_payload,
+                    agent_config=snapshot.agent_config,
                     agent_env_file=runtime_env,
                     agent_name=args.agent_name,
                     agent_provider=args.agent_provider,

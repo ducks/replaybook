@@ -275,8 +275,10 @@ once on the host and includes it in the immutable guest closure. Claux receives
 900 seconds by default;
 override it with `--agent-timeout-seconds`.
 
-The pinned release and its SHA-256 digest live together at the top of
-`run-host-native.sh` and change together; a bump starts a new benchmark
+The pinned release and its SHA-256 digest live together in
+`claux-release.json`, shared by the host runner, matrix metadata, and Harbor
+adapter default. The file is included in execution snapshots. Update both
+values together; a bump starts a new benchmark
 cohort. Downloads and cached binaries are verified against that digest before
 they enter a guest. To run another release, set `REPLAYBOOK_HOST_CLAUX_RELEASE`
 and either `REPLAYBOOK_HOST_CLAUX_SHA256` or rely on the `SHA256SUMS` file
@@ -367,6 +369,46 @@ Rotate any provider key that was previously written into a retained artifact;
 the scrubber cannot invalidate a credential at its provider.
 
 ### OpenCode
+
+For reproducible model resolution, pass a public, versioned definition file:
+
+```sh
+--agent-config integrations/host/models/opencode-go.json
+```
+
+The configuration uses `schema_version: 1` and a `providers` object keyed by
+provider ID. Each provider supplies `base_url` and a `models` object keyed by
+exact model ID. Each model declares its `id`, `provider.npm` SDK, `tool_call`,
+`limit`, and optional capabilities/cost metadata. Endpoints and SDKs come only
+from this file, not model-specific adapter branches. Never put credentials in
+this public configuration; keep them in the scoped environment file.
+
+The file contains reviewed Go definitions for MiMo V2.6 Pro/Flash, Haiku 5.5,
+GPT 6 Luna, and Hy4 Preview. Their published Go policies exclude training on
+request data; Haiku and Luna retain data for 30 days. Contributor routes, Meta,
+xAI, and unidentified aliases are excluded. Add other definitions as reviewed
+data changes, without editing adapter code. Prices describe subscription
+quota consumption, not necessarily incremental cash spend.
+
+Check a model against an isolated, empty cache without credentials or inference:
+
+```sh
+bash integrations/host/adapters/opencode.sh --preflight \
+  integrations/host/models/opencode-go.json \
+  opencode-go/mimo-v2.6-pro /absolute/path/to/opencode
+```
+
+The matrix validates every selected model before launching workers; the direct
+host runner validates before building a VM. A missing definition or rejected
+OpenCode configuration fails closed. The configuration is copied and hashed in
+the execution snapshot, checked on resume, and staged into the guest. Model
+catalog fetching is disabled for configured runs. Resume uses the frozen config,
+not an edited source file; use a new matrix to change definitions. Older runs
+without `--agent-config` retain catalog-based behavior.
+
+This is a generic custom-adapter contract: `--agent-config` supplies a public
+file, invokes `ADAPTER --preflight CONFIG MODEL PAYLOAD`, and exposes the guest
+copy as `REPLAYBOOK_AGENT_CONFIG`. Adapters interpret their own config schema.
 
 The bundled OpenCode adapter runs an installed OpenCode CLI in pure JSON mode,
 isolates its configuration and data inside the disposable evaluation root, and
@@ -853,9 +895,20 @@ result and transcript paths, benchmark metadata, failure categories, model
 aggregates with token, cost, and execution-timing totals, and
 scenario-version-aware aggregates. Claux transcript v2 recordings add each
 provider round and tool call with monotonic start offsets and durations. The
-matrix reports median model rounds, model time, tool calls, tool time, time to
+matrix reports median model rounds, round time, tool calls, tool time, time to
 the first write-capable tool, and time remaining after that tool. Older and
-third-party adapters remain valid and simply report no execution recording.
+third-party adapters remain valid and may report no execution recording.
+Round time sums recorded model/agent steps, not pure inference latency: OpenCode
+steps include tool execution. Tool durations may also overlap one another when
+calls run concurrently. These columns are not additive. The legacy JSON field
+`median_model_duration_seconds` retains its original meaning for compatibility.
+First non-read means a potentially mutating tool, not a proven filesystem write.
+Token columns retain provider-reported input and separately show cache reads and
+writes. OpenCode input excludes both cache categories; summing those three gives
+prompt tokens across requests, including repeated context. OpenCode output
+excludes separately recorded reasoning tokens. Missing cache counters display
+as `n/a`, not zero; input semantics from other adapters must be checked before
+adding their cache counters.
 Evaluation failures are valid matrix results. Authentication failures and
 provider or harness errors that occur before meaningful inference are recorded
 as unavailable attempts and excluded from pass-rate denominators. Once an

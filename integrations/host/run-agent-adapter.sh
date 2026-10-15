@@ -38,6 +38,9 @@ fi
 if [[ -e "${eval_root}/payload" ]]; then
   export REPLAYBOOK_AGENT_PAYLOAD="${eval_root}/payload"
 fi
+if [[ -f "${eval_root}/agent-config.json" ]]; then
+  export REPLAYBOOK_AGENT_CONFIG="${eval_root}/agent-config.json"
+fi
 
 cd "$REPLAYBOOK_WORKSPACE"
 exec "$adapter"

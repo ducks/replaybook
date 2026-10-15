@@ -192,9 +192,10 @@ printf '%s\n' 'required application service failed during boot' >"$reboot_consol
 rm -f -- "$reboot_console"
 grep -q 'read -r trial_status agent_outcome_category' "$script_dir/run-host-native.sh"
 grep -q 'agent_timeout_seconds: $agent_timeout_seconds' "$script_dir/run-host-native.sh"
-grep -q 'CLAUX_PINNED_RELEASE="v20261005.0.1"' "$script_dir/run-host-native.sh"
-grep -q 'CLAUX_PINNED_SHA256="26a758e635f10cfde523d4ddc73d3011c07ef10ac1f0c503e68f57b56c7734b4"' "$script_dir/run-host-native.sh"
-grep -q 'v20261005.0.1' "$script_dir/run_host_matrix.py"
+jq -e '.release | test("^v[0-9]{8}\\.[0-9]+\\.[0-9]+$")' "$script_dir/claux-release.json" >/dev/null
+jq -e '.linux_x86_64_sha256 | test("^[0-9a-f]{64}$")' "$script_dir/claux-release.json" >/dev/null
+grep -q 'claux-release.json' "$script_dir/run-host-native.sh"
+grep -q 'claux-release.json' "$script_dir/run_host_matrix.py"
 
 # Digest resolution and verification, sourced from the runner so the test
 # exercises the shipped functions rather than a copy.

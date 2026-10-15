@@ -19,6 +19,7 @@ Options:
   --agent-adapter FILE
                       Adapter executable to run inside the VM.
   --agent-payload FILE
+  --agent-config FILE       Public configuration; adapter validates before VM startup.
                       Optional harness binary or artifact for the adapter.
   --agent-env-file FILE
                       Optional environment file copied into the VM mode 0600.
@@ -41,7 +42,7 @@ Environment:
   REPLAYBOOK_HOST_TMPDIR         Temporary file parent (default: /var/tmp).
   REPLAYBOOK_HOST_CLAUX_BINARY   Existing Claux binary to bake into the VM.
   REPLAYBOOK_CLAUX_AUTH_BINARY   Host Claux binary used to read saved OAuth.
-  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag to cache and bake in (default: v20261005.0.1).
+  REPLAYBOOK_HOST_CLAUX_RELEASE  Release tag override (default: claux-release.json).
   REPLAYBOOK_HOST_CLAUX_SHA256   Expected SHA-256 of that release's Linux binary. The
                                  default release ships with its digest; another release
                                  must set this or publish SHA256SUMS on GitHub.
@@ -64,8 +65,8 @@ SSH_KEY="${REPLAYBOOK_HOST_SSH_KEY:-${HOME}/.ssh/id_ed25519}"
 WORK_PARENT="${REPLAYBOOK_HOST_TMPDIR:-/var/tmp}"
 # The pinned release and its digest change together, deliberately: a bump
 # starts a new benchmark cohort. Never default to "latest".
-CLAUX_PINNED_RELEASE="v20261005.0.1"
-CLAUX_PINNED_SHA256="26a758e635f10cfde523d4ddc73d3011c07ef10ac1f0c503e68f57b56c7734b4"
+CLAUX_PINNED_RELEASE="$(jq -er '.release | select(type == "string" and test("^v[0-9]{8}\\.[0-9]+\\.[0-9]+$"))' "$SCRIPT_DIR/claux-release.json")"
+CLAUX_PINNED_SHA256="$(jq -er '.linux_x86_64_sha256 | select(type == "string" and test("^[0-9a-f]{64}$"))' "$SCRIPT_DIR/claux-release.json")"
 CLAUX_RELEASE="${REPLAYBOOK_HOST_CLAUX_RELEASE:-$CLAUX_PINNED_RELEASE}"
 CLAUX_SHA256="${REPLAYBOOK_HOST_CLAUX_SHA256:-}"
 CLAUX_BINARY="${REPLAYBOOK_HOST_CLAUX_BINARY:-}"
@@ -85,6 +86,7 @@ OUTPUT_DIR=""
 RUN_ORACLE=false
 AGENT_ADAPTER=""
 AGENT_PAYLOAD=""
+AGENT_CONFIG=""
 AGENT_ENV_FILE=""
 AGENT_NAME=""
 AGENT_PROVIDER=""
@@ -110,6 +112,11 @@ while (( $# > 0 )); do
     --agent-adapter)
       (( $# >= 2 )) || { echo "--agent-adapter requires a value" >&2; exit 2; }
       AGENT_ADAPTER="$2"
+      shift 2
+      ;;
+    --agent-config)
+      (( $# >= 2 )) || { echo "--agent-config requires a value" >&2; exit 2; }
+      AGENT_CONFIG="$2"
       shift 2
       ;;
     --agent-payload)
@@ -174,7 +181,7 @@ while (( $# > 0 )); do
 done
 
 if [[ "$RUN_ORACLE" == true \
-  && ( -n "$AGENT_ADAPTER" || -n "$AGENT_PAYLOAD" \
+  && ( -n "$AGENT_ADAPTER" || -n "$AGENT_PAYLOAD" || -n "$AGENT_CONFIG" \
     || -n "$AGENT_ENV_FILE" || -n "$AGENT_NAME" \
     || -n "$AGENT_PROVIDER" || -n "$REASONING_EFFORT" ) ]]; then
   echo "--oracle cannot be combined with agent adapter options" >&2
@@ -196,7 +203,7 @@ if [[ -n "$AGENT_ADAPTER" ]]; then
     AGENT_NAME="${AGENT_NAME%.*}"
   fi
 else
-  if [[ -n "$AGENT_PAYLOAD" || -n "$AGENT_ENV_FILE" || -n "$AGENT_NAME" ]]; then
+  if [[ -n "$AGENT_PAYLOAD" || -n "$AGENT_CONFIG" || -n "$AGENT_ENV_FILE" || -n "$AGENT_NAME" ]]; then
     echo "custom agent options require --agent-adapter" >&2
     exit 2
   fi
@@ -214,6 +221,10 @@ fi
 if [[ -n "$AGENT_PAYLOAD" && ! -f "$AGENT_PAYLOAD" ]]; then
   echo "agent payload does not exist: ${AGENT_PAYLOAD}" >&2
   exit 2
+fi
+if [[ -n "$AGENT_CONFIG" ]]; then
+  [[ -f "$AGENT_CONFIG" ]] || { echo 'agent config does not exist' >&2; exit 2; }
+  bash "$AGENT_ADAPTER" --preflight "$AGENT_CONFIG" "$MODEL" "$AGENT_PAYLOAD"
 fi
 if [[ -n "$AGENT_ENV_FILE" && ! -f "$AGENT_ENV_FILE" ]]; then
   echo "agent environment file does not exist: ${AGENT_ENV_FILE}" >&2
@@ -929,6 +940,9 @@ else
   "${SCP[@]}" "$AGENT_ADAPTER" root@127.0.0.1:/root/replaybook-eval/adapter
   if [[ -n "$AGENT_PAYLOAD" ]]; then
     "${SCP[@]}" "$AGENT_PAYLOAD" root@127.0.0.1:/root/replaybook-eval/payload
+  fi
+  if [[ -n "$AGENT_CONFIG" ]]; then
+    "${SCP[@]}" "$AGENT_CONFIG" root@127.0.0.1:/root/replaybook-eval/agent-config.json
   fi
   if [[ -n "$AGENT_ENV_FILE" ]]; then
     "${SCP[@]}" "$AGENT_ENV_FILE" root@127.0.0.1:/root/replaybook-eval/runtime.env

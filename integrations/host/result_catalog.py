@@ -298,6 +298,8 @@ def compatibility_identity(
             "provider": run.get("provider") or agent.get("provider"),
             "adapter_sha256": snapshot.get("agent_adapter_sha256"),
             "payload_sha256": snapshot.get("agent_payload_sha256"),
+            **({"config_sha256": snapshot["agent_config_sha256"]}
+               if snapshot.get("agent_config_sha256") else {}),
         },
         "claux_release": benchmark.get("claux_release"),
         "claux_binary_sha256": snapshot.get("claux_binary_sha256"),

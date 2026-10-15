@@ -56,6 +56,7 @@ INPUT_MODES = {"text", "visual", "mixed"}
 OPTIONAL_SNAPSHOT_HASHES = (
     "agent_adapter_sha256",
     "agent_payload_sha256",
+    "agent_config_sha256",
     "agent_env_sha256",
     "claux_binary_sha256",
     "benchmark_manifest_sha256",
@@ -549,6 +550,8 @@ def compatibility_snapshot(snapshot: dict[str, Any] | None) -> dict[str, Any] | 
     # conflicting known values and retains the strongest known provenance.
     for key in OPTIONAL_SNAPSHOT_HASHES:
         value[key] = None
+    # Configuration changes behavior; absence is not equivalent to a known pin.
+    value["agent_config_sha256"] = snapshot.get("agent_config_sha256")
     return value
 
 
@@ -814,6 +817,9 @@ def aggregate_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         "cache_read_tokens": sum(
             int(usage.get("cache_read_tokens", 0)) for usage in usages
         ),
+        "cache_creation_tokens": sum(int(usage.get("cache_creation_tokens") or 0) for usage in usages),
+        "cache_read_reported_trials": sum(usage.get("cache_read_tokens") is not None for usage in usages),
+        "cache_creation_reported_trials": sum(usage.get("cache_creation_tokens") is not None for usage in usages),
         "usage_reported_trials": len(usages),
         "failure_categories": dict(sorted(failure_categories.items())),
         "unavailable_categories": dict(sorted(unavailable_categories.items())),
@@ -1441,6 +1447,8 @@ def html_page(
             f"<td>{format_rate(row['pass_rate'])}</td>"
             f"<td>{format_duration(row['median_duration_seconds'])}</td>"
             f"<td>{row['input_tokens']:,}</td>"
+            f"<td>{format(row['cache_read_tokens'], ',') if row['cache_read_reported_trials'] else 'n/a'}</td>"
+            f"<td>{format(row['cache_creation_tokens'], ',') if row['cache_creation_reported_trials'] else 'n/a'}</td>"
             f"<td>{reported_money(row['known_cost_usd'], row['cost_reported_trials'], row['trials'])}</td>"
             f"<td>{money(repair_cost, incomplete) if repair_cost is not None else 'n/a'}</td>"
             "</tr>"
@@ -1465,8 +1473,8 @@ def html_page(
     if recording_cells:
         recording_section = f"""
     <h2>Execution recording</h2>
-    <p class="small muted">Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.</p>
-    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Model time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
+    <p class="small muted">Medians across trials with execution recording. Round time sums recorded model/agent steps, not pure inference. It can include tools; parallel tool durations can overlap. Do not add these columns. First non-read means a potentially mutating tool, not a confirmed write; after non-read is the remaining agent time.</p>
+    <div class="table-scroll"><table><thead><tr><th>Model</th><th>Recorded</th><th>Rounds</th><th>Round time</th><th>Tools</th><th>Tool time</th><th>First non-read</th><th>After non-read</th></tr></thead><tbody>
 {chr(10).join(recording_cells)}
     </tbody></table></div>
 """
@@ -1719,9 +1727,9 @@ def markdown_section(release: dict[str, Any]) -> str:
             [
                 "### Execution recording",
                 "",
-                "Medians across trials with transcript schema v2 recording. First non-read is time before the first potentially mutating tool call; after non-read is the remaining agent time. Model and tool time can overlap.",
+                "Medians across trials with execution recording. Round time sums recorded model/agent steps, not pure inference. It can include tools; parallel tool durations can overlap. Do not add these columns. First non-read means a potentially mutating tool, not a confirmed write; after non-read is the remaining agent time.",
                 "",
-                "| Model | Recorded | Rounds | Model time | Tools | Tool time | First non-read | After non-read |",
+                "| Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |",
                 "|---|---:|---:|---:|---:|---:|---:|---:|",
             ]
         )
