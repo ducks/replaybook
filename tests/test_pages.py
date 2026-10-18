@@ -156,7 +156,16 @@ class PagesTests(unittest.TestCase):
 
         self.assertIn("Practice incidents", home)
         self.assertIn("Test infrastructure agents", home)
-        self.assertIn("7 durable repairs in 12 trials", home)
+        index = json.loads((BENCHMARK_DATA_DIR / "index.json").read_text())
+        version = index["current_version"]
+        release = json.loads(
+            (BENCHMARK_DATA_DIR / "releases" / f"{version}.json").read_text()
+        )
+        self.assertIn(
+            f'{release["totals"]["passed"]} durable repairs in '
+            f'{release["totals"]["trials"]} trials', home
+        )
+        self.assertIn(f"benchmark-evidence.html?release={version}", home)
 
         self.assertIn("replaybook remote", usage)
         self.assertIn("replaybook serve", usage)

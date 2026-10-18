@@ -817,6 +817,17 @@ class PublisherTests(unittest.TestCase):
 
             build_outputs(root)
             build_outputs(root, check=True)
+            home = (root / "docs/index.html").read_text()
+            self.assertIn("Current release", home)
+            self.assertIn("benchmark-evidence.html?release=20260809.0.0", home)
+            self.assertIn(
+                f'{release["totals"]["passed"]} durable repairs in '
+                f'{release["totals"]["trials"]} trials.', home
+            )
+            (root / "docs/index.html").write_text("stale homepage")
+            with self.assertRaisesRegex(PublishError, "docs/index.html"):
+                build_outputs(root, check=True)
+            build_outputs(root)
             current = (root / "docs/benchmarks.html").read_text()
             coverage = (root / "docs/benchmark-coverage.html").read_text()
             compare = (root / "docs/benchmark-compare.html").read_text()
@@ -1177,7 +1188,10 @@ class PublisherTests(unittest.TestCase):
 
             history = (root / "docs/benchmark-history.html").read_text()
             self.assertIn("Earlier generated release", history)
-            self.assertNotIn("Current generated release", history)
+            self.assertIn("Current generated release", history)
+            self.assertIn("Latest published", history)
+            self.assertIn("benchmark-evidence.html?release=20260809.0.0", history)
+            self.assertIn("benchmark-evidence.html?release=20260808.0.0", history)
 
     def test_html_page_has_no_patch_artifacts(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
