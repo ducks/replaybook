@@ -19,82 +19,42 @@
         <a href="https://github.com/ducks/replaybook">GitHub</a>
       </nav>
     </header>
-
     <p class="eyebrow">Stateful infrastructure evaluation</p>
     <h1>Replay real incidents. Verify real repairs.</h1>
-    <p class="tagline">
-      Practice production failures yourself, or put an AI agent inside a fresh
-      Linux host and measure what survives after it leaves.
-    </p>
-
+    <p class="tagline">Practice production failures yourself, or put an AI agent inside a fresh Linux host and measure what survives after it leaves.</p>
     <div class="gate-grid">
       <article class="gate">
         <span class="gate-number">PLAY</span>
         <h3>Practice incidents</h3>
-        <p>
-          Enter a broken Docker environment with real services, an SLA, hints,
-          and a terminal transcript. Diagnose the failure and repair it.
-        </p>
+        <p>Enter a broken Docker environment with real services, an SLA, hints, and a terminal transcript. Diagnose the failure and repair it.</p>
       </article>
       <article class="gate">
         <span class="gate-number">EVALUATE</span>
         <h3>Test infrastructure agents</h3>
-        <p>
-          Run Claux, Codex, or another harness on a disposable NixOS VM. An
-          external verifier checks the repair after restart and reboot.
-        </p>
+        <p>Run Claux, OpenCode, Codex, or another harness on a disposable NixOS VM. An external verifier checks the repair after restart and reboot.</p>
       </article>
     </div>
-
-    <p>
-      Replaybook began as a way to turn postmortems into playable incidents.
-      The same idea now supports repeatable agent evaluation: reproduce a
-      stateful failure, preserve the work already in flight, hide the answer
-      from the agent, and verify the deployed system instead of its final
-      explanation.
-    </p>
-
+    <p>Replaybook began as a way to turn postmortems into playable incidents. The same idea now supports repeatable agent evaluation: reproduce a stateful failure, preserve the work already in flight, hide the answer from the agent, and verify the deployed system instead of its final explanation.</p>
     <div class="callout verified-status">
-      <strong>Current isolated-host matrix: 7 durable repairs in 12 trials.</strong>
-      Four models attempted the same interrupted Discourse deployment for
-      $0.9276 in total reported cost. See the
-      <a href="benchmarks.html">current results</a>.
+      <strong>Latest published cohort: 65 durable repairs in 72 trials.</strong>
+      <p>OpenCode Go October core infrastructure evaluation (20261018.0.0).</p>
+      <p>72 evaluated, 7 failed, 0 unavailable. Three models attempted eight core infrastructure incidents three times each: 65 durable repairs in 72 evaluated trials.</p>
+      <a href="benchmark-evidence.html?release=20261018.0.0">Inspect this cohort</a>
+      &middot; <a href="benchmark-history.html">All published releases</a>
     </div>
-
     <h2>Practice an incident</h2>
-
     <pre><code>cargo install replaybook
 replaybook add ducks/replaybook-scenarios
 replaybook list
 replaybook run 001-nginx-502</code></pre>
-
-    <p>
-      Playable scenarios require Docker. Replaybook opens a workstation
-      container on the incident network and records the complete terminal
-      session. Prebuilt binaries for Linux and macOS are available on the
-      <a href="https://github.com/ducks/replaybook/releases">releases page</a>.
-    </p>
-
+    <p>Playable scenarios require Docker. Replaybook opens a workstation container on the incident network and records the complete terminal session. Prebuilt binaries for Linux and macOS are available on the <a href="https://github.com/ducks/replaybook/releases">releases page</a>.</p>
     <h2>Evaluate an agent</h2>
-
     <pre><code>python integrations/host/run_host_matrix.py \
   --scenario 014-missing-rails-migration \
   --models deepseek/deepseek-v4-pro \
   --attempts 1</code></pre>
-
-    <p>
-      Host-native evaluation runs from a Linux controller with Nix and QEMU.
-      Each trial gets a new NixOS VM with real systemd services and no Docker
-      socket. Claux is the default adapter; the normalized adapter contract can
-      run another harness without changing the verifier.
-    </p>
-
-    <div class="callout">
-      Next: read the <a href="usage.html">usage guide</a>, explore the
-      <a href="scenarios.html">two scenario formats</a>, or inspect the
-      <a href="benchmarks.html">benchmark guide</a>.
-    </div>
-
+    <p>Host-native evaluation runs from a Linux controller with Nix and QEMU. Each trial gets a new NixOS VM with real systemd services and no Docker socket. Claux is the default adapter; the normalized adapter contract can run another harness without changing the verifier.</p>
+    <div class="callout">Next: read the <a href="usage.html">usage guide</a>, explore the <a href="scenarios.html">scenario catalog</a>, or inspect the <a href="benchmarks.html">benchmark guide</a>.</div>
     <footer class="site">
       <a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a>
       &middot; <a href="https://crates.io/crates/replaybook">crates.io</a>

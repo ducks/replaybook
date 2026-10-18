@@ -1,0 +1,27 @@
+{
+  "title": "OpenCode Go October core infrastructure evaluation",
+  "description": "Three models attempted eight core infrastructure incidents three times each: 65 durable repairs in 72 evaluated trials.",
+  "input_mode": "text",
+  "model_order": ["opencode-go/claude-haiku-5-5", "opencode-go/gpt-6-luna", "opencode-go/mimo-v2.6-pro"],
+  "model_labels": {
+    "opencode-go/claude-haiku-5-5": "Claude Haiku 5.5",
+    "opencode-go/gpt-6-luna": "GPT-6 Luna",
+    "opencode-go/mimo-v2.6-pro": "MiMo V2.6 Pro"
+  },
+  "agent_harness": {
+    "id": "opencode", "label": "OpenCode", "version": "1.19.0",
+    "provider": "OpenCode Go", "billing": "subscription"
+  },
+  "notes": [
+    "Run on October 15-16, 2026; published October 18. This cohort uses core manifest 2026.10.15, including Sidekiq wrong Redis v3, and remains separate from older scenario and harness versions.",
+    "Each model received three attempts per scenario with a 900-second deadline and default reasoning. All 72 scheduled trials were evaluated; none were unavailable.",
+    "OpenCode Go is subscription-backed. Per-trial monetary cost was not reported and must not be interpreted as zero.",
+    "Three attempts per scenario are a small sample, not a definitive model ranking or evidence of general production safety."
+  ],
+  "observations": [
+    "GPT-6 Luna passed 23 of 24 trials, Claude Haiku 5.5 passed 22, and MiMo V2.6 Pro passed 20.",
+    "Seven failures remain in the results: four agent timeouts and three interrupted deployments that did not converge to the required release.",
+    "The interrupted-deployment failures were two Haiku attempts and one Luna attempt. MiMo timed out once on nginx, twice on shared uploads, and once on Nix store disk pressure.",
+    "Immediate recovery alone was insufficient: the shared-uploads timeout attempts did not preserve restored uploads through service restart."
+  ]
+}

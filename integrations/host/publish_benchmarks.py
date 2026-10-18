@@ -1826,16 +1826,18 @@ def history_cards(index: dict[str, Any], root: Path) -> str:
     companions = set(index.get("companion_versions", []))
     cards = []
     for version in reversed(index["releases"]):
-        if version == current:
-            continue
         release = read_json(root / RELEASES_DIR / f"{version}.json")
         totals = release["totals"]
+        label = "Latest published" if version == current else (
+            "Companion cohort" if version in companions else "Archived cohort"
+        )
         cards.append(
             f"""    <div class="section-heading">
       <div><h3>{html.escape(release['title'])}</h3><p class="muted">Benchmark {html.escape(version)} · {html.escape(tier_label(release))} tier</p></div>
-      <span class="badge archived">{"Companion cohort" if version in companions else "Superseded"}</span>
+      <span class="badge archived">{label}</span>
     </div>
-    <p>{totals['passed']}/{totals['evaluated']} durable repairs, {format_duration(totals['median_duration_seconds'])} median, {reported_money(totals['known_cost_usd'], totals['cost_reported_trials'], totals['trials'])} known cost.</p>"""
+    <p>{totals['passed']}/{totals['evaluated']} durable repairs, {format_duration(totals['median_duration_seconds'])} median, {reported_money(totals['known_cost_usd'], totals['cost_reported_trials'], totals['trials'])} known cost.</p>
+    <p><a href="benchmark-evidence.html?release={html.escape(version)}">Inspect cohort {html.escape(version)}</a></p>"""
         )
     return HISTORY_START + "\n" + "\n".join(cards) + "\n    " + HISTORY_END
 
@@ -2409,6 +2411,7 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
     catalog = public_catalog(index, root)
     coverage = public_coverage(index, root, catalog)
     outputs = {
+        root / "docs/index.html": render_site_template("home.html", release=release),
         root / CATALOG_FILE: json.dumps(catalog, indent=2, sort_keys=True) + "\n",
         root / COVERAGE_FILE: json.dumps(coverage, indent=2, sort_keys=True) + "\n",
         root / DOCS_CATALOG: json.dumps(catalog, indent=2, sort_keys=True) + "\n",
