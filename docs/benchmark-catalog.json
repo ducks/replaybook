@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20260906.0.0",
+  "current_version": "20261018.0.0",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -4755,6 +4755,93 @@
       "release": "20260906.0.0",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 24,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_mode": "text",
+      "input_tokens": 532,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 61.5,
+      "model": "opencode-go/claude-haiku-5-5",
+      "model_label": "Claude Haiku 5.5",
+      "output_tokens": 96863,
+      "pass_rate": 0.9166666666666666,
+      "pass_rate_95_high": 0.9768411847029567,
+      "pass_rate_95_low": 0.741511978067893,
+      "passed": 22,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "subscription_usage_reported_trials": 24,
+      "subscription_usage_usd": 0.211841835,
+      "tier": "core",
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 24,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 1116,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 111.5,
+      "model": "opencode-go/gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "output_tokens": 70620,
+      "pass_rate": 0.9583333333333334,
+      "pass_rate_95_high": 0.9926065438344942,
+      "pass_rate_95_low": 0.7975819352134406,
+      "passed": 23,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "subscription_usage_reported_trials": 24,
+      "subscription_usage_usd": 0.343582495,
+      "tier": "core",
+      "trials": 24,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 24,
+      "failed": 4,
+      "failure_categories": {
+        "agent_timeout": 4
+      },
+      "input_mode": "text",
+      "input_tokens": 1020577,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 606.5,
+      "model": "opencode-go/mimo-v2.6-pro",
+      "model_label": "MiMo V2.6 Pro",
+      "output_tokens": 87044,
+      "pass_rate": 0.8333333333333334,
+      "pass_rate_95_high": 0.9332132367136705,
+      "pass_rate_95_low": 0.6414692935030095,
+      "passed": 20,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "subscription_usage_reported_trials": 24,
+      "subscription_usage_usd": 0.891703107,
       "tier": "core",
       "trials": 24,
       "unavailable": 0,
@@ -43273,6 +43360,1223 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 54,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 40,
+      "model": "opencode-go/claude-haiku-5-5",
+      "model_label": "Claude Haiku 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 48,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 32,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 40,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 8628,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.019351855,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 102,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 60,
+      "model": "opencode-go/gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 74,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 60,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 50,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5228,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0230031,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 162222,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 537,
+      "model": "opencode-go/mimo-v2.6-pro",
+      "model_label": "MiMo V2.6 Pro",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 910,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 537,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 352,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 9768,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.138376922,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 64,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 54,
+      "model": "opencode-go/claude-haiku-5-5",
+      "model_label": "Claude Haiku 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 58,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 53,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 54,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 11016,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.024056130000000002,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 132,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 68,
+      "model": "opencode-go/gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 61,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 76,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 68,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 7792,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.02358226,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 68709,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 174,
+      "model": "opencode-go/mimo-v2.6-pro",
+      "model_label": "MiMo V2.6 Pro",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 174,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 528,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 147,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 6680,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.059041476999999995,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 62,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 88,
+      "model": "opencode-go/claude-haiku-5-5",
+      "model_label": "Claude Haiku 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 100,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 86,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 88,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 14509,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.03144278,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 159,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 146,
+      "model": "opencode-go/gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 146,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 157,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 124,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 11220,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.04148048,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 157767,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 806,
+      "model": "opencode-go/mimo-v2.6-pro",
+      "model_label": "MiMo V2.6 Pro",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 839,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 806,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 692,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 19439,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.16262686699999998,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 68,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 106,
+      "model": "opencode-go/claude-haiku-5-5",
+      "model_label": "Claude Haiku 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 106,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 125,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 96,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 11517,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.028342175,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 135,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 160,
+      "model": "opencode-go/gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 160,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 79,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 161,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 7692,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.039521965000000006,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 115124,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 593,
+      "model": "opencode-go/mimo-v2.6-pro",
+      "model_label": "MiMo V2.6 Pro",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 577,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 593,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 620,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 9384,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.09453721600000001,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 66,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 52,
+      "model": "opencode-go/claude-haiku-5-5",
+      "model_label": "Claude Haiku 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 52,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 42,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 52,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10837,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.019728665,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 144,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 109,
+      "model": "opencode-go/gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 134,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 109,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 70,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 8921,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.036143515,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 113544,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 648,
+      "model": "opencode-go/mimo-v2.6-pro",
+      "model_label": "MiMo V2.6 Pro",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 791,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 339,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 648,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10267,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.091727406,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 62,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 61,
+      "model": "opencode-go/claude-haiku-5-5",
+      "model_label": "Claude Haiku 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 68,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 57,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 61,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 12605,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.027533625000000003,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 177,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 140,
+      "model": "opencode-go/gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 152,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 140,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 116,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 11706,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.08039189,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_mode": "text",
+      "input_tokens": 146356,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 902,
+      "model": "opencode-go/mimo-v2.6-pro",
+      "model_label": "MiMo V2.6 Pro",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 805,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 902,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 904,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 11972,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.138965274,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "release_not_converged": 2
+      },
+      "input_mode": "text",
+      "input_tokens": 72,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 62,
+      "model": "opencode-go/claude-haiku-5-5",
+      "model_label": "Claude Haiku 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 62,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 52,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 70,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 12718,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.02761096,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 129,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 88,
+      "model": "opencode-go/gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 114,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 88,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 78,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 8761,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.045929790000000005,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 97940,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 279,
+      "model": "opencode-go/mimo-v2.6-pro",
+      "model_label": "MiMo V2.6 Pro",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 279,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 319,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 249,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 9044,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.071713868,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 84,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 71,
+      "model": "opencode-go/claude-haiku-5-5",
+      "model_label": "Claude Haiku 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 71,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 73,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 71,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 15033,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.033775645,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 138,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 124,
+      "model": "opencode-go/gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 84,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 140,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 124,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 9300,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.053529495,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 158915,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 751,
+      "model": "opencode-go/mimo-v2.6-pro",
+      "model_label": "MiMo V2.6 Pro",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 751,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 411,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 903,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10490,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261018.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.134714077,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -47380,7 +48684,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": "v20260821.0.2",
-      "current": true,
+      "current": false,
       "description": "Six models each attempted three durable repairs across all eight stable core infrastructure incidents through Claux and OpenRouter.",
       "harness_versions": [
         23
@@ -47389,7 +48693,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -47503,6 +48807,142 @@
         "usage_reported_trials": 144
       },
       "version": "20260906.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "subscription",
+        "id": "opencode",
+        "label": "OpenCode",
+        "provider": "OpenCode Go",
+        "version": "1.19.0"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Three models attempted eight core infrastructure incidents three times each: 65 durable repairs in 72 evaluated trials.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "opencode-go"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261015.0.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261015.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261015.0.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261015.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261015.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261015.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261015.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261015.0.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261015.0.1"
+          },
+          "version": 1
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "host-matrix-2026-10-15__20-27-40.1e195e",
+          "summary_sha256": "7a07edfbe35b1e59b7c4884b44e8fafabb99fcb4c462521855c8c4142c4d6b72"
+        }
+      ],
+      "tier": "core",
+      "title": "OpenCode Go October core infrastructure evaluation",
+      "totals": {
+        "cache_creation_reported_trials": 72,
+        "cache_creation_tokens": 1786492,
+        "cache_read_reported_trials": 72,
+        "cache_read_tokens": 30650897,
+        "cost_reported_trials": 0,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 72,
+        "failed": 7,
+        "failure_categories": {
+          "agent_timeout": 4,
+          "release_not_converged": 3
+        },
+        "input_tokens": 1022225,
+        "known_cost_usd": 0,
+        "median_duration_seconds": 115.0,
+        "median_first_non_read_only_tool_seconds": 1.3570000000000002,
+        "median_model_duration_seconds": 80.815,
+        "median_model_rounds": 15.0,
+        "median_post_first_non_read_only_seconds": 103.621,
+        "median_tool_calls": 27.0,
+        "median_tool_duration_seconds": 12.023499999999999,
+        "output_tokens": 254527,
+        "pass_rate": 0.9027777777777778,
+        "passed": 65,
+        "recording_reported_trials": 72,
+        "subscription_usage_reported_trials": 72,
+        "subscription_usage_usd": 1.447127437,
+        "trials": 72,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 72
+      },
+      "version": "20261018.0.0"
     }
   ],
   "schema_version": 1

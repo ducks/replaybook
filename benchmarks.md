@@ -9,24 +9,23 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## OpenRouter core infrastructure baseline
+## OpenCode Go October core infrastructure evaluation
 
-Six models each attempted three durable repairs across all eight stable core infrastructure incidents through Claux and OpenRouter.
+Three models attempted eight core infrastructure incidents three times each: 65 durable repairs in 72 evaluated trials.
 
-Benchmark release: `20260906.0.0`
+Benchmark release: `20261018.0.0`
 Benchmark tier: `core`
 
-Scenario packs: `ducks/replaybook-infra@20260824.0.0`
+Provider-reported subscription usage value: **$1.4471** across 72 trials. This is a catalog-priced usage estimate, not metered spend.
+
+Scenario packs: `ducks/replaybook-infra@20261015.0.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Claude Sonnet 5 (high) · openrouter | 21/24 | 88% | 2:28 | $5.5706 | $0.2653 |
-| DeepSeek V4 Flash 0731 (high) · openrouter | 19/24 | 79% | 1:43 | $0.1473 | $0.0078 |
-| Gemini 3.7 Flash (high) · openrouter | 17/24 | 71% | 2:50 | $6.6978 | $0.3940 |
-| GPT-5.6 Luna (high) · openrouter | 20/24 | 83% | 2:12 | $0.7474 | $0.0374 |
-| Qwen3.8 2.4T A95B (high) · openrouter | 24/24 | 100% | 3:40 | $4.0627 | $0.1693 |
-| GLM 5.3 (high) · openrouter | 24/24 | 100% | 4:37 | $5.1693 | $0.2154 |
-| **Total** | **125/144** | **87%** | **2:36** | **$22.3951** | **$0.1792** |
+| Claude Haiku 5.5 · opencode-go | 22/24 | 92% | 1:02 | n/a | n/a |
+| GPT-6 Luna · opencode-go | 23/24 | 96% | 1:52 | n/a | n/a |
+| MiMo V2.6 Pro · opencode-go | 20/24 | 83% | 10:06 | n/a | n/a |
+| **Total** | **65/72** | **90%** | **1:55** | **n/a** | **n/a** |
 
 ### Execution recording
 
@@ -34,53 +33,46 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Claude Sonnet 5 (high) · openrouter | 24/24 | 16.5 | 2:11 | 21.5 | 0:10 | 0:04 | 2:22 |
-| DeepSeek V4 Flash 0731 (high) · openrouter | 24/24 | 18 | 1:24 | 23.5 | 0:09 | 0:02 | 1:38 |
-| Gemini 3.7 Flash (high) · openrouter | 24/24 | 41.5 | 2:42 | 40.5 | 0:06 | 0:06 | 2:42 |
-| GPT-5.6 Luna (high) · openrouter | 24/24 | 16 | 1:39 | 32 | 0:09 | 0:07 | 2:00 |
-| Qwen3.8 2.4T A95B (high) · openrouter | 24/24 | 15 | 3:02 | 19 | 0:12 | 0:07 | 3:32 |
-| GLM 5.3 (high) · openrouter | 24/24 | 18 | 3:30 | 23.5 | 0:12 | 0:07 | 4:21 |
+| Claude Haiku 5.5 · opencode-go | 24/24 | 10 | 0:41 | 11 | 0:12 | 0:01 | 0:49 |
+| GPT-6 Luna · opencode-go | 24/24 | 15 | 0:58 | 34.5 | 0:08 | 0:02 | 1:39 |
+| MiMo V2.6 Pro · opencode-go | 24/24 | 18.5 | 8:04 | 31.5 | 0:16 | 0:02 | 9:48 |
 
-Qwen3.8 2.4T A95B and GLM 5.3 completed all 24 repairs. Claude Sonnet 5 completed 21, GPT-5.6 Luna 20, DeepSeek V4 Flash 19, and Gemini 3.7 Flash 17.
+GPT-6 Luna passed 23 of 24 trials, Claude Haiku 5.5 passed 22, and MiMo V2.6 Pro passed 20.
 
-The full cohort completed 125 of 144 evaluated repairs (86.8%) at $22.3951 in reported provider spend, with no unavailable trials.
+Seven failures remain in the results: four agent timeouts and three interrupted deployments that did not converge to the required release.
 
-DeepSeek V4 Flash had the fastest recovery median at 1:43, followed by GPT-5.6 Luna at 2:12 and Claude Sonnet 5 at 2:28. The two perfect lanes traded speed for reliability: Qwen at 3:40 and GLM at 4:37.
+The interrupted-deployment failures were two Haiku attempts and one Luna attempt. MiMo timed out once on nginx, twice on shared uploads, and once on Nix store disk pressure.
 
-OpenRouter returned twelve mid-run 502 interruptions: seven on Gemini, three on Luna, and two on DeepSeek. The remaining failures were five non-converged interrupted deployments, one unrecovered Sidekiq backlog, and one response-header timeout.
-
-Claude Sonnet 5 failed all three interrupted-deployment attempts; this was the clearest repeated model-level miss in the cohort.
+Immediate recovery alone was insufficient: the shared-uploads timeout attempts did not preserve restored uploads through service restart.
 
 ### Scenario breakdown
 
-| Scenario | Version | Claude Sonnet 5 (high) · openrouter | DeepSeek V4 Flash 0731 (high) · openrouter | Gemini 3.7 Flash (high) · openrouter | GPT-5.6 Luna (high) · openrouter | Qwen3.8 2.4T A95B (high) · openrouter | GLM 5.3 (high) · openrouter |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 1:03 | 3/3, 0:57 | 3/3, 2:10 | 3/3, 3:24 | 3/3, 1:41 | 3/3, 2:26 |
-| 013-sidekiq-wrong-redis | v2 | 3/3, 1:26 | 2/3, 1:18 | 2/3, 2:03 | 3/3, 1:26 | 3/3, 2:16 | 3/3, 2:30 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 3:14 | 2/3, 3:26 | 3/3, 5:44 | 2/3, 3:03 | 3/3, 5:32 | 3/3, 4:52 |
-| 017-partial-rails-rollout | v1 | 3/3, 2:05 | 2/3, 1:44 | 1/3, 1:38 | 2/3, 2:10 | 3/3, 2:44 | 3/3, 5:41 |
-| 019-rust-fd-leak | v1 | 3/3, 2:28 | 2/3, 1:50 | 1/3, 1:50 | 3/3, 2:06 | 3/3, 3:07 | 3/3, 2:21 |
-| 021-discourse-shared-uploads | v1 | 3/3, 5:13 | 3/3, 2:43 | 1/3, 4:36 | 2/3, 2:39 | 3/3, 7:36 | 3/3, 12:39 |
-| 024-discourse-interrupted-deploy | v1 | 0/3, 2:32 | 2/3, 1:38 | 3/3, 2:57 | 2/3, 1:43 | 3/3, 3:17 | 3/3, 5:26 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 2:28 | 3/3, 2:35 | 3/3, 3:40 | 3/3, 2:14 | 3/3, 6:07 | 3/3, 2:23 |
+| Scenario | Version | Claude Haiku 5.5 · opencode-go | GPT-6 Luna · opencode-go | MiMo V2.6 Pro · opencode-go |
+|---|---:|---:|---:|---:|
+| 001-nginx-502-host | v1 | 3/3, 0:40 | 3/3, 1:00 | 2/3, 8:57 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 0:54 | 3/3, 1:08 | 3/3, 2:54 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 1:28 | 3/3, 2:26 | 3/3, 13:26 |
+| 017-partial-rails-rollout | v1 | 3/3, 1:46 | 3/3, 2:40 | 3/3, 9:53 |
+| 019-rust-fd-leak | v1 | 3/3, 0:52 | 3/3, 1:49 | 3/3, 10:48 |
+| 021-discourse-shared-uploads | v1 | 3/3, 1:01 | 3/3, 2:20 | 1/3, 15:02 |
+| 024-discourse-interrupted-deploy | v1 | 1/3, 1:02 | 2/3, 1:28 | 3/3, 4:39 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 1:11 | 3/3, 2:04 | 2/3, 12:31 |
 
 ### Failure categories
 
-- `agent_runtime_error`: 1
-- `backlog_not_recovered`: 1
-- `provider_interrupted`: 12
-- `release_not_converged`: 5
+- `agent_timeout`: 4
+- `release_not_converged`: 3
 
 ### Source matrices
 
-- `host-matrix-2026-09-05__19-36-20.3254b0`: anthropic/claude-sonnet-5, deepseek/deepseek-v4-flash-0731, google/gemini-3.7-flash, openai/gpt-5.6-luna, qwen/qwen3.8-2.4t-a95b, z-ai/glm-5.3; Replaybook `43783540`; reasoning high
+- `host-matrix-2026-10-15__20-27-40.1e195e`: opencode-go/claude-haiku-5-5, opencode-go/gpt-6-luna, opencode-go/mimo-v2.6-pro; Replaybook `192e4746`
 
 ### Run notes
 
-- This is the canonical OpenRouter/Claux baseline for the stable core infrastructure manifest and is kept separate from OpenCode Go and Vercel AI Gateway cohorts.
-- All 144 scheduled trials produced evaluated results using the same eight incidents, three-attempt design, high reasoning effort, 900-second timeout, scenario-pack revision, and host harness v23.
-- Twelve provider interruptions occurred after meaningful inference and agent work, so they remain evaluated failures rather than being excluded as unavailable trials.
-- Reported costs are request charges captured from OpenRouter; model quality, provider reliability, harness behavior, speed, and cost are distinct dimensions of the result.
+- Run on October 15-16, 2026; published October 18. This cohort uses core manifest 2026.10.15, including Sidekiq wrong Redis v3, and remains separate from older scenario and harness versions.
+- Each model received three attempts per scenario with a 900-second deadline and default reasoning. All 72 scheduled trials were evaluated; none were unavailable.
+- OpenCode Go is subscription-backed. Per-trial monetary cost was not reported and must not be interpreted as zero.
+- Three attempts per scenario are a small sample, not a definitive model ranking or evidence of general production safety.
 
 <!-- replaybook:current-benchmark:end -->
 
