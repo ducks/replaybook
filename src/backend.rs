@@ -9,6 +9,9 @@ use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 use uuid::Uuid;
 
+// async-trait adds #[must_use] to the boxed Future; newer Clippy considers
+// that generated attribute redundant. Keep the exception on this trait only.
+#[allow(clippy::double_must_use)]
 #[async_trait]
 pub trait ExecutionBackend: Send + Sync {
     async fn run(
