@@ -215,15 +215,18 @@ pub async fn run_scenario(
             if hint_flag_exists {
                 docker_exec(&container_bg, &["rm", "-f", HINT_FLAG]);
 
-                hints_used_bg
-                    .fetch_update(Ordering::SeqCst, Ordering::SeqCst, |used| {
-                        if used < hints.len() {
-                            Some(used + 1)
-                        } else {
-                            None
-                        }
-                    })
-                    .ok();
+                let mut used = hints_used_bg.load(Ordering::SeqCst);
+                while used < hints.len() {
+                    match hints_used_bg.compare_exchange_weak(
+                        used,
+                        used + 1,
+                        Ordering::SeqCst,
+                        Ordering::SeqCst,
+                    ) {
+                        Ok(_) => break,
+                        Err(actual) => used = actual,
+                    }
+                }
             }
 
             let used = hints_used_bg.load(Ordering::SeqCst);

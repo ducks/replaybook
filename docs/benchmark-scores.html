@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Core scores &middot; replaybook</title>
+  <meta name="description" content="Complete, versioned infrastructure-agent scores with provider, harness, and attempt counts visible.">
+  <link rel="stylesheet" href="style.css">
+  <script data-goatcounter="https://stats.replaybook.dev/count" async src="https://stats.replaybook.dev/count.js"></script>
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Overview</a>
+      <a href="benchmark-scores.html" class="active" aria-current="page">Scores</a>
+      <a href="benchmark-evidence.html">Evidence</a>
+      <a href="benchmark-models.html">Models</a>
+      <a href="scenarios.html">Scenarios</a>
+      <a href="benchmark-providers.html">Providers</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-history.html">History</a>
+    </nav>
+
+
+<p class="eyebrow">Core / end-to-end success</p>
+<h1>One score. Full context.</h1>
+<p class="tagline benchmark-tagline">A score belongs to a model, provider, harness, and benchmark contract. Not to a model name alone.</p>
+<div class="callout comparison-note">
+  <strong>Score = 100 × average scenario success rate.</strong>
+  Each scenario has equal weight. All recorded attempts count, including unavailable attempts.
+  Only complete coverage of the pinned contract gets a headline score. This differs from Evidence's conditional repair rate, which excludes unavailable trials.
+  Small samples are not definitive rankings; completeness is not statistical certainty. Speed and cost are not blended into the score.
+</div>
+<label for="score-cohort">Benchmark conditions</label>
+<select id="score-cohort" class="score-selector">
+  <option value="5d00a83ce0bb5ddf485a4dfef0c7fd9806f98de6ff6f337f2b3de74fd18f9cef">Core 2026.10.15 · conditions 5d00a83c</option>
+</select>
+<label for="score-harness">Agent harness</label>
+<select id="score-harness" class="score-selector"><option value="">All harnesses</option></select>
+<section class="score-cohort" data-condition="5d00a83ce0bb5ddf485a4dfef0c7fd9806f98de6ff6f337f2b3de74fd18f9cef" data-releases="20261020.0.0,20261018.0.0">
+  <h2>Core 2026.10.15</h2>
+  <p>3 attempts per scenario · 900s deadline · matching controller and scenario fingerprints</p>
+  <p class="small muted">Compare configurations, not model names alone. Each card retains its own release; attempts are never pooled across releases. Harness and provider differences can affect results.</p>
+  <div class="score-provider"><h3>Provider: openrouter</h3>
+  <div class="score-grid">
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+      <div class="score-value">91.7 <span>/ 100</span></div>
+      <h4>Claude Haiku 5.5</h4>
+      <p><strong>openrouter · Claux v20261014.0.0</strong></p>
+      <p class="small muted">Release 20261020.0.0</p>
+      <p>Default reasoning</p>
+      <p><strong>22/24 repairs</strong> · 8/8 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <details><summary>Exact model identity</summary><code>anthropic/claude-haiku-5.5</code></details>
+      <p><a href="benchmark-evidence.html?release=20261020.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=anthropic%2Fclaude-haiku-5.5&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+      <div class="score-value">95.8 <span>/ 100</span></div>
+      <h4>DeepSeek V4.1 Flash 1017</h4>
+      <p><strong>openrouter · Claux v20261014.0.0</strong></p>
+      <p class="small muted">Release 20261020.0.0</p>
+      <p>Default reasoning</p>
+      <p><strong>23/24 repairs</strong> · 8/8 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <details><summary>Exact model identity</summary><code>deepseek/deepseek-v4.1-flash-1017</code></details>
+      <p><a href="benchmark-evidence.html?release=20261020.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=deepseek%2Fdeepseek-v4.1-flash-1017&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+      <div class="score-value">87.5 <span>/ 100</span></div>
+      <h4>Mercury 3</h4>
+      <p><strong>openrouter · Claux v20261014.0.0</strong></p>
+      <p class="small muted">Release 20261020.0.0</p>
+      <p>Default reasoning</p>
+      <p><strong>21/24 repairs</strong> · 8/8 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <details><summary>Exact model identity</summary><code>inception/mercury-3</code></details>
+      <p><a href="benchmark-evidence.html?release=20261020.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=inception%2Fmercury-3&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
+    </article>
+  </div>
+  </div>
+  <div class="score-provider"><h3>Provider: opencode-go</h3>
+  <div class="score-grid">
+    <article class="model-card score-card" data-harness="opencode" data-harness-label="OpenCode">
+      <div class="score-value">91.7 <span>/ 100</span></div>
+      <h4>Claude Haiku 5.5</h4>
+      <p><strong>opencode-go · OpenCode 1.19.0</strong></p>
+      <p class="small muted">Release 20261018.0.0</p>
+      <p>Default reasoning</p>
+      <p><strong>22/24 repairs</strong> · 8/8 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <details><summary>Exact model identity</summary><code>opencode-go/claude-haiku-5-5</code></details>
+      <p><a href="benchmark-evidence.html?release=20261018.0.0&amp;provider=opencode-go&amp;harness=opencode&amp;model=opencode-go%2Fclaude-haiku-5-5&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="opencode" data-harness-label="OpenCode">
+      <div class="score-value">95.8 <span>/ 100</span></div>
+      <h4>GPT-6 Luna</h4>
+      <p><strong>opencode-go · OpenCode 1.19.0</strong></p>
+      <p class="small muted">Release 20261018.0.0</p>
+      <p>Default reasoning</p>
+      <p><strong>23/24 repairs</strong> · 8/8 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <details><summary>Exact model identity</summary><code>opencode-go/gpt-6-luna</code></details>
+      <p><a href="benchmark-evidence.html?release=20261018.0.0&amp;provider=opencode-go&amp;harness=opencode&amp;model=opencode-go%2Fgpt-6-luna&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="opencode" data-harness-label="OpenCode">
+      <div class="score-value">83.3 <span>/ 100</span></div>
+      <h4>MiMo V2.6 Pro</h4>
+      <p><strong>opencode-go · OpenCode 1.19.0</strong></p>
+      <p class="small muted">Release 20261018.0.0</p>
+      <p>Default reasoning</p>
+      <p><strong>20/24 repairs</strong> · 8/8 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <details><summary>Exact model identity</summary><code>opencode-go/mimo-v2.6-pro</code></details>
+      <p><a href="benchmark-evidence.html?release=20261018.0.0&amp;provider=opencode-go&amp;harness=opencode&amp;model=opencode-go%2Fmimo-v2.6-pro&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
+    </article>
+  </div>
+  </div>
+</section>
+<p class="small muted">Cohorts are explicitly selected in the <a href="https://github.com/ducks/replaybook/blob/main/benchmark-data/scores.json">score configuration</a>. No automatic newest-run or best-attempt selection.</p>
+
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+<script>
+const selector = document.getElementById('score-cohort');
+if (selector) {
+  const params = new URLSearchParams(location.search);
+  const harness = document.getElementById('score-harness');
+  const labels = new Map();
+  document.querySelectorAll('.score-card').forEach(card => labels.set(card.dataset.harness, card.dataset.harnessLabel));
+  [...labels].sort().forEach(([id, label]) => harness.add(new Option(label, id)));
+  if (labels.has(params.get('harness'))) harness.value = params.get('harness');
+  const legacy = [...document.querySelectorAll('.score-cohort')].find(section => section.dataset.releases.split(',').includes(params.get('release')));
+  const requested = params.get('conditions') || legacy?.dataset.condition;
+  if ([...selector.options].some(option => option.value === requested)) selector.value = requested;
+  function showCohort() {
+    document.querySelectorAll('.score-cohort').forEach(section => {
+      section.hidden = section.dataset.condition !== selector.value;
+      section.querySelectorAll('.score-card').forEach(card => {
+        card.hidden = Boolean(harness.value && card.dataset.harness !== harness.value);
+      });
+      section.querySelectorAll('.score-provider').forEach(group => {
+        group.hidden = ![...group.querySelectorAll('.score-card')].some(card => !card.hidden);
+      });
+    });
+  }
+  function changed() {
+    showCohort();
+    const query = new URLSearchParams({conditions: selector.value});
+    if (harness.value) query.set('harness', harness.value);
+    history.replaceState(null, '', '?' + query);
+  }
+  selector.addEventListener('change', changed);
+  harness.addEventListener('change', changed);
+  showCohort();
+}
+</script>
+</body>
+</html>

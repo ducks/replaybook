@@ -9,23 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## OpenCode Go October core infrastructure evaluation
+## Claux + OpenRouter October Core evaluation
 
-Three models attempted eight core infrastructure incidents three times each: 65 durable repairs in 72 evaluated trials.
+Three configurations attempted eight Core incidents three times each: 66 durable repairs in 72 evaluated trials, with $1.4792 in reported API cost.
 
-Benchmark release: `20261018.0.0`
+Benchmark release: `20261020.0.0`
 Benchmark tier: `core`
-
-Provider-reported subscription usage value: **$1.4471** across 72 trials. This is a catalog-priced usage estimate, not metered spend.
 
 Scenario packs: `ducks/replaybook-infra@20261015.0.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Claude Haiku 5.5 · opencode-go | 22/24 | 92% | 1:02 | n/a | n/a |
-| GPT-6 Luna · opencode-go | 23/24 | 96% | 1:52 | n/a | n/a |
-| MiMo V2.6 Pro · opencode-go | 20/24 | 83% | 10:06 | n/a | n/a |
-| **Total** | **65/72** | **90%** | **1:55** | **n/a** | **n/a** |
+| Claude Haiku 5.5 · openrouter | 22/24 | 92% | 1:02 | $0.5035 | $0.0229 |
+| DeepSeek V4.1 Flash 1017 · openrouter | 23/24 | 96% | 2:34 | $0.6944 | $0.0302 |
+| Mercury 3 · openrouter | 21/24 | 88% | 0:58 | $0.2813 | $0.0134 |
+| **Total** | **66/72** | **92%** | **1:20** | **$1.4792** | **$0.0224** |
 
 ### Execution recording
 
@@ -33,46 +31,51 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Claude Haiku 5.5 · opencode-go | 24/24 | 10 | 0:41 | 11 | 0:12 | 0:01 | 0:49 |
-| GPT-6 Luna · opencode-go | 24/24 | 15 | 0:58 | 34.5 | 0:08 | 0:02 | 1:39 |
-| MiMo V2.6 Pro · opencode-go | 24/24 | 18.5 | 8:04 | 31.5 | 0:16 | 0:02 | 9:48 |
+| Claude Haiku 5.5 · openrouter | 24/24 | 9.5 | 0:46 | 11.5 | 0:09 | 0:02 | 0:58 |
+| DeepSeek V4.1 Flash 1017 · openrouter | 24/24 | 24 | 2:16 | 34 | 0:27 | 0:01 | 2:31 |
+| Mercury 3 · openrouter | 24/24 | 17.5 | 0:37 | 27.5 | 0:10 | 0:01 | 0:55 |
 
-GPT-6 Luna passed 23 of 24 trials, Claude Haiku 5.5 passed 22, and MiMo V2.6 Pro passed 20.
+DeepSeek passed 23/24, Haiku 22/24, and Mercury 21/24 trials.
 
-Seven failures remain in the results: four agent timeouts and three interrupted deployments that did not converge to the required release.
+DeepSeek timed out on shared uploads after 901 seconds; post-timeout verification still found a historical upload missing.
 
-The interrupted-deployment failures were two Haiku attempts and one Luna attempt. MiMo timed out once on nginx, twice on shared uploads, and once on Nix store disk pressure.
+One Mercury shared-uploads attempt failed to recover pre-existing accepted uploads. Another was interrupted by a provider HTTP 429 after 22 model rounds and 32 tool calls. Meaningful execution had occurred, so the latter remains an evaluated provider_interrupted failure.
 
-Immediate recovery alone was insufficient: the shared-uploads timeout attempts did not preserve restored uploads through service restart.
+Haiku and Mercury each had one interrupted-deployment attempt leave the green instance on the wrong release.
+
+One Haiku disk-pressure attempt still returned HTTP 507 low_disk after the agent finished.
 
 ### Scenario breakdown
 
-| Scenario | Version | Claude Haiku 5.5 · opencode-go | GPT-6 Luna · opencode-go | MiMo V2.6 Pro · opencode-go |
+| Scenario | Version | Claude Haiku 5.5 · openrouter | DeepSeek V4.1 Flash 1017 · openrouter | Mercury 3 · openrouter |
 |---|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 0:40 | 3/3, 1:00 | 2/3, 8:57 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 0:54 | 3/3, 1:08 | 3/3, 2:54 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 1:28 | 3/3, 2:26 | 3/3, 13:26 |
-| 017-partial-rails-rollout | v1 | 3/3, 1:46 | 3/3, 2:40 | 3/3, 9:53 |
-| 019-rust-fd-leak | v1 | 3/3, 0:52 | 3/3, 1:49 | 3/3, 10:48 |
-| 021-discourse-shared-uploads | v1 | 3/3, 1:01 | 3/3, 2:20 | 1/3, 15:02 |
-| 024-discourse-interrupted-deploy | v1 | 1/3, 1:02 | 2/3, 1:28 | 3/3, 4:39 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 1:11 | 3/3, 2:04 | 2/3, 12:31 |
+| 001-nginx-502-host | v1 | 3/3, 0:27 | 3/3, 2:11 | 3/3, 0:26 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 0:48 | 3/3, 2:46 | 3/3, 0:33 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 1:51 | 3/3, 6:52 | 3/3, 1:27 |
+| 017-partial-rails-rollout | v1 | 3/3, 1:28 | 3/3, 1:47 | 3/3, 1:15 |
+| 019-rust-fd-leak | v1 | 3/3, 0:40 | 3/3, 2:31 | 3/3, 0:43 |
+| 021-discourse-shared-uploads | v1 | 3/3, 1:05 | 2/3, 10:59 | 1/3, 1:02 |
+| 024-discourse-interrupted-deploy | v1 | 2/3, 1:19 | 3/3, 3:49 | 2/3, 0:46 |
+| 028-nix-store-disk-pressure | v1 | 2/3, 1:06 | 3/3, 2:11 | 3/3, 1:07 |
 
 ### Failure categories
 
-- `agent_timeout`: 4
-- `release_not_converged`: 3
+- `accepted_uploads_not_recovered`: 1
+- `agent_timeout`: 1
+- `provider_interrupted`: 1
+- `release_not_converged`: 2
+- `writable_capacity_not_recovered`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-10-15__20-27-40.1e195e`: opencode-go/claude-haiku-5-5, opencode-go/gpt-6-luna, opencode-go/mimo-v2.6-pro; Replaybook `192e4746`
+- `host-matrix-2026-10-20__01-40-17.d7a057`: anthropic/claude-haiku-5.5, deepseek/deepseek-v4.1-flash-1017, inception/mercury-3; Replaybook `192e4746`
 
 ### Run notes
 
-- Run on October 15-16, 2026; published October 18. This cohort uses core manifest 2026.10.15, including Sidekiq wrong Redis v3, and remains separate from older scenario and harness versions.
-- Each model received three attempts per scenario with a 900-second deadline and default reasoning. All 72 scheduled trials were evaluated; none were unavailable.
-- OpenCode Go is subscription-backed. Per-trial monetary cost was not reported and must not be interpreted as zero.
-- Three attempts per scenario are a small sample, not a definitive model ranking or evidence of general production safety.
+- Core manifest 2026.10.15; three attempts per scenario, default reasoning, and a 900-second deadline. All 72 trials were evaluated; no missing or unavailable trials.
+- Controller hash, selected scenario fingerprints, manifest, attempts and deadline match the OpenCode Go release 20261018.0.0. Agent harness and provider differ intentionally. Scores may be displayed together, but releases and attempts are not pooled.
+- All 66 successful repairs passed immediate, service-restart and host-reboot verification.
+- Three attempts per scenario remain a small sample. Differences across harness/provider configurations cannot establish a model-only or provider-only effect.
 
 <!-- replaybook:current-benchmark:end -->
 

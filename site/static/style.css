@@ -2124,3 +2124,10 @@ footer.site a {
     flex: 0 0 auto;
   }
 }
+.score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; }
+.score-card { padding: 1.25rem; min-width: 0; overflow-wrap: anywhere; }
+.score-card[hidden], .score-provider[hidden], .score-cohort[hidden] { display: none; }
+.score-card h4 { font-size: 1.35rem; margin: .75rem 0; }
+.score-value { font-size: 3rem; font-weight: 700; }
+.score-value span { font-size: 1rem; font-weight: 400; }
+.score-selector { display: block; max-width: 100%; margin: .5rem 0 1.5rem; }

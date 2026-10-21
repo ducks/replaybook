@@ -1,0 +1,94 @@
+{% extends "benchmark-base.html" %}
+{% set active_tab = "scores" %}
+{% block title %}Core scores{% endblock %}
+{% block description %}Complete, versioned infrastructure-agent scores with provider, harness, and attempt counts visible.{% endblock %}
+{% block content %}
+<p class="eyebrow">Core / end-to-end success</p>
+<h1>One score. Full context.</h1>
+<p class="tagline benchmark-tagline">A score belongs to a model, provider, harness, and benchmark contract. Not to a model name alone.</p>
+<div class="callout comparison-note">
+  <strong>Score = 100 × average scenario success rate.</strong>
+  Each scenario has equal weight. All recorded attempts count, including unavailable attempts.
+  Only complete coverage of the pinned contract gets a headline score. This differs from Evidence's conditional repair rate, which excludes unavailable trials.
+  Small samples are not definitive rankings; completeness is not statistical certainty. Speed and cost are not blended into the score.
+</div>
+{% if report.cohorts %}
+<label for="score-cohort">Benchmark conditions</label>
+<select id="score-cohort" class="score-selector">
+{% for cohort in report.cohorts %}
+  <option value="{{ cohort.id }}">Core {{ cohort.benchmark }} · conditions {{ cohort.id[:8] }}</option>
+{% endfor %}
+</select>
+<label for="score-harness">Agent harness</label>
+<select id="score-harness" class="score-selector"><option value="">All harnesses</option></select>
+{% endif %}
+{% for cohort in report.cohorts %}
+<section class="score-cohort" data-condition="{{ cohort.id }}" data-releases="{{ cohort.releases|join(',') }}">
+  <h2>Core {{ cohort.benchmark }}</h2>
+  <p>{{ cohort.attempts }} attempts per scenario · {{ cohort.timeout }}s deadline · matching controller and scenario fingerprints</p>
+  <p class="small muted">Compare configurations, not model names alone. Each card retains its own release; attempts are never pooled across releases. Harness and provider differences can affect results.</p>
+  {% for provider, cards in cohort.groups.items() %}
+  <div class="score-provider"><h3>Provider: {{ provider }}</h3>
+  <div class="score-grid">
+    {% for card in cards %}
+    <article class="model-card score-card" data-harness="{{ card.harness.id }}" data-harness-label="{{ card.harness.label }}">
+      <div class="score-value">{{ "%.1f"|format(card.score) }} <span>/ 100</span></div>
+      <h4>{{ card.label }}</h4>
+      <p><strong>{{ provider }} · {{ card.harness.label }} {{ card.harness.version }}</strong></p>
+      <p class="small muted">Release {{ card.release }}</p>
+      <p>{{ card.reasoning|capitalize }} reasoning</p>
+      <p><strong>{{ card.passed }}/{{ card.trials }} repairs</strong> · {{ card.covered }}/{{ card.required }} scenarios</p>
+      <p class="small muted">{{ card.unavailable }} unavailable · {{ "%.1f"|format(card.availability) }}% evaluated</p>
+      <details><summary>Exact model identity</summary><code>{{ card.model }}</code></details>
+      <p><a href="{{ card.evidence_url }}">View attempts, timing and cost ↗</a></p>
+    </article>
+    {% endfor %}
+  </div>
+  </div>
+  {% else %}
+  <p>No configurations have complete evidence for this contract.</p>
+  {% endfor %}
+  {% if cohort.hidden %}<p>{{ cohort.hidden }} incomplete configurations have no headline score. Inspect partial evidence:
+  {% for release in cohort.releases %}<a href="benchmark-evidence.html?release={{ release }}">{{ release }}</a> {% endfor %}</p>{% endif %}
+</section>
+{% else %}
+<p>No score cohorts have been selected yet. <a href="benchmark-evidence.html">Browse the evidence</a>.</p>
+{% endfor %}
+<p class="small muted">Cohorts are explicitly selected in the <a href="https://github.com/ducks/replaybook/blob/main/benchmark-data/scores.json">score configuration</a>. No automatic newest-run or best-attempt selection.</p>
+{% endblock %}
+{% block scripts %}
+<script>
+const selector = document.getElementById('score-cohort');
+if (selector) {
+  const params = new URLSearchParams(location.search);
+  const harness = document.getElementById('score-harness');
+  const labels = new Map();
+  document.querySelectorAll('.score-card').forEach(card => labels.set(card.dataset.harness, card.dataset.harnessLabel));
+  [...labels].sort().forEach(([id, label]) => harness.add(new Option(label, id)));
+  if (labels.has(params.get('harness'))) harness.value = params.get('harness');
+  const legacy = [...document.querySelectorAll('.score-cohort')].find(section => section.dataset.releases.split(',').includes(params.get('release')));
+  const requested = params.get('conditions') || legacy?.dataset.condition;
+  if ([...selector.options].some(option => option.value === requested)) selector.value = requested;
+  function showCohort() {
+    document.querySelectorAll('.score-cohort').forEach(section => {
+      section.hidden = section.dataset.condition !== selector.value;
+      section.querySelectorAll('.score-card').forEach(card => {
+        card.hidden = Boolean(harness.value && card.dataset.harness !== harness.value);
+      });
+      section.querySelectorAll('.score-provider').forEach(group => {
+        group.hidden = ![...group.querySelectorAll('.score-card')].some(card => !card.hidden);
+      });
+    });
+  }
+  function changed() {
+    showCohort();
+    const query = new URLSearchParams({conditions: selector.value});
+    if (harness.value) query.set('harness', harness.value);
+    history.replaceState(null, '', '?' + query);
+  }
+  selector.addEventListener('change', changed);
+  harness.addEventListener('change', changed);
+  showCohort();
+}
+</script>
+{% endblock %}

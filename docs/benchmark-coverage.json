@@ -79,7 +79,7 @@
       ]
     }
   ],
-  "generated_from": "20261018.0.0",
+  "generated_from": "20261020.0.0",
   "profiles": [
     {
       "model": "deepseek/deepseek-v4-flash-0731",
@@ -5698,20 +5698,20 @@
   "scenarios": [
     {
       "boundary": {
-        "agent_adapter": "external",
-        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
         "agent_harness": {
-          "billing": "subscription",
-          "id": "opencode",
-          "label": "OpenCode",
-          "provider": "OpenCode Go",
-          "version": "1.19.0"
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "OpenRouter",
+          "version": "v20261014.0.0"
         },
-        "agent_name": "opencode",
+        "agent_name": "claux",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": null,
+        "claux_release": "v20261014.0.0",
         "harness_versions": [
           23
         ],
@@ -5810,27 +5810,27 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=001-nginx-502-host",
-      "release": "20261018.0.0",
+      "release": "20261020.0.0",
       "scenario": "001-nginx-502-host",
       "scenario_label": "001-nginx-502-host",
       "scenario_version": 1
     },
     {
       "boundary": {
-        "agent_adapter": "external",
-        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
         "agent_harness": {
-          "billing": "subscription",
-          "id": "opencode",
-          "label": "OpenCode",
-          "provider": "OpenCode Go",
-          "version": "1.19.0"
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "OpenRouter",
+          "version": "v20261014.0.0"
         },
-        "agent_name": "opencode",
+        "agent_name": "claux",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": null,
+        "claux_release": "v20261014.0.0",
         "harness_versions": [
           23
         ],
@@ -5929,7 +5929,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=013-sidekiq-wrong-redis",
-      "release": "20261018.0.0",
+      "release": "20261020.0.0",
       "scenario": "013-sidekiq-wrong-redis",
       "scenario_label": "013-sidekiq-wrong-redis",
       "scenario_version": 3
@@ -6055,20 +6055,20 @@
     },
     {
       "boundary": {
-        "agent_adapter": "external",
-        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
         "agent_harness": {
-          "billing": "subscription",
-          "id": "opencode",
-          "label": "OpenCode",
-          "provider": "OpenCode Go",
-          "version": "1.19.0"
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "OpenRouter",
+          "version": "v20261014.0.0"
         },
-        "agent_name": "opencode",
+        "agent_name": "claux",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": null,
+        "claux_release": "v20261014.0.0",
         "harness_versions": [
           23
         ],
@@ -6167,7 +6167,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=015-sidekiq-poison-pill",
-      "release": "20261018.0.0",
+      "release": "20261020.0.0",
       "scenario": "015-sidekiq-poison-pill",
       "scenario_label": "015-sidekiq-poison-pill",
       "scenario_version": 1
@@ -6293,20 +6293,20 @@
     },
     {
       "boundary": {
-        "agent_adapter": "external",
-        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
         "agent_harness": {
-          "billing": "subscription",
-          "id": "opencode",
-          "label": "OpenCode",
-          "provider": "OpenCode Go",
-          "version": "1.19.0"
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "OpenRouter",
+          "version": "v20261014.0.0"
         },
-        "agent_name": "opencode",
+        "agent_name": "claux",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": null,
+        "claux_release": "v20261014.0.0",
         "harness_versions": [
           23
         ],
@@ -6405,7 +6405,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=017-partial-rails-rollout",
-      "release": "20261018.0.0",
+      "release": "20261020.0.0",
       "scenario": "017-partial-rails-rollout",
       "scenario_label": "017-partial-rails-rollout",
       "scenario_version": 1
@@ -6531,20 +6531,20 @@
     },
     {
       "boundary": {
-        "agent_adapter": "external",
-        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
         "agent_harness": {
-          "billing": "subscription",
-          "id": "opencode",
-          "label": "OpenCode",
-          "provider": "OpenCode Go",
-          "version": "1.19.0"
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "OpenRouter",
+          "version": "v20261014.0.0"
         },
-        "agent_name": "opencode",
+        "agent_name": "claux",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": null,
+        "claux_release": "v20261014.0.0",
         "harness_versions": [
           23
         ],
@@ -6643,7 +6643,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=019-rust-fd-leak",
-      "release": "20261018.0.0",
+      "release": "20261020.0.0",
       "scenario": "019-rust-fd-leak",
       "scenario_label": "019-rust-fd-leak",
       "scenario_version": 1
@@ -6769,20 +6769,20 @@
     },
     {
       "boundary": {
-        "agent_adapter": "external",
-        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
         "agent_harness": {
-          "billing": "subscription",
-          "id": "opencode",
-          "label": "OpenCode",
-          "provider": "OpenCode Go",
-          "version": "1.19.0"
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "OpenRouter",
+          "version": "v20261014.0.0"
         },
-        "agent_name": "opencode",
+        "agent_name": "claux",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": null,
+        "claux_release": "v20261014.0.0",
         "harness_versions": [
           23
         ],
@@ -6881,7 +6881,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=021-discourse-shared-uploads",
-      "release": "20261018.0.0",
+      "release": "20261020.0.0",
       "scenario": "021-discourse-shared-uploads",
       "scenario_label": "021-discourse-shared-uploads",
       "scenario_version": 1
@@ -7126,20 +7126,20 @@
     },
     {
       "boundary": {
-        "agent_adapter": "external",
-        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
         "agent_harness": {
-          "billing": "subscription",
-          "id": "opencode",
-          "label": "OpenCode",
-          "provider": "OpenCode Go",
-          "version": "1.19.0"
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "OpenRouter",
+          "version": "v20261014.0.0"
         },
-        "agent_name": "opencode",
+        "agent_name": "claux",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": null,
+        "claux_release": "v20261014.0.0",
         "harness_versions": [
           23
         ],
@@ -7238,7 +7238,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=024-discourse-interrupted-deploy",
-      "release": "20261018.0.0",
+      "release": "20261020.0.0",
       "scenario": "024-discourse-interrupted-deploy",
       "scenario_label": "024-discourse-interrupted-deploy",
       "scenario_version": 1
@@ -7710,20 +7710,20 @@
     },
     {
       "boundary": {
-        "agent_adapter": "external",
-        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_adapter": "builtin:claux",
+        "agent_adapter_sha256": null,
         "agent_harness": {
-          "billing": "subscription",
-          "id": "opencode",
-          "label": "OpenCode",
-          "provider": "OpenCode Go",
-          "version": "1.19.0"
+          "billing": "provider-reported",
+          "id": "claux",
+          "label": "Claux",
+          "provider": "OpenRouter",
+          "version": "v20261014.0.0"
         },
-        "agent_name": "opencode",
+        "agent_name": "claux",
         "agent_timeout_seconds": 900,
         "attempts": 3,
         "claux_binary_sha256": null,
-        "claux_release": null,
+        "claux_release": "v20261014.0.0",
         "harness_versions": [
           23
         ],
@@ -7822,7 +7822,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=028-nix-store-disk-pressure",
-      "release": "20261018.0.0",
+      "release": "20261020.0.0",
       "scenario": "028-nix-store-disk-pressure",
       "scenario_label": "028-nix-store-disk-pressure",
       "scenario_version": 1

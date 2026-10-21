@@ -1,0 +1,28 @@
+{
+  "title": "Claux + OpenRouter October Core evaluation",
+  "description": "Three configurations attempted eight Core incidents three times each: 66 durable repairs in 72 evaluated trials, with $1.4792 in reported API cost.",
+  "input_mode": "text",
+  "model_order": ["anthropic/claude-haiku-5.5", "deepseek/deepseek-v4.1-flash-1017", "inception/mercury-3"],
+  "model_labels": {
+    "anthropic/claude-haiku-5.5": "Claude Haiku 5.5",
+    "deepseek/deepseek-v4.1-flash-1017": "DeepSeek V4.1 Flash 1017",
+    "inception/mercury-3": "Mercury 3"
+  },
+  "agent_harness": {
+    "id": "claux", "label": "Claux", "version": "v20261014.0.0",
+    "provider": "OpenRouter", "billing": "provider-reported"
+  },
+  "notes": [
+    "Core manifest 2026.10.15; three attempts per scenario, default reasoning, and a 900-second deadline. All 72 trials were evaluated; no missing or unavailable trials.",
+    "Controller hash, selected scenario fingerprints, manifest, attempts and deadline match the OpenCode Go release 20261018.0.0. Agent harness and provider differ intentionally. Scores may be displayed together, but releases and attempts are not pooled.",
+    "All 66 successful repairs passed immediate, service-restart and host-reboot verification.",
+    "Three attempts per scenario remain a small sample. Differences across harness/provider configurations cannot establish a model-only or provider-only effect."
+  ],
+  "observations": [
+    "DeepSeek passed 23/24, Haiku 22/24, and Mercury 21/24 trials.",
+    "DeepSeek timed out on shared uploads after 901 seconds; post-timeout verification still found a historical upload missing.",
+    "One Mercury shared-uploads attempt failed to recover pre-existing accepted uploads. Another was interrupted by a provider HTTP 429 after 22 model rounds and 32 tool calls. Meaningful execution had occurred, so the latter remains an evaluated provider_interrupted failure.",
+    "Haiku and Mercury each had one interrupted-deployment attempt leave the green instance on the wrong release.",
+    "One Haiku disk-pressure attempt still returned HTTP 507 low_disk after the agent finished."
+  ]
+}
