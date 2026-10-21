@@ -17,8 +17,10 @@ from typing import Any
 from urllib.parse import urlencode
 
 if __package__:
+    from integrations.host.benchmark_scores import build_scores
     from integrations.host.benchmark_stats import wilson_interval
 else:
+    from benchmark_scores import build_scores
     from benchmark_stats import wilson_interval
 
 
@@ -2411,6 +2413,9 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
     catalog = public_catalog(index, root)
     coverage = public_coverage(index, root, catalog)
     outputs = {
+        root / "docs/benchmark-scores.html": render_site_template(
+            "benchmark-scores.html", report=build_scores(root, index)
+        ),
         root / "docs/index.html": render_site_template("home.html", release=release),
         root / CATALOG_FILE: json.dumps(catalog, indent=2, sort_keys=True) + "\n",
         root / COVERAGE_FILE: json.dumps(coverage, indent=2, sort_keys=True) + "\n",
