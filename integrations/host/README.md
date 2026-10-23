@@ -185,6 +185,22 @@ recovering the credential from files, child-process environments, or `/proc`.
 Raw provider credentials never enter retained execution snapshots or
 transcripts.
 
+The credential proxy forwards available response bytes immediately, including
+small SSE events and heartbeats; it does not wait for a full buffer. Older
+snapshots buffered up to 64 KiB, which could trigger a client's idle timeout
+even while its upstream was active. Keep those results separate from corrected
+snapshots when investigating provider interruptions or timing.
+
+Claux builds supporting the explicit `openrouter` protocol can preserve
+OpenRouter reasoning replay, effort, and caching through the localhost proxy.
+For those builds, set a model's `REPLAYBOOK_CLAUX_PROVIDER_ROUTES` value to
+`openrouter`. The currently pinned release predates this option; use an
+explicit `--claux-binary` for these diagnostic runs. The generic default
+remains `chat_completions` for compatibility with the pinned release and
+other OpenAI-compatible upstreams.
+Matrices freeze the public route map in the hashed host-harness snapshot, so
+later workers and resumes retain the same protocol even if the shell changes.
+
 ## Reference smoke test
 
 Run the reference repair without model credentials:

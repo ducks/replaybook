@@ -92,6 +92,9 @@ AGENT_NAME=""
 AGENT_PROVIDER=""
 CUSTOM_AGENT_ADAPTER=false
 SCENARIO_PACK_DIRS=()
+if [[ -f "$SCRIPT_DIR/claux-provider-routes.json" ]]; then
+  REPLAYBOOK_CLAUX_PROVIDER_ROUTES="$(cat "$SCRIPT_DIR/claux-provider-routes.json")"
+fi
 
 while (( $# > 0 )); do
   case "$1" in

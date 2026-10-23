@@ -177,7 +177,16 @@ class HostMatrixTests(unittest.TestCase):
                 claux_binary=None,
                 benchmark_manifest=benchmark_manifest,
                 host_dir=host,
+                claux_provider_routes='{"test/model":"openrouter"}',
             )
+            frozen_routes = snapshot.runner.parent / "claux-provider-routes.json"
+            self.assertEqual(json.loads(frozen_routes.read_text()), {"test/model": "openrouter"})
+            original_routes = frozen_routes.read_text()
+            frozen_routes.write_text('{}\n')
+            (matrix / "benchmark.json").write_text('{}')
+            with self.assertRaisesRegex(ValueError, "host harness"):
+                load_execution_snapshot(matrix)
+            frozen_routes.write_text(original_routes)
             (host / "run-host-native.sh").write_text("changed\n")
             adapter.write_text("changed\n")
             config.write_text("changed\n")

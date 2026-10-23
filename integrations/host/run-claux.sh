@@ -35,11 +35,11 @@ fi
 route="$(
   printf '%s' "$provider_routes" | jq -er --arg model "$model" '
     (.[$model] // "chat_completions") as $route
-    | select($route == "chat_completions" or $route == "responses" or $route == "anthropic")
+    | select($route == "chat_completions" or $route == "openrouter" or $route == "responses" or $route == "anthropic")
     | $route
   '
 )" || {
-  echo "REPLAYBOOK_CLAUX_PROVIDER_ROUTES must be a JSON object whose values are chat_completions, responses, or anthropic" >&2
+  echo "REPLAYBOOK_CLAUX_PROVIDER_ROUTES must be a JSON object whose values are chat_completions, openrouter, responses, or anthropic" >&2
   exit 2
 }
 
@@ -52,6 +52,11 @@ fi
 case "$route" in
   chat_completions)
     sed -i 's/^protocol = .*/protocol = "chat_completions"/' "$config"
+    ;;
+  openrouter)
+    # Requires a Claux build supporting the explicit OpenRouter wire protocol.
+    # Unlike endpoint guessing, this preserves reasoning through a local proxy.
+    sed -i 's/^protocol = .*/protocol = "openrouter"/' "$config"
     ;;
   responses)
     sed -i 's/^protocol = .*/protocol = "responses"/' "$config"

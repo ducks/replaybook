@@ -11,6 +11,8 @@ import unittest
 import urllib.request
 from pathlib import Path
 
+from integrations.host.openrouter_proxy import OpenRouterProxy
+
 
 SCRIPT = Path(__file__).with_name("openrouter_proxy.py")
 
@@ -38,6 +40,50 @@ class UpstreamHandler(http.server.BaseHTTPRequestHandler):
 
 
 class ProxyTests(unittest.TestCase):
+    def test_forwards_small_sse_event_before_upstream_finishes(self) -> None:
+        release = threading.Event()
+        event = b'data: {"choices":[]}\n\n'
+
+        class StreamingHandler(http.server.BaseHTTPRequestHandler):
+            def log_message(self, format: str, *args: object) -> None:
+                return
+
+            def do_POST(self) -> None:
+                self.rfile.read(int(self.headers.get("content-length", "0")))
+                self.send_response(200)
+                self.send_header("Content-Type", "text/event-stream")
+                self.end_headers()
+                self.wfile.write(event)
+                self.wfile.flush()
+                release.wait(timeout=5)
+                self.wfile.write(b"data: [DONE]\n\n")
+                self.wfile.flush()
+
+        upstream = http.server.ThreadingHTTPServer(("127.0.0.1", 0), StreamingHandler)
+        proxy = OpenRouterProxy(
+            ("127.0.0.1", 0), "host-secret",
+            f"http://127.0.0.1:{upstream.server_address[1]}",
+        )
+        for server in (upstream, proxy):
+            threading.Thread(target=server.serve_forever, daemon=True).start()
+        try:
+            request = urllib.request.Request(
+                f"http://127.0.0.1:{proxy.server_address[1]}/v1/chat/completions",
+                data=b'{}',
+            )
+            with urllib.request.urlopen(request, timeout=1) as response:
+                # The upstream is deliberately still open. Waiting for a full
+                # buffer here would hide live tokens and trigger idle timeouts.
+                self.assertEqual(response.readline(), event.splitlines(keepends=True)[0])
+                self.assertFalse(release.is_set())
+                release.set()
+                self.assertEqual(response.read(), b"\ndata: [DONE]\n\n")
+        finally:
+            release.set()
+            for server in (proxy, upstream):
+                server.shutdown()
+                server.server_close()
+
     def test_injects_host_credential_without_accepting_vm_credential(self) -> None:
         upstream = http.server.ThreadingHTTPServer(("127.0.0.1", 0), UpstreamHandler)
         thread = threading.Thread(target=upstream.serve_forever, daemon=True)
