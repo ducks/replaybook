@@ -198,6 +198,8 @@ For those builds, set a model's `REPLAYBOOK_CLAUX_PROVIDER_ROUTES` value to
 explicit `--claux-binary` for these diagnostic runs. The generic default
 remains `chat_completions` for compatibility with the pinned release and
 other OpenAI-compatible upstreams.
+Matrices freeze the public route map in the hashed host-harness snapshot, so
+later workers and resumes retain the same protocol even if the shell changes.
 
 ## Reference smoke test
 

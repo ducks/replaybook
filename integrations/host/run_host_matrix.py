@@ -216,6 +216,7 @@ def stage_execution_snapshot(
     benchmark_manifest: Path | None = None,
     agent_config: Path | None = None,
     host_dir: Path = SCRIPT_DIR,
+    claux_provider_routes: str | None = None,
 ) -> ExecutionSnapshot:
     snapshot_dir = matrix_dir / "execution-snapshot"
     harness_dir = snapshot_dir / "host-harness"
@@ -225,6 +226,19 @@ def stage_execution_snapshot(
         if not source.is_file():
             raise ValueError(f"host runner snapshot file does not exist: {source}")
         shutil.copy2(source, harness_dir / name)
+
+    routes = json.loads(claux_provider_routes or "{}")
+    if not isinstance(routes, dict) or any(
+        not isinstance(model, str)
+        or route not in ("chat_completions", "openrouter", "responses", "anthropic")
+        for model, route in routes.items()
+    ):
+        raise ValueError("invalid Claux provider routes")
+    # Public transport choices belong to the immutable harness identity, not
+    # the caller's mutable environment when later workers or resumes start.
+    (harness_dir / "claux-provider-routes.json").write_text(
+        json.dumps(routes, sort_keys=True) + "\n"
+    )
 
     pack_dirs = []
     pack_metadata = []
@@ -1520,6 +1534,9 @@ def resume_matrix(args: argparse.Namespace) -> int:
         environment["REPLAYBOOK_HOST_CLAUX_BINARY"] = str(plan.snapshot.claux_binary)
     if plan.claux_release:
         environment["REPLAYBOOK_HOST_CLAUX_RELEASE"] = plan.claux_release
+    routes_file = plan.snapshot.runner.parent / "claux-provider-routes.json"
+    if routes_file.is_file():
+        environment["REPLAYBOOK_CLAUX_PROVIDER_ROUTES"] = routes_file.read_text()
 
     print(f"[matrix] resuming: {plan.matrix_dir}")
     runner = SCRIPT_DIR / "run-host-native.sh" if args.refresh_controller else plan.snapshot.runner
@@ -1712,6 +1729,7 @@ def main(argv: list[str] | None = None) -> int:
             else None,
             benchmark_manifest=manifest.path if manifest else None,
             agent_config=args.agent_config.expanduser().resolve() if args.agent_config else None,
+            claux_provider_routes=os.environ.get("REPLAYBOOK_CLAUX_PROVIDER_ROUTES"),
         )
         if (
             manifest is not None
