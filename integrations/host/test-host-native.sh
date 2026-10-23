@@ -234,6 +234,10 @@ rm -rf -- "$claux_digest_root"
 
 agent_error="$(mktemp)"
 trap 'rm -f -- "$agent_error"' EXIT
+printf '%s\n' '{"outcome":{"status":"error","message":"Provider stream sent no data for 120 seconds."}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_unavailable' ]]
+printf '%s\n' '{"outcome":{"status":"error","message":"Provider stream sent no data for 120 seconds."},"recording":{"model_rounds":[{"status":"completed"}],"tools":[]}}' >"$agent_error"
+[[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'evaluated\tprovider_interrupted' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"openrouter API error (429 Too Many Requests): Provider returned error"}}' >"$agent_error"
 [[ "$("$script_dir/classify-agent-outcome.sh" "$agent_error")" == $'unavailable\tprovider_unavailable' ]]
 printf '%s\n' '{"outcome":{"status":"error","message":"ProviderModelNotFoundError: Model not found: opencode-go/glm-5.3"}}' >"$agent_error"
@@ -738,6 +742,7 @@ TOML
 fi
 case "$EXPECTED_ROUTE" in
   chat_completions) grep -qx 'protocol = "chat_completions"' "$config" ;;
+  openrouter) grep -qx 'protocol = "openrouter"' "$config" ;;
   responses) grep -qx 'protocol = "responses"' "$config" ;;
   anthropic) grep -qx 'type = "anthropic"' "$config" ;;
 esac
@@ -756,9 +761,10 @@ printf '%s\n' '{"schema_version":1,"model":"test","result":"ok","usage":null,"ou
 EOF
   chmod 0755 "$eval_root/fake-claux"
 
-  routes='{"luna":"responses","qwen":"anthropic"}'
+  routes='{"luna":"responses","qwen":"anthropic","routed":"openrouter"}'
   for specification in \
     'default chat_completions' \
+    'routed openrouter' \
     'luna responses' \
     'qwen anthropic'; do
     read -r model route <<<"$specification"

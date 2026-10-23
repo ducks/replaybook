@@ -84,7 +84,10 @@ class ProxyHandler(BaseHTTPRequestHandler):
                     self.send_header(name, value)
             self.send_header("Connection", "close")
             self.end_headers()
-            while chunk := response.read(64 * 1024):
+            # read(n) waits for n bytes or EOF, hiding small SSE events and
+            # heartbeats from clients with idle deadlines. read1 forwards
+            # available bytes without waiting for the buffer to fill.
+            while chunk := response.read1(64 * 1024):
                 self.wfile.write(chunk)
                 self.wfile.flush()
         except (OSError, http.client.HTTPException) as error:
