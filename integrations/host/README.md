@@ -386,10 +386,14 @@ the scrubber cannot invalidate a credential at its provider.
 
 ### OpenCode
 
-For reproducible model resolution, pass a public, versioned definition file:
+Model definitions are runtime configuration owned by the benchmark operator.
+Keep them outside the Replaybook source tree, for example under
+`$XDG_CONFIG_HOME/replaybook/models/` (default `~/.config/replaybook/models/`).
+Replaybook does not ship or automatically discover a provider/model catalog.
+For reproducible model resolution, explicitly pass the desired definition file:
 
 ```sh
---agent-config integrations/host/models/opencode-go.json
+--agent-config "${XDG_CONFIG_HOME:-$HOME/.config}/replaybook/models/opencode-go.json"
 ```
 
 The configuration uses `schema_version: 1` and a `providers` object keyed by
@@ -399,19 +403,18 @@ exact model ID. Each model declares its `id`, `provider.npm` SDK, `tool_call`,
 from this file, not model-specific adapter branches. Never put credentials in
 this public configuration; keep them in the scoped environment file.
 
-The file contains reviewed Go definitions for MiMo V2.6 Pro/Flash, Haiku 5.5,
-GPT 6 Luna, and Hy4 Preview. Their published Go policies exclude training on
-request data; Haiku and Luna retain data for 30 days. Contributor routes, Meta,
-xAI, and unidentified aliases are excluded. Add other definitions as reviewed
-data changes, without editing adapter code. Prices describe subscription
-quota consumption, not necessarily incremental cash spend.
+Populate this file with the provider/model definitions you intend to benchmark.
+Model IDs, endpoints, SDKs, limits, capabilities, and prices are configuration
+data; adding a model does not require changing Replaybook. Keep provenance and
+the date of review in the configuration. For subscription providers, prices
+may describe quota consumption rather than incremental cash spend.
 
 Check a model against an isolated, empty cache without credentials or inference:
 
 ```sh
 bash integrations/host/adapters/opencode.sh --preflight \
-  integrations/host/models/opencode-go.json \
-  opencode-go/mimo-v2.6-pro /absolute/path/to/opencode
+  "${XDG_CONFIG_HOME:-$HOME/.config}/replaybook/models/opencode-go.json" \
+  "$model" /absolute/path/to/opencode
 ```
 
 The matrix validates every selected model before launching workers; the direct
@@ -432,16 +435,20 @@ normalizes text, token classes, subscription quota usage, outcome, transcript,
 and model-round timing. It never copies unrelated OpenCode provider credentials.
 
 Authenticate OpenCode Go locally, then prepare a scoped mode-0600 environment
-file and stage the OpenCode binary as the harness payload:
+file and stage the OpenCode binary as the harness payload. Set `model` to a
+fully qualified ID defined in your configuration (for example,
+`opencode-go/your-model-id`):
 
 ```sh
 opencode auth login
 opencode_env="$(integrations/host/prepare-opencode-env.sh)"
 python integrations/host/run_host_matrix.py \
   --scenario 001-nginx-502-host \
-  --models opencode-go/glm-5.3 \
+  --models "$model" \
   --reasoning-efforts high \
+  --agent-provider opencode-go \
   --agent-adapter integrations/host/adapters/opencode.sh \
+  --agent-config "${XDG_CONFIG_HOME:-$HOME/.config}/replaybook/models/opencode-go.json" \
   --agent-payload "$(command -v opencode)" \
   --agent-env-file "$opencode_env" \
   --agent-name opencode \

@@ -61,7 +61,9 @@
   OpenCode runs. Keep model IDs, endpoints, SDKs, limits, and capabilities in
   configuration, never model-specific adapter branches. The matrix preflights
   and snapshots this file; missing definitions fail before VMs start. Never put
-  keys in it. See `integrations/host/models/opencode-go.json` and the host README.
+  keys in it. Keep these definitions in user configuration, such as
+  `~/.config/replaybook/models/`, outside the harness source tree. See the host
+  README for the configuration schema and invocation.
 - Prepare the isolated credential environment with
   `integrations/host/prepare-opencode-env.sh`; never print or commit the
   resulting environment file.
@@ -83,6 +85,7 @@ python integrations/host/run_host_matrix.py \
   --reasoning-efforts high \
   --agent-provider opencode-go \
   --agent-adapter integrations/host/adapters/opencode.sh \
+  --agent-config "${XDG_CONFIG_HOME:-$HOME/.config}/replaybook/models/opencode-go.json" \
   --agent-payload /absolute/path/to/opencode \
   --agent-env-file "$opencode_env" \
   --agent-name opencode \
