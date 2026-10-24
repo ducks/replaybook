@@ -1,5 +1,118 @@
 # Host-native evaluation
 
+## Managed benchmark sessions
+
+From the repository, use the session launcher for detached runs and progress
+without writing controller scripts:
+
+```sh
+./replaybook-bench start my-core-profile
+./replaybook-bench status
+./replaybook-bench watch
+./replaybook-bench list
+```
+
+`status` and `watch` also accept an existing matrix directory, so they can
+inspect runs started directly with `run_host_matrix.py`. The default target
+is the newest session or host matrix. `status --json` returns structured data.
+The watcher shows validated result counts, failure categories, completed-trial
+known spend, and active log activity; it does not read private reasoning or
+contact the model provider. An unmanaged matrix has no verified worker
+liveness, which is stated explicitly. Ctrl-C closes only the watcher.
+
+Profiles live in `$XDG_CONFIG_HOME/replaybook/sessions.json` (default
+`~/.config/replaybook/sessions.json`), outside the source tree. Define the
+matrix arguments once:
+
+```json
+{
+  "schema_version": 1,
+  "profiles": {
+    "my-core-profile": {
+      "args": [
+        "--benchmark", "/path/to/scenario-pack/benchmark-core.toml",
+        "--models", "provider/model-id",
+        "--agent-provider", "provider",
+        "--concurrency", "2",
+        "--base-port", "33000"
+      ],
+      "environment": {}
+    }
+  }
+}
+```
+
+Arguments are passed directly to the existing matrix runner without a shell;
+relative matrix paths are resolved from the repository. Credentials stay in
+the shell environment or the existing authentication store. The optional
+profile `environment` accepts only public transport settings:
+`REPLAYBOOK_CLAUX_AUTH_BINARY`, `REPLAYBOOK_CLAUX_PROVIDER_ROUTES`,
+`REPLAYBOOK_OPENAI_UPSTREAM`, and `REPLAYBOOK_OPENAI_PROXY_PATH`.
+
+Queue another profile after a session or matrix completes:
+
+```sh
+./replaybook-bench start next-profile --after jobs/host-matrix-example
+./replaybook-bench resume SESSION --retry-unavailable
+```
+
+A queued run waits for complete, evaluated results, including scored failures;
+an incomplete prerequisite does not launch the next run. Sessions keep their
+profile and route settings under `jobs/sessions/` and detach from the terminal.
+When a queued run starts, the matrix runner performs its normal preflight and
+freezes execution artifacts. Resume uses that existing matrix's snapshot,
+preserves concurrency, and skips valid results. Worker identity includes its
+process start time so a dead worker or reused PID is reported correctly.
+Custom adapters reuse their configured environment-file path on resume; pass
+`resume SESSION --agent-env-file PATH` to supply a matching replacement file.
+The matrix runner verifies its original credential-file hash before execution.
+This is a local host session manager, not a system service or reboot daemon.
+
+Use `--config PATH` and `--jobs-dir PATH` before the subcommand to override
+the configuration and artifact roots. `controller.log` in each session retains
+runner output and startup errors. Operator profiles supply all model IDs and
+provider choices; the session manager contains no model catalog.
+
+### Frozen comparison baselines
+
+Freeze a development profile before comparing models:
+
+```sh
+./replaybook-bench freeze development-core --name core-20261024
+```
+
+The source profile must specify a benchmark manifest, provider, and an explicit
+Claux binary or custom adapter. Freezing copies the controller, scenario pack,
+manifest, and agent artifacts into
+`~/.local/share/replaybook/cohorts/core-20261024` (or `--cohorts-dir`). It launches
+no trials. Use a new name when deliberately promoting a newer build.
+
+Point comparison profiles at that directory:
+
+```json
+{
+  "cohort": "/absolute/path/to/cohorts/core-20261024",
+  "args": ["--models", "provider/model-id", "--reasoning-efforts", "high",
+           "--concurrency", "2", "--base-port", "33000"],
+  "environment": {}
+}
+```
+
+Every start, queued launch, and resume verifies the frozen files and settings.
+Development changes to Claux, Replaybook, or the source scenarios do not affect
+these runs. Models, reasoning effort, ports, concurrency, scenario selection,
+and credential-file paths remain per-run options. Scenario subsets still have
+their own result coverage; freezing does not relax publication compatibility.
+Keep reasoning configurations visible when reporting comparisons.
+
+For a shared OpenRouter transport, set the source profile's
+`REPLAYBOOK_CLAUX_PROVIDER_ROUTES` to `{"*":"openrouter"}`. Frozen cohorts reject
+model-keyed route maps so adding a model does not change the hashed harness.
+An explicit model route still takes precedence in development runs. Credentials
+and authentication helpers remain outside the frozen artifacts. Custom Claux
+binaries are recorded by hash rather than labeled as an official release.
+Existing results retain their original snapshots and compatibility boundaries.
+
 This integration evaluates an infrastructure agent on a real disposable Linux
 host. The agent does not receive a Docker socket and does not manage sibling
 containers.
@@ -386,10 +499,14 @@ the scrubber cannot invalidate a credential at its provider.
 
 ### OpenCode
 
-For reproducible model resolution, pass a public, versioned definition file:
+Model definitions are runtime configuration owned by the benchmark operator.
+Keep them outside the Replaybook source tree, for example under
+`$XDG_CONFIG_HOME/replaybook/models/` (default `~/.config/replaybook/models/`).
+Replaybook does not ship or automatically discover a provider/model catalog.
+For reproducible model resolution, explicitly pass the desired definition file:
 
 ```sh
---agent-config integrations/host/models/opencode-go.json
+--agent-config "${XDG_CONFIG_HOME:-$HOME/.config}/replaybook/models/opencode-go.json"
 ```
 
 The configuration uses `schema_version: 1` and a `providers` object keyed by
@@ -399,19 +516,18 @@ exact model ID. Each model declares its `id`, `provider.npm` SDK, `tool_call`,
 from this file, not model-specific adapter branches. Never put credentials in
 this public configuration; keep them in the scoped environment file.
 
-The file contains reviewed Go definitions for MiMo V2.6 Pro/Flash, Haiku 5.5,
-GPT 6 Luna, and Hy4 Preview. Their published Go policies exclude training on
-request data; Haiku and Luna retain data for 30 days. Contributor routes, Meta,
-xAI, and unidentified aliases are excluded. Add other definitions as reviewed
-data changes, without editing adapter code. Prices describe subscription
-quota consumption, not necessarily incremental cash spend.
+Populate this file with the provider/model definitions you intend to benchmark.
+Model IDs, endpoints, SDKs, limits, capabilities, and prices are configuration
+data; adding a model does not require changing Replaybook. Keep provenance and
+the date of review in the configuration. For subscription providers, prices
+may describe quota consumption rather than incremental cash spend.
 
 Check a model against an isolated, empty cache without credentials or inference:
 
 ```sh
 bash integrations/host/adapters/opencode.sh --preflight \
-  integrations/host/models/opencode-go.json \
-  opencode-go/mimo-v2.6-pro /absolute/path/to/opencode
+  "${XDG_CONFIG_HOME:-$HOME/.config}/replaybook/models/opencode-go.json" \
+  "$model" /absolute/path/to/opencode
 ```
 
 The matrix validates every selected model before launching workers; the direct
@@ -432,16 +548,20 @@ normalizes text, token classes, subscription quota usage, outcome, transcript,
 and model-round timing. It never copies unrelated OpenCode provider credentials.
 
 Authenticate OpenCode Go locally, then prepare a scoped mode-0600 environment
-file and stage the OpenCode binary as the harness payload:
+file and stage the OpenCode binary as the harness payload. Set `model` to a
+fully qualified ID defined in your configuration (for example,
+`opencode-go/your-model-id`):
 
 ```sh
 opencode auth login
 opencode_env="$(integrations/host/prepare-opencode-env.sh)"
 python integrations/host/run_host_matrix.py \
   --scenario 001-nginx-502-host \
-  --models opencode-go/glm-5.3 \
+  --models "$model" \
   --reasoning-efforts high \
+  --agent-provider opencode-go \
   --agent-adapter integrations/host/adapters/opencode.sh \
+  --agent-config "${XDG_CONFIG_HOME:-$HOME/.config}/replaybook/models/opencode-go.json" \
   --agent-payload "$(command -v opencode)" \
   --agent-env-file "$opencode_env" \
   --agent-name opencode \

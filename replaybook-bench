@@ -1,0 +1,5 @@
+#!/usr/bin/env python3
+"""Repository entry point for managed benchmark sessions."""
+from integrations.host.benchmark_session import main
+
+raise SystemExit(main())

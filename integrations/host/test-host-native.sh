@@ -761,10 +761,11 @@ printf '%s\n' '{"schema_version":1,"model":"test","result":"ok","usage":null,"ou
 EOF
   chmod 0755 "$eval_root/fake-claux"
 
-  routes='{"luna":"responses","qwen":"anthropic","routed":"openrouter"}'
+  routes='{"*":"openrouter","default":"chat_completions","luna":"responses","qwen":"anthropic","routed":"openrouter"}'
   for specification in \
     'default chat_completions' \
     'routed openrouter' \
+    'unlisted openrouter' \
     'luna responses' \
     'qwen anthropic'; do
     read -r model route <<<"$specification"
