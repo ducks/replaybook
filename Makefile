@@ -97,6 +97,7 @@ harbor-check:
 	@python -m unittest integrations.harbor.test_scenario_sets
 
 host-check:
+	@python -m unittest integrations.host.test_benchmark_session
 	@python -m unittest integrations.host.test_benchmark_scores
 	@python -m unittest integrations.host.test_opencode_config
 	@bash integrations/host/test-host-native.sh

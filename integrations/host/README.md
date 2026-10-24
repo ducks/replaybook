@@ -1,5 +1,78 @@
 # Host-native evaluation
 
+## Managed benchmark sessions
+
+From the repository, use the session launcher for detached runs and progress
+without writing controller scripts:
+
+```sh
+./replaybook-bench start my-core-profile
+./replaybook-bench status
+./replaybook-bench watch
+./replaybook-bench list
+```
+
+`status` and `watch` also accept an existing matrix directory, so they can
+inspect runs started directly with `run_host_matrix.py`. The default target
+is the newest session or host matrix. `status --json` returns structured data.
+The watcher shows validated result counts, failure categories, completed-trial
+known spend, and active log activity; it does not read private reasoning or
+contact the model provider. An unmanaged matrix has no verified worker
+liveness, which is stated explicitly. Ctrl-C closes only the watcher.
+
+Profiles live in `$XDG_CONFIG_HOME/replaybook/sessions.json` (default
+`~/.config/replaybook/sessions.json`), outside the source tree. Define the
+matrix arguments once:
+
+```json
+{
+  "schema_version": 1,
+  "profiles": {
+    "my-core-profile": {
+      "args": [
+        "--benchmark", "/path/to/scenario-pack/benchmark-core.toml",
+        "--models", "provider/model-id",
+        "--agent-provider", "provider",
+        "--concurrency", "2",
+        "--base-port", "33000"
+      ],
+      "environment": {}
+    }
+  }
+}
+```
+
+Arguments are passed directly to the existing matrix runner without a shell;
+relative matrix paths are resolved from the repository. Credentials stay in
+the shell environment or the existing authentication store. The optional
+profile `environment` accepts only public transport settings:
+`REPLAYBOOK_CLAUX_AUTH_BINARY`, `REPLAYBOOK_CLAUX_PROVIDER_ROUTES`,
+`REPLAYBOOK_OPENAI_UPSTREAM`, and `REPLAYBOOK_OPENAI_PROXY_PATH`.
+
+Queue another profile after a session or matrix completes:
+
+```sh
+./replaybook-bench start next-profile --after jobs/host-matrix-example
+./replaybook-bench resume SESSION --retry-unavailable
+```
+
+A queued run waits for complete, evaluated results, including scored failures;
+an incomplete prerequisite does not launch the next run. Sessions keep their
+profile and route settings under `jobs/sessions/` and detach from the terminal.
+When a queued run starts, the matrix runner performs its normal preflight and
+freezes execution artifacts. Resume uses that existing matrix's snapshot,
+preserves concurrency, and skips valid results. Worker identity includes its
+process start time so a dead worker or reused PID is reported correctly.
+Custom adapters reuse their configured environment-file path on resume; pass
+`resume SESSION --agent-env-file PATH` to supply a matching replacement file.
+The matrix runner verifies its original credential-file hash before execution.
+This is a local host session manager, not a system service or reboot daemon.
+
+Use `--config PATH` and `--jobs-dir PATH` before the subcommand to override
+the configuration and artifact roots. `controller.log` in each session retains
+runner output and startup errors. Operator profiles supply all model IDs and
+provider choices; the session manager contains no model catalog.
+
 This integration evaluates an infrastructure agent on a real disposable Linux
 host. The agent does not receive a Docker socket and does not manage sibling
 containers.

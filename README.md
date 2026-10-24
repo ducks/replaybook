@@ -117,6 +117,13 @@ python integrations/host/run_host_matrix.py \
   --attempts 3
 ```
 
+For reusable, detached runs, define profiles in
+`~/.config/replaybook/sessions.json` and use `./replaybook-bench start PROFILE`,
+`./replaybook-bench status`, and `./replaybook-bench watch`. The watcher can
+also inspect an existing matrix directory. See
+[managed benchmark sessions](integrations/host/README.md#managed-benchmark-sessions)
+for configuration, queueing, and resume commands.
+
 Retained host-agent trials can be exported as harness-neutral `ATIF-v1.7`
 trajectories for behavioral analysis or training pipelines. The exporter
 preserves observable tool calls and verifier outcomes while excluding private
