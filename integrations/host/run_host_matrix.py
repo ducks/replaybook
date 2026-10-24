@@ -165,6 +165,12 @@ def sha256_tree(path: Path) -> str:
 
 
 def git_commit(path: Path) -> str | None:
+    provenance = path / ".replaybook-source.json"
+    if provenance.is_file():
+        commit = json.loads(provenance.read_text()).get("commit")
+        if commit is not None and (not isinstance(commit, str) or not re.fullmatch(r"[0-9a-f]{40}", commit)):
+            raise ValueError(f"invalid frozen source provenance: {provenance}")
+        return commit
     result = subprocess.run(
         ["git", "-C", str(path), "rev-parse", "HEAD"],
         check=False,
@@ -1781,8 +1787,10 @@ def main(argv: list[str] | None = None) -> int:
             else None,
             "provider": args.agent_provider,
         },
-        "claux_release": args.claux_release
-        or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", DEFAULT_CLAUX_RELEASE),
+        "claux_release": None if snapshot.claux_binary else (
+            args.claux_release
+            or environment.get("REPLAYBOOK_HOST_CLAUX_RELEASE", DEFAULT_CLAUX_RELEASE)
+        ),
     }
     benchmark["started_at"] = utc_now()
     (matrix_dir / "benchmark.json").write_text(json.dumps(benchmark, indent=2) + "\n")

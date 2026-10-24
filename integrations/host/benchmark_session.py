@@ -23,6 +23,9 @@ from integrations.host.run_host_matrix import (
     REPO_DIR, build_jobs, completed_worker, parse_args as matrix_args,
     summarize_runs, utc_now, write_json_atomic,
 )
+from integrations.host.benchmark_cohort import (
+    default_cohorts_dir, execution as cohort_execution, freeze_cohort, load_cohort,
+)
 
 PUBLIC_ENV = {
     "REPLAYBOOK_CLAUX_AUTH_BINARY", "REPLAYBOOK_CLAUX_PROVIDER_ROUTES",
@@ -71,7 +74,16 @@ def load_profile(path: Path, name: str) -> dict[str, Any]:
         for key, value in environment.items()
     ):
         raise ValueError("profile environment accepts only public transport settings; keep credentials in the shell or auth store")
-    return {"args": args, "environment": environment}
+    settings = {"args": args, "environment": environment}
+    if profile.get("cohort") is not None:
+        if not isinstance(profile["cohort"], str):
+            raise ValueError("profile cohort must be a directory path")
+        cohort = Path(profile["cohort"]).expanduser()
+        if not cohort.is_absolute():
+            cohort = path.expanduser().resolve().parent / cohort
+        settings["cohort"] = str(cohort.resolve())
+        cohort_execution(settings)
+    return settings
 
 
 def worker_identity(pid: int) -> str | None:
@@ -189,6 +201,7 @@ def session_report(target: Path) -> dict[str, Any]:
         **report, "managed": True, "session": str(target), "profile": spec["profile"],
         "worker_alive": alive, "after": spec.get("after"),
         "log": str(target / "controller.log"), "detail": state.get("detail"),
+        "cohort": spec.get("cohort_name"), "cohort_identity": spec.get("cohort_identity"),
     }
 
 
@@ -226,6 +239,7 @@ def start_session(profile: str, config: Path, jobs: Path, after: str | None = No
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", profile):
         raise ValueError("profile name must use letters, digits, dots, underscores, or hyphens")
     settings = load_profile(config, profile)
+    cohort = load_cohort(Path(settings["cohort"])) if settings.get("cohort") else None
     dependency = resolve_target(after, jobs) if after else None
     if dependency and not any((dependency / name).exists() for name in ("session.json", "benchmark.json")):
         raise ValueError("dependency is not a session or matrix")
@@ -235,6 +249,8 @@ def start_session(profile: str, config: Path, jobs: Path, after: str | None = No
     write_json_atomic(session / "session.json", {
         "schema_version": 1, "profile": profile, "created_at": utc_now(),
         "after": str(dependency) if dependency else None, **settings,
+        "cohort_identity": cohort["identity"] if cohort else None,
+        "cohort_name": cohort["name"] if cohort else None,
     })
     launch_worker(session)
     return session
@@ -266,7 +282,12 @@ def run_session(session: Path, resume: bool = False, retry_unavailable: bool = F
                     state("queued", detail=f"waiting for {dependency.name} ({report['state']})")
                     time.sleep(10)
             environment = dict(os.environ)
-            environment.update(spec["environment"])
+            runner = REPO_DIR / "integrations/host/run_host_matrix.py"
+            configured_args = spec["args"]
+            settings_environment = spec["environment"]
+            if spec.get("cohort"):
+                runner, configured_args, settings_environment = cohort_execution(spec, spec["cohort_identity"])
+            environment.update(settings_environment)
             if resume:
                 benchmark = read_object(session / "matrix/benchmark.json")
                 args = ["--resume", str(session / "matrix"), "--concurrency", str(benchmark["concurrency"])]
@@ -277,9 +298,9 @@ def run_session(session: Path, resume: bool = False, retry_unavailable: bool = F
                 if runtime_env is not None:
                     args.extend(["--agent-env-file", str(runtime_env)])
             else:
-                args = [*spec["args"], "--output-dir", str(session / "matrix")]
+                args = [*configured_args, "--output-dir", str(session / "matrix")]
             state("running")
-            result = subprocess.run([sys.executable, str(REPO_DIR / "integrations/host/run_host_matrix.py"), *args],
+            result = subprocess.run([sys.executable, str(runner), *args],
                                     cwd=REPO_DIR, env=environment)
             matrix = session / "matrix"
             report = matrix_report(matrix) if (matrix / "benchmark.json").exists() else {}
@@ -303,6 +324,8 @@ def render(report: dict[str, Any]) -> str:
                      f"({totals['cost_reported_trials']}/{report['completed']} trials report cost)")
     if report.get("detail"):
         lines.append(report["detail"])
+    if report.get("cohort"):
+        lines.append(f"Cohort: {report['cohort']} ({report['cohort_identity'][:12]})")
     for category, count in sorted(report.get("failure_categories", {}).items()):
         lines.append(f"  {category}: {count}")
     for active in report.get("active", []):
@@ -320,8 +343,12 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=config_path())
     parser.add_argument("--jobs-dir", type=Path, default=REPO_DIR / "jobs")
+    parser.add_argument("--cohorts-dir", type=Path, default=default_cohorts_dir())
     commands = parser.add_subparsers(dest="command", required=True,
-                                     metavar="{start,status,watch,list,resume}")
+                                     metavar="{freeze,start,status,watch,list,resume}")
+    freeze = commands.add_parser("freeze", help="freeze a benchmark harness from a development profile")
+    freeze.add_argument("profile")
+    freeze.add_argument("--name", required=True)
     start = commands.add_parser("start", help="start a configured profile in the background")
     start.add_argument("profile")
     start.add_argument("--after", help="wait for a session or matrix to complete")
@@ -346,6 +373,11 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.command == "_run":
             return run_session(args.session, args.resume, args.retry_unavailable, args.agent_env_file)
+        if args.command == "freeze":
+            cohort = freeze_cohort(args.name, load_profile(args.config, args.profile), args.cohorts_dir)
+            record = load_cohort(cohort)
+            print(f"Frozen cohort: {cohort}\nIdentity: {record['identity']}\nNo benchmark launched.")
+            return 0
         if args.command == "start":
             session = start_session(args.profile, args.config, jobs, args.after)
             print(f"Session: {session}\nWatch: ./replaybook-bench watch {session}")

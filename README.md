@@ -118,7 +118,8 @@ python integrations/host/run_host_matrix.py \
 ```
 
 For reusable, detached runs, define profiles in
-`~/.config/replaybook/sessions.json` and use `./replaybook-bench start PROFILE`,
+`~/.config/replaybook/sessions.json`. Freeze a stable comparison baseline with
+`./replaybook-bench freeze PROFILE --name BASELINE`, then use `./replaybook-bench start PROFILE`,
 `./replaybook-bench status`, and `./replaybook-bench watch`. The watcher can
 also inspect an existing matrix directory. See
 [managed benchmark sessions](integrations/host/README.md#managed-benchmark-sessions)

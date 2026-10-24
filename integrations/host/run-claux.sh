@@ -34,7 +34,7 @@ fi
 
 route="$(
   printf '%s' "$provider_routes" | jq -er --arg model "$model" '
-    (.[$model] // "chat_completions") as $route
+    (.[$model] // .["*"] // "chat_completions") as $route
     | select($route == "chat_completions" or $route == "openrouter" or $route == "responses" or $route == "anthropic")
     | $route
   '

@@ -73,6 +73,46 @@ the configuration and artifact roots. `controller.log` in each session retains
 runner output and startup errors. Operator profiles supply all model IDs and
 provider choices; the session manager contains no model catalog.
 
+### Frozen comparison baselines
+
+Freeze a development profile before comparing models:
+
+```sh
+./replaybook-bench freeze development-core --name core-20261024
+```
+
+The source profile must specify a benchmark manifest, provider, and an explicit
+Claux binary or custom adapter. Freezing copies the controller, scenario pack,
+manifest, and agent artifacts into
+`~/.local/share/replaybook/cohorts/core-20261024` (or `--cohorts-dir`). It launches
+no trials. Use a new name when deliberately promoting a newer build.
+
+Point comparison profiles at that directory:
+
+```json
+{
+  "cohort": "/absolute/path/to/cohorts/core-20261024",
+  "args": ["--models", "provider/model-id", "--reasoning-efforts", "high",
+           "--concurrency", "2", "--base-port", "33000"],
+  "environment": {}
+}
+```
+
+Every start, queued launch, and resume verifies the frozen files and settings.
+Development changes to Claux, Replaybook, or the source scenarios do not affect
+these runs. Models, reasoning effort, ports, concurrency, scenario selection,
+and credential-file paths remain per-run options. Scenario subsets still have
+their own result coverage; freezing does not relax publication compatibility.
+Keep reasoning configurations visible when reporting comparisons.
+
+For a shared OpenRouter transport, set the source profile's
+`REPLAYBOOK_CLAUX_PROVIDER_ROUTES` to `{"*":"openrouter"}`. Frozen cohorts reject
+model-keyed route maps so adding a model does not change the hashed harness.
+An explicit model route still takes precedence in development runs. Credentials
+and authentication helpers remain outside the frozen artifacts. Custom Claux
+binaries are recorded by hash rather than labeled as an official release.
+Existing results retain their original snapshots and compatibility boundaries.
+
 This integration evaluates an infrastructure agent on a real disposable Linux
 host. The agent does not receive a Docker socket and does not manage sibling
 containers.
