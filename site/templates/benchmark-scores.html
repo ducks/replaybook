@@ -21,6 +21,20 @@
 </select>
 <label for="score-harness">Agent harness</label>
 <select id="score-harness" class="score-selector"><option value="">All harnesses</option></select>
+<label for="score-sort">Sort by</label>
+<select id="score-sort" class="score-selector">
+  <option value="score">Score</option>
+  <option value="cost">Total reported cost</option>
+  <option value="costPerRepair">Cost per repair</option>
+  <option value="duration">Median duration</option>
+  <option value="name">Model name</option>
+</select>
+<label for="score-direction">Order</label>
+<select id="score-direction" class="score-selector">
+  <option value="desc">Highest first</option>
+  <option value="asc">Lowest first</option>
+</select>
+<p class="small muted">Sort within each provider. Incomplete or unknown costs sort last; partial costs are lower bounds.</p>
 {% endif %}
 {% for cohort in report.cohorts %}
 <section class="score-cohort" data-condition="{{ cohort.id }}" data-releases="{{ cohort.releases|join(',') }}">
@@ -31,7 +45,7 @@
   <div class="score-provider"><h3>Provider: {{ provider }}</h3>
   <div class="score-grid">
     {% for card in cards %}
-    <article class="model-card score-card" data-harness="{{ card.harness.id }}" data-harness-label="{{ card.harness.label }}">
+    <article class="model-card score-card" data-harness="{{ card.harness.id }}" data-harness-label="{{ card.harness.label }}" data-score="{{ card.score }}" data-cost="{{ card.cost if card.cost is not none else '' }}" data-cost-per-repair="{{ card.cost_per_repair if card.cost_per_repair is not none else '' }}" data-cost-complete="{{ 'true' if card.cost_complete else 'false' }}" data-duration="{{ card.duration if card.duration is not none else '' }}" data-name="{{ card.label }}">
       <div class="score-value">{{ "%.1f"|format(card.score) }} <span>/ 100</span></div>
       <h4>{{ card.label }}</h4>
       <p><strong>{{ provider }} · {{ card.harness.label }} {{ card.harness.version }}</strong></p>
@@ -39,6 +53,10 @@
       <p>{{ card.reasoning|capitalize }} reasoning</p>
       <p><strong>{{ card.passed }}/{{ card.trials }} repairs</strong> · {{ card.covered }}/{{ card.required }} scenarios</p>
       <p class="small muted">{{ card.unavailable }} unavailable · {{ "%.1f"|format(card.availability) }}% evaluated</p>
+      <p class="small">Cost: {% if card.cost is not none %}{% if not card.cost_complete %}≥{% endif %}${{ "%.4f"|format(card.cost) }}{% else %}Unknown{% endif %}
+      · per repair: {% if card.cost_per_repair is not none %}{% if not card.cost_complete %}≥{% endif %}${{ "%.4f"|format(card.cost_per_repair) }}{% else %}Unknown{% endif %}
+      · median: {% if card.duration is not none %}{{ "%.0f"|format(card.duration) }}s{% else %}Unknown{% endif %}</p>
+      {% if not card.cost_complete %}<p class="small muted">Cost reported for {{ card.cost_reported }}/{{ card.trials }} trials.</p>{% endif %}
       <details><summary>Exact model identity</summary><code>{{ card.model }}</code></details>
       <p><a href="{{ card.evidence_url }}">View attempts, timing and cost ↗</a></p>
     </article>
@@ -62,6 +80,11 @@ const selector = document.getElementById('score-cohort');
 if (selector) {
   const params = new URLSearchParams(location.search);
   const harness = document.getElementById('score-harness');
+  const sort = document.getElementById('score-sort');
+  const direction = document.getElementById('score-direction');
+  if ([...sort.options].some(option => option.value === params.get('sort'))) sort.value = params.get('sort');
+  if (['asc', 'desc'].includes(params.get('direction'))) direction.value = params.get('direction');
+  else if (sort.value !== 'score') direction.value = 'asc';
   const labels = new Map();
   document.querySelectorAll('.score-card').forEach(card => labels.set(card.dataset.harness, card.dataset.harnessLabel));
   [...labels].sort().forEach(([id, label]) => harness.add(new Option(label, id)));
@@ -69,11 +92,25 @@ if (selector) {
   const legacy = [...document.querySelectorAll('.score-cohort')].find(section => section.dataset.releases.split(',').includes(params.get('release')));
   const requested = params.get('conditions') || legacy?.dataset.condition;
   if ([...selector.options].some(option => option.value === requested)) selector.value = requested;
+  function compareCards(a, b) {
+    const key = sort.value;
+    const missing = card => card.dataset[key] === '' ||
+      (['cost', 'costPerRepair'].includes(key) && card.dataset.costComplete !== 'true');
+    if (missing(a) !== missing(b)) return missing(a) ? 1 : -1;
+    if (missing(a)) return a.dataset.name.localeCompare(b.dataset.name);
+    const difference = key === 'name' ? a.dataset.name.localeCompare(b.dataset.name) :
+      Number(a.dataset[key]) - Number(b.dataset[key]);
+    return (direction.value === 'desc' ? -difference : difference) ||
+      a.dataset.name.localeCompare(b.dataset.name);
+  }
   function showCohort() {
     document.querySelectorAll('.score-cohort').forEach(section => {
       section.hidden = section.dataset.condition !== selector.value;
       section.querySelectorAll('.score-card').forEach(card => {
         card.hidden = Boolean(harness.value && card.dataset.harness !== harness.value);
+      });
+      section.querySelectorAll('.score-grid').forEach(grid => {
+        [...grid.children].sort(compareCards).forEach(card => grid.append(card));
       });
       section.querySelectorAll('.score-provider').forEach(group => {
         group.hidden = ![...group.querySelectorAll('.score-card')].some(card => !card.hidden);
@@ -82,12 +119,17 @@ if (selector) {
   }
   function changed() {
     showCohort();
-    const query = new URLSearchParams({conditions: selector.value});
+    const query = new URLSearchParams({conditions: selector.value, sort: sort.value, direction: direction.value});
     if (harness.value) query.set('harness', harness.value);
     history.replaceState(null, '', '?' + query);
   }
   selector.addEventListener('change', changed);
   harness.addEventListener('change', changed);
+  sort.addEventListener('change', () => {
+    direction.value = sort.value === 'score' ? 'desc' : 'asc';
+    changed();
+  });
+  direction.addEventListener('change', changed);
   showCohort();
 }
 </script>

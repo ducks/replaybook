@@ -48,57 +48,27 @@
 </select>
 <label for="score-harness">Agent harness</label>
 <select id="score-harness" class="score-selector"><option value="">All harnesses</option></select>
+<label for="score-sort">Sort by</label>
+<select id="score-sort" class="score-selector">
+  <option value="score">Score</option>
+  <option value="cost">Total reported cost</option>
+  <option value="costPerRepair">Cost per repair</option>
+  <option value="duration">Median duration</option>
+  <option value="name">Model name</option>
+</select>
+<label for="score-direction">Order</label>
+<select id="score-direction" class="score-selector">
+  <option value="desc">Highest first</option>
+  <option value="asc">Lowest first</option>
+</select>
+<p class="small muted">Sort within each provider. Incomplete or unknown costs sort last; partial costs are lower bounds.</p>
 <section class="score-cohort" data-condition="a2ee1f0d3f7809941777fc151aa7fd4ddfc9aed5e8b2386dde2202231f29538d" data-releases="20261025.0.0,20261024.0.0">
   <h2>Core 2026.10.24.2</h2>
   <p>3 attempts per scenario · 900s deadline · matching controller and scenario fingerprints</p>
   <p class="small muted">Compare configurations, not model names alone. Each card retains its own release; attempts are never pooled across releases. Harness and provider differences can affect results.</p>
   <div class="score-provider"><h3>Provider: openrouter</h3>
   <div class="score-grid">
-    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
-      <div class="score-value">93.9 <span>/ 100</span></div>
-      <h4>Claude Opus 5.5</h4>
-      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
-      <p class="small muted">Release 20261025.0.0</p>
-      <p>High reasoning</p>
-      <p><strong>31/33 repairs</strong> · 11/11 scenarios</p>
-      <p class="small muted">0 unavailable · 100.0% evaluated</p>
-      <details><summary>Exact model identity</summary><code>anthropic/claude-opus-5.5</code></details>
-      <p><a href="benchmark-evidence.html?release=20261025.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=anthropic%2Fclaude-opus-5.5&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
-    </article>
-    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
-      <div class="score-value">93.9 <span>/ 100</span></div>
-      <h4>Gemini 4 Argon</h4>
-      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
-      <p class="small muted">Release 20261025.0.0</p>
-      <p>High reasoning</p>
-      <p><strong>31/33 repairs</strong> · 11/11 scenarios</p>
-      <p class="small muted">0 unavailable · 100.0% evaluated</p>
-      <details><summary>Exact model identity</summary><code>google/gemini-4-argon</code></details>
-      <p><a href="benchmark-evidence.html?release=20261025.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=google%2Fgemini-4-argon&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
-    </article>
-    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
-      <div class="score-value">90.9 <span>/ 100</span></div>
-      <h4>GPT-6.1 Sol</h4>
-      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
-      <p class="small muted">Release 20261025.0.0</p>
-      <p>High reasoning</p>
-      <p><strong>30/33 repairs</strong> · 11/11 scenarios</p>
-      <p class="small muted">0 unavailable · 100.0% evaluated</p>
-      <details><summary>Exact model identity</summary><code>openai/gpt-6.1-sol</code></details>
-      <p><a href="benchmark-evidence.html?release=20261025.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=openai%2Fgpt-6.1-sol&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
-    </article>
-    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
-      <div class="score-value">97.0 <span>/ 100</span></div>
-      <h4>DeepSeek V4.1 Flash 1017</h4>
-      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
-      <p class="small muted">Release 20261024.0.0</p>
-      <p>High reasoning</p>
-      <p><strong>32/33 repairs</strong> · 11/11 scenarios</p>
-      <p class="small muted">0 unavailable · 100.0% evaluated</p>
-      <details><summary>Exact model identity</summary><code>deepseek/deepseek-v4.1-flash-1017</code></details>
-      <p><a href="benchmark-evidence.html?release=20261024.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=deepseek%2Fdeepseek-v4.1-flash-1017&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
-    </article>
-    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux" data-score="100.0" data-cost="6.0769404" data-cost-per-repair="0.18414970909090908" data-cost-complete="true" data-duration="156" data-name="Kimi K3.1 Pro">
       <div class="score-value">100.0 <span>/ 100</span></div>
       <h4>Kimi K3.1 Pro</h4>
       <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
@@ -106,10 +76,23 @@
       <p>High reasoning</p>
       <p><strong>33/33 repairs</strong> · 11/11 scenarios</p>
       <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: $6.0769      · per repair: $0.1841      · median: 156s</p>
       <details><summary>Exact model identity</summary><code>moonshotai/kimi-k3.1-pro</code></details>
       <p><a href="benchmark-evidence.html?release=20261024.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=moonshotai%2Fkimi-k3.1-pro&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
     </article>
-    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux" data-score="96.96969696969697" data-cost="0.5361675283999999" data-cost-per-repair="0.016755235262499998" data-cost-complete="true" data-duration="74" data-name="DeepSeek V4.1 Flash 1017">
+      <div class="score-value">97.0 <span>/ 100</span></div>
+      <h4>DeepSeek V4.1 Flash 1017</h4>
+      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
+      <p class="small muted">Release 20261024.0.0</p>
+      <p>High reasoning</p>
+      <p><strong>32/33 repairs</strong> · 11/11 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: $0.5362      · per repair: $0.0168      · median: 74s</p>
+      <details><summary>Exact model identity</summary><code>deepseek/deepseek-v4.1-flash-1017</code></details>
+      <p><a href="benchmark-evidence.html?release=20261024.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=deepseek%2Fdeepseek-v4.1-flash-1017&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux" data-score="96.96969696969697" data-cost="11.935644" data-cost-per-repair="0.372988875" data-cost-complete="true" data-duration="132" data-name="Qwen3.8 Max Prime">
       <div class="score-value">97.0 <span>/ 100</span></div>
       <h4>Qwen3.8 Max Prime</h4>
       <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
@@ -117,8 +100,45 @@
       <p>High reasoning</p>
       <p><strong>32/33 repairs</strong> · 11/11 scenarios</p>
       <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: $11.9356      · per repair: $0.3730      · median: 132s</p>
       <details><summary>Exact model identity</summary><code>qwen/qwen3.8-max-prime</code></details>
       <p><a href="benchmark-evidence.html?release=20261024.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=qwen%2Fqwen3.8-max-prime&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux" data-score="93.93939393939394" data-cost="6.3197316" data-cost-per-repair="0.20386230967741936" data-cost-complete="true" data-duration="72" data-name="Claude Opus 5.5">
+      <div class="score-value">93.9 <span>/ 100</span></div>
+      <h4>Claude Opus 5.5</h4>
+      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
+      <p class="small muted">Release 20261025.0.0</p>
+      <p>High reasoning</p>
+      <p><strong>31/33 repairs</strong> · 11/11 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: $6.3197      · per repair: $0.2039      · median: 72s</p>
+      <details><summary>Exact model identity</summary><code>anthropic/claude-opus-5.5</code></details>
+      <p><a href="benchmark-evidence.html?release=20261025.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=anthropic%2Fclaude-opus-5.5&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux" data-score="93.93939393939394" data-cost="9.5315377" data-cost-per-repair="0.30746895806451613" data-cost-complete="false" data-duration="227" data-name="Gemini 4 Argon">
+      <div class="score-value">93.9 <span>/ 100</span></div>
+      <h4>Gemini 4 Argon</h4>
+      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
+      <p class="small muted">Release 20261025.0.0</p>
+      <p>High reasoning</p>
+      <p><strong>31/33 repairs</strong> · 11/11 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: ≥$9.5315      · per repair: ≥$0.3075      · median: 227s</p>
+<p class="small muted">Cost reported for 32/33 trials.</p>      <details><summary>Exact model identity</summary><code>google/gemini-4-argon</code></details>
+      <p><a href="benchmark-evidence.html?release=20261025.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=google%2Fgemini-4-argon&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux" data-score="90.9090909090909" data-cost="3.5375449999999997" data-cost-per-repair="0.11791816666666666" data-cost-complete="false" data-duration="81" data-name="GPT-6.1 Sol">
+      <div class="score-value">90.9 <span>/ 100</span></div>
+      <h4>GPT-6.1 Sol</h4>
+      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
+      <p class="small muted">Release 20261025.0.0</p>
+      <p>High reasoning</p>
+      <p><strong>30/33 repairs</strong> · 11/11 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: ≥$3.5375      · per repair: ≥$0.1179      · median: 81s</p>
+<p class="small muted">Cost reported for 32/33 trials.</p>      <details><summary>Exact model identity</summary><code>openai/gpt-6.1-sol</code></details>
+      <p><a href="benchmark-evidence.html?release=20261025.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=openai%2Fgpt-6.1-sol&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
     </article>
   </div>
   </div>
@@ -129,18 +149,7 @@
   <p class="small muted">Compare configurations, not model names alone. Each card retains its own release; attempts are never pooled across releases. Harness and provider differences can affect results.</p>
   <div class="score-provider"><h3>Provider: openrouter</h3>
   <div class="score-grid">
-    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
-      <div class="score-value">91.7 <span>/ 100</span></div>
-      <h4>Claude Haiku 5.5</h4>
-      <p><strong>openrouter · Claux v20261014.0.0</strong></p>
-      <p class="small muted">Release 20261020.0.0</p>
-      <p>Default reasoning</p>
-      <p><strong>22/24 repairs</strong> · 8/8 scenarios</p>
-      <p class="small muted">0 unavailable · 100.0% evaluated</p>
-      <details><summary>Exact model identity</summary><code>anthropic/claude-haiku-5.5</code></details>
-      <p><a href="benchmark-evidence.html?release=20261020.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=anthropic%2Fclaude-haiku-5.5&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
-    </article>
-    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux" data-score="95.83333333333334" data-cost="0.69443244" data-cost-per-repair="0.0301927147826087" data-cost-complete="true" data-duration="154.0" data-name="DeepSeek V4.1 Flash 1017">
       <div class="score-value">95.8 <span>/ 100</span></div>
       <h4>DeepSeek V4.1 Flash 1017</h4>
       <p><strong>openrouter · Claux v20261014.0.0</strong></p>
@@ -148,10 +157,23 @@
       <p>Default reasoning</p>
       <p><strong>23/24 repairs</strong> · 8/8 scenarios</p>
       <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: $0.6944      · per repair: $0.0302      · median: 154s</p>
       <details><summary>Exact model identity</summary><code>deepseek/deepseek-v4.1-flash-1017</code></details>
       <p><a href="benchmark-evidence.html?release=20261020.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=deepseek%2Fdeepseek-v4.1-flash-1017&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
     </article>
-    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux" data-score="91.66666666666666" data-cost="0.5034831" data-cost-per-repair="0.02288559545454545" data-cost-complete="true" data-duration="62.5" data-name="Claude Haiku 5.5">
+      <div class="score-value">91.7 <span>/ 100</span></div>
+      <h4>Claude Haiku 5.5</h4>
+      <p><strong>openrouter · Claux v20261014.0.0</strong></p>
+      <p class="small muted">Release 20261020.0.0</p>
+      <p>Default reasoning</p>
+      <p><strong>22/24 repairs</strong> · 8/8 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: $0.5035      · per repair: $0.0229      · median: 62s</p>
+      <details><summary>Exact model identity</summary><code>anthropic/claude-haiku-5.5</code></details>
+      <p><a href="benchmark-evidence.html?release=20261020.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=anthropic%2Fclaude-haiku-5.5&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux" data-score="87.5" data-cost="0.28129265000000003" data-cost-per-repair="0.013394888095238098" data-cost-complete="true" data-duration="58.0" data-name="Mercury 3">
       <div class="score-value">87.5 <span>/ 100</span></div>
       <h4>Mercury 3</h4>
       <p><strong>openrouter · Claux v20261014.0.0</strong></p>
@@ -159,6 +181,7 @@
       <p>Default reasoning</p>
       <p><strong>21/24 repairs</strong> · 8/8 scenarios</p>
       <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: $0.2813      · per repair: $0.0134      · median: 58s</p>
       <details><summary>Exact model identity</summary><code>inception/mercury-3</code></details>
       <p><a href="benchmark-evidence.html?release=20261020.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=inception%2Fmercury-3&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
     </article>
@@ -166,18 +189,7 @@
   </div>
   <div class="score-provider"><h3>Provider: opencode-go</h3>
   <div class="score-grid">
-    <article class="model-card score-card" data-harness="opencode" data-harness-label="OpenCode">
-      <div class="score-value">91.7 <span>/ 100</span></div>
-      <h4>Claude Haiku 5.5</h4>
-      <p><strong>opencode-go · OpenCode 1.19.0</strong></p>
-      <p class="small muted">Release 20261018.0.0</p>
-      <p>Default reasoning</p>
-      <p><strong>22/24 repairs</strong> · 8/8 scenarios</p>
-      <p class="small muted">0 unavailable · 100.0% evaluated</p>
-      <details><summary>Exact model identity</summary><code>opencode-go/claude-haiku-5-5</code></details>
-      <p><a href="benchmark-evidence.html?release=20261018.0.0&amp;provider=opencode-go&amp;harness=opencode&amp;model=opencode-go%2Fclaude-haiku-5-5&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
-    </article>
-    <article class="model-card score-card" data-harness="opencode" data-harness-label="OpenCode">
+    <article class="model-card score-card" data-harness="opencode" data-harness-label="OpenCode" data-score="95.83333333333334" data-cost="" data-cost-per-repair="" data-cost-complete="false" data-duration="111.5" data-name="GPT-6 Luna">
       <div class="score-value">95.8 <span>/ 100</span></div>
       <h4>GPT-6 Luna</h4>
       <p><strong>opencode-go · OpenCode 1.19.0</strong></p>
@@ -185,10 +197,23 @@
       <p>Default reasoning</p>
       <p><strong>23/24 repairs</strong> · 8/8 scenarios</p>
       <p class="small muted">0 unavailable · 100.0% evaluated</p>
-      <details><summary>Exact model identity</summary><code>opencode-go/gpt-6-luna</code></details>
+      <p class="small">Cost: Unknown      · per repair: Unknown      · median: 112s</p>
+<p class="small muted">Cost reported for 0/24 trials.</p>      <details><summary>Exact model identity</summary><code>opencode-go/gpt-6-luna</code></details>
       <p><a href="benchmark-evidence.html?release=20261018.0.0&amp;provider=opencode-go&amp;harness=opencode&amp;model=opencode-go%2Fgpt-6-luna&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
     </article>
-    <article class="model-card score-card" data-harness="opencode" data-harness-label="OpenCode">
+    <article class="model-card score-card" data-harness="opencode" data-harness-label="OpenCode" data-score="91.66666666666666" data-cost="" data-cost-per-repair="" data-cost-complete="false" data-duration="61.5" data-name="Claude Haiku 5.5">
+      <div class="score-value">91.7 <span>/ 100</span></div>
+      <h4>Claude Haiku 5.5</h4>
+      <p><strong>opencode-go · OpenCode 1.19.0</strong></p>
+      <p class="small muted">Release 20261018.0.0</p>
+      <p>Default reasoning</p>
+      <p><strong>22/24 repairs</strong> · 8/8 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <p class="small">Cost: Unknown      · per repair: Unknown      · median: 62s</p>
+<p class="small muted">Cost reported for 0/24 trials.</p>      <details><summary>Exact model identity</summary><code>opencode-go/claude-haiku-5-5</code></details>
+      <p><a href="benchmark-evidence.html?release=20261018.0.0&amp;provider=opencode-go&amp;harness=opencode&amp;model=opencode-go%2Fclaude-haiku-5-5&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="opencode" data-harness-label="OpenCode" data-score="83.33333333333334" data-cost="" data-cost-per-repair="" data-cost-complete="false" data-duration="606.5" data-name="MiMo V2.6 Pro">
       <div class="score-value">83.3 <span>/ 100</span></div>
       <h4>MiMo V2.6 Pro</h4>
       <p><strong>opencode-go · OpenCode 1.19.0</strong></p>
@@ -196,7 +221,8 @@
       <p>Default reasoning</p>
       <p><strong>20/24 repairs</strong> · 8/8 scenarios</p>
       <p class="small muted">0 unavailable · 100.0% evaluated</p>
-      <details><summary>Exact model identity</summary><code>opencode-go/mimo-v2.6-pro</code></details>
+      <p class="small">Cost: Unknown      · per repair: Unknown      · median: 606s</p>
+<p class="small muted">Cost reported for 0/24 trials.</p>      <details><summary>Exact model identity</summary><code>opencode-go/mimo-v2.6-pro</code></details>
       <p><a href="benchmark-evidence.html?release=20261018.0.0&amp;provider=opencode-go&amp;harness=opencode&amp;model=opencode-go%2Fmimo-v2.6-pro&amp;reasoning=Unspecified">View attempts, timing and cost ↗</a></p>
     </article>
   </div>
@@ -211,6 +237,11 @@ const selector = document.getElementById('score-cohort');
 if (selector) {
   const params = new URLSearchParams(location.search);
   const harness = document.getElementById('score-harness');
+  const sort = document.getElementById('score-sort');
+  const direction = document.getElementById('score-direction');
+  if ([...sort.options].some(option => option.value === params.get('sort'))) sort.value = params.get('sort');
+  if (['asc', 'desc'].includes(params.get('direction'))) direction.value = params.get('direction');
+  else if (sort.value !== 'score') direction.value = 'asc';
   const labels = new Map();
   document.querySelectorAll('.score-card').forEach(card => labels.set(card.dataset.harness, card.dataset.harnessLabel));
   [...labels].sort().forEach(([id, label]) => harness.add(new Option(label, id)));
@@ -218,11 +249,25 @@ if (selector) {
   const legacy = [...document.querySelectorAll('.score-cohort')].find(section => section.dataset.releases.split(',').includes(params.get('release')));
   const requested = params.get('conditions') || legacy?.dataset.condition;
   if ([...selector.options].some(option => option.value === requested)) selector.value = requested;
+  function compareCards(a, b) {
+    const key = sort.value;
+    const missing = card => card.dataset[key] === '' ||
+      (['cost', 'costPerRepair'].includes(key) && card.dataset.costComplete !== 'true');
+    if (missing(a) !== missing(b)) return missing(a) ? 1 : -1;
+    if (missing(a)) return a.dataset.name.localeCompare(b.dataset.name);
+    const difference = key === 'name' ? a.dataset.name.localeCompare(b.dataset.name) :
+      Number(a.dataset[key]) - Number(b.dataset[key]);
+    return (direction.value === 'desc' ? -difference : difference) ||
+      a.dataset.name.localeCompare(b.dataset.name);
+  }
   function showCohort() {
     document.querySelectorAll('.score-cohort').forEach(section => {
       section.hidden = section.dataset.condition !== selector.value;
       section.querySelectorAll('.score-card').forEach(card => {
         card.hidden = Boolean(harness.value && card.dataset.harness !== harness.value);
+      });
+      section.querySelectorAll('.score-grid').forEach(grid => {
+        [...grid.children].sort(compareCards).forEach(card => grid.append(card));
       });
       section.querySelectorAll('.score-provider').forEach(group => {
         group.hidden = ![...group.querySelectorAll('.score-card')].some(card => !card.hidden);
@@ -231,12 +276,17 @@ if (selector) {
   }
   function changed() {
     showCohort();
-    const query = new URLSearchParams({conditions: selector.value});
+    const query = new URLSearchParams({conditions: selector.value, sort: sort.value, direction: direction.value});
     if (harness.value) query.set('harness', harness.value);
     history.replaceState(null, '', '?' + query);
   }
   selector.addEventListener('change', changed);
   harness.addEventListener('change', changed);
+  sort.addEventListener('change', () => {
+    direction.value = sort.value === 'score' ? 'desc' : 'asc';
+    changed();
+  });
+  direction.addEventListener('change', changed);
   showCohort();
 }
 </script>

@@ -102,7 +102,12 @@ class ScoreTests(unittest.TestCase):
         self.assertTrue(report["cohorts"])
         for cohort in report["cohorts"]:
             for provider, cards in cohort["groups"].items():
+                self.assertEqual([card["score"] for card in cards],
+                                 sorted((card["score"] for card in cards), reverse=True))
                 for card in cards:
+                    self.assertEqual(card["cost_complete"], card["cost_reported"] == card["trials"])
+                    if card["cost_per_repair"] is not None:
+                        self.assertAlmostEqual(card["cost_per_repair"], card["cost"] / card["passed"])
                     self.assertEqual(card["status"], "complete")
                     self.assertEqual(card["covered"], card["required"])
                     params = parse_qs(urlparse(card["evidence_url"]).query)
@@ -171,7 +176,7 @@ class ScoreTests(unittest.TestCase):
         grouped = group_conditions(cohorts)
         self.assertEqual(len(grouped), 1)
         self.assertEqual(grouped[0]["releases"], ["a", "b", "c"])
-        self.assertEqual([c["score"] for c in grouped[0]["groups"]["openrouter"]], [50, 75])
+        self.assertEqual([c["score"] for c in grouped[0]["groups"]["openrouter"]], [75, 50])
 
 
 if __name__ == "__main__":
