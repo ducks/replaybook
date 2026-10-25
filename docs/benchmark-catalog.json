@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261025.0.0",
+  "current_version": "20261025.0.1",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -5137,6 +5137,99 @@
       "provider": "OpenRouter",
       "reasoning_effort": "high",
       "release": "20261025.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.139881994375,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 9,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 2,
+        "new_receipts_not_writable": 1,
+        "release_not_converged": 3,
+        "resource_growth_unbounded": 1,
+        "rollout_incomplete": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 1289855,
+      "known_cost_usd": 3.357167865,
+      "median_duration_seconds": 88,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "output_tokens": 206688,
+      "pass_rate": 0.7272727272727273,
+      "pass_rate_95_high": 0.8493255911457935,
+      "pass_rate_95_low": 0.5578244099712737,
+      "passed": 24,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07317674333333332,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 3,
+      "failure_categories": {
+        "database_pool_exhausted": 1,
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 622482,
+      "known_cost_usd": 2.1953023,
+      "median_duration_seconds": 84,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "output_tokens": 360945,
+      "pass_rate": 0.9090909090909091,
+      "pass_rate_95_high": 0.9685960584754184,
+      "pass_rate_95_low": 0.7642739435353026,
+      "passed": 30,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.013530394559064516,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 2,
+      "failure_categories": {
+        "current_sessions_unavailable": 1,
+        "host_reboot_failed": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 728678,
+      "known_cost_usd": 0.419442231331,
+      "median_duration_seconds": 72,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "output_tokens": 288157,
+      "pass_rate": 0.9393939393939394,
+      "pass_rate_95_high": 0.9832191169128082,
+      "pass_rate_95_low": 0.8039375519135219,
+      "passed": 31,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
       "tier": "core",
@@ -49833,6 +49926,1686 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.027843200000000002,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 28527,
+      "known_cost_usd": 0.08352960000000001,
+      "median_duration_seconds": 31,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 31,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 21,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 37,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5289,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.04207336666666666,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 48514,
+      "known_cost_usd": 0.12622009999999997,
+      "median_duration_seconds": 52,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 52,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 59,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 38,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 19231,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.004798530833333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 36948,
+      "known_cost_usd": 0.0143955925,
+      "median_duration_seconds": 27,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 29,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 27,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 24,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 8461,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.04000726666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 56134,
+      "known_cost_usd": 0.12002180000000001,
+      "median_duration_seconds": 51,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 51,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 39,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 81,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 9882,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.059114966666666664,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 55710,
+      "known_cost_usd": 0.1773449,
+      "median_duration_seconds": 80,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 50,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 137,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 80,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 28839,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.009185106233333332,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 75375,
+      "known_cost_usd": 0.027555318699999998,
+      "median_duration_seconds": 37,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 32,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 52,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 37,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 12734,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.13233688666666668,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 111431,
+      "known_cost_usd": 0.39701066,
+      "median_duration_seconds": 121,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 131,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 121,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 92,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 23723,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07482393333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 51565,
+      "known_cost_usd": 0.2244718,
+      "median_duration_seconds": 119,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 197,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 95,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 119,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 37828,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0280293725,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 102550,
+      "known_cost_usd": 0.0840881175,
+      "median_duration_seconds": 124,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 103,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 124,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 206,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 45780,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.044618733333333334,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 49710,
+      "known_cost_usd": 0.1338562,
+      "median_duration_seconds": 91,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 100,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 85,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 91,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 13242,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.08333515,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "database_pool_exhausted": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 47354,
+      "known_cost_usd": 0.1666703,
+      "median_duration_seconds": 88,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 68,
+          "failure_category": "database_pool_exhausted",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 88,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 94,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 26609,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.006865528928999999,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 54748,
+      "known_cost_usd": 0.013731057857999999,
+      "median_duration_seconds": 107,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 151,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 107,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 102,
+          "failure_category": "host_reboot_failed",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 23040,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.08369896666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 113759,
+      "known_cost_usd": 0.2510969,
+      "median_duration_seconds": 93,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 109,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 56,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 93,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 14685,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07157943333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 64789,
+      "known_cost_usd": 0.2147383,
+      "median_duration_seconds": 132,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 132,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 172,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 70,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 31423,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.013062626666666665,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 69300,
+      "known_cost_usd": 0.039187879999999994,
+      "median_duration_seconds": 102,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 102,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 105,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 78,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 14522,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0940427025,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "resource_growth_unbounded": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 108643,
+      "known_cost_usd": 0.188085405,
+      "median_duration_seconds": 81,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 70,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 81,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 88,
+          "failure_category": "resource_growth_unbounded",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 12900,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.057208133333333334,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 46744,
+      "known_cost_usd": 0.1716244,
+      "median_duration_seconds": 67,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 103,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 56,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 67,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 28012,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.00646774125,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 35187,
+      "known_cost_usd": 0.01940322375,
+      "median_duration_seconds": 43,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 41,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 55,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 43,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 12492,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.6961560999999999,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 2
+      },
+      "input_mode": "text",
+      "input_tokens": 223899,
+      "known_cost_usd": 0.6961560999999999,
+      "median_duration_seconds": 150,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 158,
+          "failure_category": "accepted_uploads_not_recovered",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 104,
+          "failure_category": "accepted_uploads_not_recovered",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 150,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 40747,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.10566516666666669,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 73658,
+      "known_cost_usd": 0.31699550000000004,
+      "median_duration_seconds": 158,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 158,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 163,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 69,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 53837,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0139043387,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 91993,
+      "known_cost_usd": 0.0417130161,
+      "median_duration_seconds": 56,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 56,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 47,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 72,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 27939,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0843831,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "rollout_incomplete": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 57628,
+      "known_cost_usd": 0.1687662,
+      "median_duration_seconds": 54,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 58,
+          "failure_category": "rollout_incomplete",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 54,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 53,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 19187,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07567436666666666,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 65369,
+      "known_cost_usd": 0.22702309999999998,
+      "median_duration_seconds": 71,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 84,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 67,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 71,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 35399,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.010158268,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "current_sessions_unavailable": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 29820,
+      "known_cost_usd": 0.020316536,
+      "median_duration_seconds": 31,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 24,
+          "failure_category": "current_sessions_unavailable",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 32,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 31,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 12666,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "release_not_converged": 3
+      },
+      "input_mode": "text",
+      "input_tokens": 178531,
+      "known_cost_usd": 0.4770457,
+      "median_duration_seconds": 230,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 230,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 67,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 346,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 19823,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.5614970317550454,
+      "pass_rate_95_low": 5.551115123125783e-17,
+      "passed": 0,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.10722065,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 66283,
+      "known_cost_usd": 0.2144413,
+      "median_duration_seconds": 87,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 61,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 87,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 110,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 35485,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.008630692241,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 98188,
+      "known_cost_usd": 0.025892076723,
+      "median_duration_seconds": 161,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 114,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 189,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 161,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 33455,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1703552,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "new_receipts_not_writable": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 120292,
+      "known_cost_usd": 0.3407104,
+      "median_duration_seconds": 87,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 82,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 87,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 166,
+          "failure_category": "new_receipts_not_writable",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 19746,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0587896,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 56256,
+      "known_cost_usd": 0.1763688,
+      "median_duration_seconds": 74,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 74,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 98,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 70,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 30360,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.03066363793333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 63741,
+      "known_cost_usd": 0.09199091379999999,
+      "median_duration_seconds": 129,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 72,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 129,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 354,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 70096,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.25044445000000004,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 241301,
+      "known_cost_usd": 0.5008889000000001,
+      "median_duration_seconds": 195,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model_label": "Nemotron 3 Ultra 550B A55B",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 195,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 161,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 271,
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 27464,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0897019,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 46240,
+      "known_cost_usd": 0.1794038,
+      "median_duration_seconds": 86,
+      "model": "stepfun/step-5-preview",
+      "model_label": "Step 5 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 86,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 116,
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 60,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 33922,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0137228328,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 70828,
+      "known_cost_usd": 0.041168498399999996,
+      "median_duration_seconds": 77,
+      "model": "z-ai/glm-5.3-flash",
+      "model_label": "GLM 5.3 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 93,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 60,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 77,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 26972,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -54653,7 +56426,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 92 durable repairs in 99 evaluated trials. Reported API spend is at least $19.3888; two timeout trials lack cost reporting.",
       "harness_versions": [
         23
@@ -54662,7 +56435,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -54811,6 +56584,172 @@
         "usage_reported_trials": 97
       },
       "version": "20261025.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "custom build b959ef677ff7"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 85 durable repairs in 99 evaluated trials, with $5.9719 in provider-reported API cost.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "23c767c4a4539c9367ac40d17d6231aa858ba3e6d50c5e8844d655ddb27e646f"
+        }
+      ],
+      "tier": "core",
+      "title": "Frozen Core: GLM Flash, Step 5 Preview, and Nemotron Ultra",
+      "totals": {
+        "cache_creation_reported_trials": 99,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 99,
+        "cache_read_tokens": 40835259,
+        "cost_reported_trials": 99,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 99,
+        "failed": 14,
+        "failure_categories": {
+          "accepted_uploads_not_recovered": 2,
+          "current_sessions_unavailable": 1,
+          "database_pool_exhausted": 1,
+          "host_reboot_failed": 1,
+          "new_receipts_not_writable": 1,
+          "release_not_converged": 4,
+          "resource_growth_unbounded": 1,
+          "rollout_incomplete": 1
+        },
+        "input_tokens": 2641015,
+        "known_cost_usd": 5.971912396331,
+        "median_duration_seconds": 84,
+        "median_first_non_read_only_tool_seconds": 1.509,
+        "median_model_duration_seconds": 57.255,
+        "median_model_rounds": 20,
+        "median_post_first_non_read_only_seconds": 81.05199999999999,
+        "median_tool_calls": 26,
+        "median_tool_duration_seconds": 14.151,
+        "output_tokens": 855790,
+        "pass_rate": 0.8585858585858586,
+        "passed": 85,
+        "recording_reported_trials": 99,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 99,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 99
+      },
+      "version": "20261025.0.1"
     }
   ],
   "schema_version": 1
