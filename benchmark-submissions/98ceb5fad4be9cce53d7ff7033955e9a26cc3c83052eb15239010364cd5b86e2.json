@@ -1,0 +1,5141 @@
+{
+  "created_at": "2026-10-25T16:41:23.810135Z",
+  "evidence": {
+    "compatibility": {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "suite": "replaybook-host-matrix-v1"
+    },
+    "sources": [
+      {
+        "agent": {
+          "adapter": "builtin:claux",
+          "name": "claux",
+          "payload": null,
+          "provider": "openrouter"
+        },
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "benchmark_manifest": {
+          "id": "replaybook-infra-core",
+          "schema_version": 1,
+          "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "status": "stable",
+          "tier": "core",
+          "version": "2026.10.24.2"
+        },
+        "benchmark_tier": "core",
+        "claux_release": null,
+        "concurrency": 2,
+        "execution_snapshot": {
+          "agent_adapter_sha256": null,
+          "agent_config_sha256": null,
+          "agent_env_sha256": null,
+          "agent_payload_sha256": null,
+          "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+          "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+          "scenario_packs": [
+            {
+              "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+              "id": "ducks/replaybook-infra",
+              "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+              "version": "20261024.1.1"
+            }
+          ],
+          "schema_version": 1,
+          "selected_scenarios": [
+            {
+              "id": "001-nginx-502-host",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+              "version": 1
+            },
+            {
+              "id": "013-sidekiq-wrong-redis",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+              "version": 3
+            },
+            {
+              "id": "015-sidekiq-poison-pill",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+              "version": 1
+            },
+            {
+              "id": "016-rails-pool-exhaustion",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+              "version": 1
+            },
+            {
+              "id": "017-partial-rails-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+              "version": 1
+            },
+            {
+              "id": "019-rust-fd-leak",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+              "version": 1
+            },
+            {
+              "id": "021-discourse-shared-uploads",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+              "version": 1
+            },
+            {
+              "id": "023-auth-secret-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+              "version": 1
+            },
+            {
+              "id": "024-discourse-interrupted-deploy",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+              "version": 1
+            },
+            {
+              "id": "028-nix-store-disk-pressure",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+              "version": 1
+            },
+            {
+              "id": "033-tls-trust-rotation",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+              "version": 2
+            }
+          ]
+        },
+        "finished_at": "2026-10-25T06:45:50.980560Z",
+        "harness_version": 23,
+        "harness_versions": [
+          23
+        ],
+        "models": [
+          "anthropic/claude-opus-5.5"
+        ],
+        "reasoning_efforts": [
+          "high"
+        ],
+        "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+        "runs": [
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 41,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:04:59Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.075,
+              "model_duration_seconds": 36.353,
+              "model_rounds": 8,
+              "post_first_non_read_only_seconds": 36.753,
+              "tool_calls": 7,
+              "tool_duration_seconds": 3.424,
+              "total_duration_seconds": 39.828
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:04:05Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 17768,
+              "cache_read_tokens": 92071,
+              "cost_source": "provider",
+              "cost_usd": 0.15810620000000003,
+              "input_tokens": 18,
+              "output_tokens": 2539,
+              "rounds": 8,
+              "tool_calls": 7
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 40,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:04:58Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.306,
+              "model_duration_seconds": 34.489,
+              "model_rounds": 7,
+              "post_first_non_read_only_seconds": 35.879000000000005,
+              "tool_calls": 7,
+              "tool_duration_seconds": 4.65,
+              "total_duration_seconds": 39.185
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:04:05Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 16913,
+              "cache_read_tokens": 67372,
+              "cost_source": "provider",
+              "cost_usd": 0.1424434,
+              "input_tokens": 16,
+              "output_tokens": 2217,
+              "rounds": 7,
+              "tool_calls": 7
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 35,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:07:10Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.802,
+              "model_duration_seconds": 28.424,
+              "model_rounds": 6,
+              "post_first_non_read_only_seconds": 30.22,
+              "tool_calls": 7,
+              "tool_duration_seconds": 4.563,
+              "total_duration_seconds": 33.022
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:06:23Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 5941,
+              "cache_read_tokens": 61456,
+              "cost_source": "provider",
+              "cost_usd": 0.0808922,
+              "input_tokens": 14,
+              "output_tokens": 1942,
+              "rounds": 6,
+              "tool_calls": 7
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 74,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:08:09Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.239,
+              "model_duration_seconds": 50.087,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 68.04299999999999,
+              "tool_calls": 12,
+              "tool_duration_seconds": 21.138,
+              "total_duration_seconds": 71.282
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T05:06:18Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 17787,
+              "cache_read_tokens": 147678,
+              "cost_source": "provider",
+              "cost_usd": 0.1822146,
+              "input_tokens": 26,
+              "output_tokens": 3182,
+              "rounds": 12,
+              "tool_calls": 12
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 88,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:10:02Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.893,
+              "model_duration_seconds": 63.839,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 84.363,
+              "tool_calls": 13,
+              "tool_duration_seconds": 20.288,
+              "total_duration_seconds": 87.256
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T05:08:16Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 14525,
+              "cache_read_tokens": 192420,
+              "cost_source": "provider",
+              "cost_usd": 0.18974899999999997,
+              "input_tokens": 30,
+              "output_tokens": 3926,
+              "rounds": 14,
+              "tool_calls": 13
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 68,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:10:43Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.303,
+              "model_duration_seconds": 51.906,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 63.162000000000006,
+              "tool_calls": 9,
+              "tool_duration_seconds": 14.507,
+              "total_duration_seconds": 66.465
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T05:09:10Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 11056,
+              "cache_read_tokens": 129371,
+              "cost_source": "provider",
+              "cost_usd": 0.1448022,
+              "input_tokens": 22,
+              "output_tokens": 3178,
+              "rounds": 10,
+              "tool_calls": 9
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 127,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:13:20Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.85,
+              "model_duration_seconds": 72.978,
+              "model_rounds": 11,
+              "post_first_non_read_only_seconds": 119.27900000000001,
+              "tool_calls": 11,
+              "tool_duration_seconds": 39.586,
+              "total_duration_seconds": 124.129
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:10:55Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 23788,
+              "cache_read_tokens": 150690,
+              "cost_source": "provider",
+              "cost_usd": 0.263474,
+              "input_tokens": 24,
+              "output_tokens": 5715,
+              "rounds": 11,
+              "tool_calls": 11
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 111,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:14:19Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.289,
+              "model_duration_seconds": 76.969,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 104.401,
+              "tool_calls": 11,
+              "tool_duration_seconds": 31.643,
+              "total_duration_seconds": 108.69
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:11:54Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 17377,
+              "cache_read_tokens": 162487,
+              "cost_source": "provider",
+              "cost_usd": 0.22316640000000004,
+              "input_tokens": 26,
+              "output_tokens": 5184,
+              "rounds": 12,
+              "tool_calls": 11
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 124,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:16:40Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.113,
+              "model_duration_seconds": 78.848,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 118.133,
+              "tool_calls": 12,
+              "tool_duration_seconds": 32.686,
+              "total_duration_seconds": 122.246
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:14:20Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 19135,
+              "cache_read_tokens": 176335,
+              "cost_source": "provider",
+              "cost_usd": 0.24554600000000001,
+              "input_tokens": 26,
+              "output_tokens": 5725,
+              "rounds": 12,
+              "tool_calls": 12
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 55,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:16:35Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.095,
+              "model_duration_seconds": 46.524,
+              "model_rounds": 11,
+              "post_first_non_read_only_seconds": 50.201,
+              "tool_calls": 10,
+              "tool_duration_seconds": 6.706,
+              "total_duration_seconds": 53.296
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:15:11Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 13808,
+              "cache_read_tokens": 93656,
+              "cost_source": "provider",
+              "cost_usd": 0.1411472,
+              "input_tokens": 24,
+              "output_tokens": 2664,
+              "rounds": 11,
+              "tool_calls": 10
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 67,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:19:26Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.291,
+              "model_duration_seconds": 55.808,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 62.18600000000001,
+              "tool_calls": 11,
+              "tool_duration_seconds": 9.615,
+              "total_duration_seconds": 65.477
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:17:51Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 12017,
+              "cache_read_tokens": 142306,
+              "cost_source": "provider",
+              "cost_usd": 0.1529502,
+              "input_tokens": 26,
+              "output_tokens": 3215,
+              "rounds": 12,
+              "tool_calls": 11
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 72,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:19:31Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.012,
+              "model_duration_seconds": 60.531,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 67.07,
+              "tool_calls": 11,
+              "tool_duration_seconds": 9.503,
+              "total_duration_seconds": 70.082
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:17:50Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 10224,
+              "cache_read_tokens": 117569,
+              "cost_source": "provider",
+              "cost_usd": 0.1371778,
+              "input_tokens": 26,
+              "output_tokens": 3122,
+              "rounds": 12,
+              "tool_calls": 11
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 98,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:22:37Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.623,
+              "model_duration_seconds": 62.15,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 92.675,
+              "tool_calls": 11,
+              "tool_duration_seconds": 34.092,
+              "total_duration_seconds": 96.298
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:20:40Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 21481,
+              "cache_read_tokens": 168724,
+              "cost_source": "provider",
+              "cost_usd": 0.2178738,
+              "input_tokens": 26,
+              "output_tokens": 3831,
+              "rounds": 12,
+              "tool_calls": 11
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 122,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:23:06Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.092,
+              "model_duration_seconds": 47.192,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 117.133,
+              "tool_calls": 9,
+              "tool_duration_seconds": 72.979,
+              "total_duration_seconds": 120.225
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:20:42Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 18364,
+              "cache_read_tokens": 150435,
+              "cost_source": "provider",
+              "cost_usd": 0.186015,
+              "input_tokens": 22,
+              "output_tokens": 3201,
+              "rounds": 10,
+              "tool_calls": 9
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 99,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:25:27Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.362,
+              "model_duration_seconds": 63.93,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 94.28,
+              "tool_calls": 12,
+              "tool_duration_seconds": 33.167,
+              "total_duration_seconds": 97.642
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:23:27Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 21834,
+              "cache_read_tokens": 205915,
+              "cost_source": "provider",
+              "cost_usd": 0.22579700000000003,
+              "input_tokens": 26,
+              "output_tokens": 3767,
+              "rounds": 12,
+              "tool_calls": 12
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 69,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:27:11Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.248,
+              "model_duration_seconds": 59.375,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 62.73500000000001,
+              "tool_calls": 13,
+              "tool_duration_seconds": 6.526,
+              "total_duration_seconds": 65.983
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:25:29Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 13353,
+              "cache_read_tokens": 127152,
+              "cost_source": "provider",
+              "cost_usd": 0.16417539999999997,
+              "input_tokens": 30,
+              "output_tokens": 3593,
+              "rounds": 14,
+              "tool_calls": 13
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 67,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:29:53Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.816,
+              "model_duration_seconds": 58.987,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 61.113,
+              "tool_calls": 12,
+              "tool_duration_seconds": 5.878,
+              "total_duration_seconds": 64.929
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:28:11Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 10191,
+              "cache_read_tokens": 126570,
+              "cost_source": "provider",
+              "cost_usd": 0.14119299999999999,
+              "input_tokens": 26,
+              "output_tokens": 3241,
+              "rounds": 12,
+              "tool_calls": 12
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 65,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:31:39Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.843,
+              "model_duration_seconds": 50.254,
+              "model_rounds": 11,
+              "post_first_non_read_only_seconds": 59.596999999999994,
+              "tool_calls": 13,
+              "tool_duration_seconds": 12.551,
+              "total_duration_seconds": 63.44
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:30:18Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 10285,
+              "cache_read_tokens": 110333,
+              "cost_source": "provider",
+              "cost_usd": 0.1450276,
+              "input_tokens": 24,
+              "output_tokens": 3572,
+              "rounds": 11,
+              "tool_calls": 13
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 89,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:32:54Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.663,
+              "model_duration_seconds": 76.098,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 82.71000000000001,
+              "tool_calls": 9,
+              "tool_duration_seconds": 10.097,
+              "total_duration_seconds": 86.373
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:31:11Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 25156,
+              "cache_read_tokens": 147706,
+              "cost_source": "provider",
+              "cost_usd": 0.26344920000000005,
+              "input_tokens": 22,
+              "output_tokens": 5402,
+              "rounds": 10,
+              "tool_calls": 9
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 86,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:34:39Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.258,
+              "model_duration_seconds": 72.556,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 79.819,
+              "tool_calls": 9,
+              "tool_duration_seconds": 10.457,
+              "total_duration_seconds": 83.077
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:32:42Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 15854,
+              "cache_read_tokens": 130890,
+              "cost_source": "provider",
+              "cost_usd": 0.207756,
+              "input_tokens": 22,
+              "output_tokens": 5111,
+              "rounds": 10,
+              "tool_calls": 9
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 64,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:35:56Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.545,
+              "model_duration_seconds": 54.453,
+              "model_rounds": 9,
+              "post_first_non_read_only_seconds": 58.494,
+              "tool_calls": 8,
+              "tool_duration_seconds": 7.534,
+              "total_duration_seconds": 62.039
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:34:34Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 21859,
+              "cache_read_tokens": 117552,
+              "cost_source": "provider",
+              "cost_usd": 0.21014540000000004,
+              "input_tokens": 20,
+              "output_tokens": 3863,
+              "rounds": 9,
+              "tool_calls": 8
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 88,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:37:16Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.584,
+              "model_duration_seconds": 70.83,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 82.65599999999999,
+              "tool_calls": 11,
+              "tool_duration_seconds": 6.166,
+              "total_duration_seconds": 86.24
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:35:34Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 18904,
+              "cache_read_tokens": 191891,
+              "cost_source": "provider",
+              "cost_usd": 0.2314822,
+              "input_tokens": 26,
+              "output_tokens": 4924,
+              "rounds": 12,
+              "tool_calls": 11
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 67,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:38:23Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.463,
+              "model_duration_seconds": 60.247,
+              "model_rounds": 9,
+              "post_first_non_read_only_seconds": 62.202999999999996,
+              "tool_calls": 8,
+              "tool_duration_seconds": 5.365,
+              "total_duration_seconds": 65.666
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:37:03Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 16569,
+              "cache_read_tokens": 122052,
+              "cost_source": "provider",
+              "cost_usd": 0.20043539999999999,
+              "input_tokens": 20,
+              "output_tokens": 4655,
+              "rounds": 9,
+              "tool_calls": 8
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 61,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:39:34Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.122,
+              "model_duration_seconds": 48.386,
+              "model_rounds": 9,
+              "post_first_non_read_only_seconds": 56.222,
+              "tool_calls": 8,
+              "tool_duration_seconds": 10.481,
+              "total_duration_seconds": 59.344
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:38:16Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 21437,
+              "cache_read_tokens": 119297,
+              "cost_source": "provider",
+              "cost_usd": 0.20086440000000003,
+              "input_tokens": 20,
+              "output_tokens": 3487,
+              "rounds": 9,
+              "tool_calls": 8
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 84,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:41:02Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.835,
+              "model_duration_seconds": 60.74,
+              "model_rounds": 11,
+              "post_first_non_read_only_seconds": 78.33200000000001,
+              "tool_calls": 10,
+              "tool_duration_seconds": 21.362,
+              "total_duration_seconds": 82.167
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:39:21Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 19585,
+              "cache_read_tokens": 168082,
+              "cost_source": "provider",
+              "cost_usd": 0.2202174,
+              "input_tokens": 24,
+              "output_tokens": 4429,
+              "rounds": 11,
+              "tool_calls": 10
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 65,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:42:14Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.065,
+              "model_duration_seconds": 53.402,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 61.10000000000001,
+              "tool_calls": 10,
+              "tool_duration_seconds": 10.69,
+              "total_duration_seconds": 64.165
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:40:29Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 12817,
+              "cache_read_tokens": 149238,
+              "cost_source": "provider",
+              "cost_usd": 0.1658406,
+              "input_tokens": 22,
+              "output_tokens": 3591,
+              "rounds": 10,
+              "tool_calls": 10
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 77,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:44:30Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.134,
+              "model_duration_seconds": 60.507,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 71.478,
+              "tool_calls": 12,
+              "tool_duration_seconds": 14.032,
+              "total_duration_seconds": 74.612
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:42:36Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 19449,
+              "cache_read_tokens": 164485,
+              "cost_source": "provider",
+              "cost_usd": 0.209294,
+              "input_tokens": 28,
+              "output_tokens": 3952,
+              "rounds": 13,
+              "tool_calls": 12
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 98,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": "repair did not survive service restarts",
+            "failure_category": "new_receipts_not_writable",
+            "finished_at": "2026-10-25T05:46:11Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.289,
+              "model_duration_seconds": 66.958,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 92.641,
+              "tool_calls": 13,
+              "tool_duration_seconds": 28.892,
+              "total_duration_seconds": 95.93
+            },
+            "reward": 0,
+            "run_id": "028-nix-store-disk-pressure-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:44:18Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 16620,
+              "cache_read_tokens": 194607,
+              "cost_source": "provider",
+              "cost_usd": 0.20692139999999998,
+              "input_tokens": 30,
+              "output_tokens": 4239,
+              "rounds": 14,
+              "tool_calls": 13
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": false,
+              "immediate_http": true,
+              "service_restart": false
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 76,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:48:08Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.977,
+              "model_duration_seconds": 55.708,
+              "model_rounds": 11,
+              "post_first_non_read_only_seconds": 67.628,
+              "tool_calls": 12,
+              "tool_duration_seconds": 14.838,
+              "total_duration_seconds": 70.605
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T05:46:34Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 15913,
+              "cache_read_tokens": 149329,
+              "cost_source": "provider",
+              "cost_usd": 0.18722680000000003,
+              "input_tokens": 24,
+              "output_tokens": 3885,
+              "rounds": 11,
+              "tool_calls": 12
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 66,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": "repair did not survive service restarts",
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:48:59Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.361,
+              "model_duration_seconds": 46.817,
+              "model_rounds": 9,
+              "post_first_non_read_only_seconds": 60.485,
+              "tool_calls": 8,
+              "tool_duration_seconds": 16.975,
+              "total_duration_seconds": 63.846
+            },
+            "reward": 0,
+            "run_id": "033-tls-trust-rotation-anthropic-claude-opus-5-5-reasoning-high-1",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T05:47:44Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 24178,
+              "cache_read_tokens": 134218,
+              "cost_source": "provider",
+              "cost_usd": 0.2111336,
+              "input_tokens": 20,
+              "output_tokens": 3166,
+              "rounds": 9,
+              "tool_calls": 8
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": false,
+              "immediate_http": true,
+              "service_restart": false
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 72,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:50:19Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.293,
+              "model_duration_seconds": 57.619,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 66.22699999999999,
+              "tool_calls": 10,
+              "tool_duration_seconds": 11.547,
+              "total_duration_seconds": 69.52
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-anthropic-claude-opus-5-5-reasoning-high-2",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T05:48:51Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 19485,
+              "cache_read_tokens": 155646,
+              "cost_source": "provider",
+              "cost_usd": 0.2108022,
+              "input_tokens": 22,
+              "output_tokens": 4108,
+              "rounds": 10,
+              "tool_calls": 10
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 60,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T05:51:06Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.524,
+              "model_duration_seconds": 49.629,
+              "model_rounds": 9,
+              "post_first_non_read_only_seconds": 53.787,
+              "tool_calls": 9,
+              "tool_duration_seconds": 7.634,
+              "total_duration_seconds": 57.311
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T05:49:49Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 18655,
+              "cache_read_tokens": 131291,
+              "cost_source": "provider",
+              "cost_usd": 0.1966532,
+              "input_tokens": 20,
+              "output_tokens": 3852,
+              "rounds": 9,
+              "tool_calls": 9
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 80,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:45:50Z",
+            "model": "anthropic/claude-opus-5.5",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.845,
+              "model_duration_seconds": 70.443,
+              "model_rounds": 11,
+              "post_first_non_read_only_seconds": 74.562,
+              "tool_calls": 10,
+              "tool_duration_seconds": 7.892,
+              "total_duration_seconds": 78.407
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-anthropic-claude-opus-5-5-reasoning-high-3",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:44:16Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 24524,
+              "cache_read_tokens": 167614,
+              "cost_source": "provider",
+              "cost_usd": 0.25575879999999995,
+              "input_tokens": 24,
+              "output_tokens": 4976,
+              "rounds": 11,
+              "tool_calls": 10
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          }
+        ],
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          }
+        ],
+        "scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 2
+          }
+        ],
+        "source": "matrix-001",
+        "started_at": "2026-10-25T05:02:50.354112Z",
+        "suite": "replaybook-host-matrix-v1",
+        "summary_sha256": "7f98109f617e7d9e00ab4c35b8d0c4e565e61d9df7e3d8e90712fdf424fc860b"
+      },
+      {
+        "agent": {
+          "adapter": "builtin:claux",
+          "name": "claux",
+          "payload": null,
+          "provider": "openrouter"
+        },
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "benchmark_manifest": {
+          "id": "replaybook-infra-core",
+          "schema_version": 1,
+          "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "status": "stable",
+          "tier": "core",
+          "version": "2026.10.24.2"
+        },
+        "benchmark_tier": "core",
+        "claux_release": null,
+        "concurrency": 2,
+        "execution_snapshot": {
+          "agent_adapter_sha256": null,
+          "agent_config_sha256": null,
+          "agent_env_sha256": null,
+          "agent_payload_sha256": null,
+          "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+          "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+          "scenario_packs": [
+            {
+              "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+              "id": "ducks/replaybook-infra",
+              "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+              "version": "20261024.1.1"
+            }
+          ],
+          "schema_version": 1,
+          "selected_scenarios": [
+            {
+              "id": "001-nginx-502-host",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+              "version": 1
+            },
+            {
+              "id": "013-sidekiq-wrong-redis",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+              "version": 3
+            },
+            {
+              "id": "015-sidekiq-poison-pill",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+              "version": 1
+            },
+            {
+              "id": "016-rails-pool-exhaustion",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+              "version": 1
+            },
+            {
+              "id": "017-partial-rails-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+              "version": 1
+            },
+            {
+              "id": "019-rust-fd-leak",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+              "version": 1
+            },
+            {
+              "id": "021-discourse-shared-uploads",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+              "version": 1
+            },
+            {
+              "id": "023-auth-secret-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+              "version": 1
+            },
+            {
+              "id": "024-discourse-interrupted-deploy",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+              "version": 1
+            },
+            {
+              "id": "028-nix-store-disk-pressure",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+              "version": 1
+            },
+            {
+              "id": "033-tls-trust-rotation",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+              "version": 2
+            }
+          ]
+        },
+        "finished_at": "2026-10-25T07:37:05.661812Z",
+        "harness_version": 23,
+        "harness_versions": [
+          23
+        ],
+        "models": [
+          "openai/gpt-6.1-sol"
+        ],
+        "reasoning_efforts": [
+          "high"
+        ],
+        "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+        "runs": [
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 45,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:47:47Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 7.441,
+              "model_duration_seconds": 40.249,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 35.564,
+              "tool_calls": 14,
+              "tool_duration_seconds": 2.657,
+              "total_duration_seconds": 43.005
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:46:49Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 9550,
+              "cache_read_tokens": 90613,
+              "cost_source": "provider",
+              "cost_usd": 0.05200829999999999,
+              "input_tokens": 36,
+              "output_tokens": 1900,
+              "rounds": 12,
+              "tool_calls": 14
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 43,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:47:44Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.603,
+              "model_duration_seconds": 37.749,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 36.106,
+              "tool_calls": 15,
+              "tool_duration_seconds": 2.862,
+              "total_duration_seconds": 40.709
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:46:49Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 11833,
+              "cache_read_tokens": 93104,
+              "cost_source": "provider",
+              "cost_usd": 0.058904899999999996,
+              "input_tokens": 36,
+              "output_tokens": 1994,
+              "rounds": 12,
+              "tool_calls": 15
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 39,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:49:12Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.364,
+              "model_duration_seconds": 32.868,
+              "model_rounds": 11,
+              "post_first_non_read_only_seconds": 29.364,
+              "tool_calls": 12,
+              "tool_duration_seconds": 1.46,
+              "total_duration_seconds": 34.728
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:48:21Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 12319,
+              "cache_read_tokens": 109450,
+              "cost_source": "provider",
+              "cost_usd": 0.0582785,
+              "input_tokens": 33,
+              "output_tokens": 1647,
+              "rounds": 11,
+              "tool_calls": 12
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 66,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:50:14Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.896,
+              "model_duration_seconds": 57.754,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 59.599000000000004,
+              "tool_calls": 23,
+              "tool_duration_seconds": 6.506,
+              "total_duration_seconds": 64.495
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T06:48:45Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 14567,
+              "cache_read_tokens": 133065,
+              "cost_source": "provider",
+              "cost_usd": 0.082462,
+              "input_tokens": 39,
+              "output_tokens": 3266,
+              "rounds": 13,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 69,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:51:23Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.399,
+              "model_duration_seconds": 56.056,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 62.56099999999999,
+              "tool_calls": 20,
+              "tool_duration_seconds": 11.799,
+              "total_duration_seconds": 67.96
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T06:49:55Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 20531,
+              "cache_read_tokens": 190978,
+              "cost_source": "provider",
+              "cost_usd": 0.09992329999999999,
+              "input_tokens": 39,
+              "output_tokens": 2942,
+              "rounds": 13,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 74,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:52:37Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.869,
+              "model_duration_seconds": 63.003,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 67.983,
+              "tool_calls": 21,
+              "tool_duration_seconds": 9.738,
+              "total_duration_seconds": 72.852
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T06:51:03Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 19563,
+              "cache_read_tokens": 185602,
+              "cost_source": "provider",
+              "cost_usd": 0.1003457,
+              "input_tokens": 39,
+              "output_tokens": 3280,
+              "rounds": 13,
+              "tool_calls": 21
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 132,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:54:46Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.178,
+              "model_duration_seconds": 101.598,
+              "model_rounds": 20,
+              "post_first_non_read_only_seconds": 125.28900000000002,
+              "tool_calls": 33,
+              "tool_duration_seconds": 28.683,
+              "total_duration_seconds": 130.467
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:52:16Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 24274,
+              "cache_read_tokens": 323858,
+              "cost_source": "provider",
+              "cost_usd": 0.14482079999999997,
+              "input_tokens": 60,
+              "output_tokens": 5163,
+              "rounds": 20,
+              "tool_calls": 33
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 146,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:56:08Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.365,
+              "model_duration_seconds": 111.994,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 138.572,
+              "tool_calls": 24,
+              "tool_duration_seconds": 31.763,
+              "total_duration_seconds": 143.937
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:53:23Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 23997,
+              "cache_read_tokens": 229701,
+              "cost_source": "provider",
+              "cost_usd": 0.14319259999999998,
+              "input_tokens": 45,
+              "output_tokens": 6014,
+              "rounds": 15,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 160,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:58:19Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.954,
+              "model_duration_seconds": 124.101,
+              "model_rounds": 19,
+              "post_first_non_read_only_seconds": 152.47899999999998,
+              "tool_calls": 27,
+              "tool_duration_seconds": 32.292,
+              "total_duration_seconds": 157.433
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:55:21Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 27306,
+              "cache_read_tokens": 332522,
+              "cost_source": "provider",
+              "cost_usd": 0.1686412,
+              "input_tokens": 57,
+              "output_tokens": 6701,
+              "rounds": 19,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 86,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T06:58:41Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.86,
+              "model_duration_seconds": 65.398,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 79.768,
+              "tool_calls": 20,
+              "tool_duration_seconds": 19.071,
+              "total_duration_seconds": 84.628
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:56:46Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 15156,
+              "cache_read_tokens": 151758,
+              "cost_source": "provider",
+              "cost_usd": 0.0909258,
+              "input_tokens": 45,
+              "output_tokens": 3777,
+              "rounds": 15,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 93,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:00:54Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.57,
+              "model_duration_seconds": 71.88,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 86.44999999999999,
+              "tool_calls": 22,
+              "tool_duration_seconds": 18.674,
+              "total_duration_seconds": 91.02
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:58:52Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 17751,
+              "cache_read_tokens": 168274,
+              "cost_source": "provider",
+              "cost_usd": 0.10287890000000001,
+              "input_tokens": 42,
+              "output_tokens": 4159,
+              "rounds": 14,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 86,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": "database pool repair did not survive host reboot",
+            "failure_category": "database_pool_exhausted",
+            "finished_at": "2026-10-25T07:01:21Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.045,
+              "model_duration_seconds": 66.411,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 79.206,
+              "tool_calls": 25,
+              "tool_duration_seconds": 17.716,
+              "total_duration_seconds": 84.251
+            },
+            "reward": 0,
+            "run_id": "016-rails-pool-exhaustion-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T06:59:22Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 14196,
+              "cache_read_tokens": 168457,
+              "cost_source": "provider",
+              "cost_usd": 0.08892169999999999,
+              "input_tokens": 48,
+              "output_tokens": 3649,
+              "rounds": 16,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": false,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 100,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:03:37Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.175,
+              "model_duration_seconds": 50.609,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 90.394,
+              "tool_calls": 21,
+              "tool_duration_seconds": 44.648,
+              "total_duration_seconds": 96.569
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:01:39Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 27978,
+              "cache_read_tokens": 233482,
+              "cost_source": "provider",
+              "cost_usd": 0.12257119999999999,
+              "input_tokens": 39,
+              "output_tokens": 2920,
+              "rounds": 13,
+              "tool_calls": 21
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 69,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:03:43Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.038,
+              "model_duration_seconds": 61.773,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 62.426,
+              "tool_calls": 21,
+              "tool_duration_seconds": 5.529,
+              "total_duration_seconds": 67.464
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:02:14Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 28617,
+              "cache_read_tokens": 257143,
+              "cost_source": "provider",
+              "cost_usd": 0.1349108,
+              "input_tokens": 42,
+              "output_tokens": 3757,
+              "rounds": 14,
+              "tool_calls": 21
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 75,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:05:54Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.84,
+              "model_duration_seconds": 68.032,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 68.24199999999999,
+              "tool_calls": 25,
+              "tool_duration_seconds": 4.406,
+              "total_duration_seconds": 73.082
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:04:17Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 26059,
+              "cache_read_tokens": 250769,
+              "cost_source": "provider",
+              "cost_usd": 0.12745840000000003,
+              "input_tokens": 42,
+              "output_tokens": 3715,
+              "rounds": 14,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 108,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:08:12Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.663,
+              "model_duration_seconds": 85.416,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 101.35000000000001,
+              "tool_calls": 18,
+              "tool_duration_seconds": 19.847,
+              "total_duration_seconds": 106.013
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:05:59Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 18162,
+              "cache_read_tokens": 182087,
+              "cost_source": "provider",
+              "cost_usd": 0.11300370000000003,
+              "input_tokens": 45,
+              "output_tokens": 4930,
+              "rounds": 15,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 931,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": "agent exceeded 900 second timeout",
+            "failure_category": "agent_timeout",
+            "finished_at": "2026-10-25T07:24:08Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "reward": 0,
+            "run_id": "019-rust-fd-leak-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:08:26Z",
+            "trial_status": "evaluated",
+            "usage": null,
+            "verification": {
+              "after_agent_timeout": {
+                "durable_repair": false,
+                "failure": "HTTP repair did not recover",
+                "failure_category": "resource_growth_unbounded"
+              },
+              "host_reboot": false,
+              "immediate_http": false,
+              "service_restart": false
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 87,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:12:21Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.266,
+              "model_duration_seconds": 71.112,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 76.791,
+              "tool_calls": 18,
+              "tool_duration_seconds": 10.869,
+              "total_duration_seconds": 82.057
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:10:37Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 15800,
+              "cache_read_tokens": 176409,
+              "cost_source": "provider",
+              "cost_usd": 0.0917209,
+              "input_tokens": 45,
+              "output_tokens": 3449,
+              "rounds": 15,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 89,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:14:36Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 8.467,
+              "model_duration_seconds": 84.78,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 79.47,
+              "tool_calls": 23,
+              "tool_duration_seconds": 3.067,
+              "total_duration_seconds": 87.937
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:12:53Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 23600,
+              "cache_read_tokens": 260082,
+              "cost_source": "provider",
+              "cost_usd": 0.1287842,
+              "input_tokens": 48,
+              "output_tokens": 4368,
+              "rounds": 16,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 73,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:16:29Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.69,
+              "model_duration_seconds": 69.296,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 64.25,
+              "tool_calls": 24,
+              "tool_duration_seconds": 1.575,
+              "total_duration_seconds": 70.94
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:15:07Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 16589,
+              "cache_read_tokens": 187875,
+              "cost_source": "provider",
+              "cost_usd": 0.09858600000000001,
+              "input_tokens": 48,
+              "output_tokens": 3823,
+              "rounds": 16,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 81,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:18:35Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.816,
+              "model_duration_seconds": 78.224,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 75.157,
+              "tool_calls": 20,
+              "tool_duration_seconds": 1.533,
+              "total_duration_seconds": 79.973
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:17:01Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 33285,
+              "cache_read_tokens": 316962,
+              "cost_source": "provider",
+              "cost_usd": 0.1583127,
+              "input_tokens": 42,
+              "output_tokens": 4332,
+              "rounds": 14,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 87,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:20:50Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.694,
+              "model_duration_seconds": 84.759,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 81.02499999999999,
+              "tool_calls": 24,
+              "tool_duration_seconds": 0.891,
+              "total_duration_seconds": 85.719
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:19:09Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 16518,
+              "cache_read_tokens": 168310,
+              "cost_source": "provider",
+              "cost_usd": 0.114536,
+              "input_tokens": 45,
+              "output_tokens": 5632,
+              "rounds": 15,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 85,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:23:03Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.744,
+              "model_duration_seconds": 82.333,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 78.644,
+              "tool_calls": 23,
+              "tool_duration_seconds": 0.974,
+              "total_duration_seconds": 83.388
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:21:25Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 15404,
+              "cache_read_tokens": 151975,
+              "cost_source": "provider",
+              "cost_usd": 0.1077115,
+              "input_tokens": 42,
+              "output_tokens": 5392,
+              "rounds": 14,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 85,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:25:17Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.218,
+              "model_duration_seconds": 78.52,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 78.002,
+              "tool_calls": 23,
+              "tool_duration_seconds": 4.324,
+              "total_duration_seconds": 83.22
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:23:39Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 15219,
+              "cache_read_tokens": 149452,
+              "cost_source": "provider",
+              "cost_usd": 0.1035767,
+              "input_tokens": 42,
+              "output_tokens": 5050,
+              "rounds": 14,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 72,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:26:19Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.741,
+              "model_duration_seconds": 62.462,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 65.805,
+              "tool_calls": 23,
+              "tool_duration_seconds": 7.968,
+              "total_duration_seconds": 70.546
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:24:50Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 18346,
+              "cache_read_tokens": 174618,
+              "cost_source": "provider",
+              "cost_usd": 0.09930079999999998,
+              "input_tokens": 42,
+              "output_tokens": 3589,
+              "rounds": 14,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 68,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:27:30Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.017,
+              "model_duration_seconds": 63.844,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 61.24,
+              "tool_calls": 24,
+              "tool_duration_seconds": 1.972,
+              "total_duration_seconds": 66.257
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:26:01Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 21143,
+              "cache_read_tokens": 210300,
+              "cost_source": "provider",
+              "cost_usd": 0.11085149999999998,
+              "input_tokens": 42,
+              "output_tokens": 3688,
+              "rounds": 14,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 83,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:28:59Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.745,
+              "model_duration_seconds": 72.056,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 74.75,
+              "tool_calls": 25,
+              "tool_duration_seconds": 7.308,
+              "total_duration_seconds": 79.495
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:27:07Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 20973,
+              "cache_read_tokens": 188079,
+              "cost_source": "provider",
+              "cost_usd": 0.11466440000000001,
+              "input_tokens": 42,
+              "output_tokens": 4334,
+              "rounds": 14,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 66,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:30:33Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.778,
+              "model_duration_seconds": 55.576,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 56.636,
+              "tool_calls": 18,
+              "tool_duration_seconds": 5.543,
+              "total_duration_seconds": 61.414
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:28:44Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 17989,
+              "cache_read_tokens": 145771,
+              "cost_source": "provider",
+              "cost_usd": 0.09435160000000001,
+              "input_tokens": 36,
+              "output_tokens": 3473,
+              "rounds": 12,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 68,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": "repair did not survive service restarts",
+            "failure_category": "new_receipts_not_writable",
+            "finished_at": "2026-10-25T07:31:51Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.323,
+              "model_duration_seconds": 54.732,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 61.367,
+              "tool_calls": 19,
+              "tool_duration_seconds": 11.805,
+              "total_duration_seconds": 66.69
+            },
+            "reward": 0,
+            "run_id": "028-nix-store-disk-pressure-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:30:27Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 32467,
+              "cache_read_tokens": 251844,
+              "cost_source": "provider",
+              "cost_usd": 0.1417439,
+              "input_tokens": 36,
+              "output_tokens": 3532,
+              "rounds": 12,
+              "tool_calls": 19
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": false,
+              "immediate_http": true,
+              "service_restart": false
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 79,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:33:57Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.614,
+              "model_duration_seconds": 52.985,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 72.36699999999999,
+              "tool_calls": 18,
+              "tool_duration_seconds": 23.893,
+              "total_duration_seconds": 76.981
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:32:21Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 21516,
+              "cache_read_tokens": 180427,
+              "cost_source": "provider",
+              "cost_usd": 0.1038447,
+              "input_tokens": 36,
+              "output_tokens": 3194,
+              "rounds": 12,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 76,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:34:53Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.91,
+              "model_duration_seconds": 68.859,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 65.819,
+              "tool_calls": 22,
+              "tool_duration_seconds": 2.754,
+              "total_duration_seconds": 71.729
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-openai-gpt-6-1-sol-reasoning-high-1",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T07:33:19Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 24366,
+              "cache_read_tokens": 225626,
+              "cost_source": "provider",
+              "cost_usd": 0.1327816,
+              "input_tokens": 42,
+              "output_tokens": 4922,
+              "rounds": 14,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 82,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:36:31Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.321,
+              "model_duration_seconds": 73.294,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 77.751,
+              "tool_calls": 22,
+              "tool_duration_seconds": 6.612,
+              "total_duration_seconds": 80.072
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-openai-gpt-6-1-sol-reasoning-high-2",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T07:34:52Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 23027,
+              "cache_read_tokens": 202485,
+              "cost_source": "provider",
+              "cost_usd": 0.130434,
+              "input_tokens": 39,
+              "output_tokens": 5254,
+              "rounds": 13,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 73,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:37:05Z",
+            "model": "openai/gpt-6.1-sol",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.301,
+              "model_duration_seconds": 67.777,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 65.657,
+              "tool_calls": 21,
+              "tool_duration_seconds": 2.87,
+              "total_duration_seconds": 70.958
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-openai-gpt-6-1-sol-reasoning-high-3",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T07:35:35Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 21219,
+              "cache_read_tokens": 190012,
+              "cost_source": "provider",
+              "cost_usd": 0.1170967,
+              "input_tokens": 329,
+              "output_tokens": 4439,
+              "rounds": 13,
+              "tool_calls": 21
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          }
+        ],
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          }
+        ],
+        "scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 2
+          }
+        ],
+        "source": "matrix-002",
+        "started_at": "2026-10-25T06:46:01.081874Z",
+        "suite": "replaybook-host-matrix-v1",
+        "summary_sha256": "14dc252cb48fb44e449d363575e09fd0d804a90f45c029734f9a7dface4e6288"
+      },
+      {
+        "agent": {
+          "adapter": "builtin:claux",
+          "name": "claux",
+          "payload": null,
+          "provider": "openrouter"
+        },
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "benchmark_manifest": {
+          "id": "replaybook-infra-core",
+          "schema_version": 1,
+          "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "status": "stable",
+          "tier": "core",
+          "version": "2026.10.24.2"
+        },
+        "benchmark_tier": "core",
+        "claux_release": null,
+        "concurrency": 2,
+        "execution_snapshot": {
+          "agent_adapter_sha256": null,
+          "agent_config_sha256": null,
+          "agent_env_sha256": null,
+          "agent_payload_sha256": null,
+          "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+          "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+          "scenario_packs": [
+            {
+              "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+              "id": "ducks/replaybook-infra",
+              "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+              "version": "20261024.1.1"
+            }
+          ],
+          "schema_version": 1,
+          "selected_scenarios": [
+            {
+              "id": "001-nginx-502-host",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+              "version": 1
+            },
+            {
+              "id": "013-sidekiq-wrong-redis",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+              "version": 3
+            },
+            {
+              "id": "015-sidekiq-poison-pill",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+              "version": 1
+            },
+            {
+              "id": "016-rails-pool-exhaustion",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+              "version": 1
+            },
+            {
+              "id": "017-partial-rails-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+              "version": 1
+            },
+            {
+              "id": "019-rust-fd-leak",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+              "version": 1
+            },
+            {
+              "id": "021-discourse-shared-uploads",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+              "version": 1
+            },
+            {
+              "id": "023-auth-secret-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+              "version": 1
+            },
+            {
+              "id": "024-discourse-interrupted-deploy",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+              "version": 1
+            },
+            {
+              "id": "028-nix-store-disk-pressure",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+              "version": 1
+            },
+            {
+              "id": "033-tls-trust-rotation",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+              "version": 2
+            }
+          ]
+        },
+        "finished_at": "2026-10-25T09:19:02.421410Z",
+        "harness_version": 23,
+        "harness_versions": [
+          23
+        ],
+        "models": [
+          "google/gemini-4-argon"
+        ],
+        "reasoning_efforts": [
+          "high"
+        ],
+        "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+        "runs": [
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 186,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": "API error: openrouter API error (504 Gateway Timeout) for model 'google/gemini-4-argon' [timeout]: The operation was aborted",
+            "failure_category": "agent_runtime_error",
+            "finished_at": "2026-10-25T07:41:06Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.601,
+              "model_duration_seconds": 175.577,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 176.967,
+              "tool_calls": 11,
+              "tool_duration_seconds": 0.335,
+              "total_duration_seconds": 183.568
+            },
+            "reward": 0,
+            "run_id": "001-nginx-502-host-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:37:59Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 109500,
+              "cost_source": "provider",
+              "cost_usd": 0.10520400000000002,
+              "input_tokens": 36897,
+              "output_tokens": 2046,
+              "rounds": 12,
+              "tool_calls": 11
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": false,
+              "immediate_http": false,
+              "service_restart": false
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 215,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:41:47Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 12.789,
+              "model_duration_seconds": 207.634,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 200.399,
+              "tool_calls": 16,
+              "tool_duration_seconds": 2.013,
+              "total_duration_seconds": 213.188
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:37:59Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 264251,
+              "cost_source": "provider",
+              "cost_usd": 0.1790931,
+              "input_tokens": 57244,
+              "output_tokens": 3818,
+              "rounds": 15,
+              "tool_calls": 16
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 227,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:45:36Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.963,
+              "model_duration_seconds": 218.459,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 219.39700000000002,
+              "tool_calls": 13,
+              "tool_duration_seconds": 0.368,
+              "total_duration_seconds": 226.36
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:41:36Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 143610,
+              "cost_source": "provider",
+              "cost_usd": 0.12345500000000001,
+              "input_tokens": 35677,
+              "output_tokens": 3774,
+              "rounds": 14,
+              "tool_calls": 13
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 185,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:45:49Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.246,
+              "model_duration_seconds": 177.905,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 177.107,
+              "tool_calls": 23,
+              "tool_duration_seconds": 4.161,
+              "total_duration_seconds": 183.353
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T07:42:27Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 261758,
+              "cost_source": "provider",
+              "cost_usd": 0.17717580000000002,
+              "input_tokens": 45285,
+              "output_tokens": 6043,
+              "rounds": 14,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 120,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:48:39Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.335,
+              "model_duration_seconds": 113.623,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 111.71700000000001,
+              "tool_calls": 23,
+              "tool_duration_seconds": 3.235,
+              "total_duration_seconds": 117.052
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T07:46:22Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 390319,
+              "cost_source": "provider",
+              "cost_usd": 0.2034579,
+              "input_tokens": 57498,
+              "output_tokens": 4943,
+              "rounds": 16,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 140,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:49:15Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 7.79,
+              "model_duration_seconds": 134.616,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 130.77100000000002,
+              "tool_calls": 17,
+              "tool_duration_seconds": 3.817,
+              "total_duration_seconds": 138.561
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T07:46:36Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 302033,
+              "cost_source": "provider",
+              "cost_usd": 0.19292330000000002,
+              "input_tokens": 53500,
+              "output_tokens": 5572,
+              "rounds": 16,
+              "tool_calls": 17
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 504,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:58:03Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.165,
+              "model_duration_seconds": 466.036,
+              "model_rounds": 26,
+              "post_first_non_read_only_seconds": 496.55899999999997,
+              "tool_calls": 34,
+              "tool_duration_seconds": 32.864,
+              "total_duration_seconds": 502.724
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:49:17Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 629927,
+              "cost_source": "provider",
+              "cost_usd": 0.6041407,
+              "input_tokens": 130664,
+              "output_tokens": 27982,
+              "rounds": 26,
+              "tool_calls": 34
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 435,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T07:57:29Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 8.355,
+              "model_duration_seconds": 400.922,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 424.98499999999996,
+              "tool_calls": 23,
+              "tool_duration_seconds": 32.142,
+              "total_duration_seconds": 433.34
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:49:56Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 404727,
+              "cost_source": "provider",
+              "cost_usd": 0.5021207,
+              "input_tokens": 104439,
+              "output_tokens": 25277,
+              "rounds": 17,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 894,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:13:17Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.318,
+              "model_duration_seconds": 855.321,
+              "model_rounds": 26,
+              "post_first_non_read_only_seconds": 887.018,
+              "tool_calls": 38,
+              "tool_duration_seconds": 29.907,
+              "total_duration_seconds": 893.336
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:58:06Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 945890,
+              "cost_source": "provider",
+              "cost_usd": 0.8201590000000002,
+              "input_tokens": 112255,
+              "output_tokens": 50106,
+              "rounds": 26,
+              "tool_calls": 38
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 194,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:02:41Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 7.742,
+              "model_duration_seconds": 189.365,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 184.562,
+              "tool_calls": 32,
+              "tool_duration_seconds": 2.691,
+              "total_duration_seconds": 192.304
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T07:58:58Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 739601,
+              "cost_source": "provider",
+              "cost_usd": 0.3175101,
+              "input_tokens": 75910,
+              "output_tokens": 9173,
+              "rounds": 18,
+              "tool_calls": 32
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 215,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:07:16Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.913,
+              "model_duration_seconds": 209.631,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 206.93099999999998,
+              "tool_calls": 27,
+              "tool_duration_seconds": 3.01,
+              "total_duration_seconds": 212.844
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:03:12Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 374433,
+              "cost_source": "provider",
+              "cost_usd": 0.2421253,
+              "input_tokens": 61031,
+              "output_tokens": 8262,
+              "rounds": 17,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 932,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": "agent exceeded 900 second timeout",
+            "failure_category": "agent_timeout",
+            "finished_at": "2026-10-25T08:24:05Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "reward": 0,
+            "run_id": "016-rails-pool-exhaustion-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:07:53Z",
+            "trial_status": "evaluated",
+            "usage": null,
+            "verification": {
+              "after_agent_timeout": {
+                "durable_repair": false,
+                "failure": "repair did not restore database connection capacity",
+                "failure_category": "database_pool_exhausted"
+              },
+              "host_reboot": false,
+              "immediate_http": false,
+              "service_restart": false
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 276,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:18:56Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 8.797,
+              "model_duration_seconds": 214.351,
+              "model_rounds": 21,
+              "post_first_non_read_only_seconds": 266.73199999999997,
+              "tool_calls": 29,
+              "tool_duration_seconds": 61.046,
+              "total_duration_seconds": 275.529
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:13:59Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 355684,
+              "cost_source": "provider",
+              "cost_usd": 0.22822039999999996,
+              "input_tokens": 61956,
+              "output_tokens": 6874,
+              "rounds": 21,
+              "tool_calls": 29
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 273,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:24:35Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 19.484,
+              "model_duration_seconds": 210.316,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 252.667,
+              "tool_calls": 36,
+              "tool_duration_seconds": 61.687,
+              "total_duration_seconds": 272.151
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:19:35Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 585480,
+              "cost_source": "provider",
+              "cost_usd": 0.343622,
+              "input_tokens": 105982,
+              "output_tokens": 7311,
+              "rounds": 18,
+              "tool_calls": 36
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 246,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:29:12Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.678,
+              "model_duration_seconds": 206.55,
+              "model_rounds": 26,
+              "post_first_non_read_only_seconds": 239.639,
+              "tool_calls": 31,
+              "tool_duration_seconds": 36.685,
+              "total_duration_seconds": 244.317
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:24:45Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 553691,
+              "cost_source": "provider",
+              "cost_usd": 0.28854110000000005,
+              "input_tokens": 75211,
+              "output_tokens": 8275,
+              "rounds": 26,
+              "tool_calls": 31
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 315,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:32:17Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.54,
+              "model_duration_seconds": 303.833,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 306.78799999999995,
+              "tool_calls": 19,
+              "tool_duration_seconds": 1.773,
+              "total_duration_seconds": 313.328
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:26:46Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 272886,
+              "cost_source": "provider",
+              "cost_usd": 0.22388859999999997,
+              "input_tokens": 50150,
+              "output_tokens": 9630,
+              "rounds": 18,
+              "tool_calls": 19
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 148,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:34:11Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.58,
+              "model_duration_seconds": 145.424,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 140.378,
+              "tool_calls": 20,
+              "tool_duration_seconds": 1.406,
+              "total_duration_seconds": 146.958
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:31:14Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 179846,
+              "cost_source": "provider",
+              "cost_usd": 0.1614486,
+              "input_tokens": 37642,
+              "output_tokens": 6818,
+              "rounds": 10,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 203,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:37:59Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 9.938,
+              "model_duration_seconds": 198.362,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 191.65900000000002,
+              "tool_calls": 26,
+              "tool_duration_seconds": 1.71,
+              "total_duration_seconds": 201.597
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:34:20Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 406934,
+              "cost_source": "provider",
+              "cost_usd": 0.22249740000000004,
+              "input_tokens": 58187,
+              "output_tokens": 6543,
+              "rounds": 18,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 289,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:40:03Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.116,
+              "model_duration_seconds": 283.579,
+              "model_rounds": 22,
+              "post_first_non_read_only_seconds": 280.613,
+              "tool_calls": 34,
+              "tool_duration_seconds": 2.836,
+              "total_duration_seconds": 286.729
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:35:00Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 714695,
+              "cost_source": "provider",
+              "cost_usd": 0.3650995,
+              "input_tokens": 72555,
+              "output_tokens": 14852,
+              "rounds": 22,
+              "tool_calls": 34
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 533,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:47:39Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 8.159,
+              "model_duration_seconds": 528.394,
+              "model_rounds": 32,
+              "post_first_non_read_only_seconds": 523.702,
+              "tool_calls": 47,
+              "tool_duration_seconds": 2.88,
+              "total_duration_seconds": 531.861
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:38:32Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 1769210,
+              "cost_source": "provider",
+              "cost_usd": 0.6975310000000001,
+              "input_tokens": 120510,
+              "output_tokens": 27959,
+              "rounds": 32,
+              "tool_calls": 47
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 229,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:44:38Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.534,
+              "model_duration_seconds": 225.032,
+              "model_rounds": 20,
+              "post_first_non_read_only_seconds": 220.333,
+              "tool_calls": 26,
+              "tool_duration_seconds": 1.55,
+              "total_duration_seconds": 226.867
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:40:36Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 639605,
+              "cost_source": "provider",
+              "cost_usd": 0.3353705,
+              "input_tokens": 82910,
+              "output_tokens": 10559,
+              "rounds": 20,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 201,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:48:51Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.507,
+              "model_duration_seconds": 197.456,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 192.817,
+              "tool_calls": 20,
+              "tool_duration_seconds": 0.704,
+              "total_duration_seconds": 199.324
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:45:13Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 313076,
+              "cost_source": "provider",
+              "cost_usd": 0.21497159999999998,
+              "input_tokens": 51232,
+              "output_tokens": 8120,
+              "rounds": 15,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 168,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:51:13Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 8.125,
+              "model_duration_seconds": 165.924,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 158.631,
+              "tool_calls": 20,
+              "tool_duration_seconds": 0.667,
+              "total_duration_seconds": 166.756
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:48:12Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 314177,
+              "cost_source": "provider",
+              "cost_usd": 0.21744770000000002,
+              "input_tokens": 52975,
+              "output_tokens": 8008,
+              "rounds": 15,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 240,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:53:36Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 7.343,
+              "model_duration_seconds": 236.645,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 230.33800000000002,
+              "tool_calls": 25,
+              "tool_duration_seconds": 0.831,
+              "total_duration_seconds": 237.681
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:49:23Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 360975,
+              "cost_source": "provider",
+              "cost_usd": 0.26816549999999995,
+              "input_tokens": 64239,
+              "output_tokens": 10359,
+              "rounds": 15,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 159,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:54:50Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.944,
+              "model_duration_seconds": 150.696,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 149.79100000000003,
+              "tool_calls": 14,
+              "tool_duration_seconds": 5.923,
+              "total_duration_seconds": 156.735
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:51:54Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 307095,
+              "cost_source": "provider",
+              "cost_usd": 0.18956550000000005,
+              "input_tokens": 50298,
+              "output_tokens": 5826,
+              "rounds": 14,
+              "tool_calls": 14
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 163,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:57:11Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 7.184,
+              "model_duration_seconds": 155.107,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 153.785,
+              "tool_calls": 28,
+              "tool_duration_seconds": 5.731,
+              "total_duration_seconds": 160.969
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:54:11Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 263737,
+              "cost_source": "provider",
+              "cost_usd": 0.34328770000000003,
+              "input_tokens": 127097,
+              "output_tokens": 6272,
+              "rounds": 14,
+              "tool_calls": 28
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 142,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T08:58:12Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.633,
+              "model_duration_seconds": 134.218,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 133.91299999999998,
+              "tool_calls": 27,
+              "tool_duration_seconds": 4.982,
+              "total_duration_seconds": 140.546
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:55:26Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 300499,
+              "cost_source": "provider",
+              "cost_usd": 0.2086159,
+              "input_tokens": 61118,
+              "output_tokens": 5633,
+              "rounds": 15,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 191,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T09:01:34Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 8.556,
+              "model_duration_seconds": 183.949,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 179.881,
+              "tool_calls": 29,
+              "tool_duration_seconds": 4.377,
+              "total_duration_seconds": 188.437
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:58:05Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 353784,
+              "cost_source": "provider",
+              "cost_usd": 0.2876024,
+              "input_tokens": 83457,
+              "output_tokens": 8531,
+              "rounds": 16,
+              "tool_calls": 29
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 280,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T09:04:22Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 8.078,
+              "model_duration_seconds": 274.332,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 270.09400000000005,
+              "tool_calls": 27,
+              "tool_duration_seconds": 3.678,
+              "total_duration_seconds": 278.172
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T08:59:24Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 228398,
+              "cost_source": "provider",
+              "cost_usd": 0.21808179999999996,
+              "input_tokens": 61651,
+              "output_tokens": 7194,
+              "rounds": 18,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 407,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T09:09:39Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 9.862,
+              "model_duration_seconds": 400.662,
+              "model_rounds": 21,
+              "post_first_non_read_only_seconds": 395.16499999999996,
+              "tool_calls": 23,
+              "tool_duration_seconds": 2.815,
+              "total_duration_seconds": 405.027
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T09:02:34Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 270818,
+              "cost_source": "provider",
+              "cost_usd": 0.19097979999999998,
+              "input_tokens": 52084,
+              "output_tokens": 5973,
+              "rounds": 21,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 679,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T09:16:55Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 8.906,
+              "model_duration_seconds": 669.162,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 667.1930000000001,
+              "tool_calls": 35,
+              "tool_duration_seconds": 3.358,
+              "total_duration_seconds": 676.099
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-google-gemini-4-argon-reasoning-high-1",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T09:05:19Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 558541,
+              "cost_source": "provider",
+              "cost_usd": 0.4207701,
+              "input_tokens": 137538,
+              "output_tokens": 8984,
+              "rounds": 16,
+              "tool_calls": 35
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 305,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T09:15:39Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 10.005,
+              "model_duration_seconds": 300.437,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 293.096,
+              "tool_calls": 46,
+              "tool_duration_seconds": 2.654,
+              "total_duration_seconds": 303.101
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-google-gemini-4-argon-reasoning-high-2",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T09:10:17Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 729718,
+              "cost_source": "provider",
+              "cost_usd": 0.3983498,
+              "input_tokens": 118979,
+              "output_tokens": 8742,
+              "rounds": 16,
+              "tool_calls": 46
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 150,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T09:19:02Z",
+            "model": "google/gemini-4-argon",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 8.563,
+              "model_duration_seconds": 146.821,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 139.24,
+              "tool_calls": 38,
+              "tool_duration_seconds": 0.752,
+              "total_duration_seconds": 147.803
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-google-gemini-4-argon-reasoning-high-3",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T09:16:15Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 368379,
+              "cost_source": "provider",
+              "cost_usd": 0.24011589999999997,
+              "input_tokens": 60849,
+              "output_tokens": 8158,
+              "rounds": 12,
+              "tool_calls": 38
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          }
+        ],
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          }
+        ],
+        "scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 2
+          }
+        ],
+        "source": "matrix-003",
+        "started_at": "2026-10-25T07:37:07.041748Z",
+        "suite": "replaybook-host-matrix-v1",
+        "summary_sha256": "8244c05599ee72999d42167c3f44b29d47a1eb998e5992c5c264be58104ee738"
+      }
+    ],
+    "totals": {
+      "cache_creation_reported_trials": 97,
+      "cache_creation_tokens": 1216172,
+      "cache_read_reported_trials": 97,
+      "cache_read_tokens": 25360805,
+      "cost_reported_trials": 97,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 99,
+      "failed": 7,
+      "failure_categories": {
+        "agent_runtime_error": 1,
+        "agent_timeout": 2,
+        "database_pool_exhausted": 1,
+        "new_receipts_not_writable": 2
+      },
+      "input_tokens": 2359439,
+      "known_cost_usd": 19.3888143,
+      "median_duration_seconds": 88,
+      "median_first_non_read_only_tool_seconds": 4.896,
+      "median_model_duration_seconds": 71.88,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 81.02499999999999,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 6.526,
+      "output_tokens": 593356,
+      "pass_rate": 0.9292929292929293,
+      "passed": 92,
+      "recording_reported_trials": 97,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 99,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 97
+    }
+  },
+  "kind": "replaybook-benchmark-submission",
+  "schema_version": 1,
+  "submission_id": "98ceb5fad4be9cce53d7ff7033955e9a26cc3c83052eb15239010364cd5b86e2",
+  "submitter": "ducks"
+}
