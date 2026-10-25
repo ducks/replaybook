@@ -1,0 +1,37 @@
+{
+  "title": "Frozen Core: Kimi K3.1 Pro, DeepSeek 1017, and Qwen Max Prime",
+  "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 97 durable repairs in 99 evaluated trials, with $18.5488 in provider-reported API cost.",
+  "input_mode": "text",
+  "model_order": [
+    "moonshotai/kimi-k3.1-pro",
+    "deepseek/deepseek-v4.1-flash-1017",
+    "qwen/qwen3.8-max-prime"
+  ],
+  "model_labels": {
+    "moonshotai/kimi-k3.1-pro": "Kimi K3.1 Pro",
+    "deepseek/deepseek-v4.1-flash-1017": "DeepSeek V4.1 Flash 1017",
+    "qwen/qwen3.8-max-prime": "Qwen3.8 Max Prime"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated; none are missing or unavailable.",
+    "Every configuration used the same frozen controller, scenario fingerprints, manifest, Claux binary, and shared OpenRouter protocol. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "All 97 successful repairs passed immediate, service-restart, and host-reboot verification. TLS scenario v2 also compared endpoint certificate and CA identities against controller-owned preflight evidence.",
+    "Two VM port-forwarding startup failures occurred before inference (one Kimi trial and one Qwen trial). Those missing trials were resumed using the original execution snapshots; completed evaluated results were preserved. Original startup logs remain in the local audit artifacts.",
+    "Three attempts per scenario are a small sample. These results describe the selected model, reasoning, harness, and provider configurations on this Core revision; they do not establish universal infrastructure capability or statistically reliable differences between models.",
+    "The two failed trials are retained as evaluated failures. Their artifacts record partial success in concurrent HTTP assertions but do not retain each unsuccessful request response; the underlying causes are unresolved. No scores were corrected or failures relabeled.",
+    "Earlier eight-scenario Core results remain historical and are not pooled into this expanded revision. Public evidence excludes private transcripts, credentials, and local VM artifacts."
+  ],
+  "observations": [
+    "Kimi passed 33/33 (100%), with a 156-second median agent duration and $6.0769 in reported API cost.",
+    "DeepSeek passed 32/33 (97.0%), with a 74-second median agent duration and $0.5362 in reported API cost. Its auth-secret rotation failure was an immediate concurrent session-creation assertion with 2/3 successful requests.",
+    "Qwen passed 32/33 (97.0%), with a 132-second median agent duration and $11.9356 in reported API cost. Its disk-pressure trial passed immediate verification but failed a concurrent receipt-write assertion after service restart with 4/6 successful requests.",
+    "All three configurations passed all three attempts of the new TLS trust-rotation incident. The accepted TLS v2 verifier rejects endpoint certificate replacement; initial v1 development evidence is excluded."
+  ]
+}

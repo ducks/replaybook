@@ -1,0 +1,63 @@
+schema_version = 1
+
+[benchmark]
+id = "replaybook-infra-core"
+version = "2026.10.24.2"
+status = "stable"
+tier = "core"
+attempts = 3
+agent_timeout_seconds = 900
+required_host_harness_version = 23
+
+[pack]
+path = "."
+id = "ducks/replaybook-infra"
+
+[verification]
+require_immediate_recovery = true
+require_service_restart = true
+require_host_reboot = true
+preserve_controller_state = true
+
+[[scenarios]]
+id = "001-nginx-502-host"
+version = 1
+
+[[scenarios]]
+id = "013-sidekiq-wrong-redis"
+version = 3
+
+[[scenarios]]
+id = "015-sidekiq-poison-pill"
+version = 1
+
+[[scenarios]]
+id = "016-rails-pool-exhaustion"
+version = 1
+
+[[scenarios]]
+id = "017-partial-rails-rollout"
+version = 1
+
+[[scenarios]]
+id = "019-rust-fd-leak"
+version = 1
+
+[[scenarios]]
+id = "021-discourse-shared-uploads"
+version = 1
+
+[[scenarios]]
+id = "023-auth-secret-rollout"
+version = 1
+[[scenarios]]
+id = "024-discourse-interrupted-deploy"
+version = 1
+
+[[scenarios]]
+id = "028-nix-store-disk-pressure"
+version = 1
+
+[[scenarios]]
+id = "033-tls-trust-rotation"
+version = 2

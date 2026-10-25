@@ -1,0 +1,5167 @@
+{
+  "created_at": "2026-10-25T04:09:50.523630Z",
+  "evidence": {
+    "compatibility": {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "suite": "replaybook-host-matrix-v1"
+    },
+    "sources": [
+      {
+        "agent": {
+          "adapter": "builtin:claux",
+          "name": "claux",
+          "payload": null,
+          "provider": "openrouter"
+        },
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "benchmark_manifest": {
+          "id": "replaybook-infra-core",
+          "schema_version": 1,
+          "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "status": "stable",
+          "tier": "core",
+          "version": "2026.10.24.2"
+        },
+        "benchmark_tier": "core",
+        "claux_release": null,
+        "concurrency": 2,
+        "execution_snapshot": {
+          "agent_adapter_sha256": null,
+          "agent_config_sha256": null,
+          "agent_env_sha256": null,
+          "agent_payload_sha256": null,
+          "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+          "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+          "scenario_packs": [
+            {
+              "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+              "id": "ducks/replaybook-infra",
+              "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+              "version": "20261024.1.1"
+            }
+          ],
+          "schema_version": 1,
+          "selected_scenarios": [
+            {
+              "id": "001-nginx-502-host",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+              "version": 1
+            },
+            {
+              "id": "013-sidekiq-wrong-redis",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+              "version": 3
+            },
+            {
+              "id": "015-sidekiq-poison-pill",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+              "version": 1
+            },
+            {
+              "id": "016-rails-pool-exhaustion",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+              "version": 1
+            },
+            {
+              "id": "017-partial-rails-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+              "version": 1
+            },
+            {
+              "id": "019-rust-fd-leak",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+              "version": 1
+            },
+            {
+              "id": "021-discourse-shared-uploads",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+              "version": 1
+            },
+            {
+              "id": "023-auth-secret-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+              "version": 1
+            },
+            {
+              "id": "024-discourse-interrupted-deploy",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+              "version": 1
+            },
+            {
+              "id": "028-nix-store-disk-pressure",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+              "version": 1
+            },
+            {
+              "id": "033-tls-trust-rotation",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+              "version": 2
+            }
+          ]
+        },
+        "finished_at": "2026-10-25T00:10:58.034087Z",
+        "harness_version": 23,
+        "harness_versions": [
+          23
+        ],
+        "models": [
+          "moonshotai/kimi-k3.1-pro"
+        ],
+        "reasoning_efforts": [
+          "high"
+        ],
+        "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+        "runs": [
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 101,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:29:35Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 15.009,
+              "model_duration_seconds": 95.937,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 83.044,
+              "tool_calls": 19,
+              "tool_duration_seconds": 1.952,
+              "total_duration_seconds": 98.053
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:27:41Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 160256,
+              "cost_source": "provider",
+              "cost_usd": 0.11266719999999997,
+              "input_tokens": 22348,
+              "output_tokens": 3592,
+              "rounds": 12,
+              "tool_calls": 19
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 99,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:29:33Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 11.871,
+              "model_duration_seconds": 92.022,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 83.98100000000001,
+              "tool_calls": 18,
+              "tool_duration_seconds": 3.693,
+              "total_duration_seconds": 95.852
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:27:41Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 160768,
+              "cost_source": "provider",
+              "cost_usd": 0.1129096,
+              "input_tokens": 23153,
+              "output_tokens": 3445,
+              "rounds": 12,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 127,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:32:44Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 15.644,
+              "model_duration_seconds": 119.222,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 109.098,
+              "tool_calls": 19,
+              "tool_duration_seconds": 5.367,
+              "total_duration_seconds": 124.742
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:30:24Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 196096,
+              "cost_source": "provider",
+              "cost_usd": 0.12788920000000004,
+              "input_tokens": 21640,
+              "output_tokens": 4539,
+              "rounds": 13,
+              "tool_calls": 19
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 158,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:33:55Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 15.012,
+              "model_duration_seconds": 149.472,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 141.456,
+              "tool_calls": 24,
+              "tool_duration_seconds": 6.833,
+              "total_duration_seconds": 156.468
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-24T21:30:53Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 220672,
+              "cost_source": "provider",
+              "cost_usd": 0.1510564,
+              "input_tokens": 25216,
+              "output_tokens": 5649,
+              "rounds": 15,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 150,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:36:21Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 17.051,
+              "model_duration_seconds": 140.774,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 131.113,
+              "tool_calls": 24,
+              "tool_duration_seconds": 7.244,
+              "total_duration_seconds": 148.164
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-24T21:33:29Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 354560,
+              "cost_source": "provider",
+              "cost_usd": 0.191102,
+              "input_tokens": 32955,
+              "output_tokens": 5428,
+              "rounds": 15,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 179,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:38:08Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 16.874,
+              "model_duration_seconds": 159.865,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 159.08100000000002,
+              "tool_calls": 23,
+              "tool_duration_seconds": 14.628,
+              "total_duration_seconds": 175.955
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-24T21:34:51Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 388096,
+              "cost_source": "provider",
+              "cost_usd": 0.22604720000000003,
+              "input_tokens": 40959,
+              "output_tokens": 6651,
+              "rounds": 15,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 145,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:39:59Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 13.135,
+              "model_duration_seconds": 105.013,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 129.727,
+              "tool_calls": 14,
+              "tool_duration_seconds": 37.747,
+              "total_duration_seconds": 142.862
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:37:15Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 153344,
+              "cost_source": "provider",
+              "cost_usd": 0.10902680000000001,
+              "input_tokens": 19184,
+              "output_tokens": 3999,
+              "rounds": 12,
+              "tool_calls": 14
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 216,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:42:53Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 16.115,
+              "model_duration_seconds": 180.016,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 197.756,
+              "tool_calls": 26,
+              "tool_duration_seconds": 32.552,
+              "total_duration_seconds": 213.871
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:38:59Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 243712,
+              "cost_source": "provider",
+              "cost_usd": 0.16956639999999998,
+              "input_tokens": 24757,
+              "output_tokens": 7131,
+              "rounds": 17,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 208,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:44:36Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 16.0,
+              "model_duration_seconds": 166.327,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 190.653,
+              "tool_calls": 29,
+              "tool_duration_seconds": 40.174,
+              "total_duration_seconds": 206.653
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:40:50Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 210432,
+              "cost_source": "provider",
+              "cost_usd": 0.15003039999999998,
+              "input_tokens": 21167,
+              "output_tokens": 6561,
+              "rounds": 17,
+              "tool_calls": 29
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 156,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:46:50Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 15.016,
+              "model_duration_seconds": 133.221,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 139.208,
+              "tool_calls": 21,
+              "tool_duration_seconds": 20.879,
+              "total_duration_seconds": 154.224
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:43:45Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 286208,
+              "cost_source": "provider",
+              "cost_usd": 0.1713916,
+              "input_tokens": 30395,
+              "output_tokens": 5336,
+              "rounds": 13,
+              "tool_calls": 21
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 128,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:47:56Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 13.243,
+              "model_duration_seconds": 121.809,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 113.47,
+              "tool_calls": 24,
+              "tool_duration_seconds": 4.826,
+              "total_duration_seconds": 126.713
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:45:19Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 224768,
+              "cost_source": "provider",
+              "cost_usd": 0.13577959999999997,
+              "input_tokens": 22363,
+              "output_tokens": 4610,
+              "rounds": 15,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 98,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:49:39Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 13.523,
+              "model_duration_seconds": 86.142,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 83.524,
+              "tool_calls": 18,
+              "tool_duration_seconds": 10.144,
+              "total_duration_seconds": 97.047
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:47:32Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 150784,
+              "cost_source": "provider",
+              "cost_usd": 0.09103880000000002,
+              "input_tokens": 17166,
+              "output_tokens": 2655,
+              "rounds": 12,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 133,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:51:35Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 13.267,
+              "model_duration_seconds": 120.968,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 118.43700000000001,
+              "tool_calls": 25,
+              "tool_duration_seconds": 10.635,
+              "total_duration_seconds": 131.704
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:49:04Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 366592,
+              "cost_source": "provider",
+              "cost_usd": 0.1986384,
+              "input_tokens": 40395,
+              "output_tokens": 4453,
+              "rounds": 15,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 211,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:54:25Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 11.22,
+              "model_duration_seconds": 115.122,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 197.895,
+              "tool_calls": 26,
+              "tool_duration_seconds": 93.9,
+              "total_duration_seconds": 209.115
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:50:36Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 310272,
+              "cost_source": "provider",
+              "cost_usd": 0.17350639999999998,
+              "input_tokens": 33941,
+              "output_tokens": 4357,
+              "rounds": 14,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 181,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T21:55:58Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 13.842,
+              "model_duration_seconds": 136.617,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 165.67999999999998,
+              "tool_calls": 25,
+              "tool_duration_seconds": 42.807,
+              "total_duration_seconds": 179.522
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:52:31Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 329216,
+              "cost_source": "provider",
+              "cost_usd": 0.1826972,
+              "input_tokens": 33742,
+              "output_tokens": 4937,
+              "rounds": 16,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 156,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:01:35Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 16.809,
+              "model_duration_seconds": 131.218,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 136.654,
+              "tool_calls": 22,
+              "tool_duration_seconds": 21.976,
+              "total_duration_seconds": 153.463
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T21:58:04Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 274688,
+              "cost_source": "provider",
+              "cost_usd": 0.1524796,
+              "input_tokens": 26471,
+              "output_tokens": 4460,
+              "rounds": 15,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 137,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:07:20Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 11.821,
+              "model_duration_seconds": 130.548,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 123.457,
+              "tool_calls": 26,
+              "tool_duration_seconds": 4.578,
+              "total_duration_seconds": 135.278
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:04:47Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 472832,
+              "cost_source": "provider",
+              "cost_usd": 0.20877039999999997,
+              "input_tokens": 34642,
+              "output_tokens": 4492,
+              "rounds": 18,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 198,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:07:09Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 17.705,
+              "model_duration_seconds": 168.49,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 157.98000000000002,
+              "tool_calls": 27,
+              "tool_duration_seconds": 7.058,
+              "total_duration_seconds": 175.685
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:03:37Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 387072,
+              "cost_source": "provider",
+              "cost_usd": 0.2275044,
+              "input_tokens": 39310,
+              "output_tokens": 7147,
+              "rounds": 15,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 248,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:12:27Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 23.056,
+              "model_duration_seconds": 236.375,
+              "model_rounds": 23,
+              "post_first_non_read_only_seconds": 215.72299999999998,
+              "tool_calls": 34,
+              "tool_duration_seconds": 2.216,
+              "total_duration_seconds": 238.779
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:08:05Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 652032,
+              "cost_source": "provider",
+              "cost_usd": 0.3061144,
+              "input_tokens": 40764,
+              "output_tokens": 9418,
+              "rounds": 23,
+              "tool_calls": 34
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 175,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:11:35Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 15.989,
+              "model_duration_seconds": 171.307,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 156.464,
+              "tool_calls": 27,
+              "tool_duration_seconds": 0.999,
+              "total_duration_seconds": 172.453
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:08:26Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 375296,
+              "cost_source": "provider",
+              "cost_usd": 0.2032172,
+              "input_tokens": 30374,
+              "output_tokens": 6741,
+              "rounds": 18,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 172,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:15:27Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 14.141,
+              "model_duration_seconds": 165.951,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 155.931,
+              "tool_calls": 21,
+              "tool_duration_seconds": 2.451,
+              "total_duration_seconds": 170.072
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:12:20Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 241920,
+              "cost_source": "provider",
+              "cost_usd": 0.17106,
+              "input_tokens": 25808,
+              "output_tokens": 7106,
+              "rounds": 14,
+              "tool_calls": 21
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 149,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:15:54Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 16.853,
+              "model_duration_seconds": 144.617,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 130.535,
+              "tool_calls": 26,
+              "tool_duration_seconds": 2.587,
+              "total_duration_seconds": 147.388
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:13:07Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 375296,
+              "cost_source": "provider",
+              "cost_usd": 0.2153232,
+              "input_tokens": 40157,
+              "output_tokens": 5995,
+              "rounds": 13,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 166,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:19:05Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 16.817,
+              "model_duration_seconds": 162.556,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 147.765,
+              "tool_calls": 32,
+              "tool_duration_seconds": 1.822,
+              "total_duration_seconds": 164.582
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:16:04Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 288768,
+              "cost_source": "provider",
+              "cost_usd": 0.17144160000000003,
+              "input_tokens": 23924,
+              "output_tokens": 6584,
+              "rounds": 17,
+              "tool_calls": 32
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 136,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:19:40Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 13.42,
+              "model_duration_seconds": 123.483,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 121.07100000000001,
+              "tool_calls": 24,
+              "tool_duration_seconds": 10.834,
+              "total_duration_seconds": 134.491
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:16:57Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 395008,
+              "cost_source": "provider",
+              "cost_usd": 0.20154959999999997,
+              "input_tokens": 36559,
+              "output_tokens": 4943,
+              "rounds": 15,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 139,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:22:18Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 16.058,
+              "model_duration_seconds": 130.681,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 121.762,
+              "tool_calls": 25,
+              "tool_duration_seconds": 6.981,
+              "total_duration_seconds": 137.82
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:19:41Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 314880,
+              "cost_source": "provider",
+              "cost_usd": 0.18711600000000003,
+              "input_tokens": 36060,
+              "output_tokens": 5202,
+              "rounds": 13,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 119,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:23:13Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 17.407,
+              "model_duration_seconds": 109.376,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 99.339,
+              "tool_calls": 24,
+              "tool_duration_seconds": 7.192,
+              "total_duration_seconds": 116.746
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:20:35Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 360960,
+              "cost_source": "provider",
+              "cost_usd": 0.19735,
+              "input_tokens": 40094,
+              "output_tokens": 4497,
+              "rounds": 13,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 237,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:28:10Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 30.018,
+              "model_duration_seconds": 148.767,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 193.709,
+              "tool_calls": 22,
+              "tool_duration_seconds": 63.554,
+              "total_duration_seconds": 223.727
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:23:55Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 369152,
+              "cost_source": "provider",
+              "cost_usd": 0.22152639999999998,
+              "input_tokens": 43533,
+              "output_tokens": 6063,
+              "rounds": 13,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 177,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:29:55Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 14.086,
+              "model_duration_seconds": 159.628,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 161.083,
+              "tool_calls": 26,
+              "tool_duration_seconds": 15.245,
+              "total_duration_seconds": 175.169
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:25:59Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 401664,
+              "cost_source": "provider",
+              "cost_usd": 0.22577080000000002,
+              "input_tokens": 39944,
+              "output_tokens": 6555,
+              "rounds": 15,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 199,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:33:46Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 17.003,
+              "model_duration_seconds": 188.157,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 180.05599999999998,
+              "tool_calls": 28,
+              "tool_duration_seconds": 8.675,
+              "total_duration_seconds": 197.059
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-24T22:30:09Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 444416,
+              "cost_source": "provider",
+              "cost_usd": 0.2560872,
+              "input_tokens": 41792,
+              "output_tokens": 8362,
+              "rounds": 16,
+              "tool_calls": 28
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 179,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:34:35Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 15.29,
+              "model_duration_seconds": 170.407,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 159.746,
+              "tool_calls": 33,
+              "tool_duration_seconds": 4.409,
+              "total_duration_seconds": 175.036
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-moonshotai-kimi-k3-1-pro-reasoning-high-1",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-24T22:31:10Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 421120,
+              "cost_source": "provider",
+              "cost_usd": 0.22712799999999994,
+              "input_tokens": 35212,
+              "output_tokens": 7248,
+              "rounds": 17,
+              "tool_calls": 33
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 114,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:36:41Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 13.333,
+              "model_duration_seconds": 104.511,
+              "model_rounds": 11,
+              "post_first_non_read_only_seconds": 98.25,
+              "tool_calls": 19,
+              "tool_duration_seconds": 6.955,
+              "total_duration_seconds": 111.583
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-24T22:34:28Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 194304,
+              "cost_source": "provider",
+              "cost_usd": 0.1341908,
+              "input_tokens": 26115,
+              "output_tokens": 4310,
+              "rounds": 11,
+              "tool_calls": 19
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 170,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-24T22:38:30Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 14.982,
+              "model_duration_seconds": 164.877,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 153.726,
+              "tool_calls": 25,
+              "tool_duration_seconds": 3.568,
+              "total_duration_seconds": 168.708
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-moonshotai-kimi-k3-1-pro-reasoning-high-3",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-24T22:35:21Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 502528,
+              "cost_source": "provider",
+              "cost_usd": 0.2696096,
+              "input_tokens": 48277,
+              "output_tokens": 7255,
+              "rounds": 15,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 127,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:10:57Z",
+            "model": "moonshotai/kimi-k3.1-pro",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 15.404,
+              "model_duration_seconds": 116.267,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 110.21900000000001,
+              "tool_calls": 25,
+              "tool_duration_seconds": 9.197,
+              "total_duration_seconds": 125.623
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-moonshotai-kimi-k3-1-pro-reasoning-high-2",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:08:35Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 350720,
+              "cost_source": "provider",
+              "cost_usd": 0.19735400000000003,
+              "input_tokens": 37145,
+              "output_tokens": 5292,
+              "rounds": 14,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          }
+        ],
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          }
+        ],
+        "scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 2
+          }
+        ],
+        "source": "matrix-001",
+        "started_at": "2026-10-24T21:26:32.017113Z",
+        "suite": "replaybook-host-matrix-v1",
+        "summary_sha256": "d52fdea4a0d4c8947b2842f5a65cf16b833bf10312fb69a7d4132afacc782ef9"
+      },
+      {
+        "agent": {
+          "adapter": "builtin:claux",
+          "name": "claux",
+          "payload": null,
+          "provider": "openrouter"
+        },
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "benchmark_manifest": {
+          "id": "replaybook-infra-core",
+          "schema_version": 1,
+          "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "status": "stable",
+          "tier": "core",
+          "version": "2026.10.24.2"
+        },
+        "benchmark_tier": "core",
+        "claux_release": null,
+        "concurrency": 2,
+        "execution_snapshot": {
+          "agent_adapter_sha256": null,
+          "agent_config_sha256": null,
+          "agent_env_sha256": null,
+          "agent_payload_sha256": null,
+          "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+          "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+          "scenario_packs": [
+            {
+              "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+              "id": "ducks/replaybook-infra",
+              "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+              "version": "20261024.1.1"
+            }
+          ],
+          "schema_version": 1,
+          "selected_scenarios": [
+            {
+              "id": "001-nginx-502-host",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+              "version": 1
+            },
+            {
+              "id": "013-sidekiq-wrong-redis",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+              "version": 3
+            },
+            {
+              "id": "015-sidekiq-poison-pill",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+              "version": 1
+            },
+            {
+              "id": "016-rails-pool-exhaustion",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+              "version": 1
+            },
+            {
+              "id": "017-partial-rails-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+              "version": 1
+            },
+            {
+              "id": "019-rust-fd-leak",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+              "version": 1
+            },
+            {
+              "id": "021-discourse-shared-uploads",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+              "version": 1
+            },
+            {
+              "id": "023-auth-secret-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+              "version": 1
+            },
+            {
+              "id": "024-discourse-interrupted-deploy",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+              "version": 1
+            },
+            {
+              "id": "028-nix-store-disk-pressure",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+              "version": 1
+            },
+            {
+              "id": "033-tls-trust-rotation",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+              "version": 2
+            }
+          ]
+        },
+        "finished_at": "2026-10-25T00:58:50.215644Z",
+        "harness_version": 23,
+        "harness_versions": [
+          23
+        ],
+        "models": [
+          "deepseek/deepseek-v4.1-flash-1017"
+        ],
+        "reasoning_efforts": [
+          "high"
+        ],
+        "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+        "runs": [
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 90,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:13:46Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.04,
+              "model_duration_seconds": 79.637,
+              "model_rounds": 21,
+              "post_first_non_read_only_seconds": 86.701,
+              "tool_calls": 30,
+              "tool_duration_seconds": 7.92,
+              "total_duration_seconds": 87.741
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:11:59Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 471162,
+              "cost_source": "provider",
+              "cost_usd": 0.0275808204,
+              "input_tokens": 46818,
+              "output_tokens": 18774,
+              "rounds": 21,
+              "tool_calls": 30
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 50,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:13:12Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.181,
+              "model_duration_seconds": 42.07,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 47.262,
+              "tool_calls": 20,
+              "tool_duration_seconds": 6.247,
+              "total_duration_seconds": 48.443
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:12:09Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 247890,
+              "cost_source": "provider",
+              "cost_usd": 0.016356018,
+              "input_tokens": 33940,
+              "output_tokens": 9747,
+              "rounds": 14,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 46,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:14:50Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.836,
+              "model_duration_seconds": 27.455,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 43.693000000000005,
+              "tool_calls": 23,
+              "tool_duration_seconds": 14.156,
+              "total_duration_seconds": 44.529
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:13:46Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 275000,
+              "cost_source": "provider",
+              "cost_usd": 0.011290020000000003,
+              "input_tokens": 24622,
+              "output_tokens": 5910,
+              "rounds": 16,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 72,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:16:15Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.883,
+              "model_duration_seconds": 43.048,
+              "model_rounds": 20,
+              "post_first_non_read_only_seconds": 70.043,
+              "tool_calls": 31,
+              "tool_duration_seconds": 24.333,
+              "total_duration_seconds": 70.926
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T00:14:45Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 407886,
+              "cost_source": "provider",
+              "cost_usd": 0.016760251200000003,
+              "input_tokens": 35273,
+              "output_tokens": 9095,
+              "rounds": 20,
+              "tool_calls": 31
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 87,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:17:28Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.37,
+              "model_duration_seconds": 43.273,
+              "model_rounds": 21,
+              "post_first_non_read_only_seconds": 84.161,
+              "tool_calls": 28,
+              "tool_duration_seconds": 42.083,
+              "total_duration_seconds": 85.531
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T00:15:39Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 259178,
+              "cost_source": "provider",
+              "cost_usd": 0.0116744376,
+              "input_tokens": 19773,
+              "output_tokens": 7659,
+              "rounds": 21,
+              "tool_calls": 28
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 74,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:18:39Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.994,
+              "model_duration_seconds": 46.556,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 71.499,
+              "tool_calls": 24,
+              "tool_duration_seconds": 25.791,
+              "total_duration_seconds": 72.493
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T00:17:07Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 225108,
+              "cost_source": "provider",
+              "cost_usd": 0.013667463599999999,
+              "input_tokens": 25065,
+              "output_tokens": 8879,
+              "rounds": 16,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 150,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:21:11Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.148,
+              "model_duration_seconds": 89.832,
+              "model_rounds": 27,
+              "post_first_non_read_only_seconds": 147.297,
+              "tool_calls": 33,
+              "tool_duration_seconds": 52.19,
+              "total_duration_seconds": 148.445
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:18:23Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 568704,
+              "cost_source": "provider",
+              "cost_usd": 0.016143759,
+              "input_tokens": 25538,
+              "output_tokens": 16493,
+              "rounds": 27,
+              "tool_calls": 33
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 163,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:22:32Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.162,
+              "model_duration_seconds": 102.664,
+              "model_rounds": 25,
+              "post_first_non_read_only_seconds": 160.338,
+              "tool_calls": 32,
+              "tool_duration_seconds": 58.573,
+              "total_duration_seconds": 161.5
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:19:31Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 721408,
+              "cost_source": "provider",
+              "cost_usd": 0.019250234,
+              "input_tokens": 29619,
+              "output_tokens": 19257,
+              "rounds": 25,
+              "tool_calls": 32
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 113,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:24:05Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.077,
+              "model_duration_seconds": 56.015,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 110.514,
+              "tool_calls": 25,
+              "tool_duration_seconds": 54.051,
+              "total_duration_seconds": 111.591
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:21:54Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 310912,
+              "cost_source": "provider",
+              "cost_usd": 0.013421975999999999,
+              "input_tokens": 42886,
+              "output_tokens": 10719,
+              "rounds": 18,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 112,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:25:36Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.619,
+              "model_duration_seconds": 90.448,
+              "model_rounds": 21,
+              "post_first_non_read_only_seconds": 108.335,
+              "tool_calls": 32,
+              "tool_duration_seconds": 19.345,
+              "total_duration_seconds": 109.954
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:23:15Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 360832,
+              "cost_source": "provider",
+              "cost_usd": 0.009900096,
+              "input_tokens": 22368,
+              "output_tokens": 10448,
+              "rounds": 21,
+              "tool_calls": 32
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 89,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:26:39Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.244,
+              "model_duration_seconds": 64.749,
+              "model_rounds": 19,
+              "post_first_non_read_only_seconds": 86.168,
+              "tool_calls": 26,
+              "tool_duration_seconds": 21.889,
+              "total_duration_seconds": 87.412
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:24:41Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 233856,
+              "cost_source": "provider",
+              "cost_usd": 0.006327648000000001,
+              "input_tokens": 11210,
+              "output_tokens": 7120,
+              "rounds": 19,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 90,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:28:17Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.481,
+              "model_duration_seconds": 62.57,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 87.037,
+              "tool_calls": 26,
+              "tool_duration_seconds": 25.832,
+              "total_duration_seconds": 88.518
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:26:18Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 233856,
+              "cost_source": "provider",
+              "cost_usd": 0.006255827999999999,
+              "input_tokens": 12431,
+              "output_tokens": 6781,
+              "rounds": 18,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 123,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:29:52Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.833,
+              "model_duration_seconds": 46.989,
+              "model_rounds": 23,
+              "post_first_non_read_only_seconds": 119.961,
+              "tool_calls": 37,
+              "tool_duration_seconds": 73.626,
+              "total_duration_seconds": 120.794
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:27:31Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 426278,
+              "cost_source": "provider",
+              "cost_usd": 0.018264027599999996,
+              "input_tokens": 38502,
+              "output_tokens": 9986,
+              "rounds": 23,
+              "tool_calls": 37
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 98,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:30:58Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.959,
+              "model_duration_seconds": 53.985,
+              "model_rounds": 21,
+              "post_first_non_read_only_seconds": 93.196,
+              "tool_calls": 32,
+              "tool_duration_seconds": 34.376,
+              "total_duration_seconds": 94.155
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:29:02Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 311064,
+              "cost_source": "provider",
+              "cost_usd": 0.017380498799999998,
+              "input_tokens": 27351,
+              "output_tokens": 12298,
+              "rounds": 21,
+              "tool_calls": 32
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 90,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:32:45Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.681,
+              "model_duration_seconds": 40.298,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 86.405,
+              "tool_calls": 23,
+              "tool_duration_seconds": 47.666,
+              "total_duration_seconds": 88.086
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:30:44Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 329526,
+              "cost_source": "provider",
+              "cost_usd": 0.015255979199999997,
+              "input_tokens": 35013,
+              "output_tokens": 7761,
+              "rounds": 16,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 36,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:34:18Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.8,
+              "model_duration_seconds": 22.977,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 33.203,
+              "tool_calls": 19,
+              "tool_duration_seconds": 10.908,
+              "total_duration_seconds": 34.003
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:33:16Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 157952,
+              "cost_source": "provider",
+              "cost_usd": 0.005996555999999999,
+              "input_tokens": 12488,
+              "output_tokens": 6219,
+              "rounds": 13,
+              "tool_calls": 19
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 52,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:37:07Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.938,
+              "model_duration_seconds": 34.559,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 44.287,
+              "tool_calls": 18,
+              "tool_duration_seconds": 10.448,
+              "total_duration_seconds": 45.225
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:35:38Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 158464,
+              "cost_source": "provider",
+              "cost_usd": 0.005469111999999999,
+              "input_tokens": 11330,
+              "output_tokens": 5457,
+              "rounds": 13,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 55,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:38:29Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.713,
+              "model_duration_seconds": 40.145,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 50.743,
+              "tool_calls": 22,
+              "tool_duration_seconds": 11.171,
+              "total_duration_seconds": 52.456
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:37:19Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 192000,
+              "cost_source": "provider",
+              "cost_usd": 0.00692124,
+              "input_tokens": 12298,
+              "output_tokens": 7573,
+              "rounds": 15,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 70,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:39:25Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.168,
+              "model_duration_seconds": 59.045,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 67.591,
+              "tool_calls": 27,
+              "tool_duration_seconds": 9.454,
+              "total_duration_seconds": 68.759
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:38:01Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 413440,
+              "cost_source": "provider",
+              "cost_usd": 0.023188739999999996,
+              "input_tokens": 26164,
+              "output_tokens": 16468,
+              "rounds": 18,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 59,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:40:29Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.2,
+              "model_duration_seconds": 47.793,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 56.425999999999995,
+              "tool_calls": 22,
+              "tool_duration_seconds": 9.726,
+              "total_duration_seconds": 57.626
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:39:14Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 236288,
+              "cost_source": "provider",
+              "cost_usd": 0.015418127999999998,
+              "input_tokens": 14556,
+              "output_tokens": 11917,
+              "rounds": 15,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 68,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:41:38Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.4,
+              "model_duration_seconds": 53.561,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 65.116,
+              "tool_calls": 22,
+              "tool_duration_seconds": 10.957,
+              "total_duration_seconds": 66.516
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:40:08Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 291968,
+              "cost_source": "provider",
+              "cost_usd": 0.017299083,
+              "input_tokens": 14699,
+              "output_tokens": 13600,
+              "rounds": 16,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 68,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:42:40Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.17,
+              "model_duration_seconds": 59.7,
+              "model_rounds": 23,
+              "post_first_non_read_only_seconds": 65.879,
+              "tool_calls": 32,
+              "tool_duration_seconds": 6.438,
+              "total_duration_seconds": 67.049
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:41:18Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 536192,
+              "cost_source": "provider",
+              "cost_usd": 0.031031651999999996,
+              "input_tokens": 52227,
+              "output_tokens": 10122,
+              "rounds": 23,
+              "tool_calls": 32
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 84,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:44:03Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.982,
+              "model_duration_seconds": 77.212,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 80.715,
+              "tool_calls": 20,
+              "tool_duration_seconds": 4.388,
+              "total_duration_seconds": 81.697
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:42:25Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 192384,
+              "cost_source": "provider",
+              "cost_usd": 0.018694704,
+              "input_tokens": 31204,
+              "output_tokens": 6816,
+              "rounds": 13,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 63,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": "HTTP repair did not recover",
+            "failure_category": "current_sessions_unavailable",
+            "finished_at": "2026-10-25T00:44:35Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.828,
+              "model_duration_seconds": 54.228,
+              "model_rounds": 20,
+              "post_first_non_read_only_seconds": 59.931,
+              "tool_calls": 30,
+              "tool_duration_seconds": 6.378,
+              "total_duration_seconds": 60.759
+            },
+            "reward": 0,
+            "run_id": "023-auth-secret-rollout-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:43:26Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 325248,
+              "cost_source": "provider",
+              "cost_usd": 0.028021787999999995,
+              "input_tokens": 45977,
+              "output_tokens": 10231,
+              "rounds": 20,
+              "tool_calls": 30
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": false,
+              "immediate_http": false,
+              "service_restart": false
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 67,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:46:25Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.91,
+              "model_duration_seconds": 30.344,
+              "model_rounds": 20,
+              "post_first_non_read_only_seconds": 54.779,
+              "tool_calls": 25,
+              "tool_duration_seconds": 25.029,
+              "total_duration_seconds": 55.689
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:45:01Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 458752,
+              "cost_source": "provider",
+              "cost_usd": 0.036829563999999995,
+              "input_tokens": 72521,
+              "output_tokens": 9885,
+              "rounds": 20,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 42,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:46:25Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.628,
+              "model_duration_seconds": 23.556,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 39.734,
+              "tool_calls": 27,
+              "tool_duration_seconds": 16.668,
+              "total_duration_seconds": 40.362
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:45:26Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 237568,
+              "cost_source": "provider",
+              "cost_usd": 0.023252476,
+              "input_tokens": 40585,
+              "output_tokens": 7845,
+              "rounds": 18,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 58,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:50:21Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 0.725,
+              "model_duration_seconds": 35.827,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 55.104,
+              "tool_calls": 25,
+              "tool_duration_seconds": 19.859,
+              "total_duration_seconds": 55.829
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:48:30Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 280064,
+              "cost_source": "provider",
+              "cost_usd": 0.030927548,
+              "input_tokens": 58609,
+              "output_tokens": 9487,
+              "rounds": 17,
+              "tool_calls": 25
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 53,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:49:12Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.879,
+              "model_duration_seconds": 35.306,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 43.121,
+              "tool_calls": 18,
+              "tool_duration_seconds": 10.244,
+              "total_duration_seconds": 47.0
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:48:01Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 160768,
+              "cost_source": "provider",
+              "cost_usd": 0.013188288000000001,
+              "input_tokens": 27404,
+              "output_tokens": 6275,
+              "rounds": 13,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 99,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:52:28Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.125,
+              "model_duration_seconds": 62.182,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 96.321,
+              "tool_calls": 27,
+              "tool_duration_seconds": 35.023,
+              "total_duration_seconds": 97.446
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:50:31Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 377856,
+              "cost_source": "provider",
+              "cost_usd": 0.023475895999999993,
+              "input_tokens": 37916,
+              "output_tokens": 13252,
+              "rounds": 18,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 54,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:53:37Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.149,
+              "model_duration_seconds": 43.488,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 51.821999999999996,
+              "tool_calls": 23,
+              "tool_duration_seconds": 9.371,
+              "total_duration_seconds": 52.971
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:51:58Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 254464,
+              "cost_source": "provider",
+              "cost_usd": 0.015318524000000003,
+              "input_tokens": 26518,
+              "output_tokens": 7696,
+              "rounds": 18,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 83,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:55:22Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 1.921,
+              "model_duration_seconds": 66.304,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 78.90599999999999,
+              "tool_calls": 20,
+              "tool_duration_seconds": 14.428,
+              "total_duration_seconds": 80.827
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-deepseek-deepseek-v4-1-flash-1017-reasoning-high-1",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T00:53:42Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 187648,
+              "cost_source": "provider",
+              "cost_usd": 0.006699444,
+              "input_tokens": 21885,
+              "output_tokens": 6580,
+              "rounds": 14,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 103,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:56:38Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.849,
+              "model_duration_seconds": 83.024,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 96.256,
+              "tool_calls": 23,
+              "tool_duration_seconds": 16.97,
+              "total_duration_seconds": 100.105
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-deepseek-deepseek-v4-1-flash-1017-reasoning-high-2",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T00:54:37Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 271296,
+              "cost_source": "provider",
+              "cost_usd": 0.008398287999999999,
+              "input_tokens": 18382,
+              "output_tokens": 9577,
+              "rounds": 17,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 150,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T00:58:49Z",
+            "model": "deepseek/deepseek-v4.1-flash-1017",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.043,
+              "model_duration_seconds": 138.064,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 145.403,
+              "tool_calls": 19,
+              "tool_duration_seconds": 10.271,
+              "total_duration_seconds": 148.446
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-deepseek-deepseek-v4-1-flash-1017-reasoning-high-3",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T00:56:03Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 242880,
+              "cost_source": "provider",
+              "cost_usd": 0.00650744,
+              "input_tokens": 19850,
+              "output_tokens": 6323,
+              "rounds": 15,
+              "tool_calls": 19
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          }
+        ],
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          }
+        ],
+        "scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 2
+          }
+        ],
+        "source": "matrix-002",
+        "started_at": "2026-10-25T00:11:00.125988Z",
+        "suite": "replaybook-host-matrix-v1",
+        "summary_sha256": "fd257ef880cb2275e57c7cb7eab94c78c3c5cb9d41000c46fc50b6112bae752b"
+      },
+      {
+        "agent": {
+          "adapter": "builtin:claux",
+          "name": "claux",
+          "payload": null,
+          "provider": "openrouter"
+        },
+        "agent_timeout_seconds": 900,
+        "attempts": 3,
+        "benchmark_manifest": {
+          "id": "replaybook-infra-core",
+          "schema_version": 1,
+          "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "status": "stable",
+          "tier": "core",
+          "version": "2026.10.24.2"
+        },
+        "benchmark_tier": "core",
+        "claux_release": null,
+        "concurrency": 2,
+        "execution_snapshot": {
+          "agent_adapter_sha256": null,
+          "agent_config_sha256": null,
+          "agent_env_sha256": null,
+          "agent_payload_sha256": null,
+          "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+          "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+          "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+          "scenario_packs": [
+            {
+              "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+              "id": "ducks/replaybook-infra",
+              "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+              "version": "20261024.1.1"
+            }
+          ],
+          "schema_version": 1,
+          "selected_scenarios": [
+            {
+              "id": "001-nginx-502-host",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+              "version": 1
+            },
+            {
+              "id": "013-sidekiq-wrong-redis",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+              "version": 3
+            },
+            {
+              "id": "015-sidekiq-poison-pill",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+              "version": 1
+            },
+            {
+              "id": "016-rails-pool-exhaustion",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+              "version": 1
+            },
+            {
+              "id": "017-partial-rails-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+              "version": 1
+            },
+            {
+              "id": "019-rust-fd-leak",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+              "version": 1
+            },
+            {
+              "id": "021-discourse-shared-uploads",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+              "version": 1
+            },
+            {
+              "id": "023-auth-secret-rollout",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+              "version": 1
+            },
+            {
+              "id": "024-discourse-interrupted-deploy",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+              "version": 1
+            },
+            {
+              "id": "028-nix-store-disk-pressure",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+              "version": 1
+            },
+            {
+              "id": "033-tls-trust-rotation",
+              "pack_id": "ducks/replaybook-infra",
+              "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+              "version": 2
+            }
+          ]
+        },
+        "finished_at": "2026-10-25T03:58:01.832924Z",
+        "harness_version": 23,
+        "harness_versions": [
+          23
+        ],
+        "models": [
+          "qwen/qwen3.8-max-prime"
+        ],
+        "reasoning_efforts": [
+          "high"
+        ],
+        "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+        "runs": [
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 94,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:01:39Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.647,
+              "model_duration_seconds": 88.213,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 88.54199999999999,
+              "tool_calls": 15,
+              "tool_duration_seconds": 3.88,
+              "total_duration_seconds": 92.189
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:59:53Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 137344,
+              "cost_source": "provider",
+              "cost_usd": 0.212528,
+              "input_tokens": 17481,
+              "output_tokens": 6161,
+              "rounds": 14,
+              "tool_calls": 15
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 98,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:01:37Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.244,
+              "model_duration_seconds": 91.842,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 91.621,
+              "tool_calls": 13,
+              "tool_duration_seconds": 3.915,
+              "total_duration_seconds": 95.865
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T00:59:46Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 112640,
+              "cost_source": "provider",
+              "cost_usd": 0.22740000000000002,
+              "input_tokens": 21902,
+              "output_tokens": 6956,
+              "rounds": 10,
+              "tool_calls": 13
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 95,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:03:55Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.267,
+              "model_duration_seconds": 73.859,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 89.73400000000001,
+              "tool_calls": 14,
+              "tool_duration_seconds": 5.826,
+              "total_duration_seconds": 93.001
+            },
+            "reward": 1,
+            "run_id": "001-nginx-502-host-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "001-nginx-502-host",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:02:07Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 79104,
+              "cost_source": "provider",
+              "cost_usd": 0.15961199999999998,
+              "input_tokens": 13758,
+              "output_tokens": 5419,
+              "rounds": 10,
+              "tool_calls": 14
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 92,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:04:39Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.108,
+              "model_duration_seconds": 72.064,
+              "model_rounds": 10,
+              "post_first_non_read_only_seconds": 87.582,
+              "tool_calls": 13,
+              "tool_duration_seconds": 18.545,
+              "total_duration_seconds": 90.69
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T01:02:48Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 108544,
+              "cost_source": "provider",
+              "cost_usd": 0.18332000000000004,
+              "input_tokens": 16539,
+              "output_tokens": 5241,
+              "rounds": 10,
+              "tool_calls": 13
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 131,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:07:00Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.585,
+              "model_duration_seconds": 114.367,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 125.92999999999999,
+              "tool_calls": 18,
+              "tool_duration_seconds": 14.521,
+              "total_duration_seconds": 129.515
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T01:04:33Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 153984,
+              "cost_source": "provider",
+              "cost_usd": 0.251888,
+              "input_tokens": 21575,
+              "output_tokens": 7383,
+              "rounds": 13,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 114,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:07:41Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.58,
+              "model_duration_seconds": 95.827,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 109.783,
+              "tool_calls": 21,
+              "tool_duration_seconds": 16.438,
+              "total_duration_seconds": 112.363
+            },
+            "reward": 1,
+            "run_id": "013-sidekiq-wrong-redis-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "013-sidekiq-wrong-redis",
+            "scenario_version": 3,
+            "started_at": "2026-10-25T01:05:26Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 184320,
+              "cost_source": "provider",
+              "cost_usd": 0.26388799999999996,
+              "input_tokens": 22400,
+              "output_tokens": 6844,
+              "rounds": 14,
+              "tool_calls": 21
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 252,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:12:11Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.785,
+              "model_duration_seconds": 205.034,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 248.267,
+              "tool_calls": 23,
+              "tool_duration_seconds": 45.866,
+              "total_duration_seconds": 251.052
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:07:41Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 244736,
+              "cost_source": "provider",
+              "cost_usd": 0.45093599999999995,
+              "input_tokens": 32432,
+              "output_tokens": 16570,
+              "rounds": 15,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 371,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:14:56Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 7.019,
+              "model_duration_seconds": 271.422,
+              "model_rounds": 20,
+              "post_first_non_read_only_seconds": 362.771,
+              "tool_calls": 26,
+              "tool_duration_seconds": 98.131,
+              "total_duration_seconds": 369.79
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:08:26Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 388864,
+              "cost_source": "provider",
+              "cost_usd": 0.5967120000000001,
+              "input_tokens": 37237,
+              "output_tokens": 21111,
+              "rounds": 20,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 225,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:16:51Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.777,
+              "model_duration_seconds": 183.981,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 218.57700000000003,
+              "tool_calls": 18,
+              "tool_duration_seconds": 39.244,
+              "total_duration_seconds": 223.354
+            },
+            "reward": 1,
+            "run_id": "015-sidekiq-poison-pill-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "015-sidekiq-poison-pill",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:12:48Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 223488,
+              "cost_source": "provider",
+              "cost_usd": 0.40596799999999994,
+              "input_tokens": 28130,
+              "output_tokens": 15142,
+              "rounds": 14,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 121,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:18:02Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.133,
+              "model_duration_seconds": 102.172,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 112.177,
+              "tool_calls": 18,
+              "tool_duration_seconds": 15.058,
+              "total_duration_seconds": 117.31
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:15:32Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 157824,
+              "cost_source": "provider",
+              "cost_usd": 0.2674,
+              "input_tokens": 22429,
+              "output_tokens": 8231,
+              "rounds": 14,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 125,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:19:58Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.635,
+              "model_duration_seconds": 109.489,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 117.164,
+              "tool_calls": 20,
+              "tool_duration_seconds": 13.194,
+              "total_duration_seconds": 122.799
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:17:24Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 183296,
+              "cost_source": "provider",
+              "cost_usd": 0.29094400000000004,
+              "input_tokens": 23685,
+              "output_tokens": 8713,
+              "rounds": 15,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 122,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:21:12Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.475,
+              "model_duration_seconds": 103.775,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 115.839,
+              "tool_calls": 20,
+              "tool_duration_seconds": 16.458,
+              "total_duration_seconds": 120.314
+            },
+            "reward": 1,
+            "run_id": "016-rails-pool-exhaustion-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "016-rails-pool-exhaustion",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:18:40Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 135296,
+              "cost_source": "provider",
+              "cost_usd": 0.24664799999999995,
+              "input_tokens": 20642,
+              "output_tokens": 8036,
+              "rounds": 13,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 284,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:25:43Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.022,
+              "model_duration_seconds": 134.175,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 276.019,
+              "tool_calls": 23,
+              "tool_duration_seconds": 146.748,
+              "total_duration_seconds": 281.041
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:20:40Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 294016,
+              "cost_source": "provider",
+              "cost_usd": 0.415824,
+              "input_tokens": 35251,
+              "output_tokens": 10651,
+              "rounds": 16,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 166,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:25:00Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.54,
+              "model_duration_seconds": 115.897,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 159.417,
+              "tool_calls": 21,
+              "tool_duration_seconds": 47.973,
+              "total_duration_seconds": 163.957
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:21:56Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 199936,
+              "cost_source": "provider",
+              "cost_usd": 0.314236,
+              "input_tokens": 25598,
+              "output_tokens": 9323,
+              "rounds": 14,
+              "tool_calls": 21
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 281,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:30:50Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.733,
+              "model_duration_seconds": 150.392,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 274.226,
+              "tool_calls": 17,
+              "tool_duration_seconds": 128.046,
+              "total_duration_seconds": 278.959
+            },
+            "reward": 1,
+            "run_id": "017-partial-rails-rollout-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "017-partial-rails-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:25:48Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 196736,
+              "cost_source": "provider",
+              "cost_usd": 0.359852,
+              "input_tokens": 30253,
+              "output_tokens": 11706,
+              "rounds": 12,
+              "tool_calls": 17
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 155,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:33:39Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.973,
+              "model_duration_seconds": 146.303,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 148.75,
+              "tool_calls": 22,
+              "tool_duration_seconds": 7.293,
+              "total_duration_seconds": 153.723
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:30:49Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 201088,
+              "cost_source": "provider",
+              "cost_usd": 0.286504,
+              "input_tokens": 22181,
+              "output_tokens": 8103,
+              "rounds": 17,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 132,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:35:58Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.218,
+              "model_duration_seconds": 119.554,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 124.82099999999998,
+              "tool_calls": 20,
+              "tool_duration_seconds": 8.04,
+              "total_duration_seconds": 130.039
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:33:31Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 161408,
+              "cost_source": "provider",
+              "cost_usd": 0.267608,
+              "input_tokens": 20365,
+              "output_tokens": 8787,
+              "rounds": 15,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 331,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:40:23Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.569,
+              "model_duration_seconds": 322.972,
+              "model_rounds": 21,
+              "post_first_non_read_only_seconds": 324.257,
+              "tool_calls": 26,
+              "tool_duration_seconds": 5.312,
+              "total_duration_seconds": 328.826
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:34:39Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 471168,
+              "cost_source": "provider",
+              "cost_usd": 0.711468,
+              "input_tokens": 46770,
+              "output_tokens": 24067,
+              "rounds": 21,
+              "tool_calls": 26
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 202,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:40:22Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.732,
+              "model_duration_seconds": 192.531,
+              "model_rounds": 16,
+              "post_first_non_read_only_seconds": 196.691,
+              "tool_calls": 23,
+              "tool_duration_seconds": 7.74,
+              "total_duration_seconds": 200.423
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:36:45Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 250240,
+              "cost_source": "provider",
+              "cost_usd": 0.430284,
+              "input_tokens": 32194,
+              "output_tokens": 14699,
+              "rounds": 16,
+              "tool_calls": 23
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 286,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:46:07Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.731,
+              "model_duration_seconds": 275.785,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 276.371,
+              "tool_calls": 18,
+              "tool_duration_seconds": 5.079,
+              "total_duration_seconds": 283.102
+            },
+            "reward": 1,
+            "run_id": "021-discourse-shared-uploads-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "021-discourse-shared-uploads",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:41:06Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 237184,
+              "cost_source": "provider",
+              "cost_usd": 0.524012,
+              "input_tokens": 37251,
+              "output_tokens": 21368,
+              "rounds": 14,
+              "tool_calls": 18
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 117,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:43:38Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 6.335,
+              "model_duration_seconds": 111.658,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 109.28800000000001,
+              "tool_calls": 17,
+              "tool_duration_seconds": 3.852,
+              "total_duration_seconds": 115.623
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:41:26Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 189056,
+              "cost_source": "provider",
+              "cost_usd": 0.302112,
+              "input_tokens": 25985,
+              "output_tokens": 8637,
+              "rounds": 12,
+              "tool_calls": 17
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 112,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:46:29Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.25,
+              "model_duration_seconds": 108.058,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 106.842,
+              "tool_calls": 17,
+              "tool_duration_seconds": 2.93,
+              "total_duration_seconds": 111.092
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:44:20Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 167808,
+              "cost_source": "provider",
+              "cost_usd": 0.27922800000000003,
+              "input_tokens": 22875,
+              "output_tokens": 8652,
+              "rounds": 13,
+              "tool_calls": 17
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 114,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:49:00Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.601,
+              "model_duration_seconds": 108.476,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 107.032,
+              "tool_calls": 20,
+              "tool_duration_seconds": 2.56,
+              "total_duration_seconds": 112.633
+            },
+            "reward": 1,
+            "run_id": "023-auth-secret-rollout-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "023-auth-secret-rollout",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:46:53Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 261120,
+              "cost_source": "provider",
+              "cost_usd": 0.38073199999999996,
+              "input_tokens": 34754,
+              "output_tokens": 9263,
+              "rounds": 12,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 118,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:49:40Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 5.313,
+              "model_duration_seconds": 102.624,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 110.675,
+              "tool_calls": 24,
+              "tool_duration_seconds": 12.508,
+              "total_duration_seconds": 115.988
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:47:24Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 289792,
+              "cost_source": "provider",
+              "cost_usd": 0.36823600000000006,
+              "input_tokens": 30494,
+              "output_tokens": 8447,
+              "rounds": 17,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 141,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:52:15Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.746,
+              "model_duration_seconds": 121.087,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 135.273,
+              "tool_calls": 27,
+              "tool_duration_seconds": 17.789,
+              "total_duration_seconds": 139.019
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:49:37Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 313856,
+              "cost_source": "provider",
+              "cost_usd": 0.40403600000000006,
+              "input_tokens": 32551,
+              "output_tokens": 9742,
+              "rounds": 18,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 112,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:52:58Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.366,
+              "model_duration_seconds": 99.606,
+              "model_rounds": 15,
+              "post_first_non_read_only_seconds": 108.953,
+              "tool_calls": 20,
+              "tool_duration_seconds": 11.608,
+              "total_duration_seconds": 111.319
+            },
+            "reward": 1,
+            "run_id": "024-discourse-interrupted-deploy-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "024-discourse-interrupted-deploy",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:50:33Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 224896,
+              "cost_source": "provider",
+              "cost_usd": 0.31320000000000003,
+              "input_tokens": 26578,
+              "output_tokens": 7870,
+              "rounds": 15,
+              "tool_calls": 20
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 159,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T01:56:21Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 3.422,
+              "model_duration_seconds": 141.888,
+              "model_rounds": 14,
+              "post_first_non_read_only_seconds": 150.096,
+              "tool_calls": 22,
+              "tool_duration_seconds": 8.949,
+              "total_duration_seconds": 153.518
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:53:22Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 174848,
+              "cost_source": "provider",
+              "cost_usd": 0.317444,
+              "input_tokens": 25462,
+              "output_tokens": 10681,
+              "rounds": 14,
+              "tool_calls": 22
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 185,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": "repair did not survive service restarts",
+            "failure_category": "new_receipts_not_writable",
+            "finished_at": "2026-10-25T01:57:48Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.415,
+              "model_duration_seconds": 172.947,
+              "model_rounds": 17,
+              "post_first_non_read_only_seconds": 180.596,
+              "tool_calls": 24,
+              "tool_duration_seconds": 9.91,
+              "total_duration_seconds": 183.011
+            },
+            "reward": 0,
+            "run_id": "028-nix-store-disk-pressure-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:54:31Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 250752,
+              "cost_source": "provider",
+              "cost_usd": 0.40932399999999997,
+              "input_tokens": 29329,
+              "output_tokens": 13886,
+              "rounds": 17,
+              "tool_calls": 24
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": false,
+              "immediate_http": true,
+              "service_restart": false
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 435,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T02:05:28Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.966,
+              "model_duration_seconds": 423.884,
+              "model_rounds": 18,
+              "post_first_non_read_only_seconds": 426.727,
+              "tool_calls": 27,
+              "tool_duration_seconds": 7.507,
+              "total_duration_seconds": 431.693
+            },
+            "reward": 1,
+            "run_id": "028-nix-store-disk-pressure-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "028-nix-store-disk-pressure",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T01:57:56Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 685824,
+              "cost_source": "provider",
+              "cost_usd": 1.07626,
+              "input_tokens": 78991,
+              "output_tokens": 34782,
+              "rounds": 18,
+              "tool_calls": 27
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 133,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T02:01:42Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.285,
+              "model_duration_seconds": 110.436,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 128.69,
+              "tool_calls": 15,
+              "tool_duration_seconds": 20.421,
+              "total_duration_seconds": 130.975
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T01:59:11Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 181376,
+              "cost_source": "provider",
+              "cost_usd": 0.2824,
+              "input_tokens": 22356,
+              "output_tokens": 8524,
+              "rounds": 13,
+              "tool_calls": 15
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 111,
+            "agent_timeout_seconds": 900,
+            "attempt": 2,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T02:04:35Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.456,
+              "model_duration_seconds": 96.668,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 105.88799999999999,
+              "tool_calls": 19,
+              "tool_duration_seconds": 11.57,
+              "total_duration_seconds": 108.344
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-qwen-qwen3-8-max-prime-reasoning-high-2",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T02:02:27Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 207232,
+              "cost_source": "provider",
+              "cost_usd": 0.30984000000000006,
+              "input_tokens": 27808,
+              "output_tokens": 7916,
+              "rounds": 13,
+              "tool_calls": 19
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 161,
+            "agent_timeout_seconds": 900,
+            "attempt": 3,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T02:08:20Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 2.185,
+              "model_duration_seconds": 151.294,
+              "model_rounds": 12,
+              "post_first_non_read_only_seconds": 157.664,
+              "tool_calls": 19,
+              "tool_duration_seconds": 8.428,
+              "total_duration_seconds": 159.849
+            },
+            "reward": 1,
+            "run_id": "033-tls-trust-rotation-qwen-qwen3-8-max-prime-reasoning-high-3",
+            "scenario": "033-tls-trust-rotation",
+            "scenario_version": 2,
+            "started_at": "2026-10-25T02:05:20Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 195968,
+              "cost_source": "provider",
+              "cost_usd": 0.36396400000000007,
+              "input_tokens": 30204,
+              "output_tokens": 12097,
+              "rounds": 12,
+              "tool_calls": 19
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          },
+          {
+            "agent": "claux",
+            "agent_duration_seconds": 119,
+            "agent_timeout_seconds": 900,
+            "attempt": 1,
+            "failure": null,
+            "failure_category": null,
+            "finished_at": "2026-10-25T03:58:01Z",
+            "model": "qwen/qwen3.8-max-prime",
+            "provider": "openrouter",
+            "reasoning_effort": "high",
+            "recording": {
+              "first_non_read_only_tool_seconds": 4.077,
+              "model_duration_seconds": 110.006,
+              "model_rounds": 13,
+              "post_first_non_read_only_seconds": 112.952,
+              "tool_calls": 17,
+              "tool_duration_seconds": 6.395,
+              "total_duration_seconds": 117.029
+            },
+            "reward": 1,
+            "run_id": "019-rust-fd-leak-qwen-qwen3-8-max-prime-reasoning-high-1",
+            "scenario": "019-rust-fd-leak",
+            "scenario_version": 1,
+            "started_at": "2026-10-25T03:55:46Z",
+            "trial_status": "evaluated",
+            "usage": {
+              "cache_creation_tokens": 0,
+              "cache_read_tokens": 145792,
+              "cost_source": "provider",
+              "cost_usd": 0.26183599999999996,
+              "input_tokens": 19818,
+              "output_tokens": 9139,
+              "rounds": 13,
+              "tool_calls": 17
+            },
+            "verification": {
+              "after_agent_timeout": null,
+              "host_reboot": true,
+              "immediate_http": true,
+              "service_restart": true
+            }
+          }
+        ],
+        "scenario_packs": [
+          {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          }
+        ],
+        "scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack": {
+              "id": "ducks/replaybook-infra",
+              "version": "20261024.1.1"
+            },
+            "version": 2
+          }
+        ],
+        "source": "matrix-003",
+        "started_at": "2026-10-25T00:58:58.474628Z",
+        "suite": "replaybook-host-matrix-v1",
+        "summary_sha256": "872fbdd013772ca7f6c413995c0b47ad67785680edc55fa58aa18a228ff7878a"
+      }
+    ],
+    "totals": {
+      "cache_creation_reported_trials": 99,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 99,
+      "cache_read_tokens": 28345860,
+      "cost_reported_trials": 99,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 99,
+      "failed": 2,
+      "failure_categories": {
+        "current_sessions_unavailable": 1,
+        "new_receipts_not_writable": 1
+      },
+      "input_tokens": 2965862,
+      "known_cost_usd": 18.5487519284,
+      "median_duration_seconds": 125,
+      "median_first_non_read_only_tool_seconds": 4.25,
+      "median_model_duration_seconds": 109.376,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 113.47,
+      "median_tool_calls": 23,
+      "median_tool_duration_seconds": 10.834,
+      "output_tokens": 885410,
+      "pass_rate": 0.9797979797979798,
+      "passed": 97,
+      "recording_reported_trials": 99,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 99,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 99
+    }
+  },
+  "kind": "replaybook-benchmark-submission",
+  "schema_version": 1,
+  "submission_id": "da238027f4ec1805a212c9361a3d52287b9ec6d03efaace476fea92329f5d968",
+  "submitter": "ducks"
+}

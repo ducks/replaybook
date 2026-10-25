@@ -9,21 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Claux + OpenRouter October Core evaluation
+## Frozen Core: Kimi K3.1 Pro, DeepSeek 1017, and Qwen Max Prime
 
-Three configurations attempted eight Core incidents three times each: 66 durable repairs in 72 evaluated trials, with $1.4792 in reported API cost.
+Three high-reasoning configurations attempted eleven Core incidents three times each: 97 durable repairs in 99 evaluated trials, with $18.5488 in provider-reported API cost.
 
-Benchmark release: `20261020.0.0`
+Benchmark release: `20261024.0.0`
 Benchmark tier: `core`
 
-Scenario packs: `ducks/replaybook-infra@20261015.0.1`
+Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Claude Haiku 5.5 · openrouter | 22/24 | 92% | 1:02 | $0.5035 | $0.0229 |
-| DeepSeek V4.1 Flash 1017 · openrouter | 23/24 | 96% | 2:34 | $0.6944 | $0.0302 |
-| Mercury 3 · openrouter | 21/24 | 88% | 0:58 | $0.2813 | $0.0134 |
-| **Total** | **66/72** | **92%** | **1:20** | **$1.4792** | **$0.0224** |
+| Kimi K3.1 Pro (high) · openrouter | 33/33 | 100% | 2:36 | $6.0769 | $0.1841 |
+| DeepSeek V4.1 Flash 1017 (high) · openrouter | 32/33 | 97% | 1:14 | $0.5362 | $0.0168 |
+| Qwen3.8 Max Prime (high) · openrouter | 32/33 | 97% | 2:12 | $11.9356 | $0.3730 |
+| **Total** | **97/99** | **98%** | **2:05** | **$18.5488** | **$0.1912** |
 
 ### Execution recording
 
@@ -31,51 +31,54 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Claude Haiku 5.5 · openrouter | 24/24 | 9.5 | 0:46 | 11.5 | 0:09 | 0:02 | 0:58 |
-| DeepSeek V4.1 Flash 1017 · openrouter | 24/24 | 24 | 2:16 | 34 | 0:27 | 0:01 | 2:31 |
-| Mercury 3 · openrouter | 24/24 | 17.5 | 0:37 | 27.5 | 0:10 | 0:01 | 0:55 |
+| Kimi K3.1 Pro (high) · openrouter | 33/33 | 15 | 2:17 | 25 | 0:07 | 0:15 | 2:19 |
+| DeepSeek V4.1 Flash 1017 (high) · openrouter | 33/33 | 18 | 0:54 | 25 | 0:17 | 0:01 | 1:11 |
+| Qwen3.8 Max Prime (high) · openrouter | 33/33 | 14 | 1:54 | 20 | 0:12 | 0:04 | 2:06 |
 
-DeepSeek passed 23/24, Haiku 22/24, and Mercury 21/24 trials.
+Kimi passed 33/33 (100%), with a 156-second median agent duration and $6.0769 in reported API cost.
 
-DeepSeek timed out on shared uploads after 901 seconds; post-timeout verification still found a historical upload missing.
+DeepSeek passed 32/33 (97.0%), with a 74-second median agent duration and $0.5362 in reported API cost. Its auth-secret rotation failure was an immediate concurrent session-creation assertion with 2/3 successful requests.
 
-One Mercury shared-uploads attempt failed to recover pre-existing accepted uploads. Another was interrupted by a provider HTTP 429 after 22 model rounds and 32 tool calls. Meaningful execution had occurred, so the latter remains an evaluated provider_interrupted failure.
+Qwen passed 32/33 (97.0%), with a 132-second median agent duration and $11.9356 in reported API cost. Its disk-pressure trial passed immediate verification but failed a concurrent receipt-write assertion after service restart with 4/6 successful requests.
 
-Haiku and Mercury each had one interrupted-deployment attempt leave the green instance on the wrong release.
-
-One Haiku disk-pressure attempt still returned HTTP 507 low_disk after the agent finished.
+All three configurations passed all three attempts of the new TLS trust-rotation incident. The accepted TLS v2 verifier rejects endpoint certificate replacement; initial v1 development evidence is excluded.
 
 ### Scenario breakdown
 
-| Scenario | Version | Claude Haiku 5.5 · openrouter | DeepSeek V4.1 Flash 1017 · openrouter | Mercury 3 · openrouter |
+| Scenario | Version | Kimi K3.1 Pro (high) · openrouter | DeepSeek V4.1 Flash 1017 (high) · openrouter | Qwen3.8 Max Prime (high) · openrouter |
 |---|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 0:27 | 3/3, 2:11 | 3/3, 0:26 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 0:48 | 3/3, 2:46 | 3/3, 0:33 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 1:51 | 3/3, 6:52 | 3/3, 1:27 |
-| 017-partial-rails-rollout | v1 | 3/3, 1:28 | 3/3, 1:47 | 3/3, 1:15 |
-| 019-rust-fd-leak | v1 | 3/3, 0:40 | 3/3, 2:31 | 3/3, 0:43 |
-| 021-discourse-shared-uploads | v1 | 3/3, 1:05 | 2/3, 10:59 | 1/3, 1:02 |
-| 024-discourse-interrupted-deploy | v1 | 2/3, 1:19 | 3/3, 3:49 | 2/3, 0:46 |
-| 028-nix-store-disk-pressure | v1 | 2/3, 1:06 | 3/3, 2:11 | 3/3, 1:07 |
+| 001-nginx-502-host | v1 | 3/3, 1:41 | 3/3, 0:50 | 3/3, 1:35 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 2:38 | 3/3, 1:14 | 3/3, 1:54 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 3:28 | 3/3, 2:30 | 3/3, 4:12 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 2:08 | 3/3, 1:30 | 3/3, 2:02 |
+| 017-partial-rails-rollout | v1 | 3/3, 3:01 | 3/3, 1:38 | 3/3, 4:41 |
+| 019-rust-fd-leak | v1 | 3/3, 2:17 | 3/3, 0:52 | 3/3, 2:12 |
+| 021-discourse-shared-uploads | v1 | 3/3, 3:18 | 3/3, 1:08 | 3/3, 4:46 |
+| 023-auth-secret-rollout | v1 | 3/3, 2:46 | 2/3, 1:08 | 3/3, 1:54 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 2:16 | 3/3, 0:58 | 3/3, 1:58 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 3:19 | 3/3, 0:54 | 2/3, 3:05 |
+| 033-tls-trust-rotation | v2 | 3/3, 2:50 | 3/3, 1:43 | 3/3, 2:13 |
 
 ### Failure categories
 
-- `accepted_uploads_not_recovered`: 1
-- `agent_timeout`: 1
-- `provider_interrupted`: 1
-- `release_not_converged`: 2
-- `writable_capacity_not_recovered`: 1
+- `current_sessions_unavailable`: 1
+- `new_receipts_not_writable`: 1
 
 ### Source matrices
 
-- `host-matrix-2026-10-20__01-40-17.d7a057`: anthropic/claude-haiku-5.5, deepseek/deepseek-v4.1-flash-1017, inception/mercury-3; Replaybook `192e4746`
+- `matrix-001`: moonshotai/kimi-k3.1-pro; Replaybook `37506bdd`; reasoning high
+- `matrix-002`: deepseek/deepseek-v4.1-flash-1017; Replaybook `37506bdd`; reasoning high
+- `matrix-003`: qwen/qwen3.8-max-prime; Replaybook `37506bdd`; reasoning high
 
 ### Run notes
 
-- Core manifest 2026.10.15; three attempts per scenario, default reasoning, and a 900-second deadline. All 72 trials were evaluated; no missing or unavailable trials.
-- Controller hash, selected scenario fingerprints, manifest, attempts and deadline match the OpenCode Go release 20261018.0.0. Agent harness and provider differ intentionally. Scores may be displayed together, but releases and attempts are not pooled.
-- All 66 successful repairs passed immediate, service-restart and host-reboot verification.
-- Three attempts per scenario remain a small sample. Differences across harness/provider configurations cannot establish a model-only or provider-only effect.
+- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated; none are missing or unavailable.
+- Every configuration used the same frozen controller, scenario fingerprints, manifest, Claux binary, and shared OpenRouter protocol. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
+- All 97 successful repairs passed immediate, service-restart, and host-reboot verification. TLS scenario v2 also compared endpoint certificate and CA identities against controller-owned preflight evidence.
+- Two VM port-forwarding startup failures occurred before inference (one Kimi trial and one Qwen trial). Those missing trials were resumed using the original execution snapshots; completed evaluated results were preserved. Original startup logs remain in the local audit artifacts.
+- Three attempts per scenario are a small sample. These results describe the selected model, reasoning, harness, and provider configurations on this Core revision; they do not establish universal infrastructure capability or statistically reliable differences between models.
+- The two failed trials are retained as evaluated failures. Their artifacts record partial success in concurrent HTTP assertions but do not retain each unsuccessful request response; the underlying causes are unresolved. No scores were corrected or failures relabeled.
+- Earlier eight-scenario Core results remain historical and are not pooled into this expanded revision. Public evidence excludes private transcripts, credentials, and local VM artifacts.
 
 <!-- replaybook:current-benchmark:end -->
 
