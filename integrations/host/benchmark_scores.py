@@ -119,6 +119,9 @@ def group_conditions(cohorts):
         group["hidden"] += cohort["hidden"]
         for provider, cards in cohort["groups"].items():
             group["groups"][provider].extend(cards)
+    for group in combined.values():
+        for cards in group["groups"].values():
+            cards.sort(key=lambda card: (-card["score"], card.get("label", ""), card["release"]))
     return list(combined.values())
 
 
@@ -144,7 +147,18 @@ def build_scores(root, index):
             if card["status"] != "complete":
                 hidden += 1
                 continue
+            aggregate = next(row for row in release["by_model"]
+                             if row["model"] == card["model"]
+                             and (row.get("provider") or "unreported") == card["provider"]
+                             and (row.get("reasoning_effort") or "default") == card["reasoning"])
+            card["cost"] = aggregate.get("known_cost_usd")
+            card["cost_reported"] = aggregate.get("cost_reported_trials", 0)
+            if not card["cost_reported"]:
+                card["cost"] = None
+            card["cost_complete"] = card["cost_reported"] == card["trials"]
+            card["duration"] = aggregate.get("median_duration_seconds")
             card["passed"] = sum(cell["passed"] for cell in card["cells"])
+            card["cost_per_repair"] = card["cost"] / card["passed"] if card["cost"] is not None and card["passed"] else None
             card["release"] = version
             card["harness"] = report["harness"]
             card["evidence_url"] = "benchmark-evidence.html?" + urlencode({
