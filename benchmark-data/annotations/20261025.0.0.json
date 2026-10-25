@@ -1,0 +1,38 @@
+{
+  "title": "Frozen Core flagship evaluation: Opus, GPT-6.1 Sol, and Gemini",
+  "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 92 durable repairs in 99 evaluated trials. Reported API spend is at least $19.3888; two timeout trials lack cost reporting.",
+  "input_mode": "text",
+  "model_order": [
+    "anthropic/claude-opus-5.5",
+    "openai/gpt-6.1-sol",
+    "google/gemini-4-argon"
+  ],
+  "model_labels": {
+    "anthropic/claude-opus-5.5": "Claude Opus 5.5",
+    "openai/gpt-6.1-sol": "GPT-6.1 Sol",
+    "google/gemini-4-argon": "Gemini 4 Argon"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated; none are missing or unavailable. All 92 successful repairs passed immediate, service-restart, and host-reboot verification.",
+    "This release uses the same frozen cohort as release 20261024.0.0, including the controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux binary. Cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official release.",
+    "Cost reporting covers 97/99 trials: Opus 33/33, Sol 32/33, and Gemini 32/33. The Sol Rust timeout and Gemini pool timeout have no final usage or cost record. Their costs are unknown rather than zero; Sol, Gemini, and aggregate reported spend are lower bounds.",
+    "One Opus shared-uploads VM failed during port-forward setup before inference. Its missing trial was resumed against the original execution snapshot; all completed evaluated results were preserved. Original startup evidence remains in local audit artifacts.",
+    "All seven failed trials remain in the denominator. The Gemini Nginx provider HTTP 504 occurred after 12 recorded rounds and 11 tool calls; its recorded agent_runtime_error remains an evaluated failure. Timeouts remain evaluated failures even without final usage records.",
+    "Several failures were partial concurrent HTTP assertions after restart or reboot. The phase artifacts record successful request counts but not each unsuccessful response. Observable tool histories show repairs and local checks, but the retained evidence does not establish the underlying causes; these failures have not been reclassified or corrected.",
+    "Three attempts per scenario are a small sample, not a statistically reliable model ranking. Results describe the selected model, reasoning, harness, provider boundary, and benchmark contract. Compatible releases may be displayed together, but attempts are not pooled or selected for their best outcome.",
+    "Public evidence includes normalized results, reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, and VM artifacts are excluded."
+  ],
+  "observations": [
+    "Opus passed 31/33 (93.9%), with a 72-second median agent duration and $6.3197 in reported API cost. Its disk-pressure failure passed immediate recovery but completed only 3/6 concurrent receipt writes after restart. Its TLS failure passed immediate recovery and preserved endpoint identities but accepted only 2/4 fresh deliveries after restart; the legacy top-level result has no category, while the controller phase record says new_deliveries_not_accepted.",
+    "GPT-6.1 Sol passed 30/33 (90.9%), with an 81-second median agent duration and at least $3.5375 in reported API cost. One Rust trial timed out without a durable post-timeout repair. One pool-exhaustion trial passed immediate and restart checks but completed 4/8 concurrent requests after reboot. One disk-pressure trial completed 4/6 receipt writes after restart.",
+    "Gemini passed 31/33 (93.9%), with a 227-second median agent duration and at least $9.5315 in reported API cost. One pool-exhaustion trial timed out; post-timeout verification still observed pool size 1. One Nginx trial ended with a provider HTTP 504 after meaningful execution.",
+    "Compared with the earlier compatible release, the observed outcomes were Kimi 33/33, DeepSeek 32/33, and Qwen 32/33. These are separate three-attempt configurations on the same frozen benchmark conditions; the small observed differences do not establish model superiority."
+  ]
+}

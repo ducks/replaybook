@@ -9,21 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core: Kimi K3.1 Pro, DeepSeek 1017, and Qwen Max Prime
+## Frozen Core flagship evaluation: Opus, GPT-6.1 Sol, and Gemini
 
-Three high-reasoning configurations attempted eleven Core incidents three times each: 97 durable repairs in 99 evaluated trials, with $18.5488 in provider-reported API cost.
+Three high-reasoning configurations attempted eleven Core incidents three times each: 92 durable repairs in 99 evaluated trials. Reported API spend is at least $19.3888; two timeout trials lack cost reporting.
 
-Benchmark release: `20261024.0.0`
+Benchmark release: `20261025.0.0`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Kimi K3.1 Pro (high) · openrouter | 33/33 | 100% | 2:36 | $6.0769 | $0.1841 |
-| DeepSeek V4.1 Flash 1017 (high) · openrouter | 32/33 | 97% | 1:14 | $0.5362 | $0.0168 |
-| Qwen3.8 Max Prime (high) · openrouter | 32/33 | 97% | 2:12 | $11.9356 | $0.3730 |
-| **Total** | **97/99** | **98%** | **2:05** | **$18.5488** | **$0.1912** |
+| Claude Opus 5.5 (high) · openrouter | 31/33 | 94% | 1:12 | $6.3197 | $0.2039 |
+| GPT-6.1 Sol (high) · openrouter | 30/33 | 91% | 1:21 | $3.5375+ | $0.1179+ |
+| Gemini 4 Argon (high) · openrouter | 31/33 | 94% | 3:47 | $9.5315+ | $0.3075+ |
+| **Total** | **92/99** | **93%** | **1:28** | **$19.3888+** | **$0.2107+** |
 
 ### Execution recording
 
@@ -31,54 +31,57 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Kimi K3.1 Pro (high) · openrouter | 33/33 | 15 | 2:17 | 25 | 0:07 | 0:15 | 2:19 |
-| DeepSeek V4.1 Flash 1017 (high) · openrouter | 33/33 | 18 | 0:54 | 25 | 0:17 | 0:01 | 1:11 |
-| Qwen3.8 Max Prime (high) · openrouter | 33/33 | 14 | 1:54 | 20 | 0:12 | 0:04 | 2:06 |
+| Claude Opus 5.5 (high) · openrouter | 33/33 | 11 | 0:59 | 10 | 0:11 | 0:03 | 1:07 |
+| GPT-6.1 Sol (high) · openrouter | 32/33 | 14 | 1:08 | 22 | 0:07 | 0:05 | 1:14 |
+| Gemini 4 Argon (high) · openrouter | 32/33 | 16 | 3:29 | 26.5 | 0:03 | 0:07 | 3:33 |
 
-Kimi passed 33/33 (100%), with a 156-second median agent duration and $6.0769 in reported API cost.
+Opus passed 31/33 (93.9%), with a 72-second median agent duration and $6.3197 in reported API cost. Its disk-pressure failure passed immediate recovery but completed only 3/6 concurrent receipt writes after restart. Its TLS failure passed immediate recovery and preserved endpoint identities but accepted only 2/4 fresh deliveries after restart; the legacy top-level result has no category, while the controller phase record says new_deliveries_not_accepted.
 
-DeepSeek passed 32/33 (97.0%), with a 74-second median agent duration and $0.5362 in reported API cost. Its auth-secret rotation failure was an immediate concurrent session-creation assertion with 2/3 successful requests.
+GPT-6.1 Sol passed 30/33 (90.9%), with an 81-second median agent duration and at least $3.5375 in reported API cost. One Rust trial timed out without a durable post-timeout repair. One pool-exhaustion trial passed immediate and restart checks but completed 4/8 concurrent requests after reboot. One disk-pressure trial completed 4/6 receipt writes after restart.
 
-Qwen passed 32/33 (97.0%), with a 132-second median agent duration and $11.9356 in reported API cost. Its disk-pressure trial passed immediate verification but failed a concurrent receipt-write assertion after service restart with 4/6 successful requests.
+Gemini passed 31/33 (93.9%), with a 227-second median agent duration and at least $9.5315 in reported API cost. One pool-exhaustion trial timed out; post-timeout verification still observed pool size 1. One Nginx trial ended with a provider HTTP 504 after meaningful execution.
 
-All three configurations passed all three attempts of the new TLS trust-rotation incident. The accepted TLS v2 verifier rejects endpoint certificate replacement; initial v1 development evidence is excluded.
+Compared with the earlier compatible release, the observed outcomes were Kimi 33/33, DeepSeek 32/33, and Qwen 32/33. These are separate three-attempt configurations on the same frozen benchmark conditions; the small observed differences do not establish model superiority.
 
 ### Scenario breakdown
 
-| Scenario | Version | Kimi K3.1 Pro (high) · openrouter | DeepSeek V4.1 Flash 1017 (high) · openrouter | Qwen3.8 Max Prime (high) · openrouter |
+| Scenario | Version | Claude Opus 5.5 (high) · openrouter | GPT-6.1 Sol (high) · openrouter | Gemini 4 Argon (high) · openrouter |
 |---|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 1:41 | 3/3, 0:50 | 3/3, 1:35 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 2:38 | 3/3, 1:14 | 3/3, 1:54 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 3:28 | 3/3, 2:30 | 3/3, 4:12 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 2:08 | 3/3, 1:30 | 3/3, 2:02 |
-| 017-partial-rails-rollout | v1 | 3/3, 3:01 | 3/3, 1:38 | 3/3, 4:41 |
-| 019-rust-fd-leak | v1 | 3/3, 2:17 | 3/3, 0:52 | 3/3, 2:12 |
-| 021-discourse-shared-uploads | v1 | 3/3, 3:18 | 3/3, 1:08 | 3/3, 4:46 |
-| 023-auth-secret-rollout | v1 | 3/3, 2:46 | 2/3, 1:08 | 3/3, 1:54 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 2:16 | 3/3, 0:58 | 3/3, 1:58 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 3:19 | 3/3, 0:54 | 2/3, 3:05 |
-| 033-tls-trust-rotation | v2 | 3/3, 2:50 | 3/3, 1:43 | 3/3, 2:13 |
+| 001-nginx-502-host | v1 | 3/3, 0:40 | 3/3, 0:43 | 2/3, 3:35 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 1:14 | 3/3, 1:09 | 3/3, 2:20 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 2:04 | 3/3, 2:26 | 3/3, 8:24 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 1:07 | 2/3, 1:26 | 2/3, 3:35 |
+| 017-partial-rails-rollout | v1 | 3/3, 1:39 | 3/3, 1:15 | 3/3, 4:33 |
+| 019-rust-fd-leak | v1 | 3/3, 1:07 | 2/3, 1:48 | 3/3, 3:23 |
+| 021-discourse-shared-uploads | v1 | 3/3, 1:26 | 3/3, 1:21 | 3/3, 4:49 |
+| 023-auth-secret-rollout | v1 | 3/3, 1:07 | 3/3, 1:25 | 3/3, 3:21 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 1:05 | 3/3, 1:12 | 3/3, 2:39 |
+| 028-nix-store-disk-pressure | v1 | 2/3, 1:17 | 2/3, 1:08 | 3/3, 4:40 |
+| 033-tls-trust-rotation | v2 | 2/3, 1:06 | 3/3, 1:16 | 3/3, 5:05 |
 
 ### Failure categories
 
-- `current_sessions_unavailable`: 1
-- `new_receipts_not_writable`: 1
+- `agent_runtime_error`: 1
+- `agent_timeout`: 2
+- `database_pool_exhausted`: 1
+- `new_receipts_not_writable`: 2
 
 ### Source matrices
 
-- `matrix-001`: moonshotai/kimi-k3.1-pro; Replaybook `37506bdd`; reasoning high
-- `matrix-002`: deepseek/deepseek-v4.1-flash-1017; Replaybook `37506bdd`; reasoning high
-- `matrix-003`: qwen/qwen3.8-max-prime; Replaybook `37506bdd`; reasoning high
+- `matrix-001`: anthropic/claude-opus-5.5; Replaybook `37506bdd`; reasoning high
+- `matrix-002`: openai/gpt-6.1-sol; Replaybook `37506bdd`; reasoning high
+- `matrix-003`: google/gemini-4-argon; Replaybook `37506bdd`; reasoning high
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated; none are missing or unavailable.
-- Every configuration used the same frozen controller, scenario fingerprints, manifest, Claux binary, and shared OpenRouter protocol. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
-- All 97 successful repairs passed immediate, service-restart, and host-reboot verification. TLS scenario v2 also compared endpoint certificate and CA identities against controller-owned preflight evidence.
-- Two VM port-forwarding startup failures occurred before inference (one Kimi trial and one Qwen trial). Those missing trials were resumed using the original execution snapshots; completed evaluated results were preserved. Original startup logs remain in the local audit artifacts.
-- Three attempts per scenario are a small sample. These results describe the selected model, reasoning, harness, and provider configurations on this Core revision; they do not establish universal infrastructure capability or statistically reliable differences between models.
-- The two failed trials are retained as evaluated failures. Their artifacts record partial success in concurrent HTTP assertions but do not retain each unsuccessful request response; the underlying causes are unresolved. No scores were corrected or failures relabeled.
-- Earlier eight-scenario Core results remain historical and are not pooled into this expanded revision. Public evidence excludes private transcripts, credentials, and local VM artifacts.
+- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated; none are missing or unavailable. All 92 successful repairs passed immediate, service-restart, and host-reboot verification.
+- This release uses the same frozen cohort as release 20261024.0.0, including the controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux binary. Cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official release.
+- Cost reporting covers 97/99 trials: Opus 33/33, Sol 32/33, and Gemini 32/33. The Sol Rust timeout and Gemini pool timeout have no final usage or cost record. Their costs are unknown rather than zero; Sol, Gemini, and aggregate reported spend are lower bounds.
+- One Opus shared-uploads VM failed during port-forward setup before inference. Its missing trial was resumed against the original execution snapshot; all completed evaluated results were preserved. Original startup evidence remains in local audit artifacts.
+- All seven failed trials remain in the denominator. The Gemini Nginx provider HTTP 504 occurred after 12 recorded rounds and 11 tool calls; its recorded agent_runtime_error remains an evaluated failure. Timeouts remain evaluated failures even without final usage records.
+- Several failures were partial concurrent HTTP assertions after restart or reboot. The phase artifacts record successful request counts but not each unsuccessful response. Observable tool histories show repairs and local checks, but the retained evidence does not establish the underlying causes; these failures have not been reclassified or corrected.
+- Three attempts per scenario are a small sample, not a statistically reliable model ranking. Results describe the selected model, reasoning, harness, provider boundary, and benchmark contract. Compatible releases may be displayed together, but attempts are not pooled or selected for their best outcome.
+- Public evidence includes normalized results, reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, and VM artifacts are excluded.
 
 <!-- replaybook:current-benchmark:end -->
 
