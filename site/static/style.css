@@ -2130,4 +2130,46 @@ footer.site a {
 .score-card h4 { font-size: 1.35rem; margin: .75rem 0; }
 .score-value { font-size: 3rem; font-weight: 700; }
 .score-value span { font-size: 1rem; font-weight: 400; }
-.score-selector { display: block; max-width: 100%; margin: .5rem 0 1.5rem; }
+.score-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: end;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.score-control { min-width: 0; }
+.score-control label {
+  display: block;
+  margin-bottom: .5rem;
+  color: var(--fg-dim);
+  font-size: .8rem;
+  font-weight: 600;
+}
+.score-selector {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  margin: 0;
+  padding: 0 .75rem;
+  font: inherit;
+  font-size: .875rem;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.score-selector:hover { border-color: var(--fg-dim); }
+.score-selector:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.score-toolbar-note { margin: .75rem 0 1.75rem; }
+@media (max-width: 900px) {
+  .score-toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .score-toolbar { grid-template-columns: minmax(0, 1fr); padding: 1rem; }
+}
