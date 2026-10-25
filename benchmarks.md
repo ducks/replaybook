@@ -9,21 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core flagship evaluation: Opus, GPT-6.1 Sol, and Gemini
+## Frozen Core: GLM Flash, Step 5 Preview, and Nemotron Ultra
 
-Three high-reasoning configurations attempted eleven Core incidents three times each: 92 durable repairs in 99 evaluated trials. Reported API spend is at least $19.3888; two timeout trials lack cost reporting.
+Three high-reasoning configurations attempted eleven Core incidents three times each: 85 durable repairs in 99 evaluated trials, with $5.9719 in provider-reported API cost.
 
-Benchmark release: `20261025.0.0`
+Benchmark release: `20261025.0.1`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Claude Opus 5.5 (high) · openrouter | 31/33 | 94% | 1:12 | $6.3197 | $0.2039 |
-| GPT-6.1 Sol (high) · openrouter | 30/33 | 91% | 1:21 | $3.5375+ | $0.1179+ |
-| Gemini 4 Argon (high) · openrouter | 31/33 | 94% | 3:47 | $9.5315+ | $0.3075+ |
-| **Total** | **92/99** | **93%** | **1:28** | **$19.3888+** | **$0.2107+** |
+| GLM 5.3 Flash (high) · openrouter | 31/33 | 94% | 1:12 | $0.4194 | $0.0135 |
+| Step 5 Preview (high) · openrouter | 30/33 | 91% | 1:24 | $2.1953 | $0.0732 |
+| Nemotron 3 Ultra 550B A55B (high) · openrouter | 24/33 | 73% | 1:28 | $3.3572 | $0.1399 |
+| **Total** | **85/99** | **86%** | **1:24** | **$5.9719** | **$0.0703** |
 
 ### Execution recording
 
@@ -31,57 +31,67 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Claude Opus 5.5 (high) · openrouter | 33/33 | 11 | 0:59 | 10 | 0:11 | 0:03 | 1:07 |
-| GPT-6.1 Sol (high) · openrouter | 32/33 | 14 | 1:08 | 22 | 0:07 | 0:05 | 1:14 |
-| Gemini 4 Argon (high) · openrouter | 32/33 | 16 | 3:29 | 26.5 | 0:03 | 0:07 | 3:33 |
+| GLM 5.3 Flash (high) · openrouter | 33/33 | 15 | 0:44 | 20 | 0:12 | 0:02 | 1:10 |
+| Step 5 Preview (high) · openrouter | 33/33 | 19 | 0:59 | 26 | 0:17 | 0:01 | 1:21 |
+| Nemotron 3 Ultra 550B A55B (high) · openrouter | 33/33 | 34 | 0:57 | 39 | 0:14 | 0:02 | 1:24 |
 
-Opus passed 31/33 (93.9%), with a 72-second median agent duration and $6.3197 in reported API cost. Its disk-pressure failure passed immediate recovery but completed only 3/6 concurrent receipt writes after restart. Its TLS failure passed immediate recovery and preserved endpoint identities but accepted only 2/4 fresh deliveries after restart; the legacy top-level result has no category, while the controller phase record says new_deliveries_not_accepted.
+GLM 5.3 Flash passed 31/33 (93.9%), with a 72-second median agent duration and $0.4194 in provider-reported API cost. Reported cost per durable repair was $0.0135 for this run.
 
-GPT-6.1 Sol passed 30/33 (90.9%), with an 81-second median agent duration and at least $3.5375 in reported API cost. One Rust trial timed out without a durable post-timeout repair. One pool-exhaustion trial passed immediate and restart checks but completed 4/8 concurrent requests after reboot. One disk-pressure trial completed 4/6 receipt writes after restart.
+Step 5 Preview passed 30/33 (90.9%), with a 84-second median agent duration and $2.1953 in provider-reported API cost. Reported cost per durable repair was $0.0732 for this run.
 
-Gemini passed 31/33 (93.9%), with a 227-second median agent duration and at least $9.5315 in reported API cost. One pool-exhaustion trial timed out; post-timeout verification still observed pool size 1. One Nginx trial ended with a provider HTTP 504 after meaningful execution.
+Nemotron 3 Ultra 550B A55B passed 24/33 (72.7%), with a 88-second median agent duration and $3.3572 in provider-reported API cost. Reported cost per durable repair was $0.1399 for this run.
 
-Compared with the earlier compatible release, the observed outcomes were Kimi 33/33, DeepSeek 32/33, and Qwen 32/33. These are separate three-attempt configurations on the same frozen benchmark conditions; the small observed differences do not establish model superiority.
+GLM Flash failed two trials: the auth-secret rotation trial passed immediate and restart checks but completed only 1/3 concurrent session requests after reboot. The Rails pool trial passed immediate and restart checks, but the VM did not shut down for the controller-requested reboot; the retained console does not establish the cause. It remains an evaluated failure, with no infrastructure exemption or replacement trial.
+
+Step failed three trials: Rails pool recovery completed 4/8 concurrent checkouts after restart; interrupted deployment left the green instance on the previous release; TLS recovery accepted 0/4 fresh deliveries after service restart despite passing immediate verification.
+
+Nemotron failed nine trials: all three interrupted-deployment attempts left the green instance on the previous release; two shared-upload attempts did not recover controller-owned accepted uploads; one Rust attempt completed 0/100 concurrent resource checks; one auth rollout left the old instance on its previous release; one disk-pressure attempt completed only 5/6 receipt writes after restart; and one TLS attempt returned an unverified transport-security state.
+
+The legacy top-level results omit failure categories for the two failed TLS trials. Their retained controller phase records identify new_deliveries_not_accepted for Step and tls_peer_validation_disabled for Nemotron. These observations explain the evidence; the original normalized categories and outcomes are unchanged.
+
+Partial concurrent assertions retain successful request counts, not complete error details for every unsuccessful response. The evidence establishes failed verification phases, but does not establish all underlying causes. Three attempts per scenario are too few to treat these point estimates as definitive rankings.
 
 ### Scenario breakdown
 
-| Scenario | Version | Claude Opus 5.5 (high) · openrouter | GPT-6.1 Sol (high) · openrouter | Gemini 4 Argon (high) · openrouter |
+| Scenario | Version | GLM 5.3 Flash (high) · openrouter | Step 5 Preview (high) · openrouter | Nemotron 3 Ultra 550B A55B (high) · openrouter |
 |---|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 0:40 | 3/3, 0:43 | 2/3, 3:35 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 1:14 | 3/3, 1:09 | 3/3, 2:20 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 2:04 | 3/3, 2:26 | 3/3, 8:24 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 1:07 | 2/3, 1:26 | 2/3, 3:35 |
-| 017-partial-rails-rollout | v1 | 3/3, 1:39 | 3/3, 1:15 | 3/3, 4:33 |
-| 019-rust-fd-leak | v1 | 3/3, 1:07 | 2/3, 1:48 | 3/3, 3:23 |
-| 021-discourse-shared-uploads | v1 | 3/3, 1:26 | 3/3, 1:21 | 3/3, 4:49 |
-| 023-auth-secret-rollout | v1 | 3/3, 1:07 | 3/3, 1:25 | 3/3, 3:21 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 1:05 | 3/3, 1:12 | 3/3, 2:39 |
-| 028-nix-store-disk-pressure | v1 | 2/3, 1:17 | 2/3, 1:08 | 3/3, 4:40 |
-| 033-tls-trust-rotation | v2 | 2/3, 1:06 | 3/3, 1:16 | 3/3, 5:05 |
+| 001-nginx-502-host | v1 | 3/3, 0:27 | 3/3, 0:52 | 3/3, 0:31 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 0:37 | 3/3, 1:20 | 3/3, 0:51 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 2:04 | 3/3, 1:59 | 3/3, 2:01 |
+| 016-rails-pool-exhaustion | v1 | 2/3, 1:47 | 2/3, 1:28 | 3/3, 1:31 |
+| 017-partial-rails-rollout | v1 | 3/3, 1:42 | 3/3, 2:12 | 3/3, 1:33 |
+| 019-rust-fd-leak | v1 | 3/3, 0:43 | 3/3, 1:07 | 2/3, 1:21 |
+| 021-discourse-shared-uploads | v1 | 3/3, 0:56 | 3/3, 2:38 | 1/3, 2:30 |
+| 023-auth-secret-rollout | v1 | 2/3, 0:31 | 3/3, 1:11 | 2/3, 0:54 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 2:41 | 2/3, 1:27 | 0/3, 3:50 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 2:09 | 3/3, 1:14 | 2/3, 1:27 |
+| 033-tls-trust-rotation | v2 | 3/3, 1:17 | 2/3, 1:26 | 2/3, 3:15 |
 
 ### Failure categories
 
-- `agent_runtime_error`: 1
-- `agent_timeout`: 2
+- `accepted_uploads_not_recovered`: 2
+- `current_sessions_unavailable`: 1
 - `database_pool_exhausted`: 1
-- `new_receipts_not_writable`: 2
+- `host_reboot_failed`: 1
+- `new_receipts_not_writable`: 1
+- `release_not_converged`: 4
+- `resource_growth_unbounded`: 1
+- `rollout_incomplete`: 1
 
 ### Source matrices
 
-- `matrix-001`: anthropic/claude-opus-5.5; Replaybook `37506bdd`; reasoning high
-- `matrix-002`: openai/gpt-6.1-sol; Replaybook `37506bdd`; reasoning high
-- `matrix-003`: google/gemini-4-argon; Replaybook `37506bdd`; reasoning high
+- `matrix`: stepfun/step-5-preview, nvidia/nemotron-3-ultra-550b-a55b, z-ai/glm-5.3-flash; Replaybook `37506bdd`; reasoning high
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated; none are missing or unavailable. All 92 successful repairs passed immediate, service-restart, and host-reboot verification.
-- This release uses the same frozen cohort as release 20261024.0.0, including the controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux binary. Cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official release.
-- Cost reporting covers 97/99 trials: Opus 33/33, Sol 32/33, and Gemini 32/33. The Sol Rust timeout and Gemini pool timeout have no final usage or cost record. Their costs are unknown rather than zero; Sol, Gemini, and aggregate reported spend are lower bounds.
-- One Opus shared-uploads VM failed during port-forward setup before inference. Its missing trial was resumed against the original execution snapshot; all completed evaluated results were preserved. Original startup evidence remains in local audit artifacts.
-- All seven failed trials remain in the denominator. The Gemini Nginx provider HTTP 504 occurred after 12 recorded rounds and 11 tool calls; its recorded agent_runtime_error remains an evaluated failure. Timeouts remain evaluated failures even without final usage records.
-- Several failures were partial concurrent HTTP assertions after restart or reboot. The phase artifacts record successful request counts but not each unsuccessful response. Observable tool histories show repairs and local checks, but the retained evidence does not establish the underlying causes; these failures have not been reclassified or corrected.
-- Three attempts per scenario are a small sample, not a statistically reliable model ranking. Results describe the selected model, reasoning, harness, provider boundary, and benchmark contract. Compatible releases may be displayed together, but attempts are not pooled or selected for their best outcome.
-- Public evidence includes normalized results, reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, and VM artifacts are excluded.
+- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated, none are missing or unavailable, and all 99 report cost. All 85 successful repairs passed immediate, service-restart, and host-reboot verification.
+- This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter transport, and Claux executable as releases 20261024.0.0 and 20261025.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
+- The selected Nemotron endpoint is the paid nvidia/nemotron-3-ultra-550b-a55b configuration, not its free endpoint. Provider routing, model identities, high reasoning, and reported usage remain visible for each configuration.
+- The session initially recorded 97 results. Operator inspection observed a VM SSH port-forward bind failure in a missing Step poison-pill trial and an incident preflight failure in a missing GLM TLS trial; neither reached agent evaluation. Normal resume reran only those two missing trials against the original execution snapshot, and both passed. All 97 recorded outcomes were preserved; no evaluated failures were retried.
+- Audit limitation: normal resume replaced the missing trials' original logs and summary entries rather than archiving them. The pre-resume causes above are operator observations, not separately retained raw startup artifacts. Final result files, immutable execution metadata, and the resumed trials' final evidence are retained. No source evidence has been reconstructed or fabricated.
+- All 14 failed evaluated trials remain in the denominator, including the GLM VM shutdown/reboot failure. No provider, harness, or infrastructure exemptions have been applied and no recorded outcome has been corrected.
+- Scores are small-sample point estimates for the selected configuration and frozen benchmark contract. Compatible releases may be displayed together, but attempts are never pooled, best-selected, or rewritten to make comparisons complete.
+- Public evidence includes normalized trial results, reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded.
 
 <!-- replaybook:current-benchmark:end -->
 
