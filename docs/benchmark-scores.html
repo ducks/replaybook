@@ -43,10 +43,53 @@
 </div>
 <label for="score-cohort">Benchmark conditions</label>
 <select id="score-cohort" class="score-selector">
+  <option value="a2ee1f0d3f7809941777fc151aa7fd4ddfc9aed5e8b2386dde2202231f29538d">Core 2026.10.24.2 · conditions a2ee1f0d</option>
   <option value="5d00a83ce0bb5ddf485a4dfef0c7fd9806f98de6ff6f337f2b3de74fd18f9cef">Core 2026.10.15 · conditions 5d00a83c</option>
 </select>
 <label for="score-harness">Agent harness</label>
 <select id="score-harness" class="score-selector"><option value="">All harnesses</option></select>
+<section class="score-cohort" data-condition="a2ee1f0d3f7809941777fc151aa7fd4ddfc9aed5e8b2386dde2202231f29538d" data-releases="20261024.0.0">
+  <h2>Core 2026.10.24.2</h2>
+  <p>3 attempts per scenario · 900s deadline · matching controller and scenario fingerprints</p>
+  <p class="small muted">Compare configurations, not model names alone. Each card retains its own release; attempts are never pooled across releases. Harness and provider differences can affect results.</p>
+  <div class="score-provider"><h3>Provider: openrouter</h3>
+  <div class="score-grid">
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+      <div class="score-value">97.0 <span>/ 100</span></div>
+      <h4>DeepSeek V4.1 Flash 1017</h4>
+      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
+      <p class="small muted">Release 20261024.0.0</p>
+      <p>High reasoning</p>
+      <p><strong>32/33 repairs</strong> · 11/11 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <details><summary>Exact model identity</summary><code>deepseek/deepseek-v4.1-flash-1017</code></details>
+      <p><a href="benchmark-evidence.html?release=20261024.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=deepseek%2Fdeepseek-v4.1-flash-1017&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+      <div class="score-value">100.0 <span>/ 100</span></div>
+      <h4>Kimi K3.1 Pro</h4>
+      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
+      <p class="small muted">Release 20261024.0.0</p>
+      <p>High reasoning</p>
+      <p><strong>33/33 repairs</strong> · 11/11 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <details><summary>Exact model identity</summary><code>moonshotai/kimi-k3.1-pro</code></details>
+      <p><a href="benchmark-evidence.html?release=20261024.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=moonshotai%2Fkimi-k3.1-pro&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
+    </article>
+    <article class="model-card score-card" data-harness="claux" data-harness-label="Claux">
+      <div class="score-value">97.0 <span>/ 100</span></div>
+      <h4>Qwen3.8 Max Prime</h4>
+      <p><strong>openrouter · Claux custom build b959ef677ff7</strong></p>
+      <p class="small muted">Release 20261024.0.0</p>
+      <p>High reasoning</p>
+      <p><strong>32/33 repairs</strong> · 11/11 scenarios</p>
+      <p class="small muted">0 unavailable · 100.0% evaluated</p>
+      <details><summary>Exact model identity</summary><code>qwen/qwen3.8-max-prime</code></details>
+      <p><a href="benchmark-evidence.html?release=20261024.0.0&amp;provider=openrouter&amp;harness=claux&amp;model=qwen%2Fqwen3.8-max-prime&amp;reasoning=high">View attempts, timing and cost ↗</a></p>
+    </article>
+  </div>
+  </div>
+</section>
 <section class="score-cohort" data-condition="5d00a83ce0bb5ddf485a4dfef0c7fd9806f98de6ff6f337f2b3de74fd18f9cef" data-releases="20261020.0.0,20261018.0.0">
   <h2>Core 2026.10.15</h2>
   <p>3 attempts per scenario · 900s deadline · matching controller and scenario fingerprints</p>
