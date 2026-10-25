@@ -41,13 +41,19 @@
   Only complete coverage of the pinned contract gets a headline score. This differs from Evidence's conditional repair rate, which excludes unavailable trials.
   Small samples are not definitive rankings; completeness is not statistical certainty. Speed and cost are not blended into the score.
 </div>
+<div class="score-toolbar" role="group" aria-label="Score filters and sorting">
+<div class="score-control score-control-conditions">
 <label for="score-cohort">Benchmark conditions</label>
 <select id="score-cohort" class="score-selector">
   <option value="a2ee1f0d3f7809941777fc151aa7fd4ddfc9aed5e8b2386dde2202231f29538d">Core 2026.10.24.2 · conditions a2ee1f0d</option>
   <option value="5d00a83ce0bb5ddf485a4dfef0c7fd9806f98de6ff6f337f2b3de74fd18f9cef">Core 2026.10.15 · conditions 5d00a83c</option>
 </select>
+</div>
+<div class="score-control">
 <label for="score-harness">Agent harness</label>
 <select id="score-harness" class="score-selector"><option value="">All harnesses</option></select>
+</div>
+<div class="score-control">
 <label for="score-sort">Sort by</label>
 <select id="score-sort" class="score-selector">
   <option value="score">Score</option>
@@ -56,12 +62,16 @@
   <option value="duration">Median duration</option>
   <option value="name">Model name</option>
 </select>
+</div>
+<div class="score-control">
 <label for="score-direction">Order</label>
 <select id="score-direction" class="score-selector">
   <option value="desc">Highest first</option>
   <option value="asc">Lowest first</option>
 </select>
-<p class="small muted">Sort within each provider. Incomplete or unknown costs sort last; partial costs are lower bounds.</p>
+</div>
+</div>
+<p class="small muted score-toolbar-note">Sort within each provider. Incomplete or unknown costs sort last; partial costs are lower bounds.</p>
 <section class="score-cohort" data-condition="a2ee1f0d3f7809941777fc151aa7fd4ddfc9aed5e8b2386dde2202231f29538d" data-releases="20261025.0.0,20261024.0.0">
   <h2>Core 2026.10.24.2</h2>
   <p>3 attempts per scenario · 900s deadline · matching controller and scenario fingerprints</p>

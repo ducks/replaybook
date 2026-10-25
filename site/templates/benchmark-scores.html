@@ -13,14 +13,20 @@
   Small samples are not definitive rankings; completeness is not statistical certainty. Speed and cost are not blended into the score.
 </div>
 {% if report.cohorts %}
+<div class="score-toolbar" role="group" aria-label="Score filters and sorting">
+<div class="score-control score-control-conditions">
 <label for="score-cohort">Benchmark conditions</label>
 <select id="score-cohort" class="score-selector">
 {% for cohort in report.cohorts %}
   <option value="{{ cohort.id }}">Core {{ cohort.benchmark }} · conditions {{ cohort.id[:8] }}</option>
 {% endfor %}
 </select>
+</div>
+<div class="score-control">
 <label for="score-harness">Agent harness</label>
 <select id="score-harness" class="score-selector"><option value="">All harnesses</option></select>
+</div>
+<div class="score-control">
 <label for="score-sort">Sort by</label>
 <select id="score-sort" class="score-selector">
   <option value="score">Score</option>
@@ -29,12 +35,16 @@
   <option value="duration">Median duration</option>
   <option value="name">Model name</option>
 </select>
+</div>
+<div class="score-control">
 <label for="score-direction">Order</label>
 <select id="score-direction" class="score-selector">
   <option value="desc">Highest first</option>
   <option value="asc">Lowest first</option>
 </select>
-<p class="small muted">Sort within each provider. Incomplete or unknown costs sort last; partial costs are lower bounds.</p>
+</div>
+</div>
+<p class="small muted score-toolbar-note">Sort within each provider. Incomplete or unknown costs sort last; partial costs are lower bounds.</p>
 {% endif %}
 {% for cohort in report.cohorts %}
 <section class="score-cohort" data-condition="{{ cohort.id }}" data-releases="{{ cohort.releases|join(',') }}">
