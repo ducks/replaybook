@@ -108,6 +108,63 @@ def condition_id(release):
     return hashlib.sha256(json.dumps(boundary, sort_keys=True).encode()).hexdigest()
 
 
+def scenario_label(release, scenario):
+    if label := release.get("scenario_labels", {}).get(scenario):
+        return label
+    words = scenario.split("-", 1)[-1].split("-")
+    return " ".join(word.upper() if word in {"tls", "http", "fd", "api", "ca"} else word for word in words)
+
+
+def observed_scenario_rates(cards):
+    """Descriptive rates over complete, release-scoped configuration entries."""
+    scenarios = {}
+    for card in cards:
+        for cell in card.get("cells", []):
+            key = (cell["scenario"], cell["version"])
+            if key not in scenarios:
+                scenarios[key] = {
+                    "scenario": cell["scenario"], "version": cell["version"],
+                    "label": cell.get("label", cell["scenario"]),
+                    "configurations": 0, "passed": 0, "trials": 0, "unavailable": 0,
+                    "outcomes": [],
+                }
+            row = scenarios[key]
+            row["configurations"] += 1
+            row["outcomes"].append({
+                "label": card.get("label", card.get("model", "Configuration")),
+                "model": card.get("model"), "provider": card.get("provider"),
+                "reasoning": card.get("reasoning"), "release": card.get("release"),
+                "harness": card.get("harness", {}).get("label"),
+                "passed": cell["passed"], "trials": cell["trials"],
+                "unavailable": cell["unavailable"], "outcome": cell.get("outcome"),
+                "evidence_url": cell.get("evidence_url"),
+            })
+            for field in ("passed", "trials", "unavailable"):
+                row[field] += cell[field]
+    rates = []
+    for row in scenarios.values():
+        row["unsuccessful"] = row["trials"] - row["passed"]
+        row["failure_rate"] = 100 * row["unsuccessful"] / row["trials"] if row["trials"] else None
+        rates.append(row)
+    return sorted(rates, key=lambda row: (
+        row["failure_rate"] is None, -(row["failure_rate"] or 0), row["scenario"], row["version"],
+    ))
+
+
+def scenario_profiles(cards):
+    """Keep condition and harness selection aligned with the observed sample."""
+    selections = {"": cards}
+    for card in cards:
+        harness = card.get("harness", {}).get("id")
+        if harness:
+            selections.setdefault(harness, []).append(card)
+    return [
+        {"harness": harness, "configurations": len(selected),
+         "rates": observed_scenario_rates(selected)}
+        for harness, selected in selections.items()
+    ]
+
+
 def group_conditions(cohorts):
     combined = {}
     for cohort in cohorts:
@@ -122,6 +179,9 @@ def group_conditions(cohorts):
     for group in combined.values():
         for cards in group["groups"].values():
             cards.sort(key=lambda card: (-card["score"], card.get("label", ""), card["release"]))
+        group["scenario_profiles"] = scenario_profiles([
+            card for cards in group["groups"].values() for card in cards
+        ])
     return list(combined.values())
 
 
@@ -166,6 +226,15 @@ def build_scores(root, index):
                 "harness": report["harness"]["id"], "model": card["model"],
                 "reasoning": card["reasoning"] if card["reasoning"] != "default" else "Unspecified",
             })
+            for cell in card["cells"]:
+                cell["label"] = scenario_label(release, cell["scenario"])
+                cell["short_id"] = cell["scenario"].split("-", 1)[0]
+                cell["evidence_url"] = card["evidence_url"] + "&" + urlencode({"scenario": cell["scenario"]})
+                cell["outcome"] = (
+                    "unavailable" if cell["unavailable"] else
+                    "pass" if cell["passed"] == cell["trials"] else
+                    "fail" if cell["passed"] == 0 else "mixed"
+                )
             groups[card["provider"]].append(card)
         cohorts.append({
             "id": condition_id(release),
@@ -174,4 +243,9 @@ def build_scores(root, index):
             "attempts": benchmark.attempts, "timeout": benchmark.agent_timeout_seconds,
             "groups": dict(groups), "hidden": hidden,
         })
-    return {"cohorts": group_conditions(cohorts)}
+    grouped = group_conditions(cohorts)
+    return {
+        "cohorts": grouped,
+        "scenario_details": [{"condition": group["id"], "benchmark": group["benchmark"], "profiles": group["scenario_profiles"]}
+                             for group in grouped],
+    }

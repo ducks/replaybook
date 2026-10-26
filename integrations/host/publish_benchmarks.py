@@ -2431,6 +2431,7 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
         root / DOCS_EXPLORER: explorer_page(),
         root / DOCS_EVIDENCE: render_site_template("benchmark-evidence.html", catalog=catalog),
         root / "docs/evidence.css": (REPO_DIR / "site/static/evidence.css").read_text(),
+        root / "docs/score-scenarios.js": (REPO_DIR / "site/static/score-scenarios.js").read_text(),
         root / "docs/evidence.js": (REPO_DIR / "site/static/evidence.js").read_text(),
         root / DOCS_MODEL: model_page(),
         root / DOCS_MODELS: models_page(),

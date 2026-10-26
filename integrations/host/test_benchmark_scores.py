@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from .benchmark_scores import score_release, build_scores, condition_id, group_conditions
+from .benchmark_scores import score_release, build_scores, condition_id, group_conditions, observed_scenario_rates, scenario_profiles
 
 
 class ScoreTests(unittest.TestCase):
@@ -116,6 +116,19 @@ class ScoreTests(unittest.TestCase):
                     self.assertEqual(params["release"], [card["release"]])
                     self.assertEqual(params["harness"], [card["harness"]["id"]])
                     self.assertIn("reasoning", params)
+                    for cell in card["cells"]:
+                        link = parse_qs(urlparse(cell["evidence_url"]).query)
+                        self.assertEqual(link["scenario"], [cell["scenario"]])
+                        self.assertEqual(link["release"], [card["release"]])
+                        self.assertEqual(link["model"], [card["model"]])
+                        self.assertEqual(link["provider"], [provider])
+                        self.assertIn(cell["outcome"], {"pass", "mixed", "fail", "unavailable"})
+            cards = [card for group in cohort["groups"].values() for card in group]
+            profile = cohort["scenario_profiles"][0]
+            self.assertEqual(profile["configurations"], len(cards))
+            for rate in profile["rates"]:
+                self.assertEqual(rate["trials"], len(cards) * cohort["attempts"])
+                self.assertEqual(rate["configurations"], len(cards))
 
     def test_incomplete_cards_hidden_from_public_groups(self):
         from unittest.mock import patch
@@ -127,6 +140,45 @@ class ScoreTests(unittest.TestCase):
             public = build_scores(root, index)
         self.assertTrue(all(not c["groups"] for c in public["cohorts"]))
         self.assertTrue(all(c["hidden"] == len(c["releases"]) for c in public["cohorts"]))
+        self.assertTrue(all(not profile["rates"] for cohort in public["cohorts"]
+                            for profile in cohort["scenario_profiles"]))
+
+    def test_observed_rates_include_unavailable_and_keep_scenario_versions(self):
+        first = self.card()
+        second = copy.deepcopy(first)
+        second["cells"][0].update(passed=1, evaluated=2, unavailable=1)
+        second["cells"][1]["version"] = 2
+        rates = {(row["scenario"], row["version"]): row
+                 for row in observed_scenario_rates([first, second])}
+        self.assertAlmostEqual(rates[("a", 1)]["failure_rate"], 100 / 3)
+        self.assertEqual(rates[("a", 1)]["unsuccessful"], 2)
+        self.assertEqual(rates[("a", 1)]["trials"], 6)
+        self.assertEqual(rates[("a", 1)]["unavailable"], 1)
+        self.assertEqual(rates[("a", 1)]["configurations"], 2)
+        self.assertEqual(rates[("b", 1)]["configurations"], 1)
+        self.assertEqual(rates[("b", 2)]["configurations"], 1)
+        self.assertEqual(first["score"], 50)
+
+    def test_observed_profiles_follow_harness_and_preserve_release_entries(self):
+        first = self.card()
+        first.update(harness={"id": "claux"}, release="first")
+        other = copy.deepcopy(first)
+        other.update(harness={"id": "opencode"}, release="other")
+        other["cells"][0]["passed"] = 0
+        repeated = copy.deepcopy(first)
+        repeated["release"] = "later"
+        profiles = {profile["harness"]: profile for profile in scenario_profiles([first, other, repeated])}
+        self.assertEqual(profiles[""]["configurations"], 3)
+        self.assertEqual(profiles["claux"]["configurations"], 2)
+        self.assertEqual(profiles["opencode"]["configurations"], 1)
+        claux = {row["scenario"]: row for row in profiles["claux"]["rates"]}
+        self.assertEqual(claux["a"]["failure_rate"], 0)
+        self.assertEqual(claux["a"]["trials"], 6)
+        self.assertEqual(profiles["opencode"]["rates"][0]["failure_rate"], 100)
+
+    def test_empty_observed_sample_has_no_rates(self):
+        self.assertEqual(observed_scenario_rates([]), [])
+        self.assertEqual(scenario_profiles([]), [{"harness": "", "configurations": 0, "rates": []}])
 
     def test_non_core_rejected(self):
         self.benchmark.tier = "smoke"

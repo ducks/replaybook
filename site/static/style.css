@@ -2173,3 +2173,87 @@ footer.site a {
 @media (max-width: 520px) {
   .score-toolbar { grid-template-columns: minmax(0, 1fr); padding: 1rem; }
 }
+
+.score-outcomes { margin: 1.25rem 0; padding-top: 1rem; border-top: 1px solid var(--border); }
+.score-outcomes-label { margin: 0 0 .6rem; font-weight: 600; }
+.score-outcome-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .3rem; }
+.score-outcome { display: flex; flex-direction: column; align-items: center; padding: .35rem .1rem; border: 1px solid var(--border); border-radius: 5px; text-decoration: none; font-variant-numeric: tabular-nums; }
+.score-outcome span { font-size: .65rem; color: var(--fg-dim); }
+.score-outcome strong { font-size: .8rem; }
+.score-outcome.outcome-pass { color: var(--accent); background: var(--surface-green); border-color: #31473a; }
+.score-outcome.outcome-mixed { color: #f0ce85; background: #29251c; border-color: #665331; }
+.score-outcome.outcome-fail { color: #ffaba0; background: #2b1e22; border-color: #6b3d40; }
+.score-outcome.outcome-unavailable { color: var(--fg-dim); border-style: dashed; }
+.score-outcome:hover { border-color: var(--fg); }
+.score-outcome:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.score-outcomes-help { font-size: .7rem; margin: .6rem 0 0; }
+.score-scenario-observations { margin: 2rem 0; padding: 1.25rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-alt); }
+.score-scenario-observations > summary { cursor: pointer; font-size: 1.05rem; font-weight: 600; }
+.score-scenario-observations > p { max-width: 80ch; }
+.scenario-profile[hidden], .scenario-profile-empty[hidden] { display: none; }
+.scenario-rate-scroll { overflow-x: auto; }
+.scenario-rate-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.scenario-rate-table caption { caption-side: bottom; text-align: left; padding-top: 1rem; }
+.scenario-rate-table th, .scenario-rate-table td { text-align: left; padding: .75rem .6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+.scenario-rate-table thead th { color: var(--fg-dim); font-weight: 500; }
+.scenario-rate-table th[scope="row"] { min-width: 15rem; }
+.scenario-rate-table th[scope="row"] > span { display: block; text-transform: capitalize; }
+.scenario-rate-table th[scope="row"] > small { display: block; color: var(--fg-dim); font-size: .7rem; font-weight: 400; }
+.scenario-rate-table td { font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) {
+  .score-scenario-observations { padding: 1rem; }
+}
+.scenario-dialog-open { overflow: hidden; }
+.scenario-dialog {
+  width: min(760px, calc(100vw - 2rem));
+  max-height: min(88dvh, 960px);
+  padding: 0;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid #43584a;
+  border-radius: 18px;
+  box-shadow: 0 24px 100px #0009;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.scenario-dialog::backdrop { background: #03080dd4; backdrop-filter: blur(7px); }
+.scenario-dialog[open] { animation: scenario-dialog-enter .15s ease-out; }
+.scenario-dialog-header { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: start; gap: 1rem; padding: 1.5rem 1.75rem; border-bottom: 1px solid var(--border); background: var(--surface-green); }
+.scenario-dialog-header .eyebrow { margin: 0 0 .5rem; }
+.scenario-dialog-header h2 { font-size: clamp(1.4rem, 4vw, 2rem); line-height: 1.2; text-transform: capitalize; margin: 0; }
+.scenario-dialog-header p:last-child { margin: .6rem 0 0; overflow-wrap: anywhere; }
+.scenario-dialog-close { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; padding: 0; border: 1px solid #ffffff25; border-radius: 50%; background: #ffffff08; color: var(--fg); font: inherit; font-size: 1.6rem; cursor: pointer; }
+.scenario-dialog-close:hover { background: #ffffff18; }
+.scenario-dialog-body { padding: 1.5rem 1.75rem 1.75rem; }
+.scenario-dialog-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+.scenario-dialog-stats > div { padding: 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-alt); }
+.scenario-dialog-stats strong { display: block; font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.scenario-dialog-stats span { display: block; color: var(--fg-dim); font-size: .7rem; margin-top: .5rem; }
+.scenario-dialog-section { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; margin-top: 1.5rem; }
+.scenario-dialog-section h3 { font-size: 1rem; margin: 0 0 .75rem; }
+.scenario-dialog-outcomes { display: grid; gap: .5rem; }
+.scenario-dialog-model { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 1rem; padding: .85rem 1rem; border: 1px solid var(--border); border-radius: 9px; background: var(--bg-alt); text-decoration: none; color: var(--fg); }
+.scenario-dialog-model:hover { border-color: var(--accent); background: var(--surface-green); }
+.scenario-dialog-model.is-selected { border-color: var(--accent); box-shadow: inset 3px 0 var(--accent); }
+.scenario-dialog-model > div > strong { display: block; font-size: .9rem; overflow-wrap: anywhere; }
+.scenario-dialog-model > div > span { display: block; color: var(--fg-dim); font-size: .7rem; overflow-wrap: anywhere; }
+.scenario-dialog-selected { display: block; font-size: .65rem; color: var(--accent); margin-top: .25rem; }
+.scenario-dialog-result { font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.scenario-dialog-result.outcome-pass { color: var(--accent); }
+.scenario-dialog-result.outcome-mixed { color: #f0ce85; }
+.scenario-dialog-result.outcome-fail { color: #ffaba0; }
+.scenario-dialog-result.outcome-unavailable { color: var(--fg-dim); }
+.scenario-dialog-arrow { color: var(--fg-dim); }
+.scenario-dialog-note { padding-top: 1rem; margin-top: 1.5rem; border-top: 1px solid var(--border); }
+.scenario-rate-table th[scope="row"] > .scenario-trigger { display: block; text-transform: capitalize; }
+.scenario-dialog a:focus-visible, .scenario-dialog button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@keyframes scenario-dialog-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .scenario-dialog[open] { animation: none; } }
+@media (max-width: 520px) {
+  .scenario-dialog { width: calc(100vw - 1rem); max-height: 94dvh; border-radius: 14px; }
+  .scenario-dialog-header, .scenario-dialog-body { padding: 1.1rem; }
+  .scenario-dialog-stats { gap: .4rem; }
+  .scenario-dialog-stats > div { padding: .7rem .5rem; }
+  .scenario-dialog-section { display: block; margin-bottom: .75rem; }
+  .scenario-dialog-model { gap: .65rem; padding: .8rem; }
+}
