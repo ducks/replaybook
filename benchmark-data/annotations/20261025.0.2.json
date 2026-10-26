@@ -1,0 +1,41 @@
+{
+  "title": "Frozen Core: MiMo Flash, Qwen Flash, and Tencent Hy4",
+  "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 95 durable repairs in 99 evaluated trials, with $3.4274 in provider-reported API cost.",
+  "input_mode": "text",
+  "model_order": [
+    "xiaomi/mimo-v2.6-flash",
+    "qwen/qwen3.8-flash",
+    "tencent/hy4-preview"
+  ],
+  "model_labels": {
+    "xiaomi/mimo-v2.6-flash": "MiMo V2.6 Flash",
+    "qwen/qwen3.8-flash": "Qwen3.8 Flash",
+    "tencent/hy4-preview": "Tencent Hy4 Preview"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated, none are missing or unavailable, and all report cost. All 95 successful repairs passed immediate, service-restart, and host-reboot verification.",
+    "The model IDs are xiaomi/mimo-v2.6-flash, qwen/qwen3.8-flash, and tencent/hy4-preview through the same shared OpenRouter transport. These are distinct configurations from the earlier MiMo Pro/OpenCode and Qwen Max Prime evidence.",
+    "This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as releases 20261024.0.0, 20261025.0.0, and 20261025.0.1. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "The initial session recorded 96 outcomes and had three missing results before agent evaluation: a Tencent shared-uploads VM failed its SSH port-forward binding, and one Qwen TLS trial and one Tencent TLS trial each failed the incident preflight with 1/4 successful concurrent requests. The missing trial directories, original logs, controller log, and initial summary were copied into a SHA-256-verified local audit archive before resume. All 96 recorded outcomes were preserved.",
+    "Normal resume ran only the three missing trials against the original execution snapshot; no evaluated failure was retried. Original pre-evaluation evidence is retained separately from the final trial artifacts and is not overwritten by this publication.",
+    "All 4 failed evaluated trials remain in the denominator. No provider, harness, infrastructure, or statistical exemptions have been applied, and no recorded outcome has been corrected.",
+    "Three attempts per scenario are a small sample. Compatible releases can be displayed together, but model headline scores never pool attempts across releases or pick best outcomes. Observed scenario failure rates are descriptive samples, not intrinsic difficulty or score weights.",
+    "Public evidence includes normalized trial results, provider-reported usage, immutable execution metadata, and source digests. Credentials, private transcripts, full VM logs, audit working directories, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "MiMo V2.6 Flash passed 31/33 (93.9%), with a 126-second median agent duration and $0.3198 in provider-reported API cost. Reported cost per durable repair was $0.0103 for this run.",
+    "Qwen3.8 Flash passed 32/33 (97.0%), with a 216-second median agent duration and $0.4277 in provider-reported API cost. Reported cost per durable repair was $0.0134 for this run.",
+    "Tencent Hy4 Preview passed 32/33 (97.0%), with a 274-second median agent duration and $2.6799 in provider-reported API cost. Reported cost per durable repair was $0.0837 for this run.",
+    "MiMo failed two recorded trials. One interrupted-deployment trial left the green instance on its previous release. One disk-pressure trial passed immediate and service-restart verification, but the historical-receipt HTTP check after reboot returned status 0 with an empty body. The controller recorded historical_receipts_lost; this is a verification failure, not evidence by itself that receipt rows were deleted. The console records the billing and Nginx services starting after reboot, but the retained artifacts do not establish the underlying HTTP failure cause.",
+    "Qwen failed one Rails pool-exhaustion trial: immediate verification completed 4/8 concurrent checkout requests. Its other recorded outcomes, including the resumed pre-evaluation TLS trial, remain unchanged.",
+    "Tencent failed one disk-pressure trial: immediate verification passed, but the service-restart phase completed 0/6 concurrent receipt writes. The result remains an evaluated failure. Partial concurrent HTTP assertions record success counts, not complete error responses for every unsuccessful request; the retained evidence does not establish the underlying cause.",
+    "The small observed differences are not statistically reliable rankings. Scores and reported cost per repair describe these exact model, reasoning, provider, harness, and frozen benchmark configurations; no speed or cost weighting is applied."
+  ]
+}
