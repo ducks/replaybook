@@ -9,21 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core: GLM Flash, Step 5 Preview, and Nemotron Ultra
+## Frozen Core: MiMo Flash, Qwen Flash, and Tencent Hy4
 
-Three high-reasoning configurations attempted eleven Core incidents three times each: 85 durable repairs in 99 evaluated trials, with $5.9719 in provider-reported API cost.
+Three high-reasoning configurations attempted eleven Core incidents three times each: 95 durable repairs in 99 evaluated trials, with $3.4274 in provider-reported API cost.
 
-Benchmark release: `20261025.0.1`
+Benchmark release: `20261025.0.2`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GLM 5.3 Flash (high) · openrouter | 31/33 | 94% | 1:12 | $0.4194 | $0.0135 |
-| Step 5 Preview (high) · openrouter | 30/33 | 91% | 1:24 | $2.1953 | $0.0732 |
-| Nemotron 3 Ultra 550B A55B (high) · openrouter | 24/33 | 73% | 1:28 | $3.3572 | $0.1399 |
-| **Total** | **85/99** | **86%** | **1:24** | **$5.9719** | **$0.0703** |
+| MiMo V2.6 Flash (high) · openrouter | 31/33 | 94% | 2:06 | $0.3198 | $0.0103 |
+| Qwen3.8 Flash (high) · openrouter | 32/33 | 97% | 3:36 | $0.4277 | $0.0134 |
+| Tencent Hy4 Preview (high) · openrouter | 32/33 | 97% | 4:34 | $2.6799 | $0.0837 |
+| **Total** | **95/99** | **96%** | **3:42** | **$3.4274** | **$0.0361** |
 
 ### Execution recording
 
@@ -31,67 +31,61 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| GLM 5.3 Flash (high) · openrouter | 33/33 | 15 | 0:44 | 20 | 0:12 | 0:02 | 1:10 |
-| Step 5 Preview (high) · openrouter | 33/33 | 19 | 0:59 | 26 | 0:17 | 0:01 | 1:21 |
-| Nemotron 3 Ultra 550B A55B (high) · openrouter | 33/33 | 34 | 0:57 | 39 | 0:14 | 0:02 | 1:24 |
+| MiMo V2.6 Flash (high) · openrouter | 33/33 | 15 | 1:24 | 23 | 0:18 | 0:02 | 2:03 |
+| Qwen3.8 Flash (high) · openrouter | 33/33 | 14 | 3:16 | 19 | 0:09 | 0:07 | 3:30 |
+| Tencent Hy4 Preview (high) · openrouter | 33/33 | 19 | 4:20 | 27 | 0:16 | 0:05 | 4:27 |
 
-GLM 5.3 Flash passed 31/33 (93.9%), with a 72-second median agent duration and $0.4194 in provider-reported API cost. Reported cost per durable repair was $0.0135 for this run.
+MiMo V2.6 Flash passed 31/33 (93.9%), with a 126-second median agent duration and $0.3198 in provider-reported API cost. Reported cost per durable repair was $0.0103 for this run.
 
-Step 5 Preview passed 30/33 (90.9%), with a 84-second median agent duration and $2.1953 in provider-reported API cost. Reported cost per durable repair was $0.0732 for this run.
+Qwen3.8 Flash passed 32/33 (97.0%), with a 216-second median agent duration and $0.4277 in provider-reported API cost. Reported cost per durable repair was $0.0134 for this run.
 
-Nemotron 3 Ultra 550B A55B passed 24/33 (72.7%), with a 88-second median agent duration and $3.3572 in provider-reported API cost. Reported cost per durable repair was $0.1399 for this run.
+Tencent Hy4 Preview passed 32/33 (97.0%), with a 274-second median agent duration and $2.6799 in provider-reported API cost. Reported cost per durable repair was $0.0837 for this run.
 
-GLM Flash failed two trials: the auth-secret rotation trial passed immediate and restart checks but completed only 1/3 concurrent session requests after reboot. The Rails pool trial passed immediate and restart checks, but the VM did not shut down for the controller-requested reboot; the retained console does not establish the cause. It remains an evaluated failure, with no infrastructure exemption or replacement trial.
+MiMo failed two recorded trials. One interrupted-deployment trial left the green instance on its previous release. One disk-pressure trial passed immediate and service-restart verification, but the historical-receipt HTTP check after reboot returned status 0 with an empty body. The controller recorded historical_receipts_lost; this is a verification failure, not evidence by itself that receipt rows were deleted. The console records the billing and Nginx services starting after reboot, but the retained artifacts do not establish the underlying HTTP failure cause.
 
-Step failed three trials: Rails pool recovery completed 4/8 concurrent checkouts after restart; interrupted deployment left the green instance on the previous release; TLS recovery accepted 0/4 fresh deliveries after service restart despite passing immediate verification.
+Qwen failed one Rails pool-exhaustion trial: immediate verification completed 4/8 concurrent checkout requests. Its other recorded outcomes, including the resumed pre-evaluation TLS trial, remain unchanged.
 
-Nemotron failed nine trials: all three interrupted-deployment attempts left the green instance on the previous release; two shared-upload attempts did not recover controller-owned accepted uploads; one Rust attempt completed 0/100 concurrent resource checks; one auth rollout left the old instance on its previous release; one disk-pressure attempt completed only 5/6 receipt writes after restart; and one TLS attempt returned an unverified transport-security state.
+Tencent failed one disk-pressure trial: immediate verification passed, but the service-restart phase completed 0/6 concurrent receipt writes. The result remains an evaluated failure. Partial concurrent HTTP assertions record success counts, not complete error responses for every unsuccessful request; the retained evidence does not establish the underlying cause.
 
-The legacy top-level results omit failure categories for the two failed TLS trials. Their retained controller phase records identify new_deliveries_not_accepted for Step and tls_peer_validation_disabled for Nemotron. These observations explain the evidence; the original normalized categories and outcomes are unchanged.
-
-Partial concurrent assertions retain successful request counts, not complete error details for every unsuccessful response. The evidence establishes failed verification phases, but does not establish all underlying causes. Three attempts per scenario are too few to treat these point estimates as definitive rankings.
+The small observed differences are not statistically reliable rankings. Scores and reported cost per repair describe these exact model, reasoning, provider, harness, and frozen benchmark configurations; no speed or cost weighting is applied.
 
 ### Scenario breakdown
 
-| Scenario | Version | GLM 5.3 Flash (high) · openrouter | Step 5 Preview (high) · openrouter | Nemotron 3 Ultra 550B A55B (high) · openrouter |
+| Scenario | Version | MiMo V2.6 Flash (high) · openrouter | Qwen3.8 Flash (high) · openrouter | Tencent Hy4 Preview (high) · openrouter |
 |---|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 0:27 | 3/3, 0:52 | 3/3, 0:31 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 0:37 | 3/3, 1:20 | 3/3, 0:51 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 2:04 | 3/3, 1:59 | 3/3, 2:01 |
-| 016-rails-pool-exhaustion | v1 | 2/3, 1:47 | 2/3, 1:28 | 3/3, 1:31 |
-| 017-partial-rails-rollout | v1 | 3/3, 1:42 | 3/3, 2:12 | 3/3, 1:33 |
-| 019-rust-fd-leak | v1 | 3/3, 0:43 | 3/3, 1:07 | 2/3, 1:21 |
-| 021-discourse-shared-uploads | v1 | 3/3, 0:56 | 3/3, 2:38 | 1/3, 2:30 |
-| 023-auth-secret-rollout | v1 | 2/3, 0:31 | 3/3, 1:11 | 2/3, 0:54 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 2:41 | 2/3, 1:27 | 0/3, 3:50 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 2:09 | 3/3, 1:14 | 2/3, 1:27 |
-| 033-tls-trust-rotation | v2 | 3/3, 1:17 | 2/3, 1:26 | 2/3, 3:15 |
+| 001-nginx-502-host | v1 | 3/3, 2:39 | 3/3, 2:29 | 3/3, 2:53 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 2:43 | 3/3, 3:36 | 3/3, 4:46 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 4:43 | 3/3, 6:36 | 3/3, 5:58 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 1:11 | 2/3, 2:27 | 3/3, 3:42 |
+| 017-partial-rails-rollout | v1 | 3/3, 1:48 | 3/3, 4:19 | 3/3, 4:22 |
+| 019-rust-fd-leak | v1 | 3/3, 1:29 | 3/3, 2:48 | 3/3, 4:34 |
+| 021-discourse-shared-uploads | v1 | 3/3, 2:28 | 3/3, 6:48 | 3/3, 9:12 |
+| 023-auth-secret-rollout | v1 | 3/3, 0:38 | 3/3, 3:10 | 3/3, 4:34 |
+| 024-discourse-interrupted-deploy | v1 | 2/3, 1:37 | 3/3, 3:36 | 3/3, 4:07 |
+| 028-nix-store-disk-pressure | v1 | 2/3, 2:36 | 3/3, 3:55 | 2/3, 4:44 |
+| 033-tls-trust-rotation | v2 | 3/3, 2:32 | 3/3, 3:08 | 3/3, 4:00 |
 
 ### Failure categories
 
-- `accepted_uploads_not_recovered`: 2
-- `current_sessions_unavailable`: 1
 - `database_pool_exhausted`: 1
-- `host_reboot_failed`: 1
+- `historical_receipts_lost`: 1
 - `new_receipts_not_writable`: 1
-- `release_not_converged`: 4
-- `resource_growth_unbounded`: 1
-- `rollout_incomplete`: 1
+- `release_not_converged`: 1
 
 ### Source matrices
 
-- `matrix`: stepfun/step-5-preview, nvidia/nemotron-3-ultra-550b-a55b, z-ai/glm-5.3-flash; Replaybook `37506bdd`; reasoning high
+- `matrix`: xiaomi/mimo-v2.6-flash, qwen/qwen3.8-flash, tencent/hy4-preview; Replaybook `37506bdd`; reasoning high
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated, none are missing or unavailable, and all 99 report cost. All 85 successful repairs passed immediate, service-restart, and host-reboot verification.
-- This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter transport, and Claux executable as releases 20261024.0.0 and 20261025.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
-- The selected Nemotron endpoint is the paid nvidia/nemotron-3-ultra-550b-a55b configuration, not its free endpoint. Provider routing, model identities, high reasoning, and reported usage remain visible for each configuration.
-- The session initially recorded 97 results. Operator inspection observed a VM SSH port-forward bind failure in a missing Step poison-pill trial and an incident preflight failure in a missing GLM TLS trial; neither reached agent evaluation. Normal resume reran only those two missing trials against the original execution snapshot, and both passed. All 97 recorded outcomes were preserved; no evaluated failures were retried.
-- Audit limitation: normal resume replaced the missing trials' original logs and summary entries rather than archiving them. The pre-resume causes above are operator observations, not separately retained raw startup artifacts. Final result files, immutable execution metadata, and the resumed trials' final evidence are retained. No source evidence has been reconstructed or fabricated.
-- All 14 failed evaluated trials remain in the denominator, including the GLM VM shutdown/reboot failure. No provider, harness, or infrastructure exemptions have been applied and no recorded outcome has been corrected.
-- Scores are small-sample point estimates for the selected configuration and frozen benchmark contract. Compatible releases may be displayed together, but attempts are never pooled, best-selected, or rewritten to make comparisons complete.
-- Public evidence includes normalized trial results, reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded.
+- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated, none are missing or unavailable, and all report cost. All 95 successful repairs passed immediate, service-restart, and host-reboot verification.
+- The model IDs are xiaomi/mimo-v2.6-flash, qwen/qwen3.8-flash, and tencent/hy4-preview through the same shared OpenRouter transport. These are distinct configurations from the earlier MiMo Pro/OpenCode and Qwen Max Prime evidence.
+- This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as releases 20261024.0.0, 20261025.0.0, and 20261025.0.1. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
+- The initial session recorded 96 outcomes and had three missing results before agent evaluation: a Tencent shared-uploads VM failed its SSH port-forward binding, and one Qwen TLS trial and one Tencent TLS trial each failed the incident preflight with 1/4 successful concurrent requests. The missing trial directories, original logs, controller log, and initial summary were copied into a SHA-256-verified local audit archive before resume. All 96 recorded outcomes were preserved.
+- Normal resume ran only the three missing trials against the original execution snapshot; no evaluated failure was retried. Original pre-evaluation evidence is retained separately from the final trial artifacts and is not overwritten by this publication.
+- All 4 failed evaluated trials remain in the denominator. No provider, harness, infrastructure, or statistical exemptions have been applied, and no recorded outcome has been corrected.
+- Three attempts per scenario are a small sample. Compatible releases can be displayed together, but model headline scores never pool attempts across releases or pick best outcomes. Observed scenario failure rates are descriptive samples, not intrinsic difficulty or score weights.
+- Public evidence includes normalized trial results, provider-reported usage, immutable execution metadata, and source digests. Credentials, private transcripts, full VM logs, audit working directories, and local absolute paths are excluded.
 
 <!-- replaybook:current-benchmark:end -->
 

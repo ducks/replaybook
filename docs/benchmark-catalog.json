@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261025.0.1",
+  "current_version": "20261025.0.2",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -5230,6 +5230,94 @@
       "provider": "OpenRouter",
       "reasoning_effort": "high",
       "release": "20261025.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0133648566875,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 1,
+      "failure_categories": {
+        "database_pool_exhausted": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 820931,
+      "known_cost_usd": 0.427675414,
+      "median_duration_seconds": 216,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "output_tokens": 371390,
+      "pass_rate": 0.9696969696969697,
+      "pass_rate_95_high": 0.9946305894631283,
+      "pass_rate_95_low": 0.846812746178811,
+      "passed": 32,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.083747431328125,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 1,
+      "failure_categories": {
+        "new_receipts_not_writable": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 1568883,
+      "known_cost_usd": 2.6799178025,
+      "median_duration_seconds": 274,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "output_tokens": 364544,
+      "pass_rate": 0.9696969696969697,
+      "pass_rate_95_high": 0.9946305894631283,
+      "pass_rate_95_low": 0.846812746178811,
+      "passed": 32,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.010317456516129033,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 2,
+      "failure_categories": {
+        "historical_receipts_lost": 1,
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 1485199,
+      "known_cost_usd": 0.319841152,
+      "median_duration_seconds": 126,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "output_tokens": 366430,
+      "pass_rate": 0.9393939393939394,
+      "pass_rate_95_high": 0.9832191169128082,
+      "pass_rate_95_low": 0.8039375519135219,
+      "passed": 31,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
       "tier": "core",
@@ -51606,6 +51694,1668 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.009492633333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 64228,
+      "known_cost_usd": 0.0284779,
+      "median_duration_seconds": 149,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 113,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 149,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 273,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 24014,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.05413001166666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 70068,
+      "known_cost_usd": 0.16239003500000002,
+      "median_duration_seconds": 173,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 170,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 364,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 173,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 30127,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.008072394666666668,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 123722,
+      "known_cost_usd": 0.024217184000000003,
+      "median_duration_seconds": 159,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 225,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 159,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 144,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 21485,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.010813696666666666,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 65823,
+      "known_cost_usd": 0.03244109,
+      "median_duration_seconds": 216,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 252,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 216,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 126,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 30020,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.05419564866666666,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 73171,
+      "known_cost_usd": 0.16258694599999998,
+      "median_duration_seconds": 286,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 286,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 345,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 255,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 27820,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.005539641666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 79307,
+      "known_cost_usd": 0.016618925,
+      "median_duration_seconds": 163,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 126,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 374,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 163,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 23513,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.022305654666666664,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 102977,
+      "known_cost_usd": 0.066916964,
+      "median_duration_seconds": 396,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 446,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 396,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 365,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 57013,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.08687326649999999,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 150382,
+      "known_cost_usd": 0.26061979949999997,
+      "median_duration_seconds": 358,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 358,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 489,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 306,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 42763,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.010605139333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 65995,
+      "known_cost_usd": 0.031815418,
+      "median_duration_seconds": 283,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 283,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 551,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 166,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 69624,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.012966604,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "database_pool_exhausted": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 49924,
+      "known_cost_usd": 0.025933208,
+      "median_duration_seconds": 147,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 118,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 210,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 147,
+          "failure_category": "database_pool_exhausted",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 20960,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.070619243,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 113610,
+      "known_cost_usd": 0.211857729,
+      "median_duration_seconds": 222,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 174,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 222,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 301,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 33225,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0031522946666666662,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 26579,
+      "known_cost_usd": 0.009456883999999999,
+      "median_duration_seconds": 71,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 51,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 71,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 95,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 16998,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.015081203333333335,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 86241,
+      "known_cost_usd": 0.045243610000000004,
+      "median_duration_seconds": 259,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 250,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 263,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 259,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 34054,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.09287380266666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 184259,
+      "known_cost_usd": 0.278621408,
+      "median_duration_seconds": 262,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 580,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 262,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 217,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 25426,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.005055632,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 72910,
+      "known_cost_usd": 0.015166896,
+      "median_duration_seconds": 108,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 92,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 108,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 596,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 20465,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.009934982,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 58089,
+      "known_cost_usd": 0.029804946,
+      "median_duration_seconds": 168,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 222,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 147,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 168,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 28178,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.08675384199999998,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 175310,
+      "known_cost_usd": 0.26026152599999997,
+      "median_duration_seconds": 274,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 272,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 277,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 274,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 26802,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.012938096000000003,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 202384,
+      "known_cost_usd": 0.03881428800000001,
+      "median_duration_seconds": 89,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 89,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 102,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 57,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 29902,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.02139734133333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 108601,
+      "known_cost_usd": 0.06419202399999999,
+      "median_duration_seconds": 408,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 408,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 335,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 448,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 64715,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.157956126,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 268137,
+      "known_cost_usd": 0.473868378,
+      "median_duration_seconds": 552,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 552,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 470,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 575,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 72360,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.013995911333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 193603,
+      "known_cost_usd": 0.041987734,
+      "median_duration_seconds": 148,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 71,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 148,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 271,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 52934,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.011558682,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 76717,
+      "known_cost_usd": 0.034676046,
+      "median_duration_seconds": 190,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 214,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 155,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 190,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 29416,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.06360787,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 104820,
+      "known_cost_usd": 0.19082361,
+      "median_duration_seconds": 274,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 274,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 234,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 332,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 27690,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.006479091333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 105909,
+      "known_cost_usd": 0.019437274,
+      "median_duration_seconds": 38,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 38,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 34,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 41,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 17034,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.011806742666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 73781,
+      "known_cost_usd": 0.035420228,
+      "median_duration_seconds": 216,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 216,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 228,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 174,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 26385,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.09660647100000001,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 217572,
+      "known_cost_usd": 0.289819413,
+      "median_duration_seconds": 247,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 247,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 273,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 246,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 23529,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.009116959999999999,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 61664,
+      "known_cost_usd": 0.018233919999999997,
+      "median_duration_seconds": 97,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 97,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 59,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 110,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 28114,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.011436268666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 67252,
+      "known_cost_usd": 0.034308806000000004,
+      "median_duration_seconds": 235,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 210,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 235,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 280,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 32309,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1046039225,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "new_receipts_not_writable": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 99308,
+      "known_cost_usd": 0.209207845,
+      "median_duration_seconds": 284,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 465,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 284,
+          "failure_category": "new_receipts_not_writable",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 278,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 34409,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.032074166,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "historical_receipts_lost": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 341823,
+      "known_cost_usd": 0.064148332,
+      "median_duration_seconds": 156,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 209,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 53,
+          "failure_category": "historical_receipts_lost",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 156,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 50668,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.010086864000000001,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 67298,
+      "known_cost_usd": 0.030260592000000003,
+      "median_duration_seconds": 188,
+      "model": "qwen/qwen3.8-flash",
+      "model_label": "Qwen3.8 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 149,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 188,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 207,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 24326,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.05995370433333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 112246,
+      "known_cost_usd": 0.179861113,
+      "median_duration_seconds": 240,
+      "model": "tencent/hy4-preview",
+      "model_label": "Tencent Hy4 Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 258,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 239,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 240,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 20393,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.013314765666666666,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 211303,
+      "known_cost_usd": 0.039944297,
+      "median_duration_seconds": 152,
+      "model": "xiaomi/mimo-v2.6-flash",
+      "model_label": "MiMo V2.6 Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 131,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 152,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 255,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 35693,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261025.0.2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -56596,7 +58346,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 85 durable repairs in 99 evaluated trials, with $5.9719 in provider-reported API cost.",
       "harness_versions": [
         23
@@ -56605,7 +58355,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -56750,6 +58500,168 @@
         "usage_reported_trials": 99
       },
       "version": "20261025.0.1"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "custom build b959ef677ff7"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 95 durable repairs in 99 evaluated trials, with $3.4274 in provider-reported API cost.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "642c4a12ee18b2b52b567748192642b4238143dbaf019e707b94689f02436153"
+        }
+      ],
+      "tier": "core",
+      "title": "Frozen Core: MiMo Flash, Qwen Flash, and Tencent Hy4",
+      "totals": {
+        "cache_creation_reported_trials": 99,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 99,
+        "cache_read_tokens": 28104683,
+        "cost_reported_trials": 99,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 99,
+        "failed": 4,
+        "failure_categories": {
+          "database_pool_exhausted": 1,
+          "historical_receipts_lost": 1,
+          "new_receipts_not_writable": 1,
+          "release_not_converged": 1
+        },
+        "input_tokens": 3875013,
+        "known_cost_usd": 3.4274343685,
+        "median_duration_seconds": 222,
+        "median_first_non_read_only_tool_seconds": 4.763,
+        "median_model_duration_seconds": 199.049,
+        "median_model_rounds": 16,
+        "median_post_first_non_read_only_seconds": 212.14800000000002,
+        "median_tool_calls": 23,
+        "median_tool_duration_seconds": 15.232,
+        "output_tokens": 1102364,
+        "pass_rate": 0.9595959595959596,
+        "passed": 95,
+        "recording_reported_trials": 99,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 99,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 99
+      },
+      "version": "20261025.0.2"
     }
   ],
   "schema_version": 1
