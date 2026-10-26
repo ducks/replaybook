@@ -24,3 +24,20 @@ asset parity and the dependency-free Node interaction suite when Node is
 available. Run `node tests/evidence.test.cjs` directly to require those checks.
 The DOM shim tests state and rendering logic, not browser layout; inspect the
 responsive design in a browser before publishing.
+
+The Scores page keeps its equal-weight headline and adds per-scenario outcome
+cells linking to the matching release/model/provider/reasoning evidence.
+Observed scenario failure rates are descriptive aggregates of complete,
+release-scoped configuration entries within one benchmark-condition group.
+They follow the harness filter, include unavailable attempts as unsuccessful,
+and show their recorded-attempt and configuration counts. They never alter
+headline scores or combine different scenario versions/condition groups.
+Repeating a configuration in another explicitly selected release adds another
+sample entry; no newest/best-run choice or deduplication by model is inferred.
+
+Scenario cells and names open an accessible native dialog with the matching
+condition/harness sample and per-configuration outcomes. Each row links to
+its exact evidence; the clicked configuration is highlighted. Escape, the
+close button, or clicking the backdrop dismisses the overlay and restores
+focus. Without dialog support, cells retain direct evidence links. Modal
+content is inserted as text, with JSON escaped through Jinja's `tojson` filter.

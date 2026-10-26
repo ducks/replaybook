@@ -67,6 +67,19 @@
       · per repair: {% if card.cost_per_repair is not none %}{% if not card.cost_complete %}≥{% endif %}${{ "%.4f"|format(card.cost_per_repair) }}{% else %}Unknown{% endif %}
       · median: {% if card.duration is not none %}{{ "%.0f"|format(card.duration) }}s{% else %}Unknown{% endif %}</p>
       {% if not card.cost_complete %}<p class="small muted">Cost reported for {{ card.cost_reported }}/{{ card.trials }} trials.</p>{% endif %}
+      <div class="score-outcomes">
+        <p class="small score-outcomes-label">Durable repairs by scenario</p>
+        <div class="score-outcome-strip" role="group" aria-label="Scenario outcomes for {{ card.label }}">
+        {% for cell in card.cells %}
+          <a class="score-outcome scenario-trigger outcome-{{ cell.outcome }}" href="{{ cell.evidence_url }}" data-scenario="{{ cell.scenario }}" data-version="{{ cell.version }}" aria-haspopup="dialog"
+             title="{{ cell.scenario }} v{{ cell.version }}: {{ cell.passed }}/{{ cell.trials }} durable repairs; {{ cell.unavailable }} unavailable"
+             aria-label="{{ cell.label }} ({{ cell.short_id }}) v{{ cell.version }}: {{ cell.passed }} of {{ cell.trials }} durable repairs; {{ cell.unavailable }} unavailable. Open scenario details.">
+            <span>{{ cell.short_id }}</span><strong>{{ cell.passed }}/{{ cell.trials }}</strong>
+          </a>
+        {% endfor %}
+        </div>
+        <p class="small muted score-outcomes-help">Scenario ID · passed / recorded. Select a cell to compare outcomes.</p>
+      </div>
       <details><summary>Exact model identity</summary><code>{{ card.model }}</code></details>
       <p><a href="{{ card.evidence_url }}">View attempts, timing and cost ↗</a></p>
     </article>
@@ -76,15 +89,63 @@
   {% else %}
   <p>No configurations have complete evidence for this contract.</p>
   {% endfor %}
+  <details class="score-scenario-observations" open>
+    <summary>Observed failure rate by scenario</summary>
+    <p class="small muted">For these benchmark conditions and the selected harness. This describes the selected configurations, not intrinsic difficulty. Small samples, provider behavior, and execution failures affect the rates. Headline scores remain equally weighted.</p>
+    {% for profile in cohort.scenario_profiles %}
+    <div class="scenario-profile" data-harness="{{ profile.harness }}"{% if profile.harness %} hidden{% endif %}>
+      <p class="small scenario-sample">{{ profile.configurations }} complete configuration entries · each entry belongs to one release, model, provider, harness, and reasoning setting. Repeated configurations in different selected releases count separately.</p>
+      {% if profile.rates %}
+      <div class="scenario-rate-scroll">
+      <table class="scenario-rate-table">
+        <caption class="small muted">Unsuccessful / recorded attempts, including unavailable trials. Rates combine only the complete configuration entries shown for these conditions; no model score is pooled or reweighted.</caption>
+        <thead><tr><th scope="col">Scenario</th><th scope="col">Observed failure rate</th><th scope="col">Unsuccessful / recorded</th><th scope="col">Configurations</th><th scope="col">Unavailable</th></tr></thead>
+        <tbody>
+        {% for row in profile.rates %}
+        <tr>
+          <th scope="row"><a class="scenario-trigger" href="benchmark-scenario.html?scenario={{ row.scenario|urlencode }}" data-scenario="{{ row.scenario }}" data-version="{{ row.version }}" aria-haspopup="dialog">{{ row.label }}</a><small>{{ row.scenario }} · v{{ row.version }}</small></th>
+          <td>{% if row.failure_rate is not none %}<strong>{{ '%.1f'|format(row.failure_rate) }}%</strong>{% else %}Not measured{% endif %}</td>
+          <td>{{ row.unsuccessful }} / {{ row.trials }}</td><td>{{ row.configurations }}</td><td>{{ row.unavailable }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}<p>No complete configurations for these conditions.</p>{% endif %}
+    </div>
+    {% endfor %}
+    <p class="small muted scenario-profile-empty" hidden>No complete configurations for the selected harness and conditions.</p>
+  </details>
   {% if cohort.hidden %}<p>{{ cohort.hidden }} incomplete configurations have no headline score. Inspect partial evidence:
   {% for release in cohort.releases %}<a href="benchmark-evidence.html?release={{ release }}">{{ release }}</a> {% endfor %}</p>{% endif %}
 </section>
 {% else %}
 <p>No score cohorts have been selected yet. <a href="benchmark-evidence.html">Browse the evidence</a>.</p>
 {% endfor %}
+<dialog id="score-scenario-dialog" class="scenario-dialog" aria-labelledby="scenario-dialog-title" aria-describedby="scenario-dialog-scope">
+  <header class="scenario-dialog-header">
+    <div><p class="eyebrow">Scenario / durable repair</p><h2 id="scenario-dialog-title"></h2><p id="scenario-dialog-meta" class="small muted"></p></div>
+    <button type="button" id="scenario-dialog-close" class="scenario-dialog-close" aria-label="Close scenario details" autofocus>×</button>
+  </header>
+  <div class="scenario-dialog-body">
+    <div class="scenario-dialog-stats">
+      <div><strong id="scenario-dialog-rate"></strong><span>Observed failure rate</span></div>
+      <div><strong id="scenario-dialog-trials"></strong><span>Unsuccessful / recorded</span></div>
+      <div><strong id="scenario-dialog-configurations"></strong><span>Configuration entries</span></div>
+    </div>
+    <p id="scenario-dialog-scope" class="small muted"></p>
+    <p id="scenario-dialog-unavailable" class="small muted"></p>
+    <div class="scenario-dialog-section"><h3>How each configuration did</h3><span class="small muted">Passed / recorded attempts</span></div>
+    <div id="scenario-dialog-outcomes" class="scenario-dialog-outcomes"></div>
+    <p class="scenario-dialog-note small muted">These are observations from the selected configurations, not intrinsic difficulty. Small samples, provider behavior, and execution failures affect the rate. Headline scores remain equally weighted.</p>
+    <a id="scenario-dialog-history" class="small" href="scenarios.html">Explore scenario history ↗</a>
+  </div>
+</dialog>
 <p class="small muted">Cohorts are explicitly selected in the <a href="https://github.com/ducks/replaybook/blob/main/benchmark-data/scores.json">score configuration</a>. No automatic newest-run or best-attempt selection.</p>
 {% endblock %}
 {% block scripts %}
+<script type="application/json" id="score-scenario-data">{{ report.scenario_details|tojson }}</script>
+<script src="score-scenarios.js"></script>
 <script>
 const selector = document.getElementById('score-cohort');
 if (selector) {
@@ -122,6 +183,13 @@ if (selector) {
       section.querySelectorAll('.score-grid').forEach(grid => {
         [...grid.children].sort(compareCards).forEach(card => grid.append(card));
       });
+      let matchingProfile = false;
+      section.querySelectorAll('.scenario-profile').forEach(profile => {
+        profile.hidden = profile.dataset.harness !== harness.value;
+        if (!profile.hidden) matchingProfile = true;
+      });
+      const emptyProfile = section.querySelector('.scenario-profile-empty');
+      if (emptyProfile) emptyProfile.hidden = matchingProfile;
       section.querySelectorAll('.score-provider').forEach(group => {
         group.hidden = ![...group.querySelectorAll('.score-card')].some(card => !card.hidden);
       });
@@ -140,6 +208,7 @@ if (selector) {
     changed();
   });
   direction.addEventListener('change', changed);
+  initializeScenarioDialog(selector, harness);
   showCohort();
 }
 </script>

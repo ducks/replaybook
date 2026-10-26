@@ -128,7 +128,7 @@ class PagesTests(unittest.TestCase):
         self.assertIn("Benchmark tiers", current)
 
     def test_evidence_assets_and_navigation(self) -> None:
-        for asset in ("evidence.js", "evidence.css"):
+        for asset in ("evidence.js", "evidence.css", "score-scenarios.js"):
             self.assertEqual((SITE_DIR / "static" / asset).read_text(),
                              (DOCS_DIR / asset).read_text())
         for page in DOCS_DIR.glob("*.html"):
@@ -149,6 +149,7 @@ class PagesTests(unittest.TestCase):
         subprocess.run(["node", "tests/evidence.test.cjs"], cwd=REPO_DIR, check=True)
         subprocess.run(["node", "tests/models.test.cjs"], cwd=REPO_DIR, check=True)
         subprocess.run(["node", "tests/scores.test.cjs"], cwd=REPO_DIR, check=True)
+        subprocess.run(["node", "tests/score-scenarios.test.cjs"], cwd=REPO_DIR, check=True)
 
     def test_core_pages_cover_current_workflows(self) -> None:
         home = (DOCS_DIR / "index.html").read_text()
