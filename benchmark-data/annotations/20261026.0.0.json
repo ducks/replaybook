@@ -1,0 +1,43 @@
+{
+  "title": "Frozen Core: Seed Turbo, MiMo Pro, and GLM 5.3",
+  "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 91 durable repairs in 99 evaluated trials. Recorded provider-reported API spend is at least $9.0408; the MiMo Pro timeout contains partial checkpointed usage.",
+  "input_mode": "text",
+  "model_order": [
+    "bytedance-seed/seed-2-1-turbo",
+    "xiaomi/mimo-v2.6-pro",
+    "z-ai/glm-5.3"
+  ],
+  "model_labels": {
+    "bytedance-seed/seed-2-1-turbo": "Seed 2.1 Turbo",
+    "xiaomi/mimo-v2.6-pro": "MiMo V2.6 Pro",
+    "z-ai/glm-5.3": "GLM 5.3"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated, none are missing or unavailable, and all have recorded cost values. All 91 successful repairs passed immediate, service-restart, and host-reboot verification.",
+    "The selected IDs are bytedance-seed/seed-2-1-turbo, xiaomi/mimo-v2.6-pro, and z-ai/glm-5.3 via the shared OpenRouter transport. These remain distinct from earlier MiMo Pro/OpenCode and older GLM benchmark evidence; Flash variants have their own configuration entries.",
+    "This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as the expanded frozen Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "The initial session recorded 96 results and had three missing trials before inference: Seed Nginx was blocked by occupied port 40000; GLM poison-pill and Seed disk-pressure VMs failed their SSH port-forward bindings. Their logs, existing run directories, controller log, and initial summary were archived before resume. Two recovered trials passed; the Seed Nginx slot was still blocked by an existing listener on port 40000.",
+    "The final missing Seed Nginx trial used the unchanged frozen runner, scenario, model, high reasoning, and 900-second deadline on free SSH/HTTP ports 27000/27001 instead of the planned 40000/40001. The original plan was not rewritten. A separate port-substitution record, recovery-controller source, prior 98-result summary, and original failure log were preserved in a hash-verified local audit archive. Port allocation is operational metadata and does not change the scoring contract.",
+    "All original 96 outcomes and the subsequent 98-result snapshot were verified unchanged against the final summary. No evaluated failure was retried, best-selected, corrected, or reclassified. The preserved recovery artifacts are local audit evidence; private transcripts and credentials are excluded from the public release.",
+    "All trials have some provider-reported cost, but this is reporting coverage rather than proof of complete billing. The MiMo Pro timeout reports usage only through its checkpointed rounds; its spend and the aggregate recorded spend are lower bounds, and no zero cost is inferred for missing in-flight usage.",
+    "All 8 failed evaluated trials remain in the denominator, including the timeout and the two API/harness runtime errors after meaningful execution. No infrastructure or provider exemptions have been applied.",
+    "Scores are equally weighted scenario success rates and small-sample point estimates. Compatible releases can be displayed together; model scores never pool attempts across releases. Observed scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights."
+  ],
+  "observations": [
+    "Seed 2.1 Turbo passed 30/33 (90.9%), with a 152-second median agent duration and $6.3746 in recorded provider-reported cost. Recorded cost per durable repair was $0.2125 for this configuration.",
+    "MiMo V2.6 Pro passed 30/33 (90.9%), with a 329-second median agent duration and at least $0.9447 in recorded provider-reported cost. Recorded cost per durable repair was at least $0.0315 for this configuration.",
+    "GLM 5.3 passed 31/33 (93.9%), with a 99-second median agent duration and $1.7215 in recorded provider-reported cost. Recorded cost per durable repair was $0.0555 for this configuration.",
+    "Seed failed a Rust file-descriptor trial with 0/100 concurrent resource checks, an interrupted-deployment trial with the green instance still on its previous release, and a disk-pressure trial with only 5/6 new receipt writes during immediate verification.",
+    "MiMo Pro timed out at 900 seconds on one shared-uploads trial. Post-timeout verification still found a historical upload missing (HTTP 404), so there was no durable repair after timeout. The checkpoint contains usage from 11 recorded model rounds and 18 tool calls; the final in-flight request is not a complete billing record.",
+    "Two MiMo Pro auth-rollout trials ended with the API/harness runtime error unsupported OpenAI finish reason: error. One had already recorded 8 model rounds and 18 tool calls, the other 6 rounds and 12 calls. Both remain evaluated failures because meaningful inference and execution occurred. This is evidence about the model/provider/harness configuration, not a clean separation of model reasoning quality from protocol compatibility.",
+    "GLM failed a Rails pool trial after passing immediate and restart checks: reboot verification completed only 5/8 concurrent checkouts. Its TLS failure completed 0/4 fresh deliveries during immediate verification; the controller phase record says new_deliveries_not_accepted, while the legacy top-level result has no failure category. Original normalized outcomes and categories remain unchanged.",
+    "Partial concurrent assertions retain successful request counts, not full response details for every failed request. The retained evidence establishes the failed verification phases but not all underlying causes. Three attempts per scenario are a small sample, so these observations do not establish definitive model rankings."
+  ]
+}
