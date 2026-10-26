@@ -9,21 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core: MiMo Flash, Qwen Flash, and Tencent Hy4
+## Frozen Core: Seed Turbo, MiMo Pro, and GLM 5.3
 
-Three high-reasoning configurations attempted eleven Core incidents three times each: 95 durable repairs in 99 evaluated trials, with $3.4274 in provider-reported API cost.
+Three high-reasoning configurations attempted eleven Core incidents three times each: 91 durable repairs in 99 evaluated trials. Recorded provider-reported API spend is at least $9.0408; the MiMo Pro timeout contains partial checkpointed usage.
 
-Benchmark release: `20261025.0.2`
+Benchmark release: `20261026.0.0`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| MiMo V2.6 Flash (high) · openrouter | 31/33 | 94% | 2:06 | $0.3198 | $0.0103 |
-| Qwen3.8 Flash (high) · openrouter | 32/33 | 97% | 3:36 | $0.4277 | $0.0134 |
-| Tencent Hy4 Preview (high) · openrouter | 32/33 | 97% | 4:34 | $2.6799 | $0.0837 |
-| **Total** | **95/99** | **96%** | **3:42** | **$3.4274** | **$0.0361** |
+| Seed 2.1 Turbo (high) · openrouter | 30/33 | 91% | 2:32 | $6.3746 | $0.2125 |
+| MiMo V2.6 Pro (high) · openrouter | 30/33 | 91% | 5:29 | $0.9447 | $0.0315 |
+| GLM 5.3 (high) · openrouter | 31/33 | 94% | 1:39 | $1.7215 | $0.0555 |
+| **Total** | **91/99** | **92%** | **2:43** | **$9.0408** | **$0.0993** |
 
 ### Execution recording
 
@@ -31,61 +31,66 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| MiMo V2.6 Flash (high) · openrouter | 33/33 | 15 | 1:24 | 23 | 0:18 | 0:02 | 2:03 |
-| Qwen3.8 Flash (high) · openrouter | 33/33 | 14 | 3:16 | 19 | 0:09 | 0:07 | 3:30 |
-| Tencent Hy4 Preview (high) · openrouter | 33/33 | 19 | 4:20 | 27 | 0:16 | 0:05 | 4:27 |
+| Seed 2.1 Turbo (high) · openrouter | 33/33 | 22 | 2:17 | 35 | 0:11 | 0:11 | 2:19 |
+| MiMo V2.6 Pro (high) · openrouter | 33/33 | 16 | 5:08 | 23 | 0:12 | 0:04 | 5:18 |
+| GLM 5.3 (high) · openrouter | 33/33 | 15 | 1:24 | 21 | 0:13 | 0:03 | 1:34 |
 
-MiMo V2.6 Flash passed 31/33 (93.9%), with a 126-second median agent duration and $0.3198 in provider-reported API cost. Reported cost per durable repair was $0.0103 for this run.
+Seed 2.1 Turbo passed 30/33 (90.9%), with a 152-second median agent duration and $6.3746 in recorded provider-reported cost. Recorded cost per durable repair was $0.2125 for this configuration.
 
-Qwen3.8 Flash passed 32/33 (97.0%), with a 216-second median agent duration and $0.4277 in provider-reported API cost. Reported cost per durable repair was $0.0134 for this run.
+MiMo V2.6 Pro passed 30/33 (90.9%), with a 329-second median agent duration and at least $0.9447 in recorded provider-reported cost. Recorded cost per durable repair was at least $0.0315 for this configuration.
 
-Tencent Hy4 Preview passed 32/33 (97.0%), with a 274-second median agent duration and $2.6799 in provider-reported API cost. Reported cost per durable repair was $0.0837 for this run.
+GLM 5.3 passed 31/33 (93.9%), with a 99-second median agent duration and $1.7215 in recorded provider-reported cost. Recorded cost per durable repair was $0.0555 for this configuration.
 
-MiMo failed two recorded trials. One interrupted-deployment trial left the green instance on its previous release. One disk-pressure trial passed immediate and service-restart verification, but the historical-receipt HTTP check after reboot returned status 0 with an empty body. The controller recorded historical_receipts_lost; this is a verification failure, not evidence by itself that receipt rows were deleted. The console records the billing and Nginx services starting after reboot, but the retained artifacts do not establish the underlying HTTP failure cause.
+Seed failed a Rust file-descriptor trial with 0/100 concurrent resource checks, an interrupted-deployment trial with the green instance still on its previous release, and a disk-pressure trial with only 5/6 new receipt writes during immediate verification.
 
-Qwen failed one Rails pool-exhaustion trial: immediate verification completed 4/8 concurrent checkout requests. Its other recorded outcomes, including the resumed pre-evaluation TLS trial, remain unchanged.
+MiMo Pro timed out at 900 seconds on one shared-uploads trial. Post-timeout verification still found a historical upload missing (HTTP 404), so there was no durable repair after timeout. The checkpoint contains usage from 11 recorded model rounds and 18 tool calls; the final in-flight request is not a complete billing record.
 
-Tencent failed one disk-pressure trial: immediate verification passed, but the service-restart phase completed 0/6 concurrent receipt writes. The result remains an evaluated failure. Partial concurrent HTTP assertions record success counts, not complete error responses for every unsuccessful request; the retained evidence does not establish the underlying cause.
+Two MiMo Pro auth-rollout trials ended with the API/harness runtime error unsupported OpenAI finish reason: error. One had already recorded 8 model rounds and 18 tool calls, the other 6 rounds and 12 calls. Both remain evaluated failures because meaningful inference and execution occurred. This is evidence about the model/provider/harness configuration, not a clean separation of model reasoning quality from protocol compatibility.
 
-The small observed differences are not statistically reliable rankings. Scores and reported cost per repair describe these exact model, reasoning, provider, harness, and frozen benchmark configurations; no speed or cost weighting is applied.
+GLM failed a Rails pool trial after passing immediate and restart checks: reboot verification completed only 5/8 concurrent checkouts. Its TLS failure completed 0/4 fresh deliveries during immediate verification; the controller phase record says new_deliveries_not_accepted, while the legacy top-level result has no failure category. Original normalized outcomes and categories remain unchanged.
+
+Partial concurrent assertions retain successful request counts, not full response details for every failed request. The retained evidence establishes the failed verification phases but not all underlying causes. Three attempts per scenario are a small sample, so these observations do not establish definitive model rankings.
 
 ### Scenario breakdown
 
-| Scenario | Version | MiMo V2.6 Flash (high) · openrouter | Qwen3.8 Flash (high) · openrouter | Tencent Hy4 Preview (high) · openrouter |
+| Scenario | Version | Seed 2.1 Turbo (high) · openrouter | MiMo V2.6 Pro (high) · openrouter | GLM 5.3 (high) · openrouter |
 |---|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 2:39 | 3/3, 2:29 | 3/3, 2:53 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 2:43 | 3/3, 3:36 | 3/3, 4:46 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 4:43 | 3/3, 6:36 | 3/3, 5:58 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 1:11 | 2/3, 2:27 | 3/3, 3:42 |
-| 017-partial-rails-rollout | v1 | 3/3, 1:48 | 3/3, 4:19 | 3/3, 4:22 |
-| 019-rust-fd-leak | v1 | 3/3, 1:29 | 3/3, 2:48 | 3/3, 4:34 |
-| 021-discourse-shared-uploads | v1 | 3/3, 2:28 | 3/3, 6:48 | 3/3, 9:12 |
-| 023-auth-secret-rollout | v1 | 3/3, 0:38 | 3/3, 3:10 | 3/3, 4:34 |
-| 024-discourse-interrupted-deploy | v1 | 2/3, 1:37 | 3/3, 3:36 | 3/3, 4:07 |
-| 028-nix-store-disk-pressure | v1 | 2/3, 2:36 | 3/3, 3:55 | 2/3, 4:44 |
-| 033-tls-trust-rotation | v2 | 3/3, 2:32 | 3/3, 3:08 | 3/3, 4:00 |
+| 001-nginx-502-host | v1 | 3/3, 1:25 | 3/3, 5:31 | 3/3, 1:05 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 1:38 | 3/3, 6:00 | 3/3, 1:32 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 4:35 | 3/3, 6:04 | 3/3, 2:54 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 2:43 | 3/3, 4:04 | 2/3, 1:19 |
+| 017-partial-rails-rollout | v1 | 3/3, 2:32 | 3/3, 11:11 | 3/3, 2:46 |
+| 019-rust-fd-leak | v1 | 2/3, 2:09 | 3/3, 3:27 | 3/3, 1:20 |
+| 021-discourse-shared-uploads | v1 | 3/3, 3:11 | 2/3, 10:40 | 3/3, 2:04 |
+| 023-auth-secret-rollout | v1 | 3/3, 2:24 | 1/3, 3:05 | 3/3, 1:25 |
+| 024-discourse-interrupted-deploy | v1 | 2/3, 3:32 | 3/3, 5:44 | 3/3, 2:11 |
+| 028-nix-store-disk-pressure | v1 | 2/3, 2:31 | 3/3, 5:17 | 3/3, 1:53 |
+| 033-tls-trust-rotation | v2 | 3/3, 2:49 | 3/3, 4:00 | 2/3, 1:45 |
 
 ### Failure categories
 
+- `agent_runtime_error`: 2
+- `agent_timeout`: 1
 - `database_pool_exhausted`: 1
-- `historical_receipts_lost`: 1
 - `new_receipts_not_writable`: 1
 - `release_not_converged`: 1
+- `resource_growth_unbounded`: 1
 
 ### Source matrices
 
-- `matrix`: xiaomi/mimo-v2.6-flash, qwen/qwen3.8-flash, tencent/hy4-preview; Replaybook `37506bdd`; reasoning high
+- `matrix`: bytedance-seed/seed-2-1-turbo, xiaomi/mimo-v2.6-pro, z-ai/glm-5.3; Replaybook `37506bdd`; reasoning high
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated, none are missing or unavailable, and all report cost. All 95 successful repairs passed immediate, service-restart, and host-reboot verification.
-- The model IDs are xiaomi/mimo-v2.6-flash, qwen/qwen3.8-flash, and tencent/hy4-preview through the same shared OpenRouter transport. These are distinct configurations from the earlier MiMo Pro/OpenCode and Qwen Max Prime evidence.
-- This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as releases 20261024.0.0, 20261025.0.0, and 20261025.0.1. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
-- The initial session recorded 96 outcomes and had three missing results before agent evaluation: a Tencent shared-uploads VM failed its SSH port-forward binding, and one Qwen TLS trial and one Tencent TLS trial each failed the incident preflight with 1/4 successful concurrent requests. The missing trial directories, original logs, controller log, and initial summary were copied into a SHA-256-verified local audit archive before resume. All 96 recorded outcomes were preserved.
-- Normal resume ran only the three missing trials against the original execution snapshot; no evaluated failure was retried. Original pre-evaluation evidence is retained separately from the final trial artifacts and is not overwritten by this publication.
-- All 4 failed evaluated trials remain in the denominator. No provider, harness, infrastructure, or statistical exemptions have been applied, and no recorded outcome has been corrected.
-- Three attempts per scenario are a small sample. Compatible releases can be displayed together, but model headline scores never pool attempts across releases or pick best outcomes. Observed scenario failure rates are descriptive samples, not intrinsic difficulty or score weights.
-- Public evidence includes normalized trial results, provider-reported usage, immutable execution metadata, and source digests. Credentials, private transcripts, full VM logs, audit working directories, and local absolute paths are excluded.
+- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated, none are missing or unavailable, and all have recorded cost values. All 91 successful repairs passed immediate, service-restart, and host-reboot verification.
+- The selected IDs are bytedance-seed/seed-2-1-turbo, xiaomi/mimo-v2.6-pro, and z-ai/glm-5.3 via the shared OpenRouter transport. These remain distinct from earlier MiMo Pro/OpenCode and older GLM benchmark evidence; Flash variants have their own configuration entries.
+- This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as the expanded frozen Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
+- The initial session recorded 96 results and had three missing trials before inference: Seed Nginx was blocked by occupied port 40000; GLM poison-pill and Seed disk-pressure VMs failed their SSH port-forward bindings. Their logs, existing run directories, controller log, and initial summary were archived before resume. Two recovered trials passed; the Seed Nginx slot was still blocked by an existing listener on port 40000.
+- The final missing Seed Nginx trial used the unchanged frozen runner, scenario, model, high reasoning, and 900-second deadline on free SSH/HTTP ports 27000/27001 instead of the planned 40000/40001. The original plan was not rewritten. A separate port-substitution record, recovery-controller source, prior 98-result summary, and original failure log were preserved in a hash-verified local audit archive. Port allocation is operational metadata and does not change the scoring contract.
+- All original 96 outcomes and the subsequent 98-result snapshot were verified unchanged against the final summary. No evaluated failure was retried, best-selected, corrected, or reclassified. The preserved recovery artifacts are local audit evidence; private transcripts and credentials are excluded from the public release.
+- All trials have some provider-reported cost, but this is reporting coverage rather than proof of complete billing. The MiMo Pro timeout reports usage only through its checkpointed rounds; its spend and the aggregate recorded spend are lower bounds, and no zero cost is inferred for missing in-flight usage.
+- All 8 failed evaluated trials remain in the denominator, including the timeout and the two API/harness runtime errors after meaningful execution. No infrastructure or provider exemptions have been applied.
+- Scores are equally weighted scenario success rates and small-sample point estimates. Compatible releases can be displayed together; model scores never pool attempts across releases. Observed scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.
 
 <!-- replaybook:current-benchmark:end -->
 

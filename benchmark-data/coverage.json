@@ -79,7 +79,7 @@
       ]
     }
   ],
-  "generated_from": "20261025.0.2",
+  "generated_from": "20261026.0.0",
   "profiles": [
     {
       "model": "deepseek/deepseek-v4-flash-0731",
@@ -4867,46 +4867,46 @@
       "reasoning_effort": "high",
       "records": [
         {
-          "cost_per_repair_usd": 0.15932785333333332,
+          "cost_per_repair_usd": 0.017899107466666668,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260906.0.0&scenario=001-nginx-502-host&model=z-ai%2Fglm-5.3",
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=001-nginx-502-host&model=z-ai%2Fglm-5.3",
           "failed": 0,
           "failure_categories": {},
           "input_mode": "text",
-          "input_tokens": 153075,
-          "known_cost_usd": 0.47798356,
-          "median_duration_seconds": 146,
+          "input_tokens": 35362,
+          "known_cost_usd": 0.053697322400000004,
+          "median_duration_seconds": 65,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 353,
+              "duration_seconds": 63,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 112,
+              "duration_seconds": 75,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 146,
+              "duration_seconds": 65,
               "reward": 1,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 28349,
+          "output_tokens": 17107,
           "pass_rate": 1.0,
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260906.0.0",
+          "release": "20261026.0.0",
           "scenario": "001-nginx-502-host",
           "scenario_label": "001-nginx-502-host",
           "scenario_version": 1,
@@ -4918,49 +4918,49 @@
           "unavailable_categories": {}
         },
         {
-          "cost_per_repair_usd": 0.08706796,
+          "cost_per_repair_usd": 0.022403925666666668,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260906.0.0&scenario=013-sidekiq-wrong-redis&model=z-ai%2Fglm-5.3",
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=013-sidekiq-wrong-redis&model=z-ai%2Fglm-5.3",
           "failed": 0,
           "failure_categories": {},
           "input_mode": "text",
-          "input_tokens": 51295,
-          "known_cost_usd": 0.26120388,
-          "median_duration_seconds": 150,
+          "input_tokens": 30189,
+          "known_cost_usd": 0.067211777,
+          "median_duration_seconds": 92,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 150,
+              "duration_seconds": 74,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 122,
+              "duration_seconds": 95,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 203,
+              "duration_seconds": 92,
               "reward": 1,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 15542,
+          "output_tokens": 19791,
           "pass_rate": 1.0,
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260906.0.0",
+          "release": "20261026.0.0",
           "scenario": "013-sidekiq-wrong-redis",
           "scenario_label": "013-sidekiq-wrong-redis",
-          "scenario_version": 2,
+          "scenario_version": 3,
           "subscription_usage_reported_trials": 0,
           "subscription_usage_usd": 0,
           "tier": "core",
@@ -5020,46 +5020,46 @@
           "unavailable_categories": {}
         },
         {
-          "cost_per_repair_usd": 0.256728324,
+          "cost_per_repair_usd": 0.085083136,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260906.0.0&scenario=015-sidekiq-poison-pill&model=z-ai%2Fglm-5.3",
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=015-sidekiq-poison-pill&model=z-ai%2Fglm-5.3",
           "failed": 0,
           "failure_categories": {},
           "input_mode": "text",
-          "input_tokens": 246493,
-          "known_cost_usd": 0.770184972,
-          "median_duration_seconds": 292,
+          "input_tokens": 108258,
+          "known_cost_usd": 0.255249408,
+          "median_duration_seconds": 174,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 262,
+              "duration_seconds": 161,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 599,
+              "duration_seconds": 237,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 292,
+              "duration_seconds": 174,
               "reward": 1,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 39705,
+          "output_tokens": 44921,
           "pass_rate": 1.0,
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260906.0.0",
+          "release": "20261026.0.0",
           "scenario": "015-sidekiq-poison-pill",
           "scenario_label": "015-sidekiq-poison-pill",
           "scenario_version": 1,
@@ -5071,97 +5071,100 @@
           "unavailable_categories": {}
         },
         {
-          "cost_per_repair_usd": 0.05620229333333334,
+          "cost_per_repair_usd": 0.049836512,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=016-rails-pool-exhaustion&model=z-ai%2Fglm-5.3",
-          "failed": 0,
-          "failure_categories": {},
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=016-rails-pool-exhaustion&model=z-ai%2Fglm-5.3",
+          "failed": 1,
+          "failure_categories": {
+            "database_pool_exhausted": 1
+          },
           "input_mode": "text",
-          "input_tokens": 332780,
-          "known_cost_usd": 0.16860688000000001,
-          "median_duration_seconds": 109,
+          "input_tokens": 39915,
+          "known_cost_usd": 0.099673024,
+          "median_duration_seconds": 79,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 102,
+              "duration_seconds": 79,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 136,
+              "duration_seconds": 99,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 109,
-              "reward": 1,
+              "duration_seconds": 53,
+              "failure_category": "database_pool_exhausted",
+              "reward": 0,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 11232,
-          "pass_rate": 1.0,
-          "pass_rate_95_high": 1.0,
-          "pass_rate_95_low": 0.4385029682449546,
-          "passed": 3,
+          "output_tokens": 16037,
+          "pass_rate": 0.6666666666666666,
+          "pass_rate_95_high": 0.9385080552796037,
+          "pass_rate_95_low": 0.2076596008020477,
+          "passed": 2,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
+          "release": "20261026.0.0",
           "scenario": "016-rails-pool-exhaustion",
           "scenario_label": "016-rails-pool-exhaustion",
           "scenario_version": 1,
           "subscription_usage_reported_trials": 0,
           "subscription_usage_usd": 0,
-          "tier": "full",
+          "tier": "core",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
         },
         {
-          "cost_per_repair_usd": 0.12826153333333334,
+          "cost_per_repair_usd": 0.03859013033333333,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260906.0.0&scenario=017-partial-rails-rollout&model=z-ai%2Fglm-5.3",
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=017-partial-rails-rollout&model=z-ai%2Fglm-5.3",
           "failed": 0,
           "failure_categories": {},
           "input_mode": "text",
-          "input_tokens": 71551,
-          "known_cost_usd": 0.38478460000000003,
-          "median_duration_seconds": 341,
+          "input_tokens": 58878,
+          "known_cost_usd": 0.115770391,
+          "median_duration_seconds": 166,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 340,
+              "duration_seconds": 166,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 341,
+              "duration_seconds": 179,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 354,
+              "duration_seconds": 149,
               "reward": 1,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 18679,
+          "output_tokens": 35397,
           "pass_rate": 1.0,
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260906.0.0",
+          "release": "20261026.0.0",
           "scenario": "017-partial-rails-rollout",
           "scenario_label": "017-partial-rails-rollout",
           "scenario_version": 1,
@@ -5227,46 +5230,46 @@
           "unavailable_categories": {}
         },
         {
-          "cost_per_repair_usd": 0.16213272133333334,
+          "cost_per_repair_usd": 0.034985466666666666,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260906.0.0&scenario=019-rust-fd-leak&model=z-ai%2Fglm-5.3",
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=019-rust-fd-leak&model=z-ai%2Fglm-5.3",
           "failed": 0,
           "failure_categories": {},
           "input_mode": "text",
-          "input_tokens": 142261,
-          "known_cost_usd": 0.486398164,
-          "median_duration_seconds": 141,
+          "input_tokens": 63505,
+          "known_cost_usd": 0.1049564,
+          "median_duration_seconds": 80,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 314,
+              "duration_seconds": 79,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 140,
+              "duration_seconds": 84,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 141,
+              "duration_seconds": 80,
               "reward": 1,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 25315,
+          "output_tokens": 18522,
           "pass_rate": 1.0,
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260906.0.0",
+          "release": "20261026.0.0",
           "scenario": "019-rust-fd-leak",
           "scenario_label": "019-rust-fd-leak",
           "scenario_version": 1,
@@ -5332,46 +5335,46 @@
           "unavailable_categories": {}
         },
         {
-          "cost_per_repair_usd": 0.5880829941666667,
+          "cost_per_repair_usd": 0.10851896333333334,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260906.0.0&scenario=021-discourse-shared-uploads&model=z-ai%2Fglm-5.3",
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=021-discourse-shared-uploads&model=z-ai%2Fglm-5.3",
           "failed": 0,
           "failure_categories": {},
           "input_mode": "text",
-          "input_tokens": 909467,
-          "known_cost_usd": 1.7642489825,
-          "median_duration_seconds": 759,
+          "input_tokens": 49005,
+          "known_cost_usd": 0.32555689000000004,
+          "median_duration_seconds": 124,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 759,
+              "duration_seconds": 124,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 729,
+              "duration_seconds": 144,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 806,
+              "duration_seconds": 103,
               "reward": 1,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 86059,
+          "output_tokens": 40651,
           "pass_rate": 1.0,
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260906.0.0",
+          "release": "20261026.0.0",
           "scenario": "021-discourse-shared-uploads",
           "scenario_label": "021-discourse-shared-uploads",
           "scenario_version": 1,
@@ -5434,97 +5437,97 @@
           "unavailable_categories": {}
         },
         {
-          "cost_per_repair_usd": 0.09924885333333335,
+          "cost_per_repair_usd": 0.0353163981,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260819.0.0&scenario=023-auth-secret-rollout&model=z-ai%2Fglm-5.3",
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=023-auth-secret-rollout&model=z-ai%2Fglm-5.3",
           "failed": 0,
           "failure_categories": {},
           "input_mode": "text",
-          "input_tokens": 662506,
-          "known_cost_usd": 0.29774656000000005,
-          "median_duration_seconds": 123,
+          "input_tokens": 46609,
+          "known_cost_usd": 0.1059491943,
+          "median_duration_seconds": 85,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 123,
+              "duration_seconds": 95,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 125,
+              "duration_seconds": 60,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 119,
+              "duration_seconds": 85,
               "reward": 1,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 13471,
+          "output_tokens": 23565,
           "pass_rate": 1.0,
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260819.0.0",
+          "release": "20261026.0.0",
           "scenario": "023-auth-secret-rollout",
           "scenario_label": "023-auth-secret-rollout",
           "scenario_version": 1,
           "subscription_usage_reported_trials": 0,
           "subscription_usage_usd": 0,
-          "tier": "full",
+          "tier": "core",
           "trials": 3,
           "unavailable": 0,
           "unavailable_categories": {}
         },
         {
-          "cost_per_repair_usd": 0.19236610799999998,
+          "cost_per_repair_usd": 0.12572488966666664,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260906.0.0&scenario=024-discourse-interrupted-deploy&model=z-ai%2Fglm-5.3",
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=024-discourse-interrupted-deploy&model=z-ai%2Fglm-5.3",
           "failed": 0,
           "failure_categories": {},
           "input_mode": "text",
-          "input_tokens": 312198,
-          "known_cost_usd": 0.5770983239999999,
-          "median_duration_seconds": 326,
+          "input_tokens": 64967,
+          "known_cost_usd": 0.37717466899999996,
+          "median_duration_seconds": 131,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 347,
+              "duration_seconds": 163,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 326,
+              "duration_seconds": 86,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 199,
+              "duration_seconds": 131,
               "reward": 1,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 17786,
+          "output_tokens": 37982,
           "pass_rate": 1.0,
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260906.0.0",
+          "release": "20261026.0.0",
           "scenario": "024-discourse-interrupted-deploy",
           "scenario_label": "024-discourse-interrupted-deploy",
           "scenario_version": 1,
@@ -5638,49 +5641,100 @@
           "unavailable_categories": {}
         },
         {
-          "cost_per_repair_usd": 0.14912578666666668,
+          "cost_per_repair_usd": 0.04341226693333333,
           "cost_reported_trials": 3,
           "evaluated": 3,
-          "evidence_url": "benchmark-explorer.html?release=20260906.0.0&scenario=028-nix-store-disk-pressure&model=z-ai%2Fglm-5.3",
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=028-nix-store-disk-pressure&model=z-ai%2Fglm-5.3",
           "failed": 0,
           "failure_categories": {},
           "input_mode": "text",
-          "input_tokens": 109375,
-          "known_cost_usd": 0.44737736,
-          "median_duration_seconds": 143,
+          "input_tokens": 74237,
+          "known_cost_usd": 0.1302368008,
+          "median_duration_seconds": 113,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
           "outcomes": [
             {
               "attempt": 1,
-              "duration_seconds": 88,
+              "duration_seconds": 103,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 2,
-              "duration_seconds": 143,
+              "duration_seconds": 188,
               "reward": 1,
               "trial_status": "evaluated"
             },
             {
               "attempt": 3,
-              "duration_seconds": 199,
+              "duration_seconds": 113,
               "reward": 1,
               "trial_status": "evaluated"
             }
           ],
-          "output_tokens": 29776,
+          "output_tokens": 39805,
           "pass_rate": 1.0,
           "pass_rate_95_high": 1.0,
           "pass_rate_95_low": 0.4385029682449546,
           "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "release": "20260906.0.0",
+          "release": "20261026.0.0",
           "scenario": "028-nix-store-disk-pressure",
           "scenario_label": "028-nix-store-disk-pressure",
           "scenario_version": 1,
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
+        },
+        {
+          "cost_per_repair_usd": 0.04298772135,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=033-tls-trust-rotation&model=z-ai%2Fglm-5.3",
+          "failed": 1,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 37452,
+          "known_cost_usd": 0.0859754427,
+          "median_duration_seconds": 105,
+          "model": "z-ai/glm-5.3",
+          "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 105,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 75,
+              "reward": 0,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 115,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 30450,
+          "pass_rate": 0.6666666666666666,
+          "pass_rate_95_high": 0.9385080552796037,
+          "pass_rate_95_low": 0.2076596008020477,
+          "passed": 2,
+          "provider": "OpenRouter",
+          "reasoning_effort": "high",
+          "release": "20261026.0.0",
+          "scenario": "033-tls-trust-rotation",
+          "scenario_label": "033-tls-trust-rotation",
+          "scenario_version": 2,
           "subscription_usage_reported_trials": 0,
           "subscription_usage_usd": 0,
           "tier": "core",
@@ -5798,19 +5852,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.017899107466666668,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=001-nginx-502-host&model=z-ai%2Fglm-5.3",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 35362,
+          "known_cost_usd": 0.053697322400000004,
+          "median_duration_seconds": 65,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 63,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 75,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 65,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 17107,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "001-nginx-502-host",
+          "scenario_label": "001-nginx-502-host",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=001-nginx-502-host",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "001-nginx-502-host",
       "scenario_label": "001-nginx-502-host",
       "scenario_version": 1
@@ -5917,19 +6012,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.022403925666666668,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=013-sidekiq-wrong-redis&model=z-ai%2Fglm-5.3",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 30189,
+          "known_cost_usd": 0.067211777,
+          "median_duration_seconds": 92,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 74,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 95,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 92,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 19791,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "013-sidekiq-wrong-redis",
+          "scenario_label": "013-sidekiq-wrong-redis",
+          "scenario_version": 3,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=013-sidekiq-wrong-redis",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "013-sidekiq-wrong-redis",
       "scenario_label": "013-sidekiq-wrong-redis",
       "scenario_version": 3
@@ -6155,19 +6291,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.085083136,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=015-sidekiq-poison-pill&model=z-ai%2Fglm-5.3",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 108258,
+          "known_cost_usd": 0.255249408,
+          "median_duration_seconds": 174,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 161,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 237,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 174,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 44921,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "015-sidekiq-poison-pill",
+          "scenario_label": "015-sidekiq-poison-pill",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=015-sidekiq-poison-pill",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "015-sidekiq-poison-pill",
       "scenario_label": "015-sidekiq-poison-pill",
       "scenario_version": 1
@@ -6274,19 +6451,63 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.049836512,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=016-rails-pool-exhaustion&model=z-ai%2Fglm-5.3",
+          "failed": 1,
+          "failure_categories": {
+            "database_pool_exhausted": 1
+          },
+          "input_mode": "text",
+          "input_tokens": 39915,
+          "known_cost_usd": 0.099673024,
+          "median_duration_seconds": 79,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 79,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 99,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 53,
+              "failure_category": "database_pool_exhausted",
+              "reward": 0,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 16037,
+          "pass_rate": 0.6666666666666666,
+          "pass_rate_95_high": 0.9385080552796037,
+          "pass_rate_95_low": 0.2076596008020477,
+          "passed": 2,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "016-rails-pool-exhaustion",
+          "scenario_label": "016-rails-pool-exhaustion",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=016-rails-pool-exhaustion",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "016-rails-pool-exhaustion",
       "scenario_label": "016-rails-pool-exhaustion",
       "scenario_version": 1
@@ -6393,19 +6614,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.03859013033333333,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=017-partial-rails-rollout&model=z-ai%2Fglm-5.3",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 58878,
+          "known_cost_usd": 0.115770391,
+          "median_duration_seconds": 166,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 166,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 179,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 149,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 35397,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "017-partial-rails-rollout",
+          "scenario_label": "017-partial-rails-rollout",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=017-partial-rails-rollout",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "017-partial-rails-rollout",
       "scenario_label": "017-partial-rails-rollout",
       "scenario_version": 1
@@ -6631,19 +6893,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.034985466666666666,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=019-rust-fd-leak&model=z-ai%2Fglm-5.3",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 63505,
+          "known_cost_usd": 0.1049564,
+          "median_duration_seconds": 80,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 79,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 84,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 80,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 18522,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "019-rust-fd-leak",
+          "scenario_label": "019-rust-fd-leak",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=019-rust-fd-leak",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "019-rust-fd-leak",
       "scenario_label": "019-rust-fd-leak",
       "scenario_version": 1
@@ -6869,19 +7172,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.10851896333333334,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=021-discourse-shared-uploads&model=z-ai%2Fglm-5.3",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 49005,
+          "known_cost_usd": 0.32555689000000004,
+          "median_duration_seconds": 124,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 124,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 144,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 103,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 40651,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "021-discourse-shared-uploads",
+          "scenario_label": "021-discourse-shared-uploads",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=021-discourse-shared-uploads",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "021-discourse-shared-uploads",
       "scenario_label": "021-discourse-shared-uploads",
       "scenario_version": 1
@@ -7107,19 +7451,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.0353163981,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=023-auth-secret-rollout&model=z-ai%2Fglm-5.3",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 46609,
+          "known_cost_usd": 0.1059491943,
+          "median_duration_seconds": 85,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 95,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 60,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 85,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 23565,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "023-auth-secret-rollout",
+          "scenario_label": "023-auth-secret-rollout",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=023-auth-secret-rollout",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "023-auth-secret-rollout",
       "scenario_label": "023-auth-secret-rollout",
       "scenario_version": 1
@@ -7226,19 +7611,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.12572488966666664,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=024-discourse-interrupted-deploy&model=z-ai%2Fglm-5.3",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 64967,
+          "known_cost_usd": 0.37717466899999996,
+          "median_duration_seconds": 131,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 163,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 86,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 131,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 37982,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "024-discourse-interrupted-deploy",
+          "scenario_label": "024-discourse-interrupted-deploy",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=024-discourse-interrupted-deploy",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "024-discourse-interrupted-deploy",
       "scenario_label": "024-discourse-interrupted-deploy",
       "scenario_version": 1
@@ -7810,19 +8236,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.04341226693333333,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=028-nix-store-disk-pressure&model=z-ai%2Fglm-5.3",
+          "failed": 0,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 74237,
+          "known_cost_usd": 0.1302368008,
+          "median_duration_seconds": 113,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 103,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 188,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 113,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 39805,
+          "pass_rate": 1.0,
+          "pass_rate_95_high": 1.0,
+          "pass_rate_95_low": 0.4385029682449546,
+          "passed": 3,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "028-nix-store-disk-pressure",
+          "scenario_label": "028-nix-store-disk-pressure",
+          "scenario_version": 1,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=028-nix-store-disk-pressure",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "028-nix-store-disk-pressure",
       "scenario_label": "028-nix-store-disk-pressure",
       "scenario_version": 1
@@ -8286,19 +8753,60 @@
           ]
         },
         {
+          "cost_per_repair_usd": 0.04298772135,
+          "cost_reported_trials": 3,
+          "evaluated": 3,
+          "evidence_url": "benchmark-explorer.html?release=20261026.0.0&scenario=033-tls-trust-rotation&model=z-ai%2Fglm-5.3",
+          "failed": 1,
+          "failure_categories": {},
+          "input_mode": "text",
+          "input_tokens": 37452,
+          "known_cost_usd": 0.0859754427,
+          "median_duration_seconds": 105,
           "model": "z-ai/glm-5.3",
           "model_label": "GLM 5.3",
+          "outcomes": [
+            {
+              "attempt": 1,
+              "duration_seconds": 105,
+              "reward": 1,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 2,
+              "duration_seconds": 75,
+              "reward": 0,
+              "trial_status": "evaluated"
+            },
+            {
+              "attempt": 3,
+              "duration_seconds": 115,
+              "reward": 1,
+              "trial_status": "evaluated"
+            }
+          ],
+          "output_tokens": 30450,
+          "pass_rate": 0.6666666666666666,
+          "pass_rate_95_high": 0.9385080552796037,
+          "pass_rate_95_low": 0.2076596008020477,
+          "passed": 2,
           "provider": "OpenRouter",
           "reasoning_effort": "high",
-          "status": "missing",
-          "tiers": [
-            "core",
-            "full"
-          ]
+          "release": "20261026.0.0",
+          "scenario": "033-tls-trust-rotation",
+          "scenario_label": "033-tls-trust-rotation",
+          "scenario_version": 2,
+          "status": "covered",
+          "subscription_usage_reported_trials": 0,
+          "subscription_usage_usd": 0,
+          "tier": "core",
+          "trials": 3,
+          "unavailable": 0,
+          "unavailable_categories": {}
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=033-tls-trust-rotation",
-      "release": "20261025.0.2",
+      "release": "20261026.0.0",
       "scenario": "033-tls-trust-rotation",
       "scenario_label": "033-tls-trust-rotation",
       "scenario_version": 2
@@ -8306,8 +8814,8 @@
   ],
   "schema_version": 1,
   "totals": {
-    "covered_cells": 4,
-    "missing_cells": 143,
+    "covered_cells": 15,
+    "missing_cells": 132,
     "model_lanes": 7,
     "possible_cells": 147,
     "scenarios": 21
