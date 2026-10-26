@@ -124,19 +124,30 @@
 {% endfor %}
 <dialog id="score-scenario-dialog" class="scenario-dialog" aria-labelledby="scenario-dialog-title" aria-describedby="scenario-dialog-scope">
   <header class="scenario-dialog-header">
-    <div><p class="eyebrow">Scenario / durable repair</p><h2 id="scenario-dialog-title"></h2><p id="scenario-dialog-meta" class="small muted"></p></div>
+    <div><p id="scenario-dialog-eyebrow" class="eyebrow">Scenario / durable repair</p><h2 id="scenario-dialog-title"></h2><p id="scenario-dialog-meta" class="small muted"></p></div>
     <button type="button" id="scenario-dialog-close" class="scenario-dialog-close" aria-label="Close scenario details" autofocus>×</button>
   </header>
   <div class="scenario-dialog-body">
     <div class="scenario-dialog-stats">
-      <div><strong id="scenario-dialog-rate"></strong><span>Observed failure rate</span></div>
-      <div><strong id="scenario-dialog-trials"></strong><span>Unsuccessful / recorded</span></div>
-      <div><strong id="scenario-dialog-configurations"></strong><span>Configuration entries</span></div>
+      <div><strong id="scenario-dialog-rate"></strong><span id="scenario-dialog-rate-label">Observed failure rate</span></div>
+      <div><strong id="scenario-dialog-trials"></strong><span id="scenario-dialog-trials-label">Unsuccessful / recorded</span></div>
+      <div><strong id="scenario-dialog-configurations"></strong><span id="scenario-dialog-configurations-label">Configuration entries</span></div>
     </div>
     <p id="scenario-dialog-scope" class="small muted"></p>
     <p id="scenario-dialog-unavailable" class="small muted"></p>
-    <div class="scenario-dialog-section"><h3>How each configuration did</h3><span class="small muted">Passed / recorded attempts</span></div>
-    <div id="scenario-dialog-outcomes" class="scenario-dialog-outcomes"></div>
+    <section id="scenario-dialog-selected-run" class="scenario-selected-run" hidden>
+      <div class="scenario-dialog-section"><h3 id="scenario-dialog-model-name"></h3><a id="scenario-dialog-evidence" class="small" href="benchmark-evidence.html">Open full evidence ↗</a></div>
+      <p id="scenario-dialog-model-id" class="small muted"></p>
+      <p id="scenario-dialog-coverage" class="small muted"></p>
+      <div id="scenario-dialog-attempts" class="scenario-attempts"></div>
+      <p class="small muted scenario-verification-help">“Not confirmed” means a check failed or was not reached. Failure messages and categories are reported evidence, not a diagnosis of the underlying cause.</p>
+      <a id="scenario-dialog-source" class="small" href="https://github.com/ducks/replaybook/tree/main/benchmark-data/releases">Inspect this release’s source JSON ↗</a>
+    </section>
+    <details id="scenario-dialog-comparison" class="scenario-dialog-comparison">
+      <summary id="scenario-dialog-comparison-title">Compare configurations</summary>
+      <p class="small muted">Passed / recorded attempts. Select a configuration to inspect its run.</p>
+      <div id="scenario-dialog-outcomes" class="scenario-dialog-outcomes"></div>
+    </details>
     <p class="scenario-dialog-note small muted">These are observations from the selected configurations, not intrinsic difficulty. Small samples, provider behavior, and execution failures affect the rate. Headline scores remain equally weighted.</p>
     <a id="scenario-dialog-history" class="small" href="scenarios.html">Explore scenario history ↗</a>
   </div>
@@ -144,8 +155,8 @@
 <p class="small muted">Cohorts are explicitly selected in the <a href="https://github.com/ducks/replaybook/blob/main/benchmark-data/scores.json">score configuration</a>. No automatic newest-run or best-attempt selection.</p>
 {% endblock %}
 {% block scripts %}
-<script type="application/json" id="score-scenario-data">{{ report.scenario_details|tojson }}</script>
-<script src="score-scenarios.js"></script>
+<script type="application/json" id="score-scenario-data">{{ {"groups": report.scenario_details, "runs": report.scenario_runs}|tojson }}</script>
+<script src="score-scenarios.js?v=2"></script>
 <script>
 const selector = document.getElementById('score-cohort');
 if (selector) {

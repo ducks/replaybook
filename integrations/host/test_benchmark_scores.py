@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from .benchmark_scores import score_release, build_scores, condition_id, group_conditions, observed_scenario_rates, scenario_profiles
+from .benchmark_scores import score_release, build_scores, condition_id, group_conditions, observed_scenario_rates, scenario_profiles, scenario_run_detail
 
 
 class ScoreTests(unittest.TestCase):
@@ -123,6 +123,15 @@ class ScoreTests(unittest.TestCase):
                         self.assertEqual(link["model"], [card["model"]])
                         self.assertEqual(link["provider"], [provider])
                         self.assertIn(cell["outcome"], {"pass", "mixed", "fail", "unavailable"})
+                        detail = report["scenario_runs"][cell["evidence_url"]]
+                        self.assertEqual(len(detail["attempts"]), cell["trials"])
+                        self.assertEqual(sum(a["passed"] for a in detail["attempts"]), cell["passed"])
+                        raw = sorted((r for r in json.loads((root / "benchmark-data/releases" / (card["release"] + ".json")).read_text())["runs"]
+                                      if r["model"] == card["model"] and (r.get("provider") or "unreported") == provider
+                                      and (r.get("reasoning_effort") or "default") == card["reasoning"]
+                                      and r["scenario"] == cell["scenario"] and r["scenario_version"] == cell["version"]),
+                                     key=lambda r: r["attempt"])
+                        self.assertEqual([a["failure"] for a in detail["attempts"]], [r.get("failure") for r in raw])
             cards = [card for group in cohort["groups"].values() for card in group]
             profile = cohort["scenario_profiles"][0]
             self.assertEqual(profile["configurations"], len(cards))
@@ -175,6 +184,37 @@ class ScoreTests(unittest.TestCase):
         self.assertEqual(claux["a"]["failure_rate"], 0)
         self.assertEqual(claux["a"]["trials"], 6)
         self.assertEqual(profiles["opencode"]["rates"][0]["failure_rate"], 100)
+
+    def test_run_details_keep_unknown_costs_and_whitelist_public_fields(self):
+        runs = [
+            {"attempt": 3, "reward": 0, "trial_status": "evaluated", "agent_duration_seconds": 10,
+             "failure": "did not survive reboot", "failure_category": "database_pool_exhausted",
+             "usage": {"cost_usd": .2}, "verification": {"immediate_http": True, "host_reboot": False},
+             "transcript_file": "/private/transcript", "recording": {"model_rounds": 4, "tools": ["private"]}},
+            {"attempt": 1, "reward": 1, "trial_status": "evaluated", "agent_duration_seconds": 0,
+             "usage": {"cost_usd": 0}},
+            {"attempt": 2, "reward": 1, "trial_status": "evaluated", "usage": None},
+        ]
+        detail = scenario_run_detail({"trials": 3, "passed": 2}, runs)
+        self.assertEqual([a["attempt"] for a in detail["attempts"]], [1, 2, 3])
+        self.assertEqual(detail["cost_reported"], 2)
+        self.assertEqual(detail["known_cost_usd"], .2)
+        self.assertEqual(detail["median_duration_seconds"], 5)
+        self.assertTrue(detail["cost_lower_bound"])
+        self.assertEqual(detail["attempts"][0]["usage"]["cost_usd"], 0)
+        self.assertIsNone(detail["attempts"][1]["usage"]["cost_usd"])
+        self.assertNotIn("private", json.dumps(detail))
+        self.assertEqual(detail["attempts"][2]["verification"]["host_reboot"], False)
+
+    def test_timeout_usage_is_a_lower_bound_even_when_reported(self):
+        detail = scenario_run_detail({"trials": 1, "passed": 0}, [
+            {"attempt": 1, "reward": 0, "trial_status": "evaluated",
+             "failure_category": "agent_timeout", "usage": {"cost_usd": .1},
+             "verification": {"after_agent_timeout": {"durable_repair": False}}},
+        ])
+        self.assertEqual(detail["cost_reported"], 1)
+        self.assertTrue(detail["cost_lower_bound"])
+        self.assertFalse(detail["attempts"][0]["verification"]["after_agent_timeout"]["durable_repair"])
 
     def test_empty_observed_sample_has_no_rates(self):
         self.assertEqual(observed_scenario_rates([]), [])

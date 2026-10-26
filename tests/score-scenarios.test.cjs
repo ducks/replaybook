@@ -24,8 +24,10 @@ const data = [{condition: 'one', benchmark: '1.0', profiles: [
   {harness: '', rates: [row]}, {harness: 'b', rates: [other]}]},
   {condition: 'two', profiles: [{harness: '', rates: [{...row, version: 2}]}]}];
 const ids = {};
-for (const name of ['title', 'meta', 'rate', 'trials', 'configurations', 'scope',
-  'unavailable', 'outcomes', 'history', 'close']) ids['scenario-dialog-' + name] = element();
+for (const name of ['eyebrow', 'title', 'meta', 'rate', 'trials', 'configurations', 'scope',
+  'unavailable', 'outcomes', 'history', 'close', 'rate-label', 'trials-label', 'configurations-label',
+  'selected-run', 'attempts', 'model-name', 'model-id', 'coverage', 'evidence', 'source',
+  'comparison', 'comparison-title']) ids['scenario-dialog-' + name] = element();
 const classes = new Set();
 const dialog = element();
 dialog.showModal = () => { dialog.open = true; };
@@ -84,4 +86,43 @@ selector.value = 'two';
 assert.equal(click().prevented, false); // scenario v1 never opens v2 evidence
 trigger.dataset.version = '2';
 assert.equal(click().prevented, true);
+// Exact model/release selection makes attempt evidence primary.
+dialog.close();
+const run = {passed: 2, trials: 3, recorded_attempts: 3, cost_reported: 2,
+  median_duration_seconds: 53, known_cost_usd: 0.0123, cost_lower_bound: true,
+  attempts: [{attempt: 1, passed: false, status: 'evaluated',
+    failure: '<unsafe> repair did not survive host reboot', failure_category: 'database_pool_exhausted',
+    duration_seconds: 53, timeout_seconds: 900, model_rounds: 14, tool_calls: 19,
+    verification: {immediate_http: true, service_restart: true, host_reboot: false},
+    usage: {cost_usd: 0, input_tokens: 100, output_tokens: 20, cache_read_tokens: 0, cost_source: 'provider'}}]};
+ids['score-scenario-data'].textContent = JSON.stringify({groups: data, runs: {[outcome.evidence_url]: run}});
+context.initializeScenarioDialog(selector, harness);
+selector.value = 'one';
+trigger.dataset.version = '1';
+click();
+assert.equal(ids['scenario-dialog-rate'].textContent, '2/3');
+assert.equal(ids['scenario-dialog-trials'].textContent, '53s');
+assert.equal(ids['scenario-dialog-configurations'].textContent, '≥$0.0123');
+assert.equal(ids['scenario-dialog-model-name'].textContent, outcome.label);
+assert.equal(ids['scenario-dialog-evidence'].href, outcome.evidence_url);
+assert.equal(ids['scenario-dialog-selected-run'].hidden, false);
+assert.equal(ids['scenario-dialog-comparison'].open, false);
+const attempt = ids['scenario-dialog-attempts'].children[0];
+assert.equal(attempt.children[0].children[1].textContent, 'Failed');
+assert.ok(attempt.children[1].textContent.includes('$0.0000 reported cost'));
+assert.deepEqual(attempt.children[2].children.map(e => e.textContent),
+  ['Immediate: passed', 'Restart: passed', 'Reboot: not confirmed']);
+assert.equal(attempt.children[3].textContent, '<unsafe> repair did not survive host reboot');
+assert.equal(attempt.children[4].textContent, 'database_pool_exhausted');
+assert.ok(attempt.children[5].children[1].textContent.includes('19 recorded tool calls'));
+// Selecting a different configuration inside the modal preserves the original opener.
+const comparisonLink = ids['scenario-dialog-outcomes'].children[1];
+comparisonLink.closest = () => comparisonLink;
+comparisonLink.attrs.href = comparisonLink.href;
+click({target: comparisonLink});
+assert.equal(ids['scenario-dialog-selected-run'].hidden, true); // no attempt payload for this entry
+assert.equal(ids['scenario-dialog-comparison'].open, true);
+dialog.close();
+assert.equal(comparisonLink.focused, undefined);
+assert.equal(trigger.focused, true);
 console.log('Scenario overlay checks passed');

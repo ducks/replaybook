@@ -41,3 +41,14 @@ its exact evidence; the clicked configuration is highlighted. Escape, the
 close button, or clicking the backdrop dismisses the overlay and restores
 focus. Without dialog support, cells retain direct evidence links. Modal
 content is inserted as text, with JSON escaped through Jinja's `tojson` filter.
+
+When opened from a model card, the overlay prioritizes that exact release,
+provider, model, reasoning, and scenario version. It shows the published
+attempts, recorded failure messages/categories, verification confirmations,
+agent timing, reported usage, and execution counts. Cross-configuration
+comparison is secondary and can switch the selected run without losing the
+original focus target. Unknown cost stays unknown; timeout checkpoint usage
+is marked as a lower bound. A false verification flag is labelled “not
+confirmed” because it can mean failure or an unreached check, not proof
+that the check executed. Only whitelisted fields from tracked public release
+artifacts enter the overlay; private job logs and transcripts are not read.

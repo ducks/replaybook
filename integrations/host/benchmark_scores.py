@@ -185,11 +185,46 @@ def group_conditions(cohorts):
     return list(combined.values())
 
 
+def scenario_run_detail(cell, runs):
+    """Public attempt evidence for one exact release/provider/model/reasoning cell."""
+    attempts = []
+    for run in sorted(runs, key=lambda run: run["attempt"]):
+        usage = run.get("usage") or {}
+        recording = run.get("recording") or {}
+        attempts.append({
+            "attempt": run["attempt"], "passed": run["reward"] == 1,
+            "status": run.get("trial_status"),
+            "failure": run.get("failure"), "failure_category": run.get("failure_category"),
+            "duration_seconds": run.get("agent_duration_seconds"),
+            "timeout_seconds": run.get("agent_timeout_seconds"),
+            "started_at": run.get("started_at"), "finished_at": run.get("finished_at"),
+            "verification": run.get("verification"),
+            "usage": {key: usage.get(key) for key in (
+                "input_tokens", "output_tokens", "cache_read_tokens", "cost_usd", "cost_source",
+            )},
+            "model_rounds": recording.get("model_rounds"), "tool_calls": recording.get("tool_calls"),
+        })
+    costs = [attempt["usage"]["cost_usd"] for attempt in attempts
+             if attempt["usage"]["cost_usd"] is not None]
+    durations = [attempt["duration_seconds"] for attempt in attempts
+                 if attempt["duration_seconds"] is not None]
+    return {
+        "attempts": attempts, "recorded_attempts": len(attempts),
+        "trials": cell["trials"], "passed": cell["passed"],
+        "median_duration_seconds": statistics.median(durations) if durations else None,
+        "known_cost_usd": sum(costs) if costs else None, "cost_reported": len(costs),
+        "cost_lower_bound": len(costs) < cell["trials"] or any(
+            attempt["failure_category"] == "agent_timeout" for attempt in attempts
+        ),
+    }
+
+
 def build_scores(root, index):
     """Explicitly selected releases and frozen contracts; never pick a best run."""
     config_path = root / "benchmark-data/scores.json"
     config = json.loads(config_path.read_text()) if config_path.exists() else {"cohorts": []}
     cohorts = []
+    scenario_runs = {}
     seen = set()
     for entry in config["cohorts"]:
         version = entry["release"]
@@ -201,6 +236,11 @@ def build_scores(root, index):
         release = json.loads((root / "benchmark-data/releases" / f"{version}.json").read_text())
         benchmark = load_benchmark_manifest(root / entry["manifest"])
         report = score_release(release, benchmark)
+        indexed_runs = defaultdict(list)
+        for run in release.get("runs", []):
+            indexed_runs[(run.get("provider") or "unreported", run["model"],
+                          run.get("reasoning_effort") or "default", run["scenario"],
+                          run["scenario_version"])].append(run)
         groups = defaultdict(list)
         hidden = 0
         for card in report["cards"]:
@@ -235,6 +275,9 @@ def build_scores(root, index):
                     "pass" if cell["passed"] == cell["trials"] else
                     "fail" if cell["passed"] == 0 else "mixed"
                 )
+                matching_runs = indexed_runs[(card["provider"], card["model"], card["reasoning"],
+                                               cell["scenario"], cell["version"])]
+                scenario_runs[cell["evidence_url"]] = scenario_run_detail(cell, matching_runs)
             groups[card["provider"]].append(card)
         cohorts.append({
             "id": condition_id(release),
@@ -246,6 +289,7 @@ def build_scores(root, index):
     grouped = group_conditions(cohorts)
     return {
         "cohorts": grouped,
+        "scenario_runs": scenario_runs,
         "scenario_details": [{"condition": group["id"], "benchmark": group["benchmark"], "profiles": group["scenario_profiles"]}
                              for group in grouped],
     }
