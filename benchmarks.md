@@ -9,21 +9,25 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core: Seed Turbo, MiMo Pro, and GLM 5.3
+## Frozen Core: MiniMax, Mistral Large 4, and Reflection Beam
 
-Three high-reasoning configurations attempted eleven Core incidents three times each: 91 durable repairs in 99 evaluated trials. Recorded provider-reported API spend is at least $9.0408; the MiMo Pro timeout contains partial checkpointed usage.
+Three high-reasoning configurations attempted eleven Core incidents three times each: 94 scored durable repairs in 99 evaluated trials. All five failures were MiniMax agent timeouts; two passed post-timeout durability checks but remain deadline failures. Recorded API spend is at least $11.2293.
 
-Benchmark release: `20261026.0.0`
+Benchmark release: `20261027.0.0`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Seed 2.1 Turbo (high) · openrouter | 30/33 | 91% | 2:32 | $6.3746 | $0.2125 |
-| MiMo V2.6 Pro (high) · openrouter | 30/33 | 91% | 5:29 | $0.9447 | $0.0315 |
-| GLM 5.3 (high) · openrouter | 31/33 | 94% | 1:39 | $1.7215 | $0.0555 |
-| **Total** | **91/99** | **92%** | **2:43** | **$9.0408** | **$0.0993** |
+| MiniMax M3.1 Flash (high) · openrouter | 28/33 | 85% | 9:00 | $1.4007+ | $0.0500+ |
+| Mistral Large 4 (high) · openrouter | 33/33 | 100% | 3:00 | $8.6620 | $0.2625 |
+| Reflection Beam 1.0 501B A23B (high) · openrouter | 33/33 | 100% | 1:03 | $1.1666 | $0.0354 |
+| **Total** | **94/99** | **95%** | **3:03** | **$11.2293+** | **$0.1195+** |
+
+### Post-timeout verification
+
+2 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
 
 ### Execution recording
 
@@ -31,66 +35,60 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Seed 2.1 Turbo (high) · openrouter | 33/33 | 22 | 2:17 | 35 | 0:11 | 0:11 | 2:19 |
-| MiMo V2.6 Pro (high) · openrouter | 33/33 | 16 | 5:08 | 23 | 0:12 | 0:04 | 5:18 |
-| GLM 5.3 (high) · openrouter | 33/33 | 15 | 1:24 | 21 | 0:13 | 0:03 | 1:34 |
+| MiniMax M3.1 Flash (high) · openrouter | 32/33 | 31.5 | 7:55 | 44.5 | 0:26 | 0:02 | 8:42 |
+| Mistral Large 4 (high) · openrouter | 33/33 | 26 | 2:24 | 36 | 0:14 | 0:02 | 2:56 |
+| Reflection Beam 1.0 501B A23B (high) · openrouter | 33/33 | 25 | 0:44 | 27 | 0:15 | 0:01 | 0:59 |
 
-Seed 2.1 Turbo passed 30/33 (90.9%), with a 152-second median agent duration and $6.3746 in recorded provider-reported cost. Recorded cost per durable repair was $0.2125 for this configuration.
+MiniMax M3.1 Flash passed 28/33 (84.8%), with a 540-second median agent duration and at least $1.4007 in provider-reported cost. Cost reporting covers 32/33 trials; recorded cost per successful repair was at least $0.0500.
 
-MiMo V2.6 Pro passed 30/33 (90.9%), with a 329-second median agent duration and at least $0.9447 in recorded provider-reported cost. Recorded cost per durable repair was at least $0.0315 for this configuration.
+Mistral Large 4 passed 33/33 (100.0%), with a 180-second median agent duration and $8.6620 in provider-reported cost. Cost reporting covers 33/33 trials; recorded cost per successful repair was $0.2625.
 
-GLM 5.3 passed 31/33 (93.9%), with a 99-second median agent duration and $1.7215 in recorded provider-reported cost. Recorded cost per durable repair was $0.0555 for this configuration.
+Reflection Beam 1.0 501B A23B passed 33/33 (100.0%), with a 63-second median agent duration and $1.1666 in provider-reported cost. Cost reporting covers 33/33 trials; recorded cost per successful repair was $0.0354.
 
-Seed failed a Rust file-descriptor trial with 0/100 concurrent resource checks, an interrupted-deployment trial with the green instance still on its previous release, and a disk-pressure trial with only 5/6 new receipt writes during immediate verification.
+All five MiniMax failures exceeded the 900-second agent deadline. In the partial Rails rollout and Rust file-descriptor trials, post-timeout verification confirmed durable repairs through immediate, service-restart, and host-reboot checks. Both remain deadline failures: passing verification after the agent was stopped does not change whether it completed within the deadline. These two diagnostic durable_repairs_after_timeout outcomes are retained separately, not promoted to scored passes.
 
-MiMo Pro timed out at 900 seconds on one shared-uploads trial. Post-timeout verification still found a historical upload missing (HTTP 404), so there was no durable repair after timeout. The checkpoint contains usage from 11 recorded model rounds and 18 tool calls; the final in-flight request is not a complete billing record.
+The shared-uploads timeout did not recover a historical avatar: post-timeout immediate verification returned HTTP 404 for the historical-upload check. The auth-rollout timeout left the old instance on its previous release. The disk-pressure timeout passed its immediate post-timeout check but service restart failed; there is no confirmed durable repair in those three trials.
 
-Two MiMo Pro auth-rollout trials ended with the API/harness runtime error unsupported OpenAI finish reason: error. One had already recorded 8 model rounds and 18 tool calls, the other 6 rounds and 12 calls. Both remain evaluated failures because meaningful inference and execution occurred. This is evidence about the model/provider/harness configuration, not a clean separation of model reasoning quality from protocol compatibility.
+The four timeout trials with checkpointed records contain 30, 29, 19, and 32 model rounds, respectively, and 39, 40, 31, and 40 tool calls. Those checkpoints are meaningful execution evidence but may omit the final in-flight request. The disk-pressure timeout has no final usage or execution-recording data, and its cost is unknown rather than zero.
 
-GLM failed a Rails pool trial after passing immediate and restart checks: reboot verification completed only 5/8 concurrent checkouts. Its TLS failure completed 0/4 fresh deliveries during immediate verification; the controller phase record says new_deliveries_not_accepted, while the legacy top-level result has no failure category. Original normalized outcomes and categories remain unchanged.
+Mistral and Reflection Beam each passed all 33 trials, with different observed durations and provider-reported costs. This small sample does not establish a universal capability ranking or prove either configuration will always pass these incidents.
 
-Partial concurrent assertions retain successful request counts, not full response details for every failed request. The retained evidence establishes the failed verification phases but not all underlying causes. Three attempts per scenario are a small sample, so these observations do not establish definitive model rankings.
+All comparisons retain the exact release, provider, model, reasoning, harness, and benchmark identity. Timing reflects the whole agent run, not pure inference, and can include provider and host variability.
 
 ### Scenario breakdown
 
-| Scenario | Version | Seed 2.1 Turbo (high) · openrouter | MiMo V2.6 Pro (high) · openrouter | GLM 5.3 (high) · openrouter |
+| Scenario | Version | MiniMax M3.1 Flash (high) · openrouter | Mistral Large 4 (high) · openrouter | Reflection Beam 1.0 501B A23B (high) · openrouter |
 |---|---:|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 1:25 | 3/3, 5:31 | 3/3, 1:05 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 1:38 | 3/3, 6:00 | 3/3, 1:32 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 4:35 | 3/3, 6:04 | 3/3, 2:54 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 2:43 | 3/3, 4:04 | 2/3, 1:19 |
-| 017-partial-rails-rollout | v1 | 3/3, 2:32 | 3/3, 11:11 | 3/3, 2:46 |
-| 019-rust-fd-leak | v1 | 2/3, 2:09 | 3/3, 3:27 | 3/3, 1:20 |
-| 021-discourse-shared-uploads | v1 | 3/3, 3:11 | 2/3, 10:40 | 3/3, 2:04 |
-| 023-auth-secret-rollout | v1 | 3/3, 2:24 | 1/3, 3:05 | 3/3, 1:25 |
-| 024-discourse-interrupted-deploy | v1 | 2/3, 3:32 | 3/3, 5:44 | 3/3, 2:11 |
-| 028-nix-store-disk-pressure | v1 | 2/3, 2:31 | 3/3, 5:17 | 3/3, 1:53 |
-| 033-tls-trust-rotation | v2 | 3/3, 2:49 | 3/3, 4:00 | 2/3, 1:45 |
+| 001-nginx-502-host | v1 | 3/3, 7:39 | 3/3, 3:16 | 3/3, 2:45 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 9:00 | 3/3, 3:22 | 3/3, 1:01 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 11:37 | 3/3, 7:34 | 3/3, 1:19 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 8:16 | 3/3, 2:54 | 3/3, 2:47 |
+| 017-partial-rails-rollout | v1 | 2/3, 11:18 | 3/3, 2:26 | 3/3, 1:53 |
+| 019-rust-fd-leak | v1 | 2/3, 9:23 | 3/3, 1:47 | 3/3, 1:00 |
+| 021-discourse-shared-uploads | v1 | 2/3, 14:56 | 3/3, 11:13 | 3/3, 5:56 |
+| 023-auth-secret-rollout | v1 | 2/3, 6:59 | 3/3, 2:14 | 3/3, 1:02 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 10:19 | 3/3, 3:00 | 3/3, 0:54 |
+| 028-nix-store-disk-pressure | v1 | 2/3, 8:05 | 3/3, 3:15 | 3/3, 1:03 |
+| 033-tls-trust-rotation | v2 | 3/3, 1:25 | 3/3, 2:29 | 3/3, 1:01 |
 
 ### Failure categories
 
-- `agent_runtime_error`: 2
-- `agent_timeout`: 1
-- `database_pool_exhausted`: 1
-- `new_receipts_not_writable`: 1
-- `release_not_converged`: 1
-- `resource_growth_unbounded`: 1
+- `agent_timeout`: 5
 
 ### Source matrices
 
-- `matrix`: bytedance-seed/seed-2-1-turbo, xiaomi/mimo-v2.6-pro, z-ai/glm-5.3; Replaybook `37506bdd`; reasoning high
+- `matrix`: minimax/minimax-m3.1-flash, mistralai/mistral-large-4-0, reflection/beam-1.0-501b-a23b; Replaybook `37506bdd`; reasoning high
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 final trials were evaluated, none are missing or unavailable, and all have recorded cost values. All 91 successful repairs passed immediate, service-restart, and host-reboot verification.
-- The selected IDs are bytedance-seed/seed-2-1-turbo, xiaomi/mimo-v2.6-pro, and z-ai/glm-5.3 via the shared OpenRouter transport. These remain distinct from earlier MiMo Pro/OpenCode and older GLM benchmark evidence; Flash variants have their own configuration entries.
-- This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as the expanded frozen Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
-- The initial session recorded 96 results and had three missing trials before inference: Seed Nginx was blocked by occupied port 40000; GLM poison-pill and Seed disk-pressure VMs failed their SSH port-forward bindings. Their logs, existing run directories, controller log, and initial summary were archived before resume. Two recovered trials passed; the Seed Nginx slot was still blocked by an existing listener on port 40000.
-- The final missing Seed Nginx trial used the unchanged frozen runner, scenario, model, high reasoning, and 900-second deadline on free SSH/HTTP ports 27000/27001 instead of the planned 40000/40001. The original plan was not rewritten. A separate port-substitution record, recovery-controller source, prior 98-result summary, and original failure log were preserved in a hash-verified local audit archive. Port allocation is operational metadata and does not change the scoring contract.
-- All original 96 outcomes and the subsequent 98-result snapshot were verified unchanged against the final summary. No evaluated failure was retried, best-selected, corrected, or reclassified. The preserved recovery artifacts are local audit evidence; private transcripts and credentials are excluded from the public release.
-- All trials have some provider-reported cost, but this is reporting coverage rather than proof of complete billing. The MiMo Pro timeout reports usage only through its checkpointed rounds; its spend and the aggregate recorded spend are lower bounds, and no zero cost is inferred for missing in-flight usage.
-- All 8 failed evaluated trials remain in the denominator, including the timeout and the two API/harness runtime errors after meaningful execution. No infrastructure or provider exemptions have been applied.
-- Scores are equally weighted scenario success rates and small-sample point estimates. Compatible releases can be displayed together; model scores never pool attempts across releases. Observed scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.
+- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 trials were evaluated; none are missing or unavailable. No recovery runs or evaluated-failure retries were needed.
+- All 94 scored passes passed immediate, service-restart, and host-reboot verification. All five deadline failures remain in the denominator with their original outcomes, including two systems that passed the controller's post-timeout durability checks. No scoring exemptions or post-run corrections have been applied.
+- This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
+- This batch used one concurrent VM for memory headroom. Some earlier compatible releases used two workers. Worker concurrency and host/provider conditions can affect timing; they do not change scenario weighting, the per-agent deadline, or the verification requirements.
+- Provider-reported cost is present for 98/99 trials: MiniMax 32/33, Mistral 33/33, and Beam 33/33. The MiniMax disk-pressure timeout has no cost record. Other timed-out MiniMax trials contain partial checkpointed usage; MiniMax and aggregate reported spend are lower bounds, not complete billed totals.
+- The exact IDs are minimax/minimax-m3.1-flash, mistralai/mistral-large-4-0, and reflection/beam-1.0-501b-a23b through OpenRouter. Earlier exploratory MiniMax and Mistral evidence used different benchmark conditions and is not pooled into this release.
+- Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. Scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.
+- Public evidence includes normalized trial results, verification flags and post-timeout diagnostics, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded.
 
 <!-- replaybook:current-benchmark:end -->
 
