@@ -1,0 +1,42 @@
+{
+  "title": "Frozen Core: MiniMax, Mistral Large 4, and Reflection Beam",
+  "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 94 scored durable repairs in 99 evaluated trials. All five failures were MiniMax agent timeouts; two passed post-timeout durability checks but remain deadline failures. Recorded API spend is at least $11.2293.",
+  "input_mode": "text",
+  "model_order": [
+    "minimax/minimax-m3.1-flash",
+    "mistralai/mistral-large-4-0",
+    "reflection/beam-1.0-501b-a23b"
+  ],
+  "model_labels": {
+    "minimax/minimax-m3.1-flash": "MiniMax M3.1 Flash",
+    "mistralai/mistral-large-4-0": "Mistral Large 4",
+    "reflection/beam-1.0-501b-a23b": "Reflection Beam 1.0 501B A23B"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 99 trials were evaluated; none are missing or unavailable. No recovery runs or evaluated-failure retries were needed.",
+    "All 94 scored passes passed immediate, service-restart, and host-reboot verification. All five deadline failures remain in the denominator with their original outcomes, including two systems that passed the controller's post-timeout durability checks. No scoring exemptions or post-run corrections have been applied.",
+    "This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "This batch used one concurrent VM for memory headroom. Some earlier compatible releases used two workers. Worker concurrency and host/provider conditions can affect timing; they do not change scenario weighting, the per-agent deadline, or the verification requirements.",
+    "Provider-reported cost is present for 98/99 trials: MiniMax 32/33, Mistral 33/33, and Beam 33/33. The MiniMax disk-pressure timeout has no cost record. Other timed-out MiniMax trials contain partial checkpointed usage; MiniMax and aggregate reported spend are lower bounds, not complete billed totals.",
+    "The exact IDs are minimax/minimax-m3.1-flash, mistralai/mistral-large-4-0, and reflection/beam-1.0-501b-a23b through OpenRouter. Earlier exploratory MiniMax and Mistral evidence used different benchmark conditions and is not pooled into this release.",
+    "Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. Scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.",
+    "Public evidence includes normalized trial results, verification flags and post-timeout diagnostics, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "MiniMax M3.1 Flash passed 28/33 (84.8%), with a 540-second median agent duration and at least $1.4007 in provider-reported cost. Cost reporting covers 32/33 trials; recorded cost per successful repair was at least $0.0500.",
+    "Mistral Large 4 passed 33/33 (100.0%), with a 180-second median agent duration and $8.6620 in provider-reported cost. Cost reporting covers 33/33 trials; recorded cost per successful repair was $0.2625.",
+    "Reflection Beam 1.0 501B A23B passed 33/33 (100.0%), with a 63-second median agent duration and $1.1666 in provider-reported cost. Cost reporting covers 33/33 trials; recorded cost per successful repair was $0.0354.",
+    "All five MiniMax failures exceeded the 900-second agent deadline. In the partial Rails rollout and Rust file-descriptor trials, post-timeout verification confirmed durable repairs through immediate, service-restart, and host-reboot checks. Both remain deadline failures: passing verification after the agent was stopped does not change whether it completed within the deadline. These two diagnostic durable_repairs_after_timeout outcomes are retained separately, not promoted to scored passes.",
+    "The shared-uploads timeout did not recover a historical avatar: post-timeout immediate verification returned HTTP 404 for the historical-upload check. The auth-rollout timeout left the old instance on its previous release. The disk-pressure timeout passed its immediate post-timeout check but service restart failed; there is no confirmed durable repair in those three trials.",
+    "The four timeout trials with checkpointed records contain 30, 29, 19, and 32 model rounds, respectively, and 39, 40, 31, and 40 tool calls. Those checkpoints are meaningful execution evidence but may omit the final in-flight request. The disk-pressure timeout has no final usage or execution-recording data, and its cost is unknown rather than zero.",
+    "Mistral and Reflection Beam each passed all 33 trials, with different observed durations and provider-reported costs. This small sample does not establish a universal capability ranking or prove either configuration will always pass these incidents.",
+    "All comparisons retain the exact release, provider, model, reasoning, harness, and benchmark identity. Timing reflects the whole agent run, not pure inference, and can include provider and host variability."
+  ]
+}
