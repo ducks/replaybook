@@ -1,0 +1,2414 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 3208957,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 1,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1
+      },
+      "input_tokens": 737488,
+      "known_cost_usd": 4.7908611,
+      "median_duration_seconds": 80,
+      "median_first_non_read_only_tool_seconds": 4.072,
+      "median_model_duration_seconds": 67.92,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 73.501,
+      "median_tool_calls": 16,
+      "median_tool_duration_seconds": 8.26,
+      "model": "fireworks/ember-1",
+      "output_tokens": 107714,
+      "pass_rate": 0.9696969696969697,
+      "passed": 32,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 159657,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 40791,
+      "known_cost_usd": 0.25613009999999997,
+      "median_duration_seconds": 60,
+      "median_first_non_read_only_tool_seconds": 4.251,
+      "median_model_duration_seconds": 55.898,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 49.545,
+      "median_tool_calls": 13,
+      "median_tool_duration_seconds": 3.584,
+      "model": "fireworks/ember-1",
+      "output_tokens": 5724,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 199792,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 63241,
+      "known_cost_usd": 0.3506556,
+      "median_duration_seconds": 61,
+      "median_first_non_read_only_tool_seconds": 3.529,
+      "median_model_duration_seconds": 48.167,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 53.565999999999995,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 8.26,
+      "model": "fireworks/ember-1",
+      "output_tokens": 6733,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 300565,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 67111,
+      "known_cost_usd": 0.4536975,
+      "median_duration_seconds": 134,
+      "median_first_non_read_only_tool_seconds": 3.467,
+      "median_model_duration_seconds": 83.278,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 126.566,
+      "median_tool_calls": 16,
+      "median_tool_duration_seconds": 47.197,
+      "model": "fireworks/ember-1",
+      "output_tokens": 10813,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 224784,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 70368,
+      "known_cost_usd": 0.3973542,
+      "median_duration_seconds": 72,
+      "median_first_non_read_only_tool_seconds": 4.432,
+      "median_model_duration_seconds": 59.217,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 66.239,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 11.391,
+      "model": "fireworks/ember-1",
+      "output_tokens": 7921,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 273135,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 61829,
+      "known_cost_usd": 0.3967725,
+      "median_duration_seconds": 157,
+      "median_first_non_read_only_tool_seconds": 3.672,
+      "median_model_duration_seconds": 64.951,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 150.528,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 87.375,
+      "model": "fireworks/ember-1",
+      "output_tokens": 8623,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 184949,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 52536,
+      "known_cost_usd": 0.3223227,
+      "median_duration_seconds": 66,
+      "median_first_non_read_only_tool_seconds": 4.455,
+      "median_model_duration_seconds": 59.808,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 61.114000000000004,
+      "median_tool_calls": 14,
+      "median_tool_duration_seconds": 4.704,
+      "model": "fireworks/ember-1",
+      "output_tokens": 7282,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 423191,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1
+      },
+      "input_tokens": 78090,
+      "known_cost_usd": 0.6342573,
+      "median_duration_seconds": 143,
+      "median_first_non_read_only_tool_seconds": 5.193,
+      "median_model_duration_seconds": 137.28,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 135.50900000000001,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 4.919,
+      "model": "fireworks/ember-1",
+      "output_tokens": 18202,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 260129,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 70481,
+      "known_cost_usd": 0.4324917,
+      "median_duration_seconds": 78,
+      "median_first_non_read_only_tool_seconds": 3.976,
+      "median_model_duration_seconds": 74.313,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 71.986,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 1.903,
+      "model": "fireworks/ember-1",
+      "output_tokens": 9534,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 414469,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 87555,
+      "known_cost_usd": 0.5190657,
+      "median_duration_seconds": 83,
+      "median_first_non_read_only_tool_seconds": 4.072,
+      "median_model_duration_seconds": 69.11,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 77.903,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 11.089,
+      "model": "fireworks/ember-1",
+      "output_tokens": 8804,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 450881,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 76496,
+      "known_cost_usd": 0.5702673,
+      "median_duration_seconds": 108,
+      "median_first_non_read_only_tool_seconds": 3.646,
+      "median_model_duration_seconds": 101.22,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 103.578,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 5.703,
+      "model": "fireworks/ember-1",
+      "output_tokens": 13701,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 317405,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 68990,
+      "known_cost_usd": 0.45784650000000005,
+      "median_duration_seconds": 76,
+      "median_first_non_read_only_tool_seconds": 3.712,
+      "median_model_duration_seconds": 62.332,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 70.236,
+      "median_tool_calls": 14,
+      "median_tool_duration_seconds": 14.106,
+      "model": "fireworks/ember-1",
+      "output_tokens": 10377,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "custom build b959ef677ff7"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Ember 1 passed 32 of 33 evaluated Core trials with high reasoning. Provider-reported API spend was $4.7909.",
+  "input_mode": "text",
+  "model_labels": {
+    "fireworks/ember-1": "Fireworks Ember 1"
+  },
+  "model_order": [
+    "fireworks/ember-1"
+  ],
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable.",
+    "Publication combines two disjoint, compatible slices: a three-attempt Nginx pilot and thirty attempts across the other ten scenarios. The publisher validates their frozen execution identity and complete scenario coverage. No pilot trial was rerun or duplicated.",
+    "One auth-rollout attempt initially failed incident preflight before meaningful inference. Its original logs, scenario state, and 29-trial summary were archived with SHA-256 digests before resuming that missing attempt on the original execution snapshot. The recovered attempt passed; all 29 previously recorded results are unchanged. The evaluated uploads failure was retained without retry.",
+    "This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "This batch used one concurrent VM. Worker concurrency and host/provider conditions can affect timing; they do not change scenario weighting, the per-agent deadline, or verification requirements.",
+    "Provider-reported cost is present for all 33 trials. Recorded API cost totals $4.7908611; this is reported inference spend rather than VM or other infrastructure cost.",
+    "Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. Scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.",
+    "Public evidence includes normalized trial results, verification flags and post-timeout diagnostics, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "Fireworks Ember 1 passed 32/33 (97.0%), with an 80-second median agent duration and $4.7909 in provider-reported cost. Recorded cost per successful repair was $0.1497.",
+    "All 32 scored passes passed immediate, service-restart, and host-reboot verification. The sole evaluated failure was shared uploads, attempt 1: immediate HTTP verification did not recover the controller-owned accepted uploads. Service-restart and host-reboot success were not confirmed.",
+    "The uploads failure completed 14 model rounds and 18 tool calls in 143 seconds, with $0.1899486 in reported cost. It remains a scored failure, not an unavailable trial.",
+    "All comparisons retain exact release, provider, model, reasoning, harness, and benchmark identity. Timing reflects the whole agent run and can include provider and host variability."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 60,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T17:47:34Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.884,
+        "model_duration_seconds": 55.898,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 49.545,
+        "tool_calls": 11,
+        "tool_duration_seconds": 3.483,
+        "total_duration_seconds": 59.429
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-fireworks-ember-1-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T17:46:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 47657,
+        "cost_source": "provider",
+        "cost_usd": 0.07371209999999999,
+        "input_tokens": 10885,
+        "output_tokens": 1784,
+        "rounds": 10,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 61,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T17:49:39Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.187,
+        "model_duration_seconds": 55.937,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 55.444,
+        "tool_calls": 13,
+        "tool_duration_seconds": 3.632,
+        "total_duration_seconds": 59.631
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-fireworks-ember-1-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T17:48:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 60821,
+        "cost_source": "provider",
+        "cost_usd": 0.08750129999999999,
+        "input_tokens": 12615,
+        "output_tokens": 2094,
+        "rounds": 12,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 46,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T17:51:29Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.251,
+        "model_duration_seconds": 41.615,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 40.996,
+        "tool_calls": 13,
+        "tool_duration_seconds": 3.584,
+        "total_duration_seconds": 45.247
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-fireworks-ember-1-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T17:50:30Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 51179,
+        "cost_source": "provider",
+        "cost_usd": 0.09491669999999999,
+        "input_tokens": 17291,
+        "output_tokens": 1846,
+        "rounds": 11,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 61,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:03:55Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.877,
+        "model_duration_seconds": 50.103,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 53.565999999999995,
+        "tool_calls": 14,
+        "tool_duration_seconds": 8.26,
+        "total_duration_seconds": 58.443
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-fireworks-ember-1-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-10-27T18:02:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 91077,
+        "cost_source": "provider",
+        "cost_usd": 0.1411011,
+        "input_tokens": 26451,
+        "output_tokens": 2295,
+        "rounds": 12,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 54,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:05:48Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.529,
+        "model_duration_seconds": 45.091,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 48.712999999999994,
+        "tool_calls": 11,
+        "tool_duration_seconds": 7.102,
+        "total_duration_seconds": 52.242
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-fireworks-ember-1-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-10-27T18:04:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 47829,
+        "cost_source": "provider",
+        "cost_usd": 0.09287970000000001,
+        "input_tokens": 15647,
+        "output_tokens": 2106,
+        "rounds": 10,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 64,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:08:00Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.575,
+        "model_duration_seconds": 48.167,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 59.907,
+        "tool_calls": 11,
+        "tool_duration_seconds": 14.252,
+        "total_duration_seconds": 62.482
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-fireworks-ember-1-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-10-27T18:06:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 60886,
+        "cost_source": "provider",
+        "cost_usd": 0.1166748,
+        "input_tokens": 21143,
+        "output_tokens": 2332,
+        "rounds": 12,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 174,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:12:05Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.709,
+        "model_duration_seconds": 108.214,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 169.612,
+        "tool_calls": 16,
+        "tool_duration_seconds": 44.998,
+        "total_duration_seconds": 172.321
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-fireworks-ember-1-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:08:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 125699,
+        "cost_source": "provider",
+        "cost_usd": 0.1878327,
+        "input_tokens": 32171,
+        "output_tokens": 3574,
+        "rounds": 18,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 126,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:15:18Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.467,
+        "model_duration_seconds": 76.68,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 120.49,
+        "tool_calls": 16,
+        "tool_duration_seconds": 47.197,
+        "total_duration_seconds": 123.957
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-fireworks-ember-1-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:12:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 86958,
+        "cost_source": "provider",
+        "cost_usd": 0.1252014,
+        "input_tokens": 15783,
+        "output_tokens": 3451,
+        "rounds": 14,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 134,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:18:39Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.291,
+        "model_duration_seconds": 83.278,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 126.566,
+        "tool_calls": 17,
+        "tool_duration_seconds": 49.508,
+        "total_duration_seconds": 132.857
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-fireworks-ember-1-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:16:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 87908,
+        "cost_source": "provider",
+        "cost_usd": 0.14066340000000002,
+        "input_tokens": 19157,
+        "output_tokens": 3788,
+        "rounds": 13,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:21:17Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.083,
+        "model_duration_seconds": 68.322,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 73.501,
+        "tool_calls": 15,
+        "tool_duration_seconds": 10.185,
+        "total_duration_seconds": 78.584
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-fireworks-ember-1-reasoning-high-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:19:27Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 95926,
+        "cost_source": "provider",
+        "cost_usd": 0.1326498,
+        "input_tokens": 20574,
+        "output_tokens": 2810,
+        "rounds": 14,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 72,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:23:38Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.432,
+        "model_duration_seconds": 59.217,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 66.239,
+        "tool_calls": 17,
+        "tool_duration_seconds": 11.391,
+        "total_duration_seconds": 70.671
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-fireworks-ember-1-reasoning-high-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:21:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 68900,
+        "cost_source": "provider",
+        "cost_usd": 0.13125599999999998,
+        "input_tokens": 23957,
+        "output_tokens": 2581,
+        "rounds": 14,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 69,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:26:02Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.363,
+        "model_duration_seconds": 54.986,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 64.988,
+        "tool_calls": 14,
+        "tool_duration_seconds": 12.284,
+        "total_duration_seconds": 67.351
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-fireworks-ember-1-reasoning-high-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:24:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 59958,
+        "cost_source": "provider",
+        "cost_usd": 0.13344840000000002,
+        "input_tokens": 25837,
+        "output_tokens": 2530,
+        "rounds": 14,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 163,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:30:04Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.171,
+        "model_duration_seconds": 74.279,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 153.57600000000002,
+        "tool_calls": 18,
+        "tool_duration_seconds": 87.375,
+        "total_duration_seconds": 161.747
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-fireworks-ember-1-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:27:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 93175,
+        "cost_source": "provider",
+        "cost_usd": 0.1593405,
+        "input_tokens": 26136,
+        "output_tokens": 3532,
+        "rounds": 16,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 85,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:32:36Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.672,
+        "model_duration_seconds": 49.967,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 80.21000000000001,
+        "tool_calls": 13,
+        "tool_duration_seconds": 33.714,
+        "total_duration_seconds": 83.882
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-fireworks-ember-1-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:30:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 82867,
+        "cost_source": "provider",
+        "cost_usd": 0.11017409999999998,
+        "input_tokens": 16918,
+        "output_tokens": 2304,
+        "rounds": 11,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 157,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:36:25Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.484,
+        "model_duration_seconds": 64.951,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 150.528,
+        "tool_calls": 17,
+        "tool_duration_seconds": 88.962,
+        "total_duration_seconds": 154.012
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-fireworks-ember-1-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:33:30Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 97093,
+        "cost_source": "provider",
+        "cost_usd": 0.1272579,
+        "input_tokens": 18775,
+        "output_tokens": 2787,
+        "rounds": 14,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 45,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:40:14Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.865,
+        "model_duration_seconds": 38.492,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 38.351,
+        "tool_calls": 11,
+        "tool_duration_seconds": 4.656,
+        "total_duration_seconds": 43.216
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-fireworks-ember-1-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:39:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 44454,
+        "cost_source": "provider",
+        "cost_usd": 0.10483619999999999,
+        "input_tokens": 20635,
+        "output_tokens": 1973,
+        "rounds": 10,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 66,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:44:20Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.955,
+        "model_duration_seconds": 59.808,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 61.114000000000004,
+        "tool_calls": 15,
+        "tool_duration_seconds": 5.183,
+        "total_duration_seconds": 65.069
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-fireworks-ember-1-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:42:59Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 70608,
+        "cost_source": "provider",
+        "cost_usd": 0.1006044,
+        "input_tokens": 13694,
+        "output_tokens": 2556,
+        "rounds": 11,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 70,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:48:20Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.455,
+        "model_duration_seconds": 63.21,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 63.537000000000006,
+        "tool_calls": 14,
+        "tool_duration_seconds": 4.704,
+        "total_duration_seconds": 67.992
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-fireworks-ember-1-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:46:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 69887,
+        "cost_source": "provider",
+        "cost_usd": 0.11688210000000002,
+        "input_tokens": 18207,
+        "output_tokens": 2753,
+        "rounds": 13,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 143,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "accepted_uploads_not_recovered",
+      "finished_at": "2026-10-27T18:51:41Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.695,
+        "model_duration_seconds": 137.28,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 135.50900000000001,
+        "tool_calls": 18,
+        "tool_duration_seconds": 4.829,
+        "total_duration_seconds": 142.204
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-fireworks-ember-1-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:49:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 114312,
+        "cost_source": "provider",
+        "cost_usd": 0.18994860000000005,
+        "input_tokens": 20605,
+        "output_tokens": 6256,
+        "rounds": 14,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 156,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:55:25Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.193,
+        "model_duration_seconds": 145.901,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 147.929,
+        "tool_calls": 23,
+        "tool_duration_seconds": 7.09,
+        "total_duration_seconds": 153.122
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-fireworks-ember-1-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:52:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 180907,
+        "cost_source": "provider",
+        "cost_usd": 0.25476809999999994,
+        "input_tokens": 33727,
+        "output_tokens": 6621,
+        "rounds": 19,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 118,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T18:58:31Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.057,
+        "model_duration_seconds": 108.783,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 109.753,
+        "tool_calls": 21,
+        "tool_duration_seconds": 4.919,
+        "total_duration_seconds": 114.81
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-fireworks-ember-1-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T18:56:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 127972,
+        "cost_source": "provider",
+        "cost_usd": 0.18954059999999998,
+        "input_tokens": 23758,
+        "output_tokens": 5325,
+        "rounds": 16,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 78,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:02:02Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.976,
+        "model_duration_seconds": 74.313,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 71.986,
+        "tool_calls": 15,
+        "tool_duration_seconds": 1.903,
+        "total_duration_seconds": 76.962
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-fireworks-ember-1-reasoning-high-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T19:00:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 80502,
+        "cost_source": "provider",
+        "cost_usd": 0.1462296,
+        "input_tokens": 25403,
+        "output_tokens": 3058,
+        "rounds": 11,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 79,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:04:30Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.897,
+        "model_duration_seconds": 75.232,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 73.134,
+        "tool_calls": 16,
+        "tool_duration_seconds": 1.733,
+        "total_duration_seconds": 77.031
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-fireworks-ember-1-reasoning-high-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T19:02:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 89296,
+        "cost_source": "provider",
+        "cost_usd": 0.1466478,
+        "input_tokens": 23718,
+        "output_tokens": 3247,
+        "rounds": 12,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 83,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:07:20Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.803,
+        "model_duration_seconds": 69.11,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 77.903,
+        "tool_calls": 18,
+        "tool_duration_seconds": 9.434,
+        "total_duration_seconds": 80.706
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-fireworks-ember-1-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T19:05:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 141512,
+        "cost_source": "provider",
+        "cost_usd": 0.17988059999999997,
+        "input_tokens": 31034,
+        "output_tokens": 2955,
+        "rounds": 18,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:10:00Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.359,
+        "model_duration_seconds": 67.92,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 74.74000000000001,
+        "tool_calls": 17,
+        "tool_duration_seconds": 11.089,
+        "total_duration_seconds": 79.099
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-fireworks-ember-1-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T19:08:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 121348,
+        "cost_source": "provider",
+        "cost_usd": 0.1461534,
+        "input_tokens": 22788,
+        "output_tokens": 2759,
+        "rounds": 13,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 86,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:12:46Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.072,
+        "model_duration_seconds": 69.648,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 79.701,
+        "tool_calls": 21,
+        "tool_duration_seconds": 14.018,
+        "total_duration_seconds": 83.773
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-fireworks-ember-1-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T19:11:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 151609,
+        "cost_source": "provider",
+        "cost_usd": 0.1930317,
+        "input_tokens": 33733,
+        "output_tokens": 3090,
+        "rounds": 17,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 108,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:16:21Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.434,
+        "model_duration_seconds": 101.22,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 103.578,
+        "tool_calls": 17,
+        "tool_duration_seconds": 5.703,
+        "total_duration_seconds": 107.012
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-fireworks-ember-1-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T19:14:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 108725,
+        "cost_source": "provider",
+        "cost_usd": 0.1555695,
+        "input_tokens": 18839,
+        "output_tokens": 4429,
+        "rounds": 14,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 103,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:20:03Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.644,
+        "model_duration_seconds": 95.968,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 94.969,
+        "tool_calls": 19,
+        "tool_duration_seconds": 5.545,
+        "total_duration_seconds": 101.613
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-fireworks-ember-1-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T19:18:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 153186,
+        "cost_source": "provider",
+        "cost_usd": 0.17467380000000005,
+        "input_tokens": 23311,
+        "output_tokens": 3919,
+        "rounds": 16,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 133,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:24:28Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.646,
+        "model_duration_seconds": 125.472,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 127.80999999999999,
+        "tool_calls": 22,
+        "tool_duration_seconds": 5.858,
+        "total_duration_seconds": 131.456
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-fireworks-ember-1-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T19:21:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 188970,
+        "cost_source": "provider",
+        "cost_usd": 0.240024,
+        "input_tokens": 34346,
+        "output_tokens": 5353,
+        "rounds": 18,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 70,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:26:57Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.712,
+        "model_duration_seconds": 51.759,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 62.587999999999994,
+        "tool_calls": 13,
+        "tool_duration_seconds": 14.106,
+        "total_duration_seconds": 66.3
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-fireworks-ember-1-reasoning-high-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-10-27T19:25:30Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 83483,
+        "cost_source": "provider",
+        "cost_usd": 0.1436499,
+        "input_tokens": 26835,
+        "output_tokens": 2540,
+        "rounds": 12,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 76,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:29:30Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.868,
+        "model_duration_seconds": 62.332,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 70.236,
+        "tool_calls": 14,
+        "tool_duration_seconds": 11.677,
+        "total_duration_seconds": 74.104
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-fireworks-ember-1-reasoning-high-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-10-27T19:27:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 100090,
+        "cost_source": "provider",
+        "cost_usd": 0.1464,
+        "input_tokens": 22851,
+        "output_tokens": 3188,
+        "rounds": 12,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 128,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T19:32:54Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.365,
+        "model_duration_seconds": 87.978,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 121.296,
+        "tool_calls": 18,
+        "tool_duration_seconds": 17.586,
+        "total_duration_seconds": 124.661
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-fireworks-ember-1-reasoning-high-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-10-27T19:30:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 133832,
+        "cost_source": "provider",
+        "cost_usd": 0.16779660000000002,
+        "input_tokens": 19304,
+        "output_tokens": 4649,
+        "rounds": 14,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 70,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-27T21:16:01Z",
+      "model": "fireworks/ember-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.976,
+        "model_duration_seconds": 64.809,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 64.05,
+        "tool_calls": 14,
+        "tool_duration_seconds": 3.157,
+        "total_duration_seconds": 68.026
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-fireworks-ember-1-reasoning-high-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-27T21:14:38Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 90331,
+        "cost_source": "provider",
+        "cost_usd": 0.1396143,
+        "input_tokens": 21360,
+        "output_tokens": 3229,
+        "rounds": 14,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          }
+        ]
+      },
+      "finished_at": "2026-10-27T17:51:30.055510Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "fireworks/ember-1"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-10-27T17:45:43.102601Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "8bb0f5b73a1fc2987487a0fc79540669fa034b643f8a8f17a8c2c926e63079c0"
+    },
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-10-27T21:16:01.424584Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "fireworks/ember-1"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-10-27T18:01:42.765410Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "3461405aa9068a46e740db2afe6f2859216e928ec4693271afa3851ac18fecc4"
+    }
+  ],
+  "tier": "core",
+  "title": "Frozen Core: Fireworks Ember 1",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 3208957,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 1,
+    "failure_categories": {
+      "accepted_uploads_not_recovered": 1
+    },
+    "input_tokens": 737488,
+    "known_cost_usd": 4.7908611,
+    "median_duration_seconds": 80,
+    "median_first_non_read_only_tool_seconds": 4.072,
+    "median_model_duration_seconds": 67.92,
+    "median_model_rounds": 14,
+    "median_post_first_non_read_only_seconds": 73.501,
+    "median_tool_calls": 16,
+    "median_tool_duration_seconds": 8.26,
+    "output_tokens": 107714,
+    "pass_rate": 0.9696969696969697,
+    "passed": 32,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261027.0.1"
+}

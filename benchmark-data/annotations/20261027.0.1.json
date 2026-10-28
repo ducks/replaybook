@@ -1,0 +1,34 @@
+{
+  "title": "Frozen Core: Fireworks Ember 1",
+  "description": "Ember 1 passed 32 of 33 evaluated Core trials with high reasoning. Provider-reported API spend was $4.7909.",
+  "input_mode": "text",
+  "model_order": [
+    "fireworks/ember-1"
+  ],
+  "model_labels": {
+    "fireworks/ember-1": "Fireworks Ember 1"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable.",
+    "Publication combines two disjoint, compatible slices: a three-attempt Nginx pilot and thirty attempts across the other ten scenarios. The publisher validates their frozen execution identity and complete scenario coverage. No pilot trial was rerun or duplicated.",
+    "One auth-rollout attempt initially failed incident preflight before meaningful inference. Its original logs, scenario state, and 29-trial summary were archived with SHA-256 digests before resuming that missing attempt on the original execution snapshot. The recovered attempt passed; all 29 previously recorded results are unchanged. The evaluated uploads failure was retained without retry.",
+    "This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "This batch used one concurrent VM. Worker concurrency and host/provider conditions can affect timing; they do not change scenario weighting, the per-agent deadline, or verification requirements.",
+    "Provider-reported cost is present for all 33 trials. Recorded API cost totals $4.7908611; this is reported inference spend rather than VM or other infrastructure cost.",
+    "Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. Scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.",
+    "Public evidence includes normalized trial results, verification flags and post-timeout diagnostics, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "Fireworks Ember 1 passed 32/33 (97.0%), with an 80-second median agent duration and $4.7909 in provider-reported cost. Recorded cost per successful repair was $0.1497.",
+    "All 32 scored passes passed immediate, service-restart, and host-reboot verification. The sole evaluated failure was shared uploads, attempt 1: immediate HTTP verification did not recover the controller-owned accepted uploads. Service-restart and host-reboot success were not confirmed.",
+    "The uploads failure completed 14 model rounds and 18 tool calls in 143 seconds, with $0.1899486 in reported cost. It remains a scored failure, not an unavailable trial.",
+    "All comparisons retain exact release, provider, model, reasoning, harness, and benchmark identity. Timing reflects the whole agent run and can include provider and host variability."
+  ]
+}
