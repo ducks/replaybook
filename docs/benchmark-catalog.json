@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261027.0.0",
+  "current_version": "20261027.0.1",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -5491,6 +5491,35 @@
       "provider": "OpenRouter",
       "reasoning_effort": "high",
       "release": "20261027.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.149714409375,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 1,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 737488,
+      "known_cost_usd": 4.7908611,
+      "median_duration_seconds": 80,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "output_tokens": 107714,
+      "pass_rate": 0.9696969696969697,
+      "pass_rate_95_high": 0.9946305894631283,
+      "pass_rate_95_low": 0.846812746178811,
+      "passed": 32,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
       "tier": "core",
@@ -56863,6 +56892,559 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.08537669999999999,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 40791,
+      "known_cost_usd": 0.25613009999999997,
+      "median_duration_seconds": 60,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 60,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 61,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 46,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5724,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.11688520000000001,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 63241,
+      "known_cost_usd": 0.3506556,
+      "median_duration_seconds": 61,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 61,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 54,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 64,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 6733,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1512325,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 67111,
+      "known_cost_usd": 0.4536975,
+      "median_duration_seconds": 134,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 174,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 126,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 134,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10813,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1324514,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 70368,
+      "known_cost_usd": 0.3973542,
+      "median_duration_seconds": 72,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 80,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 72,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 69,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 7921,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1322575,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 61829,
+      "known_cost_usd": 0.3967725,
+      "median_duration_seconds": 157,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 163,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 85,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 157,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 8623,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1074409,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 52536,
+      "known_cost_usd": 0.3223227,
+      "median_duration_seconds": 66,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 45,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 66,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 70,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 7282,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.31712865,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 78090,
+      "known_cost_usd": 0.6342573,
+      "median_duration_seconds": 143,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 143,
+          "failure_category": "accepted_uploads_not_recovered",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 156,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 118,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 18202,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.14416389999999998,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 70481,
+      "known_cost_usd": 0.4324917,
+      "median_duration_seconds": 78,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 70,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 78,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 79,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 9534,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.17302189999999998,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 87555,
+      "known_cost_usd": 0.5190657,
+      "median_duration_seconds": 83,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 83,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 80,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 86,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 8804,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1900891,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 76496,
+      "known_cost_usd": 0.5702673,
+      "median_duration_seconds": 108,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 108,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 103,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 133,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 13701,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.15261550000000002,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 68990,
+      "known_cost_usd": 0.45784650000000005,
+      "median_duration_seconds": 76,
+      "model": "fireworks/ember-1",
+      "model_label": "Fireworks Ember 1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 70,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 76,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 128,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10377,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261027.0.1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -62345,7 +62927,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "Three high-reasoning configurations attempted eleven Core incidents three times each: 94 scored durable repairs in 99 evaluated trials. All five failures were MiniMax agent timeouts; two passed post-timeout durability checks but remain deadline failures. Recorded API spend is at least $11.2293.",
       "harness_versions": [
         23
@@ -62354,7 +62936,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -62492,6 +63074,169 @@
         "usage_reported_trials": 98
       },
       "version": "20261027.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "custom build b959ef677ff7"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Ember 1 passed 32 of 33 evaluated Core trials with high reasoning. Provider-reported API spend was $4.7909.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "8bb0f5b73a1fc2987487a0fc79540669fa034b643f8a8f17a8c2c926e63079c0"
+        },
+        {
+          "source": "matrix",
+          "summary_sha256": "3461405aa9068a46e740db2afe6f2859216e928ec4693271afa3851ac18fecc4"
+        }
+      ],
+      "tier": "core",
+      "title": "Frozen Core: Fireworks Ember 1",
+      "totals": {
+        "cache_creation_reported_trials": 33,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 33,
+        "cache_read_tokens": 3208957,
+        "cost_reported_trials": 33,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 33,
+        "failed": 1,
+        "failure_categories": {
+          "accepted_uploads_not_recovered": 1
+        },
+        "input_tokens": 737488,
+        "known_cost_usd": 4.7908611,
+        "median_duration_seconds": 80,
+        "median_first_non_read_only_tool_seconds": 4.072,
+        "median_model_duration_seconds": 67.92,
+        "median_model_rounds": 14,
+        "median_post_first_non_read_only_seconds": 73.501,
+        "median_tool_calls": 16,
+        "median_tool_duration_seconds": 8.26,
+        "output_tokens": 107714,
+        "pass_rate": 0.9696969696969697,
+        "passed": 32,
+        "recording_reported_trials": 33,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 33,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 33
+      },
+      "version": "20261027.0.1"
     }
   ],
   "schema_version": 1
