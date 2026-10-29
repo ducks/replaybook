@@ -1,0 +1,44 @@
+{
+  "title": "Experimental Core Hard: Particle-1, Sonnet 5.5, and Pareto 26.10",
+  "description": "Three configurations each passed all nine evaluated trials across three experimental Core Hard incidents. Total provider-reported API spend was $1.5906. This batch did not separate the models by success rate.",
+  "input_mode": "text",
+  "model_order": [
+    "particle-ai/particle-1",
+    "anthropic/claude-sonnet-5.5",
+    "unbiased/pareto-26.10"
+  ],
+  "model_labels": {
+    "particle-ai/particle-1": "Particle-1",
+    "anthropic/claude-sonnet-5.5": "Claude Sonnet 5.5",
+    "unbiased/pareto-26.10": "Pareto 26.10"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "scenario_labels": {
+    "034-checkout-dependency-rollout": "Checkout dependency rollout",
+    "035-notification-outbox-rollout": "Notification outbox rollout",
+    "036-reservation-write-contention": "Reservation write contention"
+  },
+  "notes": [
+    "Core Hard 2026.10.28.1 is an experimental frontier-tier suite with three scenarios, three attempts per scenario, and a 900-second agent deadline. Each model configuration has nine evaluated trials. It is separate from the eleven-scenario Core 2026.10.24.2 benchmark; their headline scores are not directly comparable and are never pooled.",
+    "All 27 trials were evaluated and passed immediate, service-restart, and host-reboot verification. None are missing or unavailable. No recovery runs, retries, scoring exemptions, or post-run outcome corrections were needed.",
+    "Particle-1 and Claude Sonnet 5.5 requested high reasoning. Pareto 26.10 used the default provider setting because its catalog did not advertise configurable reasoning effort. The two managed sessions share the same immutable benchmark manifest, scenario fingerprints, controller, Claux executable, and OpenRouter protocol. Reasoning configuration remains visible per model.",
+    "Frozen cohort identity: 35dfa2b5bc78d97331268e1fa083bd333e0c48ef639641fce1730f7f0a090855. The custom Claux executable SHA-256 is b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. The controller is the same host harness v23 build used for current Core comparisons, but this suite has its own pinned manifest and scenario identities.",
+    "Both sessions used one concurrent VM. Provider-reported API cost is present for all 27 trials. Cost excludes VM hosting and other infrastructure. Timing measures the whole agent run, not pure inference latency; provider and host conditions can affect it.",
+    "Core Hard is a candidate suite, not an established difficulty ranking. All three configurations passed every trial in this first comparison, so these observations do not show greater separation than Core or establish that the new suite is harder.",
+    "Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. Scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.",
+    "Public evidence includes normalized trial results, verification flags and post-timeout diagnostics, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "Particle-1 passed 9/9 (100.0%), with a 48-second median agent duration and $0.2917 in provider-reported API cost. Reported cost per successful repair was $0.0324.",
+    "Claude Sonnet 5.5 passed 9/9 (100.0%), with a 37-second median agent duration and $0.6679 in provider-reported API cost. Reported cost per successful repair was $0.0742.",
+    "Pareto 26.10 passed 9/9 (100.0%), with a 116-second median agent duration and $0.6310 in provider-reported API cost. Reported cost per successful repair was $0.0701.",
+    "The checkout incident exercises configuration convergence across two upstream boundaries while preserving historical invoices. The notification incident requires exact pending messages and historical receipts to survive. The reservation incident checks concurrent acceptance, original quantities and payloads, idempotent retries, and conservation of the original capacity.",
+    "Preflight and verification expectations remained controller-owned. Every raw result matched its matrix summary, and retained model transcripts contained none of the controller-only oracle, lifecycle, phase-failure, or work-contract filenames. Public evidence excludes those private transcripts."
+  ]
+}

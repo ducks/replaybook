@@ -1,0 +1,32 @@
+schema_version = 1
+
+[benchmark]
+id = "replaybook-infra-core-hard"
+version = "2026.10.28.1"
+status = "experimental"
+tier = "frontier"
+attempts = 3
+agent_timeout_seconds = 900
+required_host_harness_version = 23
+
+[pack]
+path = "."
+id = "ducks/replaybook-infra"
+
+[verification]
+require_immediate_recovery = true
+require_service_restart = true
+require_host_reboot = true
+preserve_controller_state = true
+
+[[scenarios]]
+id = "034-checkout-dependency-rollout"
+version = 1
+
+[[scenarios]]
+id = "035-notification-outbox-rollout"
+version = 1
+
+[[scenarios]]
+id = "036-reservation-write-contention"
+version = 1

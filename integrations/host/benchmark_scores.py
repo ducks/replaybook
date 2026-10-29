@@ -1,4 +1,4 @@
-"""Complete Core scores for explicitly selected, isolated release cohorts."""
+"""Complete scores for explicitly selected, isolated benchmark suites."""
 
 from __future__ import annotations
 
@@ -22,8 +22,8 @@ def score_release(release, benchmark):
         import publish_benchmarks as publisher
     compatibility = release["compatibility"]
     source = compatibility.get("benchmark_manifest", {})
-    if benchmark.tier != "core" or source.get("tier") != "core":
-        raise ValueError("this spike only scores explicitly identified Core evidence")
+    if benchmark.tier not in {"core", "frontier"} or source.get("tier") != benchmark.tier:
+        raise ValueError("scores require matching, explicitly identified Core or frontier evidence")
     if source.get("id") != benchmark.id:
         raise ValueError("source and target benchmark IDs differ")
     exact_contract = (
@@ -282,6 +282,9 @@ def build_scores(root, index):
         cohorts.append({
             "id": condition_id(release),
             "release": version, "benchmark": benchmark.version,
+            "benchmark_id": benchmark.id, "tier": benchmark.tier,
+            "label": entry.get("label") or ("Core" if benchmark.tier == "core" else "Frontier"),
+            "experimental": benchmark.status == "experimental",
             "title": release["title"], "harness": report["harness"],
             "attempts": benchmark.attempts, "timeout": benchmark.agent_timeout_seconds,
             "groups": dict(groups), "hidden": hidden,
@@ -290,6 +293,6 @@ def build_scores(root, index):
     return {
         "cohorts": grouped,
         "scenario_runs": scenario_runs,
-        "scenario_details": [{"condition": group["id"], "benchmark": group["benchmark"], "profiles": group["scenario_profiles"]}
+        "scenario_details": [{"condition": group["id"], "benchmark": group["benchmark"], "label": group["label"], "profiles": group["scenario_profiles"]}
                              for group in grouped],
     }
