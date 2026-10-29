@@ -9,19 +9,21 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core: Particle-1
+## Experimental Core Hard: Particle-1, Sonnet 5.5, and Pareto 26.10
 
-Particle-1 passed all 33 evaluated Core trials at high reasoning, with $0.9534 in provider-reported API cost and a 54-second median agent duration.
+Three configurations each passed all nine evaluated trials across three experimental Core Hard incidents. Total provider-reported API spend was $1.5906. This batch did not separate the models by success rate.
 
-Benchmark release: `20261028.0.0`
-Benchmark tier: `core`
+Benchmark release: `20261029.0.0`
+Benchmark tier: `frontier`
 
-Scenario packs: `ducks/replaybook-infra@20261024.1.1`
+Scenario packs: `ducks/replaybook-infra@20261028.0.0`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Particle-1 (high) · openrouter | 33/33 | 100% | 0:54 | $0.9534 | $0.0289 |
-| **Total** | **33/33** | **100%** | **0:54** | **$0.9534** | **$0.0289** |
+| Particle-1 (high) · openrouter | 9/9 | 100% | 0:48 | $0.2917 | $0.0324 |
+| Claude Sonnet 5.5 (high) · openrouter | 9/9 | 100% | 0:37 | $0.6679 | $0.0742 |
+| Pareto 26.10 · openrouter | 9/9 | 100% | 1:56 | $0.6310 | $0.0701 |
+| **Total** | **27/27** | **100%** | **0:48** | **$1.5906** | **$0.0589** |
 
 ### Execution recording
 
@@ -29,46 +31,44 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Particle-1 (high) · openrouter | 33/33 | 17 | 0:32 | 25 | 0:16 | 0:01 | 0:51 |
+| Particle-1 (high) · openrouter | 9/9 | 18 | 0:38 | 27 | 0:10 | 0:01 | 0:46 |
+| Claude Sonnet 5.5 (high) · openrouter | 9/9 | 8 | 0:31 | 8 | 0:06 | 0:02 | 0:33 |
+| Pareto 26.10 · openrouter | 9/9 | 19 | 1:51 | 25 | 0:05 | 0:02 | 1:52 |
 
-Particle-1 passed 33/33 (100.0%), with a 54-second median agent duration and $0.9534 in provider-reported API cost. Recorded cost per successful repair was $0.0289.
+Particle-1 passed 9/9 (100.0%), with a 48-second median agent duration and $0.2917 in provider-reported API cost. Reported cost per successful repair was $0.0324.
 
-The run recorded 1,374,151 input tokens, 310,341 output tokens, and 9,984,512 cache-read tokens. Median recorded model rounds were 17 and tool calls were 25. These are execution observations, not pure inference latency or proof of general token-efficiency claims.
+Claude Sonnet 5.5 passed 9/9 (100.0%), with a 37-second median agent duration and $0.6679 in provider-reported API cost. Reported cost per successful repair was $0.0742.
 
-The earlier compatible DeepSeek V4.1 Flash 1017 configuration passed 32/33 at $0.5362. Particle achieved one more observed repair in this sample with higher total reported cost. Different trajectories and provider conditions prevent attributing the difference solely to post-training.
+Pareto 26.10 passed 9/9 (100.0%), with a 116-second median agent duration and $0.6310 in provider-reported API cost. Reported cost per successful repair was $0.0701.
 
-All comparisons retain exact release, provider, model, reasoning, harness, and benchmark identity. A perfect score over three attempts per incident does not establish universal reliability.
+The checkout incident exercises configuration convergence across two upstream boundaries while preserving historical invoices. The notification incident requires exact pending messages and historical receipts to survive. The reservation incident checks concurrent acceptance, original quantities and payloads, idempotent retries, and conservation of the original capacity.
+
+Preflight and verification expectations remained controller-owned. Every raw result matched its matrix summary, and retained model transcripts contained none of the controller-only oracle, lifecycle, phase-failure, or work-contract filenames. Public evidence excludes those private transcripts.
 
 ### Scenario breakdown
 
-| Scenario | Version | Particle-1 (high) · openrouter |
-|---|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 1:21 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 1:15 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 1:31 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 0:54 |
-| 017-partial-rails-rollout | v1 | 3/3, 1:03 |
-| 019-rust-fd-leak | v1 | 3/3, 0:42 |
-| 021-discourse-shared-uploads | v1 | 3/3, 1:04 |
-| 023-auth-secret-rollout | v1 | 3/3, 0:38 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 0:45 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 0:49 |
-| 033-tls-trust-rotation | v2 | 3/3, 0:43 |
+| Scenario | Version | Particle-1 (high) · openrouter | Claude Sonnet 5.5 (high) · openrouter | Pareto 26.10 · openrouter |
+|---|---:|---:|---:|---:|
+| Checkout dependency rollout | v1 | 3/3, 0:32 | 3/3, 0:33 | 3/3, 1:01 |
+| Notification outbox rollout | v1 | 3/3, 0:39 | 3/3, 0:34 | 3/3, 1:56 |
+| Reservation write contention | v1 | 3/3, 1:12 | 3/3, 0:44 | 3/3, 3:02 |
 
 ### Failure categories
 
 
 ### Source matrices
 
-- `matrix`: particle-ai/particle-1; Replaybook `37506bdd`; reasoning high
+- `matrix`: particle-ai/particle-1, anthropic/claude-sonnet-5.5; Replaybook `76969ff5`; reasoning high
+- `matrix`: unbiased/pareto-26.10; Replaybook `76969ff5`
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable. No recovery runs or retries were needed.
-- All 33 scored passes passed immediate, service-restart, and host-reboot verification. No scoring exemptions or post-run corrections have been applied.
-- This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
-- This batch used one concurrent VM. Worker concurrency and host/provider conditions can affect timing; they do not change scenario weighting, the per-agent deadline, or verification requirements.
-- Provider-reported API cost is present for all 33 trials and totals $0.95341411. Cost excludes VM hosting and other infrastructure. The exact model ID is particle-ai/particle-1 through OpenRouter.
+- Core Hard 2026.10.28.1 is an experimental frontier-tier suite with three scenarios, three attempts per scenario, and a 900-second agent deadline. Each model configuration has nine evaluated trials. It is separate from the eleven-scenario Core 2026.10.24.2 benchmark; their headline scores are not directly comparable and are never pooled.
+- All 27 trials were evaluated and passed immediate, service-restart, and host-reboot verification. None are missing or unavailable. No recovery runs, retries, scoring exemptions, or post-run outcome corrections were needed.
+- Particle-1 and Claude Sonnet 5.5 requested high reasoning. Pareto 26.10 used the default provider setting because its catalog did not advertise configurable reasoning effort. The two managed sessions share the same immutable benchmark manifest, scenario fingerprints, controller, Claux executable, and OpenRouter protocol. Reasoning configuration remains visible per model.
+- Frozen cohort identity: 35dfa2b5bc78d97331268e1fa083bd333e0c48ef639641fce1730f7f0a090855. The custom Claux executable SHA-256 is b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. The controller is the same host harness v23 build used for current Core comparisons, but this suite has its own pinned manifest and scenario identities.
+- Both sessions used one concurrent VM. Provider-reported API cost is present for all 27 trials. Cost excludes VM hosting and other infrastructure. Timing measures the whole agent run, not pure inference latency; provider and host conditions can affect it.
+- Core Hard is a candidate suite, not an established difficulty ranking. All three configurations passed every trial in this first comparison, so these observations do not show greater separation than Core or establish that the new suite is harder.
 - Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. Scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.
 - Public evidence includes normalized trial results, verification flags and post-timeout diagnostics, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded.
 

@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261028.0.0",
+  "current_version": "20261029.0.0",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -5551,6 +5551,87 @@
       "subscription_usage_usd": 0,
       "tier": "core",
       "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07421533333333334,
+      "cost_reported_trials": 9,
+      "evaluated": 9,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 154,
+      "known_cost_usd": 0.667938,
+      "median_duration_seconds": 37,
+      "model": "anthropic/claude-sonnet-5.5",
+      "model_label": "Claude Sonnet 5.5",
+      "output_tokens": 25860,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7008549515804559,
+      "passed": 9,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261029.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 9,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.03241277666666667,
+      "cost_reported_trials": 9,
+      "evaluated": 9,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 637243,
+      "known_cost_usd": 0.29171499,
+      "median_duration_seconds": 48,
+      "model": "particle-ai/particle-1",
+      "model_label": "Particle-1",
+      "output_tokens": 71978,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7008549515804559,
+      "passed": 9,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261029.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 9,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07010648333333333,
+      "cost_reported_trials": 9,
+      "evaluated": 9,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 346791,
+      "known_cost_usd": 0.63095835,
+      "median_duration_seconds": 116,
+      "model": "unbiased/pareto-26.10",
+      "model_label": "Pareto 26.10",
+      "output_tokens": 97332,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.7008549515804559,
+      "passed": 9,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261029.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 9,
       "unavailable": 0,
       "unavailable_categories": {}
     }
@@ -58022,6 +58103,456 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07280233333333334,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 48,
+      "known_cost_usd": 0.21840700000000002,
+      "median_duration_seconds": 33,
+      "model": "anthropic/claude-sonnet-5.5",
+      "model_label": "Claude Sonnet 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 31,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 38,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 33,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 7753,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261029.0.0",
+      "scenario": "034-checkout-dependency-rollout",
+      "scenario_label": "Checkout dependency rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.029727406666666668,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 203934,
+      "known_cost_usd": 0.08918222,
+      "median_duration_seconds": 32,
+      "model": "particle-ai/particle-1",
+      "model_label": "Particle-1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 27,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 32,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 51,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 19544,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261029.0.0",
+      "scenario": "034-checkout-dependency-rollout",
+      "scenario_label": "Checkout dependency rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.04651384333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 79530,
+      "known_cost_usd": 0.13954153,
+      "median_duration_seconds": 61,
+      "model": "unbiased/pareto-26.10",
+      "model_label": "Pareto 26.10",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 39,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 67,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 61,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 20288,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261029.0.0",
+      "scenario": "034-checkout-dependency-rollout",
+      "scenario_label": "Checkout dependency rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07085736666666666,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 50,
+      "known_cost_usd": 0.21257209999999999,
+      "median_duration_seconds": 34,
+      "model": "anthropic/claude-sonnet-5.5",
+      "model_label": "Claude Sonnet 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 34,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 37,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 26,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 7606,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261029.0.0",
+      "scenario": "035-notification-outbox-rollout",
+      "scenario_label": "Notification outbox rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.03110026,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 229990,
+      "known_cost_usd": 0.09330078,
+      "median_duration_seconds": 39,
+      "model": "particle-ai/particle-1",
+      "model_label": "Particle-1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 48,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 35,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 39,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 20666,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261029.0.0",
+      "scenario": "035-notification-outbox-rollout",
+      "scenario_label": "Notification outbox rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.07423856666666666,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 138765,
+      "known_cost_usd": 0.2227157,
+      "median_duration_seconds": 116,
+      "model": "unbiased/pareto-26.10",
+      "model_label": "Pareto 26.10",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 178,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 116,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 80,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 30613,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261029.0.0",
+      "scenario": "035-notification-outbox-rollout",
+      "scenario_label": "Notification outbox rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0789863,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 56,
+      "known_cost_usd": 0.2369589,
+      "median_duration_seconds": 44,
+      "model": "anthropic/claude-sonnet-5.5",
+      "model_label": "Claude Sonnet 5.5",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 44,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 38,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 54,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10501,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261029.0.0",
+      "scenario": "036-reservation-write-contention",
+      "scenario_label": "Reservation write contention",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.036410663333333336,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 203319,
+      "known_cost_usd": 0.10923199,
+      "median_duration_seconds": 72,
+      "model": "particle-ai/particle-1",
+      "model_label": "Particle-1",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 81,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 72,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 67,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 31768,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261029.0.0",
+      "scenario": "036-reservation-write-contention",
+      "scenario_label": "Reservation write contention",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.08956704,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 128496,
+      "known_cost_usd": 0.26870112,
+      "median_duration_seconds": 182,
+      "model": "unbiased/pareto-26.10",
+      "model_label": "Pareto 26.10",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 154,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 190,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 182,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 46431,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261029.0.0",
+      "scenario": "036-reservation-write-contention",
+      "scenario_label": "Reservation write contention",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "frontier",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -63826,7 +64357,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "Particle-1 passed all 33 evaluated Core trials at high reasoning, with $0.9534 in provider-reported API cost and a 54-second median agent duration.",
       "harness_versions": [
         23
@@ -63835,7 +64366,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -63971,6 +64502,103 @@
         "usage_reported_trials": 33
       },
       "version": "20261028.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "custom build b959ef677ff7"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Three configurations each passed all nine evaluated trials across three experimental Core Hard incidents. Total provider-reported API spend was $1.5906. This batch did not separate the models by success rate.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261028.0.0"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "034-checkout-dependency-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261028.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "035-notification-outbox-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261028.0.0"
+          },
+          "version": 1
+        },
+        {
+          "id": "036-reservation-write-contention",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261028.0.0"
+          },
+          "version": 1
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "4a7ac75faf39eaf4b60c6dec102551750e462be9ec999d1978322779188f6232"
+        },
+        {
+          "source": "matrix",
+          "summary_sha256": "b30d71b5bffea47d6beb6fa66c3669307edcbf7804e16e4d782e7703e81f8719"
+        }
+      ],
+      "tier": "frontier",
+      "title": "Experimental Core Hard: Particle-1, Sonnet 5.5, and Pareto 26.10",
+      "totals": {
+        "cache_creation_reported_trials": 27,
+        "cache_creation_tokens": 133710,
+        "cache_read_reported_trials": 27,
+        "cache_read_tokens": 4163863,
+        "cost_reported_trials": 27,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 27,
+        "failed": 0,
+        "failure_categories": {},
+        "input_tokens": 984188,
+        "known_cost_usd": 1.59061134,
+        "median_duration_seconds": 48,
+        "median_first_non_read_only_tool_seconds": 1.963,
+        "median_model_duration_seconds": 38.265,
+        "median_model_rounds": 16,
+        "median_post_first_non_read_only_seconds": 45.872,
+        "median_tool_calls": 22,
+        "median_tool_duration_seconds": 5.918,
+        "output_tokens": 195170,
+        "pass_rate": 1.0,
+        "passed": 27,
+        "recording_reported_trials": 27,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 27,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 27
+      },
+      "version": "20261029.0.0"
     }
   ],
   "schema_version": 1
