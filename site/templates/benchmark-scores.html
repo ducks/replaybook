@@ -1,16 +1,16 @@
 {% extends "benchmark-base.html" %}
 {% set active_tab = "scores" %}
-{% block title %}Core scores{% endblock %}
+{% block title %}Benchmark scores{% endblock %}
 {% block description %}Complete, versioned infrastructure-agent scores with provider, harness, and attempt counts visible.{% endblock %}
 {% block content %}
-<p class="eyebrow">Core / end-to-end success</p>
+<p class="eyebrow">Benchmarks / end-to-end success</p>
 <h1>One score. Full context.</h1>
 <p class="tagline benchmark-tagline">A score belongs to a model, provider, harness, and benchmark contract. Not to a model name alone.</p>
 <div class="callout comparison-note">
   <strong>Score = 100 × average scenario success rate.</strong>
   Each scenario has equal weight. All recorded attempts count, including unavailable attempts.
   Only complete coverage of the pinned contract gets a headline score. This differs from Evidence's conditional repair rate, which excludes unavailable trials.
-  Small samples are not definitive rankings; completeness is not statistical certainty. Speed and cost are not blended into the score.
+  Different benchmark suites have separate scores and are not directly comparable. Small samples are not definitive rankings; completeness is not statistical certainty. Speed and cost are not blended into the score.
 </div>
 {% if report.cohorts %}
 <div class="score-toolbar" role="group" aria-label="Score filters and sorting">
@@ -18,7 +18,7 @@
 <label for="score-cohort">Benchmark conditions</label>
 <select id="score-cohort" class="score-selector">
 {% for cohort in report.cohorts %}
-  <option value="{{ cohort.id }}">Core {{ cohort.benchmark }} · conditions {{ cohort.id[:8] }}</option>
+  <option value="{{ cohort.id }}">{{ cohort.label }} {{ cohort.benchmark }} · conditions {{ cohort.id[:8] }}</option>
 {% endfor %}
 </select>
 </div>
@@ -48,7 +48,8 @@
 {% endif %}
 {% for cohort in report.cohorts %}
 <section class="score-cohort" data-condition="{{ cohort.id }}" data-releases="{{ cohort.releases|join(',') }}">
-  <h2>Core {{ cohort.benchmark }}</h2>
+  <h2>{{ cohort.label }} {{ cohort.benchmark }}{% if cohort.experimental %} · Experimental{% endif %}</h2>
+  {% if cohort.experimental %}<p class="callout comparison-note">Experimental suite · measured separately from Core. These scenarios have not yet been established as harder; scores apply only to this pinned contract.</p>{% endif %}
   <p>{{ cohort.attempts }} attempts per scenario · {{ cohort.timeout }}s deadline · matching controller and scenario fingerprints</p>
   <p class="small muted">Compare configurations, not model names alone. Each card retains its own release; attempts are never pooled across releases. Harness and provider differences can affect results.</p>
   {% for provider, cards in cohort.groups.items() %}
@@ -156,7 +157,7 @@
 {% endblock %}
 {% block scripts %}
 <script type="application/json" id="score-scenario-data">{{ {"groups": report.scenario_details, "runs": report.scenario_runs}|tojson }}</script>
-<script src="score-scenarios.js?v=2"></script>
+<script src="score-scenarios.js?v=3"></script>
 <script>
 const selector = document.getElementById('score-cohort');
 if (selector) {

@@ -2,6 +2,7 @@ import copy
 from types import SimpleNamespace
 import unittest
 import json
+import tempfile
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
@@ -219,6 +220,77 @@ class ScoreTests(unittest.TestCase):
     def test_empty_observed_sample_has_no_rates(self):
         self.assertEqual(observed_scenario_rates([]), [])
         self.assertEqual(scenario_profiles([]), [{"harness": "", "configurations": 0, "rates": []}])
+
+    def test_frontier_suite_accepts_only_its_exact_pinned_contract(self):
+        self.benchmark.id = "example-core-hard"
+        self.benchmark.tier = "frontier"
+        self.release["compatibility"]["benchmark_manifest"].update(id=self.benchmark.id,tier="frontier")
+        self.assertEqual(self.card()["status"],"complete")
+        self.assertEqual(self.card()["score"],50)
+        self.release["compatibility"]["benchmark_manifest"]["sha256"] = "different"
+        self.assertEqual(self.card()["status"],"provisional")
+
+    def test_core_and_hard_contracts_cannot_be_interchanged_or_grouped(self):
+        core = self.snapshot_release()
+        hard = copy.deepcopy(core)
+        hard["compatibility"]["benchmark_manifest"].update(id="example-core-hard",tier="frontier")
+        self.assertNotEqual(condition_id(core),condition_id(hard))
+        self.benchmark.tier = "frontier"
+        with self.assertRaisesRegex(ValueError,"matching"):
+            self.card()
+        self.release["compatibility"]["benchmark_manifest"]["tier"] = "frontier"
+        self.benchmark.id = "example-core-hard"
+        with self.assertRaisesRegex(ValueError,"IDs differ"):
+            self.card()
+
+    def test_mixed_suite_page_keeps_labels_scores_and_observations_separate(self):
+        from .benchmark_manifest import load_benchmark_manifest
+        from .publish_benchmarks import render_site_template
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            data = root / "benchmark-data"
+            (data / "releases").mkdir(parents=True)
+            cohorts = []
+            versions = []
+            for suite,tier,passed in (("core","core",3),("hard","frontier",0)):
+                manifest = data / (suite+".toml")
+                manifest.write_text(
+                    'schema_version = 1\n[benchmark]\nid = "example-'+suite+'"\n'
+                    'version = "1"\nstatus = "'+('experimental' if suite == 'hard' else 'stable')+'"\n'
+                    'tier = "'+tier+'"\nattempts = 3\nagent_timeout_seconds = 900\n'
+                    'required_host_harness_version = 23\n[pack]\npath = "."\nid = "example/pack"\n'
+                    '[verification]\nrequire_immediate_recovery = true\nrequire_service_restart = true\n'
+                    'require_host_reboot = true\npreserve_controller_state = true\n'
+                    '[[scenarios]]\nid = "a"\nversion = 1\n[[scenarios]]\nid = "b"\nversion = 1\n')
+                benchmark = load_benchmark_manifest(manifest)
+                release = self.snapshot_release()
+                release.update(version="20261029.0."+str(len(versions)),title=suite)
+                release["compatibility"]["benchmark_manifest"].update(id=benchmark.id,tier=tier,sha256=benchmark.sha256)
+                release["by_scenario_model"] = [self.row(name,passed,3) for name in ("a","b")]
+                release["by_model"] = [{"provider":"test","model":"model","reasoning_effort":"high",
+                                        "known_cost_usd":1,"cost_reported_trials":6,"median_duration_seconds":10}]
+                release["runs"] = [{"provider":"test","model":"model","reasoning_effort":"high",
+                                    "scenario":scenario,"scenario_version":1,"attempt":attempt,
+                                    "reward":1 if passed else 0,"trial_status":"evaluated"}
+                                   for scenario in ("a","b") for attempt in (1,2,3)]
+                (data / "releases" / (release["version"]+".json")).write_text(json.dumps(release))
+                versions.append(release["version"])
+                cohorts.append({"release":release["version"],"manifest":str(manifest.relative_to(root)),
+                                "label":"Core Hard" if suite == "hard" else "Core"})
+            (data / "scores.json").write_text(json.dumps({"cohorts":cohorts}))
+            report = build_scores(root,{"releases":versions})
+            self.assertEqual(len(report["cohorts"]),2)
+            core,hard = report["cohorts"]
+            self.assertEqual(core["groups"]["test"][0]["score"],100)
+            self.assertEqual(hard["groups"]["test"][0]["score"],0)
+            self.assertNotEqual(core["id"],hard["id"])
+            self.assertEqual(core["scenario_profiles"][0]["rates"][0]["failure_rate"],0)
+            self.assertEqual(hard["scenario_profiles"][0]["rates"][0]["failure_rate"],100)
+            self.assertEqual([group["label"] for group in report["scenario_details"]],["Core","Core Hard"])
+            html = render_site_template("benchmark-scores.html",report=report)
+            self.assertIn("Core Hard 1 · Experimental",html)
+            self.assertIn("not directly comparable",html)
+            self.assertEqual(html.count('class="score-cohort"'),2)
 
     def test_non_core_rejected(self):
         self.benchmark.tier = "smoke"

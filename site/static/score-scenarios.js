@@ -119,9 +119,10 @@ function initializeScenarioDialog(selector, harness) {
     byId('rate').textContent = row.failure_rate == null ? '—' : `${row.failure_rate.toFixed(1)}%`;
     byId('trials').textContent = `${row.unsuccessful} / ${row.trials}`;
     byId('configurations').textContent = row.configurations;
-    const benchmark = details.find(group => group.condition === selector.value).benchmark;
+    const group = details.find(group => group.condition === selector.value);
+    const benchmark = `${group.label || 'Core'} ${group.benchmark}`;
     const harnessLabel = harness.value ? harness.selectedOptions[0].textContent : 'All harnesses';
-    byId('scope').textContent = `Core ${benchmark} · ${harnessLabel}. Each configuration entry belongs to its own published release; repeated entries count separately.`;
+    byId('scope').textContent = `${benchmark} · ${harnessLabel}. Each configuration entry belongs to its own published release; repeated entries count separately.`;
     byId('unavailable').textContent = `${row.unavailable} unavailable attempts, included as unsuccessful. Select a configuration to inspect its attempt evidence.`;
     byId('rate-label').textContent = 'Observed failure rate';
     byId('trials-label').textContent = 'Unsuccessful / recorded';
@@ -134,7 +135,7 @@ function initializeScenarioDialog(selector, harness) {
       byId('configurations').textContent = run.known_cost_usd == null ? 'Unknown' :
         (run.cost_lower_bound ? '≥' : '') + '$' + run.known_cost_usd.toFixed(4);
       byId('configurations-label').textContent = 'Reported scenario cost';
-      byId('scope').textContent = `Core ${benchmark} · release ${selected.release} · ${selected.provider} · ${selected.harness} · ${selected.reasoning} reasoning.`;
+      byId('scope').textContent = `${benchmark} · release ${selected.release} · ${selected.provider} · ${selected.harness} · ${selected.reasoning} reasoning.`;
       byId('unavailable').textContent = `${selected.unavailable} unavailable attempts in this configuration, included as unsuccessful.`;
     }
     byId('unavailable').hidden = Boolean(run && !selected.unavailable);

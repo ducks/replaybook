@@ -1135,3 +1135,25 @@ Harness credentials are written to a mode-0600 file inside the disposable VM,
 used only for the adapter process, and destroyed with the VM. The agent runs as
 root and can damage its own evaluator access, but it cannot affect the local
 controller or host beyond the forwarded SSH and HTTP connections.
+
+## Separate experimental score suites
+
+The public scores renderer accepts explicitly selected `core` and `frontier`
+contracts. Every release must match its target benchmark ID and tier; headline
+scores additionally require the pinned manifest digest, version, attempt count,
+deadline, host harness, and complete scenario coverage. Comparison groups retain
+controller and scenario fingerprints, so Core Hard results never join Core.
+
+For a reviewed Core Hard release, select the pinned manifest in
+`benchmark-data/scores.json` and provide a display label:
+
+```json
+{"release": "REVIEWED_RELEASE", "manifest": "benchmark-data/manifests/core-hard-2026.10.28.1.toml", "label": "Core Hard"}
+```
+
+Only add this entry after importing reviewed evidence with the publisher. The
+experimental manifest status adds a visible experimental notice; the label is
+also carried into model-specific scenario overlays. Core Hard contains three
+scenarios and three attempts each, for nine trials per configuration. Its score
+is separate from the eleven-scenario Core score and is not directly comparable.
+Development smoke results must not be presented as complete benchmark scores.
