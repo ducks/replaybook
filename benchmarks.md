@@ -9,19 +9,19 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core: Fireworks Ember 1
+## Frozen Core: Particle-1
 
-Ember 1 passed 32 of 33 evaluated Core trials with high reasoning. Provider-reported API spend was $4.7909.
+Particle-1 passed all 33 evaluated Core trials at high reasoning, with $0.9534 in provider-reported API cost and a 54-second median agent duration.
 
-Benchmark release: `20261027.0.1`
+Benchmark release: `20261028.0.0`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Fireworks Ember 1 (high) · openrouter | 32/33 | 97% | 1:20 | $4.7909 | $0.1497 |
-| **Total** | **32/33** | **97%** | **1:20** | **$4.7909** | **$0.1497** |
+| Particle-1 (high) · openrouter | 33/33 | 100% | 0:54 | $0.9534 | $0.0289 |
+| **Total** | **33/33** | **100%** | **0:54** | **$0.9534** | **$0.0289** |
 
 ### Execution recording
 
@@ -29,49 +29,46 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Fireworks Ember 1 (high) · openrouter | 33/33 | 14 | 1:08 | 16 | 0:08 | 0:04 | 1:14 |
+| Particle-1 (high) · openrouter | 33/33 | 17 | 0:32 | 25 | 0:16 | 0:01 | 0:51 |
 
-Fireworks Ember 1 passed 32/33 (97.0%), with an 80-second median agent duration and $4.7909 in provider-reported cost. Recorded cost per successful repair was $0.1497.
+Particle-1 passed 33/33 (100.0%), with a 54-second median agent duration and $0.9534 in provider-reported API cost. Recorded cost per successful repair was $0.0289.
 
-All 32 scored passes passed immediate, service-restart, and host-reboot verification. The sole evaluated failure was shared uploads, attempt 1: immediate HTTP verification did not recover the controller-owned accepted uploads. Service-restart and host-reboot success were not confirmed.
+The run recorded 1,374,151 input tokens, 310,341 output tokens, and 9,984,512 cache-read tokens. Median recorded model rounds were 17 and tool calls were 25. These are execution observations, not pure inference latency or proof of general token-efficiency claims.
 
-The uploads failure completed 14 model rounds and 18 tool calls in 143 seconds, with $0.1899486 in reported cost. It remains a scored failure, not an unavailable trial.
+The earlier compatible DeepSeek V4.1 Flash 1017 configuration passed 32/33 at $0.5362. Particle achieved one more observed repair in this sample with higher total reported cost. Different trajectories and provider conditions prevent attributing the difference solely to post-training.
 
-All comparisons retain exact release, provider, model, reasoning, harness, and benchmark identity. Timing reflects the whole agent run and can include provider and host variability.
+All comparisons retain exact release, provider, model, reasoning, harness, and benchmark identity. A perfect score over three attempts per incident does not establish universal reliability.
 
 ### Scenario breakdown
 
-| Scenario | Version | Fireworks Ember 1 (high) · openrouter |
+| Scenario | Version | Particle-1 (high) · openrouter |
 |---|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 1:00 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 1:01 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 2:14 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 1:12 |
-| 017-partial-rails-rollout | v1 | 3/3, 2:37 |
-| 019-rust-fd-leak | v1 | 3/3, 1:06 |
-| 021-discourse-shared-uploads | v1 | 2/3, 2:23 |
-| 023-auth-secret-rollout | v1 | 3/3, 1:18 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 1:23 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 1:48 |
-| 033-tls-trust-rotation | v2 | 3/3, 1:16 |
+| 001-nginx-502-host | v1 | 3/3, 1:21 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 1:15 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 1:31 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 0:54 |
+| 017-partial-rails-rollout | v1 | 3/3, 1:03 |
+| 019-rust-fd-leak | v1 | 3/3, 0:42 |
+| 021-discourse-shared-uploads | v1 | 3/3, 1:04 |
+| 023-auth-secret-rollout | v1 | 3/3, 0:38 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 0:45 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 0:49 |
+| 033-tls-trust-rotation | v2 | 3/3, 0:43 |
 
 ### Failure categories
 
-- `accepted_uploads_not_recovered`: 1
 
 ### Source matrices
 
-- `matrix`: fireworks/ember-1; Replaybook `37506bdd`; reasoning high
-- `matrix`: fireworks/ember-1; Replaybook `37506bdd`; reasoning high
+- `matrix`: particle-ai/particle-1; Replaybook `37506bdd`; reasoning high
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable.
-- Publication combines two disjoint, compatible slices: a three-attempt Nginx pilot and thirty attempts across the other ten scenarios. The publisher validates their frozen execution identity and complete scenario coverage. No pilot trial was rerun or duplicated.
-- One auth-rollout attempt initially failed incident preflight before meaningful inference. Its original logs, scenario state, and 29-trial summary were archived with SHA-256 digests before resuming that missing attempt on the original execution snapshot. The recovered attempt passed; all 29 previously recorded results are unchanged. The evaluated uploads failure was retained without retry.
+- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable. No recovery runs or retries were needed.
+- All 33 scored passes passed immediate, service-restart, and host-reboot verification. No scoring exemptions or post-run corrections have been applied.
 - This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
 - This batch used one concurrent VM. Worker concurrency and host/provider conditions can affect timing; they do not change scenario weighting, the per-agent deadline, or verification requirements.
-- Provider-reported cost is present for all 33 trials. Recorded API cost totals $4.7908611; this is reported inference spend rather than VM or other infrastructure cost.
+- Provider-reported API cost is present for all 33 trials and totals $0.95341411. Cost excludes VM hosting and other infrastructure. The exact model ID is particle-ai/particle-1 through OpenRouter.
 - Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. Scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.
 - Public evidence includes normalized trial results, verification flags and post-timeout diagnostics, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded.
 

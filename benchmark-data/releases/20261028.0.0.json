@@ -1,0 +1,2342 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 9984512,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1374151,
+      "known_cost_usd": 0.95341411,
+      "median_duration_seconds": 54,
+      "median_first_non_read_only_tool_seconds": 0.97,
+      "median_model_duration_seconds": 31.649,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 50.815,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 15.854,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 310341,
+      "pass_rate": 1.0,
+      "passed": 33,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 787200,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 130431,
+      "known_cost_usd": 0.08019375,
+      "median_duration_seconds": 81,
+      "median_first_non_read_only_tool_seconds": 1.668,
+      "median_model_duration_seconds": 69.937,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 77.41999999999999,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 5.246,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 23970,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 525056,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 74367,
+      "known_cost_usd": 0.05263943,
+      "median_duration_seconds": 75,
+      "median_first_non_read_only_tool_seconds": 1.197,
+      "median_model_duration_seconds": 42.498,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 71.878,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 30.455,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 18296,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1287680,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 159729,
+      "known_cost_usd": 0.12108564999999999,
+      "median_duration_seconds": 91,
+      "median_first_non_read_only_tool_seconds": 0.886,
+      "median_model_duration_seconds": 41.535,
+      "median_model_rounds": 25,
+      "median_post_first_non_read_only_seconds": 87.99300000000001,
+      "median_tool_calls": 32,
+      "median_tool_duration_seconds": 49.559,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 42523,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 805376,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 66872,
+      "known_cost_usd": 0.06811828,
+      "median_duration_seconds": 54,
+      "median_first_non_read_only_tool_seconds": 0.931,
+      "median_model_duration_seconds": 30.002,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 51.113,
+      "median_tool_calls": 28,
+      "median_tool_duration_seconds": 15.916,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 27239,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 882432,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 59621,
+      "known_cost_usd": 0.06138220999999999,
+      "median_duration_seconds": 63,
+      "median_first_non_read_only_tool_seconds": 1.07,
+      "median_model_duration_seconds": 25.36,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 60.351000000000006,
+      "median_tool_calls": 23,
+      "median_tool_duration_seconds": 33.202,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 20004,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 722432,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 76035,
+      "known_cost_usd": 0.06330971,
+      "median_duration_seconds": 42,
+      "median_first_non_read_only_tool_seconds": 1.406,
+      "median_model_duration_seconds": 27.103,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 38.849000000000004,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 9.479,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 22628,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1330688,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 100313,
+      "known_cost_usd": 0.11306789,
+      "median_duration_seconds": 64,
+      "median_first_non_read_only_tool_seconds": 0.97,
+      "median_model_duration_seconds": 50.262,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 61.878,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 12.4,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 48069,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 918784,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 214408,
+      "known_cost_usd": 0.10481752,
+      "median_duration_seconds": 38,
+      "median_first_non_read_only_tool_seconds": 0.822,
+      "median_model_duration_seconds": 27.965,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 34.529999999999994,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 5.625,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 23652,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 793088,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 122376,
+      "known_cost_usd": 0.07667464,
+      "median_duration_seconds": 45,
+      "median_first_non_read_only_tool_seconds": 0.795,
+      "median_model_duration_seconds": 26.803,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 43.181,
+      "median_tool_calls": 27,
+      "median_tool_duration_seconds": 18.534,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 22288,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1144064,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 210665,
+      "known_cost_usd": 0.12380417000000002,
+      "median_duration_seconds": 49,
+      "median_first_non_read_only_tool_seconds": 1.006,
+      "median_model_duration_seconds": 33.842,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 45.355,
+      "median_tool_calls": 32,
+      "median_tool_duration_seconds": 11.973,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 36816,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 787712,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 159334,
+      "known_cost_usd": 0.08832086,
+      "median_duration_seconds": 43,
+      "median_first_non_read_only_tool_seconds": 0.743,
+      "median_model_duration_seconds": 22.724,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 39.643,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 17.23,
+      "model": "particle-ai/particle-1",
+      "output_tokens": 24856,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "custom build b959ef677ff7"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Particle-1 passed all 33 evaluated Core trials at high reasoning, with $0.9534 in provider-reported API cost and a 54-second median agent duration.",
+  "input_mode": "text",
+  "model_labels": {
+    "particle-ai/particle-1": "Particle-1"
+  },
+  "model_order": [
+    "particle-ai/particle-1"
+  ],
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable. No recovery runs or retries were needed.",
+    "All 33 scored passes passed immediate, service-restart, and host-reboot verification. No scoring exemptions or post-run corrections have been applied.",
+    "This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "This batch used one concurrent VM. Worker concurrency and host/provider conditions can affect timing; they do not change scenario weighting, the per-agent deadline, or verification requirements.",
+    "Provider-reported API cost is present for all 33 trials and totals $0.95341411. Cost excludes VM hosting and other infrastructure. The exact model ID is particle-ai/particle-1 through OpenRouter.",
+    "Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. Scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.",
+    "Public evidence includes normalized trial results, verification flags and post-timeout diagnostics, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "Particle-1 passed 33/33 (100.0%), with a 54-second median agent duration and $0.9534 in provider-reported API cost. Recorded cost per successful repair was $0.0289.",
+    "The run recorded 1,374,151 input tokens, 310,341 output tokens, and 9,984,512 cache-read tokens. Median recorded model rounds were 17 and tool calls were 25. These are execution observations, not pure inference latency or proof of general token-efficiency claims.",
+    "The earlier compatible DeepSeek V4.1 Flash 1017 configuration passed 32/33 at $0.5362. Particle achieved one more observed repair in this sample with higher total reported cost. Different trajectories and provider conditions prevent attributing the difference solely to post-training.",
+    "All comparisons retain exact release, provider, model, reasoning, harness, and benchmark identity. A perfect score over three attempts per incident does not establish universal reliability."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 73,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:12:39Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.51,
+        "model_duration_seconds": 65.141,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 68.163,
+        "tool_calls": 22,
+        "tool_duration_seconds": 5.246,
+        "total_duration_seconds": 70.673
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:11:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 311040,
+        "cost_source": "provider",
+        "cost_usd": 0.040120699999999995,
+        "input_tokens": 93306,
+        "output_tokens": 7463,
+        "rounds": 16,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 81,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:14:52Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.668,
+        "model_duration_seconds": 69.937,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 77.41999999999999,
+        "tool_calls": 19,
+        "tool_duration_seconds": 9.028,
+        "total_duration_seconds": 79.088
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:13:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 222208,
+        "cost_source": "provider",
+        "cost_usd": 0.01866574,
+        "input_tokens": 14794,
+        "output_tokens": 8301,
+        "rounds": 15,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 83,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:17:07Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.443,
+        "model_duration_seconds": 77.747,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 80.174,
+        "tool_calls": 21,
+        "tool_duration_seconds": 3.604,
+        "total_duration_seconds": 81.617
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:15:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 253952,
+        "cost_source": "provider",
+        "cost_usd": 0.02140731,
+        "input_tokens": 22331,
+        "output_tokens": 8206,
+        "rounds": 14,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 70,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:19:28Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.672,
+        "model_duration_seconds": 33.012,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 66.667,
+        "tool_calls": 20,
+        "tool_duration_seconds": 35.228,
+        "total_duration_seconds": 68.339
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-10-28T20:18:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 136192,
+        "cost_source": "provider",
+        "cost_usd": 0.01676776,
+        "input_tokens": 30924,
+        "output_tokens": 4951,
+        "rounds": 13,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 75,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:21:53Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.197,
+        "model_duration_seconds": 42.498,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 71.878,
+        "tool_calls": 21,
+        "tool_duration_seconds": 30.455,
+        "total_duration_seconds": 73.075
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-10-28T20:20:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 192256,
+        "cost_source": "provider",
+        "cost_usd": 0.020007180000000003,
+        "input_tokens": 29806,
+        "output_tokens": 6788,
+        "rounds": 16,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 86,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:24:16Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.184,
+        "model_duration_seconds": 53.854,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 83.001,
+        "tool_calls": 21,
+        "tool_duration_seconds": 30.223,
+        "total_duration_seconds": 84.185
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-10-28T20:22:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 196608,
+        "cost_source": "provider",
+        "cost_usd": 0.01586449,
+        "input_tokens": 13637,
+        "output_tokens": 6557,
+        "rounds": 15,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:26:53Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.103,
+        "model_duration_seconds": 47.037,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 87.99300000000001,
+        "tool_calls": 33,
+        "tool_duration_seconds": 41.835,
+        "total_duration_seconds": 89.096
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:25:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 460288,
+        "cost_source": "provider",
+        "cost_usd": 0.047618139999999996,
+        "input_tokens": 76246,
+        "output_tokens": 14748,
+        "rounds": 25,
+        "tool_calls": 33
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 100,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:29:38Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.812,
+        "model_duration_seconds": 41.535,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 97.11500000000001,
+        "tool_calls": 32,
+        "tool_duration_seconds": 56.149,
+        "total_duration_seconds": 97.927
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:27:40Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 452096,
+        "cost_source": "provider",
+        "cost_usd": 0.041056129999999996,
+        "input_tokens": 46505,
+        "output_tokens": 15867,
+        "rounds": 25,
+        "tool_calls": 32
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 85,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:32:06Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.886,
+        "model_duration_seconds": 33.38,
+        "model_rounds": 24,
+        "post_first_non_read_only_seconds": 82.253,
+        "tool_calls": 32,
+        "tool_duration_seconds": 49.559,
+        "total_duration_seconds": 83.139
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:30:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 375296,
+        "cost_source": "provider",
+        "cost_usd": 0.03241138,
+        "input_tokens": 36978,
+        "output_tokens": 11908,
+        "rounds": 24,
+        "tool_calls": 32
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 54,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:34:15Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.931,
+        "model_duration_seconds": 30.002,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 51.113,
+        "tool_calls": 31,
+        "tool_duration_seconds": 21.905,
+        "total_duration_seconds": 52.044
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:32:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 311808,
+        "cost_source": "provider",
+        "cost_usd": 0.022726240000000005,
+        "input_tokens": 15680,
+        "output_tokens": 9452,
+        "rounds": 22,
+        "tool_calls": 31
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 139,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:37:50Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 13.571,
+        "model_duration_seconds": 119.416,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 120.63400000000001,
+        "tool_calls": 24,
+        "tool_duration_seconds": 13.486,
+        "total_duration_seconds": 134.205
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:35:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 191232,
+        "cost_source": "provider",
+        "cost_usd": 0.021692210000000003,
+        "input_tokens": 36221,
+        "output_tokens": 6900,
+        "rounds": 19,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 45,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:39:45Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.731,
+        "model_duration_seconds": 27.962,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 43.283,
+        "tool_calls": 28,
+        "tool_duration_seconds": 15.916,
+        "total_duration_seconds": 44.014
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:38:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 302336,
+        "cost_source": "provider",
+        "cost_usd": 0.02369983,
+        "input_tokens": 14971,
+        "output_tokens": 10887,
+        "rounds": 19,
+        "tool_calls": 28
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 53,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:41:53Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.07,
+        "model_duration_seconds": 22.402,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 50.068,
+        "tool_calls": 23,
+        "tool_duration_seconds": 28.626,
+        "total_duration_seconds": 51.138
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:40:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 311040,
+        "cost_source": "provider",
+        "cost_usd": 0.02071745,
+        "input_tokens": 21977,
+        "output_tokens": 5892,
+        "rounds": 17,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 63,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:44:08Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.117,
+        "model_duration_seconds": 28.137,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 60.351000000000006,
+        "tool_calls": 23,
+        "tool_duration_seconds": 33.202,
+        "total_duration_seconds": 61.468
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:42:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 269568,
+        "cost_source": "provider",
+        "cost_usd": 0.01993104,
+        "input_tokens": 17716,
+        "output_tokens": 7415,
+        "rounds": 19,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 88,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:46:44Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.966,
+        "model_duration_seconds": 25.36,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 84.10900000000001,
+        "tool_calls": 25,
+        "tool_duration_seconds": 59.56,
+        "total_duration_seconds": 85.075
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:44:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 301824,
+        "cost_source": "provider",
+        "cost_usd": 0.020733719999999997,
+        "input_tokens": 19928,
+        "output_tokens": 6697,
+        "rounds": 17,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 42,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:49:59Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.406,
+        "model_duration_seconds": 30.625,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 38.849000000000004,
+        "tool_calls": 19,
+        "tool_duration_seconds": 9.479,
+        "total_duration_seconds": 40.255
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:49:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 170496,
+        "cost_source": "provider",
+        "cost_usd": 0.022441380000000004,
+        "input_tokens": 39198,
+        "output_tokens": 7527,
+        "rounds": 15,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 43,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:53:29Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.099,
+        "model_duration_seconds": 27.103,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 39.715,
+        "tool_calls": 22,
+        "tool_duration_seconds": 13.581,
+        "total_duration_seconds": 40.814
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:52:30Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 231680,
+        "cost_source": "provider",
+        "cost_usd": 0.018502900000000003,
+        "input_tokens": 15326,
+        "output_tokens": 7721,
+        "rounds": 16,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 37,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:56:41Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.45,
+        "model_duration_seconds": 26.734,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 33.513,
+        "tool_calls": 19,
+        "tool_duration_seconds": 8.057,
+        "total_duration_seconds": 34.963
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:55:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 320256,
+        "cost_source": "provider",
+        "cost_usd": 0.022365429999999995,
+        "input_tokens": 21511,
+        "output_tokens": 7380,
+        "rounds": 15,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 64,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T20:58:46Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.011,
+        "model_duration_seconds": 50.262,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 61.878,
+        "tool_calls": 19,
+        "tool_duration_seconds": 12.4,
+        "total_duration_seconds": 62.889
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:57:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 227072,
+        "cost_source": "provider",
+        "cost_usd": 0.022863409999999997,
+        "input_tokens": 13673,
+        "output_tokens": 12633,
+        "rounds": 15,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 86,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:01:16Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.855,
+        "model_duration_seconds": 67.784,
+        "model_rounds": 31,
+        "post_first_non_read_only_seconds": 83.782,
+        "tool_calls": 41,
+        "tool_duration_seconds": 16.347,
+        "total_duration_seconds": 84.637
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T20:59:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 727808,
+        "cost_source": "provider",
+        "cost_usd": 0.05989949000000001,
+        "input_tokens": 68969,
+        "output_tokens": 20823,
+        "rounds": 31,
+        "tool_calls": 41
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 54,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:03:07Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.97,
+        "model_duration_seconds": 46.187,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 50.815,
+        "tool_calls": 26,
+        "tool_duration_seconds": 5.4,
+        "total_duration_seconds": 51.785
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:01:59Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 375808,
+        "cost_source": "provider",
+        "cost_usd": 0.03030499,
+        "input_tokens": 17671,
+        "output_tokens": 14613,
+        "rounds": 20,
+        "tool_calls": 26
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 35,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:04:51Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.758,
+        "model_duration_seconds": 27.504,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 32.55,
+        "tool_calls": 27,
+        "tool_duration_seconds": 5.61,
+        "total_duration_seconds": 33.308
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:04:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 513536,
+        "cost_source": "provider",
+        "cost_usd": 0.04388033,
+        "input_tokens": 80689,
+        "output_tokens": 8302,
+        "rounds": 20,
+        "tool_calls": 27
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 41,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:06:36Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.822,
+        "model_duration_seconds": 33.109,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 38.047,
+        "tool_calls": 25,
+        "tool_duration_seconds": 5.625,
+        "total_duration_seconds": 38.869
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:05:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 177664,
+        "cost_source": "provider",
+        "cost_usd": 0.03604292,
+        "input_tokens": 94196,
+        "output_tokens": 7164,
+        "rounds": 17,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 38,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:08:16Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.883,
+        "model_duration_seconds": 27.965,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 34.529999999999994,
+        "tool_calls": 25,
+        "tool_duration_seconds": 7.314,
+        "total_duration_seconds": 35.413
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:07:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 227584,
+        "cost_source": "provider",
+        "cost_usd": 0.02489427,
+        "input_tokens": 39523,
+        "output_tokens": 8186,
+        "rounds": 18,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 45,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:10:15Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.795,
+        "model_duration_seconds": 24.886,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 43.181,
+        "tool_calls": 29,
+        "tool_duration_seconds": 18.936,
+        "total_duration_seconds": 43.976
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:09:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 249088,
+        "cost_source": "provider",
+        "cost_usd": 0.030722640000000002,
+        "input_tokens": 64168,
+        "output_tokens": 7208,
+        "rounds": 19,
+        "tool_calls": 29
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 47,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:12:22Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.793,
+        "model_duration_seconds": 26.803,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 44.688,
+        "tool_calls": 27,
+        "tool_duration_seconds": 18.534,
+        "total_duration_seconds": 45.481
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:11:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 219904,
+        "cost_source": "provider",
+        "cost_usd": 0.02287662,
+        "input_tokens": 36134,
+        "output_tokens": 7246,
+        "rounds": 17,
+        "tool_calls": 27
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 40,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:14:22Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.911,
+        "model_duration_seconds": 29.351,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 37.135999999999996,
+        "tool_calls": 27,
+        "tool_duration_seconds": 8.557,
+        "total_duration_seconds": 38.047
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:13:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 324096,
+        "cost_source": "provider",
+        "cost_usd": 0.023075380000000003,
+        "input_tokens": 22074,
+        "output_tokens": 7834,
+        "rounds": 17,
+        "tool_calls": 27
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 49,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:16:51Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.746,
+        "model_duration_seconds": 33.842,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 45.355,
+        "tool_calls": 32,
+        "tool_duration_seconds": 11.973,
+        "total_duration_seconds": 46.101
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:15:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 461568,
+        "cost_source": "provider",
+        "cost_usd": 0.04198604000000001,
+        "input_tokens": 63940,
+        "output_tokens": 12154,
+        "rounds": 20,
+        "tool_calls": 32
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 43,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:19:22Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.018,
+        "model_duration_seconds": 31.649,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 39.944,
+        "tool_calls": 24,
+        "tool_duration_seconds": 9.043,
+        "total_duration_seconds": 40.962
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:18:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 237824,
+        "cost_source": "provider",
+        "cost_usd": 0.03598122,
+        "input_tokens": 78018,
+        "output_tokens": 9342,
+        "rounds": 16,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 61,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:22:13Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.006,
+        "model_duration_seconds": 47.867,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 59.206,
+        "tool_calls": 34,
+        "tool_duration_seconds": 12.021,
+        "total_duration_seconds": 60.212
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-10-28T21:20:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 444672,
+        "cost_source": "provider",
+        "cost_usd": 0.04583691000000001,
+        "input_tokens": 68707,
+        "output_tokens": 15320,
+        "rounds": 25,
+        "tool_calls": 34
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 43,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:24:33Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.743,
+        "model_duration_seconds": 22.724,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 39.643,
+        "tool_calls": 25,
+        "tool_duration_seconds": 15.854,
+        "total_duration_seconds": 40.386
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-particle-ai-particle-1-reasoning-high-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-10-28T21:23:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 232704,
+        "cost_source": "provider",
+        "cost_usd": 0.030295370000000002,
+        "input_tokens": 63105,
+        "output_tokens": 7538,
+        "rounds": 16,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 51,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:26:37Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.727,
+        "model_duration_seconds": 29.667,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 46.812000000000005,
+        "tool_calls": 28,
+        "tool_duration_seconds": 17.23,
+        "total_duration_seconds": 47.539
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-particle-ai-particle-1-reasoning-high-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-10-28T21:25:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 299264,
+        "cost_source": "provider",
+        "cost_usd": 0.02805617,
+        "input_tokens": 36081,
+        "output_tokens": 10058,
+        "rounds": 20,
+        "tool_calls": 28
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 43,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-10-28T21:28:38Z",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.798,
+        "model_duration_seconds": 21.595,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 39.619,
+        "tool_calls": 25,
+        "tool_duration_seconds": 18.6,
+        "total_duration_seconds": 40.417
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-particle-ai-particle-1-reasoning-high-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-10-28T21:27:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 255744,
+        "cost_source": "provider",
+        "cost_usd": 0.02996932,
+        "input_tokens": 60148,
+        "output_tokens": 7260,
+        "rounds": 18,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-10-28T21:28:38.895421Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "particle-ai/particle-1"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-10-28T20:10:31.893565Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "a6b3a1a4f4e39e287a93e947eadd3a92bc2f9b502670806dccb6844869cbec53"
+    }
+  ],
+  "tier": "core",
+  "title": "Frozen Core: Particle-1",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 9984512,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 0,
+    "failure_categories": {},
+    "input_tokens": 1374151,
+    "known_cost_usd": 0.95341411,
+    "median_duration_seconds": 54,
+    "median_first_non_read_only_tool_seconds": 0.97,
+    "median_model_duration_seconds": 31.649,
+    "median_model_rounds": 17,
+    "median_post_first_non_read_only_seconds": 50.815,
+    "median_tool_calls": 25,
+    "median_tool_duration_seconds": 15.854,
+    "output_tokens": 310341,
+    "pass_rate": 1.0,
+    "passed": 33,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261028.0.0"
+}
