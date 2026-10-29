@@ -1,0 +1,33 @@
+{
+  "title": "Frozen Core: Particle-1",
+  "description": "Particle-1 passed all 33 evaluated Core trials at high reasoning, with $0.9534 in provider-reported API cost and a 54-second median agent duration.",
+  "input_mode": "text",
+  "model_order": [
+    "particle-ai/particle-1"
+  ],
+  "model_labels": {
+    "particle-ai/particle-1": "Particle-1"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable. No recovery runs or retries were needed.",
+    "All 33 scored passes passed immediate, service-restart, and host-reboot verification. No scoring exemptions or post-run corrections have been applied.",
+    "This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "This batch used one concurrent VM. Worker concurrency and host/provider conditions can affect timing; they do not change scenario weighting, the per-agent deadline, or verification requirements.",
+    "Provider-reported API cost is present for all 33 trials and totals $0.95341411. Cost excludes VM hosting and other infrastructure. The exact model ID is particle-ai/particle-1 through OpenRouter.",
+    "Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. Scenario failure rates are descriptive configuration samples, not intrinsic difficulty or score weights.",
+    "Public evidence includes normalized trial results, verification flags and post-timeout diagnostics, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "Particle-1 passed 33/33 (100.0%), with a 54-second median agent duration and $0.9534 in provider-reported API cost. Recorded cost per successful repair was $0.0289.",
+    "The run recorded 1,374,151 input tokens, 310,341 output tokens, and 9,984,512 cache-read tokens. Median recorded model rounds were 17 and tool calls were 25. These are execution observations, not pure inference latency or proof of general token-efficiency claims.",
+    "The earlier compatible DeepSeek V4.1 Flash 1017 configuration passed 32/33 at $0.5362. Particle achieved one more observed repair in this sample with higher total reported cost. Different trajectories and provider conditions prevent attributing the difference solely to post-training.",
+    "All comparisons retain exact release, provider, model, reasoning, harness, and benchmark identity. A perfect score over three attempts per incident does not establish universal reliability."
+  ]
+}
