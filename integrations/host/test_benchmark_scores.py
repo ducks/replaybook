@@ -3,10 +3,12 @@ from types import SimpleNamespace
 import unittest
 import json
 import tempfile
+import shutil
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from .benchmark_scores import score_release, build_scores, condition_id, group_conditions, observed_scenario_rates, scenario_profiles, scenario_run_detail
+from .publish_benchmarks import cooperation_trials, PublishError
 
 
 class ScoreTests(unittest.TestCase):
@@ -341,6 +343,45 @@ class ScoreTests(unittest.TestCase):
         self.assertEqual(len(grouped), 1)
         self.assertEqual(grouped[0]["releases"], ["a", "b", "c"])
         self.assertEqual([c["score"] for c in grouped[0]["groups"]["openrouter"]], [75, 50])
+
+
+class CooperationPublicationTests(unittest.TestCase):
+    def setUp(self):
+        temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup);self.root=Path(temp.name)
+        target=self.root/'benchmark-data/cooperation';target.parent.mkdir(parents=True)
+        shutil.copytree(Path(__file__).resolve().parents[2]/'benchmark-data/cooperation',target)
+        self.path=target/'trials.json'
+
+    def write(self,value):self.path.write_text(json.dumps(value))
+
+    def test_real_data_preserves_pair_failure_after_timeout(self):
+        records=cooperation_trials(self.root)
+        restricted=next(x for x in records if x['id']=='restricted-port')
+        self.assertFalse(restricted['success'])
+        self.assertTrue(all(restricted['milestones'][n]['cooperation'] for n in ('alpha','beta')))
+        self.assertEqual(restricted['agent_exit_codes']['beta'],124)
+
+    def test_shared_disk_result_has_no_peer_packets(self):
+        record=next(x for x in cooperation_trials(self.root) if x['id']=='shared-disk')
+        self.assertEqual(record['transport'],'shared-disk')
+        self.assertEqual(record['evidence']['network_events'],[])
+        self.assertTrue(all(record['milestones'][n]['shared_disk_changed'] for n in ('alpha','beta')))
+
+    def test_free_for_all_records_unchanged_disk_and_success(self):
+        record=next(x for x in cooperation_trials(self.root) if x['id']=='free-for-all')
+        self.assertEqual(record['transport'],'free-for-all')
+        self.assertTrue(record['success'])
+        self.assertFalse(record['milestones']['alpha']['shared_disk_changed'])
+        self.assertTrue(record['milestones']['alpha']['peer_payload_observed'])
+
+    def test_rejects_reclassified_failure_and_changed_snapshot(self):
+        data=json.loads(self.path.read_text());changed=copy.deepcopy(data)
+        next(x for x in changed['trials'] if x['id']=='restricted-port')['success']=True
+        self.write(changed)
+        with self.assertRaises(PublishError):cooperation_trials(self.root)
+        self.write(data)
+        (self.root/'benchmark-data/cooperation/snapshots/restricted-port/lab/node.nix').write_text('tampered')
+        with self.assertRaises(PublishError):cooperation_trials(self.root)
 
 
 if __name__ == "__main__":

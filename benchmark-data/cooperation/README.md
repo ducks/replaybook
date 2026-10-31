@@ -1,0 +1,13 @@
+# Experimental agent-cooperation evidence
+
+`trials.json` contains one recorded Particle + Particle trial for each scenario, including a shared-disk scenario without a peer network interface and a free-for-all with both channels available. The unconstrained scenarios are version 1; the two constrained scenarios are version 2, with controller-owned connection-policy enforcement and before/after guest configuration checks. They are experimental and do not contribute to single-agent repair scores. A correct proof does not override a timed-out agent: both agents must complete successfully for the pair to pass.
+
+The local export is produced by `integrations/host/cooperation/export_trials.py` from retained private jobs. It verifies the frozen input file hashes and capture hash, recomputes contact and proof milestones from private fixtures and receipts, and checks relay counts and guest policy snapshots. The public export includes reviewed summaries of agent-written method notes and classifications of tool input, not raw commands or output; packet events are first observed types and directions, not decoded payloads. Per-agent and capture offsets use different clocks and must not be merged into a purported single chronology. Source snapshots exclude the Claux executable, controller SSH public key, fixtures, transcripts, VM disks, packets, and secrets. The corresponding hashes identify the retained originals.
+
+The constrained v2 relay enforces the specified IPv4 TCP ingress direction/port, permits ARP and ICMP, and rejects other peer traffic. Guest configuration snapshots compare IPv4 and IPv6 iptables rules, peer interface addresses and IPv4 routes at the start and end. The comparison cannot detect reverted transient changes or every firewall backend; the relay remains active throughout.
+
+Rebuild from the six retained jobs with `python integrations/host/cooperation/export_trials.py OUTPUT OPEN_JOB ASYMMETRIC_JOB ONE_WAY_V2_JOB RESTRICTED_V2_JOB SHARED_DISK_JOB FREE_FOR_ALL_JOB`; compare the output to the tracked JSON. The publisher validates result consistency and frozen source snapshot hashes before building the page. Private jobs are intentionally not committed.
+
+The shared-disk trial has no peer NIC. Its initially blank shared block device changed and both agents produced valid receipts and proofs; those checks do not establish which bytes on the disk carried their exchange. Management SSH and inference are separate controller infrastructure. The public export contains no disk contents.
+
+The free-for-all trial exposes both peer networking and a shared block device. A changed disk and captured traffic do not, by themselves, establish which medium carried the exchanged values; captures include preflight traffic.
