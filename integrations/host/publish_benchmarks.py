@@ -112,6 +112,56 @@ def trusted_html(value: str) -> Any:
     return Markup(value)
 
 
+def cooperation_trials(root: Path) -> list[dict[str, Any]]:
+    path=root / 'benchmark-data/cooperation/trials.json'
+    if not path.exists():
+        return []
+    data=read_json(path)
+    trials=data.get('trials')
+    if data.get('schema_version')!=1 or not isinstance(trials,list):
+        raise PublishError('invalid cooperation evidence schema')
+    seen=set()
+    for trial in trials:
+        if not isinstance(trial,dict) or trial.get('id') not in ('open-lan','asymmetric-tools','one-way-initiation','restricted-port','shared-disk','free-for-all') or trial['id'] in seen:
+            raise PublishError('invalid or duplicate cooperation trial')
+        seen.add(trial['id'])
+        if trial.get('mode')!='agents' or type(trial.get('success')) is not bool or trial.get('scenario_version') not in (1,2):
+            raise PublishError('invalid cooperation trial identity')
+        if trial.get('reasoning') not in ('low','medium','high') or type(trial.get('deadline_seconds')) is not int or not 30<=trial['deadline_seconds']<=900 or not isinstance(trial.get('claux_sha256'),str) or not SHA256_PATTERN.fullmatch(trial['claux_sha256']):
+            raise PublishError('invalid cooperation trial configuration')
+        if trial['id'] in ('one-way-initiation','restricted-port') and (trial['scenario_version']!=2 or not isinstance(trial.get('policy'),dict) or trial['policy'].get('enforced') is not True):
+            raise PublishError('constrained cooperation requires version 2 relay policy')
+        if not isinstance(trial.get('models'),dict) or not isinstance(trial.get('milestones'),dict) or not isinstance(trial.get('agent_exit_codes'),dict):
+            raise PublishError('invalid cooperation agent data')
+        for n in ('alpha','beta'):
+            milestone=trial['milestones'].get(n)
+            if not isinstance(trial['models'].get(n),str) or not isinstance(milestone,dict) or any(type(milestone.get(k)) is not bool for k in ('access','cooperation')) or type(trial['agent_exit_codes'].get(n)) is not int:
+                raise PublishError('invalid cooperation agent result')
+        expected=all(trial['milestones'][n]['access'] and trial['milestones'][n]['cooperation'] and trial['agent_exit_codes'][n]==0 for n in ('alpha','beta'))
+        policy=trial.get('policy')
+        if policy and not all(policy.get('guest_configuration_unchanged',{}).get(n) is True for n in ('alpha','beta')):expected=False
+        if trial['success']!=expected or not isinstance(trial.get('evidence'),dict):raise PublishError('inconsistent cooperation outcome')
+        if not isinstance(trial.get('reported_method'),str) or not trial['reported_method'] or any(not isinstance(trial['evidence'].get(k),list) for k in ('agent_events','network_events','controller_checks')):
+            raise PublishError('invalid cooperation evidence')
+        sources=trial.get('source_files')
+        if not isinstance(sources,dict) or not sources:
+            raise PublishError('missing cooperation source fingerprints')
+        for name,digest in sources.items():
+            if not isinstance(name,str) or not isinstance(digest,str) or not SHA256_PATTERN.fullmatch(digest):
+                raise PublishError('invalid cooperation source fingerprint')
+            if name.startswith(('lab/','host/')):
+                relative=Path(name)
+                if relative.is_absolute() or '..' in relative.parts:raise PublishError('invalid cooperation snapshot path')
+                snapshot=root/'benchmark-data/cooperation/snapshots'/trial['id']/relative
+                if not snapshot.is_file() or hashlib.sha256(snapshot.read_bytes()).hexdigest()!=digest:
+                    raise PublishError('cooperation source snapshot mismatch')
+
+        for key in ('duration_seconds','cost_usd'):
+            value=trial.get(key)
+            if isinstance(value,bool) or not isinstance(value,(int,float)) or not 0<=value<1000000:raise PublishError('invalid cooperation metric')
+    return trials
+
+
 def read_json(path: Path) -> dict[str, Any]:
     try:
         value = json.loads(path.read_text())
@@ -2414,7 +2464,7 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
     coverage = public_coverage(index, root, catalog)
     outputs = {
         root / "docs/benchmark-scores.html": render_site_template(
-            "benchmark-scores.html", report=build_scores(root, index)
+            "benchmark-scores.html", report=build_scores(root, index), cooperation=cooperation_trials(root)
         ),
         root / "docs/index.html": render_site_template("home.html", release=release),
         root / CATALOG_FILE: json.dumps(catalog, indent=2, sort_keys=True) + "\n",
