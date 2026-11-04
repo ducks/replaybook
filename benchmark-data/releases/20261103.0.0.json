@@ -1,0 +1,2343 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 8990308,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 61,
+      "median_first_non_read_only_tool_seconds": 2.018,
+      "median_model_duration_seconds": 41.008,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 55.433,
+      "median_tool_calls": 13,
+      "median_tool_duration_seconds": 14.411,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 96467,
+      "pass_rate": 1.0,
+      "passed": 33,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 532640,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 41,
+      "median_first_non_read_only_tool_seconds": 2.018,
+      "median_model_duration_seconds": 30.262,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 36.464,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 3.136,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 4743,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 559103,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 55,
+      "median_first_non_read_only_tool_seconds": 1.498,
+      "median_model_duration_seconds": 35.394,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 51.567,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 16.698,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 8238,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1313106,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 107,
+      "median_first_non_read_only_tool_seconds": 2.137,
+      "median_model_duration_seconds": 79.956,
+      "median_model_rounds": 31,
+      "median_post_first_non_read_only_seconds": 102.732,
+      "median_tool_calls": 30,
+      "median_tool_duration_seconds": 24.324,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 12063,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 718535,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 54,
+      "median_first_non_read_only_tool_seconds": 3.001,
+      "median_model_duration_seconds": 32.873,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 47.566,
+      "median_tool_calls": 14,
+      "median_tool_duration_seconds": 15.684,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 7275,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 898850,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 79,
+      "median_first_non_read_only_tool_seconds": 1.826,
+      "median_model_duration_seconds": 41.879,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 75.525,
+      "median_tool_calls": 14,
+      "median_tool_duration_seconds": 34.979,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 8254,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 820331,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 49,
+      "median_first_non_read_only_tool_seconds": 1.997,
+      "median_model_duration_seconds": 38.142,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 44.966,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 6.264,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 9201,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 928875,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 72,
+      "median_first_non_read_only_tool_seconds": 1.804,
+      "median_model_duration_seconds": 63.71,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 68.57700000000001,
+      "median_tool_calls": 16,
+      "median_tool_duration_seconds": 6.326,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 10959,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 653965,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 61,
+      "median_first_non_read_only_tool_seconds": 2.64,
+      "median_model_duration_seconds": 43.05,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 46.074,
+      "median_tool_calls": 13,
+      "median_tool_duration_seconds": 4.986,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 9476,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 745639,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 54,
+      "median_first_non_read_only_tool_seconds": 1.409,
+      "median_model_duration_seconds": 36.314,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 50.81,
+      "median_tool_calls": 13,
+      "median_tool_duration_seconds": 13.93,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 8404,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1198790,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 77,
+      "median_first_non_read_only_tool_seconds": 2.292,
+      "median_model_duration_seconds": 61.993,
+      "median_model_rounds": 23,
+      "median_post_first_non_read_only_seconds": 72.345,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 11.798,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 9670,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 620474,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 58,
+      "median_first_non_read_only_tool_seconds": 1.75,
+      "median_model_duration_seconds": 34.862,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 54.82299999999999,
+      "median_tool_calls": 13,
+      "median_tool_duration_seconds": 15.437,
+      "model": "stealth/crouton-alpha",
+      "output_tokens": 8184,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "custom build b959ef677ff7"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Crouton Alpha passed all 33 evaluated Core trials at high reasoning, with a 61-second median agent duration and $0 in provider-reported API cost.",
+  "input_mode": "text",
+  "model_labels": {
+    "stealth/crouton-alpha": "Crouton Alpha"
+  },
+  "model_order": [
+    "stealth/crouton-alpha"
+  ],
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable. No recovery runs or retries were needed.",
+    "All 33 scored passes passed immediate, service-restart, and host-reboot verification. No scoring exemptions or post-run corrections have been applied.",
+    "This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "This batch used one concurrent VM. Timing includes tool execution and is not pure inference latency. Host and provider conditions can affect timing.",
+    "Provider-reported API cost is present for all 33 trials and totals $0. This describes the pricing reported during the run, not a guarantee of future pricing; it excludes VM hosting and other infrastructure. The exact model ID is stealth/crouton-alpha through OpenRouter.",
+    "Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. A perfect score on this suite does not establish general infrastructure competence.",
+    "Core is a repair benchmark, not a long-context evaluation. The largest provider-reported single-request input in these trajectories was 34,371 tokens. Total input usage includes repeated conversation history across requests and must not be read as maximum context occupancy.",
+    "Public evidence includes normalized trial results, verification flags, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "Crouton Alpha passed 33/33 (100.0%), with a 61-second median agent duration and $0 in provider-reported API cost. There were no unavailable trials or infrastructure errors.",
+    "The run recorded 8,990,308 input tokens, 96,467 output tokens, and 511 tool calls. Median recorded model rounds were 14 and tool calls were 13. The provider reported zero cache-read and cache-creation tokens; no unreported caching behavior is inferred.",
+    "Every raw result matched its matrix summary, and all 33 worker logs recorded passing immediate, service-restart, and host-reboot verification. All retained transcripts were checked for controller-only oracle, lifecycle, phase-failure, and work-contract filenames; none were found. Observable repair commands were reviewed across all eleven scenarios.",
+    "The score ties other configurations that passed every Core trial. This sample does not distinguish those configurations by repair success and does not test Crouton Alpha at its advertised maximum context size."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 41,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:21:31Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.005,
+        "model_duration_seconds": 35.168,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 36.464,
+        "tool_calls": 8,
+        "tool_duration_seconds": 3.136,
+        "total_duration_seconds": 38.469
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:20:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 147707,
+        "output_tokens": 1540,
+        "rounds": 9,
+        "tool_calls": 8
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 35,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:23:11Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.288,
+        "model_duration_seconds": 30.262,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 29.26,
+        "tool_calls": 12,
+        "tool_duration_seconds": 2.117,
+        "total_duration_seconds": 32.548
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:22:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 154985,
+        "output_tokens": 1640,
+        "rounds": 13,
+        "tool_calls": 12
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 157,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:26:58Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.018,
+        "model_duration_seconds": 28.785,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 152.267,
+        "tool_calls": 11,
+        "tool_duration_seconds": 124.46,
+        "total_duration_seconds": 154.285
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:24:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 229948,
+        "output_tokens": 1563,
+        "rounds": 12,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 59,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:29:35Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.498,
+        "model_duration_seconds": 40.633,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 54.045,
+        "tool_calls": 11,
+        "tool_duration_seconds": 14.758,
+        "total_duration_seconds": 55.543
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-03T20:28:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 212338,
+        "output_tokens": 2970,
+        "rounds": 12,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 55,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:32:04Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.476,
+        "model_duration_seconds": 30.062,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 51.567,
+        "tool_calls": 11,
+        "tool_duration_seconds": 22.74,
+        "total_duration_seconds": 53.043
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-03T20:30:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 170748,
+        "output_tokens": 2635,
+        "rounds": 12,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 54,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:34:39Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.104,
+        "model_duration_seconds": 35.394,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 50.172000000000004,
+        "tool_calls": 13,
+        "tool_duration_seconds": 16.698,
+        "total_duration_seconds": 52.276
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-03T20:33:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 176017,
+        "output_tokens": 2633,
+        "rounds": 14,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:37:37Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.056,
+        "model_duration_seconds": 41.008,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 76.805,
+        "tool_calls": 13,
+        "tool_duration_seconds": 37.602,
+        "total_duration_seconds": 78.861
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:35:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 175304,
+        "output_tokens": 2427,
+        "rounds": 14,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 107,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:41:09Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.137,
+        "model_duration_seconds": 79.956,
+        "model_rounds": 31,
+        "post_first_non_read_only_seconds": 102.732,
+        "tool_calls": 30,
+        "tool_duration_seconds": 24.324,
+        "total_duration_seconds": 104.869
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:39:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 428780,
+        "output_tokens": 4308,
+        "rounds": 31,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 113,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:44:46Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.468,
+        "model_duration_seconds": 94.3,
+        "model_rounds": 31,
+        "post_first_non_read_only_seconds": 107.601,
+        "tool_calls": 30,
+        "tool_duration_seconds": 16.169,
+        "total_duration_seconds": 111.069
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:42:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 709022,
+        "output_tokens": 5328,
+        "rounds": 31,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 54,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:47:30Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.666,
+        "model_duration_seconds": 32.873,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 47.566,
+        "tool_calls": 14,
+        "tool_duration_seconds": 15.684,
+        "total_duration_seconds": 49.232
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:46:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 159729,
+        "output_tokens": 2226,
+        "rounds": 15,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 48,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:50:07Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.06,
+        "model_duration_seconds": 27.761,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 38.413,
+        "tool_calls": 11,
+        "tool_duration_seconds": 12.213,
+        "total_duration_seconds": 42.473
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:48:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 150686,
+        "output_tokens": 2195,
+        "rounds": 12,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 65,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:52:52Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.001,
+        "model_duration_seconds": 46.899,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 60.075,
+        "tool_calls": 21,
+        "tool_duration_seconds": 15.695,
+        "total_duration_seconds": 63.076
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:51:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 408120,
+        "output_tokens": 2854,
+        "rounds": 22,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 77,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:55:52Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.826,
+        "model_duration_seconds": 41.879,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 73.215,
+        "tool_calls": 13,
+        "tool_duration_seconds": 32.763,
+        "total_duration_seconds": 75.041
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:54:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 306254,
+        "output_tokens": 2787,
+        "rounds": 14,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 81,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T20:58:55Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.848,
+        "model_duration_seconds": 43.184,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 76.578,
+        "tool_calls": 14,
+        "tool_duration_seconds": 34.979,
+        "total_duration_seconds": 78.426
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T20:57:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 262576,
+        "output_tokens": 2440,
+        "rounds": 15,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 79,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:01:53Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.443,
+        "model_duration_seconds": 38.416,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 75.525,
+        "tool_calls": 15,
+        "tool_duration_seconds": 38.333,
+        "total_duration_seconds": 76.968
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:00:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 330020,
+        "output_tokens": 3027,
+        "rounds": 16,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 63,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:07:12Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.282,
+        "model_duration_seconds": 54.396,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 56.785,
+        "tool_calls": 28,
+        "tool_duration_seconds": 5.311,
+        "total_duration_seconds": 60.067
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:05:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 441873,
+        "output_tokens": 3615,
+        "rounds": 23,
+        "tool_calls": 28
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 49,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:11:53Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.873,
+        "model_duration_seconds": 38.142,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 44.966,
+        "tool_calls": 15,
+        "tool_duration_seconds": 8.523,
+        "total_duration_seconds": 46.839
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:10:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 239881,
+        "output_tokens": 2896,
+        "rounds": 15,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 37,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:15:55Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.997,
+        "model_duration_seconds": 28.963,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 33.383,
+        "tool_calls": 9,
+        "tool_duration_seconds": 6.264,
+        "total_duration_seconds": 35.38
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:15:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 138577,
+        "output_tokens": 2690,
+        "rounds": 10,
+        "tool_calls": 9
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 95,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:18:47Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.315,
+        "model_duration_seconds": 69.707,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 82.774,
+        "tool_calls": 18,
+        "tool_duration_seconds": 14.411,
+        "total_duration_seconds": 90.089
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:16:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 414501,
+        "output_tokens": 4845,
+        "rounds": 19,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 36,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:20:51Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.804,
+        "model_duration_seconds": 31.26,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 32.631,
+        "tool_calls": 9,
+        "tool_duration_seconds": 3.011,
+        "total_duration_seconds": 34.435
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:20:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 137130,
+        "output_tokens": 2232,
+        "rounds": 10,
+        "tool_calls": 9
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 72,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:23:39Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.725,
+        "model_duration_seconds": 63.71,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 68.57700000000001,
+        "tool_calls": 16,
+        "tool_duration_seconds": 6.326,
+        "total_duration_seconds": 70.302
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:22:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 377244,
+        "output_tokens": 3882,
+        "rounds": 17,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 61,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:26:05Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.03,
+        "model_duration_seconds": 43.05,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 44.679,
+        "tool_calls": 13,
+        "tool_duration_seconds": 3.477,
+        "total_duration_seconds": 46.709
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:24:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 194737,
+        "output_tokens": 2989,
+        "rounds": 14,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 51,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:28:25Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.64,
+        "model_duration_seconds": 42.826,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 46.074,
+        "tool_calls": 13,
+        "tool_duration_seconds": 5.661,
+        "total_duration_seconds": 48.714
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:27:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 208622,
+        "output_tokens": 3294,
+        "rounds": 14,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 62,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:30:54Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.719,
+        "model_duration_seconds": 54.925,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 55.433,
+        "tool_calls": 18,
+        "tool_duration_seconds": 4.986,
+        "total_duration_seconds": 60.152
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:29:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 250606,
+        "output_tokens": 3193,
+        "rounds": 19,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 60,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:34:52Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.144,
+        "model_duration_seconds": 44.358,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 55.589,
+        "tool_calls": 15,
+        "tool_duration_seconds": 13.178,
+        "total_duration_seconds": 57.733
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:32:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 274409,
+        "output_tokens": 3064,
+        "rounds": 16,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 54,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:37:15Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.409,
+        "model_duration_seconds": 36.314,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 50.81,
+        "tool_calls": 13,
+        "tool_duration_seconds": 15.725,
+        "total_duration_seconds": 52.219
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:36:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 235564,
+        "output_tokens": 2687,
+        "rounds": 14,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 50,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:39:31Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.256,
+        "model_duration_seconds": 34.274,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 47.13,
+        "tool_calls": 12,
+        "tool_duration_seconds": 13.93,
+        "total_duration_seconds": 48.386
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:38:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 235666,
+        "output_tokens": 2653,
+        "rounds": 13,
+        "tool_calls": 12
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 89,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:42:52Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.364,
+        "model_duration_seconds": 61.993,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 85.125,
+        "tool_calls": 22,
+        "tool_duration_seconds": 24.204,
+        "total_duration_seconds": 86.489
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:41:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 455156,
+        "output_tokens": 3048,
+        "rounds": 23,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 77,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:46:22Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.292,
+        "model_duration_seconds": 64.737,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 72.345,
+        "tool_calls": 25,
+        "tool_duration_seconds": 9.518,
+        "total_duration_seconds": 74.637
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:44:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 436970,
+        "output_tokens": 3527,
+        "rounds": 26,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 66,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:49:33Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.48,
+        "model_duration_seconds": 51.957,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 61.481,
+        "tool_calls": 19,
+        "tool_duration_seconds": 11.798,
+        "total_duration_seconds": 63.961
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-03T21:48:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 306664,
+        "output_tokens": 3095,
+        "rounds": 20,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 167,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:53:40Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.75,
+        "model_duration_seconds": 34.862,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 163.243,
+        "tool_calls": 11,
+        "tool_duration_seconds": 129.988,
+        "total_duration_seconds": 164.993
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-stealth-crouton-alpha-reasoning-high-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-03T21:50:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 181070,
+        "output_tokens": 1962,
+        "rounds": 12,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 58,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:55:59Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.593,
+        "model_duration_seconds": 42.549,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 54.82299999999999,
+        "tool_calls": 15,
+        "tool_duration_seconds": 13.682,
+        "total_duration_seconds": 56.416
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-stealth-crouton-alpha-reasoning-high-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-03T21:54:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 264100,
+        "output_tokens": 3294,
+        "rounds": 16,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 51,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-03T21:57:59Z",
+      "model": "stealth/crouton-alpha",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.2,
+        "model_duration_seconds": 32.248,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 45.873,
+        "tool_calls": 13,
+        "tool_duration_seconds": 15.437,
+        "total_duration_seconds": 48.073
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-stealth-crouton-alpha-reasoning-high-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-03T21:56:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 175304,
+        "output_tokens": 2928,
+        "rounds": 13,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-03T21:57:59.585716Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "stealth/crouton-alpha"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-03T20:19:36.851232Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "1e77a92f824763f44fc8941bb71571293b3a501d190df27ef1f094399e2d2bb8"
+    }
+  ],
+  "tier": "core",
+  "title": "Frozen Core: Crouton Alpha",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 0,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 0,
+    "failure_categories": {},
+    "input_tokens": 8990308,
+    "known_cost_usd": 0.0,
+    "median_duration_seconds": 61,
+    "median_first_non_read_only_tool_seconds": 2.018,
+    "median_model_duration_seconds": 41.008,
+    "median_model_rounds": 14,
+    "median_post_first_non_read_only_seconds": 55.433,
+    "median_tool_calls": 13,
+    "median_tool_duration_seconds": 14.411,
+    "output_tokens": 96467,
+    "pass_rate": 1.0,
+    "passed": 33,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261103.0.0"
+}

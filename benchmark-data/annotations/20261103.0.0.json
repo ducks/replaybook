@@ -1,0 +1,34 @@
+{
+  "title": "Frozen Core: Crouton Alpha",
+  "description": "Crouton Alpha passed all 33 evaluated Core trials at high reasoning, with a 61-second median agent duration and $0 in provider-reported API cost.",
+  "input_mode": "text",
+  "model_order": [
+    "stealth/crouton-alpha"
+  ],
+  "model_labels": {
+    "stealth/crouton-alpha": "Crouton Alpha"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable. No recovery runs or retries were needed.",
+    "All 33 scored passes passed immediate, service-restart, and host-reboot verification. No scoring exemptions or post-run corrections have been applied.",
+    "This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "This batch used one concurrent VM. Timing includes tool execution and is not pure inference latency. Host and provider conditions can affect timing.",
+    "Provider-reported API cost is present for all 33 trials and totals $0. This describes the pricing reported during the run, not a guarantee of future pricing; it excludes VM hosting and other infrastructure. The exact model ID is stealth/crouton-alpha through OpenRouter.",
+    "Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. A perfect score on this suite does not establish general infrastructure competence.",
+    "Core is a repair benchmark, not a long-context evaluation. The largest provider-reported single-request input in these trajectories was 34,371 tokens. Total input usage includes repeated conversation history across requests and must not be read as maximum context occupancy.",
+    "Public evidence includes normalized trial results, verification flags, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "Crouton Alpha passed 33/33 (100.0%), with a 61-second median agent duration and $0 in provider-reported API cost. There were no unavailable trials or infrastructure errors.",
+    "The run recorded 8,990,308 input tokens, 96,467 output tokens, and 511 tool calls. Median recorded model rounds were 14 and tool calls were 13. The provider reported zero cache-read and cache-creation tokens; no unreported caching behavior is inferred.",
+    "Every raw result matched its matrix summary, and all 33 worker logs recorded passing immediate, service-restart, and host-reboot verification. All retained transcripts were checked for controller-only oracle, lifecycle, phase-failure, and work-contract filenames; none were found. Observable repair commands were reviewed across all eleven scenarios.",
+    "The score ties other configurations that passed every Core trial. This sample does not distinguish those configurations by repair success and does not test Crouton Alpha at its advertised maximum context size."
+  ]
+}
