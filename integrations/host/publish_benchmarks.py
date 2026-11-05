@@ -2382,6 +2382,13 @@ def provider_page() -> str:
     return render_site_template("benchmark-provider.html")
 
 
+def model_paths(models: list[str]) -> dict[str, str]:
+    """Deterministic short paths, disambiguating matching model basenames."""
+    bases = {model: re.sub(r"[^a-z0-9]+", "-", model.rsplit("/", 1)[-1].lower()).strip("-") or "model" for model in models}
+    counts = {base: list(bases.values()).count(base) for base in set(bases.values())}
+    return {model: "models/" + base + ("-" + hashlib.sha256(model.encode()).hexdigest()[:12] if counts[base] > 1 else "") + "/" for model, base in bases.items()}
+
+
 def model_page() -> str:
     return render_site_template("benchmark-model.html")
 
@@ -2462,9 +2469,10 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
     validate_release(release, release_path)
     catalog = public_catalog(index, root)
     coverage = public_coverage(index, root, catalog)
+    model_urls = model_paths(sorted({record["model"] for record in catalog["records"]}))
     outputs = {
         root / "docs/benchmark-scores.html": render_site_template(
-            "benchmark-scores.html", report=build_scores(root, index), cooperation=cooperation_trials(root)
+            "benchmark-scores.html", report=build_scores(root, index), cooperation=cooperation_trials(root), model_urls=model_urls
         ),
         root / "docs/index.html": render_site_template("home.html", release=release),
         root / CATALOG_FILE: json.dumps(catalog, indent=2, sort_keys=True) + "\n",
@@ -2503,12 +2511,20 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
             history_cards(index, root),
         ),
     }
+    for model, url in model_urls.items():
+        records = [record for record in catalog["records"] if record["model"] == model]
+        outputs[root / "docs" / url / "index.html"] = render_site_template(
+            "model-summary.html", model=model, label=records[-1]["model_label"],
+            records=sorted(records, key=lambda record: (record["release"], record["provider"] or "", record["reasoning_effort"] or "", record["scenario"]), reverse=True),
+        )
+    outputs[root / "docs/model-paths.json"] = json.dumps(model_urls, indent=2, sort_keys=True) + "\n"
     stale = []
     for path, rendered in outputs.items():
         if check:
             if not path.is_file() or path.read_text() != rendered:
                 stale.append(str(path.relative_to(root)))
         else:
+            path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(rendered)
     if stale:
         raise PublishError("generated benchmark files are stale: " + ", ".join(stale))

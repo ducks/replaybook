@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="../../">  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DeepSeek V4 Flash 0731 &middot; replaybook</title>
+  <meta name="description" content="DeepSeek V4 Flash 0731 infrastructure repair results, timings and costs on Replaybook.">
+  <link rel="stylesheet" href="style.css">
+  <script data-goatcounter="https://stats.replaybook.dev/count" async src="https://stats.replaybook.dev/count.js"></script>
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Overview</a>
+      <a href="benchmark-scores.html">Scores</a>
+      <a href="benchmark-evidence.html">Evidence</a>
+      <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
+      <a href="scenarios.html">Scenarios</a>
+      <a href="benchmark-providers.html">Providers</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-history.html">History</a>
+    </nav>
+
+
+<p class="eyebrow">Model results</p>
+<h1>DeepSeek V4 Flash 0731</h1>
+<p><code>deepseek/deepseek-v4-flash-0731</code></p>
+<p class="callout comparison-note">Each row is an independent scenario cohort. Releases, providers and reasoning settings remain separate; these results are not pooled into a single model score.</p>
+<h2>Repairs, timing and cost</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Scenario</th><th>Release</th><th>Provider / reasoning</th><th>Repairs</th><th>Median time</th><th>Known cost</th><th>Evidence</th></tr></thead>
+<tbody><tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>155s</td>
+<td>$0.0260<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>98s</td>
+<td>$0.0209<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>163s</td>
+<td>$0.0279<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>110s</td>
+<td>$0.0154<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>104s</td>
+<td>$0.0122<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>206s</td>
+<td>$0.0303<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>78s</td>
+<td>$0.0079<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>57s</td>
+<td>$0.0067<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>225s</td>
+<td>$0.0659<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>0/3<small>0 unavailable</small></td>
+<td>373s</td>
+<td>$0.0402<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>478s</td>
+<td>$0.0682<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>188s</td>
+<td>$0.0264<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>303s</td>
+<td>$0.0505<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>235s</td>
+<td>$0.0715<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>138s</td>
+<td>$0.0147<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>144s</td>
+<td>$0.0191<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>374s</td>
+<td>$0.0471<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>027-partial-service-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>228s</td>
+<td>$0.0282<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>026-discourse-plugin-boot-loop v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>149s</td>
+<td>$0.0412<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>0/3<small>0 unavailable</small></td>
+<td>218s</td>
+<td>$0.0480<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>165s</td>
+<td>$0.0394<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>112s</td>
+<td>$0.0196<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>561s</td>
+<td>$0.1016<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>244s</td>
+<td>$0.0208<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>284s</td>
+<td>$0.0207<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>348s</td>
+<td>$0.0675<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>1/3<small>0 unavailable</small></td>
+<td>283s</td>
+<td>$0.0597<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>229s</td>
+<td>$0.0295<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>279s</td>
+<td>$0.0315<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>165s</td>
+<td>$0.0327<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>121s</td>
+<td>$0.0147<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>53s</td>
+<td>$0.0110<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>0/1<small>0 unavailable</small></td>
+<td>145s</td>
+<td>$0.0114<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>210s</td>
+<td>$0.0096<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>114s</td>
+<td>$0.0047<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>516s</td>
+<td>$0.0313<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>448s</td>
+<td>$0.0323<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>126s</td>
+<td>$0.0099<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>223s</td>
+<td>$0.0081<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>161s</td>
+<td>$0.0097<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>132s</td>
+<td>$0.0116<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>351s</td>
+<td>$0.0216<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>448s</td>
+<td>$0.0197<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>85s</td>
+<td>$0.0058<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>76s</td>
+<td>$0.0067<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>unclassified</small></th>
+<td>20260817.0.2</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>254s</td>
+<td>$0.0425<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>027-partial-service-rollout v1<small>unclassified</small></th>
+<td>20260817.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>197s</td>
+<td>$0.0266<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>026-discourse-plugin-boot-loop v1<small>unclassified</small></th>
+<td>20260817.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>126s</td>
+<td>$0.0272<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>025-discourse-bootstrap v1<small>frontier</small></th>
+<td>20260816.0.0</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>1752s</td>
+<td>$0.0310<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260816.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>0/1<small>0 unavailable</small></td>
+<td>304s</td>
+<td>$0.0070<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>197s</td>
+<td>$0.0050<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>226s</td>
+<td>$0.0065<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>679s</td>
+<td>$0.0127<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>637s</td>
+<td>$0.0107<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>248s</td>
+<td>$0.0078<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>228s</td>
+<td>$0.0091<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>273s</td>
+<td>$0.0130<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>169s</td>
+<td>$0.0056<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>314s</td>
+<td>$0.0122<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>301s</td>
+<td>$0.0078<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>339s</td>
+<td>$0.0040<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>117s</td>
+<td>$0.0016<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Interrupted Discourse deployment v1<small>unclassified</small></th>
+<td>20260815.0.0</td><td>OpenRouter / high</td>
+<td>1/3<small>0 unavailable</small></td>
+<td>364s</td>
+<td>$0.1794<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Discourse multisite migration v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>180s</td>
+<td>$0.0420<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Discourse shared uploads v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>691s</td>
+<td>$0.0515<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Python Gunicorn saturation v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>622s</td>
+<td>$0.0606<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Rust file-descriptor leak v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>179s</td>
+<td>$0.0263<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Node event-loop blocking v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>230s</td>
+<td>$0.0462<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Partial Rails rollout v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>281s</td>
+<td>$0.0457<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>201s</td>
+<td>$0.0480<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>360s</td>
+<td>$0.0794<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>186s</td>
+<td>$0.0345<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>196s</td>
+<td>$0.0335<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>95s</td>
+<td>$0.0176<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Discourse shared uploads v1<small>unclassified</small></th>
+<td>20260811.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>719s</td>
+<td>$0.1013<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260811.0.0&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / xhigh</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>232s</td>
+<td>$0.0437<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / xhigh</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>546s</td>
+<td>$0.0885<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / xhigh</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>485s</td>
+<td>$0.1111<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / xhigh</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>196s</td>
+<td>$0.0312<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / xhigh</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>126s</td>
+<td>$0.0171<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / low</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>296s</td>
+<td>$0.0311<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / low</td>
+<td>2/3<small>1 unavailable</small></td>
+<td>296s</td>
+<td>$0.0376<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / low</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>329s</td>
+<td>$0.0362<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / low</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>90s</td>
+<td>$0.0235<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / low</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>133s</td>
+<td>$0.0138<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>253s</td>
+<td>$0.0449<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>561s</td>
+<td>$0.1012<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>463s</td>
+<td>$0.0921<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>116s</td>
+<td>$0.0322<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>77s</td>
+<td>$0.0134<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / xhigh</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>232s</td>
+<td>$0.0437<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / xhigh</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>546s</td>
+<td>$0.0885<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / xhigh</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>485s</td>
+<td>$0.1111<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / xhigh</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>196s</td>
+<td>$0.0312<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / xhigh</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>126s</td>
+<td>$0.0171<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=xhigh">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / low</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>296s</td>
+<td>$0.0311<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / low</td>
+<td>2/3<small>1 unavailable</small></td>
+<td>296s</td>
+<td>$0.0376<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / low</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>329s</td>
+<td>$0.0362<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / low</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>90s</td>
+<td>$0.0235<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / low</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>133s</td>
+<td>$0.0138<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=low">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>253s</td>
+<td>$0.0449<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>561s</td>
+<td>$0.1012<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>463s</td>
+<td>$0.0921<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>116s</td>
+<td>$0.0322<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>77s</td>
+<td>$0.0134<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>236s</td>
+<td>$0.0382<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>1/3<small>0 unavailable</small></td>
+<td>904s</td>
+<td>$0.1716<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>146s</td>
+<td>$0.0376<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>148s</td>
+<td>$0.0280<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>90s</td>
+<td>$0.0154<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260809.0.2</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>236s</td>
+<td>$0.0382<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260809.0.2</td><td>OpenRouter / Default</td>
+<td>1/3<small>0 unavailable</small></td>
+<td>904s</td>
+<td>$0.1716<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260809.0.2</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>146s</td>
+<td>$0.0376<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260809.0.2</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>148s</td>
+<td>$0.0280<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260809.0.2</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>90s</td>
+<td>$0.0154<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.2&amp;model=deepseek/deepseek-v4-flash-0731&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+</tbody></table></div>
+<p><a href="benchmark-scores.html">Compare benchmark configurations →</a> · <a href="benchmark-models.html">All models</a></p>
+
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="../../">  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qwen3.8 2.4T A95B &middot; replaybook</title>
+  <meta name="description" content="Qwen3.8 2.4T A95B infrastructure repair results, timings and costs on Replaybook.">
+  <link rel="stylesheet" href="style.css">
+  <script data-goatcounter="https://stats.replaybook.dev/count" async src="https://stats.replaybook.dev/count.js"></script>
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Overview</a>
+      <a href="benchmark-scores.html">Scores</a>
+      <a href="benchmark-evidence.html">Evidence</a>
+      <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
+      <a href="scenarios.html">Scenarios</a>
+      <a href="benchmark-providers.html">Providers</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-history.html">History</a>
+    </nav>
+
+
+<p class="eyebrow">Model results</p>
+<h1>Qwen3.8 2.4T A95B</h1>
+<p><code>qwen/qwen3.8-2.4t-a95b</code></p>
+<p class="callout comparison-note">Each row is an independent scenario cohort. Releases, providers and reasoning settings remain separate; these results are not pooled into a single model score.</p>
+<h2>Repairs, timing and cost</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Scenario</th><th>Release</th><th>Provider / reasoning</th><th>Repairs</th><th>Median time</th><th>Known cost</th><th>Evidence</th></tr></thead>
+<tbody><tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>367s</td>
+<td>$0.6078<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>197s</td>
+<td>$0.4311<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>456s</td>
+<td>$1.3071<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>187s</td>
+<td>$0.4001<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>164s</td>
+<td>$0.3165<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>332s</td>
+<td>$0.5457<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>136s</td>
+<td>$0.2628<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>101s</td>
+<td>$0.1916<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Visual topology drift v1<small>unclassified</small></th>
+<td>20260822.0.2</td><td>OpenRouter / high</td>
+<td>0/3<small>3 unavailable</small></td>
+<td>Unknown</td>
+<td>Unknown</td>
+<td><a href="benchmark-evidence.html?release=20260822.0.2&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>234s</td>
+<td>$0.7118<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>117s</td>
+<td>$0.4832<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>194s</td>
+<td>$0.7683<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>102s</td>
+<td>$0.3530<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>309s</td>
+<td>$0.5137<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>218s</td>
+<td>$0.7156<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>90s</td>
+<td>$0.3024<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>83s</td>
+<td>$0.3134<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>234s</td>
+<td>$0.7118<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>117s</td>
+<td>$0.4832<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>194s</td>
+<td>$0.7683<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>102s</td>
+<td>$0.3530<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>309s</td>
+<td>$0.5137<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>218s</td>
+<td>$0.7156<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>90s</td>
+<td>$0.3024<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>83s</td>
+<td>$0.3134<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>307s</td>
+<td>$1.2886<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>027-partial-service-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>109s</td>
+<td>$0.4000<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>026-discourse-plugin-boot-loop v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>147s</td>
+<td>$0.6625<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>131s</td>
+<td>$1.1086<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>143s</td>
+<td>$0.5621<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>112s</td>
+<td>$0.4543<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>238s</td>
+<td>$0.8047<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>116s</td>
+<td>$0.3803<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>113s</td>
+<td>$0.3380<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>94s</td>
+<td>$0.4014<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>161s</td>
+<td>$0.5442<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>96s</td>
+<td>$0.3149<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>233s</td>
+<td>$0.7639<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>122s</td>
+<td>$0.4502<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>93s</td>
+<td>$0.2978<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>59s</td>
+<td>$0.2041<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>85s</td>
+<td>$0.1467<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>163s</td>
+<td>$0.2043<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>107s</td>
+<td>$0.1532<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>237s</td>
+<td>$0.2535<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>136s</td>
+<td>$0.1419<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>111s</td>
+<td>$0.1357<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>93s</td>
+<td>$0.1174<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>228s</td>
+<td>$0.2942<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>100s</td>
+<td>$0.1880<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>211s</td>
+<td>$0.2151<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>205s</td>
+<td>$0.2988<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>74s</td>
+<td>$0.0889<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>82s</td>
+<td>$0.1027<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>unclassified</small></th>
+<td>20260817.0.2</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>226s</td>
+<td>$1.0616<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.2&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>027-partial-service-rollout v1<small>unclassified</small></th>
+<td>20260817.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>120s</td>
+<td>$0.5749<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.1&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>026-discourse-plugin-boot-loop v1<small>unclassified</small></th>
+<td>20260817.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>106s</td>
+<td>$0.3862<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>025-discourse-bootstrap v1<small>frontier</small></th>
+<td>20260816.0.0</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>690s</td>
+<td>$0.3100<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260816.0.0&amp;model=qwen/qwen3.8-2.4t-a95b&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+</tbody></table></div>
+<p><a href="benchmark-scores.html">Compare benchmark configurations →</a> · <a href="benchmark-models.html">All models</a></p>
+
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+</body>
+</html>

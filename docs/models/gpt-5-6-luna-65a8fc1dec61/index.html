@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="../../">  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPT-5.6 Luna &middot; replaybook</title>
+  <meta name="description" content="GPT-5.6 Luna infrastructure repair results, timings and costs on Replaybook.">
+  <link rel="stylesheet" href="style.css">
+  <script data-goatcounter="https://stats.replaybook.dev/count" async src="https://stats.replaybook.dev/count.js"></script>
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Overview</a>
+      <a href="benchmark-scores.html">Scores</a>
+      <a href="benchmark-evidence.html">Evidence</a>
+      <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
+      <a href="scenarios.html">Scenarios</a>
+      <a href="benchmark-providers.html">Providers</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-history.html">History</a>
+    </nav>
+
+
+<p class="eyebrow">Model results</p>
+<h1>GPT-5.6 Luna</h1>
+<p><code>openai/gpt-5.6-luna</code></p>
+<p class="callout comparison-note">Each row is an independent scenario cohort. Releases, providers and reasoning settings remain separate; these results are not pooled into a single model score.</p>
+<h2>Repairs, timing and cost</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Scenario</th><th>Release</th><th>Provider / reasoning</th><th>Repairs</th><th>Median time</th><th>Known cost</th><th>Evidence</th></tr></thead>
+<tbody><tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>134s</td>
+<td>$0.0936<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>103s</td>
+<td>$0.1000<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>159s</td>
+<td>$0.1338<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>126s</td>
+<td>$0.0862<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>130s</td>
+<td>$0.0690<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>183s</td>
+<td>$0.1221<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>86s</td>
+<td>$0.0712<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>204s</td>
+<td>$0.0715<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Nix store disk pressure v1<small>core</small></th>
+<td>20260830.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>131s</td>
+<td>$0.1251<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260830.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Interrupted Discourse deploy v1<small>core</small></th>
+<td>20260830.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>108s</td>
+<td>$0.1261<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260830.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Discourse shared uploads v1<small>core</small></th>
+<td>20260830.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>157s</td>
+<td>$0.1272<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260830.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Rust file-descriptor leak v1<small>core</small></th>
+<td>20260830.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>99s</td>
+<td>$0.0807<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260830.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Partial Rails rollout v1<small>core</small></th>
+<td>20260830.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>95s</td>
+<td>$0.0703<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260830.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison-pill job v1<small>core</small></th>
+<td>20260830.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>363s</td>
+<td>≥$0.1033<small>2/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260830.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq connected to the wrong Redis v2<small>core</small></th>
+<td>20260830.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>149s</td>
+<td>$0.0929<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260830.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 host failure v1<small>core</small></th>
+<td>20260830.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>70s</td>
+<td>$0.0790<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260830.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Interrupted Discourse deploy v1<small>unclassified</small></th>
+<td>20260827.0.1</td><td>Vercel AI Gateway / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>133s</td>
+<td>$0.0979<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260827.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=Vercel%20AI%20Gateway&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq connected to the wrong Redis v2<small>unclassified</small></th>
+<td>20260827.0.1</td><td>Vercel AI Gateway / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>107s</td>
+<td>$0.0919<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260827.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=Vercel%20AI%20Gateway&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 host failure v1<small>unclassified</small></th>
+<td>20260827.0.1</td><td>Vercel AI Gateway / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>73s</td>
+<td>$0.0730<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260827.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=Vercel%20AI%20Gateway&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Discourse interrupted deploy v1<small>unclassified</small></th>
+<td>20260826.0.0</td><td>OpenRouter / medium</td>
+<td>1/3<small>0 unavailable</small></td>
+<td>101s</td>
+<td>$0.0845<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260826.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=medium">Inspect attempts →</a></td></tr>
+<tr><th>Discourse interrupted deploy v1<small>unclassified</small></th>
+<td>20260826.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>123s</td>
+<td>$0.1022<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260826.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Discourse interrupted deploy v1<small>unclassified</small></th>
+<td>20260825.0.2</td><td>OpenRouter / medium</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>87s</td>
+<td>$0.0818<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260825.0.2&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=medium">Inspect attempts →</a></td></tr>
+<tr><th>Discourse interrupted deploy v1<small>unclassified</small></th>
+<td>20260825.0.2</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>135s</td>
+<td>$0.1168<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260825.0.2&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Visual deployment timeline v1<small>unclassified</small></th>
+<td>20260825.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>110s</td>
+<td>$0.0824<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260825.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Visual deployment timeline v1<small>unclassified</small></th>
+<td>20260825.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>110s</td>
+<td>$0.0824<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260825.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Visual metrics regression v1<small>unclassified</small></th>
+<td>20260822.0.4</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>84s</td>
+<td>≥$0.0465<small>2/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.4&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Visual topology drift v1<small>unclassified</small></th>
+<td>20260822.0.4</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>93s</td>
+<td>$0.0803<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.4&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Visual topology drift v1<small>unclassified</small></th>
+<td>20260822.0.3</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>74s</td>
+<td>$0.0580<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>126s</td>
+<td>$0.0792<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>94s</td>
+<td>$0.1339<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>181s</td>
+<td>$0.1627<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>197s</td>
+<td>$0.0838<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>120s</td>
+<td>$0.0888<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>152s</td>
+<td>$0.1054<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>94s</td>
+<td>$0.0724<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>69s</td>
+<td>$0.0740<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>200s</td>
+<td>$0.0863<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>027-partial-service-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>135s</td>
+<td>$0.1110<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>026-discourse-plugin-boot-loop v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>101s</td>
+<td>≥$0.0479<small>2/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>1/3<small>0 unavailable</small></td>
+<td>142s</td>
+<td>$0.1023<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>130s</td>
+<td>$0.0970<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>96s</td>
+<td>$0.0718<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>162s</td>
+<td>$0.1126<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>498s</td>
+<td>≥$0.0636<small>2/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>125s</td>
+<td>$0.0805<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>240s</td>
+<td>$0.1174<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>100s</td>
+<td>$0.0814<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>83s</td>
+<td>$0.0596<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>208s</td>
+<td>$0.1346<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>122s</td>
+<td>$0.0927<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>90s</td>
+<td>$0.0620<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>68s</td>
+<td>$0.0670<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>0/1<small>0 unavailable</small></td>
+<td>92s</td>
+<td>$0.0335<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>338s</td>
+<td>$0.0302<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>77s</td>
+<td>$0.0269<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>254s</td>
+<td>$0.0347<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>91s</td>
+<td>$0.0288<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>96s</td>
+<td>$0.0255<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>0/1<small>0 unavailable</small></td>
+<td>931s</td>
+<td>Unknown</td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>158s</td>
+<td>$0.0274<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>85s</td>
+<td>$0.0244<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>166s</td>
+<td>$0.0361<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>141s</td>
+<td>$0.0296<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>103s</td>
+<td>$0.0312<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>unclassified</small></th>
+<td>20260817.0.3</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>87s</td>
+<td>$0.0338<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>unclassified</small></th>
+<td>20260817.0.2</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>319s</td>
+<td>≥$0.1446<small>2/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.2&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>027-partial-service-rollout v1<small>unclassified</small></th>
+<td>20260817.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>120s</td>
+<td>$0.0531<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>026-discourse-plugin-boot-loop v1<small>unclassified</small></th>
+<td>20260817.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>69s</td>
+<td>$0.0367<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260817.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>025-discourse-bootstrap v1<small>frontier</small></th>
+<td>20260816.0.0</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>602s</td>
+<td>$0.0270<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260816.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>116s</td>
+<td>$0.0230<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>91s</td>
+<td>$0.0158<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>68s</td>
+<td>$0.0124<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>145s</td>
+<td>$0.0224<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>0/1<small>0 unavailable</small></td>
+<td>931s</td>
+<td>Unknown</td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>93s</td>
+<td>$0.0113<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>136s</td>
+<td>$0.0228<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>105s</td>
+<td>$0.0123<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>83s</td>
+<td>$0.0094<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>209s</td>
+<td>$0.0235<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>126s</td>
+<td>$0.0202<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>84s</td>
+<td>$0.0108<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>unclassified</small></th>
+<td>20260815.0.1</td><td>OpenRouter / high</td>
+<td>1/1<small>0 unavailable</small></td>
+<td>185s</td>
+<td>$0.0090<small>1/1 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Interrupted Discourse deployment v1<small>unclassified</small></th>
+<td>20260815.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>91s</td>
+<td>$0.0551<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260815.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Discourse multisite migration v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>72s</td>
+<td>$0.0339<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Discourse shared uploads v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>198s</td>
+<td>$0.0609<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Python Gunicorn saturation v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>211s</td>
+<td>$0.0510<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Rust file-descriptor leak v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>0/3<small>1 unavailable</small></td>
+<td>494s</td>
+<td>≥$0.0069<small>2/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Node event-loop blocking v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>230s</td>
+<td>$0.0518<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Partial Rails rollout v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>91s</td>
+<td>$0.0405<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>80s</td>
+<td>$0.0235<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>232s</td>
+<td>$0.0665<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>135s</td>
+<td>$0.0519<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>94s</td>
+<td>$0.0399<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>full</small></th>
+<td>20260812.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>66s</td>
+<td>$0.0314<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260812.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Discourse shared uploads v1<small>unclassified</small></th>
+<td>20260811.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>117s</td>
+<td>$0.0500<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260811.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>138s</td>
+<td>$0.0259<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>166s</td>
+<td>$0.0306<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>152s</td>
+<td>$0.0381<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / Default</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>69s</td>
+<td>≥$0.0138<small>2/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260810.0.2</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>91s</td>
+<td>$0.0181<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.2&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>138s</td>
+<td>$0.0259<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>166s</td>
+<td>$0.0306<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>152s</td>
+<td>$0.0381<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / Default</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>69s</td>
+<td>≥$0.0138<small>2/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260810.0.1</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>91s</td>
+<td>$0.0181<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260810.0.0</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>138s</td>
+<td>$0.0259<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260810.0.0</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>166s</td>
+<td>$0.0306<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260810.0.0</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>152s</td>
+<td>$0.0381<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260810.0.0</td><td>OpenRouter / Default</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>69s</td>
+<td>≥$0.0138<small>2/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260810.0.0</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>91s</td>
+<td>$0.0181<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260810.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>71s</td>
+<td>$0.0199<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>102s</td>
+<td>$0.0236<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>75s</td>
+<td>$0.0257<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>56s</td>
+<td>$0.0167<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260809.0.3</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>40s</td>
+<td>$0.0128<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.3&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260809.0.1</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>57s</td>
+<td>$0.0148<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260809.0.1</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>98s</td>
+<td>$0.0202<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260809.0.1</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>116s</td>
+<td>$0.0362<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260809.0.1</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>58s</td>
+<td>$0.0233<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260809.0.1</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>57s</td>
+<td>$0.0207<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.1&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Rails pool exhaustion v1<small>unclassified</small></th>
+<td>20260809.0.0</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>57s</td>
+<td>$0.0148<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq poison pill v1<small>unclassified</small></th>
+<td>20260809.0.0</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>98s</td>
+<td>$0.0202<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Missing Rails migration v2<small>unclassified</small></th>
+<td>20260809.0.0</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>116s</td>
+<td>$0.0362<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Sidekiq wrong Redis database v2<small>unclassified</small></th>
+<td>20260809.0.0</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>58s</td>
+<td>$0.0233<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+<tr><th>Nginx 502 v1<small>unclassified</small></th>
+<td>20260809.0.0</td><td>OpenRouter / Default</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>57s</td>
+<td>$0.0207<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260809.0.0&amp;model=openai/gpt-5.6-luna&amp;provider=OpenRouter&amp;reasoning=Unspecified">Inspect attempts →</a></td></tr>
+</tbody></table></div>
+<p><a href="benchmark-scores.html">Compare benchmark configurations →</a> · <a href="benchmark-models.html">All models</a></p>
+
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+</body>
+</html>

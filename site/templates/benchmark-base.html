@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+{% if model_base|default(false) %}  <base href="../../">{% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Benchmarks{% endblock %} &middot; replaybook</title>
   <meta name="description" content="{% block description %}Replaybook infrastructure-agent benchmark evidence.{% endblock %}">

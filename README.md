@@ -504,3 +504,13 @@ make release
 
 Bumps the DateVer version, tags, pushes, and publishes to crates.io.
 GitHub Actions builds binaries for all platforms on the tag push.
+
+### Shareable model results
+
+Published model results have static pages at `https://replaybook.dev/models/<model-name>/`
+(for example, `https://replaybook.dev/models/particle-1/`). The benchmark publisher
+builds these pages from the public catalog, including historical scenario results,
+repair counts, median times, cost coverage, and evidence links. Provider, release,
+and reasoning configurations remain separate. Matching model basenames receive a
+model-ID hash suffix; `docs/model-paths.json` maps exact IDs to generated paths.
+Run `python3 integrations/host/publish_benchmarks.py build` to regenerate them.

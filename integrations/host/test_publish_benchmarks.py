@@ -7,6 +7,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from integrations.host.publish_benchmarks import (
+    model_paths,
     HISTORY_END,
     HISTORY_START,
     MARKDOWN_END,
@@ -1234,3 +1235,14 @@ class PublisherTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ModelPathsTests(unittest.TestCase):
+    def test_short_paths_and_collision_disambiguation(self):
+        self.assertEqual(model_paths(["particle-ai/particle-1"]), {"particle-ai/particle-1": "models/particle-1/"})
+        models = ["one/shared", "two/shared", "vendor/../../UPPER name"]
+        paths = model_paths(models)
+        self.assertEqual(paths, model_paths(list(reversed(models))))
+        self.assertEqual(len(set(paths.values())), len(models))
+        for path in paths.values():
+            self.assertRegex(path, r"^models/[a-z0-9-]+/$")
