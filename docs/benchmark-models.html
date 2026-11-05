@@ -84,11 +84,14 @@
     })[provider] || provider || "Provider not reported";
   }
 
+  let modelPaths = {};
+
+
   function profileUrl(lane) {
     const query = new URLSearchParams({model: lane.model});
     if (lane.reasoning_effort) query.set("reasoning", lane.reasoning_effort);
     if (lane.provider) query.set("provider", lane.provider);
-    return `benchmark-model.html?${query}`;
+    return modelPaths[lane.model] || `benchmark-model.html?${query}`;
   }
 
   function compareUrl(cell) {
@@ -103,6 +106,8 @@
   }
 
   async function initialize() {
+    const pathsResponse = await fetch("model-paths.json");
+    if (pathsResponse.ok) modelPaths = await pathsResponse.json();
     const [coverageResponse, catalogResponse] = await Promise.all([fetch("benchmark-coverage.json"), fetch("benchmark-catalog.json")]);
     if (!coverageResponse.ok || !catalogResponse.ok) throw new Error("benchmark data request failed");
     const coverage = await coverageResponse.json();

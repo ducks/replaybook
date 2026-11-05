@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="../../">  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GLM 5.3 &middot; replaybook</title>
+  <meta name="description" content="GLM 5.3 infrastructure repair results, timings and costs on Replaybook.">
+  <link rel="stylesheet" href="style.css">
+  <script data-goatcounter="https://stats.replaybook.dev/count" async src="https://stats.replaybook.dev/count.js"></script>
+</head>
+<body>
+  <div class="wrap wide">
+    <header class="site">
+      <a class="brand" href="index.html"><span class="prompt">$</span> replaybook</a>
+      <nav class="site">
+        <a href="index.html">Home</a>
+        <a href="usage.html">Usage</a>
+        <a href="benchmarks.html" class="active">Benchmarks</a>
+        <a href="https://github.com/ducks/replaybook">GitHub</a>
+      </nav>
+    </header>
+
+    <nav class="benchmark-tabs" aria-label="Benchmark sections">
+      <a href="benchmarks.html">Overview</a>
+      <a href="benchmark-scores.html">Scores</a>
+      <a href="benchmark-evidence.html">Evidence</a>
+      <a href="benchmark-models.html" class="active" aria-current="page">Models</a>
+      <a href="scenarios.html">Scenarios</a>
+      <a href="benchmark-providers.html">Providers</a>
+      <a href="benchmark-coverage.html">Coverage</a>
+      <a href="benchmark-history.html">History</a>
+    </nav>
+
+
+<p class="eyebrow">Model results</p>
+<h1>GLM 5.3</h1>
+<p><code>z-ai/glm-5.3</code></p>
+<p class="callout comparison-note">Each row is an independent scenario cohort. Releases, providers and reasoning settings remain separate; these results are not pooled into a single model score.</p>
+<h2>Repairs, timing and cost</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Scenario</th><th>Release</th><th>Provider / reasoning</th><th>Repairs</th><th>Median time</th><th>Known cost</th><th>Evidence</th></tr></thead>
+<tbody><tr><th>033-tls-trust-rotation v2<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>105s</td>
+<td>$0.0860<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>113s</td>
+<td>$0.1302<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>131s</td>
+<td>$0.3772<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>85s</td>
+<td>$0.1059<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>124s</td>
+<td>$0.3256<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>80s</td>
+<td>$0.1050<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>166s</td>
+<td>$0.1158<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>79s</td>
+<td>$0.0997<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>174s</td>
+<td>$0.2552<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v3<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>92s</td>
+<td>$0.0672<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20261026.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>65s</td>
+<td>$0.0537<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20261026.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>143s</td>
+<td>$0.4474<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>326s</td>
+<td>$0.5771<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>759s</td>
+<td>$1.7642<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>141s</td>
+<td>$0.4864<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>341s</td>
+<td>$0.3848<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>292s</td>
+<td>$0.7702<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>150s</td>
+<td>$0.2612<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260906.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>146s</td>
+<td>$0.4780<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260906.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>141s</td>
+<td>$0.3374<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>121s</td>
+<td>$0.4494<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>430s</td>
+<td>$1.0071<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>91s</td>
+<td>$0.2477<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>155s</td>
+<td>$0.5037<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>243s</td>
+<td>$0.4869<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>78s</td>
+<td>$0.2082<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260822.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>68s</td>
+<td>$0.1324<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260822.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>141s</td>
+<td>$0.3374<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>121s</td>
+<td>$0.4494<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>430s</td>
+<td>$1.0071<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>91s</td>
+<td>$0.2477<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>155s</td>
+<td>$0.5037<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>243s</td>
+<td>$0.4869<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>78s</td>
+<td>$0.2082<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>core</small></th>
+<td>20260821.0.1</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>68s</td>
+<td>$0.1324<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260821.0.1&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>166s</td>
+<td>$0.2610<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>027-partial-service-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>127s</td>
+<td>$0.2312<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>026-discourse-plugin-boot-loop v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>126s</td>
+<td>$0.2863<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>162s</td>
+<td>$0.3306<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>123s</td>
+<td>$0.2977<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>119s</td>
+<td>$0.3229<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>309s</td>
+<td>$0.5825<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>154s</td>
+<td>$0.2185<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>123s</td>
+<td>$0.2255<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>118s</td>
+<td>$0.2198<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>178s</td>
+<td>$0.2940<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>109s</td>
+<td>$0.1686<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>254s</td>
+<td>$0.3344<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>189s</td>
+<td>$0.2912<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>111s</td>
+<td>$0.1837<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>full</small></th>
+<td>20260819.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>108s</td>
+<td>$0.1620<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260819.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>028-nix-store-disk-pressure v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>136s</td>
+<td>$0.5426<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>027-partial-service-rollout v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>78s</td>
+<td>$0.2336<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>026-discourse-plugin-boot-loop v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>88s</td>
+<td>$0.2473<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>024-discourse-interrupted-deploy v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>115s</td>
+<td>$0.3216<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>023-auth-secret-rollout v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>88s</td>
+<td>$0.2634<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>022-discourse-multisite-migration v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>73s</td>
+<td>$0.2351<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>021-discourse-shared-uploads v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>224s</td>
+<td>$0.6221<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>020-python-gunicorn-saturation v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>110s</td>
+<td>$0.3002<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>019-rust-fd-leak v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>92s</td>
+<td>$0.2308<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>018-node-event-loop-blocking v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>101s</td>
+<td>$0.2404<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>017-partial-rails-rollout v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>155s</td>
+<td>$0.4608<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>016-rails-pool-exhaustion v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>2/3<small>0 unavailable</small></td>
+<td>93s</td>
+<td>$0.1982<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>015-sidekiq-poison-pill v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>177s</td>
+<td>$0.3348<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>014-missing-rails-migration v2<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>121s</td>
+<td>$0.2840<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>013-sidekiq-wrong-redis v2<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>79s</td>
+<td>$0.1910<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+<tr><th>001-nginx-502-host v1<small>full</small></th>
+<td>20260818.0.0</td><td>OpenRouter / high</td>
+<td>3/3<small>0 unavailable</small></td>
+<td>69s</td>
+<td>$0.1735<small>3/3 trials report cost</small></td>
+<td><a href="benchmark-evidence.html?release=20260818.0.0&amp;model=z-ai/glm-5.3&amp;provider=OpenRouter&amp;reasoning=high">Inspect attempts →</a></td></tr>
+</tbody></table></div>
+<p><a href="benchmark-scores.html">Compare benchmark configurations →</a> · <a href="benchmark-models.html">All models</a></p>
+
+    <footer class="site"><a href="https://github.com/ducks/replaybook">github.com/ducks/replaybook</a> &middot; <a href="https://crates.io/crates/replaybook">crates.io</a></footer>
+  </div>
+</body>
+</html>

@@ -45,8 +45,29 @@ class PagesTests(unittest.TestCase):
                 if parsed.scheme or parsed.netloc or link.startswith("#"):
                     continue
                 target = DOCS_DIR / parsed.path
+                if target.is_dir():
+                    target = target / "index.html"
                 with self.subTest(page=page.name, link=link):
                     self.assertTrue(target.is_file(), f"missing local link: {target}")
+
+    def test_short_model_pages_have_stats_and_working_relative_links(self) -> None:
+        paths = json.loads((DOCS_DIR / "model-paths.json").read_text())
+        self.assertEqual(paths["particle-ai/particle-1"], "models/particle-1/")
+        for model, path in paths.items():
+            page = DOCS_DIR / path / "index.html"
+            html = page.read_text()
+            self.assertIn('<base href="../../">', html)
+            self.assertIn("Repairs, timing and cost", html)
+            parser = LinkParser()
+            parser.feed(html)
+            for link in parser.links:
+                parsed = urlparse(link)
+                if parsed.scheme or parsed.netloc or not parsed.path:
+                    continue
+                target = DOCS_DIR / parsed.path
+                if target.is_dir():
+                    target = target / "index.html"
+                self.assertTrue(target.is_file(), f"{model}: missing {target}")
 
     def test_every_page_links_to_benchmarks(self) -> None:
         for page in DOCS_DIR.glob("*.html"):

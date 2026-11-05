@@ -60,7 +60,7 @@
     {% for card in cards %}
     <article class="model-card score-card" data-harness="{{ card.harness.id }}" data-harness-label="{{ card.harness.label }}" data-score="{{ card.score }}" data-cost="{{ card.cost if card.cost is not none else '' }}" data-cost-per-repair="{{ card.cost_per_repair if card.cost_per_repair is not none else '' }}" data-cost-complete="{{ 'true' if card.cost_complete else 'false' }}" data-duration="{{ card.duration if card.duration is not none else '' }}" data-name="{{ card.label }}">
       <div class="score-value">{{ "%.1f"|format(card.score) }} <span>/ 100</span></div>
-      <h4>{{ card.label }}</h4>
+      <h4>{% if model_urls is defined and card.model in model_urls %}<a href="{{ model_urls[card.model] }}">{{ card.label }}</a>{% else %}{{ card.label }}{% endif %}</h4>
       <p><strong>{{ provider }} · {{ card.harness.label }} {{ card.harness.version }}</strong></p>
       <p class="small muted">Release {{ card.release }}</p>
       <p>{{ card.reasoning|capitalize }} reasoning</p>
