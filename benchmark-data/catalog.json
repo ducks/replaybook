@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261103.0.0",
+  "current_version": "20261106.0.0",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -5661,6 +5661,38 @@
       "trials": 33,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.13021455555555556,
+      "cost_reported_trials": 31,
+      "evaluated": 31,
+      "failed": 13,
+      "failure_categories": {
+        "agent_timeout": 12,
+        "provider_interrupted": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 1233435,
+      "known_cost_usd": 2.343862,
+      "median_duration_seconds": 759,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "output_tokens": 1420369,
+      "pass_rate": 0.5806451612903226,
+      "pass_rate_95_high": 0.7358445693268778,
+      "pass_rate_95_low": 0.4076626249536972,
+      "passed": 18,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 2,
+      "unavailable_categories": {
+        "provider_unavailable": 2
+      }
     }
   ],
   "provider_observations": [
@@ -59130,6 +59162,586 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.1091628,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 149462,
+      "known_cost_usd": 0.2183256,
+      "median_duration_seconds": 775,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 759,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 775,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 143826,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.10307469999999999,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 111696,
+      "known_cost_usd": 0.20614939999999998,
+      "median_duration_seconds": 566,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 566,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 552,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 106329,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "provider_interrupted": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 70507,
+      "known_cost_usd": 0.1255474,
+      "median_duration_seconds": 901,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 602,
+          "failure_category": "provider_interrupted",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 113466,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.5614970317550454,
+      "pass_rate_95_low": 5.551115123125783e-17,
+      "passed": 0,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.06963519999999998,
+      "cost_reported_trials": 1,
+      "evaluated": 1,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 47109,
+      "known_cost_usd": 0.06963519999999998,
+      "median_duration_seconds": 614,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 184,
+          "failure_category": "provider_unavailable",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 73,
+          "failure_category": "provider_unavailable",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 614,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 39721,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.20654931437723745,
+      "passed": 1,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 2,
+      "unavailable_categories": {
+        "provider_unavailable": 2
+      }
+    },
+    {
+      "cost_per_repair_usd": 0.12996726666666666,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 160817,
+      "known_cost_usd": 0.38990179999999997,
+      "median_duration_seconds": 724,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 405,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 724,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 759,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 141116,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.053837,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 80343,
+      "known_cost_usd": 0.16151100000000002,
+      "median_duration_seconds": 293,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 492,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 293,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 224,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 91380,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 3
+      },
+      "input_mode": "text",
+      "input_tokens": 130603,
+      "known_cost_usd": 0.210687,
+      "median_duration_seconds": 901,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 903,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 175552,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.5614970317550454,
+      "pass_rate_95_low": 5.551115123125783e-17,
+      "passed": 0,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0947152,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 119248,
+      "known_cost_usd": 0.2841456,
+      "median_duration_seconds": 754,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 764,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 448,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 754,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 147272,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.26017120000000005,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_mode": "text",
+      "input_tokens": 136286,
+      "known_cost_usd": 0.26017120000000005,
+      "median_duration_seconds": 901,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 848,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 159486,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 3
+      },
+      "input_mode": "text",
+      "input_tokens": 103609,
+      "known_cost_usd": 0.1903812,
+      "median_duration_seconds": 901,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 155475,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.5614970317550454,
+      "pass_rate_95_low": 5.551115123125783e-17,
+      "passed": 0,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0758022,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 123755,
+      "known_cost_usd": 0.22740660000000001,
+      "median_duration_seconds": 585,
+      "model": "ricursiveai/ripple-65b-preview",
+      "model_label": "Ripple-65B-Preview",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 471,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 585,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 665,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 146746,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261106.0.0",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -65188,7 +65800,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "Crouton Alpha passed all 33 evaluated Core trials at high reasoning, with a 61-second median agent duration and $0 in provider-reported API cost.",
       "harness_versions": [
         23
@@ -65197,7 +65809,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -65333,6 +65945,168 @@
         "usage_reported_trials": 33
       },
       "version": "20261103.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "custom build b959ef677ff7"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Ripple-65B-Preview passed 18 of 33 scheduled Core trials: 13 evaluated failures and 2 provider-unavailable attempts. Headline score 54.5/100; 58.1% aggregate pass rate among 31 evaluated trials.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "1442c651f8f4bbcef06fa7cef4922d6a6bdcabecb884848de548c69547ff5406"
+        }
+      ],
+      "tier": "core",
+      "title": "Frozen Core: Ripple-65B-Preview",
+      "totals": {
+        "cache_creation_reported_trials": 33,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 33,
+        "cache_read_tokens": 24899072,
+        "cost_reported_trials": 31,
+        "durable_repairs_after_timeout": 2,
+        "evaluated": 31,
+        "failed": 13,
+        "failure_categories": {
+          "agent_timeout": 12,
+          "provider_interrupted": 1
+        },
+        "input_tokens": 1233435,
+        "known_cost_usd": 2.343862,
+        "median_duration_seconds": 759,
+        "median_first_non_read_only_tool_seconds": 2.782,
+        "median_model_duration_seconds": 743.443,
+        "median_model_rounds": 28,
+        "median_post_first_non_read_only_seconds": 753.6030000000001,
+        "median_tool_calls": 47,
+        "median_tool_duration_seconds": 12.1,
+        "output_tokens": 1420369,
+        "pass_rate": 0.5806451612903226,
+        "passed": 18,
+        "recording_reported_trials": 33,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 33,
+        "unavailable": 2,
+        "unavailable_categories": {
+          "provider_unavailable": 2
+        },
+        "usage_reported_trials": 33
+      },
+      "version": "20261106.0.0"
     }
   ],
   "schema_version": 1

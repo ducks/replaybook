@@ -9,19 +9,27 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core: Crouton Alpha
+## Frozen Core: Ripple-65B-Preview
 
-Crouton Alpha passed all 33 evaluated Core trials at high reasoning, with a 61-second median agent duration and $0 in provider-reported API cost.
+Ripple-65B-Preview passed 18 of 33 scheduled Core trials: 13 evaluated failures and 2 provider-unavailable attempts. Headline score 54.5/100; 58.1% aggregate pass rate among 31 evaluated trials.
 
-Benchmark release: `20261103.0.0`
+Benchmark release: `20261106.0.0`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Crouton Alpha (high) · openrouter | 33/33 | 100% | 1:01 | $0.0000 | $0.0000 |
-| **Total** | **33/33** | **100%** | **1:01** | **$0.0000** | **$0.0000** |
+| Ripple-65B-Preview · openrouter | 18/31 | 58% | 12:39 | $2.3439+ | $0.1302+ |
+| **Total** | **18/31** | **58%** | **12:39** | **$2.3439+** | **$0.1302+** |
+
+### Unavailable trial categories
+
+- `provider_unavailable`: 2
+
+### Post-timeout verification
+
+2 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
 
 ### Execution recording
 
@@ -29,49 +37,52 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Crouton Alpha (high) · openrouter | 33/33 | 14 | 0:41 | 13 | 0:14 | 0:02 | 0:55 |
+| Ripple-65B-Preview · openrouter | 33/33 | 28 | 12:23 | 47 | 0:12 | 0:03 | 12:34 |
 
-Crouton Alpha passed 33/33 (100.0%), with a 61-second median agent duration and $0 in provider-reported API cost. There were no unavailable trials or infrastructure errors.
+Timeouts dominate the observed failures: 12 of 13 evaluated failures. This run does not establish whether a longer deadline would improve scored repair success.
 
-The run recorded 8,990,308 input tokens, 96,467 output tokens, and 511 tool calls. Median recorded model rounds were 14 and tool calls were 13. The provider reported zero cache-read and cache-creation tokens; no unreported caching behavior is inferred.
+Partial Rails rollout, Rust file descriptor leak, auth secret rollout, and TLS trust rotation each passed 3/3. Poison-pill recovery, shared uploads recovery, and Nix store disk pressure each scored 0/3; two disk pressure repairs were durable only after the agent timed out.
 
-Every raw result matched its matrix summary, and all 33 worker logs recorded passing immediate, service-restart, and host-reboot verification. All retained transcripts were checked for controller-only oracle, lifecycle, phase-failure, and work-contract filenames; none were found. Observable repair commands were reviewed across all eleven scenarios.
-
-The score ties other configurations that passed every Core trial. This sample does not distinguish those configurations by repair success and does not test Crouton Alpha at its advertised maximum context size.
+Provider availability was 31/33 evaluated attempts. The provider interruption occurred after meaningful inference and remains an evaluated failure. No missing or unavailable attempt was silently retried or omitted.
 
 ### Scenario breakdown
 
-| Scenario | Version | Crouton Alpha (high) · openrouter |
+| Scenario | Version | Ripple-65B-Preview · openrouter |
 |---|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 0:41 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 0:55 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 1:47 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 0:54 |
-| 017-partial-rails-rollout | v1 | 3/3, 1:19 |
-| 019-rust-fd-leak | v1 | 3/3, 0:49 |
-| 021-discourse-shared-uploads | v1 | 3/3, 1:12 |
-| 023-auth-secret-rollout | v1 | 3/3, 1:01 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 0:54 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 1:17 |
-| 033-tls-trust-rotation | v2 | 3/3, 0:58 |
+| 001-nginx-502-host | v1 | 2/3, 12:55 |
+| 013-sidekiq-wrong-redis | v3 | 2/3, 9:26 |
+| 015-sidekiq-poison-pill | v1 | 0/3, 15:01 |
+| 016-rails-pool-exhaustion | v1 | 1/1, 10:14 |
+| 017-partial-rails-rollout | v1 | 3/3, 12:04 |
+| 019-rust-fd-leak | v1 | 3/3, 4:53 |
+| 021-discourse-shared-uploads | v1 | 0/3, 15:01 |
+| 023-auth-secret-rollout | v1 | 3/3, 12:34 |
+| 024-discourse-interrupted-deploy | v1 | 1/3, 15:01 |
+| 028-nix-store-disk-pressure | v1 | 0/3, 15:01 |
+| 033-tls-trust-rotation | v2 | 3/3, 9:45 |
 
 ### Failure categories
 
+- `agent_timeout`: 12
+- `provider_interrupted`: 1
 
 ### Source matrices
 
-- `matrix`: stealth/crouton-alpha; Replaybook `37506bdd`; reasoning high
+- `matrix`: ricursiveai/ripple-65b-preview; Replaybook `37506bdd`
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, and a 900-second agent deadline. All 33 trials were evaluated; none are missing or unavailable. No recovery runs or retries were needed.
-- All 33 scored passes passed immediate, service-restart, and host-reboot verification. No scoring exemptions or post-run corrections have been applied.
+- Core 2026.10.24.2: eleven scenarios, three attempts each, a 900-second agent deadline, and one concurrent VM. All 33 scheduled attempts have retained results. No recovery runs or post-run score corrections were applied.
+- The exact model ID is ricursiveai/ripple-65b-preview through OpenRouter. This run used default reasoning: no reasoning-effort parameter was supplied because the endpoint did not advertise support for one. Other configurations shown in the same benchmark cohort may use explicit reasoning settings; those differences remain visible.
+- The headline score is 100 times the mean of per-scenario passed/recorded attempts: 54.5/100. The two unavailable attempts count as unsuccessful in that score. The aggregate evaluated-trial pass rate is separately 18/31, or 58.1%; it must not be substituted for the headline score.
+- Twelve evaluated failures hit the 900-second agent deadline. Two of those left repairs that subsequently passed immediate, restart, and reboot verification, but both remain scored failures under the frozen deadline rule. The other evaluated failure was a provider interruption after 15 model rounds and 22 tool calls; it is not reclassified as unavailable.
+- Two Rails pool exhaustion attempts returned HTTP 503 before meaningful inference: zero input tokens, output tokens, and tool calls. They remain provider_unavailable, not evaluated model failures. The controller marks the session incomplete due to these unavailable trials, despite all scheduled attempts having terminated.
+- All 18 scored passes have passing immediate, service-restart, and host-reboot verification. Snapshot hashes and every raw result were checked against the matrix summary. Retained transcripts were scanned for controller-only oracle and lifecycle filenames; none were found.
 - This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
-- This batch used one concurrent VM. Timing includes tool execution and is not pure inference latency. Host and provider conditions can affect timing.
-- Provider-reported API cost is present for all 33 trials and totals $0. This describes the pricing reported during the run, not a guarantee of future pricing; it excludes VM hosting and other infrastructure. The exact model ID is stealth/crouton-alpha through OpenRouter.
-- Three attempts per scenario are a small sample. Compatible releases may be displayed together, but model headline scores never pool attempts across releases or select best runs. A perfect score on this suite does not establish general infrastructure competence.
-- Core is a repair benchmark, not a long-context evaluation. The largest provider-reported single-request input in these trajectories was 34,371 tokens. Total input usage includes repeated conversation history across requests and must not be read as maximum context occupancy.
-- Public evidence includes normalized trial results, verification flags, provider-reported usage, immutable execution metadata, and source digests. Private transcripts, credentials, full VM logs, and local absolute paths are excluded.
+- Median recorded agent duration is 759 seconds. Timing includes tool execution and is not pure inference latency; host and provider conditions affect timing. This is a small sample and does not establish general infrastructure competence.
+- Provider-reported API cost totals $2.343862 for 31/33 trials. The two unavailable attempts have unknown cost, not zero cost, so this is a known-spend subtotal. Infrastructure costs are excluded. Usage includes 1,233,435 uncached input tokens, 24,899,072 cache-read tokens, and 1,420,369 output tokens as recorded by the harness.
+- This is a repair benchmark, not a 1M-context evaluation. The largest recorded single-request input plus cache-read usage was 69,830 tokens. Aggregate usage repeats conversation history and does not measure maximum context occupancy.
+- Public evidence contains normalized trial results, verification flags, provider usage, immutable execution metadata, and source digests. Credentials, private transcripts, full VM logs, and local absolute paths are excluded.
 
 <!-- replaybook:current-benchmark:end -->
 
