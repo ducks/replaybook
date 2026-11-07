@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261106.0.0",
+  "current_version": "20261106.0.1",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -5693,6 +5693,35 @@
       "unavailable_categories": {
         "provider_unavailable": 2
       }
+    },
+    {
+      "cost_per_repair_usd": 0.6650225625,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 3334951,
+      "known_cost_usd": 21.280722,
+      "median_duration_seconds": 220,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "output_tokens": 625142,
+      "pass_rate": 0.9696969696969697,
+      "pass_rate_95_high": 0.9946305894631283,
+      "pass_rate_95_low": 0.846812746178811,
+      "passed": 32,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "provider_observations": [
@@ -59742,6 +59771,559 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.2865006666666667,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 184038,
+      "known_cost_usd": 0.859502,
+      "median_duration_seconds": 134,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 134,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 116,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 138,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 27259,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.5749706666666666,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 239756,
+      "known_cost_usd": 1.7249119999999998,
+      "median_duration_seconds": 222,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 198,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 357,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 222,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 57348,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 1.498914,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 446033,
+      "known_cost_usd": 4.496742,
+      "median_duration_seconds": 631,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 382,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 660,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 631,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 120278,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.391948,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 231275,
+      "known_cost_usd": 1.1758440000000001,
+      "median_duration_seconds": 167,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 136,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 191,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 167,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 35917,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.5443800000000001,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 326948,
+      "known_cost_usd": 1.6331400000000003,
+      "median_duration_seconds": 316,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 299,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 316,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 325,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 41298,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.5200553333333333,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 281188,
+      "known_cost_usd": 1.560166,
+      "median_duration_seconds": 212,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 212,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 284,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 199,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 48549,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 1.6055690000000002,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 385318,
+      "known_cost_usd": 3.2111380000000005,
+      "median_duration_seconds": 566,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 702,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 566,
+          "failure_category": "host_reboot_failed",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 368,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 111145,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.3892773333333334,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 238184,
+      "known_cost_usd": 1.1678320000000002,
+      "median_duration_seconds": 220,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 220,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 144,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 262,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 37580,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.457744,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 309442,
+      "known_cost_usd": 1.373232,
+      "median_duration_seconds": 176,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 176,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 150,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 201,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 35346,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.8670553333333334,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 357717,
+      "known_cost_usd": 2.601166,
+      "median_duration_seconds": 350,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 310,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 350,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 374,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 69542,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.49234933333333336,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 335052,
+      "known_cost_usd": 1.4770480000000001,
+      "median_duration_seconds": 183,
+      "model": "x-ai/grok-4.7",
+      "model_label": "Grok 4.7",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 183,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 142,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 218,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 40880,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": "high",
+      "release": "20261106.0.1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -65957,7 +66539,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "Ripple-65B-Preview passed 18 of 33 scheduled Core trials: 13 evaluated failures and 2 provider-unavailable attempts. Headline score 54.5/100; 58.1% aggregate pass rate among 31 evaluated trials.",
       "harness_versions": [
         23
@@ -65966,7 +66548,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -66107,6 +66689,165 @@
         "usage_reported_trials": 33
       },
       "version": "20261106.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "provider-reported",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "custom build b959ef677ff7"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Grok 4.7 passed 32/33 Core trials (97.0%) at high reasoning, with a 220-second median agent duration and $21.280722 in provider-reported API cost.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "856dd879d817a1e38ae65fb74f22734111f8d956558bf5c56ed27eeedc55a093"
+        }
+      ],
+      "tier": "core",
+      "title": "Frozen Core: Grok 4.7",
+      "totals": {
+        "cache_creation_reported_trials": 33,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 33,
+        "cache_read_tokens": 21719936,
+        "cost_reported_trials": 33,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 33,
+        "failed": 1,
+        "failure_categories": {
+          "host_reboot_failed": 1
+        },
+        "input_tokens": 3334951,
+        "known_cost_usd": 21.280722,
+        "median_duration_seconds": 220,
+        "median_first_non_read_only_tool_seconds": 3.213,
+        "median_model_duration_seconds": 192.096,
+        "median_model_rounds": 17,
+        "median_post_first_non_read_only_seconds": 213.375,
+        "median_tool_calls": 19,
+        "median_tool_duration_seconds": 10.832,
+        "output_tokens": 625142,
+        "pass_rate": 0.9696969696969697,
+        "passed": 32,
+        "recording_reported_trials": 33,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 33,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 33
+      },
+      "version": "20261106.0.1"
     }
   ],
   "schema_version": 1

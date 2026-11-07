@@ -1,0 +1,2349 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 21719936,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 3334951,
+      "known_cost_usd": 21.280722,
+      "median_duration_seconds": 220,
+      "median_first_non_read_only_tool_seconds": 3.213,
+      "median_model_duration_seconds": 192.096,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 213.375,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 10.832,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 625142,
+      "pass_rate": 0.9696969696969697,
+      "passed": 32,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 655744,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 184038,
+      "known_cost_usd": 0.859502,
+      "median_duration_seconds": 134,
+      "median_first_non_read_only_tool_seconds": 3.011,
+      "median_model_duration_seconds": 125.337,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 124.92100000000002,
+      "median_tool_calls": 13,
+      "median_tool_duration_seconds": 2.086,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 27259,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1802624,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 239756,
+      "known_cost_usd": 1.7249119999999998,
+      "median_duration_seconds": 222,
+      "median_first_non_read_only_tool_seconds": 2.96,
+      "median_model_duration_seconds": 209.168,
+      "median_model_rounds": 22,
+      "median_post_first_non_read_only_seconds": 218.108,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 10.947,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 57348,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 5766016,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 446033,
+      "known_cost_usd": 4.496742,
+      "median_duration_seconds": 631,
+      "median_first_non_read_only_tool_seconds": 3.644,
+      "median_model_duration_seconds": 591.259,
+      "median_model_rounds": 36,
+      "median_post_first_non_read_only_seconds": 625.9879999999999,
+      "median_tool_calls": 54,
+      "median_tool_duration_seconds": 9.974,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 120278,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 995584,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 231275,
+      "known_cost_usd": 1.1758440000000001,
+      "median_duration_seconds": 167,
+      "median_first_non_read_only_tool_seconds": 3.492,
+      "median_model_duration_seconds": 155.963,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 161.39700000000002,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 8.747,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 35917,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1462912,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 326948,
+      "known_cost_usd": 1.6331400000000003,
+      "median_duration_seconds": 316,
+      "median_first_non_read_only_tool_seconds": 3.199,
+      "median_model_duration_seconds": 167.012,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 310.812,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 130.65,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 41298,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1412992,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 281188,
+      "known_cost_usd": 1.560166,
+      "median_duration_seconds": 212,
+      "median_first_non_read_only_tool_seconds": 3.432,
+      "median_model_duration_seconds": 205.06,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 207.232,
+      "median_tool_calls": 30,
+      "median_tool_duration_seconds": 5.221,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 48549,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 3547264,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 385318,
+      "known_cost_usd": 3.2111380000000005,
+      "median_duration_seconds": 566,
+      "median_first_non_read_only_tool_seconds": 3.438,
+      "median_model_duration_seconds": 548.778,
+      "median_model_rounds": 26,
+      "median_post_first_non_read_only_seconds": 560.69,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 14.749,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 111145,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 931968,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 238184,
+      "known_cost_usd": 1.1678320000000002,
+      "median_duration_seconds": 220,
+      "median_first_non_read_only_tool_seconds": 3.768,
+      "median_model_duration_seconds": 140.415,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 213.375,
+      "median_tool_calls": 14,
+      "median_tool_duration_seconds": 6.987,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 37580,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1084544,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 309442,
+      "known_cost_usd": 1.373232,
+      "median_duration_seconds": 176,
+      "median_first_non_read_only_tool_seconds": 2.668,
+      "median_model_duration_seconds": 169.014,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 170.10399999999998,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 7.638,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 35346,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 2936960,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 357717,
+      "known_cost_usd": 2.601166,
+      "median_duration_seconds": 350,
+      "median_first_non_read_only_tool_seconds": 3.657,
+      "median_model_duration_seconds": 326.1,
+      "median_model_rounds": 25,
+      "median_post_first_non_read_only_seconds": 345.03999999999996,
+      "median_tool_calls": 38,
+      "median_tool_duration_seconds": 19.94,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 69542,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1123328,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 335052,
+      "known_cost_usd": 1.4770480000000001,
+      "median_duration_seconds": 183,
+      "median_first_non_read_only_tool_seconds": 3.198,
+      "median_model_duration_seconds": 169.653,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 177.45999999999998,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 10.832,
+      "model": "x-ai/grok-4.7",
+      "output_tokens": 40880,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "provider-reported",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "custom build b959ef677ff7"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Grok 4.7 passed 32/33 Core trials (97.0%) at high reasoning, with a 220-second median agent duration and $21.280722 in provider-reported API cost.",
+  "input_mode": "text",
+  "model_labels": {
+    "x-ai/grok-4.7": "Grok 4.7"
+  },
+  "model_order": [
+    "x-ai/grok-4.7"
+  ],
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, a 900-second agent deadline, and one concurrent VM. All 33 trials were evaluated. There were no missing or unavailable attempts, recovery runs, or post-run scoring corrections.",
+    "All 32 scored passes passed immediate, service-restart, and host-reboot verification. The remaining shared-uploads attempt passed immediate and service-restart checks, but the VM did not become reachable after the verifier reboot. It remains a scored host_reboot_failed result; it has not been reclassified as unavailable or excused as an infrastructure failure.",
+    "The failed shared-uploads trajectory replaced /etc/systemd/system with a writable directory of links to generated units while installing a service drop-in. Retained console logs reached multi-user target after reboot, but the harness could not reconnect. This is an observed repair and reboot failure, not a proven root-cause attribution. No paid or corrective rerun was performed.",
+    "The exact model ID is x-ai/grok-4.7 through OpenRouter, not a consumer Grok session. The endpoint was not pinned to one inference provider; no claim is made that the run enforced zero retention. Requests contained synthetic incident prompts and disposable guest output, not personal working context.",
+    "This release uses the frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable of the expanded Core cohort. Cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "Provider-reported API cost is available for all 33 trials and totals $21.280722. It excludes VM hosting and other infrastructure. This manual run had no provider-enforced spending cap and is not covered by the later discovery watcher's admission budget. Cost must remain visible alongside the repair score.",
+    "Recorded usage totals 3,334,951 uncached input tokens, 21,719,936 cache-read tokens, and 625,142 output tokens. These are aggregate usage counts across requests, not maximum context occupancy. The largest single-request input plus cache-read count was 103,537 tokens; this is not a maximum-context benchmark.",
+    "Median agent duration was 220 seconds. Timing includes tool execution and is not pure inference latency. Host and provider conditions affect timing. Three attempts per scenario are a small sample, and these results do not establish general infrastructure competence.",
+    "Public evidence includes normalized trial results, lifecycle flags, provider-reported usage, immutable execution metadata, and source digests. Credentials, private transcripts, full console/VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "Grok 4.7 scored 97.0/100: 32 of 33 recorded trials passed. Ten scenarios passed all three attempts; shared uploads passed two of three.",
+    "All raw result fields matched the matrix summary and snapshot hashes validated. All 32 passes had three passing lifecycle checks. Retained transcripts were scanned for controller-only oracle and lifecycle filenames; none were found.",
+    "The run cost $21.28 for 32 scored repairs, approximately $0.6650 per successful repair. This describes this sample's API cost, not a claim of cost-effectiveness against cheaper models."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 134,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T19:56:44Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.933,
+        "model_duration_seconds": 125.337,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 124.92100000000002,
+        "tool_calls": 13,
+        "tool_duration_seconds": 2.086,
+        "total_duration_seconds": 130.854
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T19:54:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 155264,
+        "cost_source": "provider",
+        "cost_usd": 0.21975999999999998,
+        "input_tokens": 43662,
+        "output_tokens": 9134,
+        "rounds": 12,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 116,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T19:59:53Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.351,
+        "model_duration_seconds": 112.467,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 112.735,
+        "tool_calls": 11,
+        "tool_duration_seconds": 1.923,
+        "total_duration_seconds": 115.086
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T19:57:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 206464,
+        "cost_source": "provider",
+        "cost_usd": 0.287842,
+        "input_tokens": 67252,
+        "output_tokens": 8351,
+        "rounds": 12,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 138,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T20:03:11Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.011,
+        "model_duration_seconds": 133.088,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 133.77100000000002,
+        "tool_calls": 17,
+        "tool_duration_seconds": 3.545,
+        "total_duration_seconds": 136.782
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T20:00:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 294016,
+        "cost_source": "provider",
+        "cost_usd": 0.3519,
+        "input_tokens": 73124,
+        "output_tokens": 9774,
+        "rounds": 14,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 198,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T20:07:59Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.197,
+        "model_duration_seconds": 184.146,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 193.29,
+        "tool_calls": 16,
+        "tool_duration_seconds": 12.208,
+        "total_duration_seconds": 196.487
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-06T20:04:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 201600,
+        "cost_source": "provider",
+        "cost_usd": 0.3279,
+        "input_tokens": 70293,
+        "output_tokens": 14419,
+        "rounds": 13,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 357,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T20:15:15Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.96,
+        "model_duration_seconds": 344.583,
+        "model_rounds": 30,
+        "post_first_non_read_only_seconds": 352.677,
+        "tool_calls": 35,
+        "tool_duration_seconds": 10.658,
+        "total_duration_seconds": 355.637
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-06T20:08:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 972416,
+        "cost_source": "provider",
+        "cost_usd": 0.8161739999999998,
+        "input_tokens": 86461,
+        "output_tokens": 26174,
+        "rounds": 30,
+        "tool_calls": 35
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 222,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T20:20:22Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.232,
+        "model_duration_seconds": 209.168,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 218.108,
+        "tool_calls": 22,
+        "tool_duration_seconds": 10.947,
+        "total_duration_seconds": 220.34
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-06T20:16:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 628608,
+        "cost_source": "provider",
+        "cost_usd": 0.580838,
+        "input_tokens": 83002,
+        "output_tokens": 16755,
+        "rounds": 22,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 382,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T20:27:55Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.713,
+        "model_duration_seconds": 371.79,
+        "model_rounds": 36,
+        "post_first_non_read_only_seconds": 376.881,
+        "tool_calls": 52,
+        "tool_duration_seconds": 8.445,
+        "total_duration_seconds": 380.594
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T20:21:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1614208,
+        "cost_source": "provider",
+        "cost_usd": 1.208912,
+        "input_tokens": 115689,
+        "output_tokens": 28405,
+        "rounds": 36,
+        "tool_calls": 52
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 660,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T20:40:13Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.644,
+        "model_duration_seconds": 648.278,
+        "model_rounds": 43,
+        "post_first_non_read_only_seconds": 655.176,
+        "tool_calls": 54,
+        "tool_duration_seconds": 9.974,
+        "total_duration_seconds": 658.82
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T20:28:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 2152320,
+        "cost_source": "provider",
+        "cost_usd": 1.81247,
+        "input_tokens": 225547,
+        "output_tokens": 47536,
+        "rounds": 43,
+        "tool_calls": 54
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 631,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T20:52:15Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.099,
+        "model_duration_seconds": 591.259,
+        "model_rounds": 36,
+        "post_first_non_read_only_seconds": 625.9879999999999,
+        "tool_calls": 55,
+        "tool_duration_seconds": 37.05,
+        "total_duration_seconds": 629.087
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T20:41:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1999488,
+        "cost_source": "provider",
+        "cost_usd": 1.4753600000000002,
+        "input_tokens": 104797,
+        "output_tokens": 44337,
+        "rounds": 36,
+        "tool_calls": 55
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 136,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T20:56:02Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.201,
+        "model_duration_seconds": 129.222,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 131.555,
+        "tool_calls": 15,
+        "tool_duration_seconds": 5.407,
+        "total_duration_seconds": 134.756
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T20:53:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 211712,
+        "cost_source": "provider",
+        "cost_usd": 0.242394,
+        "input_tokens": 36043,
+        "output_tokens": 10742,
+        "rounds": 11,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 191,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T21:00:50Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.825,
+        "model_duration_seconds": 172.016,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 185.973,
+        "tool_calls": 25,
+        "tool_duration_seconds": 17.564,
+        "total_duration_seconds": 189.798
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T20:57:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 390016,
+        "cost_source": "provider",
+        "cost_usd": 0.5114080000000001,
+        "input_tokens": 118162,
+        "output_tokens": 13346,
+        "rounds": 19,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 167,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T21:05:14Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.492,
+        "model_duration_seconds": 155.963,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 161.39700000000002,
+        "tool_calls": 21,
+        "tool_duration_seconds": 8.747,
+        "total_duration_seconds": 164.889
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T21:01:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 393856,
+        "cost_source": "provider",
+        "cost_usd": 0.422042,
+        "input_tokens": 77070,
+        "output_tokens": 11829,
+        "rounds": 15,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 299,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T21:11:55Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.851,
+        "model_duration_seconds": 167.012,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 295.002,
+        "tool_calls": 26,
+        "tool_duration_seconds": 130.65,
+        "total_duration_seconds": 297.853
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T21:06:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 599936,
+        "cost_source": "provider",
+        "cost_usd": 0.4998120000000001,
+        "input_tokens": 60280,
+        "output_tokens": 13214,
+        "rounds": 18,
+        "tool_calls": 26
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 316,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T21:18:47Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.199,
+        "model_duration_seconds": 166.551,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 310.812,
+        "tool_calls": 18,
+        "tool_duration_seconds": 147.237,
+        "total_duration_seconds": 314.011
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T21:13:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 354688,
+        "cost_source": "provider",
+        "cost_usd": 0.548494,
+        "input_tokens": 148021,
+        "output_tokens": 12518,
+        "rounds": 15,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 325,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T21:25:53Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.213,
+        "model_duration_seconds": 214.576,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 320.049,
+        "tool_calls": 19,
+        "tool_duration_seconds": 108.482,
+        "total_duration_seconds": 323.262
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T21:20:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 508288,
+        "cost_source": "provider",
+        "cost_usd": 0.5848340000000001,
+        "input_tokens": 118647,
+        "output_tokens": 15566,
+        "rounds": 18,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 212,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T21:32:44Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.691,
+        "model_duration_seconds": 205.06,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 207.232,
+        "tool_calls": 30,
+        "tool_duration_seconds": 4.621,
+        "total_duration_seconds": 209.923
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T21:28:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 569856,
+        "cost_source": "provider",
+        "cost_usd": 0.5334599999999999,
+        "input_tokens": 78330,
+        "output_tokens": 15312,
+        "rounds": 20,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 284,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T21:40:21Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.432,
+        "model_duration_seconds": 268.232,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 279.055,
+        "tool_calls": 33,
+        "tool_duration_seconds": 13.939,
+        "total_duration_seconds": 282.487
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T21:35:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 479872,
+        "cost_source": "provider",
+        "cost_usd": 0.604968,
+        "input_tokens": 123500,
+        "output_tokens": 19672,
+        "rounds": 21,
+        "tool_calls": 33
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 199,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T21:46:55Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.641,
+        "model_duration_seconds": 192.096,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 193.937,
+        "tool_calls": 17,
+        "tool_duration_seconds": 5.221,
+        "total_duration_seconds": 197.578
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T21:43:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 363264,
+        "cost_source": "provider",
+        "cost_usd": 0.421738,
+        "input_tokens": 79358,
+        "output_tokens": 13565,
+        "rounds": 17,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 702,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T22:00:15Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.118,
+        "model_duration_seconds": 574.303,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 696.8539999999999,
+        "tool_calls": 25,
+        "tool_duration_seconds": 125.224,
+        "total_duration_seconds": 699.972
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T21:48:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 763264,
+        "cost_source": "provider",
+        "cost_usd": 1.044864,
+        "input_tokens": 206402,
+        "output_tokens": 41738,
+        "rounds": 26,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 566,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "VM did not return after reboot",
+      "failure_category": "host_reboot_failed",
+      "finished_at": "2026-11-06T22:16:12Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.438,
+        "model_duration_seconds": 548.778,
+        "model_rounds": 37,
+        "post_first_non_read_only_seconds": 560.69,
+        "tool_calls": 36,
+        "tool_duration_seconds": 14.749,
+        "total_duration_seconds": 564.128
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:01:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 2222464,
+        "cost_source": "provider",
+        "cost_usd": 1.5725480000000005,
+        "input_tokens": 111504,
+        "output_tokens": 39718,
+        "rounds": 37,
+        "tool_calls": 36
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 368,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T22:23:44Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.979,
+        "model_duration_seconds": 363.141,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 362.40700000000004,
+        "tool_calls": 16,
+        "tool_duration_seconds": 2.991,
+        "total_duration_seconds": 366.386
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:17:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 561536,
+        "cost_source": "provider",
+        "cost_usd": 0.5937260000000001,
+        "input_tokens": 67412,
+        "output_tokens": 29689,
+        "rounds": 17,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 220,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T22:28:48Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.438,
+        "model_duration_seconds": 209.614,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 213.375,
+        "tool_calls": 19,
+        "tool_duration_seconds": 6.987,
+        "total_duration_seconds": 216.813
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:24:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 378880,
+        "cost_source": "provider",
+        "cost_usd": 0.5520680000000001,
+        "input_tokens": 133797,
+        "output_tokens": 15839,
+        "rounds": 13,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 144,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T22:32:26Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.768,
+        "model_duration_seconds": 140.415,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 138.827,
+        "tool_calls": 14,
+        "tool_duration_seconds": 2.028,
+        "total_duration_seconds": 142.595
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:29:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 337664,
+        "cost_source": "provider",
+        "cost_usd": 0.314546,
+        "input_tokens": 42476,
+        "output_tokens": 10127,
+        "rounds": 15,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 262,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T22:37:55Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.03,
+        "model_duration_seconds": 137.516,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 255.73299999999998,
+        "tool_calls": 13,
+        "tool_duration_seconds": 122.072,
+        "total_duration_seconds": 259.763
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:33:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 215424,
+        "cost_source": "provider",
+        "cost_usd": 0.30121800000000004,
+        "input_tokens": 61911,
+        "output_tokens": 11614,
+        "rounds": 11,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 176,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T22:42:11Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.537,
+        "model_duration_seconds": 169.014,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 170.10399999999998,
+        "tool_calls": 13,
+        "tool_duration_seconds": 4.442,
+        "total_duration_seconds": 173.641
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:38:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 298624,
+        "cost_source": "provider",
+        "cost_usd": 0.431134,
+        "input_tokens": 103771,
+        "output_tokens": 12380,
+        "rounds": 12,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 150,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T22:46:03Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.635,
+        "model_duration_seconds": 140.138,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 145.315,
+        "tool_calls": 15,
+        "tool_duration_seconds": 7.638,
+        "total_duration_seconds": 147.95
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:43:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 401536,
+        "cost_source": "provider",
+        "cost_usd": 0.443344,
+        "input_tokens": 91114,
+        "output_tokens": 10058,
+        "rounds": 16,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 201,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T22:50:34Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.668,
+        "model_duration_seconds": 187.56,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 196.756,
+        "tool_calls": 16,
+        "tool_duration_seconds": 11.668,
+        "total_duration_seconds": 199.424
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:46:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 384384,
+        "cost_source": "provider",
+        "cost_usd": 0.4987539999999999,
+        "input_tokens": 114557,
+        "output_tokens": 12908,
+        "rounds": 15,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 310,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T22:57:35Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.657,
+        "model_duration_seconds": 288.312,
+        "model_rounds": 29,
+        "post_first_non_read_only_seconds": 304.952,
+        "tool_calls": 39,
+        "tool_duration_seconds": 19.94,
+        "total_duration_seconds": 308.609
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:52:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1006080,
+        "cost_source": "provider",
+        "cost_usd": 1.060398,
+        "input_tokens": 218376,
+        "output_tokens": 20101,
+        "rounds": 29,
+        "tool_calls": 39
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 350,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T23:05:18Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.184,
+        "model_duration_seconds": 326.1,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 345.03999999999996,
+        "tool_calls": 21,
+        "tool_duration_seconds": 21.885,
+        "total_duration_seconds": 348.224
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T22:59:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 727936,
+        "cost_source": "provider",
+        "cost_usd": 0.6298539999999999,
+        "input_tokens": 62881,
+        "output_tokens": 23354,
+        "rounds": 20,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 374,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T23:13:27Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.091,
+        "model_duration_seconds": 357.549,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 366.86,
+        "tool_calls": 38,
+        "tool_duration_seconds": 12.99,
+        "total_duration_seconds": 370.951
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-06T23:06:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1202944,
+        "cost_source": "provider",
+        "cost_usd": 0.9109140000000001,
+        "input_tokens": 76460,
+        "output_tokens": 26087,
+        "rounds": 25,
+        "tool_calls": 38
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 183,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T23:18:16Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.198,
+        "model_duration_seconds": 169.653,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 177.45999999999998,
+        "tool_calls": 17,
+        "tool_duration_seconds": 10.832,
+        "total_duration_seconds": 180.658
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-x-ai-grok-4-7-reasoning-high-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-06T23:14:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 346112,
+        "cost_source": "provider",
+        "cost_usd": 0.517144,
+        "input_tokens": 130638,
+        "output_tokens": 13802,
+        "rounds": 16,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 142,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T23:21:59Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.149,
+        "model_duration_seconds": 129.499,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 135.962,
+        "tool_calls": 13,
+        "tool_duration_seconds": 9.485,
+        "total_duration_seconds": 139.111
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-x-ai-grok-4-7-reasoning-high-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-06T23:19:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 199808,
+        "cost_source": "provider",
+        "cost_usd": 0.363124,
+        "input_tokens": 99600,
+        "output_tokens": 10670,
+        "rounds": 10,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 218,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-06T23:27:15Z",
+      "model": "x-ai/grok-4.7",
+      "provider": "openrouter",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.739,
+        "model_duration_seconds": 198.428,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 212.627,
+        "tool_calls": 24,
+        "tool_duration_seconds": 17.713,
+        "total_duration_seconds": 216.366
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-x-ai-grok-4-7-reasoning-high-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-06T23:23:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 577408,
+        "cost_source": "provider",
+        "cost_usd": 0.5967800000000001,
+        "input_tokens": 104814,
+        "output_tokens": 16408,
+        "rounds": 17,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-06T23:27:15.727272Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "x-ai/grok-4.7"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "37506bdd9862e2352f9972660b6a78d89c7ea709",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-06T19:52:54.369835Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "856dd879d817a1e38ae65fb74f22734111f8d956558bf5c56ed27eeedc55a093"
+    }
+  ],
+  "tier": "core",
+  "title": "Frozen Core: Grok 4.7",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 21719936,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 1,
+    "failure_categories": {
+      "host_reboot_failed": 1
+    },
+    "input_tokens": 3334951,
+    "known_cost_usd": 21.280722,
+    "median_duration_seconds": 220,
+    "median_first_non_read_only_tool_seconds": 3.213,
+    "median_model_duration_seconds": 192.096,
+    "median_model_rounds": 17,
+    "median_post_first_non_read_only_seconds": 213.375,
+    "median_tool_calls": 19,
+    "median_tool_duration_seconds": 10.832,
+    "output_tokens": 625142,
+    "pass_rate": 0.9696969696969697,
+    "passed": 32,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261106.0.1"
+}
