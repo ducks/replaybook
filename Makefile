@@ -88,6 +88,9 @@ fmt-check:
 deploy-check:
 	@find deploy -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
 
+trajectory-check:
+	@python -m unittest integrations.trajectory.test_export_atif integrations.trajectory.test_curate
+
 harbor-check:
 	@find integrations/harbor -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
 	@bash integrations/harbor/test-matrix-summary.sh
@@ -136,7 +139,7 @@ site-check:
 pages-check: site-check
 	@python -m unittest tests.test_pages
 
-lint: fmt-check deploy-check harbor-check host-check skills-check pages-check
+lint: fmt-check deploy-check harbor-check host-check skills-check pages-check trajectory-check
 	cargo clippy -- -D warnings
 	cargo test
 
