@@ -9,27 +9,19 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core: Ripple-65B-Preview
+## Frozen Core: Grok 4.7
 
-Ripple-65B-Preview passed 18 of 33 scheduled Core trials: 13 evaluated failures and 2 provider-unavailable attempts. Headline score 54.5/100; 58.1% aggregate pass rate among 31 evaluated trials.
+Grok 4.7 passed 32/33 Core trials (97.0%) at high reasoning, with a 220-second median agent duration and $21.280722 in provider-reported API cost.
 
-Benchmark release: `20261106.0.0`
+Benchmark release: `20261106.0.1`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Ripple-65B-Preview · openrouter | 18/31 | 58% | 12:39 | $2.3439+ | $0.1302+ |
-| **Total** | **18/31** | **58%** | **12:39** | **$2.3439+** | **$0.1302+** |
-
-### Unavailable trial categories
-
-- `provider_unavailable`: 2
-
-### Post-timeout verification
-
-2 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
+| Grok 4.7 (high) · openrouter | 32/33 | 97% | 3:40 | $21.2807 | $0.6650 |
+| **Total** | **32/33** | **97%** | **3:40** | **$21.2807** | **$0.6650** |
 
 ### Execution recording
 
@@ -37,52 +29,49 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Ripple-65B-Preview · openrouter | 33/33 | 28 | 12:23 | 47 | 0:12 | 0:03 | 12:34 |
+| Grok 4.7 (high) · openrouter | 33/33 | 17 | 3:12 | 19 | 0:11 | 0:03 | 3:33 |
 
-Timeouts dominate the observed failures: 12 of 13 evaluated failures. This run does not establish whether a longer deadline would improve scored repair success.
+Grok 4.7 scored 97.0/100: 32 of 33 recorded trials passed. Ten scenarios passed all three attempts; shared uploads passed two of three.
 
-Partial Rails rollout, Rust file descriptor leak, auth secret rollout, and TLS trust rotation each passed 3/3. Poison-pill recovery, shared uploads recovery, and Nix store disk pressure each scored 0/3; two disk pressure repairs were durable only after the agent timed out.
+All raw result fields matched the matrix summary and snapshot hashes validated. All 32 passes had three passing lifecycle checks. Retained transcripts were scanned for controller-only oracle and lifecycle filenames; none were found.
 
-Provider availability was 31/33 evaluated attempts. The provider interruption occurred after meaningful inference and remains an evaluated failure. No missing or unavailable attempt was silently retried or omitted.
+The run cost $21.28 for 32 scored repairs, approximately $0.6650 per successful repair. This describes this sample's API cost, not a claim of cost-effectiveness against cheaper models.
 
 ### Scenario breakdown
 
-| Scenario | Version | Ripple-65B-Preview · openrouter |
+| Scenario | Version | Grok 4.7 (high) · openrouter |
 |---|---:|---:|
-| 001-nginx-502-host | v1 | 2/3, 12:55 |
-| 013-sidekiq-wrong-redis | v3 | 2/3, 9:26 |
-| 015-sidekiq-poison-pill | v1 | 0/3, 15:01 |
-| 016-rails-pool-exhaustion | v1 | 1/1, 10:14 |
-| 017-partial-rails-rollout | v1 | 3/3, 12:04 |
-| 019-rust-fd-leak | v1 | 3/3, 4:53 |
-| 021-discourse-shared-uploads | v1 | 0/3, 15:01 |
-| 023-auth-secret-rollout | v1 | 3/3, 12:34 |
-| 024-discourse-interrupted-deploy | v1 | 1/3, 15:01 |
-| 028-nix-store-disk-pressure | v1 | 0/3, 15:01 |
-| 033-tls-trust-rotation | v2 | 3/3, 9:45 |
+| 001-nginx-502-host | v1 | 3/3, 2:14 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 3:42 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 10:31 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 2:47 |
+| 017-partial-rails-rollout | v1 | 3/3, 5:16 |
+| 019-rust-fd-leak | v1 | 3/3, 3:32 |
+| 021-discourse-shared-uploads | v1 | 2/3, 9:26 |
+| 023-auth-secret-rollout | v1 | 3/3, 3:40 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 2:56 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 5:50 |
+| 033-tls-trust-rotation | v2 | 3/3, 3:03 |
 
 ### Failure categories
 
-- `agent_timeout`: 12
-- `provider_interrupted`: 1
+- `host_reboot_failed`: 1
 
 ### Source matrices
 
-- `matrix`: ricursiveai/ripple-65b-preview; Replaybook `37506bdd`
+- `matrix`: x-ai/grok-4.7; Replaybook `37506bdd`; reasoning high
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, a 900-second agent deadline, and one concurrent VM. All 33 scheduled attempts have retained results. No recovery runs or post-run score corrections were applied.
-- The exact model ID is ricursiveai/ripple-65b-preview through OpenRouter. This run used default reasoning: no reasoning-effort parameter was supplied because the endpoint did not advertise support for one. Other configurations shown in the same benchmark cohort may use explicit reasoning settings; those differences remain visible.
-- The headline score is 100 times the mean of per-scenario passed/recorded attempts: 54.5/100. The two unavailable attempts count as unsuccessful in that score. The aggregate evaluated-trial pass rate is separately 18/31, or 58.1%; it must not be substituted for the headline score.
-- Twelve evaluated failures hit the 900-second agent deadline. Two of those left repairs that subsequently passed immediate, restart, and reboot verification, but both remain scored failures under the frozen deadline rule. The other evaluated failure was a provider interruption after 15 model rounds and 22 tool calls; it is not reclassified as unavailable.
-- Two Rails pool exhaustion attempts returned HTTP 503 before meaningful inference: zero input tokens, output tokens, and tool calls. They remain provider_unavailable, not evaluated model failures. The controller marks the session incomplete due to these unavailable trials, despite all scheduled attempts having terminated.
-- All 18 scored passes have passing immediate, service-restart, and host-reboot verification. Snapshot hashes and every raw result were checked against the matrix summary. Retained transcripts were scanned for controller-only oracle and lifecycle filenames; none were found.
-- This release uses the same frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable as expanded Core releases beginning with 20261024.0.0. Frozen cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
-- Median recorded agent duration is 759 seconds. Timing includes tool execution and is not pure inference latency; host and provider conditions affect timing. This is a small sample and does not establish general infrastructure competence.
-- Provider-reported API cost totals $2.343862 for 31/33 trials. The two unavailable attempts have unknown cost, not zero cost, so this is a known-spend subtotal. Infrastructure costs are excluded. Usage includes 1,233,435 uncached input tokens, 24,899,072 cache-read tokens, and 1,420,369 output tokens as recorded by the harness.
-- This is a repair benchmark, not a 1M-context evaluation. The largest recorded single-request input plus cache-read usage was 69,830 tokens. Aggregate usage repeats conversation history and does not measure maximum context occupancy.
-- Public evidence contains normalized trial results, verification flags, provider usage, immutable execution metadata, and source digests. Credentials, private transcripts, full VM logs, and local absolute paths are excluded.
+- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, a 900-second agent deadline, and one concurrent VM. All 33 trials were evaluated. There were no missing or unavailable attempts, recovery runs, or post-run scoring corrections.
+- All 32 scored passes passed immediate, service-restart, and host-reboot verification. The remaining shared-uploads attempt passed immediate and service-restart checks, but the VM did not become reachable after the verifier reboot. It remains a scored host_reboot_failed result; it has not been reclassified as unavailable or excused as an infrastructure failure.
+- The failed shared-uploads trajectory replaced /etc/systemd/system with a writable directory of links to generated units while installing a service drop-in. Retained console logs reached multi-user target after reboot, but the harness could not reconnect. This is an observed repair and reboot failure, not a proven root-cause attribution. No paid or corrective rerun was performed.
+- The exact model ID is x-ai/grok-4.7 through OpenRouter, not a consumer Grok session. The endpoint was not pinned to one inference provider; no claim is made that the run enforced zero retention. Requests contained synthetic incident prompts and disposable guest output, not personal working context.
+- This release uses the frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable of the expanded Core cohort. Cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
+- Provider-reported API cost is available for all 33 trials and totals $21.280722. It excludes VM hosting and other infrastructure. This manual run had no provider-enforced spending cap and is not covered by the later discovery watcher's admission budget. Cost must remain visible alongside the repair score.
+- Recorded usage totals 3,334,951 uncached input tokens, 21,719,936 cache-read tokens, and 625,142 output tokens. These are aggregate usage counts across requests, not maximum context occupancy. The largest single-request input plus cache-read count was 103,537 tokens; this is not a maximum-context benchmark.
+- Median agent duration was 220 seconds. Timing includes tool execution and is not pure inference latency. Host and provider conditions affect timing. Three attempts per scenario are a small sample, and these results do not establish general infrastructure competence.
+- Public evidence includes normalized trial results, lifecycle flags, provider-reported usage, immutable execution metadata, and source digests. Credentials, private transcripts, full console/VM logs, and local absolute paths are excluded.
 
 <!-- replaybook:current-benchmark:end -->
 

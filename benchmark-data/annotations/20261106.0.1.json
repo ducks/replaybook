@@ -1,0 +1,34 @@
+{
+  "title": "Frozen Core: Grok 4.7",
+  "description": "Grok 4.7 passed 32/33 Core trials (97.0%) at high reasoning, with a 220-second median agent duration and $21.280722 in provider-reported API cost.",
+  "input_mode": "text",
+  "model_order": [
+    "x-ai/grok-4.7"
+  ],
+  "model_labels": {
+    "x-ai/grok-4.7": "Grok 4.7"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "custom build b959ef677ff7",
+    "provider": "OpenRouter",
+    "billing": "provider-reported"
+  },
+  "notes": [
+    "Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, a 900-second agent deadline, and one concurrent VM. All 33 trials were evaluated. There were no missing or unavailable attempts, recovery runs, or post-run scoring corrections.",
+    "All 32 scored passes passed immediate, service-restart, and host-reboot verification. The remaining shared-uploads attempt passed immediate and service-restart checks, but the VM did not become reachable after the verifier reboot. It remains a scored host_reboot_failed result; it has not been reclassified as unavailable or excused as an infrastructure failure.",
+    "The failed shared-uploads trajectory replaced /etc/systemd/system with a writable directory of links to generated units while installing a service drop-in. Retained console logs reached multi-user target after reboot, but the harness could not reconnect. This is an observed repair and reboot failure, not a proven root-cause attribution. No paid or corrective rerun was performed.",
+    "The exact model ID is x-ai/grok-4.7 through OpenRouter, not a consumer Grok session. The endpoint was not pinned to one inference provider; no claim is made that the run enforced zero retention. Requests contained synthetic incident prompts and disposable guest output, not personal working context.",
+    "This release uses the frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable of the expanded Core cohort. Cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.",
+    "Provider-reported API cost is available for all 33 trials and totals $21.280722. It excludes VM hosting and other infrastructure. This manual run had no provider-enforced spending cap and is not covered by the later discovery watcher's admission budget. Cost must remain visible alongside the repair score.",
+    "Recorded usage totals 3,334,951 uncached input tokens, 21,719,936 cache-read tokens, and 625,142 output tokens. These are aggregate usage counts across requests, not maximum context occupancy. The largest single-request input plus cache-read count was 103,537 tokens; this is not a maximum-context benchmark.",
+    "Median agent duration was 220 seconds. Timing includes tool execution and is not pure inference latency. Host and provider conditions affect timing. Three attempts per scenario are a small sample, and these results do not establish general infrastructure competence.",
+    "Public evidence includes normalized trial results, lifecycle flags, provider-reported usage, immutable execution metadata, and source digests. Credentials, private transcripts, full console/VM logs, and local absolute paths are excluded."
+  ],
+  "observations": [
+    "Grok 4.7 scored 97.0/100: 32 of 33 recorded trials passed. Ten scenarios passed all three attempts; shared uploads passed two of three.",
+    "All raw result fields matched the matrix summary and snapshot hashes validated. All 32 passes had three passing lifecycle checks. Retained transcripts were scanned for controller-only oracle and lifecycle filenames; none were found.",
+    "The run cost $21.28 for 32 scored repairs, approximately $0.6650 per successful repair. This describes this sample's API cost, not a claim of cost-effectiveness against cheaper models."
+  ]
+}
