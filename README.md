@@ -514,3 +514,12 @@ repair counts, median times, cost coverage, and evidence links. Provider, releas
 and reasoning configurations remain separate. Matching model basenames receive a
 model-ID hash suffix; `docs/model-paths.json` maps exact IDs to generated paths.
 Run `python3 integrations/host/publish_benchmarks.py build` to regenerate them.
+
+### Curated trajectory datasets
+
+The ATIF trajectory exporter now has a local review layer for quality, privacy,
+training-rights evidence, redacted copies, and versioned family-disjoint datasets.
+Verifier passes remain candidates until explicitly reviewed. See
+[trajectory curation](integrations/trajectory/README.md#curate-a-versioned-dataset)
+and the [SRE training pilot plan](docs/sre-training-pilot.md). No training runner
+or automatic training-rights approval is included.
