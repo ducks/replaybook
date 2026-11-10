@@ -9,19 +9,25 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Frozen Core: Grok 4.7
+## MiMo-V2.6-Flash Core via OpenCode Go
 
-Grok 4.7 passed 32/33 Core trials (97.0%) at high reasoning, with a 220-second median agent duration and $21.280722 in provider-reported API cost.
+MiMo-V2.6-Flash passed 23 of 33 trials with a median agent duration of 624 seconds.
 
-Benchmark release: `20261106.0.1`
+Benchmark release: `20261110.0.2`
 Benchmark tier: `core`
+
+Provider-reported subscription usage value: **$0.4207** across 33 trials. This is a catalog-priced usage estimate, not metered spend.
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Grok 4.7 (high) · openrouter | 32/33 | 97% | 3:40 | $21.2807 | $0.6650 |
-| **Total** | **32/33** | **97%** | **3:40** | **$21.2807** | **$0.6650** |
+| MiMo-V2.6-Flash · opencode-go | 23/33 | 70% | 10:24 | n/a | n/a |
+| **Total** | **23/33** | **70%** | **10:24** | **n/a** | **n/a** |
+
+### Post-timeout verification
+
+4 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
 
 ### Execution recording
 
@@ -29,49 +35,44 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Grok 4.7 (high) · openrouter | 33/33 | 17 | 3:12 | 19 | 0:11 | 0:03 | 3:33 |
+| MiMo-V2.6-Flash · opencode-go | 33/33 | 19 | 8:56 | 31 | 0:21 | 0:02 | 10:11 |
 
-Grok 4.7 scored 97.0/100: 32 of 33 recorded trials passed. Ten scenarios passed all three attempts; shared uploads passed two of three.
-
-All raw result fields matched the matrix summary and snapshot hashes validated. All 32 passes had three passing lifecycle checks. Retained transcripts were scanned for controller-only oracle and lifecycle filenames; none were found.
-
-The run cost $21.28 for 32 scored repairs, approximately $0.6650 per successful repair. This describes this sample's API cost, not a claim of cost-effectiveness against cheaper models.
+Nine trials timed out and one deployment failed to converge. Four timeout repairs passed post-deadline lifecycle checks and retained their timeout scores.
 
 ### Scenario breakdown
 
-| Scenario | Version | Grok 4.7 (high) · openrouter |
+| Scenario | Version | MiMo-V2.6-Flash · opencode-go |
 |---|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 2:14 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 3:42 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 10:31 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 2:47 |
-| 017-partial-rails-rollout | v1 | 3/3, 5:16 |
-| 019-rust-fd-leak | v1 | 3/3, 3:32 |
-| 021-discourse-shared-uploads | v1 | 2/3, 9:26 |
-| 023-auth-secret-rollout | v1 | 3/3, 3:40 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 2:56 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 5:50 |
-| 033-tls-trust-rotation | v2 | 3/3, 3:03 |
+| 001-nginx-502-host | v1 | 1/3, 15:02 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 8:57 |
+| 015-sidekiq-poison-pill | v1 | 1/3, 15:02 |
+| 016-rails-pool-exhaustion | v1 | 2/3, 6:18 |
+| 017-partial-rails-rollout | v1 | 3/3, 11:10 |
+| 019-rust-fd-leak | v1 | 3/3, 6:55 |
+| 021-discourse-shared-uploads | v1 | 2/3, 13:54 |
+| 023-auth-secret-rollout | v1 | 3/3, 5:46 |
+| 024-discourse-interrupted-deploy | v1 | 0/3, 15:04 |
+| 028-nix-store-disk-pressure | v1 | 2/3, 10:47 |
+| 033-tls-trust-rotation | v2 | 3/3, 10:00 |
 
 ### Failure categories
 
-- `host_reboot_failed`: 1
+- `agent_timeout`: 9
+- `release_not_converged`: 1
 
 ### Source matrices
 
-- `matrix`: x-ai/grok-4.7; Replaybook `37506bdd`; reasoning high
+- `matrix`: opencode-go/mimo-v2.6-flash; Replaybook `df23de80`
 
 ### Run notes
 
-- Core 2026.10.24.2: eleven scenarios, three attempts each, high reasoning, a 900-second agent deadline, and one concurrent VM. All 33 trials were evaluated. There were no missing or unavailable attempts, recovery runs, or post-run scoring corrections.
-- All 32 scored passes passed immediate, service-restart, and host-reboot verification. The remaining shared-uploads attempt passed immediate and service-restart checks, but the VM did not become reachable after the verifier reboot. It remains a scored host_reboot_failed result; it has not been reclassified as unavailable or excused as an infrastructure failure.
-- The failed shared-uploads trajectory replaced /etc/systemd/system with a writable directory of links to generated units while installing a service drop-in. Retained console logs reached multi-user target after reboot, but the harness could not reconnect. This is an observed repair and reboot failure, not a proven root-cause attribution. No paid or corrective rerun was performed.
-- The exact model ID is x-ai/grok-4.7 through OpenRouter, not a consumer Grok session. The endpoint was not pinned to one inference provider; no claim is made that the run enforced zero retention. Requests contained synthetic incident prompts and disposable guest output, not personal working context.
-- This release uses the frozen controller, scenario fingerprints, manifest, shared OpenRouter protocol, and Claux executable of the expanded Core cohort. Cohort identity: 424667b247abacec1af6e962a3115aaa89ce7badbea3bd264b80dd32f6b25b76. Claux executable SHA-256: b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41. This is a custom build, not an official Claux release.
-- Provider-reported API cost is available for all 33 trials and totals $21.280722. It excludes VM hosting and other infrastructure. This manual run had no provider-enforced spending cap and is not covered by the later discovery watcher's admission budget. Cost must remain visible alongside the repair score.
-- Recorded usage totals 3,334,951 uncached input tokens, 21,719,936 cache-read tokens, and 625,142 output tokens. These are aggregate usage counts across requests, not maximum context occupancy. The largest single-request input plus cache-read count was 103,537 tokens; this is not a maximum-context benchmark.
-- Median agent duration was 220 seconds. Timing includes tool execution and is not pure inference latency. Host and provider conditions affect timing. Three attempts per scenario are a small sample, and these results do not establish general infrastructure competence.
-- Public evidence includes normalized trial results, lifecycle flags, provider-reported usage, immutable execution metadata, and source digests. Credentials, private transcripts, full console/VM logs, and local absolute paths are excluded.
+- Eleven frozen Core scenarios, three scheduled attempts each, 900-second agent deadline, one concurrent VM. Core manifest 2026.10.24.2; host harness 23.
+- Executed through OpenCode 1.19.0 with pinned public model definitions and a scoped provider credential. This is an OpenCode/provider configuration, not the frozen Claux agent. Models with different reasoning settings or providers are not controlled intrinsic-model comparisons.
+- Raw trial results, transcripts and immutable execution snapshots were audited; source hashes and documented corrections are retained. Public evidence excludes credentials, full transcripts, private reasoning, raw VM logs and local filesystem paths.
+- Main-model usage is from OpenCode events. Monetary API cost was not reported and must not be interpreted as zero. Client-reported usage values are not an invoice or a complete accounting of auxiliary requests/infrastructure.
+- Three attempts per scenario are a small sample; no general infrastructure competence or definitive model ranking is established.
+- The first launch produced 21 results. Twelve slots failed during OpenCode setup with a disk-full error. The resume kept all completed results and used disk-backed temporary storage to finish the missing slots. Resume regenerated launch logs for those slots. Seven original setup logs were archived before replacement.
+- OpenCode reported $0.4206995968 in subscription usage value. Incremental cash cost was unreported.
 
 <!-- replaybook:current-benchmark:end -->
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import tempfile
 import unittest
 from copy import deepcopy
@@ -782,6 +783,45 @@ class PublisherTests(unittest.TestCase):
             release["corrections"][0]["original"],
             {"failure_category": "repair_incomplete"},
         )
+
+    def test_audited_status_transitions_preserve_reward_and_evidence(self) -> None:
+        for direction in ("exclude", "include"):
+            with self.subTest(direction=direction), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                value = summary("model/a", reward=0)
+                run = value["runs"][0]
+                if direction == "exclude":
+                    run["usage"] = None
+                    target, category = "unavailable", "provider_rate_limited"
+                    basis = "provider_rejected_before_inference"
+                else:
+                    run["trial_status"] = "unavailable"
+                    target, category = "evaluated", "host_reboot_failed"
+                    basis = "post_inference_verification_failure"
+                path = self.write_summary(root, "matrix", value)
+                evidence = {"summary_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                            "result_sha256": "a"*64, "transcript_sha256": "b"*64,
+                            "stderr_sha256": "c"*64, "basis": basis, "provider_error": "rate_limit"}
+                change = {"run_id": run["run_id"], "changes": {"trial_status": target, "failure_category": category},
+                          "reason": "Audited retained raw evidence", "evidence": evidence}
+                annotations = {"corrections": [change]}
+                release = create_release("20260809.0.0", [path], annotations)
+                self.assertEqual(release["runs"][0]["trial_status"], target)
+                self.assertEqual(release["runs"][0]["reward"], 0)
+                self.assertEqual(release["corrections"][0]["evidence"], evidence)
+                self.assertEqual(release["corrections"][0]["original"]["trial_status"], run["trial_status"])
+                if direction == "exclude":
+                    for field in ("usage", "verification"):
+                        mutated = deepcopy(value)
+                        if field == "usage": mutated["runs"][0][field] = {"input_tokens": 1}
+                        else: mutated["runs"][0][field]["immediate_http"] = True
+                        path.write_text(json.dumps(mutated))
+                        evidence["summary_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+                        with self.assertRaisesRegex(PublishError, "meaningful inference"):
+                            create_release("20260809.0.0", [path], annotations)
+                evidence["summary_sha256"] = "f"*64
+                with self.assertRaisesRegex(PublishError, "source summary"):
+                    create_release("20260809.0.0", [path], annotations)
 
     def test_build_and_check_generated_outputs(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

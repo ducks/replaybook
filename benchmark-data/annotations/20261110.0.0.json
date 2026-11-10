@@ -1,0 +1,240 @@
+{
+  "title": "Big Pickle Core via OpenCode Zen \u2014 quota-constrained",
+  "description": "Big Pickle: 18/21 evaluated trials passed; 12 unavailable out of 33 scheduled attempts. Median evaluated agent duration 132 seconds.",
+  "input_mode": "text",
+  "model_order": [
+    "opencode/big-pickle"
+  ],
+  "model_labels": {
+    "opencode/big-pickle": "Big Pickle"
+  },
+  "agent_harness": {
+    "id": "opencode",
+    "label": "OpenCode",
+    "version": "1.19.0",
+    "provider": "OpenCode Zen",
+    "billing": "free"
+  },
+  "corrections": [
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-2",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "63a249d57c5138186d95cfc13567146fe0fe76d43b41419d1a31e6c1c74d55f7",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "26ceccc0aa78911e10ae405533990879067b7579cf321411e8f8df86e6227adc",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-3",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "cf2ba0a9f9504ed96197d5ae91ab19946c1698d49cad0f641fc0750419429ff0",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "f72d2eadd247bfcf6007b446f3c0e2884f41c8b2a8e94964b21597b1b6edce1a",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-1",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "d2d63ca6d2eae09cae99dedf54a16e213c3982eacbe9a3d4b5db13e3ea832bf4",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "5decdb7a363aad378475f4b71de219c9b5fbb1f7f02aa2de885216123d7baa0d",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-2",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "f5212c5d549faacc9deca506dfe5bd27583af2a37c949412f9585ae45c25f0b2",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "c0a232f8abb6e6cbc9dbfd49da1790f289425bc2b0ef33b8b46b2e0dd8ff3a63",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-3",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "2e54c84147c251dc9f2ddb59646de9f3c39a2366385b9ea92920ae0eeb4f6e24",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "3159f4afaf82bf08b7c4b5d842166aedbdf208b3ad2094ff622884529cfa5781",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "019-rust-fd-leak-opencode-big-pickle-1",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "e65b24fe82648accde948a59cc1fc0997e91eab44c6e14258b4fc8b4ed0d7c87",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "db0d33eae465ce7d100e165a7293a6b55f68fd32dffe3d7b3bb8ee9ec5bac434",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-1",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "5f54144ca3dab8b24aeb76c498c70dab970480d7a0b559c432546bc8580afc34",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "eaa042cf73873082f2662102d1f967301c9c2e5500c36295cfe7d18d976159b7",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-2",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "7f6828961b9a472b16ea687061b4b2f0358da03a02691d8240cdf3c87298a3a5",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "92dc58cdbf86341ac8896b45891cc88472a84f0305cb21078af0cad0a6623250",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-3",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "5b2976948bcac67279a22f510672393e20701629693b9f267e8c899ade2c7f2c",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "b7b153d03cd176daecd62caa89d233f80f14e7863dcd07fa2516c2ca7aaac581",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-1",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "31f2d2608885f8006f9c903bfa438d923c9d88f3fa50d750d7a514c032db0c31",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "e22bc0b6a2f609f91458bf2d24e37b50558161b0cc18921e188195bee746d377",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-2",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "dbcd139ca93330ea6ab493a344e875118c4e98a3319a76bc1a7d1592ab89a56d",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "89f0ac41cd98a628f911dda0daacdf8735f56f10c2b1cd54135fb5ceac992510",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-3",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "5ff409feae8babfb0de03dc75d1f1963a3827c04863b371332ca7071cd439920",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "3ff226325da3b4ad8e512ac97d05668030bc4df884269b52ea25a2e5de5e0aed",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    }
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three scheduled attempts each, 900-second agent deadline, one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Executed through OpenCode 1.19.0 with pinned public model definitions and a scoped provider credential. This is an OpenCode/provider configuration, not the frozen Claux agent. Models with different reasoning settings or providers are not controlled intrinsic-model comparisons.",
+    "Raw trial results, transcripts and immutable execution snapshots were audited; source hashes and documented corrections are retained. Public evidence excludes credentials, full transcripts, private reasoning, raw VM logs and local filesystem paths.",
+    "Main-model usage is from OpenCode events. Monetary API cost was not reported and must not be interpreted as zero. Client-reported usage values are not an invoice or a complete accounting of auxiliary requests/infrastructure.",
+    "Three attempts per scenario are a small sample; no general infrastructure competence or definitive model ranking is established.",
+    "Audit: https://github.com/ducks/replaybook/blob/main/benchmark-data/audits/20261110-big-pickle.json",
+    "Twelve raw agent_timeout records are corrected to unavailable/provider_rate_limited: each has an empty transcript, absent inference usage and a retained main-model Free usage limit reached error. Evidence hashes are bound to the original summary. These are missing capability observations, not repair failures.",
+    "Two other timeouts encountered free quota errors after meaningful work and remain evaluated failures. The third evaluated failure was an interrupted deployment that did not converge. No successful result was added or upgraded.",
+    "This is a quota-constrained sample with 21/33 evaluated coverage. The 18/21 evaluated pass rate does not establish a full Core solve rate. The scheduled repair-completion fraction is 18/33; do not read missing quota-blocked trials as proof of model inability.",
+    "The free Zen route is separate from Go allowance. The OpenCode auxiliary title agent attempted gpt-5.4-nano requests; all 33 retained stderr logs report insufficient account funds for those requests. No successful title completion or billed title usage is established; selected-model inference is audited separately."
+  ],
+  "observations": [
+    "Big Pickle: 18/21 evaluated trials passed; 12 unavailable out of 33 scheduled attempts. Median evaluated agent duration 132 seconds.",
+    "Classification corrections preserve every original reward and bind retained result/transcript evidence to the original summary hash. Raw result files were not edited."
+  ]
+}

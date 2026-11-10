@@ -1,0 +1,2337 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 13507828,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 966375,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 105,
+      "median_first_non_read_only_tool_seconds": 0.619,
+      "median_model_duration_seconds": 81.763,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 96.043,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 15.804,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 90209,
+      "pass_rate": 0.9696969696969697,
+      "passed": 32,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 33,
+      "subscription_usage_usd": 0.6518490899999999,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 496128,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 56397,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 96,
+      "median_first_non_read_only_tool_seconds": 0.618,
+      "median_model_duration_seconds": 57.439,
+      "median_model_rounds": 10,
+      "median_post_first_non_read_only_seconds": 81.294,
+      "median_tool_calls": 13,
+      "median_tool_duration_seconds": 7.419,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 4348,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.028277390000000003,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 627540,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 51857,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 80,
+      "median_first_non_read_only_tool_seconds": 0.393,
+      "median_model_duration_seconds": 53.645,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 70.61,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 15.855,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 5181,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.03188225,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1845248,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 121576,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 286,
+      "median_first_non_read_only_tool_seconds": 0.813,
+      "median_model_duration_seconds": 227.804,
+      "median_model_rounds": 32,
+      "median_post_first_non_read_only_seconds": 275.73900000000003,
+      "median_tool_calls": 35,
+      "median_tool_duration_seconds": 39.799,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 13658,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.08917584,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 514624,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 55743,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 85,
+      "median_first_non_read_only_tool_seconds": 1.15,
+      "median_model_duration_seconds": 62.561,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 77.30999999999999,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 16.576,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 5520,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.02866917,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1125152,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 87933,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 132,
+      "median_first_non_read_only_tool_seconds": 0.214,
+      "median_model_duration_seconds": 101.811,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 125.044,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 68.55,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 7012,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.055632509999999996,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 565760,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 46269,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 89,
+      "median_first_non_read_only_tool_seconds": 0.818,
+      "median_model_duration_seconds": 49.097,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 82.164,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 5.365,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 6102,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.02871265,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1841024,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_tokens": 145947,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 151,
+      "median_first_non_read_only_tool_seconds": 0.772,
+      "median_model_duration_seconds": 110.562,
+      "median_model_rounds": 32,
+      "median_post_first_non_read_only_seconds": 142.405,
+      "median_tool_calls": 38,
+      "median_tool_duration_seconds": 16.246,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 10719,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.09329127,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 4212736,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 171837,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 127,
+      "median_first_non_read_only_tool_seconds": 0.875,
+      "median_model_duration_seconds": 99.197,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 113.778,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 4.014,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 17992,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.17135512999999994,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 642176,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 65047,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 67,
+      "median_first_non_read_only_tool_seconds": 0.372,
+      "median_model_duration_seconds": 47.002,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 58.456,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 10.329,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 5762,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.03424933,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 925888,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 84586,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 132,
+      "median_first_non_read_only_tool_seconds": 0.613,
+      "median_model_duration_seconds": 107.58,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 123.615,
+      "median_tool_calls": 23,
+      "median_tool_duration_seconds": 6.081,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 7175,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.05009554,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 711552,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 79183,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 119,
+      "median_first_non_read_only_tool_seconds": 0.845,
+      "median_model_duration_seconds": 90.88,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 105.427,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 17.222,
+      "model": "opencode-go/glm-5.3-flash",
+      "output_tokens": 6740,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.04050801,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "external:opencode.sh",
+      "name": "opencode",
+      "payload": "external:opencode"
+    },
+    "agent_harness": {
+      "billing": "subscription",
+      "id": "opencode",
+      "label": "OpenCode",
+      "provider": "OpenCode Go",
+      "version": "1.19.0"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+      "agent_config_sha256": "65d6f30003a0da3179ebd29ac8c47dadf7a1c4030d5e8304b21537891affb9f8",
+      "agent_env_sha256": "11e07c3dfc31fc019babdd58411bbbc1db3309a92eca56983b1ab9dba5e9b582",
+      "agent_payload_sha256": "135ac3f86c43f2a22328a3554fec5f0bc57d71576077902661bc38dac34871fd",
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "opencode-go"
+    ],
+    "reasoning_efforts": [
+      "high"
+    ],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [
+    {
+      "changes": {
+        "failure": "Reboot verification failed after meaningful inference: harness Nix-store device unavailable. Immediate and service restart checks passed.",
+        "failure_category": "host_reboot_failed",
+        "trial_status": "evaluated"
+      },
+      "evidence": {
+        "basis": "post_inference_verification_failure",
+        "console_sha256": "455e535cd9d1a68c9a34303649278ac534d8de61e6b6182d484259670a09f908",
+        "result_sha256": "7e63a013572d9d68001c2da0408ad5a6e3971272dce77f51853d0b6655f2c6ea",
+        "summary_sha256": "66b53a95ab5500f29dc79898eace2a5f820d44fc673c50e202aba99dcda79bbb",
+        "transcript_sha256": "8e9de0dec76835b10681107ab7ba383e53f5b5aeef5acf167a47c9f911b4057e"
+      },
+      "original": {
+        "failure": "guest could not boot because a harness-provided device was unavailable",
+        "failure_category": "guest_boot_infrastructure_failed",
+        "trial_status": "unavailable"
+      },
+      "reason": "Conservative publication policy retains failures after meaningful inference in the evaluated denominator. Raw result labels this a guest-boot infrastructure exception; that evidence remains unchanged and is disclosed, without assigning the hardware fault to the model or claiming 33/33.",
+      "run_id": "021-discourse-shared-uploads-opencode-go-glm-5-3-flash-reasoning-high-3"
+    }
+  ],
+  "description": "GLM-5.3-Flash: 32/33 evaluated trials passed; 0 unavailable out of 33 scheduled attempts. Median evaluated agent duration 105 seconds.",
+  "input_mode": "text",
+  "model_labels": {
+    "opencode-go/glm-5.3-flash": "GLM-5.3-Flash"
+  },
+  "model_order": [
+    "opencode-go/glm-5.3-flash"
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three scheduled attempts each, 900-second agent deadline, one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Executed through OpenCode 1.19.0 with pinned public model definitions and a scoped provider credential. This is an OpenCode/provider configuration, not the frozen Claux agent. Models with different reasoning settings or providers are not controlled intrinsic-model comparisons.",
+    "Raw trial results, transcripts and immutable execution snapshots were audited; source hashes and documented corrections are retained. Public evidence excludes credentials, full transcripts, private reasoning, raw VM logs and local filesystem paths.",
+    "Main-model usage is from OpenCode events. Monetary API cost was not reported and must not be interpreted as zero. Client-reported usage values are not an invoice or a complete accounting of auxiliary requests/infrastructure.",
+    "Three attempts per scenario are a small sample; no general infrastructure competence or definitive model ranking is established.",
+    "Audit: https://github.com/ducks/replaybook/blob/main/benchmark-data/audits/20261110-glm-5.3-flash.json",
+    "Reasoning effort: high. All 32 scored passes passed immediate, service-restart and host-reboot verification.",
+    "The remaining shared-uploads attempt ran meaningful inference and passed immediate/service-restart checks, then reboot failed while waiting for the harness-supplied Nix-store device. The raw result labels this an infrastructure exception. Publication conservatively counts it as a zero-reward evaluated reboot failure, rather than claiming 32/32 or 33/33. This does not attribute the hardware fault to the model. No corrective model rerun was performed.",
+    "OpenCode reports $0.65184909 in subscription usage value across the 33 attempts. This is allowance/client usage reporting, not incremental cash spend. Per-trial cash costs remain unreported."
+  ],
+  "observations": [
+    "GLM-5.3-Flash: 32/33 evaluated trials passed; 0 unavailable out of 33 scheduled attempts. Median evaluated agent duration 105 seconds.",
+    "Classification corrections preserve every original reward and bind retained result/transcript evidence to the original summary hash. Raw result files were not edited."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 105,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T17:50:03Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.689,
+        "model_duration_seconds": 86.922,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 96.423,
+        "tool_calls": 12,
+        "tool_duration_seconds": 6.745,
+        "total_duration_seconds": 97.112
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T17:48:05Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 96832,
+        "cost_usd": null,
+        "input_tokens": 22146,
+        "output_tokens": 1673,
+        "reasoning_tokens": 3170,
+        "subscription_usage_usd": 0.00864836
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 57,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T17:52:15Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.618,
+        "model_duration_seconds": 32.897,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 42.086,
+        "tool_calls": 13,
+        "tool_duration_seconds": 9.48,
+        "total_duration_seconds": 42.704
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T17:51:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 100096,
+        "cost_usd": null,
+        "input_tokens": 9723,
+        "output_tokens": 1196,
+        "reasoning_tokens": 429,
+        "subscription_usage_usd": 0.00527383
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 96,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T17:55:25Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.548,
+        "model_duration_seconds": 57.439,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 81.294,
+        "tool_calls": 21,
+        "tool_duration_seconds": 7.419,
+        "total_duration_seconds": 81.842
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T17:53:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 299200,
+        "cost_usd": null,
+        "input_tokens": 24528,
+        "output_tokens": 1479,
+        "reasoning_tokens": 1921,
+        "subscription_usage_usd": 0.014355200000000002
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 88,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T17:58:39Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.359,
+        "model_duration_seconds": 52.308,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 75.86,
+        "tool_calls": 26,
+        "tool_duration_seconds": 15.855,
+        "total_duration_seconds": 76.219
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-09T17:56:51Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 314196,
+        "cost_usd": null,
+        "input_tokens": 22414,
+        "output_tokens": 2103,
+        "reasoning_tokens": 3470,
+        "subscription_usage_usd": 0.015574480000000002
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:01:40Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.393,
+        "model_duration_seconds": 53.645,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 70.61,
+        "tool_calls": 16,
+        "tool_duration_seconds": 19.602,
+        "total_duration_seconds": 71.003
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-09T18:00:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 136000,
+        "cost_usd": null,
+        "input_tokens": 13854,
+        "output_tokens": 1472,
+        "reasoning_tokens": 786,
+        "subscription_usage_usd": 0.0072870999999999995
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 77,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:04:36Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.885,
+        "model_duration_seconds": 54.711,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 69.52799999999999,
+        "tool_calls": 17,
+        "tool_duration_seconds": 14.992,
+        "total_duration_seconds": 70.413
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-09T18:03:00Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 177344,
+        "cost_usd": null,
+        "input_tokens": 15589,
+        "output_tokens": 1606,
+        "reasoning_tokens": 1118,
+        "subscription_usage_usd": 0.00902067
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 226,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:10:01Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.813,
+        "model_duration_seconds": 189.177,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 217.145,
+        "tool_calls": 26,
+        "tool_duration_seconds": 39.799,
+        "total_duration_seconds": 217.958
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:05:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 368832,
+        "cost_usd": null,
+        "input_tokens": 38794,
+        "output_tokens": 3914,
+        "reasoning_tokens": 5622,
+        "subscription_usage_usd": 0.02165206
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 291,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:17:09Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.609,
+        "model_duration_seconds": 241.723,
+        "model_rounds": 32,
+        "post_first_non_read_only_seconds": 280.824,
+        "tool_calls": 35,
+        "tool_duration_seconds": 107.29,
+        "total_duration_seconds": 281.433
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:11:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 628864,
+        "cost_usd": null,
+        "input_tokens": 36819,
+        "output_tokens": 3797,
+        "reasoning_tokens": 4909,
+        "subscription_usage_usd": 0.02874177
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 286,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:23:51Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.621,
+        "model_duration_seconds": 227.804,
+        "model_rounds": 41,
+        "post_first_non_read_only_seconds": 275.73900000000003,
+        "tool_calls": 44,
+        "tool_duration_seconds": 34.77,
+        "total_duration_seconds": 277.36
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:18:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 847552,
+        "cost_usd": null,
+        "input_tokens": 45963,
+        "output_tokens": 5947,
+        "reasoning_tokens": 6975,
+        "subscription_usage_usd": 0.038782010000000006
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 83,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:27:15Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.771,
+        "model_duration_seconds": 59.201,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 72.608,
+        "tool_calls": 17,
+        "tool_duration_seconds": 16.576,
+        "total_duration_seconds": 74.379
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:25:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 137088,
+        "cost_usd": null,
+        "input_tokens": 20922,
+        "output_tokens": 1709,
+        "reasoning_tokens": 1211,
+        "subscription_usage_usd": 0.008710939999999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 85,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:30:25Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.15,
+        "model_duration_seconds": 62.561,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 77.30999999999999,
+        "tool_calls": 21,
+        "tool_duration_seconds": 12.334,
+        "total_duration_seconds": 78.46
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:28:30Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 195840,
+        "cost_usd": null,
+        "input_tokens": 18236,
+        "output_tokens": 1898,
+        "reasoning_tokens": 1987,
+        "subscription_usage_usd": 0.0105531
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 89,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:33:49Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.619,
+        "model_duration_seconds": 63.443,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 80.457,
+        "tool_calls": 20,
+        "tool_duration_seconds": 22.662,
+        "total_duration_seconds": 81.076
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:31:51Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 181696,
+        "cost_usd": null,
+        "input_tokens": 16585,
+        "output_tokens": 1913,
+        "reasoning_tokens": 1020,
+        "subscription_usage_usd": 0.009405130000000001
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 208,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:39:18Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.099,
+        "model_duration_seconds": 150.471,
+        "model_rounds": 30,
+        "post_first_non_read_only_seconds": 199.25300000000001,
+        "tool_calls": 36,
+        "tool_duration_seconds": 87.043,
+        "total_duration_seconds": 199.352
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:35:27Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 549340,
+        "cost_usd": null,
+        "input_tokens": 30124,
+        "output_tokens": 3351,
+        "reasoning_tokens": 6142,
+        "subscription_usage_usd": 0.0257453
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 132,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:43:14Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.214,
+        "model_duration_seconds": 99.472,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 125.044,
+        "tool_calls": 21,
+        "tool_duration_seconds": 68.55,
+        "total_duration_seconds": 125.258
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:40:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 298372,
+        "cost_usd": null,
+        "input_tokens": 24925,
+        "output_tokens": 1977,
+        "reasoning_tokens": 2748,
+        "subscription_usage_usd": 0.01505241
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 126,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:46:50Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.531,
+        "model_duration_seconds": 101.811,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 118.987,
+        "tool_calls": 20,
+        "tool_duration_seconds": 57.978,
+        "total_duration_seconds": 119.518
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:44:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 277440,
+        "cost_usd": null,
+        "input_tokens": 32884,
+        "output_tokens": 1684,
+        "reasoning_tokens": 1474,
+        "subscription_usage_usd": 0.014834799999999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 89,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:52:11Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.866,
+        "model_duration_seconds": 49.097,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 82.164,
+        "tool_calls": 24,
+        "tool_duration_seconds": 4.219,
+        "total_duration_seconds": 83.03
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:50:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 239360,
+        "cost_usd": null,
+        "input_tokens": 18936,
+        "output_tokens": 2274,
+        "reasoning_tokens": 893,
+        "subscription_usage_usd": 0.011604699999999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 54,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T18:57:01Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.567,
+        "model_duration_seconds": 34.008,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 46.531,
+        "tool_calls": 17,
+        "tool_duration_seconds": 5.365,
+        "total_duration_seconds": 47.098
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T18:55:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 144704,
+        "cost_usd": null,
+        "input_tokens": 11420,
+        "output_tokens": 1544,
+        "reasoning_tokens": 645,
+        "subscription_usage_usd": 0.00714862
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 104,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:02:24Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.818,
+        "model_duration_seconds": 81.763,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 96.043,
+        "tool_calls": 20,
+        "tool_duration_seconds": 24.709,
+        "total_duration_seconds": 96.861
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:00:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 181696,
+        "cost_usd": null,
+        "input_tokens": 15913,
+        "output_tokens": 2284,
+        "reasoning_tokens": 1959,
+        "subscription_usage_usd": 0.00995933
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 150,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:07:09Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.772,
+        "model_duration_seconds": 110.562,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 141.90900000000002,
+        "tool_calls": 25,
+        "tool_duration_seconds": 5.683,
+        "total_duration_seconds": 142.681
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:04:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 430848,
+        "cost_usd": null,
+        "input_tokens": 28558,
+        "output_tokens": 2710,
+        "reasoning_tokens": 4713,
+        "subscription_usage_usd": 0.020920639999999997
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 151,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:11:19Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.45,
+        "model_duration_seconds": 101.972,
+        "model_rounds": 38,
+        "post_first_non_read_only_seconds": 142.405,
+        "tool_calls": 41,
+        "tool_duration_seconds": 16.246,
+        "total_duration_seconds": 142.855
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:08:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 694272,
+        "cost_usd": null,
+        "input_tokens": 71887,
+        "output_tokens": 3705,
+        "reasoning_tokens": 7325,
+        "subscription_usage_usd": 0.03712620999999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 274,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "Reboot verification failed after meaningful inference: harness Nix-store device unavailable. Immediate and service restart checks passed.",
+      "failure_category": "host_reboot_failed",
+      "finished_at": "2026-11-09T19:22:19Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.171,
+        "model_duration_seconds": 221.603,
+        "model_rounds": 32,
+        "post_first_non_read_only_seconds": 257.94,
+        "tool_calls": 38,
+        "tool_duration_seconds": 24.016,
+        "total_duration_seconds": 260.111
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:12:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 715904,
+        "cost_usd": null,
+        "input_tokens": 45502,
+        "output_tokens": 4304,
+        "reasoning_tokens": 9580,
+        "subscription_usage_usd": 0.035244420000000005
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 590,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:33:32Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.275,
+        "model_duration_seconds": 440.222,
+        "model_rounds": 117,
+        "post_first_non_read_only_seconds": 578.513,
+        "tool_calls": 129,
+        "tool_duration_seconds": 27.497,
+        "total_duration_seconds": 578.788
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:23:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 3732928,
+        "cost_usd": null,
+        "input_tokens": 125576,
+        "output_tokens": 11985,
+        "reasoning_tokens": 14663,
+        "subscription_usage_usd": 0.14414823999999993
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 127,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:37:01Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.875,
+        "model_duration_seconds": 99.197,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 113.778,
+        "tool_calls": 21,
+        "tool_duration_seconds": 1.858,
+        "total_duration_seconds": 114.653
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:34:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 241536,
+        "cost_usd": null,
+        "input_tokens": 25561,
+        "output_tokens": 2979,
+        "reasoning_tokens": 3519,
+        "subscription_usage_usd": 0.01432923
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 105,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:40:15Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.895,
+        "model_duration_seconds": 78.649,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 95.795,
+        "tool_calls": 19,
+        "tool_duration_seconds": 4.014,
+        "total_duration_seconds": 96.69
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:38:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 238272,
+        "cost_usd": null,
+        "input_tokens": 20700,
+        "output_tokens": 3028,
+        "reasoning_tokens": 2221,
+        "subscription_usage_usd": 0.01287766
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 103,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:43:34Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.599,
+        "model_duration_seconds": 78.859,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 93.959,
+        "tool_calls": 24,
+        "tool_duration_seconds": 10.329,
+        "total_duration_seconds": 94.558
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:41:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 245888,
+        "cost_usd": null,
+        "input_tokens": 26135,
+        "output_tokens": 2494,
+        "reasoning_tokens": 2540,
+        "subscription_usage_usd": 0.013813889999999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 57,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:46:13Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.087,
+        "model_duration_seconds": 25.995,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 49.44499999999999,
+        "tool_calls": 18,
+        "tool_duration_seconds": 10.575,
+        "total_duration_seconds": 49.532
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:44:59Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 227648,
+        "cost_usd": null,
+        "input_tokens": 21959,
+        "output_tokens": 1573,
+        "reasoning_tokens": 1008,
+        "subscription_usage_usd": 0.011413790000000002
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 67,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:49:02Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.372,
+        "model_duration_seconds": 47.002,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 58.456,
+        "tool_calls": 15,
+        "tool_duration_seconds": 7.249,
+        "total_duration_seconds": 58.828
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:47:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 168640,
+        "cost_usd": null,
+        "input_tokens": 16953,
+        "output_tokens": 1695,
+        "reasoning_tokens": 1144,
+        "subscription_usage_usd": 0.009021649999999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 100,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:52:59Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.624,
+        "model_duration_seconds": 74.081,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 91.199,
+        "tool_calls": 23,
+        "tool_duration_seconds": 5.034,
+        "total_duration_seconds": 91.823
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:51:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 270912,
+        "cost_usd": null,
+        "input_tokens": 32498,
+        "output_tokens": 1877,
+        "reasoning_tokens": 3106,
+        "subscription_usage_usd": 0.01549356
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 132,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T19:57:35Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.613,
+        "model_duration_seconds": 108.257,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 123.615,
+        "tool_calls": 21,
+        "tool_duration_seconds": 6.081,
+        "total_duration_seconds": 124.228
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:55:05Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 231744,
+        "cost_usd": null,
+        "input_tokens": 22010,
+        "output_tokens": 2229,
+        "reasoning_tokens": 4932,
+        "subscription_usage_usd": 0.01383432
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 152,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T20:02:48Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.317,
+        "model_duration_seconds": 107.58,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 137.713,
+        "tool_calls": 30,
+        "tool_duration_seconds": 9.935,
+        "total_duration_seconds": 138.03
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T19:59:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 423232,
+        "cost_usd": null,
+        "input_tokens": 30078,
+        "output_tokens": 3069,
+        "reasoning_tokens": 4049,
+        "subscription_usage_usd": 0.02076766
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 83,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T20:05:51Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.336,
+        "model_duration_seconds": 62.249,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 74.623,
+        "tool_calls": 15,
+        "tool_duration_seconds": 18.002,
+        "total_duration_seconds": 75.959
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-09T20:04:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 183872,
+        "cost_usd": null,
+        "input_tokens": 29432,
+        "output_tokens": 1780,
+        "reasoning_tokens": 1560,
+        "subscription_usage_usd": 0.01160096
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 119,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T20:09:40Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.845,
+        "model_duration_seconds": 90.88,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 105.427,
+        "tool_calls": 22,
+        "tool_duration_seconds": 17.222,
+        "total_duration_seconds": 106.272
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-09T20:07:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 269824,
+        "cost_usd": null,
+        "input_tokens": 22286,
+        "output_tokens": 2254,
+        "reasoning_tokens": 2838,
+        "subscription_usage_usd": 0.013983619999999997
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 124,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T20:13:33Z",
+      "model": "opencode-go/glm-5.3-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": "high",
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.822,
+        "model_duration_seconds": 99.603,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 113.92,
+        "tool_calls": 19,
+        "tool_duration_seconds": 15.804,
+        "total_duration_seconds": 114.742
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-09T20:11:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 257856,
+        "cost_usd": null,
+        "input_tokens": 27465,
+        "output_tokens": 2706,
+        "reasoning_tokens": 3430,
+        "subscription_usage_usd": 0.014923430000000001
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "external:opencode.sh",
+        "name": "opencode",
+        "payload": "external:opencode",
+        "provider": "opencode-go"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_config_sha256": "65d6f30003a0da3179ebd29ac8c47dadf7a1c4030d5e8304b21537891affb9f8",
+        "agent_env_sha256": "11e07c3dfc31fc019babdd58411bbbc1db3309a92eca56983b1ab9dba5e9b582",
+        "agent_payload_sha256": "135ac3f86c43f2a22328a3554fec5f0bc57d71576077902661bc38dac34871fd",
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-09T20:13:33.825241Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "opencode-go/glm-5.3-flash"
+      ],
+      "reasoning_efforts": [
+        "high"
+      ],
+      "replaybook_commit": "df23de80f3d2982762199c40c4ff9e24a1061831",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-09T17:46:57.759461Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "66b53a95ab5500f29dc79898eace2a5f820d44fc673c50e202aba99dcda79bbb"
+    }
+  ],
+  "tier": "core",
+  "title": "GLM-5.3-Flash Core via OpenCode Go",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 13507828,
+    "cost_reported_trials": 0,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 1,
+    "failure_categories": {
+      "host_reboot_failed": 1
+    },
+    "input_tokens": 966375,
+    "known_cost_usd": 0,
+    "median_duration_seconds": 105,
+    "median_first_non_read_only_tool_seconds": 0.619,
+    "median_model_duration_seconds": 81.763,
+    "median_model_rounds": 16,
+    "median_post_first_non_read_only_seconds": 96.043,
+    "median_tool_calls": 21,
+    "median_tool_duration_seconds": 15.804,
+    "output_tokens": 90209,
+    "pass_rate": 0.9696969696969697,
+    "passed": 32,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 33,
+    "subscription_usage_usd": 0.6518490899999999,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261110.0.1"
+}

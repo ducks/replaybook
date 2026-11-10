@@ -1,0 +1,2415 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 21,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 21,
+      "cache_read_tokens": 12919786,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 21,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "release_not_converged": 1
+      },
+      "input_tokens": 721791,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 132,
+      "median_first_non_read_only_tool_seconds": 0.393,
+      "median_model_duration_seconds": 97.308,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 111.75500000000001,
+      "median_tool_calls": 28,
+      "median_tool_duration_seconds": 12.51,
+      "model": "opencode/big-pickle",
+      "output_tokens": 85524,
+      "pass_rate": 0.8571428571428571,
+      "passed": 18,
+      "provider": "opencode-zen",
+      "recording_reported_trials": 21,
+      "subscription_usage_reported_trials": 21,
+      "subscription_usage_usd": 0.0,
+      "trials": 33,
+      "unavailable": 12,
+      "unavailable_categories": {
+        "provider_rate_limited": 12
+      },
+      "usage_reported_trials": 21
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1052416,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 74820,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 64,
+      "median_first_non_read_only_tool_seconds": 0.622,
+      "median_model_duration_seconds": 44.048,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 51.797000000000004,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 5.535,
+      "model": "opencode/big-pickle",
+      "output_tokens": 8736,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-zen",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1033472,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 61911,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 105,
+      "median_first_non_read_only_tool_seconds": 0.209,
+      "median_model_duration_seconds": 88.614,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 98.158,
+      "median_tool_calls": 23,
+      "median_tool_duration_seconds": 15.994,
+      "model": "opencode/big-pickle",
+      "output_tokens": 10529,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-zen",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 2266090,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 100644,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 189,
+      "median_first_non_read_only_tool_seconds": 0.382,
+      "median_model_duration_seconds": 147.023,
+      "median_model_rounds": 22,
+      "median_post_first_non_read_only_seconds": 174.932,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 39.365,
+      "model": "opencode/big-pickle",
+      "output_tokens": 17530,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-zen",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 1,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 1,
+      "cache_read_tokens": 333440,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 1,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 40568,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 902,
+      "median_first_non_read_only_tool_seconds": 0.0,
+      "median_model_duration_seconds": 211.364,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 220.034,
+      "median_tool_calls": 28,
+      "median_tool_duration_seconds": 152.211,
+      "model": "opencode/big-pickle",
+      "output_tokens": 2444,
+      "pass_rate": 0.0,
+      "passed": 0,
+      "provider": "opencode-zen",
+      "recording_reported_trials": 1,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 1,
+      "subscription_usage_usd": 0.0,
+      "trials": 3,
+      "unavailable": 2,
+      "unavailable_categories": {
+        "provider_rate_limited": 2
+      },
+      "usage_reported_trials": 1
+    },
+    {
+      "cache_creation_reported_trials": 0,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 0,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 0,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 0,
+      "known_cost_usd": 0,
+      "median_duration_seconds": null,
+      "model": "opencode/big-pickle",
+      "output_tokens": 0,
+      "pass_rate": null,
+      "passed": 0,
+      "provider": "opencode-zen",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 3,
+      "unavailable_categories": {
+        "provider_rate_limited": 3
+      },
+      "usage_reported_trials": 0
+    },
+    {
+      "cache_creation_reported_trials": 2,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 2,
+      "cache_read_tokens": 671616,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 2,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 59713,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 96.0,
+      "median_first_non_read_only_tool_seconds": 0.4615,
+      "median_model_duration_seconds": 66.8775,
+      "median_model_rounds": 13.5,
+      "median_post_first_non_read_only_seconds": 85.2655,
+      "median_tool_calls": 18.5,
+      "median_tool_duration_seconds": 12.385,
+      "model": "opencode/big-pickle",
+      "output_tokens": 5773,
+      "pass_rate": 1.0,
+      "passed": 2,
+      "provider": "opencode-zen",
+      "recording_reported_trials": 2,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 2,
+      "subscription_usage_usd": 0.0,
+      "trials": 3,
+      "unavailable": 1,
+      "unavailable_categories": {
+        "provider_rate_limited": 1
+      },
+      "usage_reported_trials": 2
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 4382464,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 178698,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 253,
+      "median_first_non_read_only_tool_seconds": 0.393,
+      "median_model_duration_seconds": 195.677,
+      "median_model_rounds": 23,
+      "median_post_first_non_read_only_seconds": 245.206,
+      "median_tool_calls": 35,
+      "median_tool_duration_seconds": 20.0,
+      "model": "opencode/big-pickle",
+      "output_tokens": 18211,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-zen",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1283968,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 105926,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 108,
+      "median_first_non_read_only_tool_seconds": 0.296,
+      "median_model_duration_seconds": 77.295,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 100.256,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 6.35,
+      "model": "opencode/big-pickle",
+      "output_tokens": 12008,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-zen",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1896320,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "release_not_converged": 1
+      },
+      "input_tokens": 99511,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 250,
+      "median_first_non_read_only_tool_seconds": 0.51,
+      "median_model_duration_seconds": 97.417,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 108.271,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 12.329,
+      "model": "opencode/big-pickle",
+      "output_tokens": 10293,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "provider": "opencode-zen",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 0,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 0,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 0,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 0,
+      "known_cost_usd": 0,
+      "median_duration_seconds": null,
+      "model": "opencode/big-pickle",
+      "output_tokens": 0,
+      "pass_rate": null,
+      "passed": 0,
+      "provider": "opencode-zen",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 3,
+      "unavailable_categories": {
+        "provider_rate_limited": 3
+      },
+      "usage_reported_trials": 0
+    },
+    {
+      "cache_creation_reported_trials": 0,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 0,
+      "cache_read_tokens": 0,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 0,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 0,
+      "known_cost_usd": 0,
+      "median_duration_seconds": null,
+      "model": "opencode/big-pickle",
+      "output_tokens": 0,
+      "pass_rate": null,
+      "passed": 0,
+      "provider": "opencode-zen",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 3,
+      "unavailable_categories": {
+        "provider_rate_limited": 3
+      },
+      "usage_reported_trials": 0
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "external:opencode.sh",
+      "name": "opencode",
+      "payload": "external:opencode"
+    },
+    "agent_harness": {
+      "billing": "free",
+      "id": "opencode",
+      "label": "OpenCode",
+      "provider": "OpenCode Zen",
+      "version": "1.19.0"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+      "agent_config_sha256": "65d6f30003a0da3179ebd29ac8c47dadf7a1c4030d5e8304b21537891affb9f8",
+      "agent_env_sha256": "9faf9efd7644a7e086c2cd8cfbc5469f613cf2f3ee11195a57838828c09afee0",
+      "agent_payload_sha256": "135ac3f86c43f2a22328a3554fec5f0bc57d71576077902661bc38dac34871fd",
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "opencode-zen"
+    ],
+    "reasoning_efforts": [],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "63a249d57c5138186d95cfc13567146fe0fe76d43b41419d1a31e6c1c74d55f7",
+        "stderr_sha256": "26ceccc0aa78911e10ae405533990879067b7579cf321411e8f8df86e6227adc",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-2"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "cf2ba0a9f9504ed96197d5ae91ab19946c1698d49cad0f641fc0750419429ff0",
+        "stderr_sha256": "f72d2eadd247bfcf6007b446f3c0e2884f41c8b2a8e94964b21597b1b6edce1a",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-3"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "d2d63ca6d2eae09cae99dedf54a16e213c3982eacbe9a3d4b5db13e3ea832bf4",
+        "stderr_sha256": "5decdb7a363aad378475f4b71de219c9b5fbb1f7f02aa2de885216123d7baa0d",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-1"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "f5212c5d549faacc9deca506dfe5bd27583af2a37c949412f9585ae45c25f0b2",
+        "stderr_sha256": "c0a232f8abb6e6cbc9dbfd49da1790f289425bc2b0ef33b8b46b2e0dd8ff3a63",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-2"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "2e54c84147c251dc9f2ddb59646de9f3c39a2366385b9ea92920ae0eeb4f6e24",
+        "stderr_sha256": "3159f4afaf82bf08b7c4b5d842166aedbdf208b3ad2094ff622884529cfa5781",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-3"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "e65b24fe82648accde948a59cc1fc0997e91eab44c6e14258b4fc8b4ed0d7c87",
+        "stderr_sha256": "db0d33eae465ce7d100e165a7293a6b55f68fd32dffe3d7b3bb8ee9ec5bac434",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "019-rust-fd-leak-opencode-big-pickle-1"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "5f54144ca3dab8b24aeb76c498c70dab970480d7a0b559c432546bc8580afc34",
+        "stderr_sha256": "eaa042cf73873082f2662102d1f967301c9c2e5500c36295cfe7d18d976159b7",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-1"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "7f6828961b9a472b16ea687061b4b2f0358da03a02691d8240cdf3c87298a3a5",
+        "stderr_sha256": "92dc58cdbf86341ac8896b45891cc88472a84f0305cb21078af0cad0a6623250",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-2"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "5b2976948bcac67279a22f510672393e20701629693b9f267e8c899ade2c7f2c",
+        "stderr_sha256": "b7b153d03cd176daecd62caa89d233f80f14e7863dcd07fa2516c2ca7aaac581",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-3"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "31f2d2608885f8006f9c903bfa438d923c9d88f3fa50d750d7a514c032db0c31",
+        "stderr_sha256": "e22bc0b6a2f609f91458bf2d24e37b50558161b0cc18921e188195bee746d377",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-1"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "dbcd139ca93330ea6ab493a344e875118c4e98a3319a76bc1a7d1592ab89a56d",
+        "stderr_sha256": "89f0ac41cd98a628f911dda0daacdf8735f56f10c2b1cd54135fb5ceac992510",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-2"
+    },
+    {
+      "changes": {
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+        "failure_category": "provider_rate_limited",
+        "trial_status": "unavailable"
+      },
+      "evidence": {
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit",
+        "result_sha256": "5ff409feae8babfb0de03dc75d1f1963a3827c04863b371332ca7071cd439920",
+        "stderr_sha256": "3ff226325da3b4ad8e512ac97d05668030bc4df884269b52ea25a2e5de5e0aed",
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "original": {
+        "failure": "agent exceeded 900 second timeout",
+        "failure_category": "agent_timeout",
+        "trial_status": "evaluated"
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-3"
+    }
+  ],
+  "description": "Big Pickle: 18/21 evaluated trials passed; 12 unavailable out of 33 scheduled attempts. Median evaluated agent duration 132 seconds.",
+  "input_mode": "text",
+  "model_labels": {
+    "opencode/big-pickle": "Big Pickle"
+  },
+  "model_order": [
+    "opencode/big-pickle"
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three scheduled attempts each, 900-second agent deadline, one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Executed through OpenCode 1.19.0 with pinned public model definitions and a scoped provider credential. This is an OpenCode/provider configuration, not the frozen Claux agent. Models with different reasoning settings or providers are not controlled intrinsic-model comparisons.",
+    "Raw trial results, transcripts and immutable execution snapshots were audited; source hashes and documented corrections are retained. Public evidence excludes credentials, full transcripts, private reasoning, raw VM logs and local filesystem paths.",
+    "Main-model usage is from OpenCode events. Monetary API cost was not reported and must not be interpreted as zero. Client-reported usage values are not an invoice or a complete accounting of auxiliary requests/infrastructure.",
+    "Three attempts per scenario are a small sample; no general infrastructure competence or definitive model ranking is established.",
+    "Audit: https://github.com/ducks/replaybook/blob/main/benchmark-data/audits/20261110-big-pickle.json",
+    "Twelve raw agent_timeout records are corrected to unavailable/provider_rate_limited: each has an empty transcript, absent inference usage and a retained main-model Free usage limit reached error. Evidence hashes are bound to the original summary. These are missing capability observations, not repair failures.",
+    "Two other timeouts encountered free quota errors after meaningful work and remain evaluated failures. The third evaluated failure was an interrupted deployment that did not converge. No successful result was added or upgraded.",
+    "This is a quota-constrained sample with 21/33 evaluated coverage. The 18/21 evaluated pass rate does not establish a full Core solve rate. The scheduled repair-completion fraction is 18/33; do not read missing quota-blocked trials as proof of model inability.",
+    "The free Zen route is separate from Go allowance. The OpenCode auxiliary title agent attempted gpt-5.4-nano requests; all 33 retained stderr logs report insufficient account funds for those requests. No successful title completion or billed title usage is established; selected-model inference is audited separately."
+  ],
+  "observations": [
+    "Big Pickle: 18/21 evaluated trials passed; 12 unavailable out of 33 scheduled attempts. Median evaluated agent duration 132 seconds.",
+    "Classification corrections preserve every original reward and bind retained result/transcript evidence to the original summary hash. Raw result files were not edited."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 48,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-08T21:42:23Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.528,
+        "model_duration_seconds": 32.519,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 40.351,
+        "tool_calls": 19,
+        "tool_duration_seconds": 5.535,
+        "total_duration_seconds": 40.879
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-big-pickle-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T21:41:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 189312,
+        "cost_usd": null,
+        "input_tokens": 16400,
+        "output_tokens": 1941,
+        "reasoning_tokens": 2491,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 132,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-08T21:45:43Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.622,
+        "model_duration_seconds": 104.733,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 123.227,
+        "tool_calls": 37,
+        "tool_duration_seconds": 45.172,
+        "total_duration_seconds": 123.849
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-big-pickle-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T21:43:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 582912,
+        "cost_usd": null,
+        "input_tokens": 29033,
+        "output_tokens": 4011,
+        "reasoning_tokens": 6270,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 64,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-08T21:48:03Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.687,
+        "model_duration_seconds": 44.048,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 51.797000000000004,
+        "tool_calls": 16,
+        "tool_duration_seconds": 3.736,
+        "total_duration_seconds": 52.484
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-big-pickle-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T21:46:45Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 280192,
+        "cost_usd": null,
+        "input_tokens": 29387,
+        "output_tokens": 2784,
+        "reasoning_tokens": 4708,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 247,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-08T21:53:44Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.168,
+        "model_duration_seconds": 208.476,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 238.504,
+        "tool_calls": 32,
+        "tool_duration_seconds": 142.897,
+        "total_duration_seconds": 238.672
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-big-pickle-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-08T21:49:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 509056,
+        "cost_usd": null,
+        "input_tokens": 27047,
+        "output_tokens": 4705,
+        "reasoning_tokens": 8104,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 90,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-08T21:56:32Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.389,
+        "model_duration_seconds": 67.973,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 76.784,
+        "tool_calls": 23,
+        "tool_duration_seconds": 11.461,
+        "total_duration_seconds": 79.173
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-big-pickle-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-08T21:54:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 293632,
+        "cost_usd": null,
+        "input_tokens": 20548,
+        "output_tokens": 2875,
+        "reasoning_tokens": 5282,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 105,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-08T21:59:44Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.209,
+        "model_duration_seconds": 88.614,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 98.158,
+        "tool_calls": 23,
+        "tool_duration_seconds": 15.994,
+        "total_duration_seconds": 98.367
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-big-pickle-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-08T21:57:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 230784,
+        "cost_usd": null,
+        "input_tokens": 14316,
+        "output_tokens": 2949,
+        "reasoning_tokens": 6530,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 134,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-08T22:03:42Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.344,
+        "model_duration_seconds": 90.162,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 125.289,
+        "tool_calls": 31,
+        "tool_duration_seconds": 19.956,
+        "total_duration_seconds": 125.633
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-big-pickle-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T22:01:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 578154,
+        "cost_usd": null,
+        "input_tokens": 40446,
+        "output_tokens": 5162,
+        "reasoning_tokens": 6933,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 246,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-08T22:09:30Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.528,
+        "model_duration_seconds": 215.638,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 237.006,
+        "tool_calls": 33,
+        "tool_duration_seconds": 41.73,
+        "total_duration_seconds": 237.534
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-big-pickle-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T22:05:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 871424,
+        "cost_usd": null,
+        "input_tokens": 35091,
+        "output_tokens": 5601,
+        "reasoning_tokens": 15813,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 189,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-08T22:14:05Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.382,
+        "model_duration_seconds": 147.023,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 174.932,
+        "tool_calls": 36,
+        "tool_duration_seconds": 39.365,
+        "total_duration_seconds": 175.314
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-big-pickle-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T22:10:38Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 816512,
+        "cost_usd": null,
+        "input_tokens": 25107,
+        "output_tokens": 6767,
+        "reasoning_tokens": 12383,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-08T22:30:43Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.0,
+        "model_duration_seconds": 211.364,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 220.034,
+        "tool_calls": 28,
+        "tool_duration_seconds": 152.211,
+        "total_duration_seconds": 220.034
+      },
+      "reward": 0,
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T22:15:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 333440,
+        "cost_usd": null,
+        "input_tokens": 40568,
+        "output_tokens": 2444,
+        "reasoning_tokens": 6402,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not restore database connection capacity",
+          "failure_category": "database_pool_exhausted"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-08T22:47:22Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T22:31:48Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not restore database connection capacity",
+          "failure_category": "database_pool_exhausted"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 907,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-08T23:04:09Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T22:48:31Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not restore database connection capacity",
+          "failure_category": "database_pool_exhausted"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-08T23:21:32Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T23:05:28Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-08T23:38:52Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T23:22:47Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-08T23:56:05Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T23:40:01Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 906,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-09T00:13:33Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "019-rust-fd-leak-opencode-big-pickle-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-08T23:58:25Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "resource_growth_unbounded"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 126,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T00:18:38Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.606,
+        "model_duration_seconds": 97.308,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 111.75500000000001,
+        "tool_calls": 21,
+        "tool_duration_seconds": 12.51,
+        "total_duration_seconds": 112.361
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-big-pickle-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:16:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 333824,
+        "cost_usd": null,
+        "input_tokens": 23277,
+        "output_tokens": 2995,
+        "reasoning_tokens": 4410,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 66,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T00:23:10Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.317,
+        "model_duration_seconds": 36.447,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 58.776,
+        "tool_calls": 16,
+        "tool_duration_seconds": 12.26,
+        "total_duration_seconds": 59.093
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-big-pickle-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:21:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 337792,
+        "cost_usd": null,
+        "input_tokens": 36436,
+        "output_tokens": 2778,
+        "reasoning_tokens": 2402,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 220,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T00:28:26Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.393,
+        "model_duration_seconds": 174.492,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 211.0,
+        "tool_calls": 32,
+        "tool_duration_seconds": 5.105,
+        "total_duration_seconds": 211.393
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-big-pickle-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:24:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 677504,
+        "cost_usd": null,
+        "input_tokens": 36303,
+        "output_tokens": 5077,
+        "reasoning_tokens": 19757,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 465,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T00:37:53Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.051,
+        "model_duration_seconds": 403.907,
+        "model_rounds": 33,
+        "post_first_non_read_only_seconds": 453.807,
+        "tool_calls": 49,
+        "tool_duration_seconds": 29.363,
+        "total_duration_seconds": 454.858
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-big-pickle-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:29:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 2578560,
+        "cost_usd": null,
+        "input_tokens": 97137,
+        "output_tokens": 7513,
+        "reasoning_tokens": 22517,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 253,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T00:43:44Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.334,
+        "model_duration_seconds": 195.677,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 245.206,
+        "tool_calls": 35,
+        "tool_duration_seconds": 20.0,
+        "total_duration_seconds": 245.54
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-big-pickle-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:39:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1126400,
+        "cost_usd": null,
+        "input_tokens": 45258,
+        "output_tokens": 5621,
+        "reasoning_tokens": 19361,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 120,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T00:47:08Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.296,
+        "model_duration_seconds": 77.295,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 105.419,
+        "tool_calls": 36,
+        "tool_duration_seconds": 10.305,
+        "total_duration_seconds": 105.715
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-opencode-big-pickle-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:44:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 598912,
+        "cost_usd": null,
+        "input_tokens": 47084,
+        "output_tokens": 4629,
+        "reasoning_tokens": 7364,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 108,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T00:50:15Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.532,
+        "model_duration_seconds": 80.839,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 100.256,
+        "tool_calls": 19,
+        "tool_duration_seconds": 6.35,
+        "total_duration_seconds": 100.788
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-opencode-big-pickle-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:48:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 313344,
+        "cost_usd": null,
+        "input_tokens": 32211,
+        "output_tokens": 3672,
+        "reasoning_tokens": 8826,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 92,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T00:53:12Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.274,
+        "model_duration_seconds": 60.351,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 84.266,
+        "tool_calls": 21,
+        "tool_duration_seconds": 2.953,
+        "total_duration_seconds": 84.54
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-opencode-big-pickle-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:51:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 371712,
+        "cost_usd": null,
+        "input_tokens": 26631,
+        "output_tokens": 3707,
+        "reasoning_tokens": 5864,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 117,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T00:56:46Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.62,
+        "model_duration_seconds": 97.417,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 108.271,
+        "tool_calls": 22,
+        "tool_duration_seconds": 21.671,
+        "total_duration_seconds": 108.891
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-opencode-big-pickle-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:54:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 298752,
+        "cost_usd": null,
+        "input_tokens": 18768,
+        "output_tokens": 3374,
+        "reasoning_tokens": 4491,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 250,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-11-09T01:02:45Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.166,
+        "model_duration_seconds": 176.717,
+        "model_rounds": 34,
+        "post_first_non_read_only_seconds": 242.431,
+        "tool_calls": 51,
+        "tool_duration_seconds": 12.329,
+        "total_duration_seconds": 242.597
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-opencode-big-pickle-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T00:58:05Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1554176,
+        "cost_usd": null,
+        "input_tokens": 70800,
+        "output_tokens": 6173,
+        "reasoning_tokens": 20704,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 909,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-09T01:19:43Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.51,
+        "model_duration_seconds": 6.213,
+        "model_rounds": 4,
+        "post_first_non_read_only_seconds": 8.988,
+        "tool_calls": 8,
+        "tool_duration_seconds": 0.666,
+        "total_duration_seconds": 9.498
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-opencode-big-pickle-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T01:04:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 43392,
+        "cost_usd": null,
+        "input_tokens": 9943,
+        "output_tokens": 746,
+        "reasoning_tokens": 165,
+        "subscription_usage_usd": 0
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "release_not_converged"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-09T01:37:08Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T01:21:04Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "writable_capacity_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-09T01:55:13Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T01:39:09Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "writable_capacity_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-09T02:13:07Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T01:57:03Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "writable_capacity_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-09T02:29:46Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-09T02:14:26Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": null
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-09T02:46:10Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-09T02:30:50Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": null
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage.",
+      "failure_category": "provider_rate_limited",
+      "finished_at": "2026-11-09T03:02:40Z",
+      "model": "opencode/big-pickle",
+      "provider": "opencode-zen",
+      "reasoning_effort": null,
+      "reward": 0,
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-09T02:47:21Z",
+      "trial_status": "unavailable",
+      "usage": null,
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": null
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "external:opencode.sh",
+        "name": "opencode",
+        "payload": "external:opencode",
+        "provider": "opencode-zen"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_config_sha256": "65d6f30003a0da3179ebd29ac8c47dadf7a1c4030d5e8304b21537891affb9f8",
+        "agent_env_sha256": "9faf9efd7644a7e086c2cd8cfbc5469f613cf2f3ee11195a57838828c09afee0",
+        "agent_payload_sha256": "135ac3f86c43f2a22328a3554fec5f0bc57d71576077902661bc38dac34871fd",
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-09T03:02:41.513005Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "opencode/big-pickle"
+      ],
+      "reasoning_efforts": [],
+      "replaybook_commit": "df23de80f3d2982762199c40c4ff9e24a1061831",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-08T21:40:23.032316Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76"
+    }
+  ],
+  "tier": "core",
+  "title": "Big Pickle Core via OpenCode Zen \u2014 quota-constrained",
+  "totals": {
+    "cache_creation_reported_trials": 21,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 21,
+    "cache_read_tokens": 12919786,
+    "cost_reported_trials": 0,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 21,
+    "failed": 3,
+    "failure_categories": {
+      "agent_timeout": 2,
+      "release_not_converged": 1
+    },
+    "input_tokens": 721791,
+    "known_cost_usd": 0,
+    "median_duration_seconds": 132,
+    "median_first_non_read_only_tool_seconds": 0.393,
+    "median_model_duration_seconds": 97.308,
+    "median_model_rounds": 16,
+    "median_post_first_non_read_only_seconds": 111.75500000000001,
+    "median_tool_calls": 28,
+    "median_tool_duration_seconds": 12.51,
+    "output_tokens": 85524,
+    "pass_rate": 0.8571428571428571,
+    "passed": 18,
+    "recording_reported_trials": 21,
+    "subscription_usage_reported_trials": 21,
+    "subscription_usage_usd": 0.0,
+    "trials": 33,
+    "unavailable": 12,
+    "unavailable_categories": {
+      "provider_rate_limited": 12
+    },
+    "usage_reported_trials": 21
+  },
+  "version": "20261110.0.0"
+}

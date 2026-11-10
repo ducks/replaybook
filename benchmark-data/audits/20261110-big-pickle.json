@@ -1,0 +1,1211 @@
+{
+  "model": "opencode/big-pickle",
+  "session": "2026-11-08T19-05-42-388841Z-baseline-pickle-opencode-core-20261108-7c0eee",
+  "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+  "execution_snapshot": {
+    "schema_version": 1,
+    "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1",
+        "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+        "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3"
+      }
+    ],
+    "selected_scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721"
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "version": 3,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7"
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b"
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256"
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce"
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee"
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f"
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169"
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b"
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7"
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "version": 2,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9"
+      }
+    ],
+    "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+    "agent_payload_sha256": "135ac3f86c43f2a22328a3554fec5f0bc57d71576077902661bc38dac34871fd",
+    "agent_config_sha256": "65d6f30003a0da3179ebd29ac8c47dadf7a1c4030d5e8304b21537891affb9f8",
+    "agent_env_sha256": "9faf9efd7644a7e086c2cd8cfbc5469f613cf2f3ee11195a57838828c09afee0",
+    "claux_binary_sha256": null,
+    "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3"
+  },
+  "agent_version": "1.19.0",
+  "source_totals": {
+    "trials": 33,
+    "evaluated": 33,
+    "unavailable": 0,
+    "passed": 18,
+    "failed": 15,
+    "durable_repairs_after_timeout": 0,
+    "pass_rate": 0.5454545454545454,
+    "median_duration_seconds": 250.0,
+    "known_cost_usd": 0,
+    "cost_reported_trials": 0,
+    "input_tokens": 721791,
+    "output_tokens": 85524,
+    "cache_read_tokens": 12919786,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 21,
+    "cache_creation_reported_trials": 21,
+    "usage_reported_trials": 21,
+    "recording_reported_trials": 21,
+    "median_model_rounds": 16,
+    "median_model_duration_seconds": 97.308,
+    "median_tool_calls": 28,
+    "median_tool_duration_seconds": 12.51,
+    "median_first_non_read_only_tool_seconds": 0.393,
+    "median_post_first_non_read_only_seconds": 111.75500000000001
+  },
+  "runs": [
+    {
+      "run_id": "001-nginx-502-host-opencode-big-pickle-1",
+      "scenario": "001-nginx-502-host",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 48,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 16400,
+        "output_tokens": 1941,
+        "reasoning_tokens": 2491,
+        "cache_read_tokens": 189312,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "1837caea227804c056f9ba8e6a5e559c8ed368ee21490b485a55f94f873806cf",
+      "transcript_sha256": "5397656eb073bc28517101d488b13991e98c861ceaa60b4e10a47a70e52a2418",
+      "transcript_events": 42
+    },
+    {
+      "run_id": "001-nginx-502-host-opencode-big-pickle-2",
+      "scenario": "001-nginx-502-host",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 132,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 29033,
+        "output_tokens": 4011,
+        "reasoning_tokens": 6270,
+        "cache_read_tokens": 582912,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "f2a0db53c49855543f4f82794fec26cf9ef38d574fb6d854e7c77cbaef253ca6",
+      "transcript_sha256": "0bb229eb12f8b328f26a07415d6d46e9d191c80107403e1190d2ae2a2f090cb1",
+      "transcript_events": 80
+    },
+    {
+      "run_id": "001-nginx-502-host-opencode-big-pickle-3",
+      "scenario": "001-nginx-502-host",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 64,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 29387,
+        "output_tokens": 2784,
+        "reasoning_tokens": 4708,
+        "cache_read_tokens": 280192,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "82dbca049096209bd8863ad2e225786516d2b7005707d2389014511c92d02f6d",
+      "transcript_sha256": "825223de564a7356a8f9c7184c4ea143b50780884111305640bf96fe3eebffd1",
+      "transcript_events": 36
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-opencode-big-pickle-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 247,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 27047,
+        "output_tokens": 4705,
+        "reasoning_tokens": 8104,
+        "cache_read_tokens": 509056,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "578bcac62b96f8f033eb3d84c8cbeba82c9ddf3e60cf30d62eef4ee7ac2cca9c",
+      "transcript_sha256": "81ad015e2e833438977f2fd04f627106caabf75ce915f38c85445f2c88ec45cc",
+      "transcript_events": 67
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-opencode-big-pickle-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 90,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 20548,
+        "output_tokens": 2875,
+        "reasoning_tokens": 5282,
+        "cache_read_tokens": 293632,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "48173004aa17e8290966529c5ff2e7b7103b9a236da7a5ad874ec73209e90e13",
+      "transcript_sha256": "41e0ac92597b671ac5bd326dd75dcb9bbddb9d92f93867c381b67945c9e9433b",
+      "transcript_events": 49
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-opencode-big-pickle-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 105,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 14316,
+        "output_tokens": 2949,
+        "reasoning_tokens": 6530,
+        "cache_read_tokens": 230784,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "4e32d967de2b0f04488649ae270442267bb9dce2801656d2273bedf0e532a17b",
+      "transcript_sha256": "19531a13f7748f68a95788b073abbeae73a32878ed626cea411122898c472198",
+      "transcript_events": 50
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-opencode-big-pickle-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 134,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 40446,
+        "output_tokens": 5162,
+        "reasoning_tokens": 6933,
+        "cache_read_tokens": 578154,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "3a379ee9556133c019b53964a5fee96ccf335c34066496b20199f320f15c4f01",
+      "transcript_sha256": "ac7109c21f00de3d0ef3835b9332b09764dded5db68e56849a0c292ed8ef54cd",
+      "transcript_events": 76
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-opencode-big-pickle-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 246,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 35091,
+        "output_tokens": 5601,
+        "reasoning_tokens": 15813,
+        "cache_read_tokens": 871424,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "d8e6d8d1e1bf9b19f324061648a55148c1b229d021bbbedc551ae7ce28f65025",
+      "transcript_sha256": "258439108a487e962c8b644da01c96ba7e9c54d3881b9183d0eb077baba3a1f1",
+      "transcript_events": 78
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-opencode-big-pickle-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 189,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 25107,
+        "output_tokens": 6767,
+        "reasoning_tokens": 12383,
+        "cache_read_tokens": 816512,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "1403b49aabba6a521437ba44dc3eb7c0e53f4559b07b15a6bee2f7be4f47d391",
+      "transcript_sha256": "bea477b17afd684951ae5a5cbd142c91fd07dfb0483fb1eb6cd3727876a37f9a",
+      "transcript_events": 89
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 1,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 902,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not restore database connection capacity",
+          "failure_category": "database_pool_exhausted"
+        }
+      },
+      "usage": {
+        "input_tokens": 40568,
+        "output_tokens": 2444,
+        "reasoning_tokens": 6402,
+        "cache_read_tokens": 333440,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "14a6d8e1b9b6c969040e98cd035920491b011781f73e924e60197bf259402ce6",
+      "transcript_sha256": "30280ebe793cb32c8aec0265ab32e9777ee5f0a7b9b7aaa4a4f497a1a5dc8774",
+      "transcript_events": 50,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "70693743e91bb371cb385e58b84c857a91840f1ccc733778abc1f63c92aebc7f"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 2,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 903,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not restore database connection capacity",
+          "failure_category": "database_pool_exhausted"
+        }
+      },
+      "usage": null,
+      "result_sha256": "63a249d57c5138186d95cfc13567146fe0fe76d43b41419d1a31e6c1c74d55f7",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "26ceccc0aa78911e10ae405533990879067b7579cf321411e8f8df86e6227adc"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 3,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 907,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not restore database connection capacity",
+          "failure_category": "database_pool_exhausted"
+        }
+      },
+      "usage": null,
+      "result_sha256": "cf2ba0a9f9504ed96197d5ae91ab19946c1698d49cad0f641fc0750419429ff0",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "f72d2eadd247bfcf6007b446f3c0e2884f41c8b2a8e94964b21597b1b6edce1a"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-1",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 1,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 902,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        }
+      },
+      "usage": null,
+      "result_sha256": "d2d63ca6d2eae09cae99dedf54a16e213c3982eacbe9a3d4b5db13e3ea832bf4",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "5decdb7a363aad378475f4b71de219c9b5fbb1f7f02aa2de885216123d7baa0d"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-2",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 2,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 903,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        }
+      },
+      "usage": null,
+      "result_sha256": "f5212c5d549faacc9deca506dfe5bd27583af2a37c949412f9585ae45c25f0b2",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "c0a232f8abb6e6cbc9dbfd49da1790f289425bc2b0ef33b8b46b2e0dd8ff3a63"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-3",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 3,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 902,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        }
+      },
+      "usage": null,
+      "result_sha256": "2e54c84147c251dc9f2ddb59646de9f3c39a2366385b9ea92920ae0eeb4f6e24",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "3159f4afaf82bf08b7c4b5d842166aedbdf208b3ad2094ff622884529cfa5781"
+    },
+    {
+      "run_id": "019-rust-fd-leak-opencode-big-pickle-1",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 1,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 906,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "resource_growth_unbounded"
+        }
+      },
+      "usage": null,
+      "result_sha256": "e65b24fe82648accde948a59cc1fc0997e91eab44c6e14258b4fc8b4ed0d7c87",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "db0d33eae465ce7d100e165a7293a6b55f68fd32dffe3d7b3bb8ee9ec5bac434"
+    },
+    {
+      "run_id": "019-rust-fd-leak-opencode-big-pickle-2",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 126,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 23277,
+        "output_tokens": 2995,
+        "reasoning_tokens": 4410,
+        "cache_read_tokens": 333824,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "d22830adf8d2d49148c7d6538fc3316647133db99ae2a59d5e366feb30fd5122",
+      "transcript_sha256": "b301177e6ee58d9eb2845fe150c11b8a344e3f24e64e336fdd28026f783139b6",
+      "transcript_events": 50
+    },
+    {
+      "run_id": "019-rust-fd-leak-opencode-big-pickle-3",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 66,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 36436,
+        "output_tokens": 2778,
+        "reasoning_tokens": 2402,
+        "cache_read_tokens": 337792,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "d038ae8a6bfd092ee200c7462cd9cf11bfaa354316c08bf22a994e011aa09e38",
+      "transcript_sha256": "73c397e03ad80f99e2e9c1377b7acc77fd50b775381f31bf6ee15a444d3a0321",
+      "transcript_events": 43
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-opencode-big-pickle-1",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 220,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 36303,
+        "output_tokens": 5077,
+        "reasoning_tokens": 19757,
+        "cache_read_tokens": 677504,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "4575608c102698abc51812bf733e19df9a60a971e23dda28d8ce75bd3d677138",
+      "transcript_sha256": "70553ba916f6aa93d25852b6432abd4a26c3b5154038857acff99682e0ae7182",
+      "transcript_events": 73
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-opencode-big-pickle-2",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 465,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 97137,
+        "output_tokens": 7513,
+        "reasoning_tokens": 22517,
+        "cache_read_tokens": 2578560,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "b527a5a0f6d35e1f19ae05a2059cefb533cd0a5d07d55c7bc205c04e2e54ab42",
+      "transcript_sha256": "4a4c716f5ad46df849234cfccc189413195242366b1399437a5c92ef66724ae4",
+      "transcript_events": 116
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-opencode-big-pickle-3",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 253,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 45258,
+        "output_tokens": 5621,
+        "reasoning_tokens": 19361,
+        "cache_read_tokens": 1126400,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "3bdb3ceb7237e1507d7bf52410374e9a57febc25563132253878321e4969fe9a",
+      "transcript_sha256": "18c860956e88a5831c2926ad5f4d40098a3962c42fc34a4f85740fe87bc54c51",
+      "transcript_events": 82
+    },
+    {
+      "run_id": "023-auth-secret-rollout-opencode-big-pickle-1",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 120,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 47084,
+        "output_tokens": 4629,
+        "reasoning_tokens": 7364,
+        "cache_read_tokens": 598912,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "4a82ee1a2ab092d89bec28c18d22e72419d117a09815873464b569cb96c62270",
+      "transcript_sha256": "ffee873c2002b5127e10cf8d86d0d01865d0a3699526dd0be415731ee65990d5",
+      "transcript_events": 71
+    },
+    {
+      "run_id": "023-auth-secret-rollout-opencode-big-pickle-2",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 108,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 32211,
+        "output_tokens": 3672,
+        "reasoning_tokens": 8826,
+        "cache_read_tokens": 313344,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "e86540e6d6bed754ea6681e0d80896524d6ee796f5ec9cbf7d05ee3f0c9b7fc4",
+      "transcript_sha256": "65361b9a399737425ff07082d43cb57f876b26cef542b8a0987613ab39a4bd6d",
+      "transcript_events": 46
+    },
+    {
+      "run_id": "023-auth-secret-rollout-opencode-big-pickle-3",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 92,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 26631,
+        "output_tokens": 3707,
+        "reasoning_tokens": 5864,
+        "cache_read_tokens": 371712,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "cb623312d30e5c9cf63a3a052b133e8a2b172d22f55c97059eb42052b546a33a",
+      "transcript_sha256": "3722c1e7fe4891d57d67f88eeba84b9bc6ea6a1aa1dd65dcd290793b156d491b",
+      "transcript_events": 54
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-opencode-big-pickle-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 117,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 18768,
+        "output_tokens": 3374,
+        "reasoning_tokens": 4491,
+        "cache_read_tokens": 298752,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "82370da0780a89de403d515a90237f0af727657a6e4fc16d267ce8c93b783d8b",
+      "transcript_sha256": "3e6dd8a7cb232175d7df1b3600685c2b8bf6e1f46abb6fee764b6aee4a0f8948",
+      "transcript_events": 50
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-opencode-big-pickle-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 2,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "release_not_converged",
+      "agent_duration_seconds": 250,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 70800,
+        "output_tokens": 6173,
+        "reasoning_tokens": 20704,
+        "cache_read_tokens": 1554176,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "c7722ab69b1f93a21cbdf3233a880de5fec758c85531e0e97769160268ddac4e",
+      "transcript_sha256": "1f8320b55a08e46d5c2ff451d722acf5c737d035211b9b6fce20ddcb531b9c9d",
+      "transcript_events": 124
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-opencode-big-pickle-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 3,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 909,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "release_not_converged"
+        }
+      },
+      "usage": {
+        "input_tokens": 9943,
+        "output_tokens": 746,
+        "reasoning_tokens": 165,
+        "cache_read_tokens": 43392,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0
+      },
+      "result_sha256": "72e5cb38148c64eb1bf8d8d87f2ea924aa62cb373da20c5a6f2fc4a978429ff9",
+      "transcript_sha256": "4801a6878e9a916ca12bf7a8c5e20dc93edbc1fb638492afe7c6ac1f3b989428",
+      "transcript_events": 16,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "be2a344ce21cd9d701c39b9e14b9ebc92f22ef2221753302e970c192b0c2610b"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 1,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 902,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "writable_capacity_not_recovered"
+        }
+      },
+      "usage": null,
+      "result_sha256": "5f54144ca3dab8b24aeb76c498c70dab970480d7a0b559c432546bc8580afc34",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "eaa042cf73873082f2662102d1f967301c9c2e5500c36295cfe7d18d976159b7"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 2,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 902,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "writable_capacity_not_recovered"
+        }
+      },
+      "usage": null,
+      "result_sha256": "7f6828961b9a472b16ea687061b4b2f0358da03a02691d8240cdf3c87298a3a5",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "92dc58cdbf86341ac8896b45891cc88472a84f0305cb21078af0cad0a6623250"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 3,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 902,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "writable_capacity_not_recovered"
+        }
+      },
+      "usage": null,
+      "result_sha256": "5b2976948bcac67279a22f510672393e20701629693b9f267e8c899ade2c7f2c",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "b7b153d03cd176daecd62caa89d233f80f14e7863dcd07fa2516c2ca7aaac581"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-1",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 1,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 903,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": null
+        }
+      },
+      "usage": null,
+      "result_sha256": "31f2d2608885f8006f9c903bfa438d923c9d88f3fa50d750d7a514c032db0c31",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "e22bc0b6a2f609f91458bf2d24e37b50558161b0cc18921e188195bee746d377"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-2",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 2,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 903,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": null
+        }
+      },
+      "usage": null,
+      "result_sha256": "dbcd139ca93330ea6ab493a344e875118c4e98a3319a76bc1a7d1592ab89a56d",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "89f0ac41cd98a628f911dda0daacdf8735f56f10c2b1cd54135fb5ceac992510"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-3",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 3,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "agent_timeout",
+      "agent_duration_seconds": 903,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": null
+        }
+      },
+      "usage": null,
+      "result_sha256": "5ff409feae8babfb0de03dc75d1f1963a3827c04863b371332ca7071cd439920",
+      "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "transcript_events": 0,
+      "provider_error": "Free usage limit reached",
+      "stderr_sha256": "3ff226325da3b4ad8e512ac97d05668030bc4df884269b52ea25a2e5de5e0aed"
+    }
+  ],
+  "corrections": [
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-2",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "63a249d57c5138186d95cfc13567146fe0fe76d43b41419d1a31e6c1c74d55f7",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "26ceccc0aa78911e10ae405533990879067b7579cf321411e8f8df86e6227adc",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-big-pickle-3",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "cf2ba0a9f9504ed96197d5ae91ab19946c1698d49cad0f641fc0750419429ff0",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "f72d2eadd247bfcf6007b446f3c0e2884f41c8b2a8e94964b21597b1b6edce1a",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-1",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "d2d63ca6d2eae09cae99dedf54a16e213c3982eacbe9a3d4b5db13e3ea832bf4",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "5decdb7a363aad378475f4b71de219c9b5fbb1f7f02aa2de885216123d7baa0d",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-2",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "f5212c5d549faacc9deca506dfe5bd27583af2a37c949412f9585ae45c25f0b2",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "c0a232f8abb6e6cbc9dbfd49da1790f289425bc2b0ef33b8b46b2e0dd8ff3a63",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-big-pickle-3",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "2e54c84147c251dc9f2ddb59646de9f3c39a2366385b9ea92920ae0eeb4f6e24",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "3159f4afaf82bf08b7c4b5d842166aedbdf208b3ad2094ff622884529cfa5781",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "019-rust-fd-leak-opencode-big-pickle-1",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "e65b24fe82648accde948a59cc1fc0997e91eab44c6e14258b4fc8b4ed0d7c87",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "db0d33eae465ce7d100e165a7293a6b55f68fd32dffe3d7b3bb8ee9ec5bac434",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-1",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "5f54144ca3dab8b24aeb76c498c70dab970480d7a0b559c432546bc8580afc34",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "eaa042cf73873082f2662102d1f967301c9c2e5500c36295cfe7d18d976159b7",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-2",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "7f6828961b9a472b16ea687061b4b2f0358da03a02691d8240cdf3c87298a3a5",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "92dc58cdbf86341ac8896b45891cc88472a84f0305cb21078af0cad0a6623250",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-big-pickle-3",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "5b2976948bcac67279a22f510672393e20701629693b9f267e8c899ade2c7f2c",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "b7b153d03cd176daecd62caa89d233f80f14e7863dcd07fa2516c2ca7aaac581",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-1",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "31f2d2608885f8006f9c903bfa438d923c9d88f3fa50d750d7a514c032db0c31",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "e22bc0b6a2f609f91458bf2d24e37b50558161b0cc18921e188195bee746d377",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-2",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "dbcd139ca93330ea6ab493a344e875118c4e98a3319a76bc1a7d1592ab89a56d",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "89f0ac41cd98a628f911dda0daacdf8735f56f10c2b1cd54135fb5ceac992510",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-big-pickle-3",
+      "changes": {
+        "trial_status": "unavailable",
+        "failure_category": "provider_rate_limited",
+        "failure": "OpenCode free usage limit reached before selected-model inference; empty transcript and absent usage."
+      },
+      "reason": "Raw main-model stderr explicitly rejects Big Pickle for exhausted free usage. The retained transcript is empty and no inference/tool usage exists. Exclude from evaluated pass rate, retain as unavailable scheduled coverage.",
+      "evidence": {
+        "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76",
+        "result_sha256": "5ff409feae8babfb0de03dc75d1f1963a3827c04863b371332ca7071cd439920",
+        "transcript_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "stderr_sha256": "3ff226325da3b4ad8e512ac97d05668030bc4df884269b52ea25a2e5de5e0aed",
+        "basis": "provider_rejected_before_inference",
+        "provider_error": "rate_limit"
+      }
+    }
+  ],
+  "review_counts": {
+    "tool_events": 588,
+    "auxiliary_title_rejections": 33,
+    "mid_run_quota_failures_retained": 2,
+    "pre_inference_quota_blocks": 12
+  }
+}
