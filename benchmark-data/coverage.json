@@ -79,7 +79,7 @@
       ]
     }
   ],
-  "generated_from": "20261106.0.1",
+  "generated_from": "20261110.0.2",
   "profiles": [
     {
       "model": "deepseek/deepseek-v4-flash-0731",
@@ -5752,24 +5752,24 @@
   "scenarios": [
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -5864,31 +5864,31 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=001-nginx-502-host",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "001-nginx-502-host",
       "scenario_label": "001-nginx-502-host",
       "scenario_version": 1
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -5983,7 +5983,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=013-sidekiq-wrong-redis",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "013-sidekiq-wrong-redis",
       "scenario_label": "013-sidekiq-wrong-redis",
       "scenario_version": 3
@@ -6109,24 +6109,24 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -6221,31 +6221,31 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=015-sidekiq-poison-pill",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "015-sidekiq-poison-pill",
       "scenario_label": "015-sidekiq-poison-pill",
       "scenario_version": 1
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -6340,31 +6340,31 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=016-rails-pool-exhaustion",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "016-rails-pool-exhaustion",
       "scenario_label": "016-rails-pool-exhaustion",
       "scenario_version": 1
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -6459,7 +6459,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=017-partial-rails-rollout",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "017-partial-rails-rollout",
       "scenario_label": "017-partial-rails-rollout",
       "scenario_version": 1
@@ -6585,24 +6585,24 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -6697,7 +6697,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=019-rust-fd-leak",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "019-rust-fd-leak",
       "scenario_label": "019-rust-fd-leak",
       "scenario_version": 1
@@ -6823,24 +6823,24 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -6935,7 +6935,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=021-discourse-shared-uploads",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "021-discourse-shared-uploads",
       "scenario_label": "021-discourse-shared-uploads",
       "scenario_version": 1
@@ -7061,24 +7061,24 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -7173,31 +7173,31 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=023-auth-secret-rollout",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "023-auth-secret-rollout",
       "scenario_label": "023-auth-secret-rollout",
       "scenario_version": 1
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -7292,7 +7292,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=024-discourse-interrupted-deploy",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "024-discourse-interrupted-deploy",
       "scenario_label": "024-discourse-interrupted-deploy",
       "scenario_version": 1
@@ -7764,24 +7764,24 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -7876,7 +7876,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=028-nix-store-disk-pressure",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "028-nix-store-disk-pressure",
       "scenario_label": "028-nix-store-disk-pressure",
       "scenario_version": 1
@@ -8240,24 +8240,24 @@
     },
     {
       "boundary": {
-        "agent_adapter": "builtin:claux",
-        "agent_adapter_sha256": null,
+        "agent_adapter": "external",
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
         "agent_harness": {
-          "billing": "provider-reported",
-          "id": "claux",
-          "label": "Claux",
-          "provider": "OpenRouter",
-          "version": "custom build b959ef677ff7"
+          "billing": "subscription",
+          "id": "opencode",
+          "label": "OpenCode",
+          "provider": "OpenCode Go",
+          "version": "1.19.0"
         },
-        "agent_name": "claux",
+        "agent_name": "opencode",
         "agent_timeout_seconds": 900,
         "attempts": 3,
-        "claux_binary_sha256": "b959ef677ff7b75dea88b1915cde894eb7dc223e0cb985fbb6c61858d2e24e41",
+        "claux_binary_sha256": null,
         "claux_release": null,
         "harness_versions": [
           23
         ],
-        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
         "scenario_pack": {
           "id": "ducks/replaybook-infra",
           "version": "20261024.1.1"
@@ -8352,7 +8352,7 @@
         }
       ],
       "evidence_url": "benchmark-scenario.html?scenario=033-tls-trust-rotation",
-      "release": "20261106.0.1",
+      "release": "20261110.0.2",
       "scenario": "033-tls-trust-rotation",
       "scenario_label": "033-tls-trust-rotation",
       "scenario_version": 2

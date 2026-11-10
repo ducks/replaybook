@@ -1,0 +1,31 @@
+{
+  "title": "MiMo-V2.6-Flash Core via OpenCode Go",
+  "description": "MiMo-V2.6-Flash passed 23 of 33 trials with a median agent duration of 624 seconds.",
+  "input_mode": "text",
+  "model_order": [
+    "opencode-go/mimo-v2.6-flash"
+  ],
+  "model_labels": {
+    "opencode-go/mimo-v2.6-flash": "MiMo-V2.6-Flash"
+  },
+  "agent_harness": {
+    "id": "opencode",
+    "label": "OpenCode",
+    "version": "1.19.0",
+    "provider": "OpenCode Go",
+    "billing": "subscription"
+  },
+  "corrections": [],
+  "notes": [
+    "Eleven frozen Core scenarios, three scheduled attempts each, 900-second agent deadline, one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Executed through OpenCode 1.19.0 with pinned public model definitions and a scoped provider credential. This is an OpenCode/provider configuration, not the frozen Claux agent. Models with different reasoning settings or providers are not controlled intrinsic-model comparisons.",
+    "Raw trial results, transcripts and immutable execution snapshots were audited; source hashes and documented corrections are retained. Public evidence excludes credentials, full transcripts, private reasoning, raw VM logs and local filesystem paths.",
+    "Main-model usage is from OpenCode events. Monetary API cost was not reported and must not be interpreted as zero. Client-reported usage values are not an invoice or a complete accounting of auxiliary requests/infrastructure.",
+    "Three attempts per scenario are a small sample; no general infrastructure competence or definitive model ranking is established.",
+    "The first launch produced 21 results. Twelve slots failed during OpenCode setup with a disk-full error. The resume kept all completed results and used disk-backed temporary storage to finish the missing slots. Resume regenerated launch logs for those slots. Seven original setup logs were archived before replacement.",
+    "OpenCode reported $0.4206995968 in subscription usage value. Incremental cash cost was unreported."
+  ],
+  "observations": [
+    "Nine trials timed out and one deployment failed to converge. Four timeout repairs passed post-deadline lifecycle checks and retained their timeout scores."
+  ]
+}

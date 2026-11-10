@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261106.0.1",
+  "current_version": "20261110.0.2",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -5718,6 +5718,97 @@
       "release": "20261106.0.1",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 21,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 721791,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 132,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "output_tokens": 85524,
+      "pass_rate": 0.8571428571428571,
+      "pass_rate_95_high": 0.9501898750027473,
+      "pass_rate_95_low": 0.6536393971937906,
+      "passed": 18,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "subscription_usage_reported_trials": 21,
+      "subscription_usage_usd": 0.0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 12,
+      "unavailable_categories": {
+        "provider_rate_limited": 12
+      }
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 33,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 966375,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 105,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "output_tokens": 90209,
+      "pass_rate": 0.9696969696969697,
+      "pass_rate_95_high": 0.9946305894631283,
+      "pass_rate_95_low": 0.846812746178811,
+      "passed": 32,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "subscription_usage_reported_trials": 33,
+      "subscription_usage_usd": 0.6518490899999999,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 33,
+      "failed": 10,
+      "failure_categories": {
+        "agent_timeout": 9,
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 1431464,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 624,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "output_tokens": 132802,
+      "pass_rate": 0.696969696969697,
+      "pass_rate_95_high": 0.8262446857594641,
+      "pass_rate_95_low": 0.5266186485419944,
+      "passed": 23,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "subscription_usage_reported_trials": 33,
+      "subscription_usage_usd": 0.4206995968,
       "tier": "core",
       "trials": 33,
       "unavailable": 0,
@@ -60324,6 +60415,1712 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 74820,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 64,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 48,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 132,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 64,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 8736,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 61911,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 105,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 247,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 90,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 105,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10529,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 100644,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 189,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 134,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 246,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 189,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 17530,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 1,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 40568,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 902,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 902,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 903,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 907,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        }
+      ],
+      "output_tokens": 2444,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.7934506856227626,
+      "pass_rate_95_low": 0.0,
+      "passed": 0,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 1,
+      "subscription_usage_usd": 0.0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 2,
+      "unavailable_categories": {
+        "provider_rate_limited": 2
+      }
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 0,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 0,
+      "known_cost_usd": 0,
+      "median_duration_seconds": null,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 902,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 903,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 902,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        }
+      ],
+      "output_tokens": 0,
+      "pass_rate": null,
+      "pass_rate_95_high": null,
+      "pass_rate_95_low": null,
+      "passed": 0,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 3,
+      "unavailable_categories": {
+        "provider_rate_limited": 3
+      }
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 2,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 59713,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 96.0,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 906,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 126,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 66,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5773,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.34238022750665303,
+      "passed": 2,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 2,
+      "subscription_usage_usd": 0.0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 1,
+      "unavailable_categories": {
+        "provider_rate_limited": 1
+      }
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 178698,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 253,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 220,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 465,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 253,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 18211,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 105926,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 108,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 120,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 108,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 92,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 12008,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 1,
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 99511,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 250,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 117,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 250,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 909,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10293,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 0,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 0,
+      "known_cost_usd": 0,
+      "median_duration_seconds": null,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 902,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 902,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 902,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        }
+      ],
+      "output_tokens": 0,
+      "pass_rate": null,
+      "pass_rate_95_high": null,
+      "pass_rate_95_low": null,
+      "passed": 0,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 3,
+      "unavailable_categories": {
+        "provider_rate_limited": 3
+      }
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 0,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 0,
+      "known_cost_usd": 0,
+      "median_duration_seconds": null,
+      "model": "opencode/big-pickle",
+      "model_label": "Big Pickle",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 903,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 903,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 903,
+          "failure_category": "provider_rate_limited",
+          "reward": 0,
+          "trial_status": "unavailable"
+        }
+      ],
+      "output_tokens": 0,
+      "pass_rate": null,
+      "pass_rate_95_high": null,
+      "pass_rate_95_low": null,
+      "passed": 0,
+      "provider": "OpenCode Zen",
+      "reasoning_effort": null,
+      "release": "20261110.0.0",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 3,
+      "unavailable_categories": {
+        "provider_rate_limited": 3
+      }
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 56397,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 96,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 105,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 57,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 96,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 4348,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.028277390000000003,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 51857,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 80,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 88,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 80,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 77,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5181,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.03188225,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 121576,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 286,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 226,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 291,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 286,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 13658,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.08917584,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 55743,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 85,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 83,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 85,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 89,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5520,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.02866917,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 87933,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 132,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 208,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 132,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 126,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 7012,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.055632509999999996,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 46269,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 89,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 89,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 54,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 104,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 6102,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.02871265,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "host_reboot_failed": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 145947,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 151,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 150,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 151,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 274,
+          "failure_category": "host_reboot_failed",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10719,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.09329127,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 171837,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 127,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 590,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 127,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 105,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 17992,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.17135512999999994,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 65047,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 67,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 103,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 57,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 67,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5762,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.03424933,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 84586,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 132,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 100,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 132,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 152,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 7175,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.05009554,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 79183,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 119,
+      "model": "opencode-go/glm-5.3-flash",
+      "model_label": "GLM-5.3-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 83,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 119,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 124,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 6740,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": "high",
+      "release": "20261110.0.1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.04050801,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_mode": "text",
+      "input_tokens": 149220,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 902,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 903,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 902,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 210,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10774,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.04203797919999999,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 130543,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 537,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 287,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 639,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 537,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 11065,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0344218056,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_mode": "text",
+      "input_tokens": 114731,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 902,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 903,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 902,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 537,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 12652,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.038240501600000004,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 125092,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 378,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 223,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 903,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 378,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 8788,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0340410784,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 117092,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 670,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 670,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 624,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 918,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10508,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0341547024,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 100879,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 415,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 463,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 415,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 348,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 13066,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.031050000800000005,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 192402,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 834,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 834,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 906,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 671,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 15976,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0647332448,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 93283,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 346,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 455,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 346,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 280,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 10901,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0243299896,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "release_not_converged": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 168527,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 904,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 907,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 904,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 537,
+          "failure_category": "release_not_converged",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 11893,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.5614970317550454,
+      "pass_rate_95_low": 5.551115123125783e-17,
+      "passed": 0,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0469430808,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 113767,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 647,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 442,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 903,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 647,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 11971,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0344367352,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 125928,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 600,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "model_label": "MiMo-V2.6-Flash",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 600,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 428,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 809,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 15208,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenCode Go",
+      "reasoning_effort": null,
+      "release": "20261110.0.2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0363104784,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -66701,7 +68498,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "Grok 4.7 passed 32/33 Core trials (97.0%) at high reasoning, with a 220-second median agent duration and $21.280722 in provider-reported API cost.",
       "harness_versions": [
         23
@@ -66710,7 +68507,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -66848,6 +68645,487 @@
         "usage_reported_trials": 33
       },
       "version": "20261106.0.1"
+    },
+    {
+      "agent_harness": {
+        "billing": "free",
+        "id": "opencode",
+        "label": "OpenCode",
+        "provider": "OpenCode Zen",
+        "version": "1.19.0"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": false,
+      "description": "Big Pickle: 18/21 evaluated trials passed; 12 unavailable out of 33 scheduled attempts. Median evaluated agent duration 132 seconds.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "opencode-zen"
+      ],
+      "role": "historical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "6bfa7407c5717faae1b0cbb6e152c5ce862d615d4cff82f39839aac219ddaa76"
+        }
+      ],
+      "tier": "core",
+      "title": "Big Pickle Core via OpenCode Zen \u2014 quota-constrained",
+      "totals": {
+        "cache_creation_reported_trials": 21,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 21,
+        "cache_read_tokens": 12919786,
+        "cost_reported_trials": 0,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 21,
+        "failed": 3,
+        "failure_categories": {
+          "agent_timeout": 2,
+          "release_not_converged": 1
+        },
+        "input_tokens": 721791,
+        "known_cost_usd": 0,
+        "median_duration_seconds": 132,
+        "median_first_non_read_only_tool_seconds": 0.393,
+        "median_model_duration_seconds": 97.308,
+        "median_model_rounds": 16,
+        "median_post_first_non_read_only_seconds": 111.75500000000001,
+        "median_tool_calls": 28,
+        "median_tool_duration_seconds": 12.51,
+        "output_tokens": 85524,
+        "pass_rate": 0.8571428571428571,
+        "passed": 18,
+        "recording_reported_trials": 21,
+        "subscription_usage_reported_trials": 21,
+        "subscription_usage_usd": 0.0,
+        "trials": 33,
+        "unavailable": 12,
+        "unavailable_categories": {
+          "provider_rate_limited": 12
+        },
+        "usage_reported_trials": 21
+      },
+      "version": "20261110.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "subscription",
+        "id": "opencode",
+        "label": "OpenCode",
+        "provider": "OpenCode Go",
+        "version": "1.19.0"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": false,
+      "description": "GLM-5.3-Flash: 32/33 evaluated trials passed; 0 unavailable out of 33 scheduled attempts. Median evaluated agent duration 105 seconds.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "opencode-go"
+      ],
+      "role": "historical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "66b53a95ab5500f29dc79898eace2a5f820d44fc673c50e202aba99dcda79bbb"
+        }
+      ],
+      "tier": "core",
+      "title": "GLM-5.3-Flash Core via OpenCode Go",
+      "totals": {
+        "cache_creation_reported_trials": 33,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 33,
+        "cache_read_tokens": 13507828,
+        "cost_reported_trials": 0,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 33,
+        "failed": 1,
+        "failure_categories": {
+          "host_reboot_failed": 1
+        },
+        "input_tokens": 966375,
+        "known_cost_usd": 0,
+        "median_duration_seconds": 105,
+        "median_first_non_read_only_tool_seconds": 0.619,
+        "median_model_duration_seconds": 81.763,
+        "median_model_rounds": 16,
+        "median_post_first_non_read_only_seconds": 96.043,
+        "median_tool_calls": 21,
+        "median_tool_duration_seconds": 15.804,
+        "output_tokens": 90209,
+        "pass_rate": 0.9696969696969697,
+        "passed": 32,
+        "recording_reported_trials": 33,
+        "subscription_usage_reported_trials": 33,
+        "subscription_usage_usd": 0.6518490899999999,
+        "trials": 33,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 33
+      },
+      "version": "20261110.0.1"
+    },
+    {
+      "agent_harness": {
+        "billing": "subscription",
+        "id": "opencode",
+        "label": "OpenCode",
+        "provider": "OpenCode Go",
+        "version": "1.19.0"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "MiMo-V2.6-Flash passed 23 of 33 trials with a median agent duration of 624 seconds.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "opencode-go"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "3cfbd41687dcc63653d2b4ad09e6e696528e0335c56170145b4b58e6311f06f7"
+        }
+      ],
+      "tier": "core",
+      "title": "MiMo-V2.6-Flash Core via OpenCode Go",
+      "totals": {
+        "cache_creation_reported_trials": 33,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 33,
+        "cache_read_tokens": 19246656,
+        "cost_reported_trials": 0,
+        "durable_repairs_after_timeout": 4,
+        "evaluated": 33,
+        "failed": 10,
+        "failure_categories": {
+          "agent_timeout": 9,
+          "release_not_converged": 1
+        },
+        "input_tokens": 1431464,
+        "known_cost_usd": 0,
+        "median_duration_seconds": 624,
+        "median_first_non_read_only_tool_seconds": 1.926,
+        "median_model_duration_seconds": 535.575,
+        "median_model_rounds": 19,
+        "median_post_first_non_read_only_seconds": 610.972,
+        "median_tool_calls": 31,
+        "median_tool_duration_seconds": 20.509,
+        "output_tokens": 132802,
+        "pass_rate": 0.696969696969697,
+        "passed": 23,
+        "recording_reported_trials": 33,
+        "subscription_usage_reported_trials": 33,
+        "subscription_usage_usd": 0.4206995968,
+        "trials": 33,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 33
+      },
+      "version": "20261110.0.2"
     }
   ],
   "schema_version": 1

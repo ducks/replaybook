@@ -1,0 +1,1034 @@
+{
+  "model": "opencode-go/glm-5.3-flash",
+  "session": "2026-11-09T17-46-54-234963Z-baseline-glm53-flash-opencode-core-auth-refresh-20261109-83a9d3",
+  "summary_sha256": "66b53a95ab5500f29dc79898eace2a5f820d44fc673c50e202aba99dcda79bbb",
+  "execution_snapshot": {
+    "schema_version": 1,
+    "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1",
+        "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+        "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3"
+      }
+    ],
+    "selected_scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721"
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "version": 3,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7"
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b"
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256"
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce"
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee"
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f"
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169"
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b"
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7"
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "version": 2,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9"
+      }
+    ],
+    "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+    "agent_payload_sha256": "135ac3f86c43f2a22328a3554fec5f0bc57d71576077902661bc38dac34871fd",
+    "agent_config_sha256": "65d6f30003a0da3179ebd29ac8c47dadf7a1c4030d5e8304b21537891affb9f8",
+    "agent_env_sha256": "11e07c3dfc31fc019babdd58411bbbc1db3309a92eca56983b1ab9dba5e9b582",
+    "claux_binary_sha256": null,
+    "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3"
+  },
+  "agent_version": "1.19.0",
+  "source_totals": {
+    "trials": 33,
+    "evaluated": 32,
+    "unavailable": 1,
+    "passed": 32,
+    "failed": 0,
+    "durable_repairs_after_timeout": 0,
+    "pass_rate": 1.0,
+    "median_duration_seconds": 104.5,
+    "known_cost_usd": 0,
+    "cost_reported_trials": 0,
+    "input_tokens": 966375,
+    "output_tokens": 90209,
+    "cache_read_tokens": 13507828,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_creation_reported_trials": 33,
+    "usage_reported_trials": 33,
+    "recording_reported_trials": 33,
+    "median_model_rounds": 16,
+    "median_model_duration_seconds": 81.763,
+    "median_tool_calls": 21,
+    "median_tool_duration_seconds": 15.804,
+    "median_first_non_read_only_tool_seconds": 0.619,
+    "median_post_first_non_read_only_seconds": 96.043
+  },
+  "runs": [
+    {
+      "run_id": "001-nginx-502-host-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "001-nginx-502-host",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 105,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 22146,
+        "output_tokens": 1673,
+        "reasoning_tokens": 3170,
+        "cache_read_tokens": 96832,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.00864836
+      },
+      "result_sha256": "fba65d3e80ff23f3588041ab3d80642098283a169280796155826e5b5fb941fb",
+      "transcript_sha256": "6f34263366e47c5d7db3d09c950ffe0e505e57cf28cd468ca808a6f3d22bef92",
+      "transcript_events": 33
+    },
+    {
+      "run_id": "001-nginx-502-host-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "001-nginx-502-host",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 57,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 9723,
+        "output_tokens": 1196,
+        "reasoning_tokens": 429,
+        "cache_read_tokens": 100096,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.00527383
+      },
+      "result_sha256": "9cb145c4a7796cc1c1a389f3f11b730c15c2b37f872192bca912b35a2e9ee97b",
+      "transcript_sha256": "73cdde5d39d2801bf76b48a3b5c6ee0fa576b6caae59cb8aa7252d1baa597b4c",
+      "transcript_events": 37
+    },
+    {
+      "run_id": "001-nginx-502-host-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "001-nginx-502-host",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 96,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 24528,
+        "output_tokens": 1479,
+        "reasoning_tokens": 1921,
+        "cache_read_tokens": 299200,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.014355200000000002
+      },
+      "result_sha256": "7c1feeab46df9b92a8d0684c62cbd4416997a04ca5a3a409e2d5d160424d9023",
+      "transcript_sha256": "b03a7a3798ff66fd768c094a0cf8cbdeb415ef800b9d304d2853bc4f63f4c16e",
+      "transcript_events": 59
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 88,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 22414,
+        "output_tokens": 2103,
+        "reasoning_tokens": 3470,
+        "cache_read_tokens": 314196,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.015574480000000002
+      },
+      "result_sha256": "7784b5311cb188007de9b727db50a5df797594aa9d2d6c91012af890a74c5b72",
+      "transcript_sha256": "2d46cae27267d137be23fb02b3cbb09cea4514e9a5b3d87e31c8019d0cc5c345",
+      "transcript_events": 74
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 80,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 13854,
+        "output_tokens": 1472,
+        "reasoning_tokens": 786,
+        "cache_read_tokens": 136000,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.0072870999999999995
+      },
+      "result_sha256": "f46c6dd75b973a53280c9afafd159b6787869a9753210fbf56515247947e02ca",
+      "transcript_sha256": "2889a94bd7daac288a5e398039ec8fde366827e57cd3fbdf953f0eed530f1226",
+      "transcript_events": 46
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 77,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 15589,
+        "output_tokens": 1606,
+        "reasoning_tokens": 1118,
+        "cache_read_tokens": 177344,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.00902067
+      },
+      "result_sha256": "5006eaecf41c6f0c949602d3ce91f7d64b42e953c5d3f9e07129a3143637a93b",
+      "transcript_sha256": "a4ec060471a4fc0bea7391d751fdc8ba022945f8bf7c526454c9947e7ad4e0ee",
+      "transcript_events": 50
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 226,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 38794,
+        "output_tokens": 3914,
+        "reasoning_tokens": 5622,
+        "cache_read_tokens": 368832,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.02165206
+      },
+      "result_sha256": "0e07fb42ed1c5f4abbe9b57c9e2b842edb938db691a48f6924eb34251a0cf5cf",
+      "transcript_sha256": "6ecbc35f2ad21c4d7acc642d0e2094c0ea74d44e1c2c791ec1c2975a33eae75a",
+      "transcript_events": 75
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 291,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 36819,
+        "output_tokens": 3797,
+        "reasoning_tokens": 4909,
+        "cache_read_tokens": 628864,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.02874177
+      },
+      "result_sha256": "b31039a673af2479e475a6aee7a42fbc04b03a88d601b877c06884a327e071da",
+      "transcript_sha256": "0a9be889e71a43a67b20257e7f425845bb7798193926cb8a1d058270b3884680",
+      "transcript_events": 106
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 286,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 45963,
+        "output_tokens": 5947,
+        "reasoning_tokens": 6975,
+        "cache_read_tokens": 847552,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.038782010000000006
+      },
+      "result_sha256": "33971fc0d8efd7514ba7fb2a5bdec07f85028e055f69a5ebd6351eab0882ee87",
+      "transcript_sha256": "2dca298e2e9b8124232cb7d354ef5183c42772fc611290b06f5971e0fcdcc0bb",
+      "transcript_events": 137
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 83,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 20922,
+        "output_tokens": 1709,
+        "reasoning_tokens": 1211,
+        "cache_read_tokens": 137088,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.008710939999999999
+      },
+      "result_sha256": "3f4f94248a6430e0c9f590666835255049f4b0ec3abc291414d1c833c065de52",
+      "transcript_sha256": "ff541a84de89c2192726eaf6f51b01c23ec108f488b40b4f518338ef35ea0949",
+      "transcript_events": 44
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 85,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 18236,
+        "output_tokens": 1898,
+        "reasoning_tokens": 1987,
+        "cache_read_tokens": 195840,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.0105531
+      },
+      "result_sha256": "7d5a6d334e2189553b972d08b31e947baceb68096f9d63aa46c50e2c01013c9f",
+      "transcript_sha256": "7d788e1a525665adbaa981055462247276ed0e6fad6a848d876d295fe6571491",
+      "transcript_events": 56
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 89,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 16585,
+        "output_tokens": 1913,
+        "reasoning_tokens": 1020,
+        "cache_read_tokens": 181696,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.009405130000000001
+      },
+      "result_sha256": "d21a851669e49d6936ae821ab6ce766cc8254ea42b0dbcdbebe86942ef5521bc",
+      "transcript_sha256": "f8a4ed11643290c970cde9924921e613780ea1ba9d5092eff9b46dd284f0a1e5",
+      "transcript_events": 57
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 208,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 30124,
+        "output_tokens": 3351,
+        "reasoning_tokens": 6142,
+        "cache_read_tokens": 549340,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.0257453
+      },
+      "result_sha256": "16cf82f45c592434fde2e23f524d95f7ea5c417dce95d0d29d769af0f8170ffb",
+      "transcript_sha256": "d5593f14449774138cf22150a2a21261e64f77755cc9fa480f67a66dcdc5ff09",
+      "transcript_events": 100
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 132,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 24925,
+        "output_tokens": 1977,
+        "reasoning_tokens": 2748,
+        "cache_read_tokens": 298372,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.01505241
+      },
+      "result_sha256": "a60b7dc57abf4f25a53968ea5c6953112acea47f60be9c7ee48f4af32f7bd01d",
+      "transcript_sha256": "8a0861b29c8a4268f0876f5aea471626d1b8109c4713f3c6db740f7a87473e52",
+      "transcript_events": 61
+    },
+    {
+      "run_id": "017-partial-rails-rollout-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 126,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 32884,
+        "output_tokens": 1684,
+        "reasoning_tokens": 1474,
+        "cache_read_tokens": 277440,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.014834799999999999
+      },
+      "result_sha256": "ef8bf739a8bcb900e2f2015d996fa40acc2cfc28e2f5e2f12ae379f877946ce5",
+      "transcript_sha256": "9124d2103724eefa3b7080d1d7b503b25b76516560372d4da685fcdc38df3c0b",
+      "transcript_events": 60
+    },
+    {
+      "run_id": "019-rust-fd-leak-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 89,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 18936,
+        "output_tokens": 2274,
+        "reasoning_tokens": 893,
+        "cache_read_tokens": 239360,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.011604699999999999
+      },
+      "result_sha256": "99e95d06bff6788c3675c22a4a4dd065a21001e81590ff9f7ea741df46134990",
+      "transcript_sha256": "eacb315d846eefcd0b418769199d80dc86dc92a3ed3fb5aaf4a4b113eb1040d6",
+      "transcript_events": 69
+    },
+    {
+      "run_id": "019-rust-fd-leak-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 54,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 11420,
+        "output_tokens": 1544,
+        "reasoning_tokens": 645,
+        "cache_read_tokens": 144704,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.00714862
+      },
+      "result_sha256": "e9954c242b95c20d5e68c4df0edb33d639d59fafd8f7cb929cd817ae138bcfd2",
+      "transcript_sha256": "900aded2c84afa43519c3178824029183bd88d78048ef8afcc4be4192ed11b6d",
+      "transcript_events": 45
+    },
+    {
+      "run_id": "019-rust-fd-leak-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 104,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 15913,
+        "output_tokens": 2284,
+        "reasoning_tokens": 1959,
+        "cache_read_tokens": 181696,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.00995933
+      },
+      "result_sha256": "b75a36b47795bba3ea8c7da40b9db07b63db5225092b7f5be804da46db0f2e92",
+      "transcript_sha256": "5014d45216b21ec389bc4784019b70059facabb983c376af4b1f671d15bb717d",
+      "transcript_events": 56
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 150,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 28558,
+        "output_tokens": 2710,
+        "reasoning_tokens": 4713,
+        "cache_read_tokens": 430848,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.020920639999999997
+      },
+      "result_sha256": "b1e9f79d850511f69fb56e9fa0db98adea3dcf0fc14c7f3f259dbd4b30d8fa37",
+      "transcript_sha256": "b81f3064e26b4f973ec804219d8407392fc2db4b30b61bb2c6e2a6f3709b0b99",
+      "transcript_events": 83
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 151,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 71887,
+        "output_tokens": 3705,
+        "reasoning_tokens": 7325,
+        "cache_read_tokens": 694272,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.03712620999999999
+      },
+      "result_sha256": "903cb496f2a63633b76f7f8bfbf45745b1f34d3676cf161e44b1aee7d5415d8e",
+      "transcript_sha256": "c9d131e95248c4bb511b9d70a5fe93014b051d176db32cb4139327b469cbd0e0",
+      "transcript_events": 125
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 3,
+      "reward": 0,
+      "trial_status": "unavailable",
+      "failure_category": "guest_boot_infrastructure_failed",
+      "agent_duration_seconds": 274,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": false,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 45502,
+        "output_tokens": 4304,
+        "reasoning_tokens": 9580,
+        "cache_read_tokens": 715904,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.035244420000000005
+      },
+      "result_sha256": "7e63a013572d9d68001c2da0408ad5a6e3971272dce77f51853d0b6655f2c6ea",
+      "transcript_sha256": "8e9de0dec76835b10681107ab7ba383e53f5b5aeef5acf167a47c9f911b4057e",
+      "transcript_events": 116
+    },
+    {
+      "run_id": "023-auth-secret-rollout-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 590,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 125576,
+        "output_tokens": 11985,
+        "reasoning_tokens": 14663,
+        "cache_read_tokens": 3732928,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.14414823999999993
+      },
+      "result_sha256": "eb70e4a138afd2bfd8f120889e0ffaf8501f9b7f1a497b0fb4de8b3433fea7a1",
+      "transcript_sha256": "571313e5f459ddd5a888c0289e660f5ec7b1700b4e8deb9dd4887be3a2ec14c8",
+      "transcript_events": 377
+    },
+    {
+      "run_id": "023-auth-secret-rollout-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 127,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 25561,
+        "output_tokens": 2979,
+        "reasoning_tokens": 3519,
+        "cache_read_tokens": 241536,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.01432923
+      },
+      "result_sha256": "ba1056a1e09c78b5638b5f8e83e228331815462141162c519f48f9ef902c0d48",
+      "transcript_sha256": "a7f44d448eb4d3ac348872dd7f12b85ed135bea3b97aa69e2bf62cfd4982ba73",
+      "transcript_events": 54
+    },
+    {
+      "run_id": "023-auth-secret-rollout-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 105,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 20700,
+        "output_tokens": 3028,
+        "reasoning_tokens": 2221,
+        "cache_read_tokens": 238272,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.01287766
+      },
+      "result_sha256": "74c47df136414a430866ebf96fabb672b4ee3451e525a173c81e83f6ca6646e0",
+      "transcript_sha256": "dbbd0edb072bf8e36a4a014df2113ee91ad4ae1981f5d8ac57a32be8fd0581c4",
+      "transcript_events": 59
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 103,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 26135,
+        "output_tokens": 2494,
+        "reasoning_tokens": 2540,
+        "cache_read_tokens": 245888,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.013813889999999999
+      },
+      "result_sha256": "ae70bf6663c070dfacf9c95bd4f706de26bb5a363de6f41b16b2e10fabf32221",
+      "transcript_sha256": "e5e53737bb1d6b82d2fe12643ec9b576198cc6fbc379df6a880cab92a4c3540b",
+      "transcript_events": 62
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 57,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 21959,
+        "output_tokens": 1573,
+        "reasoning_tokens": 1008,
+        "cache_read_tokens": 227648,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.011413790000000002
+      },
+      "result_sha256": "03dfda675df8994b226f08c449699ab610236314b1dab24daeb8f024afaabfec",
+      "transcript_sha256": "e97abb21ed13559db26dfd32eae65261f570ee1121130109e69994a784948d11",
+      "transcript_events": 53
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 67,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 16953,
+        "output_tokens": 1695,
+        "reasoning_tokens": 1144,
+        "cache_read_tokens": 168640,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.009021649999999999
+      },
+      "result_sha256": "8a53ee6ef22dd3e6d62c8aeeeb5050742aed9b2069b4533142b3c205c3c8c65e",
+      "transcript_sha256": "f7c72f345d2c330e076cc9939efb70661e6fd5800c80cf68453936b3efca146b",
+      "transcript_events": 45
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 100,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 32498,
+        "output_tokens": 1877,
+        "reasoning_tokens": 3106,
+        "cache_read_tokens": 270912,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.01549356
+      },
+      "result_sha256": "2067a64c92eecaf2689200d2cca0cdb62297c9191d678563121909f9c97948e4",
+      "transcript_sha256": "081d84f6e63e6b597c2d01cbdd50e353568d40dc7e4b8358f15dbac1b5f3bf04",
+      "transcript_events": 64
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 132,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 22010,
+        "output_tokens": 2229,
+        "reasoning_tokens": 4932,
+        "cache_read_tokens": 231744,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.01383432
+      },
+      "result_sha256": "d0a1463a7e38d7331a061c49dd0984262bcf907d4f2e559dae6723f3bd6e390f",
+      "transcript_sha256": "831528315b5ac2cdce6010e0db6d7a03e254df2745eb02af4a6a60762a2d898f",
+      "transcript_events": 54
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 152,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 30078,
+        "output_tokens": 3069,
+        "reasoning_tokens": 4049,
+        "cache_read_tokens": 423232,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.02076766
+      },
+      "result_sha256": "682bbfbd2f8bef40cccdd36acd5493726df9a03c1cd34917cd255fbcb3e371eb",
+      "transcript_sha256": "aedec6b7465ada63a35485fd4752fbc76cfe2c563be8578eb8cc5fcf94950142",
+      "transcript_events": 80
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-go-glm-5-3-flash-reasoning-high-1",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 83,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 29432,
+        "output_tokens": 1780,
+        "reasoning_tokens": 1560,
+        "cache_read_tokens": 183872,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.01160096
+      },
+      "result_sha256": "3cb92ab1faf0fe48b21d2434ace01dd724c6d80b17a1dc0e8c0c745567b754e9",
+      "transcript_sha256": "12fa51742bb1d636e80c1663ff759144ea09348c76d55591628f1fe1ac53d50d",
+      "transcript_events": 41
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-go-glm-5-3-flash-reasoning-high-2",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 119,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 22286,
+        "output_tokens": 2254,
+        "reasoning_tokens": 2838,
+        "cache_read_tokens": 269824,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.013983619999999997
+      },
+      "result_sha256": "9c986b40e4abb862c0407f4d5fc9a725bffebb8641008c168a404921bc180e3e",
+      "transcript_sha256": "f4b79feadefc895f29a7d2c941776371bc52598f4afe8bdb803564fa1905b8e3",
+      "transcript_events": 58
+    },
+    {
+      "run_id": "033-tls-trust-rotation-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 124,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 27465,
+        "output_tokens": 2706,
+        "reasoning_tokens": 3430,
+        "cache_read_tokens": 257856,
+        "cache_creation_tokens": 0,
+        "cost_usd": null,
+        "subscription_usage_usd": 0.014923430000000001
+      },
+      "result_sha256": "5bf2c301cb3a84b32065a20bd5c76c76d15b27e8464d319c489b2793034fb19b",
+      "transcript_sha256": "59ca2b6251b7e42a12bd925ddeac918401dc374c2458ea0da5c1757648ae5b24",
+      "transcript_events": 50
+    }
+  ],
+  "corrections": [
+    {
+      "run_id": "021-discourse-shared-uploads-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "changes": {
+        "trial_status": "evaluated",
+        "failure_category": "host_reboot_failed",
+        "failure": "Reboot verification failed after meaningful inference: harness Nix-store device unavailable. Immediate and service restart checks passed."
+      },
+      "reason": "Conservative publication policy retains failures after meaningful inference in the evaluated denominator. Raw result labels this a guest-boot infrastructure exception; that evidence remains unchanged and is disclosed, without assigning the hardware fault to the model or claiming 33/33.",
+      "evidence": {
+        "summary_sha256": "66b53a95ab5500f29dc79898eace2a5f820d44fc673c50e202aba99dcda79bbb",
+        "result_sha256": "7e63a013572d9d68001c2da0408ad5a6e3971272dce77f51853d0b6655f2c6ea",
+        "transcript_sha256": "8e9de0dec76835b10681107ab7ba383e53f5b5aeef5acf167a47c9f911b4057e",
+        "console_sha256": "455e535cd9d1a68c9a34303649278ac534d8de61e6b6182d484259670a09f908",
+        "basis": "post_inference_verification_failure"
+      }
+    }
+  ],
+  "review_counts": {
+    "tool_events": 866,
+    "auxiliary_title_rejections": 0,
+    "post_inference_boot_exceptions_counted": 1
+  }
+}

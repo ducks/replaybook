@@ -1,0 +1,2345 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 19246656,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 4,
+      "evaluated": 33,
+      "failed": 10,
+      "failure_categories": {
+        "agent_timeout": 9,
+        "release_not_converged": 1
+      },
+      "input_tokens": 1431464,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 624,
+      "median_first_non_read_only_tool_seconds": 1.926,
+      "median_model_duration_seconds": 535.575,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 610.972,
+      "median_tool_calls": 31,
+      "median_tool_duration_seconds": 20.509,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 132802,
+      "pass_rate": 0.696969696969697,
+      "passed": 23,
+      "provider": "opencode-go",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 33,
+      "subscription_usage_usd": 0.4206995968,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1891264,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 1,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_tokens": 149220,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 902,
+      "median_first_non_read_only_tool_seconds": 2.202,
+      "median_model_duration_seconds": 768.344,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 867.635,
+      "median_tool_calls": 34,
+      "median_tool_duration_seconds": 13.076,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 10774,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.04203797919999999,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1797952,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 130543,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 537,
+      "median_first_non_read_only_tool_seconds": 2.571,
+      "median_model_duration_seconds": 442.095,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 512.2379999999999,
+      "median_tool_calls": 31,
+      "median_tool_duration_seconds": 40.044,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 11065,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0344218056,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1884672,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 1,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_tokens": 114731,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 902,
+      "median_first_non_read_only_tool_seconds": 1.356,
+      "median_model_duration_seconds": 662.277,
+      "median_model_rounds": 21,
+      "median_post_first_non_read_only_seconds": 677.1999999999999,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 35.281,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 12652,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.038240501600000004,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1080128,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 125092,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 378,
+      "median_first_non_read_only_tool_seconds": 1.346,
+      "median_model_duration_seconds": 307.249,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 358.193,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 19.964,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 8788,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0340410784,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1871808,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 117092,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 670,
+      "median_first_non_read_only_tool_seconds": 3.439,
+      "median_model_duration_seconds": 560.341,
+      "median_model_rounds": 21,
+      "median_post_first_non_read_only_seconds": 651.144,
+      "median_tool_calls": 32,
+      "median_tool_duration_seconds": 134.336,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 10508,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0341547024,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1393536,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 100879,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 415,
+      "median_first_non_read_only_tool_seconds": 0.525,
+      "median_model_duration_seconds": 279.443,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 389.313,
+      "median_tool_calls": 29,
+      "median_tool_duration_seconds": 22.526,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 13066,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.031050000800000005,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 2914816,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 192402,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 834,
+      "median_first_non_read_only_tool_seconds": 0.645,
+      "median_model_duration_seconds": 724.67,
+      "median_model_rounds": 26,
+      "median_post_first_non_read_only_seconds": 821.349,
+      "median_tool_calls": 43,
+      "median_tool_duration_seconds": 23.693,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 15976,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0647332448,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1151232,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 93283,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 346,
+      "median_first_non_read_only_tool_seconds": 2.601,
+      "median_model_duration_seconds": 273.517,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 318.55,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 5.651,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 10901,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0243299896,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 2102336,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 1,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 2,
+        "release_not_converged": 1
+      },
+      "input_tokens": 168527,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 904,
+      "median_first_non_read_only_tool_seconds": 2.43,
+      "median_model_duration_seconds": 734.741,
+      "median_model_rounds": 22,
+      "median_post_first_non_read_only_seconds": 811.9430000000001,
+      "median_tool_calls": 38,
+      "median_tool_duration_seconds": 9.688,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 11893,
+      "pass_rate": 0.0,
+      "passed": 0,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0469430808,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1469184,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 1,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 113767,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 647,
+      "median_first_non_read_only_tool_seconds": 2.398,
+      "median_model_duration_seconds": 531.502,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 635.058,
+      "median_tool_calls": 34,
+      "median_tool_duration_seconds": 18.104,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 11971,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0344367352,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1689728,
+      "cost_reported_trials": 0,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 125928,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 600,
+      "median_first_non_read_only_tool_seconds": 2.857,
+      "median_model_duration_seconds": 538.516,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 581.2610000000001,
+      "median_tool_calls": 33,
+      "median_tool_duration_seconds": 19.45,
+      "model": "opencode-go/mimo-v2.6-flash",
+      "output_tokens": 15208,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "opencode-go",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 3,
+      "subscription_usage_usd": 0.0363104784,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "external:opencode.sh",
+      "name": "opencode",
+      "payload": "external:opencode"
+    },
+    "agent_harness": {
+      "billing": "subscription",
+      "id": "opencode",
+      "label": "OpenCode",
+      "provider": "OpenCode Go",
+      "version": "1.19.0"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+      "agent_config_sha256": "65d6f30003a0da3179ebd29ac8c47dadf7a1c4030d5e8304b21537891affb9f8",
+      "agent_env_sha256": "11e07c3dfc31fc019babdd58411bbbc1db3309a92eca56983b1ab9dba5e9b582",
+      "agent_payload_sha256": "135ac3f86c43f2a22328a3554fec5f0bc57d71576077902661bc38dac34871fd",
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": null,
+      "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "opencode-go"
+    ],
+    "reasoning_efforts": [],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "MiMo-V2.6-Flash passed 23 of 33 trials with a median agent duration of 624 seconds.",
+  "input_mode": "text",
+  "model_labels": {
+    "opencode-go/mimo-v2.6-flash": "MiMo-V2.6-Flash"
+  },
+  "model_order": [
+    "opencode-go/mimo-v2.6-flash"
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three scheduled attempts each, 900-second agent deadline, one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Executed through OpenCode 1.19.0 with pinned public model definitions and a scoped provider credential. This is an OpenCode/provider configuration, not the frozen Claux agent. Models with different reasoning settings or providers are not controlled intrinsic-model comparisons.",
+    "Raw trial results, transcripts and immutable execution snapshots were audited; source hashes and documented corrections are retained. Public evidence excludes credentials, full transcripts, private reasoning, raw VM logs and local filesystem paths.",
+    "Main-model usage is from OpenCode events. Monetary API cost was not reported and must not be interpreted as zero. Client-reported usage values are not an invoice or a complete accounting of auxiliary requests/infrastructure.",
+    "Three attempts per scenario are a small sample; no general infrastructure competence or definitive model ranking is established.",
+    "The first launch produced 21 results. Twelve slots failed during OpenCode setup with a disk-full error. The resume kept all completed results and used disk-backed temporary storage to finish the missing slots. Resume regenerated launch logs for those slots. Seven original setup logs were archived before replacement.",
+    "OpenCode reported $0.4206995968 in subscription usage value. Incremental cash cost was unreported."
+  ],
+  "observations": [
+    "Nine trials timed out and one deployment failed to converge. Four timeout repairs passed post-deadline lifecycle checks and retained their timeout scores."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-09T23:09:28Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.117,
+        "model_duration_seconds": 768.344,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 867.635,
+        "tool_calls": 34,
+        "tool_duration_seconds": 20.125,
+        "total_duration_seconds": 872.752
+      },
+      "reward": 0,
+      "run_id": "001-nginx-502-host-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T22:54:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 491584,
+        "cost_usd": null,
+        "input_tokens": 53154,
+        "output_tokens": 3716,
+        "reasoning_tokens": 22194,
+        "subscription_usage_usd": 0.0160727952
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "verification_failed"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-09T23:26:00Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.202,
+        "model_duration_seconds": 772.231,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 887.315,
+        "tool_calls": 41,
+        "tool_duration_seconds": 13.076,
+        "total_duration_seconds": 889.517
+      },
+      "reward": 0,
+      "run_id": "001-nginx-502-host-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T23:10:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1074176,
+        "cost_usd": null,
+        "input_tokens": 63100,
+        "output_tokens": 5021,
+        "reasoning_tokens": 19946,
+        "subscription_usage_usd": 0.018832452799999996
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 210,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T23:30:51Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.602,
+        "model_duration_seconds": 166.583,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 197.894,
+        "tool_calls": 19,
+        "tool_duration_seconds": 12.399,
+        "total_duration_seconds": 199.496
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-09T23:27:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 325504,
+        "cost_usd": null,
+        "input_tokens": 32966,
+        "output_tokens": 2037,
+        "reasoning_tokens": 3699,
+        "subscription_usage_usd": 0.007132731199999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 287,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T23:37:18Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.322,
+        "model_duration_seconds": 227.718,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 265.59,
+        "tool_calls": 21,
+        "tool_duration_seconds": 24.401,
+        "total_duration_seconds": 265.912
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-09T23:32:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 273920,
+        "cost_usd": null,
+        "input_tokens": 30846,
+        "output_tokens": 2591,
+        "reasoning_tokens": 4714,
+        "subscription_usage_usd": 0.007130816000000001
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 639,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-09T23:49:40Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.892,
+        "model_duration_seconds": 582.813,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 628.3539999999999,
+        "tool_calls": 34,
+        "tool_duration_seconds": 40.044,
+        "total_duration_seconds": 631.246
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-09T23:38:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 830400,
+        "cost_usd": null,
+        "input_tokens": 53712,
+        "output_tokens": 4428,
+        "reasoning_tokens": 13597,
+        "subscription_usage_usd": 0.0148918
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 537,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T00:00:22Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.571,
+        "model_duration_seconds": 442.095,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 512.2379999999999,
+        "tool_calls": 31,
+        "tool_duration_seconds": 43.544,
+        "total_duration_seconds": 514.809
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-09T23:51:08Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 693632,
+        "cost_usd": null,
+        "input_tokens": 45985,
+        "output_tokens": 4046,
+        "reasoning_tokens": 10308,
+        "subscription_usage_usd": 0.012399189599999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-10T00:17:13Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.009,
+        "model_duration_seconds": 753.885,
+        "model_rounds": 34,
+        "post_first_non_read_only_seconds": 890.056,
+        "tool_calls": 54,
+        "tool_duration_seconds": 35.281,
+        "total_duration_seconds": 891.065
+      },
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T00:01:45Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1215232,
+        "cost_usd": null,
+        "input_tokens": 53691,
+        "output_tokens": 6693,
+        "reasoning_tokens": 18410,
+        "subscription_usage_usd": 0.017948229600000008
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-10T00:34:52Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.426,
+        "model_duration_seconds": 662.277,
+        "model_rounds": 8,
+        "post_first_non_read_only_seconds": 677.1999999999999,
+        "tool_calls": 18,
+        "tool_duration_seconds": 1.398,
+        "total_duration_seconds": 679.626
+      },
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T00:18:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 106816,
+        "cost_usd": null,
+        "input_tokens": 24948,
+        "output_tokens": 1613,
+        "reasoning_tokens": 19502,
+        "subscription_usage_usd": 0.009704004799999999
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 537,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T00:45:30Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.356,
+        "model_duration_seconds": 454.203,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 528.146,
+        "tool_calls": 33,
+        "tool_duration_seconds": 49.764,
+        "total_duration_seconds": 529.502
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T00:36:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 562624,
+        "cost_usd": null,
+        "input_tokens": 36092,
+        "output_tokens": 4346,
+        "reasoning_tokens": 9797,
+        "subscription_usage_usd": 0.010588267200000001
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 223,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T00:51:11Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.938,
+        "model_duration_seconds": 115.416,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 206.982,
+        "tool_calls": 24,
+        "tool_duration_seconds": 19.964,
+        "total_duration_seconds": 207.92
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T00:46:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 360064,
+        "cost_usd": null,
+        "input_tokens": 56424,
+        "output_tokens": 2889,
+        "reasoning_tokens": 7722,
+        "subscription_usage_usd": 0.011878619200000001
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-10T01:08:18Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.346,
+        "model_duration_seconds": 818.982,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 883.33,
+        "tool_calls": 31,
+        "tool_duration_seconds": 5.327,
+        "total_duration_seconds": 884.676
+      },
+      "reward": 0,
+      "run_id": "016-rails-pool-exhaustion-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T00:52:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 371904,
+        "cost_usd": null,
+        "input_tokens": 45421,
+        "output_tokens": 2145,
+        "reasoning_tokens": 25878,
+        "subscription_usage_usd": 0.0152467112
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not restore database connection capacity",
+          "failure_category": "database_pool_exhausted"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 378,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T01:18:00Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.545,
+        "model_duration_seconds": 307.249,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 358.193,
+        "tool_calls": 25,
+        "tool_duration_seconds": 31.564,
+        "total_duration_seconds": 359.738
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T01:09:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 348160,
+        "cost_usd": null,
+        "input_tokens": 23247,
+        "output_tokens": 3754,
+        "reasoning_tokens": 5840,
+        "subscription_usage_usd": 0.006915747999999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 670,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T01:31:15Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.852,
+        "model_duration_seconds": 535.575,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 651.144,
+        "tool_calls": 32,
+        "tool_duration_seconds": 134.336,
+        "total_duration_seconds": 652.996
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T01:19:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 628096,
+        "cost_usd": null,
+        "input_tokens": 38254,
+        "output_tokens": 3316,
+        "reasoning_tokens": 10116,
+        "subscription_usage_usd": 0.0108751888
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 624,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T01:43:50Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.961,
+        "model_duration_seconds": 560.341,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 610.972,
+        "tool_calls": 23,
+        "tool_duration_seconds": 225.25,
+        "total_duration_seconds": 615.933
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T01:33:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 498880,
+        "cost_usd": null,
+        "input_tokens": 36349,
+        "output_tokens": 3378,
+        "reasoning_tokens": 8045,
+        "subscription_usage_usd": 0.009684164
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 918,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T02:02:02Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.439,
+        "model_duration_seconds": 763.099,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 868.794,
+        "tool_calls": 33,
+        "tool_duration_seconds": 87.778,
+        "total_duration_seconds": 872.233
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T01:46:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 744832,
+        "cost_usd": null,
+        "input_tokens": 42489,
+        "output_tokens": 3814,
+        "reasoning_tokens": 16048,
+        "subscription_usage_usd": 0.013595349600000002
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 463,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T02:13:54Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.488,
+        "model_duration_seconds": 267.176,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 389.313,
+        "tool_calls": 29,
+        "tool_duration_seconds": 22.526,
+        "total_duration_seconds": 389.801
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T02:05:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 453888,
+        "cost_usd": null,
+        "input_tokens": 29317,
+        "output_tokens": 4614,
+        "reasoning_tokens": 8987,
+        "subscription_usage_usd": 0.009183546400000001
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 415,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T02:24:47Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.525,
+        "model_duration_seconds": 353.776,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 400.735,
+        "tool_calls": 22,
+        "tool_duration_seconds": 33.676,
+        "total_duration_seconds": 401.26
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T02:17:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 375168,
+        "cost_usd": null,
+        "input_tokens": 35911,
+        "output_tokens": 4275,
+        "reasoning_tokens": 13259,
+        "subscription_usage_usd": 0.0109875304
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 348,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T02:34:41Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.532,
+        "model_duration_seconds": 279.443,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 337.944,
+        "tool_calls": 30,
+        "tool_duration_seconds": 20.71,
+        "total_duration_seconds": 338.476
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T02:28:38Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 564480,
+        "cost_usd": null,
+        "input_tokens": 35651,
+        "output_tokens": 4177,
+        "reasoning_tokens": 11206,
+        "subscription_usage_usd": 0.010878924000000003
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 834,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T02:50:24Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.769,
+        "model_duration_seconds": 724.67,
+        "model_rounds": 29,
+        "post_first_non_read_only_seconds": 821.349,
+        "tool_calls": 43,
+        "tool_duration_seconds": 7.112,
+        "total_duration_seconds": 822.118
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T02:36:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1202816,
+        "cost_usd": null,
+        "input_tokens": 69665,
+        "output_tokens": 4973,
+        "reasoning_tokens": 34625,
+        "subscription_usage_usd": 0.024208424799999996
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 906,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-10T03:12:02Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.645,
+        "model_duration_seconds": 774.322,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 885.5980000000001,
+        "tool_calls": 46,
+        "tool_duration_seconds": 23.693,
+        "total_duration_seconds": 886.243
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T02:51:45Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 988672,
+        "cost_usd": null,
+        "input_tokens": 73057,
+        "output_tokens": 6513,
+        "reasoning_tokens": 33765,
+        "subscription_usage_usd": 0.0242741016
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "VM did not return after reboot",
+          "failure_category": "host_reboot_failed"
+        },
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 671,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T03:27:32Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 0.558,
+        "model_duration_seconds": 576.481,
+        "model_rounds": 24,
+        "post_first_non_read_only_seconds": 658.752,
+        "tool_calls": 31,
+        "tool_duration_seconds": 128.49,
+        "total_duration_seconds": 659.31
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T03:16:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 723328,
+        "cost_usd": null,
+        "input_tokens": 49680,
+        "output_tokens": 4490,
+        "reasoning_tokens": 21475,
+        "subscription_usage_usd": 0.016250718400000003
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 455,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T20:02:09Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.601,
+        "model_duration_seconds": 401.127,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 443.878,
+        "tool_calls": 24,
+        "tool_duration_seconds": 6.497,
+        "total_duration_seconds": 446.479
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T19:54:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 557824,
+        "cost_usd": null,
+        "input_tokens": 50380,
+        "output_tokens": 4090,
+        "reasoning_tokens": 8291,
+        "subscription_usage_usd": 0.012081787200000001
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 346,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T20:09:19Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.78,
+        "model_duration_seconds": 273.517,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 318.55,
+        "tool_calls": 25,
+        "tool_duration_seconds": 5.651,
+        "total_duration_seconds": 323.33
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T20:03:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 348992,
+        "cost_usd": null,
+        "input_tokens": 24513,
+        "output_tokens": 4115,
+        "reasoning_tokens": 5164,
+        "subscription_usage_usd": 0.0070071175999999995
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 280,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T20:15:09Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.487,
+        "model_duration_seconds": 225.939,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 266.35999999999996,
+        "tool_calls": 22,
+        "tool_duration_seconds": 4.608,
+        "total_duration_seconds": 268.847
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T20:10:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 244416,
+        "cost_usd": null,
+        "input_tokens": 18390,
+        "output_tokens": 2696,
+        "reasoning_tokens": 4383,
+        "subscription_usage_usd": 0.005241084799999999
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 907,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-10T20:31:59Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.43,
+        "model_duration_seconds": 734.741,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 811.9430000000001,
+        "tool_calls": 38,
+        "tool_duration_seconds": 9.688,
+        "total_duration_seconds": 814.373
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T20:16:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 789312,
+        "cost_usd": null,
+        "input_tokens": 61390,
+        "output_tokens": 4325,
+        "reasoning_tokens": 18476,
+        "subscription_usage_usd": 0.0171889536
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "release_not_converged"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 904,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-10T20:49:50Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.658,
+        "model_duration_seconds": 812.642,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 886.787,
+        "tool_calls": 43,
+        "tool_duration_seconds": 53.57,
+        "total_duration_seconds": 888.445
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T20:32:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1023872,
+        "cost_usd": null,
+        "input_tokens": 66877,
+        "output_tokens": 4637,
+        "reasoning_tokens": 19216,
+        "subscription_usage_usd": 0.0189084616
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 537,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "release_not_converged",
+      "finished_at": "2026-11-10T21:00:39Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.155,
+        "model_duration_seconds": 485.672,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 521.081,
+        "tool_calls": 24,
+        "tool_duration_seconds": 3.212,
+        "total_duration_seconds": 524.236
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T20:51:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 289152,
+        "cost_usd": null,
+        "input_tokens": 40260,
+        "output_tokens": 2931,
+        "reasoning_tokens": 12782,
+        "subscription_usage_usd": 0.0108456656
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 442,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T21:09:58Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.442,
+        "model_duration_seconds": 382.738,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 426.944,
+        "tool_calls": 26,
+        "tool_duration_seconds": 23.204,
+        "total_duration_seconds": 431.386
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T21:02:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 307584,
+        "cost_usd": null,
+        "input_tokens": 28355,
+        "output_tokens": 3457,
+        "reasoning_tokens": 8116,
+        "subscription_usage_usd": 0.0080713752
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 903,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-10T21:27:17Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.398,
+        "model_duration_seconds": 800.225,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 875.108,
+        "tool_calls": 38,
+        "tool_duration_seconds": 9.104,
+        "total_duration_seconds": 877.506
+      },
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T21:11:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 705152,
+        "cost_usd": null,
+        "input_tokens": 47866,
+        "output_tokens": 3416,
+        "reasoning_tokens": 19992,
+        "subscription_usage_usd": 0.015229905600000001
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 647,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T21:40:31Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.901,
+        "model_duration_seconds": 531.502,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 635.058,
+        "tool_calls": 34,
+        "tool_duration_seconds": 18.104,
+        "total_duration_seconds": 636.959
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T21:29:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 456448,
+        "cost_usd": null,
+        "input_tokens": 37546,
+        "output_tokens": 5098,
+        "reasoning_tokens": 11334,
+        "subscription_usage_usd": 0.011135454400000001
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 600,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T21:52:09Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.857,
+        "model_duration_seconds": 538.516,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 581.2610000000001,
+        "tool_calls": 29,
+        "tool_duration_seconds": 18.588,
+        "total_duration_seconds": 584.118
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-opencode-go-mimo-v2-6-flash-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-10T21:41:51Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 478720,
+        "cost_usd": null,
+        "input_tokens": 44312,
+        "output_tokens": 4495,
+        "reasoning_tokens": 12011,
+        "subscription_usage_usd": 0.012165776000000001
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 428,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T22:01:08Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.926,
+        "model_duration_seconds": 367.863,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 416.832,
+        "tool_calls": 35,
+        "tool_duration_seconds": 19.45,
+        "total_duration_seconds": 418.758
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-opencode-go-mimo-v2-6-flash-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-10T21:53:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 611200,
+        "cost_usd": null,
+        "input_tokens": 36582,
+        "output_tokens": 5205,
+        "reasoning_tokens": 7234,
+        "subscription_usage_usd": 0.01031576
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "opencode",
+      "agent_duration_seconds": 809,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T22:16:13Z",
+      "model": "opencode-go/mimo-v2.6-flash",
+      "provider": "opencode-go",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.664,
+        "model_duration_seconds": 709.588,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 776.164,
+        "tool_calls": 33,
+        "tool_duration_seconds": 20.509,
+        "total_duration_seconds": 779.828
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-opencode-go-mimo-v2-6-flash-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-10T22:02:27Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 599808,
+        "cost_usd": null,
+        "input_tokens": 45034,
+        "output_tokens": 5508,
+        "reasoning_tokens": 15366,
+        "subscription_usage_usd": 0.0138289424
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "external:opencode.sh",
+        "name": "opencode",
+        "payload": "external:opencode",
+        "provider": "opencode-go"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": "8c592daae1187985a8764cb5d3d231c9fa32307383b67e5c0680157ccefa043c",
+        "agent_config_sha256": "65d6f30003a0da3179ebd29ac8c47dadf7a1c4030d5e8304b21537891affb9f8",
+        "agent_env_sha256": "11e07c3dfc31fc019babdd58411bbbc1db3309a92eca56983b1ab9dba5e9b582",
+        "agent_payload_sha256": "135ac3f86c43f2a22328a3554fec5f0bc57d71576077902661bc38dac34871fd",
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": null,
+        "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-10T22:16:14.169988Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "opencode-go/mimo-v2.6-flash"
+      ],
+      "reasoning_efforts": [],
+      "replaybook_commit": "df23de80f3d2982762199c40c4ff9e24a1061831",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-09T22:52:56.569910Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "3cfbd41687dcc63653d2b4ad09e6e696528e0335c56170145b4b58e6311f06f7"
+    }
+  ],
+  "tier": "core",
+  "title": "MiMo-V2.6-Flash Core via OpenCode Go",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 19246656,
+    "cost_reported_trials": 0,
+    "durable_repairs_after_timeout": 4,
+    "evaluated": 33,
+    "failed": 10,
+    "failure_categories": {
+      "agent_timeout": 9,
+      "release_not_converged": 1
+    },
+    "input_tokens": 1431464,
+    "known_cost_usd": 0,
+    "median_duration_seconds": 624,
+    "median_first_non_read_only_tool_seconds": 1.926,
+    "median_model_duration_seconds": 535.575,
+    "median_model_rounds": 19,
+    "median_post_first_non_read_only_seconds": 610.972,
+    "median_tool_calls": 31,
+    "median_tool_duration_seconds": 20.509,
+    "output_tokens": 132802,
+    "pass_rate": 0.696969696969697,
+    "passed": 23,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 33,
+    "subscription_usage_usd": 0.4206995968,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261110.0.2"
+}

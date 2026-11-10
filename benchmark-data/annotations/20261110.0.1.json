@@ -1,0 +1,51 @@
+{
+  "title": "GLM-5.3-Flash Core via OpenCode Go",
+  "description": "GLM-5.3-Flash: 32/33 evaluated trials passed; 0 unavailable out of 33 scheduled attempts. Median evaluated agent duration 105 seconds.",
+  "input_mode": "text",
+  "model_order": [
+    "opencode-go/glm-5.3-flash"
+  ],
+  "model_labels": {
+    "opencode-go/glm-5.3-flash": "GLM-5.3-Flash"
+  },
+  "agent_harness": {
+    "id": "opencode",
+    "label": "OpenCode",
+    "version": "1.19.0",
+    "provider": "OpenCode Go",
+    "billing": "subscription"
+  },
+  "corrections": [
+    {
+      "run_id": "021-discourse-shared-uploads-opencode-go-glm-5-3-flash-reasoning-high-3",
+      "changes": {
+        "trial_status": "evaluated",
+        "failure_category": "host_reboot_failed",
+        "failure": "Reboot verification failed after meaningful inference: harness Nix-store device unavailable. Immediate and service restart checks passed."
+      },
+      "reason": "Conservative publication policy retains failures after meaningful inference in the evaluated denominator. Raw result labels this a guest-boot infrastructure exception; that evidence remains unchanged and is disclosed, without assigning the hardware fault to the model or claiming 33/33.",
+      "evidence": {
+        "summary_sha256": "66b53a95ab5500f29dc79898eace2a5f820d44fc673c50e202aba99dcda79bbb",
+        "result_sha256": "7e63a013572d9d68001c2da0408ad5a6e3971272dce77f51853d0b6655f2c6ea",
+        "transcript_sha256": "8e9de0dec76835b10681107ab7ba383e53f5b5aeef5acf167a47c9f911b4057e",
+        "console_sha256": "455e535cd9d1a68c9a34303649278ac534d8de61e6b6182d484259670a09f908",
+        "basis": "post_inference_verification_failure"
+      }
+    }
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three scheduled attempts each, 900-second agent deadline, one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Executed through OpenCode 1.19.0 with pinned public model definitions and a scoped provider credential. This is an OpenCode/provider configuration, not the frozen Claux agent. Models with different reasoning settings or providers are not controlled intrinsic-model comparisons.",
+    "Raw trial results, transcripts and immutable execution snapshots were audited; source hashes and documented corrections are retained. Public evidence excludes credentials, full transcripts, private reasoning, raw VM logs and local filesystem paths.",
+    "Main-model usage is from OpenCode events. Monetary API cost was not reported and must not be interpreted as zero. Client-reported usage values are not an invoice or a complete accounting of auxiliary requests/infrastructure.",
+    "Three attempts per scenario are a small sample; no general infrastructure competence or definitive model ranking is established.",
+    "Audit: https://github.com/ducks/replaybook/blob/main/benchmark-data/audits/20261110-glm-5.3-flash.json",
+    "Reasoning effort: high. All 32 scored passes passed immediate, service-restart and host-reboot verification.",
+    "The remaining shared-uploads attempt ran meaningful inference and passed immediate/service-restart checks, then reboot failed while waiting for the harness-supplied Nix-store device. The raw result labels this an infrastructure exception. Publication conservatively counts it as a zero-reward evaluated reboot failure, rather than claiming 32/32 or 33/33. This does not attribute the hardware fault to the model. No corrective model rerun was performed.",
+    "OpenCode reports $0.65184909 in subscription usage value across the 33 attempts. This is allowance/client usage reporting, not incremental cash spend. Per-trial cash costs remain unreported."
+  ],
+  "observations": [
+    "GLM-5.3-Flash: 32/33 evaluated trials passed; 0 unavailable out of 33 scheduled attempts. Median evaluated agent duration 105 seconds.",
+    "Classification corrections preserve every original reward and bind retained result/transcript evidence to the original summary hash. Raw result files were not edited."
+  ]
+}

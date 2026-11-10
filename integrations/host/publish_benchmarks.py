@@ -780,7 +780,8 @@ def select_source_models(
 
 
 def apply_corrections(
-    runs: list[dict[str, Any]], annotations: dict[str, Any]
+    runs: list[dict[str, Any]], annotations: dict[str, Any],
+    source_hashes: dict[str, str | None] | None = None,
 ) -> list[dict[str, Any]]:
     by_id = {run["run_id"]: run for run in runs}
     applied = []
@@ -799,9 +800,50 @@ def apply_corrections(
             raise PublishError(f"correction for {run_id} has no changes")
         if not isinstance(reason, str) or not reason.strip():
             raise PublishError(f"correction for {run_id} needs a reason")
-        allowed = {"failure", "failure_category", "provider"}
+        allowed = {"failure", "failure_category", "provider", "trial_status"}
         if not set(changes).issubset(allowed):
             raise PublishError(f"correction for {run_id} changes unsupported fields")
+        evidence = correction.get("evidence")
+        if "trial_status" in changes:
+            run = by_id[run_id]
+            if run["reward"] != 0 or changes["trial_status"] == run["trial_status"]:
+                raise PublishError("status corrections require a zero-reward status transition")
+            if not isinstance(evidence, dict):
+                raise PublishError("status corrections require source-bound evidence")
+            for key in ("summary_sha256", "result_sha256", "transcript_sha256"):
+                digest = evidence.get(key)
+                if not isinstance(digest, str) or not SHA256_PATTERN.fullmatch(digest):
+                    raise PublishError("status corrections require valid evidence hashes")
+            if not source_hashes or evidence["summary_sha256"] != source_hashes.get(run_id):
+                raise PublishError("status correction evidence does not match source summary")
+            usage = run.get("usage") or {}
+            recording = run.get("recording") or {}
+            verification = run.get("verification") or {}
+            meaningful = any(
+                isinstance(usage.get(key), (int, float))
+                and not isinstance(usage.get(key), bool) and usage[key] > 0
+                for key in ("input_tokens", "output_tokens", "cache_read_tokens", "rounds", "tool_calls")
+            ) or bool(recording.get("model_rounds") or recording.get("tools")) or any(
+                verification.get(key) is True
+                for key in ("immediate_http", "service_restart", "host_reboot")
+            )
+            transition = (run["trial_status"], changes["trial_status"])
+            if transition == ("evaluated", "unavailable"):
+                if meaningful or evidence.get("basis") != "provider_rejected_before_inference":
+                    raise PublishError("cannot exclude a trial after meaningful inference")
+                categories = {"rate_limit": "provider_rate_limited", "authentication": "authentication_failed", "unavailable": "provider_unavailable"}
+                if changes.get("failure_category") != categories.get(evidence.get("provider_error"), ""):
+                    raise PublishError("pre-inference exclusion requires a provider error category")
+                digest = evidence.get("stderr_sha256")
+                if not isinstance(digest, str) or not SHA256_PATTERN.fullmatch(digest):
+                    raise PublishError("pre-inference exclusion requires provider-error evidence")
+            elif transition == ("unavailable", "evaluated"):
+                if not meaningful or evidence.get("basis") != "post_inference_verification_failure":
+                    raise PublishError("evaluated correction requires meaningful inference evidence")
+                if not changes.get("failure_category"):
+                    raise PublishError("evaluated correction requires a failure category")
+            else:
+                raise PublishError("unsupported trial status transition")
         if "provider" in changes:
             provider = changes["provider"]
             if provider is not None and (
@@ -813,7 +855,8 @@ def apply_corrections(
         original = {key: by_id[run_id].get(key) for key in changes}
         by_id[run_id].update(changes)
         applied.append(
-            {"run_id": run_id, "original": original, "changes": changes, "reason": reason}
+            {"run_id": run_id, "original": original, "changes": changes, "reason": reason,
+             **({"evidence": evidence} if "trial_status" in changes else {})}
         )
     return applied
 
@@ -985,8 +1028,9 @@ def create_release_from_sources(
         raise PublishError("at least one source matrix is required")
     sources = copy.deepcopy(source_matrices)
     compatibility = validate_compatible(sources)
+    source_hashes = {run["run_id"]: source.get("summary_sha256") for source in sources for run in source["runs"]}
     runs = [run for source in sources for run in source.pop("runs")]
-    corrections = apply_corrections(runs, annotations)
+    corrections = apply_corrections(runs, annotations, source_hashes)
     compatibility["providers"] = sorted(
         {provider for provider in (run.get("provider") for run in runs) if provider}
     )
