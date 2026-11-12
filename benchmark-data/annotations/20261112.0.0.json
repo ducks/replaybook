@@ -1,0 +1,28 @@
+{
+  "title": "Nex N2.6 Core via Claux / OpenRouter",
+  "description": "Nex N2.6 passed all 33 Core trials, with a 109-second median agent duration and $0.391978096 in provider-reported inference cost.",
+  "input_mode": "text",
+  "model_order": [
+    "nex-agi/nex-n2.6"
+  ],
+  "model_labels": {
+    "nex-agi/nex-n2.6": "Nex N2.6"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "bounded-search 25e7b9c (binary 7a7268af30cf)",
+    "provider": "OpenRouter",
+    "billing": "api"
+  },
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "All 33 raw results, transcript usage and immediate/service-restart/host-reboot verification flags were audited against the immutable execution snapshot. No result corrections. Public audit retains hashes and sanitized measurements, not full transcripts or local paths.",
+    "The bounded-search Claux binary differs from earlier frozen Claux releases; preserve this harness boundary when comparing results. Reasoning effort used the default setting.",
+    "Provider-reported inference cost covers all 33 trials. It excludes local compute and is not an invoice.",
+    "Three attempts per scenario are a small sample; a perfect score on this pack does not establish general infrastructure competence."
+  ],
+  "observations": [
+    "33 of 33 trials passed all three lifecycle checks. Median agent duration: 109 seconds."
+  ]
+}

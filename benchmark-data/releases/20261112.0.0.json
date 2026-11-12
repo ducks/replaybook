@@ -1,0 +1,2321 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 8149504,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 520480,
+      "known_cost_usd": 0.391978096,
+      "median_duration_seconds": 109,
+      "median_first_non_read_only_tool_seconds": 3.246,
+      "median_model_duration_seconds": 98.542,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 104.76100000000001,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 9.405,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 334831,
+      "pass_rate": 1.0,
+      "passed": 33,
+      "provider": "openrouter",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 339200,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 33936,
+      "known_cost_usd": 0.01856832,
+      "median_duration_seconds": 72,
+      "median_first_non_read_only_tool_seconds": 2.466,
+      "median_model_duration_seconds": 66.839,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 68.256,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 3.795,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 15888,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 529920,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 46438,
+      "known_cost_usd": 0.02657264,
+      "median_duration_seconds": 87,
+      "median_first_non_read_only_tool_seconds": 3.246,
+      "median_model_duration_seconds": 66.635,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 80.682,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 18.786,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 20705,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 839168,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 49954,
+      "known_cost_usd": 0.044496511999999995,
+      "median_duration_seconds": 203,
+      "median_first_non_read_only_tool_seconds": 3.646,
+      "median_model_duration_seconds": 169.156,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 198.34099999999998,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 28.554,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 45905,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 519936,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 38020,
+      "known_cost_usd": 0.025879264,
+      "median_duration_seconds": 86,
+      "median_first_non_read_only_tool_seconds": 4.85,
+      "median_model_duration_seconds": 75.61,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 78.707,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 10.939,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 22096,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 715776,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 58222,
+      "known_cost_usd": 0.035649264,
+      "median_duration_seconds": 132,
+      "median_first_non_read_only_tool_seconds": 3.241,
+      "median_model_duration_seconds": 100.013,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 128.49099999999999,
+      "median_tool_calls": 23,
+      "median_tool_duration_seconds": 34.274,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 28710,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 498432,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 30768,
+      "known_cost_usd": 0.023620127999999997,
+      "median_duration_seconds": 80,
+      "median_first_non_read_only_tool_seconds": 2.876,
+      "median_model_duration_seconds": 71.507,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 76.956,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 7.001,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 19914,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1236480,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 39226,
+      "known_cost_usd": 0.05746424,
+      "median_duration_seconds": 214,
+      "median_first_non_read_only_tool_seconds": 3.932,
+      "median_model_duration_seconds": 208.47,
+      "median_model_rounds": 23,
+      "median_post_first_non_read_only_seconds": 209.176,
+      "median_tool_calls": 30,
+      "median_tool_duration_seconds": 3.62,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 57704,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 934400,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 73564,
+      "known_cost_usd": 0.04231288,
+      "median_duration_seconds": 105,
+      "median_first_non_read_only_tool_seconds": 2.33,
+      "median_model_duration_seconds": 100.854,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 100.198,
+      "median_tool_calls": 23,
+      "median_tool_duration_seconds": 3.36,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 27649,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1210624,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 71156,
+      "known_cost_usd": 0.052044496,
+      "median_duration_seconds": 135,
+      "median_first_non_read_only_tool_seconds": 4.667,
+      "median_model_duration_seconds": 117.546,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 130.82600000000002,
+      "median_tool_calls": 31,
+      "median_tool_duration_seconds": 15.465,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 36127,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 729856,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 36011,
+      "known_cost_usd": 0.035301863999999995,
+      "median_duration_seconds": 129,
+      "median_first_non_read_only_tool_seconds": 4.049,
+      "median_model_duration_seconds": 121.359,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 125.193,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 5.805,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 33660,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 595712,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 43185,
+      "known_cost_usd": 0.030068488,
+      "median_duration_seconds": 109,
+      "median_first_non_read_only_tool_seconds": 2.562,
+      "median_model_duration_seconds": 97.485,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 104.76100000000001,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 9.405,
+      "model": "nex-agi/nex-n2.6",
+      "output_tokens": 26473,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "api",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "bounded-search 25e7b9c (binary 7a7268af30cf)"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Nex N2.6 passed all 33 Core trials, with a 109-second median agent duration and $0.391978096 in provider-reported inference cost.",
+  "input_mode": "text",
+  "model_labels": {
+    "nex-agi/nex-n2.6": "Nex N2.6"
+  },
+  "model_order": [
+    "nex-agi/nex-n2.6"
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "All 33 raw results, transcript usage and immediate/service-restart/host-reboot verification flags were audited against the immutable execution snapshot. No result corrections. Public audit retains hashes and sanitized measurements, not full transcripts or local paths.",
+    "The bounded-search Claux binary differs from earlier frozen Claux releases; preserve this harness boundary when comparing results. Reasoning effort used the default setting.",
+    "Provider-reported inference cost covers all 33 trials. It excludes local compute and is not an invoice.",
+    "Three attempts per scenario are a small sample; a perfect score on this pack does not establish general infrastructure competence."
+  ],
+  "observations": [
+    "33 of 33 trials passed all three lifecycle checks. Median agent duration: 109 seconds."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T23:32:01Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.29,
+        "model_duration_seconds": 73.897,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 75.61,
+        "tool_calls": 17,
+        "tool_duration_seconds": 4.913,
+        "total_duration_seconds": 78.9
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-nex-agi-nex-n2-6-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T23:30:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 129024,
+        "cost_source": "provider",
+        "cost_usd": 0.007080096000000001,
+        "input_tokens": 11286,
+        "output_tokens": 6573,
+        "rounds": 13,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 72,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T23:34:40Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.466,
+        "model_duration_seconds": 66.839,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 68.256,
+        "tool_calls": 18,
+        "tool_duration_seconds": 3.795,
+        "total_duration_seconds": 70.722
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-nex-agi-nex-n2-6-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T23:33:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 143360,
+        "cost_source": "provider",
+        "cost_usd": 0.007416519999999999,
+        "input_tokens": 13059,
+        "output_tokens": 6022,
+        "rounds": 14,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 43,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T23:37:39Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.828,
+        "model_duration_seconds": 37.033,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 39.937,
+        "tool_calls": 12,
+        "tool_duration_seconds": 3.451,
+        "total_duration_seconds": 41.765
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-nex-agi-nex-n2-6-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T23:36:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 66816,
+        "cost_source": "provider",
+        "cost_usd": 0.004071704,
+        "input_tokens": 9591,
+        "output_tokens": 3293,
+        "rounds": 9,
+        "tool_calls": 12
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 82,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T23:40:54Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.246,
+        "model_duration_seconds": 61.674,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 77.289,
+        "tool_calls": 16,
+        "tool_duration_seconds": 18.786,
+        "total_duration_seconds": 80.535
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-nex-agi-nex-n2-6-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-10T23:39:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 121856,
+        "cost_source": "provider",
+        "cost_usd": 0.007336024,
+        "input_tokens": 17629,
+        "output_tokens": 5740,
+        "rounds": 12,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 87,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T23:44:02Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.114,
+        "model_duration_seconds": 66.635,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 80.682,
+        "tool_calls": 18,
+        "tool_duration_seconds": 19.074,
+        "total_duration_seconds": 85.796
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-nex-agi-nex-n2-6-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-10T23:42:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 168960,
+        "cost_source": "provider",
+        "cost_usd": 0.0081122,
+        "input_tokens": 11713,
+        "output_tokens": 6629,
+        "rounds": 13,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 103,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T23:47:26Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.913,
+        "model_duration_seconds": 88.592,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 98.928,
+        "tool_calls": 25,
+        "tool_duration_seconds": 13.11,
+        "total_duration_seconds": 101.841
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-nex-agi-nex-n2-6-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-10T23:45:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 239104,
+        "cost_source": "provider",
+        "cost_usd": 0.011124416,
+        "input_tokens": 17096,
+        "output_tokens": 8336,
+        "rounds": 19,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 203,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T23:52:22Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.717,
+        "model_duration_seconds": 169.156,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 198.34099999999998,
+        "tool_calls": 20,
+        "tool_duration_seconds": 31.776,
+        "total_duration_seconds": 201.058
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-nex-agi-nex-n2-6-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T23:48:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 282112,
+        "cost_source": "provider",
+        "cost_usd": 0.015839768,
+        "input_tokens": 19059,
+        "output_tokens": 16955,
+        "rounds": 16,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 130,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-10T23:56:04Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.646,
+        "model_duration_seconds": 99.845,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 124.90400000000001,
+        "tool_calls": 19,
+        "tool_duration_seconds": 28.554,
+        "total_duration_seconds": 128.55
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-nex-agi-nex-n2-6-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T23:53:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 194816,
+        "cost_source": "provider",
+        "cost_usd": 0.010097224,
+        "input_tokens": 12477,
+        "output_tokens": 9811,
+        "rounds": 16,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 211,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:01:11Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.951,
+        "model_duration_seconds": 189.26,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 204.684,
+        "tool_calls": 22,
+        "tool_duration_seconds": 20.221,
+        "total_duration_seconds": 209.635
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-nex-agi-nex-n2-6-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-10T23:57:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 362240,
+        "cost_source": "provider",
+        "cost_usd": 0.018559519999999996,
+        "input_tokens": 18418,
+        "output_tokens": 19139,
+        "rounds": 17,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 101,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:04:37Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.85,
+        "model_duration_seconds": 88.453,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 94.9,
+        "tool_calls": 28,
+        "tool_duration_seconds": 10.939,
+        "total_duration_seconds": 99.75
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-nex-agi-nex-n2-6-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:02:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 228864,
+        "cost_source": "provider",
+        "cost_usd": 0.010095536000000002,
+        "input_tokens": 11840,
+        "output_tokens": 7955,
+        "rounds": 21,
+        "tool_calls": 28
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 86,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:07:40Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.182,
+        "model_duration_seconds": 73.531,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 78.533,
+        "tool_calls": 19,
+        "tool_duration_seconds": 11.054,
+        "total_duration_seconds": 84.715
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-nex-agi-nex-n2-6-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:05:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 147456,
+        "cost_source": "provider",
+        "cost_usd": 0.008083864,
+        "input_tokens": 14141,
+        "output_tokens": 7120,
+        "rounds": 12,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 86,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:10:36Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.411,
+        "model_duration_seconds": 75.61,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 78.707,
+        "tool_calls": 20,
+        "tool_duration_seconds": 6.139,
+        "total_duration_seconds": 82.118
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-nex-agi-nex-n2-6-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:08:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 143616,
+        "cost_source": "provider",
+        "cost_usd": 0.007699863999999999,
+        "input_tokens": 12039,
+        "output_tokens": 7021,
+        "rounds": 15,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 145,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:14:35Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.241,
+        "model_duration_seconds": 101.745,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 140.20999999999998,
+        "tool_calls": 23,
+        "tool_duration_seconds": 41.532,
+        "total_duration_seconds": 143.451
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-nex-agi-nex-n2-6-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:11:51Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 224512,
+        "cost_source": "provider",
+        "cost_usd": 0.010670607999999998,
+        "input_tokens": 10986,
+        "output_tokens": 9910,
+        "rounds": 18,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 132,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:18:22Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.99,
+        "model_duration_seconds": 95.954,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 128.49099999999999,
+        "tool_calls": 23,
+        "tool_duration_seconds": 34.274,
+        "total_duration_seconds": 130.481
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-nex-agi-nex-n2-6-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:15:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 282624,
+        "cost_source": "provider",
+        "cost_usd": 0.012620456,
+        "input_tokens": 18379,
+        "output_tokens": 9080,
+        "rounds": 16,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 121,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:22:06Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.523,
+        "model_duration_seconds": 100.013,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 114.563,
+        "tool_calls": 23,
+        "tool_duration_seconds": 19.925,
+        "total_duration_seconds": 120.086
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-nex-agi-nex-n2-6-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:19:45Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 208640,
+        "cost_source": "provider",
+        "cost_usd": 0.012358199999999998,
+        "input_tokens": 28857,
+        "output_tokens": 9720,
+        "rounds": 11,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 98,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:26:52Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.57,
+        "model_duration_seconds": 85.529,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 92.68,
+        "tool_calls": 20,
+        "tool_duration_seconds": 10.51,
+        "total_duration_seconds": 96.25
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-nex-agi-nex-n2-6-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:24:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 205824,
+        "cost_source": "provider",
+        "cost_usd": 0.009521976,
+        "input_tokens": 10775,
+        "output_tokens": 8223,
+        "rounds": 16,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 63,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:31:26Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.876,
+        "model_duration_seconds": 57.435,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 58.714000000000006,
+        "tool_calls": 16,
+        "tool_duration_seconds": 4.068,
+        "total_duration_seconds": 61.59
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-nex-agi-nex-n2-6-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:30:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 128768,
+        "cost_source": "provider",
+        "cost_usd": 0.006607912,
+        "input_tokens": 11639,
+        "output_tokens": 5302,
+        "rounds": 13,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:36:17Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.795,
+        "model_duration_seconds": 71.507,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 76.956,
+        "tool_calls": 21,
+        "tool_duration_seconds": 7.001,
+        "total_duration_seconds": 78.751
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-nex-agi-nex-n2-6-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:34:40Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 163840,
+        "cost_source": "provider",
+        "cost_usd": 0.00749024,
+        "input_tokens": 8354,
+        "output_tokens": 6389,
+        "rounds": 16,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 141,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:40:06Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.932,
+        "model_duration_seconds": 135.28,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 134.87300000000002,
+        "tool_calls": 24,
+        "tool_duration_seconds": 3.323,
+        "total_duration_seconds": 138.805
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-nex-agi-nex-n2-6-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:37:31Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 232192,
+        "cost_source": "provider",
+        "cost_usd": 0.012403807999999999,
+        "input_tokens": 10600,
+        "output_tokens": 13898,
+        "rounds": 16,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 214,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:45:04Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.216,
+        "model_duration_seconds": 208.47,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 209.176,
+        "tool_calls": 30,
+        "tool_duration_seconds": 3.62,
+        "total_duration_seconds": 212.392
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-nex-agi-nex-n2-6-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:41:16Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 459776,
+        "cost_source": "provider",
+        "cost_usd": 0.021276304000000003,
+        "input_tokens": 14124,
+        "output_tokens": 21367,
+        "rounds": 23,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 233,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:50:19Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.98,
+        "model_duration_seconds": 222.434,
+        "model_rounds": 27,
+        "post_first_non_read_only_seconds": 225.57600000000002,
+        "tool_calls": 36,
+        "tool_duration_seconds": 6.322,
+        "total_duration_seconds": 229.556
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-nex-agi-nex-n2-6-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:46:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 544512,
+        "cost_source": "provider",
+        "cost_usd": 0.023784127999999998,
+        "input_tokens": 14502,
+        "output_tokens": 22439,
+        "rounds": 27,
+        "tool_calls": 36
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 105,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:53:16Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.606,
+        "model_duration_seconds": 100.854,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 99.99600000000001,
+        "tool_calls": 22,
+        "tool_duration_seconds": 2.593,
+        "total_duration_seconds": 103.602
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-nex-agi-nex-n2-6-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:51:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 218624,
+        "cost_source": "provider",
+        "cost_usd": 0.010864575999999999,
+        "input_tokens": 14790,
+        "output_tokens": 9607,
+        "rounds": 16,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 104,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T00:56:47Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 1.866,
+        "model_duration_seconds": 98.542,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 100.198,
+        "tool_calls": 24,
+        "tool_duration_seconds": 3.36,
+        "total_duration_seconds": 102.064
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-nex-agi-nex-n2-6-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:54:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 303616,
+        "cost_source": "provider",
+        "cost_usd": 0.014064544,
+        "input_tokens": 28468,
+        "output_tokens": 8404,
+        "rounds": 16,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 109,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:00:03Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.33,
+        "model_duration_seconds": 103.888,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 105.172,
+        "tool_calls": 23,
+        "tool_duration_seconds": 3.436,
+        "total_duration_seconds": 107.502
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-nex-agi-nex-n2-6-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T00:57:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 412160,
+        "cost_source": "provider",
+        "cost_usd": 0.01738376,
+        "input_tokens": 30306,
+        "output_tokens": 9638,
+        "rounds": 18,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 123,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:05:17Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.592,
+        "model_duration_seconds": 108.034,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 114.433,
+        "tool_calls": 29,
+        "tool_duration_seconds": 12.035,
+        "total_duration_seconds": 121.025
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-nex-agi-nex-n2-6-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T01:02:46Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 356608,
+        "cost_source": "provider",
+        "cost_usd": 0.015792472,
+        "input_tokens": 25629,
+        "output_tokens": 10396,
+        "rounds": 16,
+        "tool_calls": 29
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 191,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:11:54Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.667,
+        "model_duration_seconds": 156.176,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 170.117,
+        "tool_calls": 37,
+        "tool_duration_seconds": 16.967,
+        "total_duration_seconds": 174.784
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-nex-agi-nex-n2-6-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T01:08:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 537856,
+        "cost_source": "provider",
+        "cost_usd": 0.021876664000000004,
+        "input_tokens": 24741,
+        "output_tokens": 14998,
+        "rounds": 26,
+        "tool_calls": 37
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 135,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:15:43Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.414,
+        "model_duration_seconds": 117.546,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 130.82600000000002,
+        "tool_calls": 31,
+        "tool_duration_seconds": 15.465,
+        "total_duration_seconds": 133.24
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-nex-agi-nex-n2-6-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T01:13:11Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 316160,
+        "cost_source": "provider",
+        "cost_usd": 0.014375359999999998,
+        "input_tokens": 20786,
+        "output_tokens": 10733,
+        "rounds": 18,
+        "tool_calls": 31
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 129,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:20:37Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.137,
+        "model_duration_seconds": 121.359,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 125.193,
+        "tool_calls": 19,
+        "tool_duration_seconds": 5.805,
+        "total_duration_seconds": 127.33
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-nex-agi-nex-n2-6-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T01:18:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 212480,
+        "cost_source": "provider",
+        "cost_usd": 0.011358639999999998,
+        "input_tokens": 9996,
+        "output_tokens": 12649,
+        "rounds": 14,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 109,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:24:50Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.994,
+        "model_duration_seconds": 100.329,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 101.845,
+        "tool_calls": 24,
+        "tool_duration_seconds": 6.345,
+        "total_duration_seconds": 106.839
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-nex-agi-nex-n2-6-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T01:22:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 273408,
+        "cost_source": "provider",
+        "cost_usd": 0.011656591999999999,
+        "input_tokens": 11600,
+        "output_tokens": 9257,
+        "rounds": 19,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 136,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:30:06Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.049,
+        "model_duration_seconds": 129.109,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 130.5,
+        "tool_calls": 25,
+        "tool_duration_seconds": 5.218,
+        "total_duration_seconds": 134.549
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-nex-agi-nex-n2-6-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-11T01:27:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 243968,
+        "cost_source": "provider",
+        "cost_usd": 0.012286631999999999,
+        "input_tokens": 14415,
+        "output_tokens": 11754,
+        "rounds": 18,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 110,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:33:56Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.562,
+        "model_duration_seconds": 98.108,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 106.099,
+        "tool_calls": 15,
+        "tool_duration_seconds": 10.438,
+        "total_duration_seconds": 108.661
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-nex-agi-nex-n2-6-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-11T01:31:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 143872,
+        "cost_source": "provider",
+        "cost_usd": 0.009203008,
+        "input_tokens": 15014,
+        "output_tokens": 9871,
+        "rounds": 11,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 109,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:37:12Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.3,
+        "model_duration_seconds": 97.485,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 104.76100000000001,
+        "tool_calls": 21,
+        "tool_duration_seconds": 9.405,
+        "total_duration_seconds": 107.061
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-nex-agi-nex-n2-6-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-11T01:35:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 260352,
+        "cost_source": "provider",
+        "cost_usd": 0.011913168,
+        "input_tokens": 16546,
+        "output_tokens": 9198,
+        "rounds": 16,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 90,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-11T01:39:57Z",
+      "model": "nex-agi/nex-n2.6",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.882,
+        "model_duration_seconds": 81.194,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 85.98899999999999,
+        "tool_calls": 19,
+        "tool_duration_seconds": 7.516,
+        "total_duration_seconds": 88.871
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-nex-agi-nex-n2-6-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-11T01:38:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 191488,
+        "cost_source": "provider",
+        "cost_usd": 0.008952312,
+        "input_tokens": 11625,
+        "output_tokens": 7404,
+        "rounds": 15,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-11T01:39:57.300359Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "nex-agi/nex-n2.6"
+      ],
+      "reasoning_efforts": [],
+      "replaybook_commit": "c95b3c71b5f5894d53398de27075e2bf2ad3b21f",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-10T23:29:20.096651Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "c63d6d05f781909ff6b25975024ff83ace0b73e7851887fd6ba85e24466cbab1"
+    }
+  ],
+  "tier": "core",
+  "title": "Nex N2.6 Core via Claux / OpenRouter",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 8149504,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 0,
+    "failure_categories": {},
+    "input_tokens": 520480,
+    "known_cost_usd": 0.391978096,
+    "median_duration_seconds": 109,
+    "median_first_non_read_only_tool_seconds": 3.246,
+    "median_model_duration_seconds": 98.542,
+    "median_model_rounds": 16,
+    "median_post_first_non_read_only_seconds": 104.76100000000001,
+    "median_tool_calls": 22,
+    "median_tool_duration_seconds": 9.405,
+    "output_tokens": 334831,
+    "pass_rate": 1.0,
+    "passed": 33,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261112.0.0"
+}
