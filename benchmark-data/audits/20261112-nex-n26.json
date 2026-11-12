@@ -1,0 +1,976 @@
+{
+  "model": "nex-agi/nex-n2.6",
+  "summary_sha256": "c63d6d05f781909ff6b25975024ff83ace0b73e7851887fd6ba85e24466cbab1",
+  "execution_snapshot": {
+    "schema_version": 1,
+    "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1",
+        "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+        "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3"
+      }
+    ],
+    "selected_scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721"
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "version": 3,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7"
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b"
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256"
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce"
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee"
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f"
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169"
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b"
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7"
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "version": 2,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9"
+      }
+    ],
+    "agent_adapter_sha256": null,
+    "agent_payload_sha256": null,
+    "agent_config_sha256": null,
+    "agent_env_sha256": null,
+    "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+    "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3"
+  },
+  "totals": {
+    "trials": 33,
+    "evaluated": 33,
+    "unavailable": 0,
+    "passed": 33,
+    "failed": 0,
+    "durable_repairs_after_timeout": 0,
+    "pass_rate": 1.0,
+    "median_duration_seconds": 109.0,
+    "known_cost_usd": 0.391978096,
+    "cost_reported_trials": 33,
+    "input_tokens": 520480,
+    "output_tokens": 334831,
+    "cache_read_tokens": 8149504,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_creation_reported_trials": 33,
+    "usage_reported_trials": 33,
+    "recording_reported_trials": 33,
+    "median_model_rounds": 16,
+    "median_model_duration_seconds": 98.542,
+    "median_tool_calls": 22,
+    "median_tool_duration_seconds": 9.405,
+    "median_first_non_read_only_tool_seconds": 3.246,
+    "median_post_first_non_read_only_seconds": 104.76100000000001
+  },
+  "runs": [
+    {
+      "run_id": "001-nginx-502-host-nex-agi-nex-n2-6-1",
+      "scenario": "001-nginx-502-host",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 80,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 17,
+        "input_tokens": 11286,
+        "output_tokens": 6573,
+        "cache_read_tokens": 129024,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.007080096000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c2863ba084f6e750d02d1372510d2f00e60221e1603066a4e43c49a894f601d2",
+      "transcript_sha256": "3e703a035786eb3b85fabdf413faa9ccda6b317e7c0c6711195bb94addc3bcb5"
+    },
+    {
+      "run_id": "001-nginx-502-host-nex-agi-nex-n2-6-2",
+      "scenario": "001-nginx-502-host",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 72,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 18,
+        "input_tokens": 13059,
+        "output_tokens": 6022,
+        "cache_read_tokens": 143360,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.007416519999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "87e26cb2a3114a9a6b4a448e75ea233816a89a33da2554a42e02135d0dbbae96",
+      "transcript_sha256": "152525a34e860fd16a4cab458d68476420d8c9dec328252f4d06bdba680007b6"
+    },
+    {
+      "run_id": "001-nginx-502-host-nex-agi-nex-n2-6-3",
+      "scenario": "001-nginx-502-host",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 43,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 9,
+        "tool_calls": 12,
+        "input_tokens": 9591,
+        "output_tokens": 3293,
+        "cache_read_tokens": 66816,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.004071704,
+        "cost_source": "provider"
+      },
+      "result_sha256": "9b70273aefbd4ef530067bd1dbf9cc548b56341ce39d750ca1600585eca78c43",
+      "transcript_sha256": "708973930f1f88716a89620540e0c55e2fea8f5d9aa3ef05c8b7afda490265be"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-nex-agi-nex-n2-6-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 82,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 12,
+        "tool_calls": 16,
+        "input_tokens": 17629,
+        "output_tokens": 5740,
+        "cache_read_tokens": 121856,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.007336024,
+        "cost_source": "provider"
+      },
+      "result_sha256": "3934de39d77325714e50c02eb4e31674a8f50276f83ae1962ea3aae7c707e605",
+      "transcript_sha256": "ec18e78308f2798d9a01d56a0b1a75e21f7b04d864d562bc99308aa83bfb136a"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-nex-agi-nex-n2-6-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 87,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 18,
+        "input_tokens": 11713,
+        "output_tokens": 6629,
+        "cache_read_tokens": 168960,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0081122,
+        "cost_source": "provider"
+      },
+      "result_sha256": "87a5164bdba56087e8e7f06d89829de32bc0258689b19f0c7f8603a5f1d33942",
+      "transcript_sha256": "2437383178c4791967c547bc8e5a810aec63359d940420c67860261549df5f57"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-nex-agi-nex-n2-6-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 103,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 19,
+        "tool_calls": 25,
+        "input_tokens": 17096,
+        "output_tokens": 8336,
+        "cache_read_tokens": 239104,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.011124416,
+        "cost_source": "provider"
+      },
+      "result_sha256": "6ffd798dfed7c7da226171f560bb70400c67a3c608edbf4769075101372202f5",
+      "transcript_sha256": "deeacea004321f373e8dbcbb34ffbf7af5ec791516658173bb2517f161f98c0e"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-nex-agi-nex-n2-6-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 203,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 20,
+        "input_tokens": 19059,
+        "output_tokens": 16955,
+        "cache_read_tokens": 282112,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.015839768,
+        "cost_source": "provider"
+      },
+      "result_sha256": "443cc9c67f9b2e8d013c31746281e87da6e3ba1a43a1700fd04f2d2a33ffa8aa",
+      "transcript_sha256": "b15e3148dd3889db6654839a0666575fa0ade2db18a9087d50b60ae9d82821d7"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-nex-agi-nex-n2-6-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 130,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 19,
+        "input_tokens": 12477,
+        "output_tokens": 9811,
+        "cache_read_tokens": 194816,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.010097224,
+        "cost_source": "provider"
+      },
+      "result_sha256": "25c5e924203ce23d86d639b1fb0f15356609614a68c630816fa6231841c06b51",
+      "transcript_sha256": "46579567acf2134de140d5bc13f3751563ab1f113d11bb4e3a22c85b26438f31"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-nex-agi-nex-n2-6-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 211,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 22,
+        "input_tokens": 18418,
+        "output_tokens": 19139,
+        "cache_read_tokens": 362240,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.018559519999999996,
+        "cost_source": "provider"
+      },
+      "result_sha256": "7bb1da7dcb699498e8329e05b39c8628df881362f155b98afb7e01775f31a290",
+      "transcript_sha256": "523667fbb27554f2d4279a28ea284f5dd6e02c2ce1a9af61bb04da95b7d515da"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-nex-agi-nex-n2-6-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 101,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 21,
+        "tool_calls": 28,
+        "input_tokens": 11840,
+        "output_tokens": 7955,
+        "cache_read_tokens": 228864,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.010095536000000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "b8a89060270390bd6fe0f5a69a1b1548158a2e37f6fdc2b797bbea1b45a5b152",
+      "transcript_sha256": "49ba27504ba70801d2fc657aca15592a042c585833b018d758fd33b4934b94c0"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-nex-agi-nex-n2-6-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 86,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 12,
+        "tool_calls": 19,
+        "input_tokens": 14141,
+        "output_tokens": 7120,
+        "cache_read_tokens": 147456,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.008083864,
+        "cost_source": "provider"
+      },
+      "result_sha256": "58648dfc5fcaee63959b12bf1977b3c0dbf3533d785fe546646352f878314ec6",
+      "transcript_sha256": "e1399e3f581bb292efbf6fc58857d65c544ed8baa3a382f53dd763ee7b1d03fe"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-nex-agi-nex-n2-6-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 86,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 20,
+        "input_tokens": 12039,
+        "output_tokens": 7021,
+        "cache_read_tokens": 143616,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.007699863999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "61e862fc6e7c1d13ce90ddb50986ed6a0598813bbe6e0cb1c41fcd31d538ba71",
+      "transcript_sha256": "d8900b11805b833c574659ecbbacbf5d4c11dedf59dd9f117ca0e8eb3df934b3"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-nex-agi-nex-n2-6-1",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 145,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 23,
+        "input_tokens": 10986,
+        "output_tokens": 9910,
+        "cache_read_tokens": 224512,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.010670607999999998,
+        "cost_source": "provider"
+      },
+      "result_sha256": "6dc86f248efbba63520f80d75467928ee5190c8d8b9b463ab3c0f547be8959a0",
+      "transcript_sha256": "6b46f9aa61daf3208fc2917369c83846126f36173c328b17b64d99e207d4df58"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-nex-agi-nex-n2-6-2",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 132,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 23,
+        "input_tokens": 18379,
+        "output_tokens": 9080,
+        "cache_read_tokens": 282624,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.012620456,
+        "cost_source": "provider"
+      },
+      "result_sha256": "623ab12f984fcf0abad4cd3288ea10c7e13a4fb4ff5f3f8c661b9a37f2a06198",
+      "transcript_sha256": "65d86349f86ed622c01afb9719621ecde21d0145a11af0383d67694791d9a049"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-nex-agi-nex-n2-6-3",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 121,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 11,
+        "tool_calls": 23,
+        "input_tokens": 28857,
+        "output_tokens": 9720,
+        "cache_read_tokens": 208640,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.012358199999999998,
+        "cost_source": "provider"
+      },
+      "result_sha256": "772906f5655bf80fc590a183a3f3ec566bf249563f6f9b61025ca4110ad8684e",
+      "transcript_sha256": "f55c0fbba21ad45603176866d82b603e12943933b6ef2a2cbe1993c492b3c122"
+    },
+    {
+      "run_id": "019-rust-fd-leak-nex-agi-nex-n2-6-1",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 98,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 20,
+        "input_tokens": 10775,
+        "output_tokens": 8223,
+        "cache_read_tokens": 205824,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.009521976,
+        "cost_source": "provider"
+      },
+      "result_sha256": "d1e48c43274f52f1e654e45509133f6e33e8c238e7a9e8e5727bc0a41d436f09",
+      "transcript_sha256": "71a3b22e47893571cc7f27863401601dc968a0201abba0c45cd5d40d95a669a0"
+    },
+    {
+      "run_id": "019-rust-fd-leak-nex-agi-nex-n2-6-2",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 63,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 16,
+        "input_tokens": 11639,
+        "output_tokens": 5302,
+        "cache_read_tokens": 128768,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.006607912,
+        "cost_source": "provider"
+      },
+      "result_sha256": "8ef697420c1105a705b8a23b8336e791128a10517b5f67a3981542c43fc0b14f",
+      "transcript_sha256": "edc520b0b7c3118a22af9f90ea9408646bc3f71497376ab9e300b9ccea9ef285"
+    },
+    {
+      "run_id": "019-rust-fd-leak-nex-agi-nex-n2-6-3",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 80,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 21,
+        "input_tokens": 8354,
+        "output_tokens": 6389,
+        "cache_read_tokens": 163840,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.00749024,
+        "cost_source": "provider"
+      },
+      "result_sha256": "b5c510145468cde3c0308472fdba54030819984733ee1375422f654f1047e60b",
+      "transcript_sha256": "0a23ff23ef08c19f51621a8da5dd14c0603d8e3b8de65aec8031a2bc8e47c7a1"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-nex-agi-nex-n2-6-1",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 141,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 24,
+        "input_tokens": 10600,
+        "output_tokens": 13898,
+        "cache_read_tokens": 232192,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.012403807999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "531dc96b4d04d90acbe90e3d578187127e8149d6d7f91d73db95fe5462309c56",
+      "transcript_sha256": "2ddbd4268a4d24c5172626e6dd54e868608d00945ef7821f4eaeff7a0e5207f4"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-nex-agi-nex-n2-6-2",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 214,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 23,
+        "tool_calls": 30,
+        "input_tokens": 14124,
+        "output_tokens": 21367,
+        "cache_read_tokens": 459776,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.021276304000000003,
+        "cost_source": "provider"
+      },
+      "result_sha256": "3b1cc37dd9c132581a9554e9db25a21202fd35f9fd5e5eb7f130a9257895b507",
+      "transcript_sha256": "841629a0ec0021b2c326b9e5a15634a930f145c8aaa10010ebe1f7d5ca4e3705"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-nex-agi-nex-n2-6-3",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 233,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 27,
+        "tool_calls": 36,
+        "input_tokens": 14502,
+        "output_tokens": 22439,
+        "cache_read_tokens": 544512,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.023784127999999998,
+        "cost_source": "provider"
+      },
+      "result_sha256": "25630851069f9bfc0adec476afc3a3fb12663238a5ea47c3c6cd9e5fd5b5837a",
+      "transcript_sha256": "654b30705c25bca616f03bc93e957cc95b540bce44b00abbeeadb30be1c43b43"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-nex-agi-nex-n2-6-1",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 105,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 22,
+        "input_tokens": 14790,
+        "output_tokens": 9607,
+        "cache_read_tokens": 218624,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.010864575999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "ad6204b63d0a66a3c6524c546b3e436289d4600a4eb545296d770ee5b91882d0",
+      "transcript_sha256": "67297291a8b2a3330e18af1f05c700728c80df33f6198840e310d3a058cb1c95"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-nex-agi-nex-n2-6-2",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 104,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 24,
+        "input_tokens": 28468,
+        "output_tokens": 8404,
+        "cache_read_tokens": 303616,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.014064544,
+        "cost_source": "provider"
+      },
+      "result_sha256": "fa05e3f1f9d935bb28debf5d0356d2c95746ffe0ea50713c1a42b476ecd83b36",
+      "transcript_sha256": "9b1710f830c8f8a3552c4cc0e20da3ff8c79094ac036d41171ac61dce8e3e9d7"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-nex-agi-nex-n2-6-3",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 109,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 23,
+        "input_tokens": 30306,
+        "output_tokens": 9638,
+        "cache_read_tokens": 412160,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.01738376,
+        "cost_source": "provider"
+      },
+      "result_sha256": "fb0dcb68965b12a49a613ee9ac86912f998b143a4e2660809a501b66f2f3b0a8",
+      "transcript_sha256": "c56f85797af6ee63778b6134c8320c71ddae488a42463ef52a68c31083a64f72"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-nex-agi-nex-n2-6-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 123,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 29,
+        "input_tokens": 25629,
+        "output_tokens": 10396,
+        "cache_read_tokens": 356608,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.015792472,
+        "cost_source": "provider"
+      },
+      "result_sha256": "e7301485297a71155c1bef18cafa5a60420bc41bd2da33d5eec86432f00aee48",
+      "transcript_sha256": "99b1e6cfb0cef424fd3d05c7164a08ca4077109427d48d74fd7c6f398e41cc40"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-nex-agi-nex-n2-6-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 191,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 26,
+        "tool_calls": 37,
+        "input_tokens": 24741,
+        "output_tokens": 14998,
+        "cache_read_tokens": 537856,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.021876664000000004,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c3b514da410510c37a254c404ae940d4f8ce37f0a8c4d57547b83cd4f9b73e8e",
+      "transcript_sha256": "a54932bce4c5a2568d35d0ab189c41dfc87e5462138c0b3192ffbd93423bbb28"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-nex-agi-nex-n2-6-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 135,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 31,
+        "input_tokens": 20786,
+        "output_tokens": 10733,
+        "cache_read_tokens": 316160,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.014375359999999998,
+        "cost_source": "provider"
+      },
+      "result_sha256": "236d54e1ef5a7c3b2a1dc69a6903b14afe501368ada551775a93ac0580b61ac1",
+      "transcript_sha256": "c6ef989c33e4fd6697dc4dd460df0458c4023a0ffdefd76ffbd9a524022392c6"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-nex-agi-nex-n2-6-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 129,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 19,
+        "input_tokens": 9996,
+        "output_tokens": 12649,
+        "cache_read_tokens": 212480,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.011358639999999998,
+        "cost_source": "provider"
+      },
+      "result_sha256": "77bf4924c284b87e778f18962805c77b7fc65d81fc3735c80c96cffb051ec0bc",
+      "transcript_sha256": "fc80b908ffe76d6535d9c0d2cb33144042b01f5cd627a0c9cc2b898a116aa5a3"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-nex-agi-nex-n2-6-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 109,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 19,
+        "tool_calls": 24,
+        "input_tokens": 11600,
+        "output_tokens": 9257,
+        "cache_read_tokens": 273408,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.011656591999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "bf180bdec4cb6b75fd90ed9983f7a3c8cb33cc4bf2240c3b7fbf77a923e20040",
+      "transcript_sha256": "1e8f9c4a7f982e61140b8d3512fbb3a52bfa94add37127b03bc5d1c5a63fc23f"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-nex-agi-nex-n2-6-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 136,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 25,
+        "input_tokens": 14415,
+        "output_tokens": 11754,
+        "cache_read_tokens": 243968,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.012286631999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "136eb40f04d4a39859148c26956ad9e6f8ef1c8b16b433574b42b2d1d793d5d9",
+      "transcript_sha256": "b93f8540ca1fbcf9d2dbaf035f743d7f24b559f747beaaeaec4d443d522690d9"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-nex-agi-nex-n2-6-1",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 110,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 11,
+        "tool_calls": 15,
+        "input_tokens": 15014,
+        "output_tokens": 9871,
+        "cache_read_tokens": 143872,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.009203008,
+        "cost_source": "provider"
+      },
+      "result_sha256": "1b556ac33c7d90759e945afc69159fd4b6b1bf9cc053df957f2ee1c62568ec5f",
+      "transcript_sha256": "772eba7d5a4465691047212b2eae4e8c84d9b804018701899898c3a19af1e649"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-nex-agi-nex-n2-6-2",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 109,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 21,
+        "input_tokens": 16546,
+        "output_tokens": 9198,
+        "cache_read_tokens": 260352,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.011913168,
+        "cost_source": "provider"
+      },
+      "result_sha256": "af041b0a2fa91d2be41cc0c3bb08b495bd3b16b3b03a8ffe3b84bb03518a49b3",
+      "transcript_sha256": "68036f60a6b8d1fcf03246ab4af174365c90c316b0397a2afdb80e7189f6d5c4"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-nex-agi-nex-n2-6-3",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "agent_duration_seconds": 90,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 19,
+        "input_tokens": 11625,
+        "output_tokens": 7404,
+        "cache_read_tokens": 191488,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.008952312,
+        "cost_source": "provider"
+      },
+      "result_sha256": "2970a8cf923807c5fb1542c8f11eca41cd5c3192181cd7025ff41a5a8107623e",
+      "transcript_sha256": "40f85cf647ffd76437d2d4feb5a3c827185754f917307bf51f394a1006abf6a2"
+    }
+  ]
+}

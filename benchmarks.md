@@ -9,25 +9,19 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## MiMo-V2.6-Flash Core via OpenCode Go
+## Nex N2.6 Core via Claux / OpenRouter
 
-MiMo-V2.6-Flash passed 23 of 33 trials with a median agent duration of 624 seconds.
+Nex N2.6 passed all 33 Core trials, with a 109-second median agent duration and $0.391978096 in provider-reported inference cost.
 
-Benchmark release: `20261110.0.2`
+Benchmark release: `20261112.0.0`
 Benchmark tier: `core`
-
-Provider-reported subscription usage value: **$0.4207** across 33 trials. This is a catalog-priced usage estimate, not metered spend.
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| MiMo-V2.6-Flash · opencode-go | 23/33 | 70% | 10:24 | n/a | n/a |
-| **Total** | **23/33** | **70%** | **10:24** | **n/a** | **n/a** |
-
-### Post-timeout verification
-
-4 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
+| Nex N2.6 · openrouter | 33/33 | 100% | 1:49 | $0.3920 | $0.0119 |
+| **Total** | **33/33** | **100%** | **1:49** | **$0.3920** | **$0.0119** |
 
 ### Execution recording
 
@@ -35,44 +29,40 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| MiMo-V2.6-Flash · opencode-go | 33/33 | 19 | 8:56 | 31 | 0:21 | 0:02 | 10:11 |
+| Nex N2.6 · openrouter | 33/33 | 16 | 1:39 | 22 | 0:09 | 0:03 | 1:45 |
 
-Nine trials timed out and one deployment failed to converge. Four timeout repairs passed post-deadline lifecycle checks and retained their timeout scores.
+33 of 33 trials passed all three lifecycle checks. Median agent duration: 109 seconds.
 
 ### Scenario breakdown
 
-| Scenario | Version | MiMo-V2.6-Flash · opencode-go |
+| Scenario | Version | Nex N2.6 · openrouter |
 |---|---:|---:|
-| 001-nginx-502-host | v1 | 1/3, 15:02 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 8:57 |
-| 015-sidekiq-poison-pill | v1 | 1/3, 15:02 |
-| 016-rails-pool-exhaustion | v1 | 2/3, 6:18 |
-| 017-partial-rails-rollout | v1 | 3/3, 11:10 |
-| 019-rust-fd-leak | v1 | 3/3, 6:55 |
-| 021-discourse-shared-uploads | v1 | 2/3, 13:54 |
-| 023-auth-secret-rollout | v1 | 3/3, 5:46 |
-| 024-discourse-interrupted-deploy | v1 | 0/3, 15:04 |
-| 028-nix-store-disk-pressure | v1 | 2/3, 10:47 |
-| 033-tls-trust-rotation | v2 | 3/3, 10:00 |
+| 001-nginx-502-host | v1 | 3/3, 1:12 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 1:27 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 3:23 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 1:26 |
+| 017-partial-rails-rollout | v1 | 3/3, 2:12 |
+| 019-rust-fd-leak | v1 | 3/3, 1:20 |
+| 021-discourse-shared-uploads | v1 | 3/3, 3:34 |
+| 023-auth-secret-rollout | v1 | 3/3, 1:45 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 2:15 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 2:09 |
+| 033-tls-trust-rotation | v2 | 3/3, 1:49 |
 
 ### Failure categories
 
-- `agent_timeout`: 9
-- `release_not_converged`: 1
 
 ### Source matrices
 
-- `matrix`: opencode-go/mimo-v2.6-flash; Replaybook `df23de80`
+- `matrix`: nex-agi/nex-n2.6; Replaybook `c95b3c71`
 
 ### Run notes
 
-- Eleven frozen Core scenarios, three scheduled attempts each, 900-second agent deadline, one concurrent VM. Core manifest 2026.10.24.2; host harness 23.
-- Executed through OpenCode 1.19.0 with pinned public model definitions and a scoped provider credential. This is an OpenCode/provider configuration, not the frozen Claux agent. Models with different reasoning settings or providers are not controlled intrinsic-model comparisons.
-- Raw trial results, transcripts and immutable execution snapshots were audited; source hashes and documented corrections are retained. Public evidence excludes credentials, full transcripts, private reasoning, raw VM logs and local filesystem paths.
-- Main-model usage is from OpenCode events. Monetary API cost was not reported and must not be interpreted as zero. Client-reported usage values are not an invoice or a complete accounting of auxiliary requests/infrastructure.
-- Three attempts per scenario are a small sample; no general infrastructure competence or definitive model ranking is established.
-- The first launch produced 21 results. Twelve slots failed during OpenCode setup with a disk-full error. The resume kept all completed results and used disk-backed temporary storage to finish the missing slots. Resume regenerated launch logs for those slots. Seven original setup logs were archived before replacement.
-- OpenCode reported $0.4206995968 in subscription usage value. Incremental cash cost was unreported.
+- Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.
+- All 33 raw results, transcript usage and immediate/service-restart/host-reboot verification flags were audited against the immutable execution snapshot. No result corrections. Public audit retains hashes and sanitized measurements, not full transcripts or local paths.
+- The bounded-search Claux binary differs from earlier frozen Claux releases; preserve this harness boundary when comparing results. Reasoning effort used the default setting.
+- Provider-reported inference cost covers all 33 trials. It excludes local compute and is not an invoice.
+- Three attempts per scenario are a small sample; a perfect score on this pack does not establish general infrastructure competence.
 
 <!-- replaybook:current-benchmark:end -->
 
