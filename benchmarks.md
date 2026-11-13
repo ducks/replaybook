@@ -9,19 +9,19 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Nex N2.6 Core via Claux / OpenRouter
+## Gemini 4 Hydrogen Core via Claux / OpenRouter
 
-Nex N2.6 passed all 33 Core trials, with a 109-second median agent duration and $0.391978096 in provider-reported inference cost.
+Gemini 4 Hydrogen passed 30 of 33 Core trials (90.9%), with an 84-second median agent duration and $5.841152925 in provider-reported inference cost.
 
-Benchmark release: `20261112.0.0`
+Benchmark release: `20261113.0.0`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Nex N2.6 · openrouter | 33/33 | 100% | 1:49 | $0.3920 | $0.0119 |
-| **Total** | **33/33** | **100%** | **1:49** | **$0.3920** | **$0.0119** |
+| Gemini 4 Hydrogen · openrouter | 30/33 | 91% | 1:24 | $5.8412 | $0.1947 |
+| **Total** | **30/33** | **91%** | **1:24** | **$5.8412** | **$0.1947** |
 
 ### Execution recording
 
@@ -29,40 +29,48 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Nex N2.6 · openrouter | 33/33 | 16 | 1:39 | 22 | 0:09 | 0:03 | 1:45 |
+| Gemini 4 Hydrogen · openrouter | 33/33 | 15 | 1:14 | 22 | 0:04 | 0:03 | 1:19 |
 
-33 of 33 trials passed all three lifecycle checks. Median agent duration: 109 seconds.
+One Sidekiq poison-pill attempt did not recover pre-existing legitimate backlog.
+
+One shared-uploads attempt repaired the configured storage path but did not recover files accepted before the repair.
+
+Another shared-uploads attempt encountered an OpenRouter 403 content-policy rejection after 10 model rounds and 15 tool calls. It remains an evaluated failure because meaningful inference occurred. No unsupported claim is made about what triggered the provider policy.
+
+All 30 passing attempts passed immediate, service-restart and host-reboot verification. Median agent duration: 84 seconds.
 
 ### Scenario breakdown
 
-| Scenario | Version | Nex N2.6 · openrouter |
+| Scenario | Version | Gemini 4 Hydrogen · openrouter |
 |---|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 1:12 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 1:27 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 3:23 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 1:26 |
-| 017-partial-rails-rollout | v1 | 3/3, 2:12 |
-| 019-rust-fd-leak | v1 | 3/3, 1:20 |
-| 021-discourse-shared-uploads | v1 | 3/3, 3:34 |
-| 023-auth-secret-rollout | v1 | 3/3, 1:45 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 2:15 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 2:09 |
-| 033-tls-trust-rotation | v2 | 3/3, 1:49 |
+| 001-nginx-502-host | v1 | 3/3, 0:49 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 1:32 |
+| 015-sidekiq-poison-pill | v1 | 2/3, 3:42 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 1:29 |
+| 017-partial-rails-rollout | v1 | 3/3, 2:16 |
+| 019-rust-fd-leak | v1 | 3/3, 1:24 |
+| 021-discourse-shared-uploads | v1 | 1/3, 1:57 |
+| 023-auth-secret-rollout | v1 | 3/3, 1:15 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 1:19 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 1:41 |
+| 033-tls-trust-rotation | v2 | 3/3, 1:07 |
 
 ### Failure categories
 
+- `accepted_uploads_not_recovered`: 1
+- `backlog_not_recovered`: 1
+- `provider_policy_rejection`: 1
 
 ### Source matrices
 
-- `matrix`: nex-agi/nex-n2.6; Replaybook `c95b3c71`
+- `matrix`: google/gemini-4-hydrogen; Replaybook `6ebda1ac`
 
 ### Run notes
 
 - Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.
-- All 33 raw results, transcript usage and immediate/service-restart/host-reboot verification flags were audited against the immutable execution snapshot. No result corrections. Public audit retains hashes and sanitized measurements, not full transcripts or local paths.
-- The bounded-search Claux binary differs from earlier frozen Claux releases; preserve this harness boundary when comparing results. Reasoning effort used the default setting.
-- Provider-reported inference cost covers all 33 trials. It excludes local compute and is not an invoice.
-- Three attempts per scenario are a small sample; a perfect score on this pack does not establish general infrastructure competence.
+- Audited all 33 raw results, transcript usage, lifecycle verification and immutable execution snapshot. No scoring corrections or reruns. Sanitized public evidence retains source hashes without transcripts, private reasoning, local paths or raw VM logs.
+- The bounded-search Claux binary differs from earlier frozen Claux releases; preserve harness/provider/reasoning boundaries in comparisons. Reasoning effort used the default setting.
+- Provider-reported inference cost covers all 33 trials and excludes local compute. It is not an invoice. Three attempts per scenario are a small sample, not a definitive model ranking.
 
 <!-- replaybook:current-benchmark:end -->
 
