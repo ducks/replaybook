@@ -17,10 +17,10 @@ from typing import Any
 from urllib.parse import urlencode
 
 if __package__:
-    from integrations.host.benchmark_scores import build_scores
+    from integrations.host.benchmark_scores import build_scores, score_registration
     from integrations.host.benchmark_stats import wilson_interval
 else:
-    from benchmark_scores import build_scores
+    from benchmark_scores import build_scores, score_registration
     from benchmark_stats import wilson_interval
 
 
@@ -2595,8 +2595,11 @@ def store_release(root: Path, release: dict[str, Any]) -> None:
     if version not in releases:
         releases.append(version)
     index["current_version"] = version
+    score_config = score_registration(root, release)
     write_json(root / RELEASES_DIR / f"{version}.json", release)
     write_json(index_path, index)
+    if score_config is not None:
+        write_json(root / "benchmark-data/scores.json", score_config)
     build_outputs(root)
 
 

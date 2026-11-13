@@ -219,6 +219,33 @@ def scenario_run_detail(cell, runs):
     }
 
 
+def score_registration(root, release):
+    """Register a newly published complete contract, independent of its score.
+
+    Keep historical/manual entries and labels intact. Unknown contracts and
+    provisional lanes remain evidence-only; build_scores still checks every card.
+    """
+    config_path = root / "benchmark-data/scores.json"
+    config = json.loads(config_path.read_text()) if config_path.exists() else {"cohorts": []}
+    if any(entry["release"] == release["version"] for entry in config["cohorts"]):
+        return None
+    source = release.get("compatibility", {}).get("benchmark_manifest") or {}
+    if source.get("tier") not in {"core", "frontier"}:
+        return None
+    for path in sorted((root / "benchmark-data/manifests").glob("*.toml")):
+        benchmark = load_benchmark_manifest(path)
+        if (source.get("id"), source.get("version"), source.get("sha256"), source.get("tier")) != (
+            benchmark.id, benchmark.version, benchmark.sha256, benchmark.tier
+        ):
+            continue
+        report = score_release(release, benchmark)
+        if not report["exact_contract"] or not any(card["status"] == "complete" for card in report["cards"]):
+            return None
+        config["cohorts"].insert(0, {"release": release["version"], "manifest": path.relative_to(root).as_posix()})
+        return config
+    return None
+
+
 def build_scores(root, index):
     """Explicitly selected releases and frozen contracts; never pick a best run."""
     config_path = root / "benchmark-data/scores.json"

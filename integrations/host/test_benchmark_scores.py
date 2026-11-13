@@ -386,3 +386,57 @@ class CooperationPublicationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PublicationRegistrationTests(unittest.TestCase):
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        self.root = Path(self.directory.name)
+        source = Path(__file__).resolve().parents[2]
+        shutil.copytree(source / "benchmark-data/manifests", self.root / "benchmark-data/manifests")
+        self.release = json.loads((source / "benchmark-data/releases/20261112.0.0.json").read_text())
+
+    def test_store_release_registers_complete_score_and_reimport_is_idempotent(self):
+        from unittest.mock import patch
+        from .publish_benchmarks import store_release
+        with patch("integrations.host.publish_benchmarks.build_outputs"):
+            store_release(self.root, self.release)
+            store_release(self.root, self.release)
+        config = json.loads((self.root / "benchmark-data/scores.json").read_text())
+        self.assertEqual(len(config["cohorts"]), 1)
+        index = json.loads((self.root / "benchmark-data/index.json").read_text())
+        report = build_scores(self.root, index)
+        cards = [card for cohort in report["cohorts"] for group in cohort["groups"].values() for card in group]
+        self.assertEqual(len(cards), 1)
+        self.assertEqual(cards[0]["model"], "nex-agi/nex-n2.6")
+        self.assertEqual(cards[0]["score"], 100)
+
+    def test_registration_rejects_unknown_incomplete_and_incompatible_contracts(self):
+        from .benchmark_scores import score_registration
+        mutations = [
+            lambda r: r["compatibility"]["benchmark_manifest"].update(sha256="unknown"),
+            lambda r: r["compatibility"].update(agent_timeout_seconds=901),
+            lambda r: r["compatibility"].update(attempts=1),
+            lambda r: r["by_scenario_model"].pop(),
+            lambda r: r["compatibility"]["benchmark_manifest"].update(tier="exploratory"),
+        ]
+        for mutation in mutations:
+            with self.subTest(mutation=mutation):
+                release = copy.deepcopy(self.release)
+                mutation(release)
+                self.assertIsNone(score_registration(self.root, release))
+        self.assertFalse((self.root / "benchmark-data/scores.json").exists())
+
+    def test_zero_pass_complete_release_is_registered_and_manual_labels_survive(self):
+        from .benchmark_scores import score_registration
+        release = copy.deepcopy(self.release)
+        for row in release["by_scenario_model"]:
+            row["passed"] = 0
+        config = score_registration(self.root, release)
+        self.assertEqual(config["cohorts"][0]["release"], release["version"])
+        config["cohorts"][0]["label"] = "Preserve editorial label"
+        path = self.root / "benchmark-data/scores.json"
+        path.write_text(json.dumps(config))
+        self.assertIsNone(score_registration(self.root, release))
+        self.assertEqual(json.loads(path.read_text()), config)
