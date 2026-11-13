@@ -864,6 +864,16 @@ python integrations/host/publish_benchmarks.py import \
   jobs/visual-metrics/summary.json
 ```
 
+Import also registers a release on the scores page when its manifest identity,
+version/hash, tier, attempt count, timeout, controller version and complete lane
+coverage match a frozen contract under benchmark-data/manifests/. Registration
+is independent of pass rate: complete failing runs qualify too. Existing score
+entries and labels are preserved, and repeated imports do not duplicate entries.
+Unknown contracts and provisional coverage remain evidence-only; the scores
+renderer still checks each lane before showing a headline score. No separate
+scores.json edit is needed for a newly imported eligible release. Publication
+still requires reviewing, committing and pushing the generated files.
+
 Before combining results it requires the same suite, host harness, selected
 scenario content, attempt count, agent timeout, and agent adapter. Claux
 releases are part of that boundary only when Claux is the selected agent
