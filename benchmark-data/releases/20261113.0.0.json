@@ -1,0 +1,2336 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 11368559,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 3,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1,
+        "backlog_not_recovered": 1,
+        "provider_policy_rejection": 1
+      },
+      "input_tokens": 2022089,
+      "known_cost_usd": 5.841152925,
+      "median_duration_seconds": 84,
+      "median_first_non_read_only_tool_seconds": 3.399,
+      "median_model_duration_seconds": 74.425,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 79.033,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 4.002,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 260717,
+      "pass_rate": 0.9090909090909091,
+      "passed": 30,
+      "provider": "openrouter",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 384736,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 127991,
+      "known_cost_usd": 0.3149517,
+      "median_duration_seconds": 49,
+      "median_first_non_read_only_tool_seconds": 3.243,
+      "median_model_duration_seconds": 46.89,
+      "median_model_rounds": 12,
+      "median_post_first_non_read_only_seconds": 44.466,
+      "median_tool_calls": 13,
+      "median_tool_duration_seconds": 0.571,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 12548,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 946375,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 186556,
+      "known_cost_usd": 0.500114625,
+      "median_duration_seconds": 92,
+      "median_first_non_read_only_tool_seconds": 2.429,
+      "median_model_duration_seconds": 80.039,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 87.58999999999999,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 9.074,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 19907,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1935805,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "backlog_not_recovered": 1
+      },
+      "input_tokens": 261995,
+      "known_cost_usd": 0.8747103749999999,
+      "median_duration_seconds": 222,
+      "median_first_non_read_only_tool_seconds": 3.08,
+      "median_model_duration_seconds": 188.558,
+      "median_model_rounds": 30,
+      "median_post_first_non_read_only_seconds": 216.47199999999998,
+      "median_tool_calls": 36,
+      "median_tool_duration_seconds": 29.008,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 44871,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1065184,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 161502,
+      "known_cost_usd": 0.49824179999999996,
+      "median_duration_seconds": 89,
+      "median_first_non_read_only_tool_seconds": 3.467,
+      "median_model_duration_seconds": 83.984,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 83.652,
+      "median_tool_calls": 30,
+      "median_tool_duration_seconds": 4.002,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 23480,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1181034,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 179529,
+      "known_cost_usd": 0.50578605,
+      "median_duration_seconds": 136,
+      "median_first_non_read_only_tool_seconds": 3.524,
+      "median_model_duration_seconds": 83.038,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 130.965,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 46.593,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 19722,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 973566,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 159778,
+      "known_cost_usd": 0.47496194999999997,
+      "median_duration_seconds": 84,
+      "median_first_non_read_only_tool_seconds": 3.615,
+      "median_model_duration_seconds": 79.414,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 79.033,
+      "median_tool_calls": 23,
+      "median_tool_duration_seconds": 2.797,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 21637,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 894536,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "accepted_uploads_not_recovered": 1,
+        "provider_policy_rejection": 1
+      },
+      "input_tokens": 165099,
+      "known_cost_usd": 0.5610537,
+      "median_duration_seconds": 117,
+      "median_first_non_read_only_tool_seconds": 4.396,
+      "median_model_duration_seconds": 110.195,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 111.4,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 3.892,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 32842,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 782344,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 151003,
+      "known_cost_usd": 0.4509978,
+      "median_duration_seconds": 75,
+      "median_first_non_read_only_tool_seconds": 2.971,
+      "median_model_duration_seconds": 71.568,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 69.786,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 0.956,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 22109,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1146065,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 221372,
+      "known_cost_usd": 0.575190375,
+      "median_duration_seconds": 79,
+      "median_first_non_read_only_tool_seconds": 3.824,
+      "median_model_duration_seconds": 73.048,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 72.325,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 5.187,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 20957,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1357470,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 261180,
+      "known_cost_usd": 0.68012025,
+      "median_duration_seconds": 101,
+      "median_first_non_read_only_tool_seconds": 2.805,
+      "median_model_duration_seconds": 96.042,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 96.592,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 3.345,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 24872,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 701444,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 146084,
+      "known_cost_usd": 0.4050243,
+      "median_duration_seconds": 67,
+      "median_first_non_read_only_tool_seconds": 3.393,
+      "median_model_duration_seconds": 56.973,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 58.873,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 5.263,
+      "model": "google/gemini-4-hydrogen",
+      "output_tokens": 17772,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "api",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "bounded-search 25e7b9c (binary 7a7268af30cf)"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Gemini 4 Hydrogen passed 30 of 33 Core trials (90.9%), with an 84-second median agent duration and $5.841152925 in provider-reported inference cost.",
+  "input_mode": "text",
+  "model_labels": {
+    "google/gemini-4-hydrogen": "Gemini 4 Hydrogen"
+  },
+  "model_order": [
+    "google/gemini-4-hydrogen"
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Audited all 33 raw results, transcript usage, lifecycle verification and immutable execution snapshot. No scoring corrections or reruns. Sanitized public evidence retains source hashes without transcripts, private reasoning, local paths or raw VM logs.",
+    "The bounded-search Claux binary differs from earlier frozen Claux releases; preserve harness/provider/reasoning boundaries in comparisons. Reasoning effort used the default setting.",
+    "Provider-reported inference cost covers all 33 trials and excludes local compute. It is not an invoice. Three attempts per scenario are a small sample, not a definitive model ranking."
+  ],
+  "observations": [
+    "One Sidekiq poison-pill attempt did not recover pre-existing legitimate backlog.",
+    "One shared-uploads attempt repaired the configured storage path but did not recover files accepted before the repair.",
+    "Another shared-uploads attempt encountered an OpenRouter 403 content-policy rejection after 10 model rounds and 15 tool calls. It remains an evaluated failure because meaningful inference occurred. No unsupported claim is made about what triggered the provider policy.",
+    "All 30 passing attempts passed immediate, service-restart and host-reboot verification. Median agent duration: 84 seconds."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 49,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:20:42Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.243,
+        "model_duration_seconds": 46.89,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 44.466,
+        "tool_calls": 13,
+        "tool_duration_seconds": 0.47,
+        "total_duration_seconds": 47.709
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-google-gemini-4-hydrogen-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:19:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 135975,
+        "cost_source": "provider",
+        "cost_usd": 0.092795625,
+        "input_tokens": 33260,
+        "output_tokens": 4361,
+        "rounds": 12,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 42,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:22:39Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.399,
+        "model_duration_seconds": 39.641,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 36.926,
+        "tool_calls": 9,
+        "tool_duration_seconds": 0.571,
+        "total_duration_seconds": 40.325
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-google-gemini-4-hydrogen-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:21:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 130028,
+        "cost_source": "provider",
+        "cost_usd": 0.12158310000000001,
+        "input_tokens": 56529,
+        "output_tokens": 3605,
+        "rounds": 10,
+        "tool_calls": 9
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 58,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:24:46Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.127,
+        "model_duration_seconds": 54.282,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 53.492,
+        "tool_calls": 17,
+        "tool_duration_seconds": 1.745,
+        "total_duration_seconds": 56.619
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-google-gemini-4-hydrogen-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:23:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 118733,
+        "cost_source": "provider",
+        "cost_usd": 0.100572975,
+        "input_tokens": 38202,
+        "output_tokens": 4582,
+        "rounds": 14,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 120,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:28:11Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.429,
+        "model_duration_seconds": 109.646,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 116.508,
+        "tool_calls": 22,
+        "tool_duration_seconds": 9.074,
+        "total_duration_seconds": 118.937
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-hydrogen-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-13T02:25:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 363178,
+        "cost_source": "provider",
+        "cost_usd": 0.16838385,
+        "input_tokens": 60782,
+        "output_tokens": 6663,
+        "rounds": 19,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 79,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:31:01Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.9,
+        "model_duration_seconds": 69.67,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 74.577,
+        "tool_calls": 20,
+        "tool_duration_seconds": 7.629,
+        "total_duration_seconds": 77.477
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-hydrogen-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-13T02:29:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 276202,
+        "cost_source": "provider",
+        "cost_usd": 0.15006165,
+        "input_tokens": 52841,
+        "output_tokens": 6678,
+        "rounds": 15,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 92,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:33:56Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.293,
+        "model_duration_seconds": 80.039,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 87.58999999999999,
+        "tool_calls": 24,
+        "tool_duration_seconds": 9.666,
+        "total_duration_seconds": 89.883
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-hydrogen-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-13T02:32:05Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 306995,
+        "cost_source": "provider",
+        "cost_usd": 0.18166912500000001,
+        "input_tokens": 72933,
+        "output_tokens": 6566,
+        "rounds": 20,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 243,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:39:35Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.08,
+        "model_duration_seconds": 210.489,
+        "model_rounds": 31,
+        "post_first_non_read_only_seconds": 237.201,
+        "tool_calls": 39,
+        "tool_duration_seconds": 29.008,
+        "total_duration_seconds": 240.281
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-hydrogen-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:35:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1089073,
+        "cost_source": "provider",
+        "cost_usd": 0.47475997499999995,
+        "input_tokens": 148733,
+        "output_tokens": 22664,
+        "rounds": 31,
+        "tool_calls": 39
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 21,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "repair did not recover the pre-existing backlog",
+      "failure_category": "backlog_not_recovered",
+      "finished_at": "2026-11-13T02:42:15Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.446,
+        "model_duration_seconds": 19.671,
+        "model_rounds": 6,
+        "post_first_non_read_only_seconds": 15.558000000000002,
+        "tool_calls": 7,
+        "tool_duration_seconds": 0.245,
+        "total_duration_seconds": 20.004
+      },
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-hydrogen-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:40:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 48110,
+        "cost_source": "provider",
+        "cost_usd": 0.04785375000000001,
+        "input_tokens": 23602,
+        "output_tokens": 1179,
+        "rounds": 6,
+        "tool_calls": 7
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 222,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:47:33Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.841,
+        "model_duration_seconds": 188.558,
+        "model_rounds": 30,
+        "post_first_non_read_only_seconds": 216.47199999999998,
+        "tool_calls": 36,
+        "tool_duration_seconds": 30.334,
+        "total_duration_seconds": 219.313
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-hydrogen-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:43:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 798622,
+        "cost_source": "provider",
+        "cost_usd": 0.35209665,
+        "input_tokens": 89660,
+        "output_tokens": 21028,
+        "rounds": 30,
+        "tool_calls": 36
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 89,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:50:47Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.467,
+        "model_duration_seconds": 83.984,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 83.652,
+        "tool_calls": 30,
+        "tool_duration_seconds": 2.917,
+        "total_duration_seconds": 87.119
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-hydrogen-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:48:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 385401,
+        "cost_source": "provider",
+        "cost_usd": 0.17809807499999997,
+        "input_tokens": 59272,
+        "output_tokens": 8038,
+        "rounds": 14,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 109,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:54:26Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.044,
+        "model_duration_seconds": 98.923,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 99.8,
+        "tool_calls": 30,
+        "tool_duration_seconds": 4.002,
+        "total_duration_seconds": 107.844
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-hydrogen-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:52:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 390285,
+        "cost_source": "provider",
+        "cost_usd": 0.17513887500000003,
+        "input_tokens": 53860,
+        "output_tokens": 8677,
+        "rounds": 14,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 75,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T02:57:42Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.43,
+        "model_duration_seconds": 67.749,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 70.42899999999999,
+        "tool_calls": 25,
+        "tool_duration_seconds": 5.942,
+        "total_duration_seconds": 73.859
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-hydrogen-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:55:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 289498,
+        "cost_source": "provider",
+        "cost_usd": 0.14500485,
+        "input_tokens": 48370,
+        "output_tokens": 6765,
+        "rounds": 12,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 139,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:01:48Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.53,
+        "model_duration_seconds": 83.038,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 131.74699999999999,
+        "tool_calls": 39,
+        "tool_duration_seconds": 53.906,
+        "total_duration_seconds": 137.277
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-google-gemini-4-hydrogen-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T02:59:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 521342,
+        "cost_source": "provider",
+        "cost_usd": 0.19359314999999996,
+        "input_tokens": 66780,
+        "output_tokens": 7243,
+        "rounds": 18,
+        "tool_calls": 39
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 136,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:05:48Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.95,
+        "model_duration_seconds": 87.147,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 130.965,
+        "tool_calls": 19,
+        "tool_duration_seconds": 46.593,
+        "total_duration_seconds": 133.915
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-google-gemini-4-hydrogen-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:03:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 391888,
+        "cost_source": "provider",
+        "cost_usd": 0.1802541,
+        "input_tokens": 60950,
+        "output_tokens": 7925,
+        "rounds": 18,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:09:15Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.524,
+        "model_duration_seconds": 53.286,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 85.663,
+        "tool_calls": 25,
+        "tool_duration_seconds": 35.791,
+        "total_duration_seconds": 89.187
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-google-gemini-4-hydrogen-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:07:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 267804,
+        "cost_source": "provider",
+        "cost_usd": 0.1319388,
+        "input_tokens": 51799,
+        "output_tokens": 4554,
+        "rounds": 13,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 89,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:13:36Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.615,
+        "model_duration_seconds": 84.805,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 84.36500000000001,
+        "tool_calls": 23,
+        "tool_duration_seconds": 2.975,
+        "total_duration_seconds": 87.98
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-google-gemini-4-hydrogen-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:11:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 321426,
+        "cost_source": "provider",
+        "cost_usd": 0.15776595,
+        "input_tokens": 53986,
+        "output_tokens": 7024,
+        "rounds": 13,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 84,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:17:44Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.198,
+        "model_duration_seconds": 79.414,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 79.033,
+        "tool_calls": 25,
+        "tool_duration_seconds": 2.63,
+        "total_duration_seconds": 82.231
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-google-gemini-4-hydrogen-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:16:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 247569,
+        "cost_source": "provider",
+        "cost_usd": 0.14264617500000001,
+        "input_tokens": 46699,
+        "output_tokens": 7204,
+        "rounds": 15,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 79,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:21:50Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.68,
+        "model_duration_seconds": 74.425,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 73.72999999999999,
+        "tool_calls": 22,
+        "tool_duration_seconds": 2.797,
+        "total_duration_seconds": 77.41
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-google-gemini-4-hydrogen-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:20:15Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 404571,
+        "cost_source": "provider",
+        "cost_usd": 0.17454982499999996,
+        "input_tokens": 59093,
+        "output_tokens": 7409,
+        "rounds": 15,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 62,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "API error: openrouter API error (403 Forbidden) for model 'google/gemini-4-hydrogen' [content_policy_violation]: SAFETY",
+      "failure_category": "provider_policy_rejection",
+      "finished_at": "2026-11-13T03:23:56Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.7,
+        "model_duration_seconds": 58.876,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 55.604,
+        "tool_calls": 15,
+        "tool_duration_seconds": 0.307,
+        "total_duration_seconds": 59.304
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-hydrogen-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:22:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 119465,
+        "cost_source": "provider",
+        "cost_usd": 0.131673375,
+        "input_tokens": 51494,
+        "output_tokens": 6063,
+        "rounds": 10,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 128,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "HTTP repair did not recover",
+      "failure_category": "accepted_uploads_not_recovered",
+      "finished_at": "2026-11-13T03:27:02Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.396,
+        "model_duration_seconds": 122.212,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 121.965,
+        "tool_calls": 21,
+        "tool_duration_seconds": 3.892,
+        "total_duration_seconds": 126.361
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-hydrogen-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:24:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 416679,
+        "cost_source": "provider",
+        "cost_usd": 0.22851742500000002,
+        "input_tokens": 61476,
+        "output_tokens": 14007,
+        "rounds": 17,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 117,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:30:09Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.416,
+        "model_duration_seconds": 110.195,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 111.4,
+        "tool_calls": 15,
+        "tool_duration_seconds": 5.414,
+        "total_duration_seconds": 115.816
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-hydrogen-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:27:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 358392,
+        "cost_source": "provider",
+        "cost_usd": 0.2008629,
+        "input_tokens": 52129,
+        "output_tokens": 12772,
+        "rounds": 16,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 75,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:32:25Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.871,
+        "model_duration_seconds": 71.568,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 69.786,
+        "tool_calls": 20,
+        "tool_duration_seconds": 0.956,
+        "total_duration_seconds": 72.657
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-google-gemini-4-hydrogen-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:30:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 242111,
+        "cost_source": "provider",
+        "cost_usd": 0.15481882500000002,
+        "input_tokens": 52217,
+        "output_tokens": 7778,
+        "rounds": 14,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 69,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:34:36Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.971,
+        "model_duration_seconds": 65.931,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 64.235,
+        "tool_calls": 19,
+        "tool_duration_seconds": 0.93,
+        "total_duration_seconds": 67.206
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-google-gemini-4-hydrogen-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:33:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 267117,
+        "cost_source": "provider",
+        "cost_usd": 0.151027275,
+        "input_tokens": 52854,
+        "output_tokens": 6895,
+        "rounds": 13,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:36:58Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.537,
+        "model_duration_seconds": 74.004,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 72.15299999999999,
+        "tool_calls": 20,
+        "tool_duration_seconds": 1.186,
+        "total_duration_seconds": 76.69
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-google-gemini-4-hydrogen-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:35:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 273116,
+        "cost_source": "provider",
+        "cost_usd": 0.14515170000000002,
+        "input_tokens": 45932,
+        "output_tokens": 7436,
+        "rounds": 13,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 79,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:39:26Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.059,
+        "model_duration_seconds": 73.048,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 72.325,
+        "tool_calls": 21,
+        "tool_duration_seconds": 4.118,
+        "total_duration_seconds": 77.384
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-hydrogen-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:37:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 372425,
+        "cost_source": "provider",
+        "cost_usd": 0.177228375,
+        "input_tokens": 65961,
+        "output_tokens": 6714,
+        "rounds": 16,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 75,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:41:54Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.752,
+        "model_duration_seconds": 67.905,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 70.605,
+        "tool_calls": 22,
+        "tool_duration_seconds": 5.187,
+        "total_duration_seconds": 73.357
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-hydrogen-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:40:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 353323,
+        "cost_source": "provider",
+        "cost_usd": 0.209505225,
+        "input_tokens": 91859,
+        "output_tokens": 6029,
+        "rounds": 16,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 109,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:44:48Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.824,
+        "model_duration_seconds": 101.289,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 103.68900000000001,
+        "tool_calls": 22,
+        "tool_duration_seconds": 6.029,
+        "total_duration_seconds": 107.513
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-hydrogen-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:42:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 420317,
+        "cost_source": "provider",
+        "cost_usd": 0.188456775,
+        "input_tokens": 63552,
+        "output_tokens": 8214,
+        "rounds": 15,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 128,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:48:22Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.4,
+        "model_duration_seconds": 122.375,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 122.627,
+        "tool_calls": 23,
+        "tool_duration_seconds": 3.427,
+        "total_duration_seconds": 126.027
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-hydrogen-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:45:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 474668,
+        "cost_source": "provider",
+        "cost_usd": 0.2932011,
+        "input_tokens": 126179,
+        "output_tokens": 9111,
+        "rounds": 18,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 97,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:51:34Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.223,
+        "model_duration_seconds": 90.529,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 91.873,
+        "tool_calls": 25,
+        "tool_duration_seconds": 3.345,
+        "total_duration_seconds": 94.096
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-hydrogen-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:49:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 471953,
+        "cost_source": "provider",
+        "cost_usd": 0.197043975,
+        "input_tokens": 71575,
+        "output_tokens": 7238,
+        "rounds": 21,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 101,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:55:04Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.805,
+        "model_duration_seconds": 96.042,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 96.592,
+        "tool_calls": 28,
+        "tool_duration_seconds": 3.158,
+        "total_duration_seconds": 99.397
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-hydrogen-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T03:53:05Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 410849,
+        "cost_source": "provider",
+        "cost_usd": 0.189875175,
+        "input_tokens": 63426,
+        "output_tokens": 8523,
+        "rounds": 17,
+        "tool_calls": 28
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 69,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:57:48Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.02,
+        "model_duration_seconds": 60.439,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 61.52000000000001,
+        "tool_calls": 26,
+        "tool_duration_seconds": 5.958,
+        "total_duration_seconds": 66.54
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-google-gemini-4-hydrogen-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-13T03:56:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 275279,
+        "cost_source": "provider",
+        "cost_usd": 0.153586425,
+        "input_tokens": 57102,
+        "output_tokens": 6305,
+        "rounds": 11,
+        "tool_calls": 26
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 61,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T03:59:57Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.096,
+        "model_duration_seconds": 51.779,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 54.101,
+        "tool_calls": 15,
+        "tool_duration_seconds": 5.263,
+        "total_duration_seconds": 57.197
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-google-gemini-4-hydrogen-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-13T03:58:39Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 182383,
+        "cost_source": "provider",
+        "cost_usd": 0.11625022500000001,
+        "input_tokens": 42396,
+        "output_tokens": 5197,
+        "rounds": 12,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 67,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T04:02:17Z",
+      "model": "google/gemini-4-hydrogen",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.393,
+        "model_duration_seconds": 56.973,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 58.873,
+        "tool_calls": 22,
+        "tool_duration_seconds": 5.138,
+        "total_duration_seconds": 62.266
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-google-gemini-4-hydrogen-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-13T04:00:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 243782,
+        "cost_source": "provider",
+        "cost_usd": 0.13518765,
+        "input_tokens": 46586,
+        "output_tokens": 6270,
+        "rounds": 10,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-13T04:02:17.522316Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "google/gemini-4-hydrogen"
+      ],
+      "reasoning_efforts": [],
+      "replaybook_commit": "6ebda1ac722c466a45902ef959f3a33497e8e52e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-13T02:18:14.986442Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "817de0ffb5f63263053b2e462a9d53fb56c03c7ab914a9a8def1eaf4cc80c7ef"
+    }
+  ],
+  "tier": "core",
+  "title": "Gemini 4 Hydrogen Core via Claux / OpenRouter",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 11368559,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 3,
+    "failure_categories": {
+      "accepted_uploads_not_recovered": 1,
+      "backlog_not_recovered": 1,
+      "provider_policy_rejection": 1
+    },
+    "input_tokens": 2022089,
+    "known_cost_usd": 5.841152925,
+    "median_duration_seconds": 84,
+    "median_first_non_read_only_tool_seconds": 3.399,
+    "median_model_duration_seconds": 74.425,
+    "median_model_rounds": 15,
+    "median_post_first_non_read_only_seconds": 79.033,
+    "median_tool_calls": 22,
+    "median_tool_duration_seconds": 4.002,
+    "output_tokens": 260717,
+    "pass_rate": 0.9090909090909091,
+    "passed": 30,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261113.0.0"
+}

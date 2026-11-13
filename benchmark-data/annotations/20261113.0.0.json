@@ -1,0 +1,30 @@
+{
+  "title": "Gemini 4 Hydrogen Core via Claux / OpenRouter",
+  "description": "Gemini 4 Hydrogen passed 30 of 33 Core trials (90.9%), with an 84-second median agent duration and $5.841152925 in provider-reported inference cost.",
+  "input_mode": "text",
+  "model_order": [
+    "google/gemini-4-hydrogen"
+  ],
+  "model_labels": {
+    "google/gemini-4-hydrogen": "Gemini 4 Hydrogen"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "bounded-search 25e7b9c (binary 7a7268af30cf)",
+    "provider": "OpenRouter",
+    "billing": "api"
+  },
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Audited all 33 raw results, transcript usage, lifecycle verification and immutable execution snapshot. No scoring corrections or reruns. Sanitized public evidence retains source hashes without transcripts, private reasoning, local paths or raw VM logs.",
+    "The bounded-search Claux binary differs from earlier frozen Claux releases; preserve harness/provider/reasoning boundaries in comparisons. Reasoning effort used the default setting.",
+    "Provider-reported inference cost covers all 33 trials and excludes local compute. It is not an invoice. Three attempts per scenario are a small sample, not a definitive model ranking."
+  ],
+  "observations": [
+    "One Sidekiq poison-pill attempt did not recover pre-existing legitimate backlog.",
+    "One shared-uploads attempt repaired the configured storage path but did not recover files accepted before the repair.",
+    "Another shared-uploads attempt encountered an OpenRouter 403 content-policy rejection after 10 model rounds and 15 tool calls. It remains an evaluated failure because meaningful inference occurred. No unsupported claim is made about what triggered the provider policy.",
+    "All 30 passing attempts passed immediate, service-restart and host-reboot verification. Median agent duration: 84 seconds."
+  ]
+}

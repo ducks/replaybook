@@ -1,0 +1,1013 @@
+{
+  "model": "google/gemini-4-hydrogen",
+  "summary_sha256": "817de0ffb5f63263053b2e462a9d53fb56c03c7ab914a9a8def1eaf4cc80c7ef",
+  "execution_snapshot": {
+    "schema_version": 1,
+    "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1",
+        "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+        "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3"
+      }
+    ],
+    "selected_scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721"
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "version": 3,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7"
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b"
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256"
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce"
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee"
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f"
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169"
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b"
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "version": 1,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7"
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "version": 2,
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9"
+      }
+    ],
+    "agent_adapter_sha256": null,
+    "agent_payload_sha256": null,
+    "agent_config_sha256": null,
+    "agent_env_sha256": null,
+    "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+    "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3"
+  },
+  "totals": {
+    "trials": 33,
+    "evaluated": 33,
+    "unavailable": 0,
+    "passed": 30,
+    "failed": 3,
+    "durable_repairs_after_timeout": 0,
+    "pass_rate": 0.9090909090909091,
+    "median_duration_seconds": 84.0,
+    "known_cost_usd": 5.841152925,
+    "cost_reported_trials": 33,
+    "input_tokens": 2022089,
+    "output_tokens": 260717,
+    "cache_read_tokens": 11368559,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_creation_reported_trials": 33,
+    "usage_reported_trials": 33,
+    "recording_reported_trials": 33,
+    "median_model_rounds": 15,
+    "median_model_duration_seconds": 74.425,
+    "median_tool_calls": 22,
+    "median_tool_duration_seconds": 4.002,
+    "median_first_non_read_only_tool_seconds": 3.399,
+    "median_post_first_non_read_only_seconds": 79.033
+  },
+  "corrections": [],
+  "runs": [
+    {
+      "run_id": "001-nginx-502-host-google-gemini-4-hydrogen-1",
+      "scenario": "001-nginx-502-host",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 49,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 12,
+        "tool_calls": 13,
+        "input_tokens": 33260,
+        "output_tokens": 4361,
+        "cache_read_tokens": 135975,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.092795625,
+        "cost_source": "provider"
+      },
+      "result_sha256": "aadd3ddc847f8a268455263e383a8e714d0e0b594781e6cf6bc85dfec149f299",
+      "transcript_sha256": "2031c5b71ac3f7ff4775eafd32b0d66e6312a13a59099aa6837a7e391aa22786"
+    },
+    {
+      "run_id": "001-nginx-502-host-google-gemini-4-hydrogen-2",
+      "scenario": "001-nginx-502-host",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 42,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 10,
+        "tool_calls": 9,
+        "input_tokens": 56529,
+        "output_tokens": 3605,
+        "cache_read_tokens": 130028,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.12158310000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "ac7dd91297c299e86780143138bb3af14299df41ffb338a8b8e9563698e244dd",
+      "transcript_sha256": "a7af23d9d46cddbe879ddc2aa97b57408456825621fbe3a7685049b36963813c"
+    },
+    {
+      "run_id": "001-nginx-502-host-google-gemini-4-hydrogen-3",
+      "scenario": "001-nginx-502-host",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 58,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 17,
+        "input_tokens": 38202,
+        "output_tokens": 4582,
+        "cache_read_tokens": 118733,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.100572975,
+        "cost_source": "provider"
+      },
+      "result_sha256": "3b79e0cc7a8f93972df3929cd2292e9bb93db5d7045d2f7dbad258efae8cbcf7",
+      "transcript_sha256": "6aaa6db3149da917658c2bf255712a86b26cb5aa4e081b73cfe2cf4a5fabc21b"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-hydrogen-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 120,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 19,
+        "tool_calls": 22,
+        "input_tokens": 60782,
+        "output_tokens": 6663,
+        "cache_read_tokens": 363178,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.16838385,
+        "cost_source": "provider"
+      },
+      "result_sha256": "61d7cba1673394eb08f135525c9f662b773e159165551ed06825bf5b02e52cb6",
+      "transcript_sha256": "9ed99b83a11dfc056245c32eef608a3b70a0a9760c4b59ebca207aa00808cf44"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-hydrogen-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 79,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 20,
+        "input_tokens": 52841,
+        "output_tokens": 6678,
+        "cache_read_tokens": 276202,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.15006165,
+        "cost_source": "provider"
+      },
+      "result_sha256": "524177700ee32aa92d55df8e67fb52bf06767d9a5ea9c4461e3fa75c137b7bcf",
+      "transcript_sha256": "33e06fd11ccf1e87a83398bf38dbdcef3dcab313de34a2f32cdf7946887429b6"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-hydrogen-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 92,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 20,
+        "tool_calls": 24,
+        "input_tokens": 72933,
+        "output_tokens": 6566,
+        "cache_read_tokens": 306995,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.18166912500000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "75964f1a5dea01cccc479321ff77813e1abe59a3b763131d01173720c1aaef3d",
+      "transcript_sha256": "8cb7e42aa14c1587248773bd492542bc29894913fa3c9ecf3f82354c12cc66a1"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-hydrogen-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 243,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 31,
+        "tool_calls": 39,
+        "input_tokens": 148733,
+        "output_tokens": 22664,
+        "cache_read_tokens": 1089073,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.47475997499999995,
+        "cost_source": "provider"
+      },
+      "result_sha256": "f8b36b29aa4b382e482b4922ca3994f7282cd8d10b6e0877556eab0fe8144818",
+      "transcript_sha256": "1e61c3089add55b70780334ee50749e1df344b349eef870cc5063e50cc21e3a4"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-hydrogen-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 2,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "backlog_not_recovered",
+      "agent_duration_seconds": 21,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 6,
+        "tool_calls": 7,
+        "input_tokens": 23602,
+        "output_tokens": 1179,
+        "cache_read_tokens": 48110,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.04785375000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "5aaa39226b305809b9e7d97a7b5da257d9c486df5241ad3a436d4dcf7fb9a223",
+      "transcript_sha256": "a1fcc963bf496dd2d0ea7960881de7fb34ad17fae80b9ec8701d31c6ba36a497",
+      "verifier_failure_sha256": "bf9202ee1b65ce9e2ef4459df77ccf5135c235f7e914b575cf49b8b7a42f858a"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-hydrogen-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 222,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 30,
+        "tool_calls": 36,
+        "input_tokens": 89660,
+        "output_tokens": 21028,
+        "cache_read_tokens": 798622,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.35209665,
+        "cost_source": "provider"
+      },
+      "result_sha256": "f7b145e77670fc8c2b8d3773342734c78c3764575303b9aa22b009560e726b0f",
+      "transcript_sha256": "5775e1c2786e35c0bca60b381edd523001f2c03dcf676080c788d45f97587208"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-hydrogen-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 89,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 30,
+        "input_tokens": 59272,
+        "output_tokens": 8038,
+        "cache_read_tokens": 385401,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.17809807499999997,
+        "cost_source": "provider"
+      },
+      "result_sha256": "dc1707bbac2fce38d7cea9d1da2afc3f2b4daecc34bc0cceac0bb34d853a16c0",
+      "transcript_sha256": "2c8c6488e5a5827226ea3d7048c85d5f9dbcafbbab6f3f8cd8ff6c25ee378f31"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-hydrogen-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 109,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 30,
+        "input_tokens": 53860,
+        "output_tokens": 8677,
+        "cache_read_tokens": 390285,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.17513887500000003,
+        "cost_source": "provider"
+      },
+      "result_sha256": "7f28bf26a88aa2384fe6e56934c97752ae8726d6e8ab9cfce8656b8c6a5fe0ee",
+      "transcript_sha256": "bedd10f6999fd77659bf2a9ccf5d5ff149a21a7a4189a9586ad8ff2ee3c9be52"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-hydrogen-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 75,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 12,
+        "tool_calls": 25,
+        "input_tokens": 48370,
+        "output_tokens": 6765,
+        "cache_read_tokens": 289498,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.14500485,
+        "cost_source": "provider"
+      },
+      "result_sha256": "7b5954a42f7a42b0d1688ac348f7ede59319ff1f69b182a3f3583bde86ec57ea",
+      "transcript_sha256": "3d06628519e5ac6bec37b60f4377624efdf1745c0a7b90c0a80b6bb2cdb8f798"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-google-gemini-4-hydrogen-1",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 139,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 39,
+        "input_tokens": 66780,
+        "output_tokens": 7243,
+        "cache_read_tokens": 521342,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.19359314999999996,
+        "cost_source": "provider"
+      },
+      "result_sha256": "ae7d0c1d543f1fe43d5cbe7de3521b02edc2b28839c8e17daf7b61c041c598f3",
+      "transcript_sha256": "2092a7ea008a5c04d481b26326b750259a95cac94012a1c77f08da41108629e4"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-google-gemini-4-hydrogen-2",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 136,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 19,
+        "input_tokens": 60950,
+        "output_tokens": 7925,
+        "cache_read_tokens": 391888,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.1802541,
+        "cost_source": "provider"
+      },
+      "result_sha256": "5703ddc4b18dbadc82f721234d716b84a422ea9bb5331d605a75209af1e79182",
+      "transcript_sha256": "9d69d5d9e17753acd4b22c1bfd6a04a22fc21333927aa56e2fb8f9588478494e"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-google-gemini-4-hydrogen-3",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 91,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 25,
+        "input_tokens": 51799,
+        "output_tokens": 4554,
+        "cache_read_tokens": 267804,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.1319388,
+        "cost_source": "provider"
+      },
+      "result_sha256": "31c64d7132e25f95d283df429156d293bbcd6de28e372d0e969f44dcd2af004c",
+      "transcript_sha256": "6b71106a14521772b584d31506f527e3eb564a2643c7fafdbe4dc97f1d613b50"
+    },
+    {
+      "run_id": "019-rust-fd-leak-google-gemini-4-hydrogen-1",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 89,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 23,
+        "input_tokens": 53986,
+        "output_tokens": 7024,
+        "cache_read_tokens": 321426,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.15776595,
+        "cost_source": "provider"
+      },
+      "result_sha256": "668cd198ab5ee8a07b4f0557ed225f814f6afa896c4ea9febe2f2ff9db46141a",
+      "transcript_sha256": "4b7aba311ad41bea469d16b4b42b36297c063e74e2376afe57e6f0283246fa0d"
+    },
+    {
+      "run_id": "019-rust-fd-leak-google-gemini-4-hydrogen-2",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 84,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 25,
+        "input_tokens": 46699,
+        "output_tokens": 7204,
+        "cache_read_tokens": 247569,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.14264617500000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "3fff8ffe494a9b74dbf668e2bf170c333e5f46f7173ce14ed946980d4c17e209",
+      "transcript_sha256": "ce891b53027028d630d9eadd8a809839d6b415b9b0a398f4822381f45d86e65d"
+    },
+    {
+      "run_id": "019-rust-fd-leak-google-gemini-4-hydrogen-3",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 79,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 22,
+        "input_tokens": 59093,
+        "output_tokens": 7409,
+        "cache_read_tokens": 404571,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.17454982499999996,
+        "cost_source": "provider"
+      },
+      "result_sha256": "52f47ee19788536b173371989e4a0e6f1a765acb44dbf5f2757778a334dfac66",
+      "transcript_sha256": "a2fdf43f25eca62954ffe1e6ae8ac305782cbd9d375aa5540c195da47a2a5bf7"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-hydrogen-1",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 1,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "provider_policy_rejection",
+      "agent_duration_seconds": 62,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 10,
+        "tool_calls": 15,
+        "input_tokens": 51494,
+        "output_tokens": 6063,
+        "cache_read_tokens": 119465,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.131673375,
+        "cost_source": "provider"
+      },
+      "result_sha256": "f1594818eca8a67f7f36a2a62aa95f887e03bb0a415f15df64b10b3fe95df8bc",
+      "transcript_sha256": "c13f5b7bb11f91a0d87463699324d7491c18ac2e0b53ba858bcbd09cf1441f4f",
+      "audit_note": "Provider rejected a continuation after meaningful inference; evaluated failure retained."
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-hydrogen-2",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 2,
+      "reward": 0,
+      "trial_status": "evaluated",
+      "failure_category": "accepted_uploads_not_recovered",
+      "agent_duration_seconds": 128,
+      "verification": {
+        "immediate_http": false,
+        "service_restart": false,
+        "host_reboot": false,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 21,
+        "input_tokens": 61476,
+        "output_tokens": 14007,
+        "cache_read_tokens": 416679,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.22851742500000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "9e5cbc9535f01e352a6fa352e8fcf4ff2852840c8cf9ab90a6cd6deb28e8a1f3",
+      "transcript_sha256": "d878772e6a46ff45cdfd449b6bf74d4c3dde6ecc29eb2a3772056d6b80ef468f",
+      "verifier_failure_sha256": "615c765d3f33374be511e3202edebda91ef6e214d10c25eac7b7aa6f616839ad"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-hydrogen-3",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 117,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 15,
+        "input_tokens": 52129,
+        "output_tokens": 12772,
+        "cache_read_tokens": 358392,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.2008629,
+        "cost_source": "provider"
+      },
+      "result_sha256": "8edcb16964c5576e92e15b606cec04503d5b18eeec16773373edabd7c268f6ea",
+      "transcript_sha256": "9eb6584c8f0b60b1de686eb1a24395d4429bdf227d1f47977d598b77f19699ef"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-google-gemini-4-hydrogen-1",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 75,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 20,
+        "input_tokens": 52217,
+        "output_tokens": 7778,
+        "cache_read_tokens": 242111,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.15481882500000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "99dd090c788790b212caa28f8e8f95c6a3044366d326dfca4cba2693251342e4",
+      "transcript_sha256": "9d188d2c01b7cac8d4bb46fbcf409de61121e65a7d6b9082612658e8e51fe060"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-google-gemini-4-hydrogen-2",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 69,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 19,
+        "input_tokens": 52854,
+        "output_tokens": 6895,
+        "cache_read_tokens": 267117,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.151027275,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c9c41aef671d870fe2f817a275f0896fa405432d7b6709f25d366eef619c9ac6",
+      "transcript_sha256": "b3dff67281786f458093ab28a29cd055c223b226dfe3ed96d802582f7fff4b75"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-google-gemini-4-hydrogen-3",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 80,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 20,
+        "input_tokens": 45932,
+        "output_tokens": 7436,
+        "cache_read_tokens": 273116,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.14515170000000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c3d71f2a7f546652eb9f5165836670111352a4ab0aa4d99dd043a9db6aeba8de",
+      "transcript_sha256": "e7687a285a53b124c94bed2fe6ed9cdb4625edfd5b717294237c0101c9111019"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-hydrogen-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 79,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 21,
+        "input_tokens": 65961,
+        "output_tokens": 6714,
+        "cache_read_tokens": 372425,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.177228375,
+        "cost_source": "provider"
+      },
+      "result_sha256": "20faeec7a03acb67119fb409f40baedf773a677341cd1fbece2b153490ba07ef",
+      "transcript_sha256": "7aafac685d4de81939eb8f0ed020973ef83192d2a05aad208b6fa3134cc89718"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-hydrogen-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 75,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 22,
+        "input_tokens": 91859,
+        "output_tokens": 6029,
+        "cache_read_tokens": 353323,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.209505225,
+        "cost_source": "provider"
+      },
+      "result_sha256": "f072472b67a80364a74aece076d5d979411ae1437385367d04132ed7fdb37088",
+      "transcript_sha256": "325a2b6728811336553cd502155b7e48e13409cc414baeadaaf9cb3aa5b35437"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-hydrogen-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 109,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 22,
+        "input_tokens": 63552,
+        "output_tokens": 8214,
+        "cache_read_tokens": 420317,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.188456775,
+        "cost_source": "provider"
+      },
+      "result_sha256": "3efd036b2d6b36cac028097cef0cf96d2f8b025972f18e83d233f911b5877be1",
+      "transcript_sha256": "e60fdc729d20559061a15ae480ae1c1eafe021ac033abb6ce2445343695e0ae6"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-hydrogen-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 128,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 23,
+        "input_tokens": 126179,
+        "output_tokens": 9111,
+        "cache_read_tokens": 474668,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.2932011,
+        "cost_source": "provider"
+      },
+      "result_sha256": "2ce4d64c8ec32f2a0da3d1756e7e6aff181f94b994c7c0415e7211db3c123cf4",
+      "transcript_sha256": "44f6097620ded9eb0ad12ba866f9e49520b9dcb69ea70c2b908e02f36ee45a8d"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-hydrogen-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 97,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 21,
+        "tool_calls": 25,
+        "input_tokens": 71575,
+        "output_tokens": 7238,
+        "cache_read_tokens": 471953,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.197043975,
+        "cost_source": "provider"
+      },
+      "result_sha256": "2212224e867a0024672f43d048f121d2712ac37a45ee2d15eba4048e743f178e",
+      "transcript_sha256": "a21fc951985824a774fbac069e2f41c73121a7197662fdff832df40ae9c20002"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-hydrogen-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 101,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 28,
+        "input_tokens": 63426,
+        "output_tokens": 8523,
+        "cache_read_tokens": 410849,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.189875175,
+        "cost_source": "provider"
+      },
+      "result_sha256": "6e022a8a62833ba75ec54a69e68f51452344105a5e10aa5dade701a7acffc1cf",
+      "transcript_sha256": "f6c52e88652fc731ebbf33d65b8a12df4199e86a892dc028aaaccf7c937975ab"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-google-gemini-4-hydrogen-1",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 69,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 11,
+        "tool_calls": 26,
+        "input_tokens": 57102,
+        "output_tokens": 6305,
+        "cache_read_tokens": 275279,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.153586425,
+        "cost_source": "provider"
+      },
+      "result_sha256": "9511ba4a3ee2e6c5fe5af04d0f9d242bad8e8de775a2a147a472fa1e13261111",
+      "transcript_sha256": "0aa26a1e201dfacdf12a4f51719c78764873ef9ba4ebceb04f16b761c88fb688"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-google-gemini-4-hydrogen-2",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 61,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 12,
+        "tool_calls": 15,
+        "input_tokens": 42396,
+        "output_tokens": 5197,
+        "cache_read_tokens": 182383,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.11625022500000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "201005fa7571bd7963738f0bf7286e921fdfb36179c289c7da1c0bbf1d34f837",
+      "transcript_sha256": "7a77c39fc3f8f8251ad14ebed3c587ab7d96737367eb01f2746ac4fdd63d93d2"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-google-gemini-4-hydrogen-3",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 67,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 10,
+        "tool_calls": 22,
+        "input_tokens": 46586,
+        "output_tokens": 6270,
+        "cache_read_tokens": 243782,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.13518765,
+        "cost_source": "provider"
+      },
+      "result_sha256": "a5a8d6a1305d5f7abe90c7b66d56bbb38016933cb1b91b6358e92af0e93b0235",
+      "transcript_sha256": "f5bb01b9ad640b219b0b694a82b525938f03ef0a2c10c632f9177ef6cbda4099"
+    }
+  ]
+}
