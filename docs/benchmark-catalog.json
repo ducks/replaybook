@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261113.0.0",
+  "current_version": "20261115.0.0",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -5865,6 +5865,35 @@
       "provider": "OpenRouter",
       "reasoning_effort": null,
       "release": "20261113.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 11,
+      "failure_categories": {
+        "agent_timeout": 11
+      },
+      "input_mode": "text",
+      "input_tokens": 4746458,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 694,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "output_tokens": 396598,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.8024977232077931,
+      "pass_rate_95_low": 0.4960789442780561,
+      "passed": 22,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
       "tier": "core",
@@ -63287,6 +63316,579 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 197192,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 288,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 129,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 288,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 508,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 29612,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 217430,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 243,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 201,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 326,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 243,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 27494,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 3
+      },
+      "input_mode": "text",
+      "input_tokens": 263892,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 901,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 902,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 46848,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.5614970317550454,
+      "pass_rate_95_low": 5.551115123125783e-17,
+      "passed": 0,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 273665,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 504,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 627,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 450,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 504,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 25562,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 3
+      },
+      "input_mode": "text",
+      "input_tokens": 794757,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 901,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 902,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 41321,
+      "pass_rate": 0.0,
+      "pass_rate_95_high": 0.5614970317550454,
+      "pass_rate_95_low": 5.551115123125783e-17,
+      "passed": 0,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 382776,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 688,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 688,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 827,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 481,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 32705,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_mode": "text",
+      "input_tokens": 578991,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 901,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 751,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 52899,
+      "pass_rate": 0.3333333333333333,
+      "pass_rate_95_high": 0.7923403991979522,
+      "pass_rate_95_low": 0.06149194472039621,
+      "passed": 1,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 553889,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 691,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 752,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 691,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 663,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 38521,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 666146,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 675,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 520,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 675,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 33868,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 360067,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 694,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 683,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 694,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 37228,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.0,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_mode": "text",
+      "input_tokens": 457653,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 782,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "model_label": "Ling 3.2 Flash Free",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 901,
+          "failure_category": "agent_timeout",
+          "reward": 0,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 702,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 782,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 30540,
+      "pass_rate": 0.6666666666666666,
+      "pass_rate_95_high": 0.9385080552796037,
+      "pass_rate_95_low": 0.2076596008020477,
+      "passed": 2,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261115.0.0",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -70461,7 +71063,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "Gemini 4 Hydrogen passed 30 of 33 Core trials (90.9%), with an 84-second median agent duration and $5.841152925 in provider-reported inference cost.",
       "harness_versions": [
         23
@@ -70470,7 +71072,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -70610,6 +71212,165 @@
         "usage_reported_trials": 33
       },
       "version": "20261113.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "api",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "bounded-search 25e7b9c (binary 7a7268af30cf)"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Ling 3.2 Flash Free passed 22 of 33 Core trials (66.7%), with a 694-second median agent duration and $0 in provider-reported inference cost. Eleven attempts exceeded the deadline; seven left repairs that passed subsequent lifecycle verification but remain failures.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "664956f89a861e9babcfe87d05b2c7516db9067a170359d528eaecc7f1a470fa"
+        }
+      ],
+      "tier": "core",
+      "title": "Ling 3.2 Flash Free Core via Claux / OpenRouter",
+      "totals": {
+        "cache_creation_reported_trials": 33,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 33,
+        "cache_read_tokens": 5170496,
+        "cost_reported_trials": 33,
+        "durable_repairs_after_timeout": 7,
+        "evaluated": 33,
+        "failed": 11,
+        "failure_categories": {
+          "agent_timeout": 11
+        },
+        "input_tokens": 4746458,
+        "known_cost_usd": 0.0,
+        "median_duration_seconds": 694,
+        "median_first_non_read_only_tool_seconds": 7.02,
+        "median_model_duration_seconds": 680.49,
+        "median_model_rounds": 15,
+        "median_post_first_non_read_only_seconds": 680.31,
+        "median_tool_calls": 22,
+        "median_tool_duration_seconds": 13.48,
+        "output_tokens": 396598,
+        "pass_rate": 0.6666666666666666,
+        "passed": 22,
+        "recording_reported_trials": 33,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 33,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 33
+      },
+      "version": "20261115.0.0"
     }
   ],
   "schema_version": 1
