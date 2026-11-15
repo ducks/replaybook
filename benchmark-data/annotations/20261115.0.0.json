@@ -1,0 +1,30 @@
+{
+  "title": "Ling 3.2 Flash Free Core via Claux / OpenRouter",
+  "description": "Ling 3.2 Flash Free passed 22 of 33 Core trials (66.7%), with a 694-second median agent duration and $0 in provider-reported inference cost. Eleven attempts exceeded the deadline; seven left repairs that passed subsequent lifecycle verification but remain failures.",
+  "input_mode": "text",
+  "model_order": [
+    "inclusionai/ling-3.2-flash:free"
+  ],
+  "model_labels": {
+    "inclusionai/ling-3.2-flash:free": "Ling 3.2 Flash Free"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "bounded-search 25e7b9c (binary 7a7268af30cf)",
+    "provider": "OpenRouter",
+    "billing": "api"
+  },
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Audited all 33 raw results and transcripts, per-round token accounting, deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections or reruns. Public evidence contains sanitized records and source hashes, not private transcripts, reasoning, local paths or VM logs.",
+    "This is the exact inclusionai/ling-3.2-flash:free model route through Claux/OpenRouter. Keep free/paid aliases and harness/provider/reasoning boundaries separate in comparisons. Reasoning effort was not explicitly set.",
+    "All 33 trials report zero inference cost from the provider. This excludes local compute and is not an invoice; usage for an interrupted in-flight request may not be returned. Three attempts per scenario are a small sample."
+  ],
+  "observations": [
+    "All 22 passing attempts passed immediate, service-restart and host-reboot verification within the accepted agent lifecycle. Median agent duration was 694 seconds (11 minutes 34 seconds).",
+    "All 11 failures were evaluated agent timeouts after meaningful inference. Seven subsequently passed all lifecycle checks: poison-pill attempts 1\u20133, partial rollout attempt 1, shared uploads attempt 3, interrupted deployment attempt 3 and TLS rotation attempt 1. They remain deadline failures.",
+    "Of the other four timed-out attempts, two partial-rollout attempts did not recover existing backlog, one shared-uploads attempt did not return after host reboot, and one disk-pressure attempt did not recover writable capacity. These observations do not establish a model-caused VM boot fault.",
+    "No timeout or post-inference verifier failure was reclassified as unavailable. There were no unavailable trials."
+  ]
+}

@@ -1,0 +1,2383 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 5170496,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 7,
+      "evaluated": 33,
+      "failed": 11,
+      "failure_categories": {
+        "agent_timeout": 11
+      },
+      "input_tokens": 4746458,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 694,
+      "median_first_non_read_only_tool_seconds": 7.02,
+      "median_model_duration_seconds": 680.49,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 680.31,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 13.48,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 396598,
+      "pass_rate": 0.6666666666666666,
+      "passed": 22,
+      "provider": "openrouter",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 626944,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 197192,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 288,
+      "median_first_non_read_only_tool_seconds": 14.954,
+      "median_model_duration_seconds": 282.41,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 271.855,
+      "median_tool_calls": 23,
+      "median_tool_duration_seconds": 4.261,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 29612,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 434112,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 217430,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 243,
+      "median_first_non_read_only_tool_seconds": 2.987,
+      "median_model_duration_seconds": 226.574,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 237.406,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 14.891,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 27494,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 494464,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 3,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 3
+      },
+      "input_tokens": 263892,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 901,
+      "median_first_non_read_only_tool_seconds": 6.565,
+      "median_model_duration_seconds": 863.637,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 892.5229999999999,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 34.083,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 46848,
+      "pass_rate": 0.0,
+      "passed": 0,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 357888,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 273665,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 504,
+      "median_first_non_read_only_tool_seconds": 15.361,
+      "median_model_duration_seconds": 467.774,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 494.959,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 17.577,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 25562,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 546048,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 1,
+      "evaluated": 3,
+      "failed": 3,
+      "failure_categories": {
+        "agent_timeout": 3
+      },
+      "input_tokens": 794757,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 901,
+      "median_first_non_read_only_tool_seconds": 5.383,
+      "median_model_duration_seconds": 844.235,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 893.5999999999999,
+      "median_tool_calls": 28,
+      "median_tool_duration_seconds": 46.617,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 41321,
+      "pass_rate": 0.0,
+      "passed": 0,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 335488,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 382776,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 688,
+      "median_first_non_read_only_tool_seconds": 5.422,
+      "median_model_duration_seconds": 674.421,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 680.31,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 9.854,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 32705,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 626432,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 1,
+      "evaluated": 3,
+      "failed": 2,
+      "failure_categories": {
+        "agent_timeout": 2
+      },
+      "input_tokens": 578991,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 901,
+      "median_first_non_read_only_tool_seconds": 9.597,
+      "median_model_duration_seconds": 887.809,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 889.494,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 7.774,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 52899,
+      "pass_rate": 0.3333333333333333,
+      "passed": 1,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 455168,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 553889,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 691,
+      "median_first_non_read_only_tool_seconds": 5.341,
+      "median_model_duration_seconds": 680.49,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 674.098,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 7.429,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 38521,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 626944,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 1,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 666146,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 675,
+      "median_first_non_read_only_tool_seconds": 14.053,
+      "median_model_duration_seconds": 652.479,
+      "median_model_rounds": 16,
+      "median_post_first_non_read_only_seconds": 665.558,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 18.332,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 33868,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 354240,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 360067,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 694,
+      "median_first_non_read_only_tool_seconds": 10.467,
+      "median_model_duration_seconds": 679.193,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 686.242,
+      "median_tool_calls": 18,
+      "median_tool_duration_seconds": 6.936,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 37228,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 312768,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 1,
+      "evaluated": 3,
+      "failed": 1,
+      "failure_categories": {
+        "agent_timeout": 1
+      },
+      "input_tokens": 457653,
+      "known_cost_usd": 0.0,
+      "median_duration_seconds": 782,
+      "median_first_non_read_only_tool_seconds": 6.983,
+      "median_model_duration_seconds": 766.258,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 772.8760000000001,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 13.48,
+      "model": "inclusionai/ling-3.2-flash:free",
+      "output_tokens": 30540,
+      "pass_rate": 0.6666666666666666,
+      "passed": 2,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "api",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "bounded-search 25e7b9c (binary 7a7268af30cf)"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Ling 3.2 Flash Free passed 22 of 33 Core trials (66.7%), with a 694-second median agent duration and $0 in provider-reported inference cost. Eleven attempts exceeded the deadline; seven left repairs that passed subsequent lifecycle verification but remain failures.",
+  "input_mode": "text",
+  "model_labels": {
+    "inclusionai/ling-3.2-flash:free": "Ling 3.2 Flash Free"
+  },
+  "model_order": [
+    "inclusionai/ling-3.2-flash:free"
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Audited all 33 raw results and transcripts, per-round token accounting, deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections or reruns. Public evidence contains sanitized records and source hashes, not private transcripts, reasoning, local paths or VM logs.",
+    "This is the exact inclusionai/ling-3.2-flash:free model route through Claux/OpenRouter. Keep free/paid aliases and harness/provider/reasoning boundaries separate in comparisons. Reasoning effort was not explicitly set.",
+    "All 33 trials report zero inference cost from the provider. This excludes local compute and is not an invoice; usage for an interrupted in-flight request may not be returned. Three attempts per scenario are a small sample."
+  ],
+  "observations": [
+    "All 22 passing attempts passed immediate, service-restart and host-reboot verification within the accepted agent lifecycle. Median agent duration was 694 seconds (11 minutes 34 seconds).",
+    "All 11 failures were evaluated agent timeouts after meaningful inference. Seven subsequently passed all lifecycle checks: poison-pill attempts 1\u20133, partial rollout attempt 1, shared uploads attempt 3, interrupted deployment attempt 3 and TLS rotation attempt 1. They remain deadline failures.",
+    "Of the other four timed-out attempts, two partial-rollout attempts did not recover existing backlog, one shared-uploads attempt did not return after host reboot, and one disk-pressure attempt did not recover writable capacity. These observations do not establish a model-caused VM boot fault.",
+    "No timeout or post-inference verifier failure was reclassified as unavailable. There were no unavailable trials."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 129,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T20:19:50Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.238,
+        "model_duration_seconds": 122.781,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 119.638,
+        "tool_calls": 13,
+        "tool_duration_seconds": 3.981,
+        "total_duration_seconds": 126.876
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T20:17:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 99072,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 56607,
+        "output_tokens": 5503,
+        "rounds": 9,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 288,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T20:25:48Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 14.954,
+        "model_duration_seconds": 282.41,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 271.855,
+        "tool_calls": 24,
+        "tool_duration_seconds": 4.261,
+        "total_duration_seconds": 286.809
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T20:20:46Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 226240,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 68735,
+        "output_tokens": 11185,
+        "rounds": 13,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 508,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T20:35:33Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 15.228,
+        "model_duration_seconds": 493.696,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 491.048,
+        "tool_calls": 23,
+        "tool_duration_seconds": 12.41,
+        "total_duration_seconds": 506.276
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T20:26:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 301632,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 71850,
+        "output_tokens": 12924,
+        "rounds": 15,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 201,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T20:40:20Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.987,
+        "model_duration_seconds": 182.891,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 196.497,
+        "tool_calls": 19,
+        "tool_duration_seconds": 16.5,
+        "total_duration_seconds": 199.484
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-13T20:36:41Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 130624,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 73452,
+        "output_tokens": 8969,
+        "rounds": 13,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 326,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T20:47:19Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.735,
+        "model_duration_seconds": 310.579,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 321.872,
+        "tool_calls": 28,
+        "tool_duration_seconds": 13.832,
+        "total_duration_seconds": 324.607
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-13T20:41:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 202752,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 70223,
+        "output_tokens": 11701,
+        "rounds": 16,
+        "tool_calls": 28
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 243,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T20:53:07Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.156,
+        "model_duration_seconds": 226.574,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 237.406,
+        "tool_calls": 17,
+        "tool_duration_seconds": 14.891,
+        "total_duration_seconds": 241.562
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-13T20:48:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 100736,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 73755,
+        "output_tokens": 6824,
+        "rounds": 11,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-13T21:09:44Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 14.273,
+        "model_duration_seconds": 866.671,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 884.271,
+        "tool_calls": 24,
+        "tool_duration_seconds": 31.706,
+        "total_duration_seconds": 898.544
+      },
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T20:54:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 187328,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 106496,
+        "output_tokens": 17787,
+        "rounds": 16,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 901,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-13T21:26:42Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.188,
+        "model_duration_seconds": 860.342,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 892.824,
+        "tool_calls": 25,
+        "tool_duration_seconds": 38.457,
+        "total_duration_seconds": 899.012
+      },
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T21:11:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 227136,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 81372,
+        "output_tokens": 17403,
+        "rounds": 15,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 901,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-13T21:43:16Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.565,
+        "model_duration_seconds": 863.637,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 892.5229999999999,
+        "tool_calls": 22,
+        "tool_duration_seconds": 34.083,
+        "total_duration_seconds": 899.088
+      },
+      "reward": 0,
+      "run_id": "015-sidekiq-poison-pill-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T21:27:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 80000,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 76024,
+        "output_tokens": 11658,
+        "rounds": 14,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 627,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T21:55:28Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 15.361,
+        "model_duration_seconds": 607.263,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 609.615,
+        "tool_calls": 18,
+        "tool_duration_seconds": 17.577,
+        "total_duration_seconds": 624.976
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T21:44:28Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 167616,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 138409,
+        "output_tokens": 10918,
+        "rounds": 14,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 450,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T22:04:58Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 20.692,
+        "model_duration_seconds": 436.389,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 428.009,
+        "tool_calls": 15,
+        "tool_duration_seconds": 12.233,
+        "total_duration_seconds": 448.701
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T21:56:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 46912,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 58755,
+        "output_tokens": 5150,
+        "rounds": 10,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 504,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T22:15:12Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.314,
+        "model_duration_seconds": 467.774,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 494.959,
+        "tool_calls": 29,
+        "tool_duration_seconds": 33.335,
+        "total_duration_seconds": 501.273
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T22:06:19Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 143360,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 76501,
+        "output_tokens": 9494,
+        "rounds": 18,
+        "tool_calls": 29
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 901,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-13T22:31:58Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.383,
+        "model_duration_seconds": 810.279,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 893.5999999999999,
+        "tool_calls": 28,
+        "tool_duration_seconds": 88.473,
+        "total_duration_seconds": 898.983
+      },
+      "reward": 0,
+      "run_id": "017-partial-rails-rollout-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T22:16:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 210112,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 345714,
+        "output_tokens": 11464,
+        "rounds": 20,
+        "tool_calls": 28
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 902,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-13T22:49:14Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.929,
+        "model_duration_seconds": 859.171,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 894.177,
+        "tool_calls": 25,
+        "tool_duration_seconds": 38.496,
+        "total_duration_seconds": 899.106
+      },
+      "reward": 0,
+      "run_id": "017-partial-rails-rollout-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T22:33:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 180736,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 187459,
+        "output_tokens": 16497,
+        "rounds": 17,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 901,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-13T23:06:28Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.763,
+        "model_duration_seconds": 844.235,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 891.289,
+        "tool_calls": 33,
+        "tool_duration_seconds": 46.617,
+        "total_duration_seconds": 899.052
+      },
+      "reward": 0,
+      "run_id": "017-partial-rails-rollout-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T22:50:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 155200,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 261584,
+        "output_tokens": 13360,
+        "rounds": 23,
+        "tool_calls": 33
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "repair did not recover the pre-existing backlog",
+          "failure_category": "backlog_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 688,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T23:20:38Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.422,
+        "model_duration_seconds": 674.421,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 680.31,
+        "tool_calls": 19,
+        "tool_duration_seconds": 7.789,
+        "total_duration_seconds": 685.732
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T23:08:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 77632,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 118398,
+        "output_tokens": 9998,
+        "rounds": 14,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 827,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T23:37:26Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.705,
+        "model_duration_seconds": 807.738,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 819.413,
+        "tool_calls": 24,
+        "tool_duration_seconds": 17.189,
+        "total_duration_seconds": 825.118
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T23:23:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 127232,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 140106,
+        "output_tokens": 12149,
+        "rounds": 16,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 481,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-13T23:48:07Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.875,
+        "model_duration_seconds": 468.437,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 473.582,
+        "tool_calls": 21,
+        "tool_duration_seconds": 9.854,
+        "total_duration_seconds": 478.457
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T23:39:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 130624,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 124272,
+        "output_tokens": 10558,
+        "rounds": 16,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 751,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T00:02:34Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 45.596,
+        "model_duration_seconds": 738.963,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 701.309,
+        "tool_calls": 21,
+        "tool_duration_seconds": 7.774,
+        "total_duration_seconds": 746.905
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-13T23:49:49Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 207552,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 146256,
+        "output_tokens": 14978,
+        "rounds": 15,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 901,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-14T00:24:07Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.02,
+        "model_duration_seconds": 887.809,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 892.078,
+        "tool_calls": 25,
+        "tool_duration_seconds": 11.027,
+        "total_duration_seconds": 899.098
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T00:03:58Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 253632,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 232889,
+        "output_tokens": 16558,
+        "rounds": 19,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "VM did not return after reboot",
+          "failure_category": "host_reboot_failed"
+        },
+        "host_reboot": false,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 901,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-14T00:40:54Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.597,
+        "model_duration_seconds": 891.317,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 889.494,
+        "tool_calls": 17,
+        "tool_duration_seconds": 7.512,
+        "total_duration_seconds": 899.091
+      },
+      "reward": 0,
+      "run_id": "021-discourse-shared-uploads-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T00:25:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 165248,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 199846,
+        "output_tokens": 21363,
+        "rounds": 13,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 752,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T00:54:50Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.664,
+        "model_duration_seconds": 743.926,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 746.0600000000001,
+        "tool_calls": 24,
+        "tool_duration_seconds": 6.522,
+        "total_duration_seconds": 750.724
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T00:42:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 139904,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 230404,
+        "output_tokens": 13604,
+        "rounds": 17,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 691,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T01:07:40Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 14.912,
+        "model_duration_seconds": 680.49,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 674.098,
+        "tool_calls": 21,
+        "tool_duration_seconds": 8.281,
+        "total_duration_seconds": 689.01
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T00:55:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 188544,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 190469,
+        "output_tokens": 13605,
+        "rounds": 13,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 663,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T01:20:37Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.341,
+        "model_duration_seconds": 653.839,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 656.175,
+        "tool_calls": 24,
+        "tool_duration_seconds": 7.429,
+        "total_duration_seconds": 661.516
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T01:09:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 126720,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 133016,
+        "output_tokens": 11312,
+        "rounds": 16,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 520,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T01:31:00Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 15.45,
+        "model_duration_seconds": 498.909,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 502.07300000000004,
+        "tool_calls": 26,
+        "tool_duration_seconds": 18.332,
+        "total_duration_seconds": 517.523
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T01:22:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 217920,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 133374,
+        "output_tokens": 8290,
+        "rounds": 16,
+        "tool_calls": 26
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 675,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T01:43:41Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 7.113,
+        "model_duration_seconds": 652.479,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 665.558,
+        "tool_calls": 26,
+        "tool_duration_seconds": 19.999,
+        "total_duration_seconds": 672.671
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T01:32:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 208256,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 224161,
+        "output_tokens": 11178,
+        "rounds": 17,
+        "tool_calls": 26
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 901,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-14T02:00:13Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 14.053,
+        "model_duration_seconds": 885.016,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 885.084,
+        "tool_calls": 32,
+        "tool_duration_seconds": 13.807,
+        "total_duration_seconds": 899.137
+      },
+      "reward": 0,
+      "run_id": "024-discourse-interrupted-deploy-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T01:44:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 200768,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 308611,
+        "output_tokens": 14400,
+        "rounds": 16,
+        "tool_calls": 32
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 683,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T02:13:13Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 10.467,
+        "model_duration_seconds": 673.492,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 670.1030000000001,
+        "tool_calls": 18,
+        "tool_duration_seconds": 6.936,
+        "total_duration_seconds": 680.57
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T02:01:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 167616,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 97786,
+        "output_tokens": 12105,
+        "rounds": 13,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 901,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-14T02:31:00Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 21.868,
+        "model_duration_seconds": 896.701,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 877.2539999999999,
+        "tool_calls": 17,
+        "tool_duration_seconds": 1.17,
+        "total_duration_seconds": 899.122
+      },
+      "reward": 0,
+      "run_id": "028-nix-store-disk-pressure-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T02:14:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 59904,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 113476,
+        "output_tokens": 11950,
+        "rounds": 11,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": false,
+          "failure": "HTTP repair did not recover",
+          "failure_category": "writable_capacity_not_recovered"
+        },
+        "host_reboot": false,
+        "immediate_http": false,
+        "service_restart": false
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 694,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T02:44:34Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.645,
+        "model_duration_seconds": 679.193,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 686.242,
+        "tool_calls": 19,
+        "tool_duration_seconds": 11.518,
+        "total_duration_seconds": 690.887
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-14T02:32:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 126720,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 148805,
+        "output_tokens": 13173,
+        "rounds": 13,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 901,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": "agent exceeded 900 second timeout",
+      "failure_category": "agent_timeout",
+      "finished_at": "2026-11-14T03:01:10Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.613,
+        "model_duration_seconds": 888.724,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 892.598,
+        "tool_calls": 21,
+        "tool_duration_seconds": 10.375,
+        "total_duration_seconds": 899.211
+      },
+      "reward": 0,
+      "run_id": "033-tls-trust-rotation-inclusionai-ling-3-2-flash-free-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-14T02:45:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 86080,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 134669,
+        "output_tokens": 10789,
+        "rounds": 13,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": {
+          "durable_repair": true,
+          "failure": null,
+          "failure_category": null
+        },
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 702,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T03:14:28Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 28.407,
+        "model_duration_seconds": 685.605,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 671.6379999999999,
+        "tool_calls": 19,
+        "tool_duration_seconds": 14.303,
+        "total_duration_seconds": 700.045
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-inclusionai-ling-3-2-flash-free-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-14T03:02:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 138496,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 126988,
+        "output_tokens": 9811,
+        "rounds": 15,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 782,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-14T03:29:01Z",
+      "model": "inclusionai/ling-3.2-flash:free",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.983,
+        "model_duration_seconds": 766.258,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 772.8760000000001,
+        "tool_calls": 21,
+        "tool_duration_seconds": 13.48,
+        "total_duration_seconds": 779.859
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-inclusionai-ling-3-2-flash-free-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-14T03:15:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 88192,
+        "cost_source": "provider",
+        "cost_usd": 0.0,
+        "input_tokens": 195996,
+        "output_tokens": 9940,
+        "rounds": 14,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-14T03:29:01.659207Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "inclusionai/ling-3.2-flash:free"
+      ],
+      "reasoning_efforts": [],
+      "replaybook_commit": "38e17009fa76389e21e25b140495711afa80dcc1",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-13T20:16:14.684638Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "664956f89a861e9babcfe87d05b2c7516db9067a170359d528eaecc7f1a470fa"
+    }
+  ],
+  "tier": "core",
+  "title": "Ling 3.2 Flash Free Core via Claux / OpenRouter",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 5170496,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 7,
+    "evaluated": 33,
+    "failed": 11,
+    "failure_categories": {
+      "agent_timeout": 11
+    },
+    "input_tokens": 4746458,
+    "known_cost_usd": 0.0,
+    "median_duration_seconds": 694,
+    "median_first_non_read_only_tool_seconds": 7.02,
+    "median_model_duration_seconds": 680.49,
+    "median_model_rounds": 15,
+    "median_post_first_non_read_only_seconds": 680.31,
+    "median_tool_calls": 22,
+    "median_tool_duration_seconds": 13.48,
+    "output_tokens": 396598,
+    "pass_rate": 0.6666666666666666,
+    "passed": 22,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261115.0.0"
+}
