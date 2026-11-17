@@ -1,0 +1,30 @@
+{
+  "title": "Qwen4 Max Core via Claux / OpenRouter",
+  "description": "Qwen4 Max passed all 33 frozen Core trials (100%), with a 160-second median agent duration and $3.7802 in provider-reported inference cost. Two pre-agent VM startup failures were preserved and resumed without changing the 31 completed results.",
+  "input_mode": "text",
+  "model_order": [
+    "qwen/qwen4-max"
+  ],
+  "model_labels": {
+    "qwen/qwen4-max": "Qwen4 Max"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "bounded-search 25e7b9c (binary 7a7268af30cf)",
+    "provider": "OpenRouter",
+    "billing": "api"
+  },
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Audited all 33 raw results and transcripts, per-round token accounting, completion/deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections. Public evidence contains sanitized records and hashes, not private transcripts, reasoning, local paths or VM logs.",
+    "Two initial VM starts stopped while creating the Nix store image before agent execution and wrote no scored result or agent artifacts. Their logs/state and the original summary were preserved. Only those two missing trials were resumed; hashes confirm the 31 existing scored results were unchanged.",
+    "Exact qwen/qwen4-max model route through Claux/OpenRouter. Reasoning effort was not explicitly set. Keep model aliases, harnesses, provider routes and cohort boundaries separate.",
+    "Costs are provider-reported inference accounting, exclude local compute and are not an invoice. Three attempts per scenario are a small sample, and a clean sweep on this Core pack does not establish general superiority."
+  ],
+  "observations": [
+    "All 33 passing attempts completed within the 900-second deadline and passed immediate HTTP, service-restart and host-reboot checks.",
+    "Median agent duration was 160 seconds (2 minutes 40 seconds). All 33 trials include provider-reported usage/cost and transcript recording.",
+    "No evaluated model failure was hidden, reclassified as unavailable or rerun. The two resumed failures occurred before model execution; both replacement trials passed."
+  ]
+}

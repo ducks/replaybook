@@ -9,23 +9,19 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## Ling 3.2 Flash Free Core via Claux / OpenRouter
+## HY4 Flash Core via Claux / OpenRouter
 
-Ling 3.2 Flash Free passed 22 of 33 Core trials (66.7%), with a 694-second median agent duration and $0 in provider-reported inference cost. Eleven attempts exceeded the deadline; seven left repairs that passed subsequent lifecycle verification but remain failures.
+HY4 Flash passed all 33 frozen Core trials (100%), with a 91-second median agent duration and $0.11465 in provider-reported inference cost.
 
-Benchmark release: `20261115.0.0`
+Benchmark release: `20261117.0.1`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| Ling 3.2 Flash Free · openrouter | 22/33 | 67% | 11:34 | $0.0000 | $0.0000 |
-| **Total** | **22/33** | **67%** | **11:34** | **$0.0000** | **$0.0000** |
-
-### Post-timeout verification
-
-7 repairs became durable after the agent deadline. They remain scored as `agent_timeout`; post-timeout verification records the later operational outcome separately.
+| HY4 Flash · openrouter | 33/33 | 100% | 1:31 | $0.1147 | $0.0035 |
+| **Total** | **33/33** | **100%** | **1:31** | **$0.1147** | **$0.0035** |
 
 ### Execution recording
 
@@ -33,46 +29,43 @@ Medians across trials with execution recording. Round time sums recorded model/a
 
 | Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Ling 3.2 Flash Free · openrouter | 33/33 | 15 | 11:20 | 22 | 0:13 | 0:07 | 11:20 |
+| HY4 Flash · openrouter | 33/33 | 18 | 1:19 | 20 | 0:13 | 0:03 | 1:26 |
 
-All 22 passing attempts passed immediate, service-restart and host-reboot verification within the accepted agent lifecycle. Median agent duration was 694 seconds (11 minutes 34 seconds).
+All 33 attempts completed within the 900-second deadline and passed immediate HTTP, service-restart and host-reboot checks.
 
-All 11 failures were evaluated agent timeouts after meaningful inference. Seven subsequently passed all lifecycle checks: poison-pill attempts 1–3, partial rollout attempt 1, shared uploads attempt 3, interrupted deployment attempt 3 and TLS rotation attempt 1. They remain deadline failures.
+Median agent duration was 91 seconds. All 33 trials include provider-reported usage/cost and transcript recording.
 
-Of the other four timed-out attempts, two partial-rollout attempts did not recover existing backlog, one shared-uploads attempt did not return after host reboot, and one disk-pressure attempt did not recover writable capacity. These observations do not establish a model-caused VM boot fault.
-
-No timeout or post-inference verifier failure was reclassified as unavailable. There were no unavailable trials.
+No failed or unavailable trials appear in the completed matrix.
 
 ### Scenario breakdown
 
-| Scenario | Version | Ling 3.2 Flash Free · openrouter |
+| Scenario | Version | HY4 Flash · openrouter |
 |---|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 4:48 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 4:03 |
-| 015-sidekiq-poison-pill | v1 | 0/3, 15:01 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 8:24 |
-| 017-partial-rails-rollout | v1 | 0/3, 15:01 |
-| 019-rust-fd-leak | v1 | 3/3, 11:28 |
-| 021-discourse-shared-uploads | v1 | 1/3, 15:01 |
-| 023-auth-secret-rollout | v1 | 3/3, 11:31 |
-| 024-discourse-interrupted-deploy | v1 | 2/3, 11:15 |
-| 028-nix-store-disk-pressure | v1 | 2/3, 11:34 |
-| 033-tls-trust-rotation | v2 | 2/3, 13:02 |
+| 001-nginx-502-host | v1 | 3/3, 1:05 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 1:07 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 2:27 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 1:39 |
+| 017-partial-rails-rollout | v1 | 3/3, 2:16 |
+| 019-rust-fd-leak | v1 | 3/3, 1:13 |
+| 021-discourse-shared-uploads | v1 | 3/3, 2:02 |
+| 023-auth-secret-rollout | v1 | 3/3, 1:17 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 1:44 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 5:27 |
+| 033-tls-trust-rotation | v2 | 3/3, 1:21 |
 
 ### Failure categories
 
-- `agent_timeout`: 11
 
 ### Source matrices
 
-- `matrix`: inclusionai/ling-3.2-flash:free; Replaybook `38e17009`
+- `matrix`: tencent/hy4-flash; Replaybook `7dd7ca17`
 
 ### Run notes
 
 - Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.
-- Audited all 33 raw results and transcripts, per-round token accounting, deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections or reruns. Public evidence contains sanitized records and source hashes, not private transcripts, reasoning, local paths or VM logs.
-- This is the exact inclusionai/ling-3.2-flash:free model route through Claux/OpenRouter. Keep free/paid aliases and harness/provider/reasoning boundaries separate in comparisons. Reasoning effort was not explicitly set.
-- All 33 trials report zero inference cost from the provider. This excludes local compute and is not an invoice; usage for an interrupted in-flight request may not be returned. Three attempts per scenario are a small sample.
+- Audited all 33 raw results and transcripts, per-round token accounting, completion/deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections. Public evidence contains sanitized records and hashes, not private transcripts, reasoning, local paths or VM logs.
+- Exact tencent/hy4-flash model route through Claux/OpenRouter; distinct from HY4 Preview. Reasoning effort was not explicitly set.
+- Costs are provider-reported inference accounting, exclude local compute and are not an invoice. Catalog pricing and promotional offers can change. Three attempts per scenario are a small sample; a clean sweep on this pack does not establish general superiority.
 
 <!-- replaybook:current-benchmark:end -->
 

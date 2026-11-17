@@ -1,0 +1,1035 @@
+{
+  "model": "qwen/qwen4-max",
+  "summary_sha256": "e7c6dfbd381345757a83e09e59d0333b715f65695e05728b72c16fc0c74db1ec",
+  "execution_snapshot": {
+    "agent_adapter_sha256": null,
+    "agent_config_sha256": null,
+    "agent_env_sha256": null,
+    "agent_payload_sha256": null,
+    "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+    "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+    "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+    "scenario_packs": [
+      {
+        "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+        "id": "ducks/replaybook-infra",
+        "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+        "version": "20261024.1.1"
+      }
+    ],
+    "schema_version": 1,
+    "selected_scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+        "version": 2
+      }
+    ]
+  },
+  "totals": {
+    "trials": 33,
+    "evaluated": 33,
+    "unavailable": 0,
+    "passed": 33,
+    "failed": 0,
+    "durable_repairs_after_timeout": 0,
+    "pass_rate": 1.0,
+    "median_duration_seconds": 160.0,
+    "known_cost_usd": 3.7802069400000002,
+    "cost_reported_trials": 33,
+    "input_tokens": 1459241,
+    "output_tokens": 267409,
+    "cache_read_tokens": 7826176,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_creation_reported_trials": 33,
+    "usage_reported_trials": 33,
+    "recording_reported_trials": 33,
+    "median_model_rounds": 17,
+    "median_model_duration_seconds": 145.345,
+    "median_tool_calls": 21,
+    "median_tool_duration_seconds": 11.28,
+    "median_first_non_read_only_tool_seconds": 3.889,
+    "median_post_first_non_read_only_seconds": 154.331
+  },
+  "corrections": [],
+  "runs": [
+    {
+      "run_id": "001-nginx-502-host-qwen-qwen4-max-1",
+      "scenario": "001-nginx-502-host",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 78,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 10,
+        "tool_calls": 12,
+        "input_tokens": 26200,
+        "output_tokens": 2983,
+        "cache_read_tokens": 61952,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.054501405,
+        "cost_source": "provider"
+      },
+      "result_sha256": "e42e832aaa15dbc105a9bb5a9b10398f60d53eb385afec654c4ed951bfb229ae",
+      "transcript_sha256": "beee4d9c19ac1b63d513ad5bdd412604d5df8c10047e77ffcaecc717e07a6f73"
+    },
+    {
+      "run_id": "001-nginx-502-host-qwen-qwen4-max-2",
+      "scenario": "001-nginx-502-host",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 60,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 9,
+        "tool_calls": 10,
+        "input_tokens": 13844,
+        "output_tokens": 2057,
+        "cache_read_tokens": 49408,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.032041695,
+        "cost_source": "provider"
+      },
+      "result_sha256": "afa8e2aa7d2fd3f187372c4d82e06a3c030c5647f2063c4a6468f59d89d8a54e",
+      "transcript_sha256": "d70132a1e8cc4e0943c6aae231fab90b08cd7608d62d062c5eacda34e3ddac74"
+    },
+    {
+      "run_id": "001-nginx-502-host-qwen-qwen4-max-3",
+      "scenario": "001-nginx-502-host",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 76,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 10,
+        "tool_calls": 11,
+        "input_tokens": 20042,
+        "output_tokens": 3048,
+        "cache_read_tokens": 61184,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.04594941,
+        "cost_source": "provider"
+      },
+      "result_sha256": "246f6306def055d5ae80cfc3049b359da9263faca5e5fa6d194f6f9b3e06e7cb",
+      "transcript_sha256": "7aebe16b7ed6f54305657e5dd8e6f7bebdd8fa714b88076e48d0674c6bc0e813"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-qwen-qwen4-max-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 220,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 22,
+        "tool_calls": 30,
+        "input_tokens": 63329,
+        "output_tokens": 9377,
+        "cache_read_tokens": 367360,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.1565049,
+        "cost_source": "provider"
+      },
+      "result_sha256": "6cea56b7031683b1d7ca56f882babef0afcfa0d6843a8b9b473994bbd0361676",
+      "transcript_sha256": "b9489921b2b8abc9355ef1d0d9751f435ac06b660662a64715f4cb68aa96a795"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-qwen-qwen4-max-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 150,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 20,
+        "input_tokens": 46049,
+        "output_tokens": 5729,
+        "cache_read_tokens": 164864,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.10185786000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "5b84df81da0102ee8a929556c925d03d44535db05aacf965e01cc39d64dbfac3",
+      "transcript_sha256": "750430ebcbe3514d21c7d4ff46eccdddbd4a2df0783acc138e3e557c8f152957"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-qwen-qwen4-max-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 147,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 21,
+        "input_tokens": 40701,
+        "output_tokens": 5490,
+        "cache_read_tokens": 188416,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.09489331499999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "b53808bb6bfde6ec055472910436cd2c03875602c524f44211232aa134844a6e",
+      "transcript_sha256": "215f7582c86aaa3b27700f46e2a521e3d87b1d57a5cb7025251abf2e0857a38d"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-qwen-qwen4-max-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 407,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 26,
+        "tool_calls": 31,
+        "input_tokens": 70574,
+        "output_tokens": 17535,
+        "cache_read_tokens": 492288,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.21060559500000003,
+        "cost_source": "provider"
+      },
+      "result_sha256": "05d17130a1fe2086ccad4d9c2804367454595ab2f4d410771cfb5d27ce560aa9",
+      "transcript_sha256": "04abeaae284c266b1320e8d46d26716fa10c04c27c2a8fa87b81a92cd109a5a4"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-qwen-qwen4-max-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 164,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 18,
+        "input_tokens": 41394,
+        "output_tokens": 5747,
+        "cache_read_tokens": 133376,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.09305791500000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "41d2bb79fced9d5f127db1462f85e53f3f34ff0113fecf3f46d98ec9ebab35db",
+      "transcript_sha256": "e10ffad8ba0d3cc14f48ac0e6d988b9a737497ec4a1d2f08f167023c8f9a38d9"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-qwen-qwen4-max-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 206,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 20,
+        "input_tokens": 41535,
+        "output_tokens": 7742,
+        "cache_read_tokens": 160256,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.103702665,
+        "cost_source": "provider"
+      },
+      "result_sha256": "41f385864f5868a5628dcd2729a6a2959cbf73e5344b5449117af910f8eb0a5d",
+      "transcript_sha256": "e9267782c54226830cc4d7a2beeec3cf7397e0360c76603ccf39698a0001f5ea"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-qwen-qwen4-max-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 154,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 19,
+        "input_tokens": 45979,
+        "output_tokens": 6131,
+        "cache_read_tokens": 174592,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.10416977999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "d6cc75e8084d5617ec80768e3b83295c439a7db8967d514ef5bb701ec75e94c5",
+      "transcript_sha256": "ecd73914ff27d4cf1652e718180f6c3f3e038906f05b7ee894225868a4af01cd"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-qwen-qwen4-max-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 166,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 19,
+        "tool_calls": 21,
+        "input_tokens": 35968,
+        "output_tokens": 7082,
+        "cache_read_tokens": 241408,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.09873027,
+        "cost_source": "provider"
+      },
+      "result_sha256": "16ae2bd9678ba402db1aaa67485e8ef336803df51ea550fcd94272d5c61b3519",
+      "transcript_sha256": "7b6e2f1cccd6a80923ae4f53e12316446ae5c9a3dda4aa91babed8814932161f"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-qwen-qwen4-max-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 160,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 22,
+        "input_tokens": 40111,
+        "output_tokens": 6185,
+        "cache_read_tokens": 196096,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.09757089000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "065e5d74281f51b8c9b14c51905685d958ae7e0d9934d73f5d3511c6c18fbf01",
+      "transcript_sha256": "52e32b4b57fcd9eaeea0735499787412cf9e00ad3ca70618bb0aa34e7ceba310"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-qwen-qwen4-max-1",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 315,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 20,
+        "tool_calls": 29,
+        "input_tokens": 80496,
+        "output_tokens": 11724,
+        "cache_read_tokens": 384768,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.19224162,
+        "cost_source": "provider"
+      },
+      "result_sha256": "8bddb4c0dbcd058afd6d8a48c2c9a13c7b28124b22b279f9a0d6dc1ac3565105",
+      "transcript_sha256": "cc07a4cee8442407ca3331bc9be2e1769d9d235852baa560d16b7239299aa7e1"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-qwen-qwen4-max-2",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 285,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 20,
+        "input_tokens": 55021,
+        "output_tokens": 6932,
+        "cache_read_tokens": 285696,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.128395065,
+        "cost_source": "provider"
+      },
+      "result_sha256": "ddbd9b5fb4bff267d4dfe9429fcd07a08a0fb4b6d840cdf5386c4c9a703317ae",
+      "transcript_sha256": "29d74be93e24179e1e524d103e304cd9d25f7a58bb81dd2b2c74672392d54827"
+    },
+    {
+      "run_id": "019-rust-fd-leak-qwen-qwen4-max-1",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 136,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 21,
+        "input_tokens": 47085,
+        "output_tokens": 6548,
+        "cache_read_tokens": 182016,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.10805746499999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c7cce2a3bc5d4d41c05fcf10260062d5afce487444f88063c5cc5b41cdd44275",
+      "transcript_sha256": "c3f7aabf5d5a69b51cdbfdb3226053ec040e4e4770b0029152271f85527c0ed6"
+    },
+    {
+      "run_id": "019-rust-fd-leak-qwen-qwen4-max-2",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 114,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 12,
+        "tool_calls": 16,
+        "input_tokens": 31927,
+        "output_tokens": 5513,
+        "cache_read_tokens": 127744,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.07816580999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "454af406f33b0c5cb1283d48f4ce8f5f315f94b77606856b37b49f83d801228a",
+      "transcript_sha256": "31177864be40a32fa3255381ce2a191568dacaab853d34e89d29b692356e25e6"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-qwen-qwen4-max-1",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 467,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 25,
+        "tool_calls": 34,
+        "input_tokens": 73581,
+        "output_tokens": 24543,
+        "cache_read_tokens": 675328,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.25789137,
+        "cost_source": "provider"
+      },
+      "result_sha256": "5cce129ecb0b474f6504922d53914af4c9b7268d4ccb590efef5906234dfb190",
+      "transcript_sha256": "b1e99f044b9227d8ff0e1b943352bd0dcfb488c5c786f4089f5e4a566c38c514"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-qwen-qwen4-max-2",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 336,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 20,
+        "tool_calls": 24,
+        "input_tokens": 65306,
+        "output_tokens": 16009,
+        "cache_read_tokens": 314880,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.183934725,
+        "cost_source": "provider"
+      },
+      "result_sha256": "ff629784c204a762f44f990e187adb2f0112e74a32a95573168e1760c4f930e2",
+      "transcript_sha256": "4c41bb7b0948920e39dc5e404d27652dc69d4070d895693023d246c9d7a38aad"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-qwen-qwen4-max-3",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 310,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 20,
+        "tool_calls": 26,
+        "input_tokens": 52208,
+        "output_tokens": 14333,
+        "cache_read_tokens": 430848,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.16636789500000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "439c0e9ba9d734af226940b38616a4aa92151d424dbe13c8aee4bb3d813930d3",
+      "transcript_sha256": "54cfccff4c2db1e052489ba5a95ad3b9d46d2799e835df8d3291e51ad97d7546"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-qwen-qwen4-max-1",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 146,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 16,
+        "input_tokens": 32007,
+        "output_tokens": 5988,
+        "cache_read_tokens": 149760,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.081879075,
+        "cost_source": "provider"
+      },
+      "result_sha256": "7a3d4a96841902119869793f7452e878e16fa24a97882f347e75cbf8e203d3b5",
+      "transcript_sha256": "91b6604f4c762ae493d9cd76761967757fdc456ef4ab15e91049e2e17dd485ff"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-qwen-qwen4-max-2",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 150,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 22,
+        "input_tokens": 38621,
+        "output_tokens": 7271,
+        "cache_read_tokens": 202496,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.10054629000000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c6208844aef00489034a1167dc5a3f69a58eacf0f30cad21d705c0de82a158a2",
+      "transcript_sha256": "359dfcd75d5f8457474ef4ad32d4a2676f9011b01e276f060592ba9a93355b18"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-qwen-qwen4-max-3",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 213,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 24,
+        "input_tokens": 33604,
+        "output_tokens": 10054,
+        "cache_read_tokens": 217088,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.10633407,
+        "cost_source": "provider"
+      },
+      "result_sha256": "177096dfe2f7fa1ec3d03c48630ce9417d034539d7379a92d725455c4c326136",
+      "transcript_sha256": "8215f39add1f0882f98c71eb528bf998949659964f5614c0d23c1ff7e76dca7b"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-qwen-qwen4-max-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 159,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 22,
+        "input_tokens": 34595,
+        "output_tokens": 7340,
+        "cache_read_tokens": 317952,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.103330455,
+        "cost_source": "provider"
+      },
+      "result_sha256": "61d6368ea427be6ff5171c7365cf48091755eb1f695e7238f150fc1e881b1102",
+      "transcript_sha256": "184cba59556b075838159efc3abbbbd6aef08d9d568525c89ebe94ff445aba3d"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-qwen-qwen4-max-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 122,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 19,
+        "tool_calls": 20,
+        "input_tokens": 48058,
+        "output_tokens": 5126,
+        "cache_read_tokens": 220928,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.10613742000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "51d47c1f0c102053f62de27d68ec51d6de366aa7253e28a22537d7c0c3f8277c",
+      "transcript_sha256": "dcfffb2eddaf1adcf12ef6b084129009cf2ea1b92788723bbd9edfcc7d419970"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-qwen-qwen4-max-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 167,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 20,
+        "tool_calls": 24,
+        "input_tokens": 44909,
+        "output_tokens": 7594,
+        "cache_read_tokens": 350464,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.12143023500000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "2f3d1a469922bc1289bedbfb3e665778c1993fc417d9450afb04400184a3d9c5",
+      "transcript_sha256": "c29583dcb8f8f1e1143400650d7bfc69dc65216752b2d7390ed394fb7a43ab6d"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen4-max-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 164,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 21,
+        "input_tokens": 49657,
+        "output_tokens": 8545,
+        "cache_read_tokens": 207616,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.12208374,
+        "cost_source": "provider"
+      },
+      "result_sha256": "394247d439854924da44bfb8b1c64b4c3810eca8a0dbfeb3d123f9db01ff6b98",
+      "transcript_sha256": "dd4a2b531212f0f1ac7ff3230557f2f677387485b61bb7222d49d83e4ace3376"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen4-max-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 176,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 25,
+        "input_tokens": 32059,
+        "output_tokens": 8929,
+        "cache_read_tokens": 233472,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.10049043000000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "98753104f4c327224d40b5561c40ab8b473e644e7bf1b62df82a93cff07b724b",
+      "transcript_sha256": "26500e0ce849f0245937095b1134644aca8dbc6eb6610e2251629606569927f2"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen4-max-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 158,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 21,
+        "tool_calls": 28,
+        "input_tokens": 36655,
+        "output_tokens": 8090,
+        "cache_read_tokens": 317440,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.10943572500000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c38ce826cd20fe286f37c874924b9925456d7781406a4dece92528b61d5c4e06",
+      "transcript_sha256": "73f2c6d43607044c9b6d26ed8b91f6f091da548ba95a9dea00dd752d616e5e0a"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-qwen-qwen4-max-1",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 147,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 10,
+        "tool_calls": 16,
+        "input_tokens": 35320,
+        "output_tokens": 7026,
+        "cache_read_tokens": 163072,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.09198603000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "f9c566ab99b649a6364e61926f2c535bd4d3cf6142f19314145186efb72ebf75",
+      "transcript_sha256": "fe26a08d84e9f52d407442852593901f1d992b50106ff7f540e4c6ba1bb4a2fd"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-qwen-qwen4-max-2",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 139,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 12,
+        "tool_calls": 17,
+        "input_tokens": 37671,
+        "output_tokens": 6133,
+        "cache_read_tokens": 205824,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.09456471,
+        "cost_source": "provider"
+      },
+      "result_sha256": "12d2bea3d7e4abf901afd81823de0ec96f3b96a47a1c8fd2b03f86ee883619f5",
+      "transcript_sha256": "89d7914192503b4f6468c7e5c2723634ab35a23cdcd231d5dc15281c0b018119"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-qwen-qwen4-max-3",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 121,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 9,
+        "tool_calls": 13,
+        "input_tokens": 37427,
+        "output_tokens": 5633,
+        "cache_read_tokens": 107008,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.08503887,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c5adbf44c93967d765bd2b351bd0a5448beaa5833ed17e1a8124f4ca192af483",
+      "transcript_sha256": "62ee962faab4a2995e92c1bd6a56b4004cb2aa0ca8c0c91bd2733e195e6b572b"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-qwen-qwen4-max-3",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 339,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 24,
+        "input_tokens": 65910,
+        "output_tokens": 8250,
+        "cache_read_tokens": 283392,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.14938218,
+        "cost_source": "provider"
+      },
+      "result_sha256": "57d26760e101b7094984ea43da77bb493f739202120605795163a2120153e817",
+      "transcript_sha256": "6a39f3c564841247fc9b6b40b9b5d6123d669e8915e0c84a4a3c2490dc668bcc"
+    },
+    {
+      "run_id": "019-rust-fd-leak-qwen-qwen4-max-3",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 170,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 20,
+        "input_tokens": 41398,
+        "output_tokens": 6722,
+        "cache_read_tokens": 157184,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.09892805999999998,
+        "cost_source": "provider"
+      },
+      "result_sha256": "4766ad13860273fe5430c1b109b74d5362458e53796caccd7fe7831835a93c22",
+      "transcript_sha256": "cc1a3974a7a2667a625d9e38c618311f1339ec287ba59990dc8230e51b8602c0"
+    }
+  ],
+  "recovery": {
+    "original_completed_results_preserved": 31,
+    "resume_record_sha256": "01be545bf0de4949c6e1b1968709a634d56dfeeef845a7114ca4bdd7f0283e81",
+    "original_summary_sha256": "3a45faaaa612b4ab9895e29536481fd36b46bafcc1e04b1e385cd100972586cf",
+    "retried_pre_agent_startup_failures": [
+      {
+        "run_id": "017-partial-rails-rollout-qwen-qwen4-max-3",
+        "original_stage": "VM Nix store image creation, before agent execution",
+        "original_result_present": false,
+        "original_agent_artifacts_present": false,
+        "original_console_sha256": "4683158bc742d629bf826129e55c97b1c1eb965ff7476b0b6c8187c70ba8d1f3",
+        "original_controller_log_sha256": "08c0c7261b2349ca1a8553efe64fdec4947db9e3a1cd0179546a06eff89b8309",
+        "replacement_result_sha256": "57d26760e101b7094984ea43da77bb493f739202120605795163a2120153e817"
+      },
+      {
+        "run_id": "019-rust-fd-leak-qwen-qwen4-max-3",
+        "original_stage": "VM Nix store image creation, before agent execution",
+        "original_result_present": false,
+        "original_agent_artifacts_present": false,
+        "original_console_sha256": "b9cee8ae118959405f62cb8f279afc5bbc6490660c9bf79fb52dc6d64fdf3f04",
+        "original_controller_log_sha256": "0af7255820645c622d7ebc9589b6837878c74f4f4aaaa5958cab7e1a6c8c6c83",
+        "replacement_result_sha256": "4766ad13860273fe5430c1b109b74d5362458e53796caccd7fe7831835a93c22"
+      }
+    ]
+  }
+}
