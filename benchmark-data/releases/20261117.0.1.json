@@ -1,0 +1,2322 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 12886272,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1142944,
+      "known_cost_usd": 0.11465023287500001,
+      "median_duration_seconds": 91,
+      "median_first_non_read_only_tool_seconds": 2.58,
+      "median_model_duration_seconds": 78.905,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 85.562,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 12.766,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 383376,
+      "pass_rate": 1.0,
+      "passed": 33,
+      "provider": "openrouter",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 854016,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 93072,
+      "known_cost_usd": 0.007451109,
+      "median_duration_seconds": 65,
+      "median_first_non_read_only_tool_seconds": 4.009,
+      "median_model_duration_seconds": 58.551,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 60.705,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 4.552,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 20730,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 517888,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 68660,
+      "known_cost_usd": 0.005790141,
+      "median_duration_seconds": 67,
+      "median_first_non_read_only_tool_seconds": 2.315,
+      "median_model_duration_seconds": 51.594,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 62.745999999999995,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 14.667,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 18578,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1172480,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 131335,
+      "known_cost_usd": 0.013472737875000002,
+      "median_duration_seconds": 147,
+      "median_first_non_read_only_tool_seconds": 2.402,
+      "median_model_duration_seconds": 112.641,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 143.264,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 32.779,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 40312,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1046016,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 78816,
+      "known_cost_usd": 0.007945458999999998,
+      "median_duration_seconds": 99,
+      "median_first_non_read_only_tool_seconds": 3.051,
+      "median_model_duration_seconds": 86.64,
+      "median_model_rounds": 21,
+      "median_post_first_non_read_only_seconds": 95.659,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 13.623,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 25750,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 889600,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 95031,
+      "known_cost_usd": 0.008749316,
+      "median_duration_seconds": 136,
+      "median_first_non_read_only_tool_seconds": 2.603,
+      "median_model_duration_seconds": 84.568,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 132.41299999999998,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 55.913,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 29102,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 529152,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 63662,
+      "known_cost_usd": 0.0062587369999999995,
+      "median_duration_seconds": 73,
+      "median_first_non_read_only_tool_seconds": 3.242,
+      "median_model_duration_seconds": 65.976,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 68.402,
+      "median_tool_calls": 15,
+      "median_tool_duration_seconds": 5.744,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 23038,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1403648,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 109107,
+      "known_cost_usd": 0.0137448685,
+      "median_duration_seconds": 122,
+      "median_first_non_read_only_tool_seconds": 2.803,
+      "median_model_duration_seconds": 112.365,
+      "median_model_rounds": 21,
+      "median_post_first_non_read_only_seconds": 116.975,
+      "median_tool_calls": 29,
+      "median_tool_duration_seconds": 9.185,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 55663,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 915712,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 94361,
+      "known_cost_usd": 0.0082548785,
+      "median_duration_seconds": 77,
+      "median_first_non_read_only_tool_seconds": 2.766,
+      "median_model_duration_seconds": 72.232,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 73.15599999999999,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 3.341,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 25471,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1472768,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 153412,
+      "known_cost_usd": 0.0111235275,
+      "median_duration_seconds": 104,
+      "median_first_non_read_only_tool_seconds": 2.407,
+      "median_model_duration_seconds": 88.879,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 99.913,
+      "median_tool_calls": 27,
+      "median_tool_duration_seconds": 13.112,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 25231,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 3380992,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 171737,
+      "known_cost_usd": 0.024652897,
+      "median_duration_seconds": 327,
+      "median_first_non_read_only_tool_seconds": 2.446,
+      "median_model_duration_seconds": 293.293,
+      "median_model_rounds": 35,
+      "median_post_first_non_read_only_seconds": 322.82300000000004,
+      "median_tool_calls": 42,
+      "median_tool_duration_seconds": 25.029,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 96588,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 704000,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 83751,
+      "known_cost_usd": 0.0072065615,
+      "median_duration_seconds": 81,
+      "median_first_non_read_only_tool_seconds": 2.549,
+      "median_model_duration_seconds": 66.267,
+      "median_model_rounds": 11,
+      "median_post_first_non_read_only_seconds": 76.497,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 12.653,
+      "model": "tencent/hy4-flash",
+      "output_tokens": 22913,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "api",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "bounded-search 25e7b9c (binary 7a7268af30cf)"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "HY4 Flash passed all 33 frozen Core trials (100%), with a 91-second median agent duration and $0.11465 in provider-reported inference cost.",
+  "input_mode": "text",
+  "model_labels": {
+    "tencent/hy4-flash": "HY4 Flash"
+  },
+  "model_order": [
+    "tencent/hy4-flash"
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Audited all 33 raw results and transcripts, per-round token accounting, completion/deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections. Public evidence contains sanitized records and hashes, not private transcripts, reasoning, local paths or VM logs.",
+    "Exact tencent/hy4-flash model route through Claux/OpenRouter; distinct from HY4 Preview. Reasoning effort was not explicitly set.",
+    "Costs are provider-reported inference accounting, exclude local compute and are not an invoice. Catalog pricing and promotional offers can change. Three attempts per scenario are a small sample; a clean sweep on this pack does not establish general superiority."
+  ],
+  "observations": [
+    "All 33 attempts completed within the 900-second deadline and passed immediate HTTP, service-restart and host-reboot checks.",
+    "Median agent duration was 91 seconds. All 33 trials include provider-reported usage/cost and transcript recording.",
+    "No failed or unavailable trials appear in the completed matrix."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 91,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:31:56Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.389,
+        "model_duration_seconds": 83.233,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 85.03500000000001,
+        "tool_calls": 17,
+        "tool_duration_seconds": 5.608,
+        "total_duration_seconds": 89.424
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-tencent-hy4-flash-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T01:30:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 375552,
+        "cost_source": "provider",
+        "cost_usd": 0.0032872495,
+        "input_tokens": 41766,
+        "output_tokens": 8983,
+        "rounds": 18,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 65,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:34:00Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.154,
+        "model_duration_seconds": 58.551,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 60.705,
+        "tool_calls": 10,
+        "tool_duration_seconds": 4.186,
+        "total_duration_seconds": 62.859
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-tencent-hy4-flash-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T01:32:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 140032,
+        "cost_source": "provider",
+        "cost_usd": 0.0021045045000000003,
+        "input_tokens": 22563,
+        "output_tokens": 7863,
+        "rounds": 11,
+        "tool_calls": 10
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 58,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:35:58Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.009,
+        "model_duration_seconds": 51.209,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 52.0,
+        "tool_calls": 24,
+        "tool_duration_seconds": 4.552,
+        "total_duration_seconds": 56.009
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-tencent-hy4-flash-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T01:34:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 338432,
+        "cost_source": "provider",
+        "cost_usd": 0.0020593549999999997,
+        "input_tokens": 28743,
+        "output_tokens": 3884,
+        "rounds": 17,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:38:38Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.23,
+        "model_duration_seconds": 63.796,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 76.40299999999999,
+        "tool_calls": 17,
+        "tool_duration_seconds": 14.667,
+        "total_duration_seconds": 78.633
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-tencent-hy4-flash-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-17T01:37:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 260352,
+        "cost_source": "provider",
+        "cost_usd": 0.002406979,
+        "input_tokens": 31793,
+        "output_tokens": 6432,
+        "rounds": 18,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 63,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:40:52Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.315,
+        "model_duration_seconds": 45.127,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 58.583000000000006,
+        "tool_calls": 10,
+        "tool_duration_seconds": 15.671,
+        "total_duration_seconds": 60.898
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-tencent-hy4-flash-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-17T01:39:30Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 124160,
+        "cost_source": "provider",
+        "cost_usd": 0.001592704,
+        "input_tokens": 17512,
+        "output_tokens": 5648,
+        "rounds": 11,
+        "tool_calls": 10
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 67,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:43:16Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.384,
+        "model_duration_seconds": 51.594,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 62.745999999999995,
+        "tool_calls": 17,
+        "tool_duration_seconds": 13.429,
+        "total_duration_seconds": 65.13
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-tencent-hy4-flash-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-17T01:41:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 133376,
+        "cost_source": "provider",
+        "cost_usd": 0.001790458,
+        "input_tokens": 19355,
+        "output_tokens": 6498,
+        "rounds": 10,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 161,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:47:20Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.402,
+        "model_duration_seconds": 114.751,
+        "model_rounds": 24,
+        "post_first_non_read_only_seconds": 157.467,
+        "tool_calls": 30,
+        "tool_duration_seconds": 44.851,
+        "total_duration_seconds": 159.869
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-tencent-hy4-flash-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T01:44:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 517120,
+        "cost_source": "provider",
+        "cost_usd": 0.003939756000000001,
+        "input_tokens": 37526,
+        "output_tokens": 13172,
+        "rounds": 24,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 119,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:50:34Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.968,
+        "model_duration_seconds": 98.387,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 114.68599999999999,
+        "tool_calls": 25,
+        "tool_duration_seconds": 19.085,
+        "total_duration_seconds": 117.654
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-tencent-hy4-flash-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T01:48:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 239616,
+        "cost_source": "provider",
+        "cost_usd": 0.004004868125,
+        "input_tokens": 26592,
+        "output_tokens": 13621,
+        "rounds": 15,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 147,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:54:19Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.333,
+        "model_duration_seconds": 112.641,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 143.264,
+        "tool_calls": 26,
+        "tool_duration_seconds": 32.779,
+        "total_duration_seconds": 145.597
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-tencent-hy4-flash-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T01:51:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 415744,
+        "cost_source": "provider",
+        "cost_usd": 0.005528113750000001,
+        "input_tokens": 67217,
+        "output_tokens": 13519,
+        "rounds": 20,
+        "tool_calls": 26
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 108,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T01:57:20Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.274,
+        "model_duration_seconds": 91.893,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 101.4,
+        "tool_calls": 30,
+        "tool_duration_seconds": 13.623,
+        "total_duration_seconds": 105.674
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-tencent-hy4-flash-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T01:55:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 432896,
+        "cost_source": "provider",
+        "cost_usd": 0.002904436,
+        "input_tokens": 29250,
+        "output_tokens": 8764,
+        "rounds": 25,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 90,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:00:10Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.051,
+        "model_duration_seconds": 73.846,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 85.562,
+        "tool_calls": 24,
+        "tool_duration_seconds": 14.605,
+        "total_duration_seconds": 88.613
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-tencent-hy4-flash-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T01:58:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 248320,
+        "cost_source": "provider",
+        "cost_usd": 0.0022742039999999993,
+        "input_tokens": 20904,
+        "output_tokens": 8328,
+        "rounds": 18,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 99,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:03:08Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.207,
+        "model_duration_seconds": 86.64,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 95.659,
+        "tool_calls": 20,
+        "tool_duration_seconds": 10.976,
+        "total_duration_seconds": 97.866
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-tencent-hy4-flash-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:00:59Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 364800,
+        "cost_source": "provider",
+        "cost_usd": 0.0027668190000000002,
+        "input_tokens": 28662,
+        "output_tokens": 8658,
+        "rounds": 21,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 136,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:06:31Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.603,
+        "model_duration_seconds": 78.905,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 132.41299999999998,
+        "tool_calls": 24,
+        "tool_duration_seconds": 55.913,
+        "total_duration_seconds": 135.016
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-tencent-hy4-flash-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:03:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 308992,
+        "cost_source": "provider",
+        "cost_usd": 0.002818831,
+        "input_tokens": 33150,
+        "output_tokens": 8506,
+        "rounds": 17,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 120,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:09:54Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.659,
+        "model_duration_seconds": 88.338,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 115.827,
+        "tool_calls": 25,
+        "tool_duration_seconds": 29.961,
+        "total_duration_seconds": 118.486
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-tencent-hy4-flash-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:07:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 315904,
+        "cost_source": "provider",
+        "cost_usd": 0.0033834100000000003,
+        "input_tokens": 38981,
+        "output_tokens": 10998,
+        "rounds": 13,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 153,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:13:46Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.58,
+        "model_duration_seconds": 84.568,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 148.92999999999998,
+        "tool_calls": 17,
+        "tool_duration_seconds": 66.802,
+        "total_duration_seconds": 151.51
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-tencent-hy4-flash-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:10:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 264704,
+        "cost_source": "provider",
+        "cost_usd": 0.002547075,
+        "input_tokens": 22900,
+        "output_tokens": 9598,
+        "rounds": 18,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 62,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:17:19Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.352,
+        "model_duration_seconds": 53.846,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 57.276,
+        "tool_calls": 15,
+        "tool_duration_seconds": 6.648,
+        "total_duration_seconds": 60.628
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-tencent-hy4-flash-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:16:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 152576,
+        "cost_source": "provider",
+        "cost_usd": 0.0018941329999999999,
+        "input_tokens": 22538,
+        "output_tokens": 6238,
+        "rounds": 12,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 73,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:21:41Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.242,
+        "model_duration_seconds": 65.976,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 68.402,
+        "tool_calls": 14,
+        "tool_duration_seconds": 5.521,
+        "total_duration_seconds": 71.644
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-tencent-hy4-flash-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:20:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 174336,
+        "cost_source": "provider",
+        "cost_usd": 0.001994535,
+        "input_tokens": 18838,
+        "output_tokens": 7642,
+        "rounds": 13,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 79,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:26:10Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.329,
+        "model_duration_seconds": 71.038,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 74.58300000000001,
+        "tool_calls": 17,
+        "tool_duration_seconds": 5.744,
+        "total_duration_seconds": 76.912
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-tencent-hy4-flash-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:24:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 202240,
+        "cost_source": "provider",
+        "cost_usd": 0.002370069,
+        "input_tokens": 22286,
+        "output_tokens": 9158,
+        "rounds": 13,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 96,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:29:10Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.803,
+        "model_duration_seconds": 79.768,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 89.85900000000001,
+        "tool_calls": 19,
+        "tool_duration_seconds": 12.766,
+        "total_duration_seconds": 92.662
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-tencent-hy4-flash-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:27:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 220672,
+        "cost_source": "provider",
+        "cost_usd": 0.002788433500000001,
+        "input_tokens": 28299,
+        "output_tokens": 10441,
+        "rounds": 14,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 122,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:32:45Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.873,
+        "model_duration_seconds": 112.365,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 116.975,
+        "tool_calls": 29,
+        "tool_duration_seconds": 7.247,
+        "total_duration_seconds": 119.848
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-tencent-hy4-flash-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:30:29Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 375296,
+        "cost_source": "provider",
+        "cost_usd": 0.003579745,
+        "input_tokens": 29625,
+        "output_tokens": 14092,
+        "rounds": 21,
+        "tool_calls": 29
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 234,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:37:45Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.323,
+        "model_duration_seconds": 221.87,
+        "model_rounds": 28,
+        "post_first_non_read_only_seconds": 229.22,
+        "tool_calls": 33,
+        "tool_duration_seconds": 9.185,
+        "total_duration_seconds": 231.543
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-tencent-hy4-flash-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:33:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 807680,
+        "cost_source": "provider",
+        "cost_usd": 0.007376689999999999,
+        "input_tokens": 51183,
+        "output_tokens": 31130,
+        "rounds": 28,
+        "tool_calls": 33
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 80,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:40:06Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.934,
+        "model_duration_seconds": 72.232,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 75.117,
+        "tool_calls": 15,
+        "tool_duration_seconds": 5.695,
+        "total_duration_seconds": 78.051
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-tencent-hy4-flash-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:38:33Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 187904,
+        "cost_source": "provider",
+        "cost_usd": 0.0023251535,
+        "input_tokens": 21870,
+        "output_tokens": 9095,
+        "rounds": 16,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 77,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:42:36Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.766,
+        "model_duration_seconds": 73.208,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 73.15599999999999,
+        "tool_calls": 19,
+        "tool_duration_seconds": 2.558,
+        "total_duration_seconds": 75.922
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-tencent-hy4-flash-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:41:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 312576,
+        "cost_source": "provider",
+        "cost_usd": 0.0027991329999999997,
+        "input_tokens": 33389,
+        "output_tokens": 8268,
+        "rounds": 15,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 76,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:45:06Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.558,
+        "model_duration_seconds": 71.259,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 72.257,
+        "tool_calls": 22,
+        "tool_duration_seconds": 3.341,
+        "total_duration_seconds": 74.815
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-tencent-hy4-flash-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:43:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 415232,
+        "cost_source": "provider",
+        "cost_usd": 0.003130592,
+        "input_tokens": 39102,
+        "output_tokens": 8108,
+        "rounds": 15,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 85,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:47:49Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.718,
+        "model_duration_seconds": 73.901,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 80.777,
+        "tool_calls": 19,
+        "tool_duration_seconds": 9.386,
+        "total_duration_seconds": 83.495
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-tencent-hy4-flash-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:46:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 505344,
+        "cost_source": "provider",
+        "cost_usd": 0.003189725000000001,
+        "input_tokens": 43513,
+        "output_tokens": 6468,
+        "rounds": 20,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 104,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:50:56Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.407,
+        "model_duration_seconds": 88.879,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 99.913,
+        "tool_calls": 29,
+        "tool_duration_seconds": 13.112,
+        "total_duration_seconds": 102.32
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-tencent-hy4-flash-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:48:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 472576,
+        "cost_source": "provider",
+        "cost_usd": 0.0041749625,
+        "input_tokens": 67451,
+        "output_tokens": 7867,
+        "rounds": 20,
+        "tool_calls": 29
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 106,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T02:54:09Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.319,
+        "model_duration_seconds": 89.172,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 101.566,
+        "tool_calls": 27,
+        "tool_duration_seconds": 14.48,
+        "total_duration_seconds": 103.885
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-tencent-hy4-flash-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:52:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 494848,
+        "cost_source": "provider",
+        "cost_usd": 0.0037588400000000007,
+        "input_tokens": 42448,
+        "output_tokens": 10896,
+        "rounds": 18,
+        "tool_calls": 27
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 327,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T03:01:10Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.131,
+        "model_duration_seconds": 293.293,
+        "model_rounds": 43,
+        "post_first_non_read_only_seconds": 322.82300000000004,
+        "tool_calls": 42,
+        "tool_duration_seconds": 31.176,
+        "total_duration_seconds": 324.954
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-tencent-hy4-flash-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T02:55:25Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1255168,
+        "cost_source": "provider",
+        "cost_usd": 0.0095031815,
+        "input_tokens": 65830,
+        "output_tokens": 37839,
+        "rounds": 43,
+        "tool_calls": 42
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 341,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T03:08:54Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.446,
+        "model_duration_seconds": 314.058,
+        "model_rounds": 35,
+        "post_first_non_read_only_seconds": 337.227,
+        "tool_calls": 42,
+        "tool_duration_seconds": 25.029,
+        "total_duration_seconds": 339.673
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-tencent-hy4-flash-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T03:02:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 1379840,
+        "cost_source": "provider",
+        "cost_usd": 0.010497035000000002,
+        "input_tokens": 67603,
+        "output_tokens": 43140,
+        "rounds": 35,
+        "tool_calls": 42
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 160,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T03:13:44Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.331,
+        "model_duration_seconds": 146.76,
+        "model_rounds": 30,
+        "post_first_non_read_only_seconds": 150.306,
+        "tool_calls": 35,
+        "tool_duration_seconds": 9.505,
+        "total_duration_seconds": 156.637
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-tencent-hy4-flash-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T03:10:46Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 745984,
+        "cost_source": "provider",
+        "cost_usd": 0.004652680500000001,
+        "input_tokens": 38304,
+        "output_tokens": 15609,
+        "rounds": 30,
+        "tool_calls": 35
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 67,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T03:16:29Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.635,
+        "model_duration_seconds": 54.448,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 62.87800000000001,
+        "tool_calls": 17,
+        "tool_duration_seconds": 10.93,
+        "total_duration_seconds": 65.513
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-tencent-hy4-flash-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-17T03:15:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 144896,
+        "cost_source": "provider",
+        "cost_usd": 0.002248722,
+        "input_tokens": 26182,
+        "output_tokens": 7936,
+        "rounds": 10,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 81,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T03:18:55Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.549,
+        "model_duration_seconds": 66.267,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 76.497,
+        "tool_calls": 14,
+        "tool_duration_seconds": 12.653,
+        "total_duration_seconds": 79.046
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-tencent-hy4-flash-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-17T03:17:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 195584,
+        "cost_source": "provider",
+        "cost_usd": 0.0023778265000000006,
+        "input_tokens": 26193,
+        "output_tokens": 8311,
+        "rounds": 11,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 84,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T03:21:36Z",
+      "model": "tencent/hy4-flash",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.061,
+        "model_duration_seconds": 69.254,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 80.31200000000001,
+        "tool_calls": 18,
+        "tool_duration_seconds": 12.951,
+        "total_duration_seconds": 82.373
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-tencent-hy4-flash-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-17T03:19:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 363520,
+        "cost_source": "provider",
+        "cost_usd": 0.002580013,
+        "input_tokens": 31376,
+        "output_tokens": 6666,
+        "rounds": 19,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-17T03:21:37.142080Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "tencent/hy4-flash"
+      ],
+      "reasoning_efforts": [],
+      "replaybook_commit": "7dd7ca17bcebce70afe7370cb43632461ef2b3a0",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-17T01:29:11.611993Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "b76b4b03716f4536805a2509259409adabd4b0fa657a0571c2a349861c13ebd3"
+    }
+  ],
+  "tier": "core",
+  "title": "HY4 Flash Core via Claux / OpenRouter",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 12886272,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 0,
+    "failure_categories": {},
+    "input_tokens": 1142944,
+    "known_cost_usd": 0.11465023287500001,
+    "median_duration_seconds": 91,
+    "median_first_non_read_only_tool_seconds": 2.58,
+    "median_model_duration_seconds": 78.905,
+    "median_model_rounds": 18,
+    "median_post_first_non_read_only_seconds": 85.562,
+    "median_tool_calls": 20,
+    "median_tool_duration_seconds": 12.766,
+    "output_tokens": 383376,
+    "pass_rate": 1.0,
+    "passed": 33,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261117.0.1"
+}

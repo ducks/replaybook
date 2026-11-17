@@ -1,0 +1,2323 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 7826176,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 1459241,
+      "known_cost_usd": 3.7802069400000002,
+      "median_duration_seconds": 160,
+      "median_first_non_read_only_tool_seconds": 3.889,
+      "median_model_duration_seconds": 145.345,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 154.331,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 11.28,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 267409,
+      "pass_rate": 1.0,
+      "passed": 33,
+      "provider": "openrouter",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 172544,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 60086,
+      "known_cost_usd": 0.13249251,
+      "median_duration_seconds": 76,
+      "median_first_non_read_only_tool_seconds": 4.208,
+      "median_model_duration_seconds": 70.243,
+      "median_model_rounds": 10,
+      "median_post_first_non_read_only_seconds": 69.863,
+      "median_tool_calls": 11,
+      "median_tool_duration_seconds": 3.578,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 8088,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 720640,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 150079,
+      "known_cost_usd": 0.353256075,
+      "median_duration_seconds": 150,
+      "median_first_non_read_only_tool_seconds": 3.816,
+      "median_model_duration_seconds": 127.228,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 142.44199999999998,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 18.279,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 20596,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 785920,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 153503,
+      "known_cost_usd": 0.40736617500000005,
+      "median_duration_seconds": 206,
+      "median_first_non_read_only_tool_seconds": 4.373,
+      "median_model_duration_seconds": 160.495,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 198.92000000000002,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 43.624,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 31024,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 612096,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 122058,
+      "known_cost_usd": 0.30047093999999996,
+      "median_duration_seconds": 160,
+      "median_first_non_read_only_tool_seconds": 4.819,
+      "median_model_duration_seconds": 146.123,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 154.331,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 12.114,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 19398,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 953856,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 201427,
+      "known_cost_usd": 0.470018865,
+      "median_duration_seconds": 315,
+      "median_first_non_read_only_tool_seconds": 3.525,
+      "median_model_duration_seconds": 188.959,
+      "median_model_rounds": 18,
+      "median_post_first_non_read_only_seconds": 310.4,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 145.333,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 26906,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 466944,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 120410,
+      "known_cost_usd": 0.28515133499999995,
+      "median_duration_seconds": 136,
+      "median_first_non_read_only_tool_seconds": 3.681,
+      "median_model_duration_seconds": 125.809,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 130.155,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 7.876,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 18783,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1421056,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 191095,
+      "known_cost_usd": 0.60819399,
+      "median_duration_seconds": 336,
+      "median_first_non_read_only_tool_seconds": 3.889,
+      "median_model_duration_seconds": 325.043,
+      "median_model_rounds": 20,
+      "median_post_first_non_read_only_seconds": 331.142,
+      "median_tool_calls": 26,
+      "median_tool_duration_seconds": 9.602,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 54885,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 569344,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 104232,
+      "known_cost_usd": 0.288759435,
+      "median_duration_seconds": 150,
+      "median_first_non_read_only_tool_seconds": 3.258,
+      "median_model_duration_seconds": 146.046,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 144.517,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 3.048,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 23313,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 889344,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 127562,
+      "known_cost_usd": 0.33089811,
+      "median_duration_seconds": 159,
+      "median_first_non_read_only_tool_seconds": 3.693,
+      "median_model_duration_seconds": 141.834,
+      "median_model_rounds": 19,
+      "median_post_first_non_read_only_seconds": 154.016,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 15.557,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 20060,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 758528,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 118371,
+      "known_cost_usd": 0.332009895,
+      "median_duration_seconds": 164,
+      "median_first_non_read_only_tool_seconds": 3.362,
+      "median_model_duration_seconds": 157.833,
+      "median_model_rounds": 17,
+      "median_post_first_non_read_only_seconds": 158.272,
+      "median_tool_calls": 25,
+      "median_tool_duration_seconds": 4.93,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 25564,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 475904,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 110418,
+      "known_cost_usd": 0.27158961000000004,
+      "median_duration_seconds": 139,
+      "median_first_non_read_only_tool_seconds": 4.354,
+      "median_model_duration_seconds": 123.706,
+      "median_model_rounds": 10,
+      "median_post_first_non_read_only_seconds": 133.09,
+      "median_tool_calls": 16,
+      "median_tool_duration_seconds": 13.504,
+      "model": "qwen/qwen4-max",
+      "output_tokens": 18792,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "api",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "bounded-search 25e7b9c (binary 7a7268af30cf)"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Qwen4 Max passed all 33 frozen Core trials (100%), with a 160-second median agent duration and $3.7802 in provider-reported inference cost. Two pre-agent VM startup failures were preserved and resumed without changing the 31 completed results.",
+  "input_mode": "text",
+  "model_labels": {
+    "qwen/qwen4-max": "Qwen4 Max"
+  },
+  "model_order": [
+    "qwen/qwen4-max"
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Audited all 33 raw results and transcripts, per-round token accounting, completion/deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections. Public evidence contains sanitized records and hashes, not private transcripts, reasoning, local paths or VM logs.",
+    "Two initial VM starts stopped while creating the Nix store image before agent execution and wrote no scored result or agent artifacts. Their logs/state and the original summary were preserved. Only those two missing trials were resumed; hashes confirm the 31 existing scored results were unchanged.",
+    "Exact qwen/qwen4-max model route through Claux/OpenRouter. Reasoning effort was not explicitly set. Keep model aliases, harnesses, provider routes and cohort boundaries separate.",
+    "Costs are provider-reported inference accounting, exclude local compute and are not an invoice. Three attempts per scenario are a small sample, and a clean sweep on this Core pack does not establish general superiority."
+  ],
+  "observations": [
+    "All 33 passing attempts completed within the 900-second deadline and passed immediate HTTP, service-restart and host-reboot checks.",
+    "Median agent duration was 160 seconds (2 minutes 40 seconds). All 33 trials include provider-reported usage/cost and transcript recording.",
+    "No evaluated model failure was hidden, reclassified as unavailable or rerun. The two resumed failures occurred before model execution; both replacement trials passed."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 78,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T18:51:44Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.426,
+        "model_duration_seconds": 73.266,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 73.423,
+        "tool_calls": 12,
+        "tool_duration_seconds": 3.521,
+        "total_duration_seconds": 76.849
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-qwen-qwen4-max-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T18:50:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 61952,
+        "cost_source": "provider",
+        "cost_usd": 0.054501405,
+        "input_tokens": 26200,
+        "output_tokens": 2983,
+        "rounds": 10,
+        "tool_calls": 12
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 60,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T18:54:15Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.243,
+        "model_duration_seconds": 55.739,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 54.134,
+        "tool_calls": 10,
+        "tool_duration_seconds": 3.578,
+        "total_duration_seconds": 59.377
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-qwen-qwen4-max-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T18:53:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 49408,
+        "cost_source": "provider",
+        "cost_usd": 0.032041695,
+        "input_tokens": 13844,
+        "output_tokens": 2057,
+        "rounds": 9,
+        "tool_calls": 10
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 76,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T18:57:03Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.208,
+        "model_duration_seconds": 70.243,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 69.863,
+        "tool_calls": 11,
+        "tool_duration_seconds": 3.759,
+        "total_duration_seconds": 74.071
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-qwen-qwen4-max-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T18:55:34Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 61184,
+        "cost_source": "provider",
+        "cost_usd": 0.04594941,
+        "input_tokens": 20042,
+        "output_tokens": 3048,
+        "rounds": 10,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 220,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:02:34Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.371,
+        "model_duration_seconds": 196.923,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 213.096,
+        "tool_calls": 30,
+        "tool_duration_seconds": 20.3,
+        "total_duration_seconds": 217.467
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-qwen-qwen4-max-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-16T18:58:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 367360,
+        "cost_source": "provider",
+        "cost_usd": 0.1565049,
+        "input_tokens": 63329,
+        "output_tokens": 9377,
+        "rounds": 22,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 150,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:06:42Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.222,
+        "model_duration_seconds": 127.228,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 142.44199999999998,
+        "tool_calls": 20,
+        "tool_duration_seconds": 18.279,
+        "total_duration_seconds": 145.664
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-qwen-qwen4-max-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-16T19:03:54Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 164864,
+        "cost_source": "provider",
+        "cost_usd": 0.10185786000000001,
+        "input_tokens": 46049,
+        "output_tokens": 5729,
+        "rounds": 15,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 147,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:10:45Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.816,
+        "model_duration_seconds": 127.011,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 141.28,
+        "tool_calls": 21,
+        "tool_duration_seconds": 17.947,
+        "total_duration_seconds": 145.096
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-qwen-qwen4-max-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-16T19:07:56Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 188416,
+        "cost_source": "provider",
+        "cost_usd": 0.09489331499999999,
+        "input_tokens": 40701,
+        "output_tokens": 5490,
+        "rounds": 17,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 407,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:18:56Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.121,
+        "model_duration_seconds": 358.122,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 401.44800000000004,
+        "tool_calls": 31,
+        "tool_duration_seconds": 47.096,
+        "total_duration_seconds": 405.569
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-qwen-qwen4-max-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T19:11:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 492288,
+        "cost_source": "provider",
+        "cost_usd": 0.21060559500000003,
+        "input_tokens": 70574,
+        "output_tokens": 17535,
+        "rounds": 26,
+        "tool_calls": 31
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 164,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:22:55Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.373,
+        "model_duration_seconds": 130.357,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 157.91500000000002,
+        "tool_calls": 18,
+        "tool_duration_seconds": 31.82,
+        "total_duration_seconds": 162.288
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-qwen-qwen4-max-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T19:19:52Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 133376,
+        "cost_source": "provider",
+        "cost_usd": 0.09305791500000002,
+        "input_tokens": 41394,
+        "output_tokens": 5747,
+        "rounds": 13,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 206,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:27:42Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.313,
+        "model_duration_seconds": 160.495,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 198.92000000000002,
+        "tool_calls": 20,
+        "tool_duration_seconds": 43.624,
+        "total_duration_seconds": 204.233
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-qwen-qwen4-max-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T19:23:57Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 160256,
+        "cost_source": "provider",
+        "cost_usd": 0.103702665,
+        "input_tokens": 41535,
+        "output_tokens": 7742,
+        "rounds": 14,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 154,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:33:22Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.819,
+        "model_duration_seconds": 139.132,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 146.846,
+        "tool_calls": 19,
+        "tool_duration_seconds": 12.415,
+        "total_duration_seconds": 151.665
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-qwen-qwen4-max-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T19:28:50Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 174592,
+        "cost_source": "provider",
+        "cost_usd": 0.10416977999999999,
+        "input_tokens": 45979,
+        "output_tokens": 6131,
+        "rounds": 16,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 166,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:38:08Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.719,
+        "model_duration_seconds": 152.922,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 157.704,
+        "tool_calls": 21,
+        "tool_duration_seconds": 11.28,
+        "total_duration_seconds": 164.423
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-qwen-qwen4-max-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T19:34:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 241408,
+        "cost_source": "provider",
+        "cost_usd": 0.09873027,
+        "input_tokens": 35968,
+        "output_tokens": 7082,
+        "rounds": 19,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 160,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:42:31Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.061,
+        "model_duration_seconds": 146.123,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 154.331,
+        "tool_calls": 22,
+        "tool_duration_seconds": 12.114,
+        "total_duration_seconds": 158.392
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-qwen-qwen4-max-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T19:39:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 196096,
+        "cost_source": "provider",
+        "cost_usd": 0.09757089000000001,
+        "input_tokens": 40111,
+        "output_tokens": 6185,
+        "rounds": 17,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 315,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:49:16Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.389,
+        "model_duration_seconds": 223.86,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 310.4,
+        "tool_calls": 29,
+        "tool_duration_seconds": 89.709,
+        "total_duration_seconds": 313.789
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-qwen-qwen4-max-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T19:43:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 384768,
+        "cost_source": "provider",
+        "cost_usd": 0.19224162,
+        "input_tokens": 80496,
+        "output_tokens": 11724,
+        "rounds": 20,
+        "tool_calls": 29
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 285,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T19:55:21Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.525,
+        "model_duration_seconds": 137.487,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 279.47700000000003,
+        "tool_calls": 20,
+        "tool_duration_seconds": 145.333,
+        "total_duration_seconds": 283.002
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-qwen-qwen4-max-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T19:50:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 285696,
+        "cost_source": "provider",
+        "cost_usd": 0.128395065,
+        "input_tokens": 55021,
+        "output_tokens": 6932,
+        "rounds": 18,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 136,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T20:11:49Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.681,
+        "model_duration_seconds": 125.809,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 130.155,
+        "tool_calls": 21,
+        "tool_duration_seconds": 7.876,
+        "total_duration_seconds": 133.836
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-qwen-qwen4-max-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T20:09:17Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 182016,
+        "cost_source": "provider",
+        "cost_usd": 0.10805746499999999,
+        "input_tokens": 47085,
+        "output_tokens": 6548,
+        "rounds": 17,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 114,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T20:18:47Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.153,
+        "model_duration_seconds": 101.538,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 105.791,
+        "tool_calls": 16,
+        "tool_duration_seconds": 7.319,
+        "total_duration_seconds": 108.944
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-qwen-qwen4-max-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T20:16:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 127744,
+        "cost_source": "provider",
+        "cost_usd": 0.07816580999999999,
+        "input_tokens": 31927,
+        "output_tokens": 5513,
+        "rounds": 12,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 467,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T20:40:02Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.51,
+        "model_duration_seconds": 459.103,
+        "model_rounds": 25,
+        "post_first_non_read_only_seconds": 462.236,
+        "tool_calls": 34,
+        "tool_duration_seconds": 6.188,
+        "total_duration_seconds": 465.746
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-qwen-qwen4-max-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T20:32:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 675328,
+        "cost_source": "provider",
+        "cost_usd": 0.25789137,
+        "input_tokens": 73581,
+        "output_tokens": 24543,
+        "rounds": 25,
+        "tool_calls": 34
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 336,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T20:47:16Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.889,
+        "model_duration_seconds": 325.043,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 331.142,
+        "tool_calls": 24,
+        "tool_duration_seconds": 9.796,
+        "total_duration_seconds": 335.031
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-qwen-qwen4-max-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T20:41:24Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 314880,
+        "cost_source": "provider",
+        "cost_usd": 0.183934725,
+        "input_tokens": 65306,
+        "output_tokens": 16009,
+        "rounds": 20,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 310,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T20:54:02Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.633,
+        "model_duration_seconds": 298.233,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 303.411,
+        "tool_calls": 26,
+        "tool_duration_seconds": 9.602,
+        "total_duration_seconds": 308.044
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-qwen-qwen4-max-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T20:48:38Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 430848,
+        "cost_source": "provider",
+        "cost_usd": 0.16636789500000002,
+        "input_tokens": 52208,
+        "output_tokens": 14333,
+        "rounds": 20,
+        "tool_calls": 26
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 146,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T20:57:50Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 2.822,
+        "model_duration_seconds": 138.816,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 139.327,
+        "tool_calls": 16,
+        "tool_duration_seconds": 3.224,
+        "total_duration_seconds": 142.149
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-qwen-qwen4-max-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T20:55:10Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 149760,
+        "cost_source": "provider",
+        "cost_usd": 0.081879075,
+        "input_tokens": 32007,
+        "output_tokens": 5988,
+        "rounds": 14,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 150,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:01:37Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.484,
+        "model_duration_seconds": 146.046,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 144.517,
+        "tool_calls": 22,
+        "tool_duration_seconds": 1.825,
+        "total_duration_seconds": 148.001
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-qwen-qwen4-max-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T20:58:53Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 202496,
+        "cost_source": "provider",
+        "cost_usd": 0.10054629000000002,
+        "input_tokens": 38621,
+        "output_tokens": 7271,
+        "rounds": 15,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 213,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:06:24Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.258,
+        "model_duration_seconds": 205.876,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 205.765,
+        "tool_calls": 24,
+        "tool_duration_seconds": 3.048,
+        "total_duration_seconds": 209.023
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-qwen-qwen4-max-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T21:02:38Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 217088,
+        "cost_source": "provider",
+        "cost_usd": 0.10633407,
+        "input_tokens": 33604,
+        "output_tokens": 10054,
+        "rounds": 16,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 159,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:10:19Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.609,
+        "model_duration_seconds": 145.345,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 154.016,
+        "tool_calls": 22,
+        "tool_duration_seconds": 12.123,
+        "total_duration_seconds": 157.625
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-qwen-qwen4-max-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T21:07:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 317952,
+        "cost_source": "provider",
+        "cost_usd": 0.103330455,
+        "input_tokens": 34595,
+        "output_tokens": 7340,
+        "rounds": 17,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 122,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:13:33Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.204,
+        "model_duration_seconds": 104.07,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 115.58300000000001,
+        "tool_calls": 20,
+        "tool_duration_seconds": 15.557,
+        "total_duration_seconds": 119.787
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-qwen-qwen4-max-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T21:11:13Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 220928,
+        "cost_source": "provider",
+        "cost_usd": 0.10613742000000001,
+        "input_tokens": 48058,
+        "output_tokens": 5126,
+        "rounds": 19,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 167,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:17:28Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.693,
+        "model_duration_seconds": 141.834,
+        "model_rounds": 20,
+        "post_first_non_read_only_seconds": 161.59099999999998,
+        "tool_calls": 24,
+        "tool_duration_seconds": 23.189,
+        "total_duration_seconds": 165.284
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-qwen-qwen4-max-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T21:14:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 350464,
+        "cost_source": "provider",
+        "cost_usd": 0.12143023500000001,
+        "input_tokens": 44909,
+        "output_tokens": 7594,
+        "rounds": 20,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 164,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:21:38Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.232,
+        "model_duration_seconds": 157.833,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 158.272,
+        "tool_calls": 21,
+        "tool_duration_seconds": 3.469,
+        "total_duration_seconds": 161.504
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen4-max-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T21:18:36Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 207616,
+        "cost_source": "provider",
+        "cost_usd": 0.12208374,
+        "input_tokens": 49657,
+        "output_tokens": 8545,
+        "rounds": 16,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 176,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:26:18Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.801,
+        "model_duration_seconds": 168.066,
+        "model_rounds": 17,
+        "post_first_non_read_only_seconds": 170.161,
+        "tool_calls": 25,
+        "tool_duration_seconds": 5.641,
+        "total_duration_seconds": 173.962
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen4-max-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T21:23:04Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 233472,
+        "cost_source": "provider",
+        "cost_usd": 0.10049043000000002,
+        "input_tokens": 32059,
+        "output_tokens": 8929,
+        "rounds": 17,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 158,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:30:42Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.362,
+        "model_duration_seconds": 151.166,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 152.97,
+        "tool_calls": 28,
+        "tool_duration_seconds": 4.93,
+        "total_duration_seconds": 156.332
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-qwen-qwen4-max-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-16T21:27:46Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 317440,
+        "cost_source": "provider",
+        "cost_usd": 0.10943572500000001,
+        "input_tokens": 36655,
+        "output_tokens": 8090,
+        "rounds": 21,
+        "tool_calls": 28
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 147,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:34:35Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.354,
+        "model_duration_seconds": 131.931,
+        "model_rounds": 10,
+        "post_first_non_read_only_seconds": 141.307,
+        "tool_calls": 16,
+        "tool_duration_seconds": 13.636,
+        "total_duration_seconds": 145.661
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-qwen-qwen4-max-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-16T21:31:51Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 163072,
+        "cost_source": "provider",
+        "cost_usd": 0.09198603000000001,
+        "input_tokens": 35320,
+        "output_tokens": 7026,
+        "rounds": 10,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 139,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:37:57Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.27,
+        "model_duration_seconds": 123.706,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 133.09,
+        "tool_calls": 17,
+        "tool_duration_seconds": 13.504,
+        "total_duration_seconds": 137.36
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-qwen-qwen4-max-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-16T21:35:21Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 205824,
+        "cost_source": "provider",
+        "cost_usd": 0.09456471,
+        "input_tokens": 37671,
+        "output_tokens": 6133,
+        "rounds": 12,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 121,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-16T21:41:05Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.552,
+        "model_duration_seconds": 111.372,
+        "model_rounds": 9,
+        "post_first_non_read_only_seconds": 113.37,
+        "tool_calls": 13,
+        "tool_duration_seconds": 7.458,
+        "total_duration_seconds": 118.922
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-qwen-qwen4-max-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-16T21:38:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 107008,
+        "cost_source": "provider",
+        "cost_usd": 0.08503887,
+        "input_tokens": 37427,
+        "output_tokens": 5633,
+        "rounds": 9,
+        "tool_calls": 13
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 339,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T00:53:07Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.02,
+        "model_duration_seconds": 188.959,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 333.408,
+        "tool_calls": 24,
+        "tool_duration_seconds": 148.268,
+        "total_duration_seconds": 337.428
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-qwen-qwen4-max-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T00:47:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 283392,
+        "cost_source": "provider",
+        "cost_usd": 0.14938218,
+        "input_tokens": 65910,
+        "output_tokens": 8250,
+        "rounds": 18,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 170,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-17T00:58:36Z",
+      "model": "qwen/qwen4-max",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.057,
+        "model_duration_seconds": 160.783,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 164.86200000000002,
+        "tool_calls": 20,
+        "tool_duration_seconds": 7.999,
+        "total_duration_seconds": 168.919
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-qwen-qwen4-max-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-17T00:55:26Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 157184,
+        "cost_source": "provider",
+        "cost_usd": 0.09892805999999998,
+        "input_tokens": 41398,
+        "output_tokens": 6722,
+        "rounds": 15,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-17T00:58:37.808842Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "qwen/qwen4-max"
+      ],
+      "reasoning_efforts": [],
+      "replaybook_commit": "7dd7ca17bcebce70afe7370cb43632461ef2b3a0",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-16T18:48:43.530831Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "e7c6dfbd381345757a83e09e59d0333b715f65695e05728b72c16fc0c74db1ec"
+    }
+  ],
+  "tier": "core",
+  "title": "Qwen4 Max Core via Claux / OpenRouter",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 7826176,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 0,
+    "failure_categories": {},
+    "input_tokens": 1459241,
+    "known_cost_usd": 3.7802069400000002,
+    "median_duration_seconds": 160,
+    "median_first_non_read_only_tool_seconds": 3.889,
+    "median_model_duration_seconds": 145.345,
+    "median_model_rounds": 17,
+    "median_post_first_non_read_only_seconds": 154.331,
+    "median_tool_calls": 21,
+    "median_tool_duration_seconds": 11.28,
+    "output_tokens": 267409,
+    "pass_rate": 1.0,
+    "passed": 33,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261117.0.0"
+}

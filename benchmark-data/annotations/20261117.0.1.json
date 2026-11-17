@@ -1,0 +1,29 @@
+{
+  "title": "HY4 Flash Core via Claux / OpenRouter",
+  "description": "HY4 Flash passed all 33 frozen Core trials (100%), with a 91-second median agent duration and $0.11465 in provider-reported inference cost.",
+  "input_mode": "text",
+  "model_order": [
+    "tencent/hy4-flash"
+  ],
+  "model_labels": {
+    "tencent/hy4-flash": "HY4 Flash"
+  },
+  "agent_harness": {
+    "id": "claux",
+    "label": "Claux",
+    "version": "bounded-search 25e7b9c (binary 7a7268af30cf)",
+    "provider": "OpenRouter",
+    "billing": "api"
+  },
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Audited all 33 raw results and transcripts, per-round token accounting, completion/deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections. Public evidence contains sanitized records and hashes, not private transcripts, reasoning, local paths or VM logs.",
+    "Exact tencent/hy4-flash model route through Claux/OpenRouter; distinct from HY4 Preview. Reasoning effort was not explicitly set.",
+    "Costs are provider-reported inference accounting, exclude local compute and are not an invoice. Catalog pricing and promotional offers can change. Three attempts per scenario are a small sample; a clean sweep on this pack does not establish general superiority."
+  ],
+  "observations": [
+    "All 33 attempts completed within the 900-second deadline and passed immediate HTTP, service-restart and host-reboot checks.",
+    "Median agent duration was 91 seconds. All 33 trials include provider-reported usage/cost and transcript recording.",
+    "No failed or unavailable trials appear in the completed matrix."
+  ]
+}

@@ -1,0 +1,1010 @@
+{
+  "model": "tencent/hy4-flash",
+  "summary_sha256": "b76b4b03716f4536805a2509259409adabd4b0fa657a0571c2a349861c13ebd3",
+  "execution_snapshot": {
+    "agent_adapter_sha256": null,
+    "agent_config_sha256": null,
+    "agent_env_sha256": null,
+    "agent_payload_sha256": null,
+    "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+    "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+    "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+    "scenario_packs": [
+      {
+        "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+        "id": "ducks/replaybook-infra",
+        "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+        "version": "20261024.1.1"
+      }
+    ],
+    "schema_version": 1,
+    "selected_scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+        "version": 2
+      }
+    ]
+  },
+  "totals": {
+    "trials": 33,
+    "evaluated": 33,
+    "unavailable": 0,
+    "passed": 33,
+    "failed": 0,
+    "durable_repairs_after_timeout": 0,
+    "pass_rate": 1.0,
+    "median_duration_seconds": 91.0,
+    "known_cost_usd": 0.11465023287500001,
+    "cost_reported_trials": 33,
+    "input_tokens": 1142944,
+    "output_tokens": 383376,
+    "cache_read_tokens": 12886272,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_creation_reported_trials": 33,
+    "usage_reported_trials": 33,
+    "recording_reported_trials": 33,
+    "median_model_rounds": 18,
+    "median_model_duration_seconds": 78.905,
+    "median_tool_calls": 20,
+    "median_tool_duration_seconds": 12.766,
+    "median_first_non_read_only_tool_seconds": 2.58,
+    "median_post_first_non_read_only_seconds": 85.562
+  },
+  "corrections": [],
+  "runs": [
+    {
+      "run_id": "001-nginx-502-host-tencent-hy4-flash-1",
+      "scenario": "001-nginx-502-host",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 91,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 17,
+        "input_tokens": 41766,
+        "output_tokens": 8983,
+        "cache_read_tokens": 375552,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0032872495,
+        "cost_source": "provider"
+      },
+      "result_sha256": "231adc001d87b02974a9debcc5b8bc199d7b7ba436f6500fe2f117be214f9323",
+      "transcript_sha256": "52fcd67ef7a2d140538e2d1509ec310ac9f36e5b706657448264e83bcb1e1097"
+    },
+    {
+      "run_id": "001-nginx-502-host-tencent-hy4-flash-2",
+      "scenario": "001-nginx-502-host",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 65,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 11,
+        "tool_calls": 10,
+        "input_tokens": 22563,
+        "output_tokens": 7863,
+        "cache_read_tokens": 140032,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0021045045000000003,
+        "cost_source": "provider"
+      },
+      "result_sha256": "ae9fb039569e0a5f88b1df1f02f55b937940ff427eafdaaa21f94eaef255bad6",
+      "transcript_sha256": "2af7a6509923fa010071f7fa1cbaef6ce3ab7e1fb66dd7c6ec45e08e7f301e31"
+    },
+    {
+      "run_id": "001-nginx-502-host-tencent-hy4-flash-3",
+      "scenario": "001-nginx-502-host",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 58,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 24,
+        "input_tokens": 28743,
+        "output_tokens": 3884,
+        "cache_read_tokens": 338432,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0020593549999999997,
+        "cost_source": "provider"
+      },
+      "result_sha256": "17e1fb53f077f372f5c0c43b8acbd68f34692ec3cc9f184faad38d3b4c8c4924",
+      "transcript_sha256": "00afa176be5c9cb7c48c015853ab9d46601e5b32e78a69267c447483ad38ad72"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-tencent-hy4-flash-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 80,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 17,
+        "input_tokens": 31793,
+        "output_tokens": 6432,
+        "cache_read_tokens": 260352,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.002406979,
+        "cost_source": "provider"
+      },
+      "result_sha256": "4b96f1304463a851cc2ec2f2afec30b14b247b11121fe044c298f8a56dbfcdc8",
+      "transcript_sha256": "3d939f1c810d81d67e61dfe653712cac308a7a56536b752ef380a90f9889041e"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-tencent-hy4-flash-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 63,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 11,
+        "tool_calls": 10,
+        "input_tokens": 17512,
+        "output_tokens": 5648,
+        "cache_read_tokens": 124160,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.001592704,
+        "cost_source": "provider"
+      },
+      "result_sha256": "a6a601ff09ae7bd78335840f79a2c4fd19e548341c6370fac7718c9535c32a31",
+      "transcript_sha256": "cd193a27423feb3f67bf66f85c188b4a285c67a22ecb45cc99c156fa5b990412"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-tencent-hy4-flash-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 67,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 10,
+        "tool_calls": 17,
+        "input_tokens": 19355,
+        "output_tokens": 6498,
+        "cache_read_tokens": 133376,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.001790458,
+        "cost_source": "provider"
+      },
+      "result_sha256": "0ee38b1dfd34909461dc7a531ddac9dae337cf2622867442c82ff785b813e72f",
+      "transcript_sha256": "dacb6817ef879a9d5ae42bbbc7579c5b1dca53a7cbf4d20d6ae7bd9f5f2158e4"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-tencent-hy4-flash-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 161,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 24,
+        "tool_calls": 30,
+        "input_tokens": 37526,
+        "output_tokens": 13172,
+        "cache_read_tokens": 517120,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.003939756000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "bbffca48acd5bc73f4ea0ddb2b85ff27bd93a0d4ac55db7ea06bf7a1709085d7",
+      "transcript_sha256": "8218733ce8b9646ba62b38fc9a12767459d0929abc727cdc861002302cc2baec"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-tencent-hy4-flash-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 119,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 25,
+        "input_tokens": 26592,
+        "output_tokens": 13621,
+        "cache_read_tokens": 239616,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.004004868125,
+        "cost_source": "provider"
+      },
+      "result_sha256": "f2a7eac3dac09688f41033ee570005d5d5c2c9aff0e8308e12133dd5b05962e2",
+      "transcript_sha256": "2db036b9051ab7e157affc00f693f0e7097254cadf9fb30f6aca737ebafa3ece"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-tencent-hy4-flash-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 147,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 20,
+        "tool_calls": 26,
+        "input_tokens": 67217,
+        "output_tokens": 13519,
+        "cache_read_tokens": 415744,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.005528113750000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "a5e3313d88c3730a9b64bb060b141ddfe3f5e6699a35e3ac4ed555930a329809",
+      "transcript_sha256": "4c10bd1660115ae943e9dae5bbc26eecbc362a765abf00f647747e31655e05ba"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-tencent-hy4-flash-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 108,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 25,
+        "tool_calls": 30,
+        "input_tokens": 29250,
+        "output_tokens": 8764,
+        "cache_read_tokens": 432896,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.002904436,
+        "cost_source": "provider"
+      },
+      "result_sha256": "a13109275872bbdf600bce11190320923e742dbaf83c64c04c8ab028101a00d7",
+      "transcript_sha256": "1e4fb1f91db1913f7ffce9bae59f7d3e5f382159f5fb9d9622b200165e9e89a5"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-tencent-hy4-flash-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 90,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 24,
+        "input_tokens": 20904,
+        "output_tokens": 8328,
+        "cache_read_tokens": 248320,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0022742039999999993,
+        "cost_source": "provider"
+      },
+      "result_sha256": "bdcc80771fce983cf702a6238c518fffd1bae94c0b7fc696b99be1681259c109",
+      "transcript_sha256": "fccc6a8d87a7464846bd39c053b7847d440010230642556c607e9fcc687d012b"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-tencent-hy4-flash-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 99,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 21,
+        "tool_calls": 20,
+        "input_tokens": 28662,
+        "output_tokens": 8658,
+        "cache_read_tokens": 364800,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0027668190000000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "930ecd8dffbe74eb9dc67b55e2566ea0f51de19a181adafe64e4f2666d6f7daa",
+      "transcript_sha256": "2158a20cff507898263e020fa878585177be340ab61b686afa7e5b054496a664"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-tencent-hy4-flash-1",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 136,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 17,
+        "tool_calls": 24,
+        "input_tokens": 33150,
+        "output_tokens": 8506,
+        "cache_read_tokens": 308992,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.002818831,
+        "cost_source": "provider"
+      },
+      "result_sha256": "cf8f46a403d7c012e5948387bdddc148609f74d403289ff8daf210af680f868b",
+      "transcript_sha256": "e4af47cfeb46c57c1391587f9b81a88ae011724c9db94b6c05cc90977f6308b6"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-tencent-hy4-flash-2",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 120,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 25,
+        "input_tokens": 38981,
+        "output_tokens": 10998,
+        "cache_read_tokens": 315904,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0033834100000000003,
+        "cost_source": "provider"
+      },
+      "result_sha256": "61f9abfca5a5df0a617fd3f8ef607b1869b57e301d30bba91bfa0acded14677e",
+      "transcript_sha256": "fe7870d64cbfeff93ffc3833cc6608d820ca570b24f724ff997db0143cedae1e"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-tencent-hy4-flash-3",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 153,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 17,
+        "input_tokens": 22900,
+        "output_tokens": 9598,
+        "cache_read_tokens": 264704,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.002547075,
+        "cost_source": "provider"
+      },
+      "result_sha256": "bcb81a7f5f86ad048e521703ce8c2525f8bdd2d616a53e607060cd3db637c3aa",
+      "transcript_sha256": "52248584fc64696a554725acdac94ec0b3b873b9430a10a8195cbf7c66552b45"
+    },
+    {
+      "run_id": "019-rust-fd-leak-tencent-hy4-flash-1",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 62,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 12,
+        "tool_calls": 15,
+        "input_tokens": 22538,
+        "output_tokens": 6238,
+        "cache_read_tokens": 152576,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0018941329999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "59201ec2db43fc91c0ab15a4effe5459b2241e1b79c0355da409774b895013dd",
+      "transcript_sha256": "a8f20704815d808d49a6ba68145c518eda6dd00f7940826ce650d6aab3117f7a"
+    },
+    {
+      "run_id": "019-rust-fd-leak-tencent-hy4-flash-2",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 73,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 14,
+        "input_tokens": 18838,
+        "output_tokens": 7642,
+        "cache_read_tokens": 174336,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.001994535,
+        "cost_source": "provider"
+      },
+      "result_sha256": "a26787c86d140079659e26522218b45833808b0ddbe13aa3c18a42a649028bb0",
+      "transcript_sha256": "4aec4cd784de0906adbdd7ed4bb634bb3398cc1d4b093ff208c17df8a0e933d8"
+    },
+    {
+      "run_id": "019-rust-fd-leak-tencent-hy4-flash-3",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 79,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 17,
+        "input_tokens": 22286,
+        "output_tokens": 9158,
+        "cache_read_tokens": 202240,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.002370069,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c351e31f8a46098800dd64275fac5a87381beb92d88d46d8349f8e7928ca12d4",
+      "transcript_sha256": "221f2d61f076c8b6d379569701eb1dc023038296639df432615d74f85f6ca825"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-tencent-hy4-flash-1",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 96,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 19,
+        "input_tokens": 28299,
+        "output_tokens": 10441,
+        "cache_read_tokens": 220672,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.002788433500000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "1fe7e367bcba1b03b7b9ed41c6752a2700069aa66516850a000713680b4f9e54",
+      "transcript_sha256": "d0b922feb693ae57b510e99ac052b0eeccf48152f4290d2bc6761c1ef547e692"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-tencent-hy4-flash-2",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 122,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 21,
+        "tool_calls": 29,
+        "input_tokens": 29625,
+        "output_tokens": 14092,
+        "cache_read_tokens": 375296,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.003579745,
+        "cost_source": "provider"
+      },
+      "result_sha256": "8860fc222fa2a015fec0d47c0a8477b4b07945d96ba1a2c557dcdae5a8d82a37",
+      "transcript_sha256": "1efaf113afcb0c60ce6b1fc24f38585b960225a997d20ec451c3250a160cbfba"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-tencent-hy4-flash-3",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 234,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 28,
+        "tool_calls": 33,
+        "input_tokens": 51183,
+        "output_tokens": 31130,
+        "cache_read_tokens": 807680,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.007376689999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "0879f1a90fdd0eb78948a5ace1f55088cf9d960fc4256aad1e59469a760536b0",
+      "transcript_sha256": "e9ed9644018b6dfcb2cd812eb2d54c1fc5b58e23ab44a6b7a724cd0454e8d50a"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-tencent-hy4-flash-1",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 80,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 15,
+        "input_tokens": 21870,
+        "output_tokens": 9095,
+        "cache_read_tokens": 187904,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0023251535,
+        "cost_source": "provider"
+      },
+      "result_sha256": "7bf00abaa919499f91c48adc704c60de91840532b3c7ba57bf9249f7a94e0f16",
+      "transcript_sha256": "4ecf9c504f95a5113c61def6cfbb558115f8d9595d7505bba6b1bdd0e2a49bac"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-tencent-hy4-flash-2",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 77,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 19,
+        "input_tokens": 33389,
+        "output_tokens": 8268,
+        "cache_read_tokens": 312576,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0027991329999999997,
+        "cost_source": "provider"
+      },
+      "result_sha256": "8ad4992758f448ed601834ef769455caac603ae6bb02d032788334fc4e31bf76",
+      "transcript_sha256": "02493c51c1b4e1b350e8aa7c4392e6612d3ba6fd79d42e52e8dc18f7521ed842"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-tencent-hy4-flash-3",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 76,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 22,
+        "input_tokens": 39102,
+        "output_tokens": 8108,
+        "cache_read_tokens": 415232,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.003130592,
+        "cost_source": "provider"
+      },
+      "result_sha256": "e2ca1cb2aa39ac5ed4a588460049c699c4f4ecdf15a2ed5b7002baae046d941a",
+      "transcript_sha256": "cb08362534264ad004d87e31980347020d323527e3d603acc2645074c9e458cb"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-tencent-hy4-flash-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 85,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 20,
+        "tool_calls": 19,
+        "input_tokens": 43513,
+        "output_tokens": 6468,
+        "cache_read_tokens": 505344,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.003189725000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "77a62f6e6ab8c67558997594c93fd17177f393c473d984e2a0e9af9cef81cd3d",
+      "transcript_sha256": "58461e1fea90eb41ab5e1db27d67df33b04716b92b2e054f11394df42059d9e2"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-tencent-hy4-flash-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 104,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 20,
+        "tool_calls": 29,
+        "input_tokens": 67451,
+        "output_tokens": 7867,
+        "cache_read_tokens": 472576,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0041749625,
+        "cost_source": "provider"
+      },
+      "result_sha256": "624ecb05ec6a64467f69f51f359a23d593b734b267415b177971b76569e34bbe",
+      "transcript_sha256": "a5ee738c69b4e28b368ea051f51adebf5f5c7caf5bc7b70398f71bb31552673a"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-tencent-hy4-flash-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 106,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 27,
+        "input_tokens": 42448,
+        "output_tokens": 10896,
+        "cache_read_tokens": 494848,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0037588400000000007,
+        "cost_source": "provider"
+      },
+      "result_sha256": "427e94de07a251ad39701ade4d8ebedb9cbcc4848f92515f420ef08bcdc3203c",
+      "transcript_sha256": "55288d99cebd72205fa16f54c37668440673d4c9bde4f37c00040279932ae68c"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-tencent-hy4-flash-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 327,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 43,
+        "tool_calls": 42,
+        "input_tokens": 65830,
+        "output_tokens": 37839,
+        "cache_read_tokens": 1255168,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0095031815,
+        "cost_source": "provider"
+      },
+      "result_sha256": "452ae2930750c0b0691f095efee49399e0815a95a727c9f64a1bb79499bcd867",
+      "transcript_sha256": "60307b63d96e95651d994776228451d03ee7400b9afd7c188ec466a6a8b02cce"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-tencent-hy4-flash-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 341,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 35,
+        "tool_calls": 42,
+        "input_tokens": 67603,
+        "output_tokens": 43140,
+        "cache_read_tokens": 1379840,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.010497035000000002,
+        "cost_source": "provider"
+      },
+      "result_sha256": "a7964cadcb8e3634e59e3b3ff5df7f60212da9b9bf77e0d0d9cbaf906bfed063",
+      "transcript_sha256": "c47eff98aba631474f9045033ba56f8c8d33495b3748066b3052537632c3855e"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-tencent-hy4-flash-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 160,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 30,
+        "tool_calls": 35,
+        "input_tokens": 38304,
+        "output_tokens": 15609,
+        "cache_read_tokens": 745984,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.004652680500000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c93ce7e78e62e4bbba2638fdffc70701ff963fadc32de91a5be7f18d3d4d328c",
+      "transcript_sha256": "e7b4a7e465cfa1554cf22d8de34fd98708062fa7d45818f2fb293c2ef7a416e1"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-tencent-hy4-flash-1",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 67,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 10,
+        "tool_calls": 17,
+        "input_tokens": 26182,
+        "output_tokens": 7936,
+        "cache_read_tokens": 144896,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.002248722,
+        "cost_source": "provider"
+      },
+      "result_sha256": "9b980cb8eff30ef250d236cfc7342793936f3f8c590b89849e4d0d9f2989f453",
+      "transcript_sha256": "403aa32a1b92da8abeb6fe73e778d962d621347086da52fc19b94efc20f8e6cf"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-tencent-hy4-flash-2",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 81,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 11,
+        "tool_calls": 14,
+        "input_tokens": 26193,
+        "output_tokens": 8311,
+        "cache_read_tokens": 195584,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.0023778265000000006,
+        "cost_source": "provider"
+      },
+      "result_sha256": "ee5f711e4c5a81b0c07073c52e536e2ad9ec83d72493f24be56019666c50a811",
+      "transcript_sha256": "deccea45e919f7ca1ec3492c2b8d974739ab8b192a9cb705f2ad10437d4e2a49"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-tencent-hy4-flash-3",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 84,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 19,
+        "tool_calls": 18,
+        "input_tokens": 31376,
+        "output_tokens": 6666,
+        "cache_read_tokens": 363520,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.002580013,
+        "cost_source": "provider"
+      },
+      "result_sha256": "16ab50d60c7e1fb9cac511dd9206432e92c244f2a96483e6bfe108082a20196f",
+      "transcript_sha256": "b15a2acfa30dbe34b92f116958180013ed9b73a819d1883aef491b77779f3139"
+    }
+  ]
+}
