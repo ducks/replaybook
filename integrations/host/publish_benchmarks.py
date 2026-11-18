@@ -2548,11 +2548,14 @@ def build_outputs(root: Path, *, check: bool = False) -> None:
             MARKDOWN_END,
             markdown_section(release),
         ),
-        root / DOCS_HISTORY: replace_managed(
-            (root / DOCS_HISTORY).read_text(),
-            HISTORY_START,
-            HISTORY_END,
-            history_cards(index, root),
+        root / DOCS_HISTORY: re.sub(
+            r'^[ \t]*<nav\b[^>]*aria-label="Benchmark sections"[^>]*>.*?</nav>',
+            lambda _match: "    " + render_site_template("benchmark-navigation.html", active_tab="history").strip(),
+            replace_managed(
+                (root / DOCS_HISTORY).read_text(), HISTORY_START, HISTORY_END,
+                history_cards(index, root),
+            ),
+            count=1, flags=re.DOTALL | re.MULTILINE,
         ),
     }
     for model, url in model_urls.items():

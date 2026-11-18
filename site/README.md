@@ -1,8 +1,10 @@
 # Public benchmark site
 
 Overview (`benchmarks.html`) explains the task, scoring contract, and limits.
-Evidence (`benchmark-evidence.html`) is the interactive results workspace.
-Models, Scenarios, Providers, Coverage, and History provide focused views.
+The primary benchmark navigation is Overview, Scores, Scenarios, and History.
+Evidence (`benchmark-evidence.html`) remains the detailed results workspace.
+Models, Providers and Coverage are linked contextually from Overview; these
+detailed result views keep Scores selected as their parent section.
 
 Evidence uses the shared Jinja layout plus scoped `static/evidence.css` and
 `static/evidence.js`. The publisher embeds the public catalog using Jinja's

@@ -1,0 +1,6 @@
+    <nav class="benchmark-tabs{% if active_tab == 'scenarios' %} with-modality{% endif %}" aria-label="Benchmark sections">
+      <a href="benchmarks.html"{% if active_tab in ["overview", "current"] %} class="active" aria-current="page"{% endif %}>Overview</a>
+      <a href="benchmark-scores.html"{% if active_tab in ["scores", "evidence", "models", "providers", "coverage"] %} class="active" aria-current="page"{% endif %}>Scores</a>
+      <a href="scenarios.html"{% if active_tab == "scenarios" %} class="active" aria-current="page"{% endif %}>Scenarios</a>
+      <a href="benchmark-history.html"{% if active_tab == "history" %} class="active" aria-current="page"{% endif %}>History</a>
+    </nav>
