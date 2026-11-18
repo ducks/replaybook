@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261117.0.1",
+  "current_version": "20261118.0.0",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -5948,6 +5948,60 @@
       "provider": "OpenRouter",
       "reasoning_effort": null,
       "release": "20261117.0.1",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 4286275,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 80,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "output_tokens": 34802,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.895730002457548,
+      "passed": 33,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 6419397,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 83,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "output_tokens": 69263,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.895730002457548,
+      "passed": 33,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
       "tier": "core",
@@ -65043,6 +65097,1106 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 258968,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 65,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 58,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 73,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 65,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 1897,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 339782,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 53,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 82,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 53,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 47,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 3305,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 325246,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 73,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 57,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 73,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 74,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 2451,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 578713,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 96,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 96,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 103,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 86,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 6583,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 478919,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 150,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 113,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 150,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 183,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5122,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 842054,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 155,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 144,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 155,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 163,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 11214,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 343585,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 121,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 121,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 59,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 122,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 2703,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 496970,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 76,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 89,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 76,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 76,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5450,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 510085,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 129,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 93,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 129,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 200,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 2879,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 659159,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 66,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 60,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 66,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 105,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 4880,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 353413,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 162,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 138,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 162,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 465,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 3138,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 766954,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 108,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 108,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 133,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 97,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 6340,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 403758,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 117,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 138,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 117,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 69,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 3376,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 594363,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 79,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 79,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 83,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 66,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5574,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 344190,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 78,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 441,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 78,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 68,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 3401,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 418178,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 93,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 93,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 96,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 84,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 7769,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 445707,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 80,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 105,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 70,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 80,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 2971,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 568531,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 69,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 82,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 69,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 63,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5371,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 416745,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 71,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 61,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 71,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 90,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 2942,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 636563,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 83,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 92,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 83,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 77,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 6967,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 405659,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 60,
+      "model": "gpt-6.2-astra",
+      "model_label": "GPT-6.2 Astra",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 59,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 60,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 73,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 3922,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": null,
+      "cost_reported_trials": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 518130,
+      "known_cost_usd": 0,
+      "median_duration_seconds": 70,
+      "model": "gpt-6.2-sol",
+      "model_label": "GPT-6.2 Sol",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 83,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 65,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 70,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 5810,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "ChatGPT subscription",
+      "reasoning_effort": null,
+      "release": "20261118.0.0",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -72694,7 +73848,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "HY4 Flash passed all 33 frozen Core trials (100%), with a 91-second median agent duration and $0.11465 in provider-reported inference cost.",
       "harness_versions": [
         23
@@ -72703,7 +73857,7 @@
       "providers": [
         "openrouter"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -72839,6 +73993,156 @@
         "usage_reported_trials": 33
       },
       "version": "20261117.0.1"
+    },
+    {
+      "agent_harness": {
+        "billing": "subscription",
+        "id": "codex",
+        "label": "Codex",
+        "provider": "ChatGPT subscription",
+        "version": "0.169.1 (native CLI + code-mode host bundle)"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Both models passed all 33 Core trials. Median agent duration was 83 seconds for GPT-6.2 Sol and 80 seconds for GPT-6.2 Astra. Runs used Codex CLI 0.169.1 with ChatGPT subscription authentication.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openai-chatgpt"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "bfb9872a5d80089b4130577bdc445486340eed331e7b73e70d837a42be6cedb0"
+        }
+      ],
+      "tier": "core",
+      "title": "GPT-6.2 Sol and Astra Core via Codex / ChatGPT subscription",
+      "totals": {
+        "cache_creation_reported_trials": 66,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 66,
+        "cache_read_tokens": 9309952,
+        "cost_reported_trials": 0,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 66,
+        "failed": 0,
+        "failure_categories": {},
+        "input_tokens": 10705672,
+        "known_cost_usd": 0,
+        "median_duration_seconds": 83.0,
+        "output_tokens": 104065,
+        "pass_rate": 1.0,
+        "passed": 66,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 66,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 66
+      },
+      "version": "20261118.0.0"
     }
   ],
   "schema_version": 1

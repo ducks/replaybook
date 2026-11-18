@@ -1,0 +1,1904 @@
+{
+  "models": [
+    "gpt-6.2-sol",
+    "gpt-6.2-astra"
+  ],
+  "summary_sha256": "bfb9872a5d80089b4130577bdc445486340eed331e7b73e70d837a42be6cedb0",
+  "execution_snapshot": {
+    "agent_adapter_sha256": "e917a95d94642899cd99f65297677736c1d385593402519c27124b1206a49083",
+    "agent_config_sha256": null,
+    "agent_env_sha256": "d6067d39255d17464415c300a5c19534297f05baaa04ac400e20be45a4943d24",
+    "agent_payload_sha256": "418ca53136af4176de488e5d69714011ef523099e05198ef47c4f958dd1b494b",
+    "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+    "claux_binary_sha256": null,
+    "host_harness_sha256": "73edafe4911f048610bab5eb9c933be459ded1f11e9c55aa0558ac29cfc5d31b",
+    "scenario_packs": [
+      {
+        "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+        "id": "ducks/replaybook-infra",
+        "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+        "version": "20261024.1.1"
+      }
+    ],
+    "schema_version": 1,
+    "selected_scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+        "version": 2
+      }
+    ]
+  },
+  "totals": {
+    "trials": 66,
+    "evaluated": 66,
+    "unavailable": 0,
+    "passed": 66,
+    "failed": 0,
+    "durable_repairs_after_timeout": 0,
+    "pass_rate": 1.0,
+    "median_duration_seconds": 83.0,
+    "known_cost_usd": 0,
+    "cost_reported_trials": 0,
+    "input_tokens": 10705672,
+    "output_tokens": 104065,
+    "cache_read_tokens": 9309952,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 66,
+    "cache_creation_reported_trials": 66,
+    "usage_reported_trials": 66,
+    "recording_reported_trials": 0,
+    "median_model_rounds": null,
+    "median_model_duration_seconds": null,
+    "median_tool_calls": null,
+    "median_tool_duration_seconds": null,
+    "median_first_non_read_only_tool_seconds": null,
+    "median_post_first_non_read_only_seconds": null
+  },
+  "corrections": [],
+  "runs": [
+    {
+      "run_id": "001-nginx-502-host-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 82,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 121894,
+        "output_tokens": 1329,
+        "cache_read_tokens": 111744,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "39d49edfe0dda673bb949222d7701603e5e71c4a3e95fb370399de68f7511917",
+      "transcript_sha256": "daa5df0420c8fa6517ad4123677564ac49f6672744663ea01d1c471eddb9bd34",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "001-nginx-502-host-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 53,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 110427,
+        "output_tokens": 1016,
+        "cache_read_tokens": 92160,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "ea328445eb8f07ccdc0a6ee1fd6a744d995fc969ea78687045f4a44a35b243d4",
+      "transcript_sha256": "237ce74b44fb4a921bc47fae147bf41989bb9f7b41a9823de59b109503ea6031",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "001-nginx-502-host-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 47,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 107461,
+        "output_tokens": 960,
+        "cache_read_tokens": 97280,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "444beb541e6ab7208c0e5a3b869034b6fd7f6a94fa655863730ad1bbb3e34224",
+      "transcript_sha256": "7dde0583badb318114ea128fa02707ad7bac59c2e0a038602c3b6591f698c544",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "001-nginx-502-host-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 58,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 75159,
+        "output_tokens": 644,
+        "cache_read_tokens": 58624,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "7423f5e4a191c2f0e0ded7939b134c6bc5e03af5f5cca0196209623904e97f3c",
+      "transcript_sha256": "eeeaea55606f3a804d6b6742ed867e5bbdf81dbc79fa949f4ae5321100c56d8e",
+      "completed_command_events": 4
+    },
+    {
+      "run_id": "001-nginx-502-host-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 73,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 85715,
+        "output_tokens": 601,
+        "cache_read_tokens": 77440,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "5c8ddaae68ec03d0391634dc6352e948a040f9d8cfecb03e732da27263c0152e",
+      "transcript_sha256": "1aba39e2208823584b189f9519bfdce876c10a3b38862f3bdc99fecbce5df1ac",
+      "completed_command_events": 4
+    },
+    {
+      "run_id": "001-nginx-502-host-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 65,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 98094,
+        "output_tokens": 652,
+        "cache_read_tokens": 79616,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "7959fc1880ad207653fdbc824c03554092695ac1b22323ed35d9b70acb87812a",
+      "transcript_sha256": "359d421854f3da27cac09db2bf0d3415297379d80e7f9a4b8a6151774204b9c3",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 96,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 186906,
+        "output_tokens": 2628,
+        "cache_read_tokens": 161664,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "6cbf37812b9e66c1de292bbaf10a47eb91b5d3d2174ad0698c1a0a562ff7a445",
+      "transcript_sha256": "6d0586e3fbc1b40be866e72e5580511f0b8261274abe68250999cc90f8ae74d7",
+      "completed_command_events": 10
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 103,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 199708,
+        "output_tokens": 1972,
+        "cache_read_tokens": 188416,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "e086519b3515c25e9a909764abfc7e240896f6a7974299923c708465ef2ab057",
+      "transcript_sha256": "1f5822e052dfb320a432d0f66d86a3f684c0a23133daf7cb435060870caed931",
+      "completed_command_events": 8
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 86,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 192099,
+        "output_tokens": 1983,
+        "cache_read_tokens": 173952,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "3ccc646ffc6d866bf85a799ee34f234cc3b0c7c28353b6b4061834da491ff8af",
+      "transcript_sha256": "fe75dd428a4a8876db2f8810142d366da93f416c4cb73ed7424224c1b51d771f",
+      "completed_command_events": 9
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 57,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 106359,
+        "output_tokens": 874,
+        "cache_read_tokens": 91776,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "1ca56bd350cbc02ef0c1cc8fd538ccb3aad1fb5fe22f6b38471dc2444977c270",
+      "transcript_sha256": "489e9a437db97aa0b5bd4d665b8f8eae94d84adabe755281300086900dc9f149",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 73,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 106284,
+        "output_tokens": 789,
+        "cache_read_tokens": 80256,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "03cafbaff336a236fc4960ba550cfe2862b62ae98805924ad56d8638fc4333a4",
+      "transcript_sha256": "9d9a6b1140f6b0aca2277687330b5ecb0f8dddb8ce20c48462beaf96d13e577e",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 74,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 112603,
+        "output_tokens": 788,
+        "cache_read_tokens": 102016,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "fc5606abd3541cc8f471798ae01f4d154077649ec1da6ff55507e043553d49d8",
+      "transcript_sha256": "d22e7593827124594e85f1294f19b90c8e73a3c3a4be58ff02ad35013f942126",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 144,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 266161,
+        "output_tokens": 3293,
+        "cache_read_tokens": 236032,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "496ecd7b0aed898be1da4f368549f16644ae7277515c6cc2fe7337318cb6ac47",
+      "transcript_sha256": "5bc1410b2203d0c9648b2d94cb3c0d5b2d7f6eae9316d92546b082193075ebbb",
+      "completed_command_events": 14
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 155,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 297175,
+        "output_tokens": 3681,
+        "cache_read_tokens": 262016,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "6b69f72c354d855fda4923b560f86681d862509b750b9ce5ed6186829dfd2c5e",
+      "transcript_sha256": "5fe0c81d0f73dd1047f72047af58591301759d6540c01f6d7509d000a397db35",
+      "completed_command_events": 14
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 163,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 278718,
+        "output_tokens": 4240,
+        "cache_read_tokens": 226816,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "fd2ee44fb6d43ffd0610b1eb6197b4e8b4dfa65f4dbff0c9b89dcbfdf6333cef",
+      "transcript_sha256": "1e69be4d1f891ed7f5734b03b088349bd1354284858d004cc4dfc36ac3d2b50e",
+      "completed_command_events": 10
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 113,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 158258,
+        "output_tokens": 1978,
+        "cache_read_tokens": 148224,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "cdb82002d76c458b46eb9c0c8d95d35ca48bb7e9444bd8d4e5484f936cb66db2",
+      "transcript_sha256": "5eaae3cbfe1ec0b52fe56d4bfa883622c86cdaf7285b112d71450efb51af803c",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 150,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 165215,
+        "output_tokens": 1793,
+        "cache_read_tokens": 154240,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "8d7af13d7a0d2a3b394ec163a57356d2de93ca661d43fdc5946c4597b5cf0ed1",
+      "transcript_sha256": "7840cd07fba1f26ee9e39a153eb0623dd2debd77094ce91d6cb201f05c5e198d",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 183,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 155446,
+        "output_tokens": 1351,
+        "cache_read_tokens": 135168,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "c9efb8eeddb00f0e3746b868c285208b6e9ff425ad37908bba4eea3d6f7cf6e2",
+      "transcript_sha256": "98974d0e833e223e09b48d0a6344ea40b577270a4142c9ce97c1d5fd9517c299",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 89,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 180303,
+        "output_tokens": 2109,
+        "cache_read_tokens": 159360,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "47ce414fd83c53439846d728f45c24076855cb5d4b39cc8dc2db2385c17a9901",
+      "transcript_sha256": "4d8e6652f71755c3592b3421248e1f506dbef1d5e54689a0a7acd788410f0119",
+      "completed_command_events": 11
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 76,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 154652,
+        "output_tokens": 1662,
+        "cache_read_tokens": 131328,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "bdd420b37a5bb3e269bf9519638a842b6d5c5d5df0af195251aa2ae5774fcb75",
+      "transcript_sha256": "1b19c3b39790a746f63ae7a0bc0ab12aaff427721f2a9afc23878cf7aefc8b88",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 76,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 162015,
+        "output_tokens": 1679,
+        "cache_read_tokens": 134912,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "1667627b20b6c35d47fcbd09210f8fe694727d00aa8acceee32aca666ae0cd72",
+      "transcript_sha256": "5a58fe4a32efe7001fea1b6f35a66582bf1225770a4b43685061cd6cfd3b3d08",
+      "completed_command_events": 15
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 121,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 129107,
+        "output_tokens": 898,
+        "cache_read_tokens": 107776,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "3fcf7847a0752902f77ba7bd7577895560005de2d7781fbf69c3adc71f985b33",
+      "transcript_sha256": "c447292812240ed2b69d3137dacbb3b2fd831228b6302c38718663673b679664",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 59,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 112553,
+        "output_tokens": 923,
+        "cache_read_tokens": 91520,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "3b32010d2178c64d68a1f6a60eb9ef2225c1a1860b782d661f9965059bacd444",
+      "transcript_sha256": "22757c108aa265f8dbf7042ae8da564375426d27534ca829ec86afce6cd64e9d",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 122,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 101925,
+        "output_tokens": 882,
+        "cache_read_tokens": 93184,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "f2c9fc757f96614739e59a3bc71c24bae66bfb0771db634fc3eee1cf018affed",
+      "transcript_sha256": "f79092baf169633d17b604012edf988d299393f33d20f1c556829902ae3aee65",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "017-partial-rails-rollout-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 60,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 161612,
+        "output_tokens": 1439,
+        "cache_read_tokens": 126592,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "dab6912c53373adb03f772737c338d72c1008a785f953045a385e84f0ec05552",
+      "transcript_sha256": "6b7c9028954884795868129a6d4d3be64fbed279217b012e9b127e7eedf51911",
+      "completed_command_events": 8
+    },
+    {
+      "run_id": "017-partial-rails-rollout-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 66,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 208149,
+        "output_tokens": 1577,
+        "cache_read_tokens": 182784,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "7fef37e4000e8fe250705b40faa7535eb968e8e208cc273e8d21a8a2812fc3c8",
+      "transcript_sha256": "71502b04be32718ae792e0d7989ef9c50e20e7d0e912fe2ff7c07a4b14ee1c8f",
+      "completed_command_events": 9
+    },
+    {
+      "run_id": "017-partial-rails-rollout-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 105,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 289398,
+        "output_tokens": 1864,
+        "cache_read_tokens": 255232,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "5aab12e0a2f991512a9770b9075623941ebdfc4fea6d11f7bf4291de5d476eb4",
+      "transcript_sha256": "95187aea36c777e4f6d986c6c6833f5d8a2b29dd9c1d329eb72fdd54f35929c1",
+      "completed_command_events": 11
+    },
+    {
+      "run_id": "017-partial-rails-rollout-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 93,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 148855,
+        "output_tokens": 937,
+        "cache_read_tokens": 134400,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "939e3b3b1334bb9ec041945e764c60dcc67268c5b9e3898a46274e7d3849f2b0",
+      "transcript_sha256": "ce11bca8db67c29f878d2e6211f61ad515ebb97585c29438f5ce4a9c3051b739",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "017-partial-rails-rollout-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 129,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 150236,
+        "output_tokens": 899,
+        "cache_read_tokens": 124544,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "8468d515fe4a2289f7639e9ec24ded1da88c84d6acff500d27dcf3c0dc397b56",
+      "transcript_sha256": "3215b240d1c9f750ee29994403e4a591cb05a07a26b1845d32461a6d2c587f3a",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "017-partial-rails-rollout-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 200,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 210994,
+        "output_tokens": 1043,
+        "cache_read_tokens": 200192,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "1b31fc6342d4eab2a8ae042d33553128b4c91f77798323afaf11690fd9d7a62c",
+      "transcript_sha256": "68905e83627d479ca7190e2092a07163602752ff6157671a6b47349f714a8bff",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "019-rust-fd-leak-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 108,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 278404,
+        "output_tokens": 2163,
+        "cache_read_tokens": 256640,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "13ac056b46d89e52e333d15b4e7e0a70b2668dc088c58825e943d0ea99095fa0",
+      "transcript_sha256": "ab44803db33fe5375da1937ddddeb974a36eeaa9649caae2885abbf1249dee38",
+      "completed_command_events": 11
+    },
+    {
+      "run_id": "019-rust-fd-leak-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 133,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 267627,
+        "output_tokens": 2022,
+        "cache_read_tokens": 241792,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "bd4359195eabffe61e7b28fe4722f690f0c2e778fa4e80a8fb95e3c7a559eb0a",
+      "transcript_sha256": "4ac77669d319556a653fd7ebdd9fcb9621fe1f1d56a3c6c5be036f8ef865e17c",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "019-rust-fd-leak-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 97,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 220923,
+        "output_tokens": 2155,
+        "cache_read_tokens": 197760,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "a249ef9fda4f70b8568de980dea19f9a8c1bda3738c4a0ab77d2180281bf1e8d",
+      "transcript_sha256": "186fc492df85f8c9ade76f69ff7656f6028e5c192fef912fcda77a12bebe6ef7",
+      "completed_command_events": 8
+    },
+    {
+      "run_id": "019-rust-fd-leak-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 138,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 112355,
+        "output_tokens": 926,
+        "cache_read_tokens": 93952,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "6cab1c9bf9f5de3875f794f32f8d57503a81d8e7e34988d2e0365a25ba253b7b",
+      "transcript_sha256": "d1c876f88b01d610715c3def55e7c537fbba4dc8804bdd556cf8eb903cdeccf4",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "019-rust-fd-leak-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 162,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 128240,
+        "output_tokens": 1084,
+        "cache_read_tokens": 120960,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "3a297b63d2580451207fb951029facdb573650004eb4833ec3d74fcf9a4adc70",
+      "transcript_sha256": "fccfbf73494662e3fbb77236e491ce09e9bd3fcb623d0267f01e284829018df3",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "019-rust-fd-leak-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 465,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 112818,
+        "output_tokens": 1128,
+        "cache_read_tokens": 94336,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "8914d8536f2d8376e8c615148c14b7322286fa38461e289cbc6d04b7f81fe899",
+      "transcript_sha256": "30a8d6caec11cee55c8a35cdd1658cdf17c7cab96e9f3ec77f5fd132869984a6",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 79,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 242868,
+        "output_tokens": 1977,
+        "cache_read_tokens": 200064,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "974e21714084d03abed0214630020f4ad494b6e8345dd951cc33fc9eebfffa11",
+      "transcript_sha256": "1fe01bb86ccd66e206380e8ddf2f8ef715d61c3334b63ad9b392bc0e94562260",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 83,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 215409,
+        "output_tokens": 1953,
+        "cache_read_tokens": 195584,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "1e003df43433b08dff2849693bc70ddb2acc30a7bdfe34707e4dd51209fd542b",
+      "transcript_sha256": "7447b298111b715d55fa917ac657cf92067907ee317d6450989c87133a7ad295",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 66,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 136086,
+        "output_tokens": 1644,
+        "cache_read_tokens": 124544,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "9aa94b08951224ab8f8f6f2561eb6fdae3eabd0d4315af87cc6f83cebafe7877",
+      "transcript_sha256": "24fd0d0c47af06d776791ca02ae950de82d0c8d9559fb916a708e2ed32f65475",
+      "completed_command_events": 8
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 138,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 145367,
+        "output_tokens": 1035,
+        "cache_read_tokens": 131328,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "7fa346f425129323385c4a438e0ba8b23958e7621e81e524b99ab6bc24e3df03",
+      "transcript_sha256": "c0760ee163a7be41d71acb934617bdcb986ecffac9718694f0fef6ce0f4704f1",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 117,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 135660,
+        "output_tokens": 1184,
+        "cache_read_tokens": 103680,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "bc2ff56da21c1dfbbdef4f3f0a2633c138da162886d1a8429dd582c831f88ac7",
+      "transcript_sha256": "3f15df3905c9989d65eabf225f0dc10317761afe82b536716d78f983508c75ae",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 69,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 122731,
+        "output_tokens": 1157,
+        "cache_read_tokens": 113024,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "283f91e54ad5cd70266fd8951b381bf9bc93dd17dd705dc3ba6cf078c52b50ab",
+      "transcript_sha256": "3d456730ec701dcde3598be001431f040e95d787c25fd8b1724bcd8c1faf0fe1",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "023-auth-secret-rollout-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 93,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 151907,
+        "output_tokens": 2585,
+        "cache_read_tokens": 130560,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "0d7c1b6b6350a9a641f6a2b682d3ca622a2e3f29bf5814a9758b485684d681c3",
+      "transcript_sha256": "e3a56d1e417076d165c7ca68868fa8d19435ca754081afc0bfe22a428c99c774",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "023-auth-secret-rollout-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 96,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 143251,
+        "output_tokens": 2669,
+        "cache_read_tokens": 122368,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "fae9c29553349aead371ab1fe3200bee9bb4c5f9509a59ca0055ab35e8c521c9",
+      "transcript_sha256": "c2dd9673136e89bb8e918f388ccd40cb83e46512d7731a3eea3dc7bbcefffec5",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "023-auth-secret-rollout-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 84,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 123020,
+        "output_tokens": 2515,
+        "cache_read_tokens": 103040,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "6d74b5cf9ae28c7f30c8ffad1022dc29dc2db6e93030c7722ee788503375cbc8",
+      "transcript_sha256": "e5f4fb6c8668134c1ba8002ec711f2a9adcd5ebfe395d6e6973b42d4d7b5a603",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "023-auth-secret-rollout-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 441,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 112997,
+        "output_tokens": 1155,
+        "cache_read_tokens": 105344,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "dda0a46a000196489b5d9cefb4001c8135137ba9205ae556be263a0bf2311073",
+      "transcript_sha256": "f03366853a99273ae6cf1466cf824e8591b54e50641835ca7e36fd2eeedc3696",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "023-auth-secret-rollout-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 78,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 125313,
+        "output_tokens": 1161,
+        "cache_read_tokens": 104192,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "63de0cba1db06b28cf52c1f007bcaee9586c2201ee33a284a6e47a2b15f6e357",
+      "transcript_sha256": "609562dd237ba066d5d055f7782c69cdfaa93996bae63d32e364f3b01de07eba",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "023-auth-secret-rollout-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 68,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 105880,
+        "output_tokens": 1085,
+        "cache_read_tokens": 96256,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "64dbde52b5800178c24821629bed2147eed9f96e3e6aa0d5c340ff30fe368a14",
+      "transcript_sha256": "1c7e84022b2415dba0c094336c0de6120866f00a1893aadc4d34a07aac90abbf",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 82,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 209789,
+        "output_tokens": 2171,
+        "cache_read_tokens": 174208,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "1ff91bd7dbb1af3b26bf0e3b84f3f97cbeabedb76917efd9a76612278aa619d6",
+      "transcript_sha256": "43b934a6895d95885412285466a18be43d32749b679fe3f30a8825f620a6ab18",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 69,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 170734,
+        "output_tokens": 1773,
+        "cache_read_tokens": 141312,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "578aaba91418ee50047f1ccd454ef96e28b2524d3fadffbb82e21c1a36407185",
+      "transcript_sha256": "dbfc1f107d445a124c85e375ef8c965fceb1cc96a80b160077e6e09982d22753",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 63,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 188008,
+        "output_tokens": 1427,
+        "cache_read_tokens": 169472,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "0097ff520f988a19434708faad7f22d2bba5b72d1d70614ea1c161a7ee2d2727",
+      "transcript_sha256": "f7078fd67bfcf939edc4aefc21105cbbff045152b3200f9d7682c409a9021dab",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 105,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 151533,
+        "output_tokens": 1089,
+        "cache_read_tokens": 129152,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "e34b35b14c4acc03dd97cf12f1c6101a8d0973009b0cbfe37c5a83549eb4c4be",
+      "transcript_sha256": "471aa6187a1f34e0141df0a453fbf55aa4a0d089482cb3bfd7430ce43a7fb909",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 70,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 118543,
+        "output_tokens": 833,
+        "cache_read_tokens": 105728,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "35984f6817f02b3ba5c61ddb1f92031878c231956b947165d089a59826a235bf",
+      "transcript_sha256": "b9d39a7716a1219600c8726d79e6e73501c0e0c511a3984a7f4540c26a94387e",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 80,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 175631,
+        "output_tokens": 1049,
+        "cache_read_tokens": 152320,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "a7c6125ce42d1c791c19b270f08639405d2b08f01002063fcef8d6ed8ed47f49",
+      "transcript_sha256": "068cf9e7c5db1dd94a1db8660526457bec80ef3b148c9a1ebaf94e39111bb46f",
+      "completed_command_events": 8
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 92,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 209200,
+        "output_tokens": 2663,
+        "cache_read_tokens": 172160,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "cb4d5ce7df250ecf6fec7bf77a9eb11df2da055ae44e33b05b48a26ea90ec903",
+      "transcript_sha256": "1d2f463314a8313354e345db09850516492133d38b86d4c66ed810e305cfda36",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 83,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 202865,
+        "output_tokens": 2192,
+        "cache_read_tokens": 169344,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "bc5bf693dca00cd83d73d719719ab4cab89b201a12c69cfce87b7b4a849a8f41",
+      "transcript_sha256": "932c6a8e3b5befbe684f7724e41b3132874acea0eff8b8e05569d4e360e33129",
+      "completed_command_events": 10
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 77,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 224498,
+        "output_tokens": 2112,
+        "cache_read_tokens": 178304,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "e23629dcaf7f7d28b3ed50a6750882944f7532f0fb9c117cdde7c151f9a67d8c",
+      "transcript_sha256": "4503563ced35b07d54bb997e0a239ad700ee4a3437978917575c2fd42818f40f",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 61,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 117862,
+        "output_tokens": 940,
+        "cache_read_tokens": 84096,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "5daf31bd8e5bc513a7c2e983c9d679ccba88126f1764f11a85956c41720a2239",
+      "transcript_sha256": "b479310544b50f01642e2630ebb04fa499075513f3f61bcaf3be6a80feb2b3ca",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 71,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 160804,
+        "output_tokens": 931,
+        "cache_read_tokens": 149120,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "c1eeb3b0a445d8c468cc0057a494959be9842352bd8276fe21b8a8c02ab32a72",
+      "transcript_sha256": "92d1e1b18dddeeb863aaf8b90ba518846a709efc9eb3b06450698bf947b2e03f",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 90,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 138079,
+        "output_tokens": 1071,
+        "cache_read_tokens": 124416,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "9167af69dc6c946598d68ebf0ea5ee3b7e1bf0ef8a66bb46c5bdcfcb106af80c",
+      "transcript_sha256": "7a29d32fbbe0ff25629e2b8a8bff6074d8aa2623fa22fcca3ea6189f59f32ada",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "033-tls-trust-rotation-gpt-6-2-sol-1",
+      "model": "gpt-6.2-sol",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 83,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 187438,
+        "output_tokens": 2219,
+        "cache_read_tokens": 166144,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "987329d947874a6f05fd9a39a31f3f9c7f836c3bafa3c37f7ef497f389bf60d7",
+      "transcript_sha256": "77d0ce01b06ae748a760a9b8dfdf11a0843846f2e6dffd13860735f92d126715",
+      "completed_command_events": 11
+    },
+    {
+      "run_id": "033-tls-trust-rotation-gpt-6-2-sol-2",
+      "model": "gpt-6.2-sol",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 65,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 143647,
+        "output_tokens": 1737,
+        "cache_read_tokens": 130688,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "3a9ac5e61107cc15dacc945bc4d1f43ae835abf9c6e88418717f7f824d7c9796",
+      "transcript_sha256": "6ddbf2d50d637de974e69d3a18d689957323c8b8a16cae2930e51024957fcf0e",
+      "completed_command_events": 6
+    },
+    {
+      "run_id": "033-tls-trust-rotation-gpt-6-2-sol-3",
+      "model": "gpt-6.2-sol",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 70,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 187045,
+        "output_tokens": 1854,
+        "cache_read_tokens": 164352,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "5e8d2a1a4a5a65882e04ed0bf8f184766faca648603d2780f1696491273cdbcc",
+      "transcript_sha256": "1de0b6aa3375bcfec102870301e536b68c5f1d21224e90a2370784f31dc430a0",
+      "completed_command_events": 8
+    },
+    {
+      "run_id": "033-tls-trust-rotation-gpt-6-2-astra-1",
+      "model": "gpt-6.2-astra",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 59,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 114121,
+        "output_tokens": 1107,
+        "cache_read_tokens": 101888,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "996ad8f2c94fd8bc07356edb5e427b7dfeca385c83808f7b488ee278787eab65",
+      "transcript_sha256": "0da68fe176f902312f72fa04ef7802cb61d43ad5411754318474544324abdf55",
+      "completed_command_events": 5
+    },
+    {
+      "run_id": "033-tls-trust-rotation-gpt-6-2-astra-2",
+      "model": "gpt-6.2-astra",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 60,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 156561,
+        "output_tokens": 1170,
+        "cache_read_tokens": 130944,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "f2f1a2a0f62efb190b4122109e0afb829cf807746f40820cb366453150a480ec",
+      "transcript_sha256": "218c535fd0456453004883de617994919e46121536c255d9320fe78fac07bbc2",
+      "completed_command_events": 7
+    },
+    {
+      "run_id": "033-tls-trust-rotation-gpt-6-2-astra-3",
+      "model": "gpt-6.2-astra",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 73,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "input_tokens": 134977,
+        "output_tokens": 1645,
+        "cache_read_tokens": 111616,
+        "cache_creation_tokens": 0,
+        "cost_usd": null
+      },
+      "result_sha256": "a56e0a377f477227d3be2064cd54064041ce0affc49e037ff7dae00394d905bf",
+      "transcript_sha256": "42d2a53d5dd51184cc116ba1fa4cc139b782f518a20e18b00b42bba89b151841",
+      "completed_command_events": 5
+    }
+  ]
+}
