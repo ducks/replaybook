@@ -15,6 +15,26 @@ events="${eval_root}/results/codex-events.jsonl"
 final_message="${eval_root}/results/codex-final.txt"
 mkdir -m 0700 -p "$codex_home"
 export CODEX_HOME="$codex_home"
+# New Codex releases launch a sibling codex-code-mode-host executable.
+# Keep accepting legacy single-binary payloads; gzip payloads are the native
+# two-executable bundle produced by prepare-codex-payload.py.
+if [[ "$(od -An -N2 -tx1 "$codex" | tr -d ' \n')" == "1f8b" ]]; then
+  expected_members=$'codex\ncodex-code-mode-host'
+  members="$(tar -tzf "$codex" | LC_ALL=C sort)"
+  [[ "$members" == "$expected_members" ]] || {
+    echo "invalid Codex bundle: expected codex and codex-code-mode-host only" >&2
+    exit 2
+  }
+  tar -tvzf "$codex" | awk 'substr($1,1,1) != "-" {exit 1}' || {
+    echo "invalid Codex bundle: members must be regular files" >&2
+    exit 2
+  }
+  codex_bin="${eval_root}/codex-bin"
+  mkdir -m 0700 "$codex_bin"
+  tar -xzf "$codex" -C "$codex_bin" --no-same-owner --no-same-permissions
+  chmod 0700 "$codex_bin/codex" "$codex_bin/codex-code-mode-host"
+  codex="$codex_bin/codex"
+fi
 image_args=()
 if [[ -n "${REPLAYBOOK_IMAGE_ARTIFACTS_FILE:-}" ]]; then
   jq -e 'type == "array" and all(.[]; type == "object" and (.path | type == "string"))' \
