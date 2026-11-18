@@ -30,6 +30,27 @@ class LinkParser(HTMLParser):
 
 
 class PagesTests(unittest.TestCase):
+    def test_benchmark_navigation_has_four_primary_sections(self) -> None:
+        class Navigation(HTMLParser):
+            def __init__(self):
+                super().__init__(); self.inside=False; self.links=[]
+            def handle_starttag(self,tag,attrs):
+                values=dict(attrs)
+                if tag=='nav' and values.get('aria-label')=='Benchmark sections': self.inside=True
+                if self.inside and tag=='a': self.links.append(values)
+            def handle_endtag(self,tag):
+                if tag=='nav':self.inside=False
+        pages=['benchmarks.html','benchmark-scores.html','scenarios.html','benchmark-history.html',
+               'benchmark-evidence.html','benchmark-models.html','benchmark-providers.html','benchmark-coverage.html']
+        expected=['benchmarks.html','benchmark-scores.html','scenarios.html','benchmark-history.html']
+        for name in pages:
+            with self.subTest(page=name):
+                parser=Navigation();parser.feed((DOCS_DIR/name).read_text())
+                self.assertEqual([link['href'] for link in parser.links],expected)
+                self.assertEqual(sum(link.get('aria-current')=='page' for link in parser.links),1)
+                if name in pages[4:]:
+                    self.assertEqual(next(link['href'] for link in parser.links if link.get('aria-current')=='page'),'benchmark-scores.html')
+
     def test_every_page_includes_goatcounter(self) -> None:
         snippet = 'data-goatcounter="https://stats.replaybook.dev/count"'
         for page in DOCS_DIR.glob("*.html"):
@@ -157,7 +178,9 @@ class PagesTests(unittest.TestCase):
             if 'aria-label="Benchmark sections"' not in html:
                 continue
             nav = html.split('aria-label="Benchmark sections"', 1)[1].split("</nav>", 1)[0]
-            self.assertIn('href="benchmark-evidence.html"', nav)
+            for target in ['benchmarks.html','benchmark-scores.html','scenarios.html','benchmark-history.html']:
+                self.assertIn('href="'+target+'"',nav)
+            self.assertNotIn('href="benchmark-evidence.html"',nav)
             self.assertNotIn(">Compare</a>", nav)
             self.assertNotIn(">Explore</a>", nav)
 
