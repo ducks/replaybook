@@ -1,0 +1,34 @@
+{
+  "title": "GPT-6.2 Sol and Astra Core via Codex / ChatGPT subscription",
+  "description": "Both models passed all 33 Core trials. Median agent duration was 83 seconds for GPT-6.2 Sol and 80 seconds for GPT-6.2 Astra. Runs used Codex CLI 0.169.1 with ChatGPT subscription authentication.",
+  "input_mode": "text",
+  "model_order": [
+    "gpt-6.2-sol",
+    "gpt-6.2-astra"
+  ],
+  "model_labels": {
+    "gpt-6.2-sol": "GPT-6.2 Sol",
+    "gpt-6.2-astra": "GPT-6.2 Astra"
+  },
+  "agent_harness": {
+    "id": "codex",
+    "label": "Codex",
+    "version": "0.169.1 (native CLI + code-mode host bundle)",
+    "provider": "ChatGPT subscription",
+    "billing": "subscription"
+  },
+  "notes": [
+    "Core manifest 2026.10.24.2: eleven scenarios, three attempts per model, 900-second agent deadline and concurrency one. Host harness 23; code-mode native bundle and adapter are frozen in the immutable execution snapshot.",
+    "Both models used explicit Codex model IDs with model-default reasoning, not an explicitly configured reasoning effort. This is a Codex / ChatGPT-subscription cohort, separate from Claux / OpenRouter API runs.",
+    "No per-request dollar cost was reported. Subscription allowance was used; the aggregate known-cost value of zero is not a claim of free inference or an API price. Costs must be displayed as unreported.",
+    "Codex input-token accounting includes cached input as a subset; do not add cache reads to its input total. Token accounting differs between harnesses. Tool timing and model-round metrics were not normalized by this adapter and remain unreported. Raw JSON event transcripts were audited, not published.",
+    "All 66 raw results were reconciled with their JSON event transcripts, reported usage, successful command events, completion/deadline status, lifecycle verifier results and execution snapshot. No scoring corrections or reruns in this full matrix.",
+    "Earlier separate nginx pilots exposed unsupported model access in Codex 0.164.0 and then a missing native helper when copying only the 0.169.1 main executable. Those development attempts are excluded. This full matrix began after successful bundled-CLI pilots.",
+    "A clean sweep on this small fixed Core pack establishes these observed results, not general model superiority or difficulty. Public audit evidence contains sanitized records and hashes, not private commands, reasoning, account credentials, or VM logs."
+  ],
+  "observations": [
+    "GPT-6.2 Sol passed 33/33, with an 83-second median agent duration.",
+    "GPT-6.2 Astra passed 33/33, with an 80-second median agent duration.",
+    "Every attempt passed immediate HTTP, service-restart and host-reboot verification, with no unavailable or failed trials."
+  ]
+}
