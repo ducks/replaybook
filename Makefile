@@ -103,6 +103,7 @@ host-check:
 	@python -m unittest integrations.host.test_benchmark_cohort
 	@python -m unittest integrations.host.test_benchmark_session
 	@python -m unittest integrations.host.test_benchmark_scores
+	@python -m unittest integrations.host.test_codex_payload
 	@python -m unittest integrations.host.test_opencode_config
 	@bash integrations/host/test-host-native.sh
 	@python -m unittest integrations.host.test_run_host_matrix

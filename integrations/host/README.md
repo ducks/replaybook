@@ -987,7 +987,9 @@ local Codex CLI, then create a temporary mode-0600 environment file containing
 a sanitized copy of the current login cache:
 
 ```sh
-codex_binary="$(integrations/host/find-codex-binary.sh)"
+codex_payload_dir="$(mktemp -d)"
+codex_payload="$codex_payload_dir/codex.tar.gz"
+python integrations/host/prepare-codex-payload.py "$codex_payload"
 codex_env="$(integrations/host/prepare-codex-env.sh)"
 ```
 
@@ -998,14 +1000,17 @@ python integrations/host/run_host_matrix.py \
   --scenario 001-nginx-502-host \
   --models gpt-5.6-sol \
   --agent-adapter integrations/host/adapters/codex.sh \
-  --agent-payload "$codex_binary" \
+  --agent-payload "$codex_payload" \
   --agent-env-file "$codex_env" \
   --agent-name codex \
   --attempts 1 \
   --concurrency 1
 ```
 
-Remove the temporary environment file after the run. The helper replaces the
+The payload bundles `codex` with its sibling `codex-code-mode-host`; current
+Codex releases require both for command execution. The adapter also retains
+compatibility with older single-binary payloads. Remove the temporary environment
+file after the run. The helper replaces the
 refresh token before staging the authentication cache, and the adapter uses an
 isolated, disposable `CODEX_HOME`. The VM therefore cannot rotate or expose
 the refresh credential used by your local login. If the access token has
