@@ -108,7 +108,7 @@ function initializeScenarioDialog(selector, harness) {
   document.addEventListener('click', event => {
     const trigger = event.target.closest('.scenario-trigger');
     if (!trigger || event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const condition = trigger.closest('.score-cohort')?.dataset.condition || activeCondition || selector.value;
+    const condition = trigger.closest('.score-card')?.dataset.condition || trigger.closest('.score-cohort')?.dataset.condition || activeCondition || selector.value;
     const row = findScenarioDetail(details, condition, harness.value, trigger.dataset.scenario, trigger.dataset.version);
     if (!row) return;
     event.preventDefault();
