@@ -103,13 +103,16 @@ function initializeScenarioDialog(selector, harness) {
   const runs = payload.runs || {};
   const byId = id => document.getElementById('scenario-dialog-' + id);
   let opener = null;
+  let activeCondition = null;
 
   document.addEventListener('click', event => {
     const trigger = event.target.closest('.scenario-trigger');
     if (!trigger || event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const row = findScenarioDetail(details, selector.value, harness.value, trigger.dataset.scenario, trigger.dataset.version);
+    const condition = trigger.closest('.score-cohort')?.dataset.condition || activeCondition || selector.value;
+    const row = findScenarioDetail(details, condition, harness.value, trigger.dataset.scenario, trigger.dataset.version);
     if (!row) return;
     event.preventDefault();
+    activeCondition = condition;
     if (!dialog.open) opener = trigger;
     const selected = row.outcomes.find(outcome => outcome.evidence_url === trigger.getAttribute('href'));
     const run = selected ? runs[selected.evidence_url] : null;
@@ -119,7 +122,7 @@ function initializeScenarioDialog(selector, harness) {
     byId('rate').textContent = row.failure_rate == null ? '—' : `${row.failure_rate.toFixed(1)}%`;
     byId('trials').textContent = `${row.unsuccessful} / ${row.trials}`;
     byId('configurations').textContent = row.configurations;
-    const group = details.find(group => group.condition === selector.value);
+    const group = details.find(group => group.condition === condition);
     const benchmark = `${group.label || 'Core'} ${group.benchmark}`;
     const harnessLabel = harness.value ? harness.selectedOptions[0].textContent : 'All harnesses';
     byId('scope').textContent = `${benchmark} · ${harnessLabel}. Each configuration entry belongs to its own published release; repeated entries count separately.`;

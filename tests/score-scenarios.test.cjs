@@ -40,13 +40,13 @@ const document = {getElementById: id => ids[id], createElement: element, listene
   documentElement: {classList: {add: name => classes.add(name), remove: name => classes.delete(name)}}};
 const context = vm.createContext({document, URLSearchParams});
 vm.runInContext(source, context);
-const selector = {value: 'one'};
+const selector = {value: 'all-core'};
 const harness = {value: '', selectedOptions: [{textContent: 'Harness B'}]};
 context.initializeScenarioDialog(selector, harness);
 const trigger = element();
 trigger.dataset = {scenario: 'a', version: '1'};
 trigger.attrs.href = outcome.evidence_url;
-trigger.closest = () => trigger;
+trigger.closest = selector => selector === '.score-cohort' ? {dataset: {condition: 'one'}} : trigger;
 function click(extra = {}) {
   const event = {target: trigger, button: 0, prevented: false,
     preventDefault() { this.prevented = true; }, ...extra};
@@ -83,6 +83,7 @@ harness.value = 'unknown';
 assert.equal(click().prevented, false);
 harness.value = '';
 selector.value = 'two';
+trigger.closest = selector => selector === '.score-cohort' ? {dataset: {condition: 'two'}} : trigger;
 assert.equal(click().prevented, false); // scenario v1 never opens v2 evidence
 trigger.dataset.version = '2';
 assert.equal(click().prevented, true);
@@ -98,6 +99,7 @@ const run = {passed: 2, trials: 3, recorded_attempts: 3, cost_reported: 2,
 ids['score-scenario-data'].textContent = JSON.stringify({groups: data, runs: {[outcome.evidence_url]: run}});
 context.initializeScenarioDialog(selector, harness);
 selector.value = 'one';
+trigger.closest = selector => selector === '.score-cohort' ? {dataset: {condition: 'one'}} : trigger;
 trigger.dataset.version = '1';
 click();
 assert.equal(ids['scenario-dialog-rate'].textContent, '2/3');
