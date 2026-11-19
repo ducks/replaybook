@@ -30,6 +30,19 @@ class LinkParser(HTMLParser):
 
 
 class PagesTests(unittest.TestCase):
+    def test_latest_score_selection(self) -> None:
+        import subprocess
+        subprocess.run(["node", "tests/scores-latest.test.cjs"], cwd=REPO_DIR, check=True)
+
+    def test_scores_default_keeps_all_core_conditions_visible(self) -> None:
+        page = (DOCS_DIR / "benchmark-scores.html").read_text()
+        self.assertIn('<option value="all-core">Latest Core result per model</option>', page)
+        self.assertIn('data-suite="core" data-condition=', page)
+        self.assertIn("section.dataset.suite !== selector.value.slice(4)", page)
+        self.assertIn('data-name="GPT-6.2 Astra"', page)
+        self.assertIn('data-name="Particle-1"', page)
+
+
     def test_benchmark_navigation_has_four_primary_sections(self) -> None:
         class Navigation(HTMLParser):
             def __init__(self):
