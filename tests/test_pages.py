@@ -38,7 +38,7 @@ class PagesTests(unittest.TestCase):
         page = (DOCS_DIR / "benchmark-scores.html").read_text()
         self.assertIn('<option value="all-core">Latest Core result per model</option>', page)
         self.assertIn('data-suite="core" data-condition=', page)
-        self.assertIn("section.dataset.suite !== selector.value.slice(4)", page)
+        self.assertIn('id="score-combined-grid"', page)
         self.assertIn('data-name="GPT-6.2 Astra"', page)
         self.assertIn('data-name="Particle-1"', page)
 

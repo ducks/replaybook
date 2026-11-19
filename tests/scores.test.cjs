@@ -20,6 +20,8 @@ function run(search = '') {
   const controls = {'score-cohort': select(['one', 'two']), 'score-harness': select(['']),
     'score-sort': select(['score', 'cost', 'costPerRepair', 'duration', 'name']),
     'score-direction': select(['desc', 'asc'])};
+  controls['score-combined'] = {hidden: true};
+  controls['score-combined-grid'] = {replaceChildren() {}, append() {}};
   const cards = [card('Alpha', 20, 2), card('Beta', 90, 8),
     card('Partial', 50, 1, false), card('Unknown', 0, '', false, 'b')];
   const grid = {children: [...cards], append(card) {

@@ -46,7 +46,7 @@ context.initializeScenarioDialog(selector, harness);
 const trigger = element();
 trigger.dataset = {scenario: 'a', version: '1'};
 trigger.attrs.href = outcome.evidence_url;
-trigger.closest = selector => selector === '.score-cohort' ? {dataset: {condition: 'one'}} : trigger;
+trigger.closest = selector => selector === '.score-card' ? {dataset: {condition: 'one'}} : selector === '.scenario-trigger' ? trigger : null;
 function click(extra = {}) {
   const event = {target: trigger, button: 0, prevented: false,
     preventDefault() { this.prevented = true; }, ...extra};
@@ -99,7 +99,7 @@ const run = {passed: 2, trials: 3, recorded_attempts: 3, cost_reported: 2,
 ids['score-scenario-data'].textContent = JSON.stringify({groups: data, runs: {[outcome.evidence_url]: run}});
 context.initializeScenarioDialog(selector, harness);
 selector.value = 'one';
-trigger.closest = selector => selector === '.score-cohort' ? {dataset: {condition: 'one'}} : trigger;
+trigger.closest = selector => selector === '.score-card' ? {dataset: {condition: 'one'}} : selector === '.scenario-trigger' ? trigger : null;
 trigger.dataset.version = '1';
 click();
 assert.equal(ids['scenario-dialog-rate'].textContent, '2/3');
