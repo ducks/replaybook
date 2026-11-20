@@ -1,0 +1,1010 @@
+{
+  "model": "google/gemini-4-neon",
+  "summary_sha256": "10e22df9d20e1d99cbfee615667f08f32653c210f53ec739068b86f6618c95c1",
+  "execution_snapshot": {
+    "agent_adapter_sha256": null,
+    "agent_config_sha256": null,
+    "agent_env_sha256": null,
+    "agent_payload_sha256": null,
+    "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+    "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+    "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+    "scenario_packs": [
+      {
+        "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+        "id": "ducks/replaybook-infra",
+        "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+        "version": "20261024.1.1"
+      }
+    ],
+    "schema_version": 1,
+    "selected_scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack_id": "ducks/replaybook-infra",
+        "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+        "version": 2
+      }
+    ]
+  },
+  "totals": {
+    "trials": 33,
+    "evaluated": 33,
+    "unavailable": 0,
+    "passed": 33,
+    "failed": 0,
+    "durable_repairs_after_timeout": 0,
+    "pass_rate": 1.0,
+    "median_duration_seconds": 131.0,
+    "known_cost_usd": 13.4373687,
+    "cost_reported_trials": 33,
+    "input_tokens": 2035807,
+    "output_tokens": 351381,
+    "cache_read_tokens": 13728218,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_creation_reported_trials": 33,
+    "usage_reported_trials": 33,
+    "recording_reported_trials": 33,
+    "median_model_rounds": 15,
+    "median_model_duration_seconds": 123.273,
+    "median_tool_calls": 21,
+    "median_tool_duration_seconds": 6.743,
+    "median_first_non_read_only_tool_seconds": 5.458,
+    "median_post_first_non_read_only_seconds": 124.16400000000002
+  },
+  "corrections": [],
+  "runs": [
+    {
+      "run_id": "001-nginx-502-host-google-gemini-4-neon-1",
+      "scenario": "001-nginx-502-host",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 118,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 14,
+        "input_tokens": 39639,
+        "output_tokens": 4486,
+        "cache_read_tokens": 185676,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.21405839999999998,
+        "cost_source": "provider"
+      },
+      "result_sha256": "0bf37861ba82dc5afb18f14daa0db01726f4c846901c08a63793d2bc3ff8947a",
+      "transcript_sha256": "04af74d04494728b357e79bd1960ece9039cc1c319f5de5646c8f5dc0307b7d4"
+    },
+    {
+      "run_id": "001-nginx-502-host-google-gemini-4-neon-2",
+      "scenario": "001-nginx-502-host",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 129,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 22,
+        "input_tokens": 48478,
+        "output_tokens": 4352,
+        "cache_read_tokens": 289939,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.25420485000000004,
+        "cost_source": "provider"
+      },
+      "result_sha256": "b8f630038ec118dc50c7d4bfad97e937c5e01ab44b79e98344911c9ff7283116",
+      "transcript_sha256": "8c7da504893390599572ea52debe2172f5319a138686e6c469f009e1055a905a"
+    },
+    {
+      "run_id": "001-nginx-502-host-google-gemini-4-neon-3",
+      "scenario": "001-nginx-502-host",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 61,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 12,
+        "tool_calls": 11,
+        "input_tokens": 31669,
+        "output_tokens": 4298,
+        "cache_read_tokens": 123659,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.17802585,
+        "cost_source": "provider"
+      },
+      "result_sha256": "fff1ec08fa40f3c76ee3db9f6f36e9a800a87e7dc1dfb539061957b670e92e41",
+      "transcript_sha256": "b308e228b3adf15208e328b53bad59ddeb152e06f43ea6ffcad47f201bcc6b5d"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-neon-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 107,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 19,
+        "input_tokens": 60235,
+        "output_tokens": 6748,
+        "cache_read_tokens": 376956,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.3384684,
+        "cost_source": "provider"
+      },
+      "result_sha256": "5eb25481af2bc3610970a75c9534692229a606329359d37d3720ee6edb8860b0",
+      "transcript_sha256": "741580f23c5a50cfff0cbe6731a04f2373d391773e43815f57aae1044a694460"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-neon-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 316,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 16,
+        "input_tokens": 36486,
+        "output_tokens": 7982,
+        "cache_read_tokens": 178892,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.2560218,
+        "cost_source": "provider"
+      },
+      "result_sha256": "861db9724ba37c5d006aa186d51db83748ec68fd2805817a0c0e8c9362e99ca9",
+      "transcript_sha256": "8c3cb389d0eacf1a3cb0019b2c4ed5606d76a7efada8275c979a48dac9a88d19"
+    },
+    {
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-neon-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 111,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 17,
+        "input_tokens": 51459,
+        "output_tokens": 7404,
+        "cache_read_tokens": 298292,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.3101808,
+        "cost_source": "provider"
+      },
+      "result_sha256": "aee9a038001bd0a8c42eb5bc4b3ef1ae8cf303d14f2f168c0052003bdf08ff77",
+      "transcript_sha256": "430e952def5ab87dc6725de8aff7d4840a5c96d76736198c19a65e47264fbb01"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-neon-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 340,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 26,
+        "tool_calls": 34,
+        "input_tokens": 85664,
+        "output_tokens": 27145,
+        "cache_read_tokens": 887278,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.7972586999999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "531cde2a87e116e082102c7686a70722a131ee3d91eef877812eb033e385ff1b",
+      "transcript_sha256": "73fc8738fff5f349d552d3806e3aa24d88953e15a5c46075915a6f503ec4baeb"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-neon-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 301,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 27,
+        "tool_calls": 34,
+        "input_tokens": 95214,
+        "output_tokens": 24963,
+        "cache_read_tokens": 974059,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.8061958499999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "f43aa6443df567f86c32dfa22288843eab0d21bbeeb79a3dc04e75460af2dbd8",
+      "transcript_sha256": "01bf4fa7c3cacf13a26d6d5e776570c96bfdf1dac50c1370b2de7f5ce3663904"
+    },
+    {
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-neon-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 253,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 21,
+        "tool_calls": 24,
+        "input_tokens": 78438,
+        "output_tokens": 21649,
+        "cache_read_tokens": 675609,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.66139035,
+        "cost_source": "provider"
+      },
+      "result_sha256": "5b146eb9074bf9ce78be2f59beb32ea25a4271198e75db553d09fe59730e502b",
+      "transcript_sha256": "b0fb8ae26647bfb5aa7bca05f319ee4db00c19766e1c2054727d29a6d21083e1"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-neon-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 135,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 20,
+        "input_tokens": 61365,
+        "output_tokens": 11263,
+        "cache_read_tokens": 468711,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.42334665000000005,
+        "cost_source": "provider"
+      },
+      "result_sha256": "e272745e51752eaa0b8ad9ed51f6bdca05402056a94f510d20aacd8142e1323d",
+      "transcript_sha256": "1a197690aa9369106123813e6b1aa8287d38daa0f2223c5421d71cf16ee91676"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-neon-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 131,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 22,
+        "input_tokens": 51344,
+        "output_tokens": 10358,
+        "cache_read_tokens": 324938,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.35814270000000004,
+        "cost_source": "provider"
+      },
+      "result_sha256": "850bde0fb3dc4c8b30a690554d3522ce01f147fe17d4bd7f029b6aa7388a3c6e",
+      "transcript_sha256": "dfa919a80ad8411f8ffd681e52d8ee3fc445f525c18793463e866c9749161aed"
+    },
+    {
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-neon-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 107,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 17,
+        "input_tokens": 53201,
+        "output_tokens": 8281,
+        "cache_read_tokens": 240401,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.3198781500000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "efb7698d7b3c6218cd31e2d91145f21f41f4fc972a5c51f23179b36be9cd6727",
+      "transcript_sha256": "83e770f8385ff41688a5ef1de792b9bfa95ea8283fbba77cb18f3dcd81e8d278"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-google-gemini-4-neon-1",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 149,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 19,
+        "tool_calls": 22,
+        "input_tokens": 63595,
+        "output_tokens": 8506,
+        "cache_read_tokens": 426164,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.3822996,
+        "cost_source": "provider"
+      },
+      "result_sha256": "2dfc0940118030bef39b7c7095bec2cb120e299a5475fb90c0a7be58c076a6b9",
+      "transcript_sha256": "ce88e41712c02db5adbd2f656faacc0e4e550891ef4adfc2c133d1d88946934c"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-google-gemini-4-neon-2",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 249,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 21,
+        "tool_calls": 20,
+        "input_tokens": 71758,
+        "output_tokens": 8855,
+        "cache_read_tokens": 521536,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.4263294,
+        "cost_source": "provider"
+      },
+      "result_sha256": "27ad2a033b740ec517634b6e7de72409638734dd29d56acfdb9abe326e11de1d",
+      "transcript_sha256": "a2ed22b4dc8b6156832cdba266da325308e29854b0494db01115b15feebfe5a8"
+    },
+    {
+      "run_id": "017-partial-rails-rollout-google-gemini-4-neon-3",
+      "scenario": "017-partial-rails-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 214,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 21,
+        "tool_calls": 30,
+        "input_tokens": 82393,
+        "output_tokens": 8903,
+        "cache_read_tokens": 402044,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.44103059999999994,
+        "cost_source": "provider"
+      },
+      "result_sha256": "bf842c3408a261d32e0ebecabae7afd798c8353264b75e53ab6f456de9ccd55b",
+      "transcript_sha256": "e5862aef89a8af04bfddfa97d03dbcdb411d32aec37ecfa04ffb284bd6dcf804"
+    },
+    {
+      "run_id": "019-rust-fd-leak-google-gemini-4-neon-1",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 116,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 21,
+        "input_tokens": 50949,
+        "output_tokens": 8607,
+        "cache_read_tokens": 282279,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.32429385,
+        "cost_source": "provider"
+      },
+      "result_sha256": "1bdc4c8444c471a45a84e74f703224472e4bf838be999840ab4bdebe333930db",
+      "transcript_sha256": "b4e1b42a43e8ec33a5fb84dd9781d181ec7ab284d8d3e61a5525af8c4ce1e1ca"
+    },
+    {
+      "run_id": "019-rust-fd-leak-google-gemini-4-neon-2",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 118,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 21,
+        "input_tokens": 54265,
+        "output_tokens": 9307,
+        "cache_read_tokens": 319391,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.35030865,
+        "cost_source": "provider"
+      },
+      "result_sha256": "1aac72110369a6bacb59f3aac37fa9a7a4b862f22c6b1e8367cb033fa14f5ee0",
+      "transcript_sha256": "7294ace6832ae55e668e766e9cf258ff6adb82854530c8ec28f24d23b7e64f60"
+    },
+    {
+      "run_id": "019-rust-fd-leak-google-gemini-4-neon-3",
+      "scenario": "019-rust-fd-leak",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 107,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 18,
+        "input_tokens": 49552,
+        "output_tokens": 8822,
+        "cache_read_tokens": 280475,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.3230572500000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "9f049b6ba0023674b5cc8b2b0a4a90f2b6d98c14c81fafc6170f2ced64f296b9",
+      "transcript_sha256": "4f31b9aab009c5ee4366b49a536950f121109b5b4c5385c65099955ae5136f1a"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-neon-1",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 183,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 20,
+        "input_tokens": 57893,
+        "output_tokens": 12554,
+        "cache_read_tokens": 300325,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.40703775,
+        "cost_source": "provider"
+      },
+      "result_sha256": "ac39941cc8e30513b5ad4f302728e8b510d577a57fd29a80ee198c41291858d7",
+      "transcript_sha256": "382ef2420a4d4f2316b0c645745040bf2540a99fe99b862a08c68d07d0bf9e06"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-neon-2",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 195,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 17,
+        "input_tokens": 50730,
+        "output_tokens": 15450,
+        "cache_read_tokens": 330712,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.4335468,
+        "cost_source": "provider"
+      },
+      "result_sha256": "7f270e9446e258d9c8c6f2382136b60c85f63f735239889c7d3850353b302d44",
+      "transcript_sha256": "028b265379870f6bbb82e7664b417910a64ce30f569fbd80557e59fb1b7ec5b2"
+    },
+    {
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-neon-3",
+      "scenario": "021-discourse-shared-uploads",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 151,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 25,
+        "input_tokens": 64438,
+        "output_tokens": 12465,
+        "cache_read_tokens": 480077,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.45230054999999997,
+        "cost_source": "provider"
+      },
+      "result_sha256": "b3485369cc10cc77c96df5a40d24c6dbd7dcd351123845f1c8b173a2ebccc451",
+      "transcript_sha256": "eb828300a472db39a7ff7eca9db2cca385fe9e9c4c1192a36b3a95a6341d4fd8"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-google-gemini-4-neon-1",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 148,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 19,
+        "input_tokens": 57360,
+        "output_tokens": 11306,
+        "cache_read_tokens": 170014,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.36717210000000006,
+        "cost_source": "provider"
+      },
+      "result_sha256": "0c3e8f94bb772e9d3ed1f3ef69e86b7b92a2bb1421caebae73c10b67dade3f73",
+      "transcript_sha256": "71af3d46c908835f37269ea1110a31ebbf104a5423efb6ddd0fe89fdae49b382"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-google-gemini-4-neon-2",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 127,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 16,
+        "tool_calls": 21,
+        "input_tokens": 57865,
+        "output_tokens": 10178,
+        "cache_read_tokens": 333288,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.3762582,
+        "cost_source": "provider"
+      },
+      "result_sha256": "7c3afb433a2f880805c4efd6d5c6d5be3367c70e3275da43fbed0558dff7ef3f",
+      "transcript_sha256": "2b0d0e82d25d5b8ddd4807468e7edfd10321d27f404a9f6a2d1ea11dfd7d8d2b"
+    },
+    {
+      "run_id": "023-auth-secret-rollout-google-gemini-4-neon-3",
+      "scenario": "023-auth-secret-rollout",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 129,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 19,
+        "input_tokens": 49018,
+        "output_tokens": 12080,
+        "cache_read_tokens": 205471,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.35907464999999994,
+        "cost_source": "provider"
+      },
+      "result_sha256": "1bdb8810f4511f74d9cbe3cbba5636b014f0fb43dc2b242fcf639ecfe8752b8e",
+      "transcript_sha256": "0b0b0cd55e0d7d6e100aaf1f4fcad96aa545b66a249095690757dd41f0057269"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-neon-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 118,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 19,
+        "tool_calls": 24,
+        "input_tokens": 53772,
+        "output_tokens": 8351,
+        "cache_read_tokens": 344751,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.33829365,
+        "cost_source": "provider"
+      },
+      "result_sha256": "6663bdcfb7e09d3dd90f862db362890fd37adfc0f614ddef10a11d0dabf83690",
+      "transcript_sha256": "3c1d13f2314b098d9bab0d0182adbdcb92e304d61540efd5720d380805601277"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-neon-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 110,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 34,
+        "input_tokens": 60434,
+        "output_tokens": 8036,
+        "cache_read_tokens": 391089,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.36050534999999995,
+        "cost_source": "provider"
+      },
+      "result_sha256": "9861c62fa8b96b9bfc8e39379ffac825225edb015ac588f75d7fc693225c2602",
+      "transcript_sha256": "34c93022545b26a51f69bfaf8bf5ddb39d8f1c60b29787252d36ca271e84105f"
+    },
+    {
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-neon-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 116,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 14,
+        "tool_calls": 19,
+        "input_tokens": 65196,
+        "output_tokens": 8912,
+        "cache_read_tokens": 420225,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.39230175,
+        "cost_source": "provider"
+      },
+      "result_sha256": "edf639a8913fe9afa317ab4fe1d17857e6005d1fb6eb84f0c7fcd1b09c149e5f",
+      "transcript_sha256": "86b11eeeccda9028ff98e003a47ae6ae5edfcdaa2ff4c4bdb1395f38f7c47e2c"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-neon-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 148,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 18,
+        "tool_calls": 34,
+        "input_tokens": 94122,
+        "output_tokens": 12266,
+        "cache_read_tokens": 633953,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.56144895,
+        "cost_source": "provider"
+      },
+      "result_sha256": "9e504e819cca09d3dec3bc79e233c12fac99ea917cf1b473a53c301e590ac541",
+      "transcript_sha256": "d82cf288703fae192dc5342581bb4dd280b5e8c5d95237e9578c849bd9eebe63"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-neon-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 214,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 22,
+        "tool_calls": 39,
+        "input_tokens": 87262,
+        "output_tokens": 9731,
+        "cache_read_tokens": 729779,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.51721785,
+        "cost_source": "provider"
+      },
+      "result_sha256": "c735ca65d0554b39becc68df24fa4d7fa5939d962b8d9bc3d42743ae437eab89",
+      "transcript_sha256": "5e7e1e867866ffd3d1b5e8e89003992c1c59d5e10a47348e37b5e6b4c8d9edac"
+    },
+    {
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-neon-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 213,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 23,
+        "tool_calls": 36,
+        "input_tokens": 87171,
+        "output_tokens": 13719,
+        "cache_read_tokens": 876593,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.5987869499999999,
+        "cost_source": "provider"
+      },
+      "result_sha256": "93b89f63e74470fc9ae5c8468fadd846ae1d2e3f975270081448cd379e4cb09e",
+      "transcript_sha256": "9a32d9b25d57d89fd64b056695ad9b81ec384c578412293e6b3a0a8319f2b8d8"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-google-gemini-4-neon-1",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 1,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 118,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 13,
+        "tool_calls": 15,
+        "input_tokens": 56071,
+        "output_tokens": 9200,
+        "cache_read_tokens": 367537,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.36134355,
+        "cost_source": "provider"
+      },
+      "result_sha256": "66385d10e9da144611ff37a488376534c9a80cc254dbcdbc8c4ff06e5caf74b8",
+      "transcript_sha256": "df6cd8f84fa146c272134263fc4c8b6f2b28607515d00866fcdb2efd8fa738b7"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-google-gemini-4-neon-2",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 2,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 174,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 15,
+        "tool_calls": 23,
+        "input_tokens": 64056,
+        "output_tokens": 8053,
+        "cache_read_tokens": 493752,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.3870258000000001,
+        "cost_source": "provider"
+      },
+      "result_sha256": "255b893f75eab8291371a030e53c34d0033aea9c082196311c9cbae58398e64f",
+      "transcript_sha256": "1ed8765a467703cfe11a891351ad514aab1836ba7f37dd20a9790d2504fe8d47"
+    },
+    {
+      "run_id": "033-tls-trust-rotation-google-gemini-4-neon-3",
+      "scenario": "033-tls-trust-rotation",
+      "attempt": 3,
+      "reward": 1,
+      "trial_status": "evaluated",
+      "failure_category": null,
+      "agent_duration_seconds": 89,
+      "verification": {
+        "immediate_http": true,
+        "service_restart": true,
+        "host_reboot": true,
+        "after_agent_timeout": null
+      },
+      "usage": {
+        "rounds": 11,
+        "tool_calls": 19,
+        "input_tokens": 64715,
+        "output_tokens": 7151,
+        "cache_read_tokens": 394353,
+        "cache_creation_tokens": 0,
+        "cost_usd": 0.36056295000000005,
+        "cost_source": "provider"
+      },
+      "result_sha256": "cd6d0c9b6d7449c423043c3c252b9a0b9c40e359bd40a28f9ac7287d91c62ed1",
+      "transcript_sha256": "ca6a2620b0da52958da7ed4b5f710408f41a2cfca6e901dbe20ed299b4189a2d"
+    }
+  ]
+}
