@@ -9,59 +9,63 @@ with different scenario sets, verifier versions, agent harnesses, or attempt
 counts should not be compared as if they were one controlled experiment.
 
 <!-- replaybook:current-benchmark:start -->
-## GPT-6.2 Sol and Astra Core via Codex / ChatGPT subscription
+## Gemini 4 Neon Core via Claux / OpenRouter
 
-Both models passed all 33 Core trials. Median agent duration was 83 seconds for GPT-6.2 Sol and 80 seconds for GPT-6.2 Astra. Runs used Codex CLI 0.169.1 with ChatGPT subscription authentication.
+Gemini 4 Neon passed all 33 frozen Core trials (100%), with a 131-second median agent duration and $13.43737 in provider-reported inference cost.
 
-Benchmark release: `20261118.0.0`
+Benchmark release: `20261119.0.0`
 Benchmark tier: `core`
 
 Scenario packs: `ducks/replaybook-infra@20261024.1.1`
 
 | Model | Durable repairs | Pass rate | Median | Known cost | Cost per repair |
 |---|---:|---:|---:|---:|---:|
-| GPT-6.2 Sol · openai-chatgpt | 33/33 | 100% | 1:23 | n/a | n/a |
-| GPT-6.2 Astra · openai-chatgpt | 33/33 | 100% | 1:20 | n/a | n/a |
-| **Total** | **66/66** | **100%** | **1:23** | **n/a** | **n/a** |
+| Gemini 4 Neon · openrouter | 33/33 | 100% | 2:11 | $13.4374 | $0.4072 |
+| **Total** | **33/33** | **100%** | **2:11** | **$13.4374** | **$0.4072** |
 
-GPT-6.2 Sol passed 33/33, with an 83-second median agent duration.
+### Execution recording
 
-GPT-6.2 Astra passed 33/33, with an 80-second median agent duration.
+Medians across trials with execution recording. Round time sums recorded model/agent steps, not pure inference. It can include tools; parallel tool durations can overlap. Do not add these columns. First non-read means a potentially mutating tool, not a confirmed write; after non-read is the remaining agent time.
 
-Every attempt passed immediate HTTP, service-restart and host-reboot verification, with no unavailable or failed trials.
+| Model | Recorded | Rounds | Round time | Tools | Tool time | First non-read | After non-read |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Gemini 4 Neon · openrouter | 33/33 | 15 | 2:03 | 21 | 0:07 | 0:05 | 2:04 |
+
+All 33 attempts completed within the 900-second deadline and passed immediate HTTP, service-restart and host-reboot checks.
+
+Median agent duration was 131 seconds. All 33 trials include provider-reported usage/cost and transcript recording.
+
+No failed or unavailable trials appear in the completed matrix.
 
 ### Scenario breakdown
 
-| Scenario | Version | GPT-6.2 Sol · openai-chatgpt | GPT-6.2 Astra · openai-chatgpt |
-|---|---:|---:|---:|
-| 001-nginx-502-host | v1 | 3/3, 0:53 | 3/3, 1:05 |
-| 013-sidekiq-wrong-redis | v3 | 3/3, 1:36 | 3/3, 1:13 |
-| 015-sidekiq-poison-pill | v1 | 3/3, 2:35 | 3/3, 2:30 |
-| 016-rails-pool-exhaustion | v1 | 3/3, 1:16 | 3/3, 2:01 |
-| 017-partial-rails-rollout | v1 | 3/3, 1:06 | 3/3, 2:09 |
-| 019-rust-fd-leak | v1 | 3/3, 1:48 | 3/3, 2:42 |
-| 021-discourse-shared-uploads | v1 | 3/3, 1:19 | 3/3, 1:57 |
-| 023-auth-secret-rollout | v1 | 3/3, 1:33 | 3/3, 1:18 |
-| 024-discourse-interrupted-deploy | v1 | 3/3, 1:09 | 3/3, 1:20 |
-| 028-nix-store-disk-pressure | v1 | 3/3, 1:23 | 3/3, 1:11 |
-| 033-tls-trust-rotation | v2 | 3/3, 1:10 | 3/3, 1:00 |
+| Scenario | Version | Gemini 4 Neon · openrouter |
+|---|---:|---:|
+| 001-nginx-502-host | v1 | 3/3, 1:58 |
+| 013-sidekiq-wrong-redis | v3 | 3/3, 1:51 |
+| 015-sidekiq-poison-pill | v1 | 3/3, 5:01 |
+| 016-rails-pool-exhaustion | v1 | 3/3, 2:11 |
+| 017-partial-rails-rollout | v1 | 3/3, 3:34 |
+| 019-rust-fd-leak | v1 | 3/3, 1:56 |
+| 021-discourse-shared-uploads | v1 | 3/3, 3:03 |
+| 023-auth-secret-rollout | v1 | 3/3, 2:09 |
+| 024-discourse-interrupted-deploy | v1 | 3/3, 1:56 |
+| 028-nix-store-disk-pressure | v1 | 3/3, 3:33 |
+| 033-tls-trust-rotation | v2 | 3/3, 1:58 |
 
 ### Failure categories
 
 
 ### Source matrices
 
-- `matrix`: gpt-6.2-sol, gpt-6.2-astra; Replaybook `3968a295`
+- `matrix`: google/gemini-4-neon; Replaybook `5293ba5c`
 
 ### Run notes
 
-- Core manifest 2026.10.24.2: eleven scenarios, three attempts per model, 900-second agent deadline and concurrency one. Host harness 23; code-mode native bundle and adapter are frozen in the immutable execution snapshot.
-- Both models used explicit Codex model IDs with model-default reasoning, not an explicitly configured reasoning effort. This is a Codex / ChatGPT-subscription cohort, separate from Claux / OpenRouter API runs.
-- No per-request dollar cost was reported. Subscription allowance was used; the aggregate known-cost value of zero is not a claim of free inference or an API price. Costs must be displayed as unreported.
-- Codex input-token accounting includes cached input as a subset; do not add cache reads to its input total. Token accounting differs between harnesses. Tool timing and model-round metrics were not normalized by this adapter and remain unreported. Raw JSON event transcripts were audited, not published.
-- All 66 raw results were reconciled with their JSON event transcripts, reported usage, successful command events, completion/deadline status, lifecycle verifier results and execution snapshot. No scoring corrections or reruns in this full matrix.
-- Earlier separate nginx pilots exposed unsupported model access in Codex 0.164.0 and then a missing native helper when copying only the 0.169.1 main executable. Those development attempts are excluded. This full matrix began after successful bundled-CLI pilots.
-- A clean sweep on this small fixed Core pack establishes these observed results, not general model superiority or difficulty. Public audit evidence contains sanitized records and hashes, not private commands, reasoning, account credentials, or VM logs.
+- Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.
+- Audited all 33 raw results and transcripts, per-round token accounting, completion/deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections. Public evidence contains sanitized records and hashes, not private transcripts, reasoning, local paths or VM logs.
+- Exact google/gemini-4-neon model route through Claux/OpenRouter; distinct from Gemini 4 Hydrogen. Reasoning effort was not explicitly set.
+- Costs are provider-reported inference accounting, exclude local compute and are not an invoice. Catalog pricing and promotional offers can change. Three attempts per scenario are a small sample; a clean sweep on this pack does not establish general superiority.
 
 <!-- replaybook:current-benchmark:end -->
 

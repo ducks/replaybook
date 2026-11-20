@@ -25,7 +25,7 @@
       "reasoning_effort": "high"
     }
   ],
-  "current_version": "20261118.0.0",
+  "current_version": "20261119.0.0",
   "lanes": [
     {
       "cost_per_repair_usd": 0.012245537769230767,
@@ -6002,6 +6002,33 @@
       "provider": "ChatGPT subscription",
       "reasoning_effort": null,
       "release": "20261118.0.0",
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.40719299090909095,
+      "cost_reported_trials": 33,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 2035807,
+      "known_cost_usd": 13.4373687,
+      "median_duration_seconds": 131,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "output_tokens": 351381,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.895730002457548,
+      "passed": 33,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
       "subscription_usage_reported_trials": 0,
       "subscription_usage_usd": 0,
       "tier": "core",
@@ -66197,6 +66224,556 @@
       "trials": 3,
       "unavailable": 0,
       "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.21542970000000003,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 119786,
+      "known_cost_usd": 0.6462891000000001,
+      "median_duration_seconds": 118,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 118,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 129,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 61,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 13136,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "001-nginx-502-host",
+      "scenario_label": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.301557,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 148180,
+      "known_cost_usd": 0.904671,
+      "median_duration_seconds": 111,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 107,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 316,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 111,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 22134,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_label": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.7549483,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 259316,
+      "known_cost_usd": 2.2648449,
+      "median_duration_seconds": 301,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 340,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 301,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 253,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 73757,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_label": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.3671225000000001,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 165910,
+      "known_cost_usd": 1.1013675000000003,
+      "median_duration_seconds": 131,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 135,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 131,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 107,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 29902,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_label": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.4165532,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 217746,
+      "known_cost_usd": 1.2496596,
+      "median_duration_seconds": 214,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 149,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 249,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 214,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 26264,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_label": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.33255325,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 154766,
+      "known_cost_usd": 0.9976597500000001,
+      "median_duration_seconds": 116,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 116,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 118,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 107,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 26736,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "019-rust-fd-leak",
+      "scenario_label": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.43096169999999995,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 173061,
+      "known_cost_usd": 1.2928851,
+      "median_duration_seconds": 183,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 183,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 195,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 151,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 40469,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_label": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.36750164999999996,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 164243,
+      "known_cost_usd": 1.10250495,
+      "median_duration_seconds": 129,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 148,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 127,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 129,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 33564,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_label": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.36370024999999995,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 179402,
+      "known_cost_usd": 1.0911007499999998,
+      "median_duration_seconds": 116,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 118,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 110,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 116,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 25299,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_label": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.5591512499999999,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 268555,
+      "known_cost_usd": 1.6774537499999997,
+      "median_duration_seconds": 213,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 148,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 214,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 213,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 35716,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_label": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
+    },
+    {
+      "cost_per_repair_usd": 0.3696441000000001,
+      "cost_reported_trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_mode": "text",
+      "input_tokens": 184842,
+      "known_cost_usd": 1.1089323000000002,
+      "median_duration_seconds": 118,
+      "model": "google/gemini-4-neon",
+      "model_label": "Gemini 4 Neon",
+      "outcomes": [
+        {
+          "attempt": 1,
+          "duration_seconds": 118,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 2,
+          "duration_seconds": 174,
+          "reward": 1,
+          "trial_status": "evaluated"
+        },
+        {
+          "attempt": 3,
+          "duration_seconds": 89,
+          "reward": 1,
+          "trial_status": "evaluated"
+        }
+      ],
+      "output_tokens": 24404,
+      "pass_rate": 1.0,
+      "pass_rate_95_high": 1.0,
+      "pass_rate_95_low": 0.4385029682449546,
+      "passed": 3,
+      "provider": "OpenRouter",
+      "reasoning_effort": null,
+      "release": "20261119.0.0",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_label": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "tier": "core",
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {}
     }
   ],
   "releases": [
@@ -74005,7 +74582,7 @@
       "agent_timeout_seconds": 900,
       "attempts": 3,
       "claux_release": null,
-      "current": true,
+      "current": false,
       "description": "Both models passed all 33 Core trials. Median agent duration was 83 seconds for GPT-6.2 Sol and 80 seconds for GPT-6.2 Astra. Runs used Codex CLI 0.169.1 with ChatGPT subscription authentication.",
       "harness_versions": [
         23
@@ -74014,7 +74591,7 @@
       "providers": [
         "openai-chatgpt"
       ],
-      "role": "canonical",
+      "role": "historical",
       "scenario_packs": [
         {
           "id": "ducks/replaybook-infra",
@@ -74143,6 +74720,163 @@
         "usage_reported_trials": 66
       },
       "version": "20261118.0.0"
+    },
+    {
+      "agent_harness": {
+        "billing": "api",
+        "id": "claux",
+        "label": "Claux",
+        "provider": "OpenRouter",
+        "version": "bounded-search 25e7b9c (binary 7a7268af30cf)"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "claux_release": null,
+      "current": true,
+      "description": "Gemini 4 Neon passed all 33 frozen Core trials (100%), with a 131-second median agent duration and $13.43737 in provider-reported inference cost.",
+      "harness_versions": [
+        23
+      ],
+      "input_mode": "text",
+      "providers": [
+        "openrouter"
+      ],
+      "role": "canonical",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source_digests": [
+        {
+          "source": "matrix",
+          "summary_sha256": "10e22df9d20e1d99cbfee615667f08f32653c210f53ec739068b86f6618c95c1"
+        }
+      ],
+      "tier": "core",
+      "title": "Gemini 4 Neon Core via Claux / OpenRouter",
+      "totals": {
+        "cache_creation_reported_trials": 33,
+        "cache_creation_tokens": 0,
+        "cache_read_reported_trials": 33,
+        "cache_read_tokens": 13728218,
+        "cost_reported_trials": 33,
+        "durable_repairs_after_timeout": 0,
+        "evaluated": 33,
+        "failed": 0,
+        "failure_categories": {},
+        "input_tokens": 2035807,
+        "known_cost_usd": 13.4373687,
+        "median_duration_seconds": 131,
+        "median_first_non_read_only_tool_seconds": 5.458,
+        "median_model_duration_seconds": 123.273,
+        "median_model_rounds": 15,
+        "median_post_first_non_read_only_seconds": 124.16400000000002,
+        "median_tool_calls": 21,
+        "median_tool_duration_seconds": 6.743,
+        "output_tokens": 351381,
+        "pass_rate": 1.0,
+        "passed": 33,
+        "recording_reported_trials": 33,
+        "subscription_usage_reported_trials": 0,
+        "subscription_usage_usd": 0,
+        "trials": 33,
+        "unavailable": 0,
+        "unavailable_categories": {},
+        "usage_reported_trials": 33
+      },
+      "version": "20261119.0.0"
     }
   ],
   "schema_version": 1

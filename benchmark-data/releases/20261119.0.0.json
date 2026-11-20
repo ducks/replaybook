@@ -1,0 +1,2322 @@
+{
+  "by_model": [
+    {
+      "cache_creation_reported_trials": 33,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 33,
+      "cache_read_tokens": 13728218,
+      "cost_reported_trials": 33,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 33,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 2035807,
+      "known_cost_usd": 13.4373687,
+      "median_duration_seconds": 131,
+      "median_first_non_read_only_tool_seconds": 5.458,
+      "median_model_duration_seconds": 123.273,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 124.16400000000002,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 6.743,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 351381,
+      "pass_rate": 1.0,
+      "passed": 33,
+      "provider": "openrouter",
+      "recording_reported_trials": 33,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 33,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 33
+    }
+  ],
+  "by_scenario_model": [
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 599274,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 119786,
+      "known_cost_usd": 0.6462891000000001,
+      "median_duration_seconds": 118,
+      "median_first_non_read_only_tool_seconds": 17.908,
+      "median_model_duration_seconds": 113.703,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 99.03699999999999,
+      "median_tool_calls": 14,
+      "median_tool_duration_seconds": 2.806,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 13136,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 854140,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 148180,
+      "known_cost_usd": 0.904671,
+      "median_duration_seconds": 111,
+      "median_first_non_read_only_tool_seconds": 3.908,
+      "median_model_duration_seconds": 99.314,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 106.193,
+      "median_tool_calls": 17,
+      "median_tool_duration_seconds": 9.694,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 22134,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 2536946,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 259316,
+      "known_cost_usd": 2.2648449,
+      "median_duration_seconds": 301,
+      "median_first_non_read_only_tool_seconds": 4.931,
+      "median_model_duration_seconds": 265.013,
+      "median_model_rounds": 26,
+      "median_post_first_non_read_only_seconds": 293.59700000000004,
+      "median_tool_calls": 34,
+      "median_tool_duration_seconds": 32.957,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 73757,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1034050,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 165910,
+      "known_cost_usd": 1.1013675000000003,
+      "median_duration_seconds": 131,
+      "median_first_non_read_only_tool_seconds": 3.913,
+      "median_model_duration_seconds": 123.273,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 124.16400000000002,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 6.239,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 29902,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1349744,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 217746,
+      "known_cost_usd": 1.2496596,
+      "median_duration_seconds": 214,
+      "median_first_non_read_only_tool_seconds": 4.967,
+      "median_model_duration_seconds": 122.411,
+      "median_model_rounds": 21,
+      "median_post_first_non_read_only_seconds": 206.89399999999998,
+      "median_tool_calls": 22,
+      "median_tool_duration_seconds": 66.262,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 26264,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 882145,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 154766,
+      "known_cost_usd": 0.9976597500000001,
+      "median_duration_seconds": 116,
+      "median_first_non_read_only_tool_seconds": 5.116,
+      "median_model_duration_seconds": 110.612,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 105.244,
+      "median_tool_calls": 21,
+      "median_tool_duration_seconds": 4.581,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 26736,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1111114,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 173061,
+      "known_cost_usd": 1.2928851,
+      "median_duration_seconds": 183,
+      "median_first_non_read_only_tool_seconds": 11.978,
+      "median_model_duration_seconds": 177.196,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 174.839,
+      "median_tool_calls": 20,
+      "median_tool_duration_seconds": 3.658,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 40469,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 708773,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 164243,
+      "known_cost_usd": 1.10250495,
+      "median_duration_seconds": 129,
+      "median_first_non_read_only_tool_seconds": 4.727,
+      "median_model_duration_seconds": 124.477,
+      "median_model_rounds": 14,
+      "median_post_first_non_read_only_seconds": 122.055,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 1.977,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 33564,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1156065,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 179402,
+      "known_cost_usd": 1.0911007499999998,
+      "median_duration_seconds": 116,
+      "median_first_non_read_only_tool_seconds": 5.237,
+      "median_model_duration_seconds": 105.921,
+      "median_model_rounds": 15,
+      "median_post_first_non_read_only_seconds": 108.848,
+      "median_tool_calls": 24,
+      "median_tool_duration_seconds": 7.58,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 25299,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 2240325,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 268555,
+      "known_cost_usd": 1.6774537499999997,
+      "median_duration_seconds": 213,
+      "median_first_non_read_only_tool_seconds": 19.07,
+      "median_model_duration_seconds": 204.911,
+      "median_model_rounds": 22,
+      "median_post_first_non_read_only_seconds": 191.779,
+      "median_tool_calls": 36,
+      "median_tool_duration_seconds": 5.64,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 35716,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    },
+    {
+      "cache_creation_reported_trials": 3,
+      "cache_creation_tokens": 0,
+      "cache_read_reported_trials": 3,
+      "cache_read_tokens": 1255642,
+      "cost_reported_trials": 3,
+      "durable_repairs_after_timeout": 0,
+      "evaluated": 3,
+      "failed": 0,
+      "failure_categories": {},
+      "input_tokens": 184842,
+      "known_cost_usd": 1.1089323000000002,
+      "median_duration_seconds": 118,
+      "median_first_non_read_only_tool_seconds": 6.25,
+      "median_model_duration_seconds": 107.678,
+      "median_model_rounds": 13,
+      "median_post_first_non_read_only_seconds": 110.397,
+      "median_tool_calls": 19,
+      "median_tool_duration_seconds": 7.475,
+      "model": "google/gemini-4-neon",
+      "output_tokens": 24404,
+      "pass_rate": 1.0,
+      "passed": 3,
+      "provider": "openrouter",
+      "recording_reported_trials": 3,
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "subscription_usage_reported_trials": 0,
+      "subscription_usage_usd": 0,
+      "trials": 3,
+      "unavailable": 0,
+      "unavailable_categories": {},
+      "usage_reported_trials": 3
+    }
+  ],
+  "compatibility": {
+    "agent": {
+      "adapter": "builtin:claux",
+      "name": "claux",
+      "payload": null
+    },
+    "agent_harness": {
+      "billing": "api",
+      "id": "claux",
+      "label": "Claux",
+      "provider": "OpenRouter",
+      "version": "bounded-search 25e7b9c (binary 7a7268af30cf)"
+    },
+    "agent_timeout_seconds": 900,
+    "attempts": 3,
+    "benchmark_manifest": {
+      "id": "replaybook-infra-core",
+      "schema_version": 1,
+      "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "status": "stable",
+      "tier": "core",
+      "version": "2026.10.24.2"
+    },
+    "benchmark_tier": "core",
+    "claux_release": null,
+    "execution_snapshot": {
+      "agent_adapter_sha256": null,
+      "agent_config_sha256": null,
+      "agent_env_sha256": null,
+      "agent_payload_sha256": null,
+      "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+      "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+      "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra"
+        }
+      ],
+      "schema_version": 1,
+      "selected_scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack_id": "ducks/replaybook-infra",
+          "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+          "version": 2
+        }
+      ]
+    },
+    "harness_version": 23,
+    "harness_versions": [
+      23
+    ],
+    "providers": [
+      "openrouter"
+    ],
+    "reasoning_efforts": [],
+    "scenario_packs": [
+      {
+        "id": "ducks/replaybook-infra",
+        "version": "20261024.1.1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "001-nginx-502-host",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "013-sidekiq-wrong-redis",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 3
+      },
+      {
+        "id": "015-sidekiq-poison-pill",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "016-rails-pool-exhaustion",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "017-partial-rails-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "019-rust-fd-leak",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "021-discourse-shared-uploads",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "023-auth-secret-rollout",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "024-discourse-interrupted-deploy",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "028-nix-store-disk-pressure",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 1
+      },
+      {
+        "id": "033-tls-trust-rotation",
+        "pack": {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        },
+        "version": 2
+      }
+    ],
+    "suite": "replaybook-host-matrix-v1"
+  },
+  "corrections": [],
+  "description": "Gemini 4 Neon passed all 33 frozen Core trials (100%), with a 131-second median agent duration and $13.43737 in provider-reported inference cost.",
+  "input_mode": "text",
+  "model_labels": {
+    "google/gemini-4-neon": "Gemini 4 Neon"
+  },
+  "model_order": [
+    "google/gemini-4-neon"
+  ],
+  "notes": [
+    "Eleven frozen Core scenarios, three attempts each, 900-second deadline and one concurrent VM. Core manifest 2026.10.24.2; host harness 23.",
+    "Audited all 33 raw results and transcripts, per-round token accounting, completion/deadline classifications, lifecycle checks and immutable execution snapshot. No scoring corrections. Public evidence contains sanitized records and hashes, not private transcripts, reasoning, local paths or VM logs.",
+    "Exact google/gemini-4-neon model route through Claux/OpenRouter; distinct from Gemini 4 Hydrogen. Reasoning effort was not explicitly set.",
+    "Costs are provider-reported inference accounting, exclude local compute and are not an invoice. Catalog pricing and promotional offers can change. Three attempts per scenario are a small sample; a clean sweep on this pack does not establish general superiority."
+  ],
+  "observations": [
+    "All 33 attempts completed within the 900-second deadline and passed immediate HTTP, service-restart and host-reboot checks.",
+    "Median agent duration was 131 seconds. All 33 trials include provider-reported usage/cost and transcript recording.",
+    "No failed or unavailable trials appear in the completed matrix."
+  ],
+  "reproduction_command": null,
+  "runs": [
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 118,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:11:20Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 17.908,
+        "model_duration_seconds": 113.703,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 99.03699999999999,
+        "tool_calls": 14,
+        "tool_duration_seconds": 3.108,
+        "total_duration_seconds": 116.945
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-google-gemini-4-neon-1",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-18T23:09:09Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 185676,
+        "cost_source": "provider",
+        "cost_usd": 0.21405839999999998,
+        "input_tokens": 39639,
+        "output_tokens": 4486,
+        "rounds": 13,
+        "tool_calls": 14
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 129,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:14:40Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 18.371,
+        "model_duration_seconds": 125.227,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 109.788,
+        "tool_calls": 22,
+        "tool_duration_seconds": 2.806,
+        "total_duration_seconds": 128.159
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-google-gemini-4-neon-2",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-18T23:12:18Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 289939,
+        "cost_source": "provider",
+        "cost_usd": 0.25420485000000004,
+        "input_tokens": 48478,
+        "output_tokens": 4352,
+        "rounds": 13,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 61,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:16:36Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.646,
+        "model_duration_seconds": 58.307,
+        "model_rounds": 12,
+        "post_first_non_read_only_seconds": 55.759,
+        "tool_calls": 11,
+        "tool_duration_seconds": 0.991,
+        "total_duration_seconds": 59.405
+      },
+      "reward": 1,
+      "run_id": "001-nginx-502-host-google-gemini-4-neon-3",
+      "scenario": "001-nginx-502-host",
+      "scenario_version": 1,
+      "started_at": "2026-11-18T23:15:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 123659,
+        "cost_source": "provider",
+        "cost_usd": 0.17802585,
+        "input_tokens": 31669,
+        "output_tokens": 4298,
+        "rounds": 12,
+        "tool_calls": 11
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 107,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:19:50Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.922,
+        "model_duration_seconds": 93.44,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 96.401,
+        "tool_calls": 19,
+        "tool_duration_seconds": 9.694,
+        "total_duration_seconds": 103.323
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-neon-1",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-18T23:17:45Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 376956,
+        "cost_source": "provider",
+        "cost_usd": 0.3384684,
+        "input_tokens": 60235,
+        "output_tokens": 6748,
+        "rounds": 16,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 316,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:26:21Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.821,
+        "model_duration_seconds": 304.635,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 310.20899999999995,
+        "tool_calls": 16,
+        "tool_duration_seconds": 9.197,
+        "total_duration_seconds": 314.03
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-neon-2",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-18T23:20:47Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 178892,
+        "cost_source": "provider",
+        "cost_usd": 0.2560218,
+        "input_tokens": 36486,
+        "output_tokens": 7982,
+        "rounds": 13,
+        "tool_calls": 16
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 111,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:29:36Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.908,
+        "model_duration_seconds": 99.314,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 106.193,
+        "tool_calls": 17,
+        "tool_duration_seconds": 10.55,
+        "total_duration_seconds": 110.101
+      },
+      "reward": 1,
+      "run_id": "013-sidekiq-wrong-redis-google-gemini-4-neon-3",
+      "scenario": "013-sidekiq-wrong-redis",
+      "scenario_version": 3,
+      "started_at": "2026-11-18T23:27:23Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 298292,
+        "cost_source": "provider",
+        "cost_usd": 0.3101808,
+        "input_tokens": 51459,
+        "output_tokens": 7404,
+        "rounds": 15,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 340,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:36:34Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.069,
+        "model_duration_seconds": 302.642,
+        "model_rounds": 26,
+        "post_first_non_read_only_seconds": 332.115,
+        "tool_calls": 34,
+        "tool_duration_seconds": 34.895,
+        "total_duration_seconds": 338.184
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-neon-1",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-18T23:30:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 887278,
+        "cost_source": "provider",
+        "cost_usd": 0.7972586999999999,
+        "input_tokens": 85664,
+        "output_tokens": 27145,
+        "rounds": 26,
+        "tool_calls": 34
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 301,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:42:58Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.931,
+        "model_duration_seconds": 265.013,
+        "model_rounds": 27,
+        "post_first_non_read_only_seconds": 293.59700000000004,
+        "tool_calls": 34,
+        "tool_duration_seconds": 32.957,
+        "total_duration_seconds": 298.528
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-neon-2",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-18T23:37:37Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 974059,
+        "cost_source": "provider",
+        "cost_usd": 0.8061958499999999,
+        "input_tokens": 95214,
+        "output_tokens": 24963,
+        "rounds": 27,
+        "tool_calls": 34
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 253,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:48:38Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.959,
+        "model_duration_seconds": 218.34,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 247.016,
+        "tool_calls": 24,
+        "tool_duration_seconds": 32.237,
+        "total_duration_seconds": 250.975
+      },
+      "reward": 1,
+      "run_id": "015-sidekiq-poison-pill-google-gemini-4-neon-3",
+      "scenario": "015-sidekiq-poison-pill",
+      "scenario_version": 1,
+      "started_at": "2026-11-18T23:44:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 675609,
+        "cost_source": "provider",
+        "cost_usd": 0.66139035,
+        "input_tokens": 78438,
+        "output_tokens": 21649,
+        "rounds": 21,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 135,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:52:18Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.913,
+        "model_duration_seconds": 124.92,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 129.164,
+        "tool_calls": 20,
+        "tool_duration_seconds": 7.86,
+        "total_duration_seconds": 133.077
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-neon-1",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-18T23:49:32Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 468711,
+        "cost_source": "provider",
+        "cost_usd": 0.42334665000000005,
+        "input_tokens": 61365,
+        "output_tokens": 11263,
+        "rounds": 15,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 131,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:55:48Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.553,
+        "model_duration_seconds": 123.273,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 124.16400000000002,
+        "tool_calls": 22,
+        "tool_duration_seconds": 6.239,
+        "total_duration_seconds": 129.717
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-neon-2",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-18T23:53:07Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 324938,
+        "cost_source": "provider",
+        "cost_usd": 0.35814270000000004,
+        "input_tokens": 51344,
+        "output_tokens": 10358,
+        "rounds": 16,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 107,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-18T23:58:58Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.598,
+        "model_duration_seconds": 101.923,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 101.705,
+        "tool_calls": 17,
+        "tool_duration_seconds": 3.179,
+        "total_duration_seconds": 105.303
+      },
+      "reward": 1,
+      "run_id": "016-rails-pool-exhaustion-google-gemini-4-neon-3",
+      "scenario": "016-rails-pool-exhaustion",
+      "scenario_version": 1,
+      "started_at": "2026-11-18T23:56:42Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 240401,
+        "cost_source": "provider",
+        "cost_usd": 0.3198781500000001,
+        "input_tokens": 53201,
+        "output_tokens": 8281,
+        "rounds": 14,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 149,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:02:48Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.256,
+        "model_duration_seconds": 112.408,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 143.737,
+        "tool_calls": 22,
+        "tool_duration_seconds": 34.232,
+        "total_duration_seconds": 146.993
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-google-gemini-4-neon-1",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:00:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 426164,
+        "cost_source": "provider",
+        "cost_usd": 0.3822996,
+        "input_tokens": 63595,
+        "output_tokens": 8506,
+        "rounds": 19,
+        "tool_calls": 22
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 249,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:08:14Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 18.214,
+        "model_duration_seconds": 180.639,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 228.996,
+        "tool_calls": 20,
+        "tool_duration_seconds": 66.262,
+        "total_duration_seconds": 247.21
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-google-gemini-4-neon-2",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:03:48Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 521536,
+        "cost_source": "provider",
+        "cost_usd": 0.4263294,
+        "input_tokens": 71758,
+        "output_tokens": 8855,
+        "rounds": 21,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 214,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:13:04Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.967,
+        "model_duration_seconds": 122.411,
+        "model_rounds": 21,
+        "post_first_non_read_only_seconds": 206.89399999999998,
+        "tool_calls": 30,
+        "tool_duration_seconds": 89.143,
+        "total_duration_seconds": 211.861
+      },
+      "reward": 1,
+      "run_id": "017-partial-rails-rollout-google-gemini-4-neon-3",
+      "scenario": "017-partial-rails-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:09:12Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 402044,
+        "cost_source": "provider",
+        "cost_usd": 0.44103059999999994,
+        "input_tokens": 82393,
+        "output_tokens": 8903,
+        "rounds": 21,
+        "tool_calls": 30
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 116,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:17:33Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 9.894,
+        "model_duration_seconds": 110.612,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 105.244,
+        "tool_calls": 21,
+        "tool_duration_seconds": 4.269,
+        "total_duration_seconds": 115.138
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-google-gemini-4-neon-1",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:15:20Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 282279,
+        "cost_source": "provider",
+        "cost_usd": 0.32429385,
+        "input_tokens": 50949,
+        "output_tokens": 8607,
+        "rounds": 15,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 118,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:21:58Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.116,
+        "model_duration_seconds": 111.74,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 111.382,
+        "tool_calls": 21,
+        "tool_duration_seconds": 4.581,
+        "total_duration_seconds": 116.498
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-google-gemini-4-neon-2",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:19:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 319391,
+        "cost_source": "provider",
+        "cost_usd": 0.35030865,
+        "input_tokens": 54265,
+        "output_tokens": 9307,
+        "rounds": 13,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 107,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:26:02Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 3.217,
+        "model_duration_seconds": 98.19,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 100.31400000000001,
+        "tool_calls": 18,
+        "tool_duration_seconds": 5.05,
+        "total_duration_seconds": 103.531
+      },
+      "reward": 1,
+      "run_id": "019-rust-fd-leak-google-gemini-4-neon-3",
+      "scenario": "019-rust-fd-leak",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:24:00Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 280475,
+        "cost_source": "provider",
+        "cost_usd": 0.3230572500000001,
+        "input_tokens": 49552,
+        "output_tokens": 8822,
+        "rounds": 13,
+        "tool_calls": 18
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 183,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:30:12Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.346,
+        "model_duration_seconds": 177.196,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 175.964,
+        "tool_calls": 20,
+        "tool_duration_seconds": 3.785,
+        "total_duration_seconds": 181.31
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-neon-1",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:26:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 300325,
+        "cost_source": "provider",
+        "cost_usd": 0.40703775,
+        "input_tokens": 57893,
+        "output_tokens": 12554,
+        "rounds": 13,
+        "tool_calls": 20
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 195,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:34:31Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 18.739,
+        "model_duration_seconds": 189.519,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 174.839,
+        "tool_calls": 17,
+        "tool_duration_seconds": 3.658,
+        "total_duration_seconds": 193.578
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-neon-2",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:31:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 330712,
+        "cost_source": "provider",
+        "cost_usd": 0.4335468,
+        "input_tokens": 50730,
+        "output_tokens": 15450,
+        "rounds": 14,
+        "tool_calls": 17
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 151,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:38:07Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 11.978,
+        "model_duration_seconds": 145.016,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 136.786,
+        "tool_calls": 25,
+        "tool_duration_seconds": 3.442,
+        "total_duration_seconds": 148.764
+      },
+      "reward": 1,
+      "run_id": "021-discourse-shared-uploads-google-gemini-4-neon-3",
+      "scenario": "021-discourse-shared-uploads",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:35:22Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 480077,
+        "cost_source": "provider",
+        "cost_usd": 0.45230054999999997,
+        "input_tokens": 64438,
+        "output_tokens": 12465,
+        "rounds": 15,
+        "tool_calls": 25
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 148,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:41:44Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 8.559,
+        "model_duration_seconds": 140.879,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 137.217,
+        "tool_calls": 19,
+        "tool_duration_seconds": 1.779,
+        "total_duration_seconds": 145.776
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-google-gemini-4-neon-1",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:39:02Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 170014,
+        "cost_source": "provider",
+        "cost_usd": 0.36717210000000006,
+        "input_tokens": 57360,
+        "output_tokens": 11306,
+        "rounds": 14,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 127,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:44:55Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.727,
+        "model_duration_seconds": 122.014,
+        "model_rounds": 16,
+        "post_first_non_read_only_seconds": 120.291,
+        "tool_calls": 21,
+        "tool_duration_seconds": 2.685,
+        "total_duration_seconds": 125.018
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-google-gemini-4-neon-2",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:42:35Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 333288,
+        "cost_source": "provider",
+        "cost_usd": 0.3762582,
+        "input_tokens": 57865,
+        "output_tokens": 10178,
+        "rounds": 16,
+        "tool_calls": 21
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 129,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:48:07Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.622,
+        "model_duration_seconds": 124.477,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 122.055,
+        "tool_calls": 19,
+        "tool_duration_seconds": 1.977,
+        "total_duration_seconds": 126.677
+      },
+      "reward": 1,
+      "run_id": "023-auth-secret-rollout-google-gemini-4-neon-3",
+      "scenario": "023-auth-secret-rollout",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:45:45Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 205471,
+        "cost_source": "provider",
+        "cost_usd": 0.35907464999999994,
+        "input_tokens": 49018,
+        "output_tokens": 12080,
+        "rounds": 13,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 118,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:51:17Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.237,
+        "model_duration_seconds": 108.962,
+        "model_rounds": 19,
+        "post_first_non_read_only_seconds": 111.44600000000001,
+        "tool_calls": 24,
+        "tool_duration_seconds": 7.506,
+        "total_duration_seconds": 116.683
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-neon-1",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:49:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 344751,
+        "cost_source": "provider",
+        "cost_usd": 0.33829365,
+        "input_tokens": 53772,
+        "output_tokens": 8351,
+        "rounds": 19,
+        "tool_calls": 24
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 110,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:54:19Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 4.857,
+        "model_duration_seconds": 100.328,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 103.26,
+        "tool_calls": 34,
+        "tool_duration_seconds": 7.58,
+        "total_duration_seconds": 108.117
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-neon-2",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:52:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 391089,
+        "cost_source": "provider",
+        "cost_usd": 0.36050534999999995,
+        "input_tokens": 60434,
+        "output_tokens": 8036,
+        "rounds": 15,
+        "tool_calls": 34
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 116,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T00:57:27Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.604,
+        "model_duration_seconds": 105.921,
+        "model_rounds": 14,
+        "post_first_non_read_only_seconds": 108.848,
+        "tool_calls": 19,
+        "tool_duration_seconds": 8.333,
+        "total_duration_seconds": 114.452
+      },
+      "reward": 1,
+      "run_id": "024-discourse-interrupted-deploy-google-gemini-4-neon-3",
+      "scenario": "024-discourse-interrupted-deploy",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:55:14Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 420225,
+        "cost_source": "provider",
+        "cost_usd": 0.39230175,
+        "input_tokens": 65196,
+        "output_tokens": 8912,
+        "rounds": 14,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 148,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T01:01:29Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.152,
+        "model_duration_seconds": 139.568,
+        "model_rounds": 18,
+        "post_first_non_read_only_seconds": 139.33,
+        "tool_calls": 34,
+        "tool_duration_seconds": 5.64,
+        "total_duration_seconds": 145.482
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-neon-1",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T00:58:44Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 633953,
+        "cost_source": "provider",
+        "cost_usd": 0.56144895,
+        "input_tokens": 94122,
+        "output_tokens": 12266,
+        "rounds": 18,
+        "tool_calls": 34
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 214,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T01:06:35Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 19.07,
+        "model_duration_seconds": 204.911,
+        "model_rounds": 22,
+        "post_first_non_read_only_seconds": 192.854,
+        "tool_calls": 39,
+        "tool_duration_seconds": 6.743,
+        "total_duration_seconds": 211.924
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-neon-2",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T01:02:43Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 729779,
+        "cost_source": "provider",
+        "cost_usd": 0.51721785,
+        "input_tokens": 87262,
+        "output_tokens": 9731,
+        "rounds": 22,
+        "tool_calls": 39
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 213,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T01:11:56Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 19.736,
+        "model_duration_seconds": 206.095,
+        "model_rounds": 23,
+        "post_first_non_read_only_seconds": 191.779,
+        "tool_calls": 36,
+        "tool_duration_seconds": 5.052,
+        "total_duration_seconds": 211.515
+      },
+      "reward": 1,
+      "run_id": "028-nix-store-disk-pressure-google-gemini-4-neon-3",
+      "scenario": "028-nix-store-disk-pressure",
+      "scenario_version": 1,
+      "started_at": "2026-11-19T01:08:06Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 876593,
+        "cost_source": "provider",
+        "cost_usd": 0.5987869499999999,
+        "input_tokens": 87171,
+        "output_tokens": 13719,
+        "rounds": 23,
+        "tool_calls": 36
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 118,
+      "agent_timeout_seconds": 900,
+      "attempt": 1,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T01:15:18Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 5.458,
+        "model_duration_seconds": 107.678,
+        "model_rounds": 13,
+        "post_first_non_read_only_seconds": 110.397,
+        "tool_calls": 15,
+        "tool_duration_seconds": 7.975,
+        "total_duration_seconds": 115.855
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-google-gemini-4-neon-1",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-19T01:13:01Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 367537,
+        "cost_source": "provider",
+        "cost_usd": 0.36134355,
+        "input_tokens": 56071,
+        "output_tokens": 9200,
+        "rounds": 13,
+        "tool_calls": 15
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 174,
+      "agent_timeout_seconds": 900,
+      "attempt": 2,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T01:19:16Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 19.461,
+        "model_duration_seconds": 164.179,
+        "model_rounds": 15,
+        "post_first_non_read_only_seconds": 152.36399999999998,
+        "tool_calls": 23,
+        "tool_duration_seconds": 7.475,
+        "total_duration_seconds": 171.825
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-google-gemini-4-neon-2",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-19T01:16:03Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 493752,
+        "cost_source": "provider",
+        "cost_usd": 0.3870258000000001,
+        "input_tokens": 64056,
+        "output_tokens": 8053,
+        "rounds": 15,
+        "tool_calls": 23
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    },
+    {
+      "agent": "claux",
+      "agent_duration_seconds": 89,
+      "agent_timeout_seconds": 900,
+      "attempt": 3,
+      "failure": null,
+      "failure_category": null,
+      "finished_at": "2026-11-19T01:21:42Z",
+      "model": "google/gemini-4-neon",
+      "provider": "openrouter",
+      "reasoning_effort": null,
+      "recording": {
+        "first_non_read_only_tool_seconds": 6.25,
+        "model_duration_seconds": 79.855,
+        "model_rounds": 11,
+        "post_first_non_read_only_seconds": 80.943,
+        "tool_calls": 19,
+        "tool_duration_seconds": 7.162,
+        "total_duration_seconds": 87.193
+      },
+      "reward": 1,
+      "run_id": "033-tls-trust-rotation-google-gemini-4-neon-3",
+      "scenario": "033-tls-trust-rotation",
+      "scenario_version": 2,
+      "started_at": "2026-11-19T01:19:55Z",
+      "trial_status": "evaluated",
+      "usage": {
+        "cache_creation_tokens": 0,
+        "cache_read_tokens": 394353,
+        "cost_source": "provider",
+        "cost_usd": 0.36056295000000005,
+        "input_tokens": 64715,
+        "output_tokens": 7151,
+        "rounds": 11,
+        "tool_calls": 19
+      },
+      "verification": {
+        "after_agent_timeout": null,
+        "host_reboot": true,
+        "immediate_http": true,
+        "service_restart": true
+      }
+    }
+  ],
+  "scenario_labels": {},
+  "schema_version": 1,
+  "sources": [
+    {
+      "agent": {
+        "adapter": "builtin:claux",
+        "name": "claux",
+        "payload": null,
+        "provider": "openrouter"
+      },
+      "agent_timeout_seconds": 900,
+      "attempts": 3,
+      "benchmark_manifest": {
+        "id": "replaybook-infra-core",
+        "schema_version": 1,
+        "sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "status": "stable",
+        "tier": "core",
+        "version": "2026.10.24.2"
+      },
+      "benchmark_tier": "core",
+      "claux_release": null,
+      "concurrency": 1,
+      "execution_snapshot": {
+        "agent_adapter_sha256": null,
+        "agent_config_sha256": null,
+        "agent_env_sha256": null,
+        "agent_payload_sha256": null,
+        "benchmark_manifest_sha256": "c76792cbf5c8f3aef87d9b7bee48ad7c435894e2ea375f39be50dbbe1bfdeee3",
+        "claux_binary_sha256": "7a7268af30cfdde78542c29ab70be603b042854b850f76308fb8bfaaf3002288",
+        "host_harness_sha256": "c4f52ca5bdc9c09822e7a255a435d1c436199b6f0e3bcb4f20701569b230d63e",
+        "scenario_packs": [
+          {
+            "git_commit": "6a5a52b46331f56a9b4cdcda872134c03bfeb1b3",
+            "id": "ducks/replaybook-infra",
+            "sha256": "2930b8ba5db65332e4cb4aba19299d8b80c6f0365e0ef92d457d03823da74864",
+            "version": "20261024.1.1"
+          }
+        ],
+        "schema_version": 1,
+        "selected_scenarios": [
+          {
+            "id": "001-nginx-502-host",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d4c06ab5021d607f8f78ece8851ec467da317e7c35fa30f0e025aecfdcd9b721",
+            "version": 1
+          },
+          {
+            "id": "013-sidekiq-wrong-redis",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d9c73251bc43886fee2200d3b94c20138eeaca8e2dcd6a93913c9c64520937d7",
+            "version": 3
+          },
+          {
+            "id": "015-sidekiq-poison-pill",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39b4c40a3c0e25fea8d66a64dfba96137ff9c32e033678a89b649e702638ae4b",
+            "version": 1
+          },
+          {
+            "id": "016-rails-pool-exhaustion",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "d26159dc01afee8679ca1fb9b1f766cc5df44881ff8d3be442a62909652b4256",
+            "version": 1
+          },
+          {
+            "id": "017-partial-rails-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "4c1f59557a89386eca6f78478a26a2a410145f6e9a9f5fd8c212cec044fbd8ce",
+            "version": 1
+          },
+          {
+            "id": "019-rust-fd-leak",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c688839fe58ea027d2fcf5711b6dc4ee84196080ccb25bfb0fdb96c043e64bee",
+            "version": 1
+          },
+          {
+            "id": "021-discourse-shared-uploads",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "12987993a9d64e8984abbf0ab5ee603deb73056bc25652096a96e2e6321f9d2f",
+            "version": 1
+          },
+          {
+            "id": "023-auth-secret-rollout",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "234282e2269eb3b838a17a19a60ad30b2b74d1c519b28d57daa7a771f2a15169",
+            "version": 1
+          },
+          {
+            "id": "024-discourse-interrupted-deploy",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "c9dfdd5a1a9dae87fb9b94aabcb52b75889d631432d040a3a4a67c6651d33c7b",
+            "version": 1
+          },
+          {
+            "id": "028-nix-store-disk-pressure",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "39e10e2d46bda3d3873578156561f83edd047b0b1a21242f584b0cb35fc80ed7",
+            "version": 1
+          },
+          {
+            "id": "033-tls-trust-rotation",
+            "pack_id": "ducks/replaybook-infra",
+            "sha256": "298baff3640858599e673e5beba1b1ed78818628fef877b6913f750cadca11e9",
+            "version": 2
+          }
+        ]
+      },
+      "finished_at": "2026-11-19T01:21:42.664014Z",
+      "harness_version": 23,
+      "harness_versions": [
+        23
+      ],
+      "models": [
+        "google/gemini-4-neon"
+      ],
+      "reasoning_efforts": [],
+      "replaybook_commit": "5293ba5c0a3bc21f506507b1bef7090c7cff437d",
+      "scenario_packs": [
+        {
+          "id": "ducks/replaybook-infra",
+          "version": "20261024.1.1"
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "001-nginx-502-host",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "013-sidekiq-wrong-redis",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 3
+        },
+        {
+          "id": "015-sidekiq-poison-pill",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "016-rails-pool-exhaustion",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "017-partial-rails-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "019-rust-fd-leak",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "021-discourse-shared-uploads",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "023-auth-secret-rollout",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "024-discourse-interrupted-deploy",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "028-nix-store-disk-pressure",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 1
+        },
+        {
+          "id": "033-tls-trust-rotation",
+          "pack": {
+            "id": "ducks/replaybook-infra",
+            "version": "20261024.1.1"
+          },
+          "version": 2
+        }
+      ],
+      "source": "matrix",
+      "started_at": "2026-11-18T23:08:25.091629Z",
+      "suite": "replaybook-host-matrix-v1",
+      "summary_sha256": "10e22df9d20e1d99cbfee615667f08f32653c210f53ec739068b86f6618c95c1"
+    }
+  ],
+  "tier": "core",
+  "title": "Gemini 4 Neon Core via Claux / OpenRouter",
+  "totals": {
+    "cache_creation_reported_trials": 33,
+    "cache_creation_tokens": 0,
+    "cache_read_reported_trials": 33,
+    "cache_read_tokens": 13728218,
+    "cost_reported_trials": 33,
+    "durable_repairs_after_timeout": 0,
+    "evaluated": 33,
+    "failed": 0,
+    "failure_categories": {},
+    "input_tokens": 2035807,
+    "known_cost_usd": 13.4373687,
+    "median_duration_seconds": 131,
+    "median_first_non_read_only_tool_seconds": 5.458,
+    "median_model_duration_seconds": 123.273,
+    "median_model_rounds": 15,
+    "median_post_first_non_read_only_seconds": 124.16400000000002,
+    "median_tool_calls": 21,
+    "median_tool_duration_seconds": 6.743,
+    "output_tokens": 351381,
+    "pass_rate": 1.0,
+    "passed": 33,
+    "recording_reported_trials": 33,
+    "subscription_usage_reported_trials": 0,
+    "subscription_usage_usd": 0,
+    "trials": 33,
+    "unavailable": 0,
+    "unavailable_categories": {},
+    "usage_reported_trials": 33
+  },
+  "version": "20261119.0.0"
+}
